@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
 <head>
 <title>FOAF-a-matic -- Describase a si mismo en RDF</title>
@@ -18,28 +19,15 @@ checkParameters();
 
 <body>
 <h1>
-<a href="http://www.foaf-project.org/">
-<span class="lefthead">foaf  
-</span>
-<span class="righthead">project</span>
-</a>
-</h1>
+<a href="http://www.foaf-project.org/"><span class="lefthead">foaf  
+</span><span class="righthead">project</span></a></h1>
 <div class="description-bar">friend of a friend</div>
 <div class="marginLeft">
-<div class="header">
-<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles" />
-</div>
-<div id="links">
-<a href="/foaf-a-matic/">foaf-a-matic</a>
-<a href="http://rdfweb.org/topic/FAQ">
-about</a>
-<a href="http://xmlns.com/foaf/0.1/">specification</a>
-<a href="http://rdfweb.org/">
-developers</a>
-<a href="http://rdfweb.org/foaf/corp/intro.html">foafcorp</a>
-<a href="foaf-contact@rdfweb.org">
-contact</a>
-</div>
+<div class="header"><img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles" /></div>
+<div id="links"><a href="/foaf-a-matic/">foaf-a-matic</a><a href="http://rdfweb.org/topic/FAQ">
+about</a><a href="http://xmlns.com/foaf/0.1/">specification</a><a href="http://rdfweb.org/">
+developers</a><a href="http://rdfweb.org/foaf/corp/intro.html">foafcorp</a><a href="foaf-contact@rdfweb.org">
+contact</a></div>
 <!-- main page content follows -->
 </div>
 <h2>FOAF-a-Matic</h2>
@@ -49,189 +37,134 @@ contact</a>
 
 
 <p>
-Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. Traducido por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:inkel-rdf@f14web.com.ar">Leandro Mariano L&oacute;pez</a>.
+Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. Traducido por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:inkel-rdf@f14web.com.ar">Leandro Mariano López</a>.
 </p>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introducci&oacute;n</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        FOAF-a-matic es una simple aplicaci&oacute;n de Javascript que le permite crear un descripci&oacute;n
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introducción</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-matic es una simple aplicación de Javascript que le permite crear un descripción
         FOAF ("Friend-of-A-Friend" o Amigo-de-un-Amigo) de si mismo.
 
-        Puede leer m&aacute;s (en ingl&eacute;s) acerca de FOAF en el articulo de Edd Dumbill
+        Puede leer más (en inglés) acerca de FOAF en el articulo de Edd Dumbill
         "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
         Watch: Finding friends with XML and RDF</a>", en
         <a href="http://rdfweb.org/foaf/">the FOAF homepage on RDFWeb</a>, y tambien
         <a href="http://xmlns.com/foaf/0.1/">the FOAF vocabulary description</a>.
         En castellano existe el documento
         "<a href="http://purl.org/net/inkel/2003/01/27/foaf.html">FOAF: el proyecto 'Friend-of-a-friend'</a>",
-        de Leandro Mariano L&oacute;pez.
+        de Leandro Mariano López.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Resumiendo, FOAF es una manera de describirse a uno mismo -- nombre, direcci&oacute;n de email, y
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Resumiendo, FOAF es una manera de describirse a uno mismo -- nombre, dirección de email, y
         la gente de quienes es amigo -- usando XML y RDF. Esto permite al software procesar estas
-        descripciones, tal vez como parte de un motor de busqueda automatizado, para descubrir informaci&oacute;n
+        descripciones, tal vez como parte de un motor de busqueda automatizado, para descubrir información
         acerca suyo y de las comunidades de las cuales es miembro. FOAF tiene el potencial de conducir nuevos
         desarrollos en comunidades online. El articulo de Ben Hammersley
         "<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"
-        para el sitio Guardian Unlimited explora m&aacute;s a fondo estas ideas.
+        para el sitio Guardian Unlimited explora más a fondo estas ideas.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        FOAF-a-Matic le provee a usted una manera r&aacute;pida y f&aacute;cil de crear su propia
-        descripci&oacute;n FOAF. Simplemente recorra los formularios de esta p&aacute;gina y complete
-        aquellos detalles que desee agregar a su descripci&oacute;n. Como m&iacute;nimo necesitara
-        suministrar su nombre y direcci&oacute;n de email, al igual que para cada uno de sus amigos que
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-Matic le provee a usted una manera rápida y fácil de crear su propia
+        descripción FOAF. Simplemente recorra los formularios de esta página y complete
+        aquellos detalles que desee agregar a su descripción. Como mínimo necesitara
+        suministrar su nombre y dirección de email, al igual que para cada uno de sus amigos que
         desee agregar.
 
-        Vale la pena agregar algunos amigos a su descripci&oacute;n (pero sientase libre de agregar cuantos desee)
-        porque cuando los indexadores FOAF indexen su descripci&oacute;n FOAF, podran ligarlos como una
+        Vale la pena agregar algunos amigos a su descripción (pero sientase libre de agregar cuantos desee)
+        porque cuando los indexadores FOAF indexen su descripción FOAF, podran ligarlos como una
         red de individuos.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Nota: nada de la informaci&oacute;n suministrada en esta p&aacute;gina es usada o almacenada en
-        ning&uacute;n modo. El procesamiento es enteramente client-side, es decir, del lado del cliente,
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Nota: nada de la información suministrada en esta página es usada o almacenada en
+        ningún modo. El procesamiento es enteramente client-side, es decir, del lado del cliente,
         por lo tanto su privacidad es asegurada.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Si tiene comentarios acerca de esta aplicaci&oacute;n, u otras preguntas acerca de FOAF, por que
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Si tiene comentarios acerca de esta aplicación, u otras preguntas acerca de FOAF, por que
         no se une a <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">la lista de correo RDFWeb-dev</a>?
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        
-<b>Actualizaci&oacute;n</b>:
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <b>Actualización</b>:
         Actualmente estoy escribiendo <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>
-        una aplicaci&oacute;n de escritorio para crear y administrar sus datos FOAF.
+        una aplicación de escritorio para crear y administrar sus datos FOAF.
         </p>
     
 
 <form name="details" onSubmit="return false;">
 
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Los Formularios</h2>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Los Formularios</h2>
-
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personal</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Informaci&oacute;n acerca de usted, y como pueden contactarlo.
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personal</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Información acerca de usted, y como pueden contactarlo.
         </p>
     
 
 <table>
 <tr>
-<td>Titulo (Sr, Sra, Dr, etc)</td>
-<td>
-<input type="text" name="title" />
-</td>
+<td>Titulo (Sr, Sra, Dr, etc)</td><td><input type="text" name="title" /></td>
 </tr>
 <tr>
-<td>Nombre/s</td>
-<td>
-<input type="text" name="firstName" />
-</td>
+<td>Nombre/s</td><td><input type="text" name="firstName" /></td>
 </tr>
 <tr>
-<td>Apellido</td>
-<td>
-<input type="text" name="surname" />
-</td>
+<td>Apellido</td><td><input type="text" name="surname" /></td>
 </tr>
 <tr>
-<td>Apodo</td>
-<td>
-<input type="text" name="nick" />
-</td>
+<td>Apodo</td><td><input type="text" name="nick" /></td>
 </tr>
 <tr>
-<td>Su Direcci&oacute;n de Email</td>
-<td>
-<input type="text" name="email" />
-</td>
+<td>Su Dirección de Email</td><td><input type="text" name="email" /></td>
 </tr>
 <tr>
-<td>Homepage</td>
-<td>
-<input type="text" name="homepage" />
-</td>
+<td>Homepage</td><td><input type="text" name="homepage" /></td>
 </tr>
 <tr>
-<td>Su Foto</td>
-<td>
-<input type="text" name="depiction" />
-</td>
+<td>Su Foto</td><td><input type="text" name="depiction" /></td>
 </tr>
 <tr>
-<td>Tel&eacute;fono</td>
-<td>
-<input type="text" name="phone" />
-</td>
+<td>Teléfono</td><td><input type="text" name="phone" /></td>
 </tr>
 </table>
 
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Trabajo</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Informaci&oacute;n acerca de su lugar de trabajo.
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Trabajo</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Información acerca de su lugar de trabajo.
         </p>
     
 
 <table>
 <tr>
-<td>Homepage del Trabajo</td>
-<td>
-<input type="text" name="workplaceHomepage" />
-</td>
+<td>Homepage del Trabajo</td><td><input type="text" name="workplaceHomepage" /></td>
 </tr>
 <tr>
-<td>P&aacute;gina describiendo su trabajo</td>
-<td>
-<input type="text" name="workInfoHomepage" />
-</td>
+<td>Página describiendo su trabajo</td><td><input type="text" name="workInfoHomepage" /></td>
 </tr>
 </table>
 
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Escuela</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        &iquest;A que escuela fue?
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Escuela</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        ¿A que escuela fue?
         </p>
     
 
 <table>
 <tr>
-<td>Homepage de su Escuela</td>
-<td>
-<input type="text" name="schoolHomepage" />
-</td>
+<td>Homepage de su Escuela</td><td><input type="text" name="schoolHomepage" /></td>
 </tr>
 </table>
 
 </form>
 
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Gente Que Conoce</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Gente Que Conoce</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Informele a FOAF-a-matic acerca de la gente que conoce. Presione "Agregar Amigo" para agregar espacio para
-        agregar m&aacute;s gente. Si su amigo ya tiene una descripci&oacute;n FOAF, entonces introduzca la direcci&oacute;n
+        agregar más gente. Si su amigo ya tiene una descripción FOAF, entonces introduzca la dirección
         en el campo "Ver Tambien".
         </p>
     
@@ -249,11 +182,8 @@ createFriendFields();
 <input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()" />
 </form>
 
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Generate Results</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Generate Results</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Ahora que ha completado los detalles, usted es listo para convertirse a FOAF...
         </p>
     
@@ -273,129 +203,98 @@ createFriendFields();
 
 </form>
 
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">¿Que Sigue??</h2>
+        <h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Publicar su descripción FOAF</h3>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">&iquest;Que Sigue??</h2>
-        
-<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Publicar su descripci&oacute;n FOAF</h3>
-
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Esta es la parte f&aacute;cil. Simplemente copie la descripci&oacute;n FOAF generada del cuadro de texto previo y peguela
-        en un archivo. Suba el archivo a su sitio web en alg&uacute;n lugar donde sea publicamente accesible, es una buena idea
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Esta es la parte fácil. Simplemente copie la descripción FOAF generada del cuadro de texto previo y peguela
+        en un archivo. Suba el archivo a su sitio web en algún lugar donde sea publicamente accesible, es una buena idea
         llamar a este archivo "foaf.rdf", asi entonces una busqueda en google puede ser usada para discubrir archivos FOAF a
         lo largo de la web.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Su descripci&oacute;n FOAF esta lista ahora, solo necesita que la gente venga y la lea...
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Su descripción FOAF esta lista ahora, solo necesita que la gente venga y la lea...
         </p>
 
-        
-<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Uniendose a la Comunidad FOAF</h3>
+        <h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Uniendose a la Comunidad FOAF</h3>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        El aspecto de 'descubrimiento' de FOAF (p.ej. como encuentran su descripci&oacute;n las aplicaciones aptas para FOAF) es todavia
-        un area en discusi&oacute;n. Si tiene sugerencias envielas a
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        El aspecto de 'descubrimiento' de FOAF (p.ej. como encuentran su descripción las aplicaciones aptas para FOAF) es todavia
+        un area en discusión. Si tiene sugerencias envielas a
         <a href="http://groups.yahoo.com/group/rdfweb-dev/">la lista de correo RDFWeb-dev</a>. De todos modos existen tres
         posibilidades. Puede intentar de utilizar alguna o todas de ellas.
         </p>
 
-        
-<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Usando la etiqueta Link</h4>
+        <h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Usando la etiqueta Link</h4>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Aaron Swartz ha <a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">sugerido</a> usar la etiqueta HTML Link para
-        apuntar a descripciones FOAF, de un modo similar al que muchos bloggers esta apuntando a sus archivos de sindicalizaci&oacute;n
+        apuntar a descripciones FOAF, de un modo similar al que muchos bloggers esta apuntando a sus archivos de sindicalización
         RSS. Asi es como debe verse:
         </p>
 
-        
-<code xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <code xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" /&gt;
         </code>
 
-        
-<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Referencias desde un Amigo</h4>
+        <h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Referencias desde un Amigo</h4>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        La otra manera recomendada de tener su archivo FOAF indexado es tener alguien m&aacute;s (p.ej. un amigo) apuntando a el.
-        Una ara&ntilde;a FOAF (programa que indexa archivos FOAF) puede entonces recorrer todos sus archivos FOAF. Puede hacer esto
-        realizando los siguientes cambios a su descripci&oacute;n FOAF:
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        La otra manera recomendada de tener su archivo FOAF indexado es tener alguien más (p.ej. un amigo) apuntando a el.
+        Una araña FOAF (programa que indexa archivos FOAF) puede entonces recorrer todos sus archivos FOAF. Puede hacer esto
+        realizando los siguientes cambios a su descripción FOAF:
         </p>
 
-        
-<ol xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        
-<li>Altere el elemento <code>rdf:RDF</code> para agregar el espacio de nombres RDF Schema, como sigue:
+        <ol xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <li>Altere el elemento <code>rdf:RDF</code> para agregar el espacio de nombres RDF Schema, como sigue:
         <code>&lt;rdf:RDF
               xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
               xmlns:foaf="http://xmlns.com/foaf/0.1/"
               xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
         </code>
-        
-</li>
-        
-<li>Puede entonces agregar links a otras descripciones FOAF agregando un elemento <code>rdfs:seeAlso</code>
+        </li>
+        <li>Puede entonces agregar links a otras descripciones FOAF agregando un elemento <code>rdfs:seeAlso</code>
         por cada archivo adicional, como sigue:</li>
-        
-<code>
+        <code>
         &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/&gt;
         &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/&gt;
         </code>
-        
-</ol>
+        </ol>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        
-<i>Actualizaci&oacute;n</i>: si sus amigos ya poseen una descripci&oacute;n FOAF, entonces incluya la direcci&oacute;n en el
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <i>Actualización</i>: si sus amigos ya poseen una descripción FOAF, entonces incluya la dirección en el
         campo 'seeAlso' del formulario anterior. Tambien puede
         <a href="http://www.ldodds.com/blog/archives/000033.html">Comentar a un Amigo de FOAF-a-matic</a>
-        
-</p>
-
-        
-<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Usar el Tabl&oacute;n de Anuncios de FOAF</h4>
-
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
-        Una manera obvia de descubrir descripciones FOAF para las aplicaciones es tener un registro de ellas. He armado una manera
-        simple de hacer esto, llamada el <a href="bulletin-board.html">Tabl&oacute;n de Anuncios FOAF</a>.
-        Simplemente visite FOAFWiki, y edite la p&aacute;gina
-        <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a> y agregue su nombre y un enlace
-        a su descripci&oacute;n FOAF. Yo ya he agregado la mia, la cual puede usar como ejemplo.
         </p>
 
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Usar el Tablón de Anuncios de FOAF</h4>
+
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Una manera obvia de descubrir descripciones FOAF para las aplicaciones es tener un registro de ellas. He armado una manera
+        simple de hacer esto, llamada el <a href="bulletin-board.html">Tablón de Anuncios FOAF</a>.
+        Simplemente visite FOAFWiki, y edite la página
+        <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a> y agregue su nombre y un enlace
+        a su descripción FOAF. Yo ya he agregado la mia, la cual puede usar como ejemplo.
+        </p>
+
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Aplicando la magia de HTML Tidy y XSLT aplicaciones como <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a> de Edd Dumbill
-        pueden procesar este indice. Visite la p&aacute;gina principal de FOAFBot para mayor informaci&oacute;n acerca de como verlo
-        en acci&oacute;n.
+        pueden procesar este indice. Visite la página principal de FOAFBot para mayor información acerca de como verlo
+        en acción.
         </p>
     
 
-
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license"></a>
-<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">License</h2>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">License</h2>
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Este trabajo esta licenciado bajo la
         <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons License</a>.
         </p>
-        
-<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         <!-- Creative Commons License -->
-        
-<a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif"></a>
-<br>
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif" /></a><br />
         <!-- /Creative Commons License -->
-        
-</p>
+        </p>
     
 
 <hr />
