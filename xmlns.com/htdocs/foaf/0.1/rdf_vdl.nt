@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-13 12:28:26 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-22 11:34:51 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -221,9 +221,18 @@
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#label> "made" .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#comment> "Something that was made by this agent." .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2003/06/sw-vocab-status/nsterm_status> "testing" .
-<http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
+<http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Agent> .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/maker> .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2000/01/rdf-schema#label> "made" .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2000/01/rdf-schema#comment> "An agent that made this thing." .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2003/06/sw-vocab-status/nsterm_status> "testing" .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Agent> .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/maker> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/made> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#label> "image" .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#comment> "An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage)." .
