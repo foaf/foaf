@@ -1,0 +1,38 @@
+Scanning file: ../../new//activism/index.html title: Activism 
+2ndary nav section is:  			<li><a href="http://grorg.org/demos/foafcorp/">fatcats</a><br /> 				boy, those cats sure are fat!</li> 			<li><a href="http://rdfweb.org/foafcorp/intro.html">foafcorp</a><br /> 				 Corporate Friends of Friends</li> 			<li><a href="http://www.theyrule.net/2004/tr2.php">they rule</a><br />they sit on the boards of the largest companies in America</li> 			 			
+
+
+Scanning file: ../../new//index.html title: Welcome to the Friend of a Friend Project 
+2ndary nav section is:  			&nbsp; 			
+
+
+Scanning file: ../../new//other/i2.html title: Related Technologies 
+2ndary nav section is:   			<li><a href="http://peopleaggregator.com/">People Aggregator (offsite) </a><br />Insert witty slogan here.</li>  			<li><a href="http://beta.plink.org/">Plink(offsite)</a><br />People Link</li>  			<li><a href="http://planb.nicecupoftea.org/">plan b (offsite) </a> <br />  			A nice cup of tea</li>  			  			
+
+
+Scanning file: ../../new//other/index.html title: Related Technologies 
+2ndary nav section is:  			<li><a href="http://peopleaggregator.com/">People Aggregator (offsite) </a><br />Insert witty slogan here.</li> 			<li><a href="http://beta.plink.org/">Plink(offsite)</a><br />People Link</li> 			<li><a href="http://planb.nicecupoftea.org/">plan b (offsite) </a> <br /> 			A nice cup of tea</li> 			 			
+
+
+Scanning file: ../../new//search.html title: Foaf Search Page 
+2ndary nav section is: &nbsp; 			
+
+
+Scanning file: ../../new//src/htmltokenizer/index.html title: HTML Tokenizer 
+No 2ndary navigation section in marked comments.
+Scanning file: ../../new//us/index.html title: About foaf project 
+2ndary nav section is:  			 			<li><a href="http://www.xml.com/pub/a/2004/02/04/foaf.html">about</a><br />An Introduction to FOAF by Leigh Dodds</li> 			 			<li><a href="http://www.perceive.net/schemas/20021119/trust/">trust</a><br />A module for defining trust relationships in FOAF</li> 			<li><a href="http://danbri.org/">danbri</a><br />Dan Brickley's homepage</li> 			
+
+
+Scanning file: ../../new//web/index.html title: FOAF Developer Center 
+2ndary nav section is:  			 			<li><a href="http://xmlns.com/foaf/0.1/">specification</a><br /></li> 			 			<li><a href="http://rdfweb.org/topic/FoafProject">wiki</a><br />Consider this a freeform scratchpad</li> 			<li><a href="http://rdfweb.org/irc/">irc</a><br />Developer Chat</li> 			<li><a href="http://rdfweb.org/topic/IssueTracker">issue tracker</a><br />Bug reporting and tracking</li> 			 			<li><a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">mailing list </a><br />Main RDFWeb/FOAF developer discussion list</li> 			 			<li><a href="http://usefulinc.com/foaf/foafbot">foafbot</a><br />IRC Community Support Agent</li> 			<li><a href="http://rdfweb.org/">rdfWeb</a><br />The developer site </li> 			
+
+
+Scanning file: ../../new//world/index.html title: The World - foaf databases 
+2ndary nav section is: <li><a href="../activism/foafcorp.html">foafcorp</a> <br />a directory of corporate connections</li> 			<li><a href="http://www.foafnaut.org/">foafNaut</a><br />searching for people using foaf </li> 			<li><a href="http://eikeon.com/foaf/">foaf: Web View</a><br />Browse by nick or starting from my FOAF info.</li> 			<li><a href="http://xml.mfd-consult.dk/foaf/explorer/">foaf Explorer</a><br />Explore a FoaF neighbourhood </li> 			<li><a href="http://rdfweb.org/2002/01/photo/">codepiction experiment</a><br />Photo metadata</li> 			
+
+
+Scanning file: ../../new//you/index.html title: Getting started with foaf 
+2ndary nav section is:  			<li><a href="http://kanzaki.com/docs/sw/foaf.html#foaf-explained">FOAF &#12392;&#12399;</a></li> 			<li><a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">introduction</a><br /> Finding friends with XML and RDF</li> 			 			<li><a href="http://www.ldodds.com/foaf/foaf-a-matic">foaf-a-matic</a><br />Create your own foaf file</li> 			<li><a href="http://reagle.org/joseph/2003/09/foaf-spheres.html">privacy</a><br />Web of Trust</li> 			 			<li><a href="http://rdfweb.org/mt/foaflog/archives/2003/08/04/14.58.12/">mbti</a><br />Your Meyers Briggs type indicator</li> 			 			 			<li><a href="http://rdfweb.org/mt/foaflog/archives/000051.html">getting started with foaf</a></li> 			<li><a href="http://rdfweb.org/topic/FAQ"><abbr title="frequently asked questions">faq</abbr></a><br />frequently asked questions</li> 			<li><a href="http://rdfweb.org/topic/FOAFBulletinBoard">bulletin board</a><br />getting your foaf file noticed</li> 			 			
+
+
