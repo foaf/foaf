@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<web:RDF xmlns:web="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rss="http://purl.org/rss/1.0/"
+        xmlns="http://xmlns.com/foaf/0.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:fc="http://xmlns.com/foaf/corp#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/" >
+
+<!-- data transcribed from theyrule.net by danbri; need to find stocktickers, home pages etc -->
+<!-- now to add photos etc and other fun stuff: 
+	eg: http://www2.coca-cola.com/about/whatwedo/bios/bio_28.html
+
+	See also Aaron's N3/cwm application that
+	uses this data: http://logicerror.com/theyRuleRDFTrial
+								-->
+
+
+<fc:Company fc:name="PepsiCo Investor Relations">
+ <homepage>
+  <Document dc:title="Pepsiworld" web:about="http://www.pepsico.com/"/>
+ </homepage> 
+
+ <fc:filings web:resource="http://www.pepsico.com/filings/content.shtml"/>
+ 
+ <fc:stock>PEP</fc:stock>
+ <fc:board>
+  <fc:Committee>
+
+      <!-- this doc includes photos :) -->
+     <fc:moreinfo web:resource="http://www.pepsico.com/filings/2001DEF14A.shtml"/>
+
+     <fc:member><Person fc:name="Cynthia M. Trudell, Ph.d."/></fc:member>
+     <fc:member><Person fc:name="Sharon P. Rockefeller"/></fc:member>
+     <fc:member><Person fc:name="Arthur C. Martinez"/></fc:member>
+     <fc:member><Person fc:name="Franklin A. Thomas"/></fc:member>
+     <fc:member><Person fc:name="Franklin D. Raines"/></fc:member>
+     <fc:member><Person fc:name="Solomon D. Trujillo"/></fc:member>
+     <fc:member><Person fc:name="Roger A. Enrico"/></fc:member>
+     <fc:member><Person fc:name="John F. Akers"/></fc:member>
+     <fc:member><Person fc:name="John J. Murphy"/></fc:member>
+     <fc:member><Person fc:name="Steven S. Reinemund"/></fc:member>
+     <fc:member><Person fc:name="Ray L. Hunt"/></fc:member>
+     <fc:member><Person fc:name="Peter Foy"/></fc:member>
+     <fc:member><Person fc:name="Robert E. Allen"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+
+<fc:Company fc:name="Bristol-Myers Squibb">
+ <homepage>
+  <Document dc:title="Bristol Myers Squibb Company" web:about="http://www.bms.com/"/>
+ </homepage>
+ <fc:stock>BMY</fc:stock>
+ <fc:board>
+  <fc:Committee>
+    <fc:member><Person fc:name="Robert E. Allen"/></fc:member>
+    <fc:member><Person fc:name="James D. Robinson III"/></fc:member>
+    <!-- ... -->
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+
+<fc:Company fc:name="Coca Cola co.">
+ <homepage>
+  <Document dc:title="Coca-Cola" web:about="http://www.cocacola.com/"/>
+ </homepage> 
+ <fc:stock>KO</fc:stock>
+ <fc:board>
+  <fc:Committee>
+    <fc:member><Person fc:name="James D. Robinson III"/></fc:member>
+    <fc:member><Person fc:name="Paul F. Oreiffice"/></fc:member>
+    <fc:member><Person fc:name="Peter V. Ueberroth"/></fc:member>
+    <fc:member><Person fc:name="James B. William"/></fc:member>
+    <fc:member><Person fc:name="Sam Nunn"/></fc:member>
+    <fc:member><Person fc:name="Donald F. McHenry"/></fc:member>
+    <fc:member><Person fc:name="Cathleen Black"/></fc:member>
+    <fc:member><Person fc:name="Warren E. Buffett"/></fc:member>
+    <fc:member><Person fc:name="Douglas N. Daft"/></fc:member>
+    <fc:member><Person fc:name="Herbert A. Allen"/></fc:member>
+    <fc:member><Person fc:name="Ronald W. Allen"/></fc:member>
+    <fc:member><Person fc:name="Susan B. King"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+
+</web:RDF>
+

@@ -1,0 +1,2286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web:RDF xmlns:web="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rss="http://purl.org/rss/1.0/"
+        xmlns="http://xmlns.com/foaf/0.1/"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:fc="http://xmlns.com/foaf/corp#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/" >
+<fc:Company fc:name="Exxon-Mobil">
+ <homepage>
+  <Document dc:title="Exxon-Mobil homepage" web:about="http://www.exxon.mobil.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1"  fc:name="Lee R. Raymond"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_2"  fc:name="Michael J. Boskin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_3"  fc:name="William T. Esrey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_4"  fc:name="Donald V. Fites"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_5"  fc:name="Jess Hay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_6"  fc:name="Charles A. Heimbold Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_7"  fc:name="James R. Houghton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_8"  fc:name="William R. Howell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_9"  fc:name="Helene L. Kaplan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_10"  fc:name="Reatha Clark King"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_11"  fc:name="Philip E. Lippincott"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_12"  fc:name="Harry J. Longwell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_13"  fc:name="J. Richard Munro"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_14"  fc:name="Marilyn Carlson Nelson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_15"  fc:name="Eugene A. Renna"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_16"  fc:name="Walter V. Shipley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Wal-Mart Stores">
+ <homepage>
+  <Document dc:title="Wal-Mart Stores homepage" web:about="http://www.walmart.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_17"  fc:name="John T. Chambers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_18"  fc:name="Stephen Friedman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_19"  fc:name="Stanley C. Gault"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_20"  fc:name="David D. Glass"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_21"  fc:name="Roland Hernandez"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_22"  fc:name="Dr. Frederick S. Humphries"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_23"  fc:name="E. Stanley Kroenke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_24"  fc:name="Elizabeth A. Sanders"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_25"  fc:name="H. Lee Scott"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_26"  fc:name="Jack C. Shewmaker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_27"  fc:name="Donald G. Soderquist"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_28"  fc:name="Dr. Paula Stern"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_29"  fc:name="Jose Villarreal"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_30"  fc:name="John T. Walton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_31"  fc:name="S. Robson Walton"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="General Motors">
+ <homepage>
+  <Document dc:title="General Motors homepage" web:about="http://www.gm.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_32"  fc:name="Percy N. Barnevik"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_33"  fc:name="John H. Bryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_34"  fc:name="Thomas E. Everhart"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_35"  fc:name="George M.C. Fisher"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_36"  fc:name="Nobuyuki Idei"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_37"  fc:name="Karen Katen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_38"  fc:name="J. Willard Marriott, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_39"  fc:name="Harry J. Pearce"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_40"  fc:name="Eckhard Pfeiffer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_41"  fc:name="John F. Smith, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_42"  fc:name="G. Richard Wagoner, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_43"  fc:name="Lloyd D. Ward"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Ford Motor">
+ <homepage>
+  <Document dc:title="Ford Motor homepage" web:about="http://www.ford.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_44"  fc:name="Sir John R.H. Bond"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_45"  fc:name="Michael D. Dingman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_46"  fc:name="Edsel B. Ford II"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_47"  fc:name="William Clay Ford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_48"  fc:name="William Clay Ford, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_49"  fc:name="Irvine O. Hockaday, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_50"  fc:name="Marie-Josée Kravis,"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_51"  fc:name="Ellen R. Marram"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_52"  fc:name="Jacques Nasser"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_53"  fc:name="Dr. Homer A. Neal"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_54"  fc:name="Jorma Ollila"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_55"  fc:name="Carl E. Reichardt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_56"  fc:name="Robert E. Rubin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_57"  fc:name="John L. Thornton"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="General Electric">
+ <homepage>
+  <Document dc:title="General Electric homepage" web:about="http://www.ge.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_58"  fc:name="James I. Cash, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_59"  fc:name="Silas S. Cathcart,"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_60"  fc:name="Dennis D. Dammerman,"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_61"  fc:name="Paolo Fresco"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_62"  fc:name="Ann M. Fudge"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_63"  fc:name="Claudio X. Gonzalalez"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_64"  fc:name="Jeffrey R. Immelt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_65"  fc:name="Andrea Jung"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_66"  fc:name=" Kenneth G. Langone"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_67"  fc:name="Shelly Lazarus"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_68"  fc:name="Scott G. McNealy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_69"  fc:name="Gertrude G. Michelson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_70"  fc:name="Sam Nunn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_71"  fc:name="Roger S. Penske"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_72"  fc:name="Frank H.T. Rhodes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_73"  fc:name="Andrew C. Sigler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_74"  fc:name="Douglas A. Warner III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_75"  fc:name="John F. Welch, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_76"  fc:name="Bob Wright"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Citigroup">
+ <homepage>
+  <Document dc:title="Citigroup homepage" web:about="http://www.citigroup.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_77"  fc:name="C. Michael Armstrong"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_78"  fc:name="Alain J.P. Belda"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_79"  fc:name="Kenneth J. Bialkin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_80"  fc:name="Kenneth T. Derr"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_81"  fc:name="John M. Deutch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_82"  fc:name="Keith W. Hughes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_83"  fc:name="Ann Dibble Jordan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_84"  fc:name="Robert I. Lipp"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_85"  fc:name="Mark Reuben"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_86"  fc:name="Michael T. Masin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_87"  fc:name="Dudley C. Mecum"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_88"  fc:name="Richard D. Parsons"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_89"  fc:name="Andrall E. Pearson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_91"  fc:name="Franklin A. Thomas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_92"  fc:name="Sanford I. Weill"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_93"  fc:name="Arthur Zankel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_56"  fc:name="Robert E. Rubin"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Enron">
+ <homepage>
+  <Document dc:title="Enron homepage" web:about="http://www.enron.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_94"  fc:name="Kenneth L. Lay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_95"  fc:name="Jeffrey K. Skilling"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_96"  fc:name="Robert A. Belfer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_97"  fc:name="Norman P. Blake, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_98"  fc:name="Ronnie C. Chan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_99"  fc:name="John H. Duncan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_100"  fc:name="Wendy L. Gramm"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_101"  fc:name="Ken L. Harrison"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_102"  fc:name="Robert K. Jaedicke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_103"  fc:name="Charles A. LeMaistre"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_104"  fc:name="John Mendelsohn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_105"  fc:name="Jerome J. Meyer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_106"  fc:name="Paulo V. Pereira"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_108"  fc:name="Frank Savage"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_109"  fc:name="John A. Urquhart"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_110"  fc:name="John Wakeham"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_111"  fc:name="Herbert S. Winokur, Jr."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Intl. Business Machines">
+ <homepage>
+  <Document dc:title="Intl. Business Machines homepage" web:about="http://www.ibm.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_112"  fc:name="Louis V. Gerstner, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_113"  fc:name="Samuel J. Palmisano"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_114"  fc:name="John M. Thompson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_115"  fc:name="Cathleen Black"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_116"  fc:name="Kenneth I. Chenault"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_117"  fc:name="Juergen Dormann"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_118"  fc:name="Nannerl O. Keohane"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_119"  fc:name="Charles F. Knight"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_120"  fc:name="Minoru Makihara"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_121"  fc:name="Lucio A. Noto"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_122"  fc:name="John B. Slaughter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_123"  fc:name="Sidney Taurel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_124"  fc:name="Alex Trotman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_125"  fc:name="Lodewijk C. Van Wachem"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_126"  fc:name="Charles M. Vest"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="AT*T">
+ <homepage>
+  <Document dc:title="AT*T homepage" web:about="http://www.att.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_128"  fc:name="John C. Malone"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_129"  fc:name="John D. Zeglis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_131"  fc:name="M. Kathryn Eickhoff"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_132"  fc:name="Walter Y. Elisha"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_135"  fc:name="Amos B. Hostetter, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_136"  fc:name="Ralph S. Larsen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_137"  fc:name="Donald F. McHenry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_138"  fc:name="Louis A. Simpson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_139"  fc:name="Michael I. Sovern"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_141"  fc:name="Masaki Yoshikawa"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_92"  fc:name="Sanford I. Weill"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_77"  fc:name="C. Michael Armstrong"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_80"  fc:name="Kenneth T. Derr"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_35"  fc:name="George M.C. Fisher"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_4"  fc:name="Donald V. Fites"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Verizon Communications">
+ <homepage>
+  <Document dc:title="Verizon Communications homepage" web:about="http://www.verizon.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_143"  fc:name="Frederic V. Salerno"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_144"  fc:name="James R. Barker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_145"  fc:name="Edward H. Budd"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_146"  fc:name="Richard L. Carrion"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_147"  fc:name="Robert F. Daniell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_149"  fc:name="Sandra O. Moose"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_150"  fc:name="Joseph Neubauer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_151"  fc:name="Thomas H. O'Brien"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_152"  fc:name="Russell E. Palmer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_153"  fc:name="Hugh B. Price"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_155"  fc:name="John W. Snow"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_156"  fc:name="John R. Stafford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_157"  fc:name="Robert D. Storey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_9"  fc:name="Helene L. Kaplan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_16"  fc:name="Walter V. Shipley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Philip Morris">
+ <homepage>
+  <Document dc:title="Philip Morris homepage" web:about="http://www.philipmorris.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_158"  fc:name="Geoffrey C. Bible"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_159"  fc:name="Elizabeth E. Bailey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_160"  fc:name="Harold Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_161"  fc:name="Jane Evans"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_162"  fc:name="J. Dudley Fishburn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_163"  fc:name="Robert E. Huntley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_164"  fc:name="Billie Jean King"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_165"  fc:name="Rupert Murdoch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_166"  fc:name="John D. Nichols"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_168"  fc:name="John S. Reed"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_169"  fc:name="Carlos Slim Helu"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_170"  fc:name="Stephen M. Wolf"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_121"  fc:name="Lucio A. Noto"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="J.P. Morgan Chase">
+ <homepage>
+  <Document dc:title="J.P. Morgan Chase homepage" web:about="http://www.jpmorganchase.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_172"  fc:name="William B. Harrison, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_173"  fc:name="Hans W. Becherer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_174"  fc:name="Riley P. Bechtel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_175"  fc:name="Frank A. Bennack, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_176"  fc:name="Lawrence A. Bossidy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_177"  fc:name="M. Anthony Burns"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_178"  fc:name="H. Laurance Fuller"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_179"  fc:name="Ellen V. Futter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_180"  fc:name="William H. Gray III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_185"  fc:name="Marina V. Whitman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_9"  fc:name="Helene L. Kaplan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1"  fc:name="Lee R. Raymond"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_156"  fc:name="John R. Stafford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_43"  fc:name="Lloyd D. Ward"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_74"  fc:name="Douglas A. Warner III"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Bank of America Corp.">
+ <homepage>
+  <Document dc:title="Bank of America Corp. homepage" web:about="http://www.bankofamerica.com/inside/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_186"  fc:name="Kenneth D. Lewis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_187"  fc:name="James H. Hance, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_188"  fc:name="Charles W. Coker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_189"  fc:name="Alan T. Dickson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_190"  fc:name="Kathleen F. Feldstein, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_191"  fc:name="Paul Fulton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_192"  fc:name="Donald E. Guinn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_193"  fc:name="C. Ray Holman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_194"  fc:name="W. W. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_195"  fc:name="Walter E. Massey, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_196"  fc:name="O. Temple Sloan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_197"  fc:name="Meredith R. Spangler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_198"  fc:name="Ronald Townsend"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_199"  fc:name="Solomon D. Trujillo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_200"  fc:name="Jackie M. Ward"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_201"  fc:name="Virgil R. Williams"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="SBC Communications">
+ <homepage>
+  <Document dc:title="SBC Communications homepage" web:about="http://www.sbc.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_202"  fc:name="Edward E. Whitacre, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_203"  fc:name="Gilbert F. Amelio"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_204"  fc:name="Clarence C. Barksdale"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_205"  fc:name="James E. Barnes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_206"  fc:name="August A. Busch III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_207"  fc:name="William P. Clark"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_208"  fc:name="Martin K. Eby, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_209"  fc:name="Herman E. Gallegos"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_212"  fc:name="James A. Henderson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_213"  fc:name="Bobby R. Inman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_215"  fc:name="Lynn M. Martin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_216"  fc:name="John B. McCoy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_217"  fc:name="Mary S. Metz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_218"  fc:name="Toni Rembe"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_219"  fc:name="S. Donley Ritchey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_220"  fc:name="Joyce M. Roche"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_221"  fc:name="Laura D. Tyson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_222"  fc:name="Patricia A. Upton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_5"  fc:name="Jess Hay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_169"  fc:name="Carlos Slim Helu"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_119"  fc:name="Charles F. Knight"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="The Boeing Company">
+ <homepage>
+  <Document dc:title="The Boeing Company homepage" web:about="http://www.boeing.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_223"  fc:name="Philip M. Condit"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_224"  fc:name="Harry C. Stonecipher"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_225"  fc:name="John H. Biggs"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_226"  fc:name="Kenneth M. Duberstein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_227"  fc:name="John B. Fery"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_228"  fc:name="Paul E. Gray"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_229"  fc:name="John F. McDonnell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_230"  fc:name="Lewis E. Platt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_231"  fc:name="Rozanne L. Ridgway"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_232"  fc:name="John M. Shalikashvili"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Texaco">
+ <homepage>
+  <Document dc:title="Texaco homepage" web:about="http://www.texaco.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_233"  fc:name="Glenn F. Tilton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_234"  fc:name="A. Charles Baillie"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_235"  fc:name="Mary K. Bush"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_236"  fc:name="Edmund M. Carpenter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_237"  fc:name="Robert J. Eaton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_238"  fc:name="Michael C. Hawley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_239"  fc:name="Franklyn G. Jenifer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_241"  fc:name="Charles H. Price, II"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_242"  fc:name="Charles R. Shoemate"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_243"  fc:name="Robin B. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_244"  fc:name="William C. Steere, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_245"  fc:name="Thomas A. Vanderslice"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_70"  fc:name="Sam Nunn"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Duke Energy">
+ <homepage>
+  <Document dc:title="Duke Energy homepage" web:about="http://www.duke-energy.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_246"  fc:name="Richard B. Priory"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_247"  fc:name="G. Alex Bernhardt, Sr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_248"  fc:name="Robert J. Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_250"  fc:name="Ann Maynard Gray"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_251"  fc:name="Dennis R. Hendrix"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_252"  fc:name="Harold S. Hook"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_253"  fc:name="George D. Johnson, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_254"  fc:name="Max Lennon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_255"  fc:name="Leo E. Linbeck, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_256"  fc:name="James G. Martin, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_257"  fc:name="Russell M. Robinson, ll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_258"  fc:name="William A. Coley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_3"  fc:name="William T. Esrey"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Kroger Company">
+ <homepage>
+  <Document dc:title="Kroger Company homepage" web:about="http://www.kroger.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_259"  fc:name="Joseph A. Pichler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_260"  fc:name="David B. Dillon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_261"  fc:name="Reuben V. Anderson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_262"  fc:name="Robert D. Beyer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_263"  fc:name="John L. Clendenin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_264"  fc:name="Carlton J. Jenkins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_265"  fc:name="Bruce Karatz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_266"  fc:name="John T. Lamacchia"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_267"  fc:name="Edward M. Liddy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_268"  fc:name="Clyde R. Moore"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_269"  fc:name="Ballard T. Morton Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_270"  fc:name="Thomas H. O'Leary"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_271"  fc:name="Katherine D. Ortega"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_272"  fc:name="Steven R. Rogel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_273"  fc:name="Martha Romayne Seger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_274"  fc:name="Bobby S. Shackouls"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_275"  fc:name="James D. Woods"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Hewlett-Packard">
+ <homepage>
+  <Document dc:title="Hewlett-Packard homepage" web:about="http://www.hp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_276"  fc:name="Carleton S. Fiorina"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_277"  fc:name="Robert P. Wayman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_279"  fc:name="Patricia C. Dunn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_280"  fc:name="Sam Ginn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_281"  fc:name="Richard A. Hackborn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_282"  fc:name="Walter B. Hewlett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_283"  fc:name="George A. Keyworth II"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_284"  fc:name="Robert E. Knowling, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_223"  fc:name="Philip M. Condit"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Chevron">
+ <homepage>
+  <Document dc:title="Chevron homepage" web:about="http://www.chevron.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_285"  fc:name="David J. O'Reilly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_286"  fc:name="Richard H. Matzke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_287"  fc:name="Samuel H. Armacost"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_288"  fc:name="Carla A. Hills"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_289"  fc:name="Bennett J. Johnston"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_290"  fc:name="Charles M. Pigott"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_291"  fc:name="Frank A. Shrontz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_292"  fc:name="Chang-Lin Tien"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_293"  fc:name="Carl Ware"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_294"  fc:name="John A. Young"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_280"  fc:name="Sam Ginn"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="State Farm Insurance Cos.">
+ <homepage>
+  <Document dc:title="State Farm Insurance Cos. homepage" web:about="http://www.statefarm.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_296"  fc:name="Gerald M. Czarnecki"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_100"  fc:name="Wendy L. Gramm"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_298"  fc:name="Roger Joslin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_299"  fc:name="W. H. Knight Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_300"  fc:name="Hanne Merriman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_301"  fc:name="George L. Perry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_302"  fc:name="Susan M. Phillips"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_303"  fc:name="Jerry I. Porras"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_304"  fc:name="Edward B. Rust Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_305"  fc:name="Paul T. Stecko"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_306"  fc:name="Vincent J. Trosino"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_307"  fc:name="James Q. Wilson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_308"  fc:name="Charles R. Wright"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="American International Group">
+ <homepage>
+  <Document dc:title="American International Group homepage" web:about="http://www.aigcorporate.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_309"  fc:name="Maurice R. Greenberg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_310"  fc:name="M. Bernard Aidinoff"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_311"  fc:name="Eli Broad"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_312"  fc:name="Pei-yuan Chia"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_313"  fc:name="Marshall A. Cohen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_314"  fc:name="Barber B. Conable, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_315"  fc:name="Martin S. Feldstein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_179"  fc:name="Ellen V. Futter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_317"  fc:name="Leslie L. Gonda"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_288"  fc:name="Carla A. Hills"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_319"  fc:name="Frank J. Hoenemeyer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_320"  fc:name="Richard C. Holbrooke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_321"  fc:name="Edward E. Matthews"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_322"  fc:name="Dean P. Phypers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_323"  fc:name="Thomas R. Tizzo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_324"  fc:name="Edmund S. Tse"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_325"  fc:name="Jay S. Wintrob"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_326"  fc:name="Frank G. Wisner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_327"  fc:name="Frank G. Zarb"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_328"  fc:name="Howard I. Smith"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Home Depot">
+ <homepage>
+  <Document dc:title="Home Depot homepage" web:about="http://www.homedepot.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_329"  fc:name="Bernard Marcus"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_330"  fc:name="Robert L. Nardelli"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_331"  fc:name="Gregory D. Brenneman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_332"  fc:name="Richard H. Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_263"  fc:name="John L. Clendenin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_334"  fc:name="Berry R. Cox"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_335"  fc:name="William S. Davila"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_336"  fc:name="Milledge A. Hart III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_337"  fc:name="Bonnie G. Hill"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_66"  fc:name=" Kenneth G. Langone"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_339"  fc:name="M. Faye F. Wilson"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Morgan Stanley Dean Witter">
+ <homepage>
+  <Document dc:title="Morgan Stanley Dean Witter homepage" web:about="http://www.morganstanley.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1242"  fc:name="Philip J. Purcell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_341"  fc:name="Robert P. Bauman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_342"  fc:name="Edward A. Brennan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_343"  fc:name="C. Robert Kidder"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_119"  fc:name="Charles F. Knight"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_345"  fc:name="John W. Madigan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_346"  fc:name="Miles L. Marsh"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_347"  fc:name="Michael A. Miles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_221"  fc:name="Laura D. Tyson"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Merrill Lynch">
+ <homepage>
+  <Document dc:title="Merrill Lynch homepage" web:about="http://www.merrilllynch.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_349"  fc:name="David H. Komansky"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_350"  fc:name="Stephen L. Hammerman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_351"  fc:name="W. H. Clark"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_352"  fc:name="Jill K. Conway"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_353"  fc:name="George B. Harvey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_354"  fc:name="William R. Hoover"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_355"  fc:name="Robert P. Luciano"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_356"  fc:name="David K. Newbigging"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_357"  fc:name="Aulana L. Peters"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_358"  fc:name="John J. Phelan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_359"  fc:name="William L. Weiss"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Fannie Mae">
+ <homepage>
+  <Document dc:title="Fannie Mae homepage" web:about="http://www.fanniemae.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_360"  fc:name="Franklin D. Raines"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_361"  fc:name="Daniel H. Mudd"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_362"  fc:name="Jamie S. Gorelick"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_363"  fc:name="Stephen B. Ashley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_226"  fc:name="Kenneth M. Duberstein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_18"  fc:name="Stephen Friedman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_366"  fc:name="Thomas P. Gerrity"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_367"  fc:name="Karen Hastie Williams"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_368"  fc:name="Vincent A. Mai"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_369"  fc:name="Donald B. Marron"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_370"  fc:name="Garry Mauro"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_371"  fc:name="Ann McLaughlin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_372"  fc:name="Joe K. Pickett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_373"  fc:name="Jack Quinn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_374"  fc:name="Eli J. Segal"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_375"  fc:name="H. Patrick Swygert"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Compaq Computer">
+ <homepage>
+  <Document dc:title="Compaq Computer homepage" web:about="http://www.compaq.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_376"  fc:name="Michael D. Capellas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_377"  fc:name="Lawrence T. Babbio, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_378"  fc:name="Judith L. Craven"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_379"  fc:name="George H. Heilmeier"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_94"  fc:name="Kenneth L. Lay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_381"  fc:name="Sanford M. Litvack"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_382"  fc:name="Thomas J. Perkins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_383"  fc:name="Lucille S. Salhany"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Lucent Technologies">
+ <homepage>
+  <Document dc:title="Lucent Technologies homepage" web:about="http://www.lucent.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_384"  fc:name="Henry B. Schacht"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_385"  fc:name="Bernardus J. Verwaayen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_386"  fc:name="Paul A. Allaire"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_387"  fc:name="Betsy S. Atkins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_288"  fc:name="Carla A. Hills"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_91"  fc:name="Franklin A. Thomas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_294"  fc:name="John A. Young"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Sears Roebuck">
+ <homepage>
+  <Document dc:title="Sears Roebuck homepage" web:about="http://www.sears.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_391"  fc:name="Alan J. Lacy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_392"  fc:name="Hall Adams, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_393"  fc:name="Brenda C. Barnes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_394"  fc:name="Warren L. Batts"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_395"  fc:name="James R. Cantalupo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_396"  fc:name="Donald J. Carty"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_397"  fc:name="W. James Farrell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_347"  fc:name="Michael A. Miles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_153"  fc:name="Hugh B. Price"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_400"  fc:name="Dorothy A. Terrell"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Merck">
+ <homepage>
+  <Document dc:title="Merck homepage" web:about="http://www.merck.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_401"  fc:name="Raymond V. Gilmartin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_402"  fc:name="H. B. Atwater, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_176"  fc:name="Lawrence A. Bossidy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1287"  fc:name="William G. Bowen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_405"  fc:name="Erskine B. Bowles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_406"  fc:name="Johnnetta B. Cole, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_407"  fc:name="Lloyd C. Elam, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_276"  fc:name="Carleton S. Fiorina"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_409"  fc:name="Niall Fitzgerald"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_172"  fc:name="William B. Harrison, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_411"  fc:name="William N. Kelley, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_412"  fc:name="Heidi Miller, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_413"  fc:name="Thomas E. Shenk, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_414"  fc:name="Anne M. Tatlock"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_415"  fc:name="Samuel O. Thier, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_416"  fc:name="Dennis Weatherstone"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Procter and Gamble">
+ <homepage>
+  <Document dc:title="Procter and Gamble homepage" web:about="http://www.pg.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_417"  fc:name="John E. Pepper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_418"  fc:name="Alan G. Lafley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_419"  fc:name="Norman R. Augustine"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_420"  fc:name="Donald R. Beall"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_421"  fc:name="Gordon F. Brunner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_422"  fc:name="Richard B. Cheney"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_423"  fc:name="Scott Cook"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_424"  fc:name="Richard J. Ferris"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_425"  fc:name="Joesph T. Gorman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_142"  fc:name="Charles R. Lee"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_215"  fc:name="Lynn M. Martin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_41"  fc:name="John F. Smith, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_429"  fc:name="Ralph Snyderman, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_157"  fc:name="Robert D. Storey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_185"  fc:name="Marina V. Whitman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_432"  fc:name="Ernesto Zedillo Ponce de Leon"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="WorldCom">
+ <homepage>
+  <Document dc:title="WorldCom homepage" web:about="http://www.worldcom.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_433"  fc:name="Bert C. Roberts, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_434"  fc:name="Bernard J. Ebbers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_435"  fc:name="John W. Sidgmore"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_436"  fc:name="Scott D. Sullivan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_437"  fc:name="Clifford L. Alexander, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_438"  fc:name="James C. Allen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_439"  fc:name="Judith Areen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_440"  fc:name="Carl J. Aycock"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_441"  fc:name="Max E. Bobbitt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_442"  fc:name="Francesco Galesi"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_443"  fc:name="Stiles A. Kellett, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_444"  fc:name="Gordon S. Macklin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_445"  fc:name="John A. Porter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_446"  fc:name="Lawrence C. Tucker"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="TIAA-CREF">
+ <homepage>
+  <Document dc:title="TIAA-CREF homepage" web:about="http://www.TIAA-CREF.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1286"  fc:name="Lucius J. Barker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1287"  fc:name="William G. Bowen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_674"  fc:name="Stanley O. Ikenberry, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1289"  fc:name="Alair Ane Townsend"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1290"  fc:name="Paul A. Volcker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1291"  fc:name="Clifton R. Wharton, Jr."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Motorola">
+ <homepage>
+  <Document dc:title="Motorola homepage" web:about="http://www.motorola.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_98"  fc:name="Ronnie C. Chan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_178"  fc:name="H. Laurance Fuller"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_449"  fc:name="Robert W. Galvin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_450"  fc:name="Anne P. Jones"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_451"  fc:name="Judy C. Lewent"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_195"  fc:name="Walter E. Massey, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_453"  fc:name="Nicholas Negroponte"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_417"  fc:name="John E. Pepper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_455"  fc:name="Samuel C. Scott, III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_456"  fc:name="B. Kenneth West"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_457"  fc:name="John A. White, Ph.D."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="McKesson HBOC">
+ <homepage>
+  <Document dc:title="McKesson HBOC homepage" web:about="http://www.mckesson.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_458"  fc:name="Alan Seelenfreund"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_459"  fc:name="John H. Hammergren"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_460"  fc:name="Alfred C. Eckert III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_461"  fc:name="Tully M. Friedman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_462"  fc:name="Alton F. Irby III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_463"  fc:name="M. Christine Jacobs"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_464"  fc:name="Martin M. Koffel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_465"  fc:name="Gerald E. Mayo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_466"  fc:name="James V. Napier"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_467"  fc:name="David S. Pottruck"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_55"  fc:name="Carl E. Reichardt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_469"  fc:name="Jane E. Shaw"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Kmart">
+ <homepage>
+  <Document dc:title="Kmart homepage" web:about="http://www.bluelight.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_470"  fc:name="Charles C. Conaway"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_471"  fc:name="James B. Adamson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_472"  fc:name="Lilyan H. Affinito"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_473"  fc:name="Richard G. Cline"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_474"  fc:name="Willie D. Davis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_475"  fc:name="Joseph P. Flannery"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_476"  fc:name="Robert D. Kennedy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_243"  fc:name="Robin B. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_478"  fc:name="Thomas T. Stallkamp"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_479"  fc:name="Richard J. Statuto"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Target">
+ <homepage>
+  <Document dc:title="Target homepage" web:about="http://www.targetcorp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_480"  fc:name="Robert J. Ulrich"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_481"  fc:name="Gerald L. Storch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_482"  fc:name="Livio D. DeSimone"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_483"  fc:name="Roger A. Enrico"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_484"  fc:name="William W. George"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_485"  fc:name="Michele J. Hooper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_486"  fc:name="James A. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_487"  fc:name="Richard M. Kovacevich"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_488"  fc:name="Anne M. Mulcahy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_489"  fc:name="Stephen W. Sanger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_490"  fc:name="George W. Tamke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_199"  fc:name="Solomon D. Trujillo"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Albertsons">
+ <homepage>
+  <Document dc:title="Albertsons homepage" web:about="http://www.albertsons.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_492"  fc:name="Victor L. Lund"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_493"  fc:name="Michael F. Reuling"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_494"  fc:name="A. G. Ames"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_495"  fc:name="Cecil D. Andrus"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_496"  fc:name="Pamela G. Bailey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_497"  fc:name="Teresa Beck"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_498"  fc:name="Henry I. Bryant"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_499"  fc:name="Paul I. Corddry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_227"  fc:name="John B. Fery"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_501"  fc:name="Fernando R. Gumucio"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_502"  fc:name="Clark A. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_503"  fc:name="Charles D. Lein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_504"  fc:name="Beatriz Rivera"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_505"  fc:name="J. B. Scott"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_506"  fc:name="Arthur R. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_507"  fc:name="Thomas L. Stevens, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_508"  fc:name="Will M. Storey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_509"  fc:name="Steven D. Symms"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_510"  fc:name="Thomas J. Wilford"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="USX">
+ <homepage>
+  <Document dc:title="USX homepage" web:about="http://www.usx.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_511"  fc:name="Thomas J. Usher, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_512"  fc:name="Robert M. Hernandez"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_513"  fc:name="Clarence P. Cazalot, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_514"  fc:name="Neil A. Armstrong"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_515"  fc:name="J. Gary Cooper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_516"  fc:name="Charles A. Corry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_517"  fc:name="Shirley A. Jackson, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_142"  fc:name="Charles R. Lee"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_519"  fc:name="Paul E. Lego"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_520"  fc:name="John F. McGillicuddy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_521"  fc:name="Seth E. Schofield"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_155"  fc:name="John W. Snow"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_523"  fc:name="Douglas C. Yearley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Berkshire Hathaway">
+ <homepage>
+  <Document dc:title="Berkshire Hathaway homepage" web:about="http://www.berkshirehathaway.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_524"  fc:name="Warren E. Buffett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_525"  fc:name="Charles T. Munger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_526"  fc:name="Howard G. Buffett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_527"  fc:name="Susan T. Buffett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_528"  fc:name="Malcolm G. Chace"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_529"  fc:name="Ronald L. Olson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_530"  fc:name="Walter Scott, Jr."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Intel">
+ <homepage>
+  <Document dc:title="Intel homepage" web:about="http://www.intel.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_531"  fc:name="Andrew S. Grove"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_532"  fc:name="Craig R. Barrett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_533"  fc:name="John P. Browne"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_534"  fc:name="Winston H. Chen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_535"  fc:name="James D. Guzy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_536"  fc:name="Reed Hundt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_467"  fc:name="David S. Pottruck"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_469"  fc:name="Jane E. Shaw"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_539"  fc:name="David B. Yoffie"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_540"  fc:name="Charles E. Young"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_541"  fc:name="Leslie L. Vadasz"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Goldman Sachs Group">
+ <homepage>
+  <Document dc:title="Goldman Sachs Group homepage" web:about="http://www.goldmansachs.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_542"  fc:name="Henry M. Paulson, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_543"  fc:name="John A. Thain"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_57"  fc:name="John L. Thornton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_545"  fc:name="Robert J. Hurst"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_533"  fc:name="John P. Browne"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_33"  fc:name="John H. Bryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_486"  fc:name="James A. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_549"  fc:name="Ruth J. Simmons, Ph.D."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="J.C. Penney">
+ <homepage>
+  <Document dc:title="J.C. Penney homepage" web:about="http://www.jcpenney.net/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_550"  fc:name="Allen Questrom"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_551"  fc:name="M. Anthony Burns"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_552"  fc:name="Thomas J. Engibous"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_553"  fc:name="Kent B. Foster"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_554"  fc:name="Vernon E. Jordan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_555"  fc:name="Jane C. Pfeiffer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_556"  fc:name="Ann W. Richards"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_557"  fc:name="Charles S. Sanford, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_558"  fc:name="R. Gerald Turner"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Conoco">
+ <homepage>
+  <Document dc:title="Conoco homepage" web:about="http://www.conoco.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_559"  fc:name="Archie W. Dunham"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_226"  fc:name="Kenneth M. Duberstein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_561"  fc:name="Ruth R. Harkin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_562"  fc:name="Charles C. Krulak"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_563"  fc:name="Frank A. McPherson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_564"  fc:name="William K. Reilly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_565"  fc:name="William R. Rhodes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_566"  fc:name="A. R. Sanchez, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_91"  fc:name="Franklin A. Thomas"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Costco Wholesale">
+ <homepage>
+  <Document dc:title="Costco Wholesale homepage" web:about="http://www.costco.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_568"  fc:name="Jeffrey H. Brotman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_569"  fc:name="James D. Sinegal"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_570"  fc:name="Richard A. Galanti"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_571"  fc:name="Benjamin S. Carson, Sr., M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_572"  fc:name="Hamilton E. James"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_573"  fc:name="Richard M. Libenson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_574"  fc:name="John W. Meisenbach"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_525"  fc:name="Charles T. Munger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_576"  fc:name="Frederick O. Paulsell, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_577"  fc:name="Jill A. Ruckelshaus"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_578"  fc:name="Richard D. DiCerchio"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Safeway">
+ <homepage>
+  <Document dc:title="Safeway homepage" web:about="http://www.safeway.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_579"  fc:name="Steven A. Burd"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_580"  fc:name="James H. Greene Jr"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_581"  fc:name="Paul Hazen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_582"  fc:name="Robert I. MacDonnell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_583"  fc:name="Peter A. Magowan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_584"  fc:name="George R. Roberts"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_585"  fc:name="Rebecca A. Stirn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_586"  fc:name="William Y. Tauscher"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="MetLife">
+ <homepage>
+  <Document dc:title="MetLife homepage" web:about="http://www.metlife.com/index.html" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_587"  fc:name="Robert H. Benmosche"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_588"  fc:name="Stewart G. Nagler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_589"  fc:name="Gerald Clark"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_590"  fc:name="Curtis H. Barnette"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_591"  fc:name="Joan G. Cooney"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_592"  fc:name="John C. Danforth"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_593"  fc:name="Burton A. Dole, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_7"  fc:name="James R. Houghton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_595"  fc:name="Harry P. Kamen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_9"  fc:name="Helene L. Kaplan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_597"  fc:name="Charles M. Leighton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_598"  fc:name="Allen E. Murray"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_358"  fc:name="John J. Phelan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_153"  fc:name="Hugh B. Price"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_549"  fc:name="Ruth J. Simmons, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_244"  fc:name="William C. Steere, Jr."/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Dell Computer">
+ <homepage>
+  <Document dc:title="Dell Computer homepage" web:about="http://www.dell.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_603"  fc:name="Michael S. Dell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_604"  fc:name="Kevin B. Rollins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_605"  fc:name="James T. Vanderslice, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_396"  fc:name="Donald J. Carty"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_180"  fc:name="William H. Gray III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_608"  fc:name="Michael H. Jordan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_451"  fc:name="Judy C. Lewent"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_610"  fc:name="Thomas W. Luce III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_611"  fc:name="Klaus S. Luft"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_612"  fc:name="Alex J. Mandl"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_347"  fc:name="Michael A. Miles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_70"  fc:name="Sam Nunn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_615"  fc:name="Mary A. Taylor"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_616"  fc:name="Morton L. Topfer"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Ingram Micro">
+ <homepage>
+  <Document dc:title="Ingram Micro homepage" web:about="http://www.ingrammicro.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_553"  fc:name="Kent B. Foster"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_618"  fc:name="Don H. Davis, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_619"  fc:name="John R. Ingram"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_620"  fc:name="Martha R. Ingram"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_621"  fc:name="Orrin H. Ingram, II"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_622"  fc:name="Philip M. Pfeffer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_623"  fc:name="Gerhard Schulmeyer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_624"  fc:name="Joe B. Wyatt"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Freddie Mac">
+ <homepage>
+  <Document dc:title="Freddie Mac homepage" web:about="http://www.freddiemac.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_625"  fc:name="Leland C. Brendsel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_626"  fc:name="David W. Glenn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_627"  fc:name="Dennis DeCocini"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_628"  fc:name="Joel I. Ferguson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_629"  fc:name="George D. Gould"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_630"  fc:name="Neil F. Hartigan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_631"  fc:name="Thomas W. Jones"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_814"  fc:name="Henry Kaufman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_216"  fc:name="John B. McCoy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_634"  fc:name="James F. Montgomery"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_152"  fc:name="Russell E. Palmer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_636"  fc:name="Ronald F. Poe"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_637"  fc:name="Stephen A. Ross"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_638"  fc:name="Donald J. Schuenke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_639"  fc:name="Christina Seix"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_640"  fc:name="William J. Turner"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Cardinal Health">
+ <homepage>
+  <Document dc:title="Cardinal Health homepage" web:about="http://www.cardinal-health.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_641"  fc:name="Robert D. Walter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_642"  fc:name="John C. Kane"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_643"  fc:name="Dave Bing"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_644"  fc:name="George H. Conrades"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_645"  fc:name="John F. Finn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_646"  fc:name="Robert L. Gerbig"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_647"  fc:name="John F. Havens"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_648"  fc:name="Regina E. Herzlinger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_649"  fc:name="J. Michael Losh"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_216"  fc:name="John B. McCoy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_651"  fc:name="Richard C. Notebaert"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_652"  fc:name="Michael D. O'Halleran"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_653"  fc:name="Melburn G. Whitmire"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="United Parcel Service">
+ <homepage>
+  <Document dc:title="United Parcel Service homepage" web:about="http://www.ups.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_654"  fc:name="James P. Kelly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_655"  fc:name="Michael L. Eskew"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_656"  fc:name="William H. Brown, lll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_657"  fc:name="Ann M. Livermore"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_658"  fc:name="Gary E. MacDougal"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_659"  fc:name="Kent C. Nelson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_660"  fc:name="Victor A. Pelson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_661"  fc:name="Robert M. Teeter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_662"  fc:name="John W. Thompson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_663"  fc:name="Thomas H. Weidemeyer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_664"  fc:name="Calvin Darden"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_665"  fc:name="Lea N. Soupata"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_666"  fc:name="Joseph R. Moderow"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Pfizer">
+ <homepage>
+  <Document dc:title="Pfizer homepage" web:about="http://www.pfizer.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_667"  fc:name="Henry A. McKinnell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_668"  fc:name="John F. Niblack"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_669"  fc:name="Michael S. Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_551"  fc:name="M. Anthony Burns"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_671"  fc:name="W. Don Cornwell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_353"  fc:name="George B. Harvey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_673"  fc:name="Constance J. Horner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_674"  fc:name="Stanley O. Ikenberry, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_595"  fc:name="Harry P. Kamen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_676"  fc:name="Thomas G. Labrecque"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_677"  fc:name="Dana G. Mead"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_360"  fc:name="Franklin D. Raines"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_549"  fc:name="Ruth J. Simmons, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_680"  fc:name="Jean-Paul Valles"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Dynegy">
+ <homepage>
+  <Document dc:title="Dynegy homepage" web:about="http://www.dynegy.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_681"  fc:name="Charles L. Watson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_682"  fc:name="Stephen W. Bergstrom"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_683"  fc:name="Charles E. Bayless"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_684"  fc:name="Darald W. Callahan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_376"  fc:name="Michael D. Capellas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_686"  fc:name="Daniel L. Dienstbier"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_687"  fc:name="Patricia M. Eckert"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_688"  fc:name="Jerry L. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_689"  fc:name="George L. Kirkland"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_286"  fc:name="Richard H. Matzke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_691"  fc:name="C. Steven McMillan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_692"  fc:name="Robert M. Powers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_693"  fc:name="H. John Riley, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_694"  fc:name="Sheli Z. Rosenberg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_695"  fc:name="Joe J. Stewart"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_696"  fc:name="J. Otis Winters"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Reliant Energy">
+ <homepage>
+  <Document dc:title="Reliant Energy homepage" web:about="http://www.reliantenergy.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_697"  fc:name="R. Steve Letbetter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_698"  fc:name="Stephen W. Naeve"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_699"  fc:name="Robert W. Harvey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_700"  fc:name="David M. McClanahan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_701"  fc:name="James A. Baker,III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_702"  fc:name="Richard E. Balzhiser,Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_703"  fc:name="Milton Carroll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_704"  fc:name="John T. Cater"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_705"  fc:name="Robert J. Cruikshank"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_706"  fc:name="Linnet F. Deily"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_707"  fc:name="T. Milton Honea"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_708"  fc:name="Laree E. Perez"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="E.I. du Pont de Nemours">
+ <homepage>
+  <Document dc:title="E.I. du Pont de Nemours homepage" web:about="http://www.dupont.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_709"  fc:name="Charles O. Holliday, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_78"  fc:name="Alain J.P. Belda"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_711"  fc:name="Curis J. Crawford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_712"  fc:name="Edward B. Du Pont"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_713"  fc:name="Louisa C. Duemling"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_714"  fc:name="Deborah C. Hopkins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_715"  fc:name="Lois D. Juliber"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_716"  fc:name="Goran Lindahl"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_717"  fc:name="Masahisa Naitoh"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_564"  fc:name="William K. Reilly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_719"  fc:name="H. Rodney Sharp, lll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_126"  fc:name="Charles M. Vest"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Delphi Automotive Systems">
+ <homepage>
+  <Document dc:title="Delphi Automotive Systems homepage" web:about="http://www.delphiauto.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_721"  fc:name="J. T. Battenberg, III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_722"  fc:name="Alan S. Dawes"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_723"  fc:name="Robert Brust"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_724"  fc:name="Virgis W. Colbert"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_725"  fc:name="Oscar De Paula Bernardes Neto"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_726"  fc:name="Bernd Gottschalk"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_727"  fc:name="Shoichiro Irimajiri"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_676"  fc:name="Thomas G. Labrecque"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_729"  fc:name="Susan A. McLaughlin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_730"  fc:name="John D. Opie"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_731"  fc:name="Atul Pasricha"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_71"  fc:name="Roger S. Penske"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_733"  fc:name="Thomas H. Wyman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_734"  fc:name="Donald L. Runkle"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Johnson * Johnson">
+ <homepage>
+  <Document dc:title="Johnson * Johnson homepage" web:about="http://www.jnj.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_735"  fc:name="Helen P. Johnson-Leipold"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_736"  fc:name="Thomas F. Pyle, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_737"  fc:name="Samuel C. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_738"  fc:name="Gregory E. Lawton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_739"  fc:name="Terry E. London"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_740"  fc:name="Glenn N. Rupp"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Allstate">
+ <homepage>
+  <Document dc:title="Allstate homepage" web:about="http://www.allstate.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_267"  fc:name="Edward M. Liddy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_742"  fc:name="F. Duane Ackerman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_743"  fc:name="James G. Andress"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_394"  fc:name="Warren L. Batts"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_342"  fc:name="Edward A. Brennan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_746"  fc:name="James M. Denny"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_397"  fc:name="W. James Farrell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_748"  fc:name="Ronald T. LeMay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_347"  fc:name="Michael A. Miles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_693"  fc:name="H. John Riley, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_751"  fc:name="Joshua I. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_752"  fc:name="Judith A. Sprieser"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_615"  fc:name="Mary A. Taylor"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Utilicorp">
+ <homepage>
+  <Document dc:title="Utilicorp homepage" web:about="http://www.utilicorp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_754"  fc:name="Richard C. Green, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_755"  fc:name="Robert K. Green"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_756"  fc:name="John R. Baker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_757"  fc:name="Herman Cain"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_49"  fc:name="Irvine O. Hockaday, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_674"  fc:name="Stanley O. Ikenberry, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_760"  fc:name="Robert F. Jackson, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_761"  fc:name="L. Patton Kline"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="International Paper">
+ <homepage>
+  <Document dc:title="International Paper homepage" web:about="http://www.ipaper.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_762"  fc:name="John T. Dillon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_237"  fc:name="Robert J. Eaton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_764"  fc:name="Samir G. Gibara"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_212"  fc:name="James A. Henderson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_767"  fc:name="John R. Kennedy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_476"  fc:name="Robert D. Kennedy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_769"  fc:name="W. Craig McClelland"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_137"  fc:name="Donald F. McHenry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_771"  fc:name="Patrick F. Noonan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_555"  fc:name="Jane C. Pfeiffer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_773"  fc:name="Jeremiah J. Sheehan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_242"  fc:name="Charles R. Shoemate"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_775"  fc:name="Wesley C. Smith"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Wells Fargo">
+ <homepage>
+  <Document dc:title="Wells Fargo homepage" web:about="http://www.wellsfargo.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_487"  fc:name="Richard M. Kovacevich"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_777"  fc:name="Leslie S. Biller"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_778"  fc:name="J. A. Blanchard, III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_779"  fc:name="Michael R. Bowlin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_780"  fc:name="David A. Christensen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_781"  fc:name="Susan E. Engel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_782"  fc:name="Robert L. Joss, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_10"  fc:name="Reatha Clark King"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_784"  fc:name="Richard D. McCormick"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_785"  fc:name="Cynthia H. Milligan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_786"  fc:name="Benjamin F. Montoya"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_787"  fc:name="Philip J. Quigley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_788"  fc:name="Donald B. Rice"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_789"  fc:name="Judith M. Runstad"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_790"  fc:name="Susan G. Swenson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_292"  fc:name="Chang-Lin Tien"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_792"  fc:name="Michael W. Wright"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Aetna">
+ <homepage>
+  <Document dc:title="Aetna homepage" web:about="http://www.aetna.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1034"  fc:name="John W. Rowe"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_794"  fc:name="Betsy Z. Cohen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_795"  fc:name="William H. Donaldson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_796"  fc:name="Barbara H. Franklin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_797"  fc:name="Jeffrey E. Garten"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_798"  fc:name="Jerome S. Goodman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_799"  fc:name="Earl G. Graves"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_800"  fc:name="Gerald Greenwald"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_801"  fc:name="Ellen M. Hancock"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_608"  fc:name="Michael H. Jordan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_803"  fc:name="Jack D. Kuehler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_804"  fc:name="Judith Rodin"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="United Technologies">
+ <homepage>
+  <Document dc:title="United Technologies homepage" web:about="http://www.utc.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_805"  fc:name="Thomas E. Gibbs"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_806"  fc:name="Scott A. Burri"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_807"  fc:name="Earl H. Cohen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_808"  fc:name="Randall L. McGee"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Lehman Brothers Holdings">
+ <homepage>
+  <Document dc:title="Lehman Brothers Holdings homepage" web:about="http://www.lehman.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_809"  fc:name="Richard S. Fuld, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_810"  fc:name="Michael L. Ainslie"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_811"  fc:name="John F. Akers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_812"  fc:name="Roger S. Berlind"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_813"  fc:name="Thomas H. Cruikshank"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_814"  fc:name="Henry Kaufman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_815"  fc:name="John D. Macomber"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_816"  fc:name="Dina Merrill"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="BellSouth">
+ <homepage>
+  <Document dc:title="BellSouth homepage" web:about="http://www.bellsouthcorp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_818"  fc:name="Gary D. Forsee"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_261"  fc:name="Reuben V. Anderson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_820"  fc:name="James H. Blanchard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_821"  fc:name="J. Hyatt Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_822"  fc:name="Armando M. Codina"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_190"  fc:name="Kathleen F. Feldstein, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_654"  fc:name="James P. Kelly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_825"  fc:name="Joseph M. Magliochetti"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_826"  fc:name="John G. Medlin, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_827"  fc:name="Leo F. Mullin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_828"  fc:name="Eugene F. Murphy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_243"  fc:name="Robin B. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_830"  fc:name="William S. Stavropoulos"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_742"  fc:name="F. Duane Ackerman"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Walt Disney">
+ <homepage>
+  <Document dc:title="Walt Disney homepage" web:about="http://www.disney.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_831"  fc:name="Michael D. Eisner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_832"  fc:name="Robert A. Iger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_833"  fc:name="Roy E. Disney"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_834"  fc:name="Reveta F. Bowers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_835"  fc:name="John E. Bryson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_836"  fc:name="Judith L. Estrin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_837"  fc:name="Stanley P. Gold"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_838"  fc:name="Monica C. Lozano"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_839"  fc:name="George J. Mitchell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_840"  fc:name="Thomas S. Murphy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_841"  fc:name="Leo J. O'Donovan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_842"  fc:name="Sidney Poitier"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_843"  fc:name="Robert A. Stern"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_844"  fc:name="Andrea L. Van de Kamp"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_845"  fc:name="Raymond L. Watson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_846"  fc:name="Gary L. Wilson"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="ConAgra">
+ <homepage>
+  <Document dc:title="ConAgra homepage" web:about="http://www.conagra.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_847"  fc:name="Bruce C. Rohde"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_848"  fc:name="Mogens C. Bay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_849"  fc:name="John T. Chain, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_850"  fc:name="Charles M. Harper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_851"  fc:name="Robert A. Krane"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_852"  fc:name="Mark Rauenhorst"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_55"  fc:name="Carl E. Reichardt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_854"  fc:name="Ronald W. Roskens"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_855"  fc:name="Marjorie M. Scardino"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_856"  fc:name="Kenneth E. Stinson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_857"  fc:name="Clayton K. Yeutter"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Lockheed Martin">
+ <homepage>
+  <Document dc:title="Lockheed Martin homepage" web:about="http://www.lockheedmartin.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_858"  fc:name="Vance D. Coffman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_859"  fc:name="Robert J. Stevens"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_419"  fc:name="Norman R. Augustine"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_861"  fc:name="Marcus C. Bennett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_862"  fc:name="James F. Gibbons, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_863"  fc:name="Caleb B. Hurtt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_864"  fc:name="Gwendolyn S. King"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_865"  fc:name="Douglas H. McCorkindale"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_828"  fc:name="Eugene F. Murphy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_108"  fc:name="Frank Savage"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_868"  fc:name="James R. Ukropina"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_523"  fc:name="Douglas C. Yearley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Bank One Corp.">
+ <homepage>
+  <Document dc:title="Bank One Corp. homepage" web:about="http://www.bankone.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_870"  fc:name="James Dimon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_871"  fc:name="William P. Boardman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_33"  fc:name="John H. Bryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_873"  fc:name="James S. Crown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_874"  fc:name="Maureen A. Fay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_875"  fc:name="Laban P. Jackson, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_876"  fc:name="John W. Kessler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_877"  fc:name="Richard A. Manoogian"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_878"  fc:name="William T. McCormick, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_412"  fc:name="Heidi Miller, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_880"  fc:name="David C. Novak"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_881"  fc:name="John W. Rogers, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_882"  fc:name="Frederick P. Stratton, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_883"  fc:name="John C. Tolleson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_641"  fc:name="Robert D. Walter"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Honeywell International">
+ <homepage>
+  <Document dc:title="Honeywell International homepage" web:about="http://www.honeywell.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_885"  fc:name="Michael R. Bonsignore"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_173"  fc:name="Hans W. Becherer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_887"  fc:name="Gordon M. Bethune"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_888"  fc:name="Marshall N. Carter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_62"  fc:name="Ann M. Fudge"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_890"  fc:name="James J. Howard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_265"  fc:name="Bruce Karatz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_355"  fc:name="Robert P. Luciano"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_152"  fc:name="Russell E. Palmer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_894"  fc:name="Jaime C. Pardo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_895"  fc:name="Ivan G. Seidenberg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_73"  fc:name="Andrew C. Sigler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_156"  fc:name="John R. Stafford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_792"  fc:name="Michael W. Wright"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Tosco">
+ <homepage>
+  <Document dc:title="Tosco homepage" web:about="http://www.tosco.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_899"  fc:name="Thomas D. O'Malley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_900"  fc:name="Jefferson F. Allen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_901"  fc:name="Wayne A. Budd"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_902"  fc:name="Patrick M. De Barros"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_903"  fc:name="Houston I. Flournoy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_904"  fc:name="Edmund A. Hajim"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_905"  fc:name="Charles J. Luellen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_906"  fc:name="Eija Malmivirta"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_907"  fc:name="Mark R. Mulvoy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_908"  fc:name="Kathryn L. Munro"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="First Union Corp.">
+ <homepage>
+  <Document dc:title="First Union Corp. homepage" web:about="http://www.firstunion.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_909"  fc:name="G. Kennedy Thompson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_910"  fc:name="Benjamin P. Jenkins, III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_911"  fc:name="Donald A. McMullen, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_912"  fc:name="B.J. Walker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_247"  fc:name="G. Alex Bernhardt, Sr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_405"  fc:name="Erskine B. Bowles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_248"  fc:name="Robert J. Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_916"  fc:name="A. Dano Davis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_917"  fc:name="Roddey Dowd, Sr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_918"  fc:name="William H. Goodwin, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_919"  fc:name="Herbert Lotman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_920"  fc:name="Radford D. Lovett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_921"  fc:name="Mackey J. McDonald"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_922"  fc:name="Patricia A. McFate"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_150"  fc:name="Joseph Neubauer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_924"  fc:name="Ruth G. Shaw"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_925"  fc:name="Lanty L. Smith"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="American Express">
+ <homepage>
+  <Document dc:title="American Express homepage" web:about="http://www.americanexpress.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_116"  fc:name="Kenneth I. Chenault"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_927"  fc:name="Jonathan S. Linen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_928"  fc:name="Daniel F. Akerson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_929"  fc:name="Edwin L. Artzt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1287"  fc:name="William G. Bowen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_931"  fc:name="Beverly S. Greenough"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_932"  fc:name="F. Ross Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_554"  fc:name="Vernon E. Jordan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_934"  fc:name="Jan Leschly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_935"  fc:name="Richard A. McGinn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_936"  fc:name="Frank P. Popoff"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Sprint">
+ <homepage>
+  <Document dc:title="Sprint homepage" web:about="http://www.sprint.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_3"  fc:name="William T. Esrey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_748"  fc:name="Ronald T. LeMay"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_939"  fc:name="Dubose Ausley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_394"  fc:name="Warren L. Batts"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_49"  fc:name="Irvine O. Hockaday, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_942"  fc:name="Linda K. Lorimer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_943"  fc:name="Charles E. Rice"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_944"  fc:name="Louis W. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_945"  fc:name="Stewart Turley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Southern">
+ <homepage>
+  <Document dc:title="Southern homepage" web:about="http://www.southernco.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_946"  fc:name="H. Allen Franklin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_947"  fc:name="Daniel P. Amos"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_948"  fc:name="Dorrit J. Bern"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_949"  fc:name="Thomas F. Chapman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_950"  fc:name="Bruce S. Gordon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_951"  fc:name="L. G. Hardman, lll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_952"  fc:name="Donald M. James"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_953"  fc:name="Zack T. Pate"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_954"  fc:name="Gerald J. St. Pe"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_955"  fc:name="Elmer B. Harris"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Alcoa">
+ <homepage>
+  <Document dc:title="Alcoa homepage" web:about="http://www.alcoa.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_78"  fc:name="Alain J.P. Belda"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_957"  fc:name="Kenneth W. Dam"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_425"  fc:name="Joesph T. Gorman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_959"  fc:name="Judith M. Gueron"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_960"  fc:name="Ronald Hampel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_961"  fc:name="Hugh M. Morgan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_962"  fc:name="John P. Mulroney"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_384"  fc:name="Henry B. Schacht"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_91"  fc:name="Franklin A. Thomas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_185"  fc:name="Marina V. Whitman"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Dow Chemical">
+ <homepage>
+  <Document dc:title="Dow Chemical homepage" web:about="http://www.dow.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_830"  fc:name="William S. Stavropoulos"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_967"  fc:name="Michael D. Parker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_968"  fc:name="Anthony J. Carbone"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_969"  fc:name="J. Pedro Reinhard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_970"  fc:name="Jacquline K. Barton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_971"  fc:name="J. Michael Cook"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_592"  fc:name="John C. Danforth"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_474"  fc:name="Willie D. Davis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_796"  fc:name="Barbara H. Franklin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_975"  fc:name="Allan D. Gilmour"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_976"  fc:name="James M. Ringler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_977"  fc:name="Harold T. Shapiro"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_978"  fc:name="Paul G. Stern"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_979"  fc:name="Arnold A. Allemang"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Microsoft">
+ <homepage>
+  <Document dc:title="Microsoft homepage" web:about="http://www.microsoft.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_980"  fc:name="William H. Gates"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_981"  fc:name="Steven A. Ballmer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_401"  fc:name="Raymond V. Gilmartin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_983"  fc:name="David F. Marquardt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_79"  fc:name="Kenneth J. Bialkin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_985"  fc:name="William G. Reed, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_986"  fc:name="Jon A. Shirley"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Prudential Ins. Co. of America">
+ <homepage>
+  <Document dc:title="Prudential Ins. Co. of America homepage" web:about="http://www.prudential.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_987"  fc:name="Arthur F. Ryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_988"  fc:name="Franklin E. Agnew"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_989"  fc:name="Frederic K. Becker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_990"  fc:name="Gilbert F. Casellas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_991"  fc:name="James G. Cullen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_992"  fc:name="Carolyne K. Davis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_975"  fc:name="Allan D. Gilmour"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_180"  fc:name="William H. Gray III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_995"  fc:name="Jon F. Hanson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_996"  fc:name="Glen H. Hiner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_673"  fc:name="Constance J. Horner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_998"  fc:name="Gaynor N. Kelley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_999"  fc:name="Burton G. Malkiel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1000"  fc:name="Ida F. S. Schmertz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1001"  fc:name="Charles R. Sitter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1002"  fc:name="Donald L. Staheli"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1003"  fc:name="Richard M. Thomson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1004"  fc:name="James A. Unruh"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1005"  fc:name="P. Roy Vagelos"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1006"  fc:name="Stanley C. Van Ness"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1290"  fc:name="Paul A. Volcker"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="FleetBoston Financial">
+ <homepage>
+  <Document dc:title="FleetBoston Financial homepage" web:about="http://www.fleetbankbostonmerger.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1008"  fc:name="Terrence Murray"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1009"  fc:name="Charles K. Gifford"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1010"  fc:name="Eugene M. McQuade"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1011"  fc:name="H. Jay Sarles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1012"  fc:name="Paul F. Hogan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1013"  fc:name="Peter J. Manning"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1014"  fc:name="T. Joseph Semrod"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1015"  fc:name="Joseph Smialowski"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1016"  fc:name="Bradford H. Warner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1017"  fc:name="Robert J. Higgins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1018"  fc:name="Henrique C. Meirelles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1019"  fc:name="Joel B. Alvord"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1020"  fc:name="William Barnet III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1021"  fc:name="Daniel P. Burnham"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1022"  fc:name="Paul J. Choquette, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1023"  fc:name="John T. Collins"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1024"  fc:name="William F. Connell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1025"  fc:name="Gary L. Countryman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1026"  fc:name="T. J. Dunphy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1027"  fc:name="Alice F. Emerson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1028"  fc:name="Marian L. Heard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1029"  fc:name="Robert M. Kavner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1030"  fc:name="Thomas J. May"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_137"  fc:name="Donald F. McHenry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1032"  fc:name="Michael B. Picotte"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1033"  fc:name="Francene S. Rodgers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1034"  fc:name="John W. Rowe"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1035"  fc:name="Thomas M. Ryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1036"  fc:name="Paul R. Tregurtha"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="PG*E Corp.">
+ <homepage>
+  <Document dc:title="PG*E Corp. homepage" web:about="http://www.pgecorp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1037"  fc:name="Robert D. Glynn, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1038"  fc:name="David R. Andrews"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1039"  fc:name="Richard A. Clarke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1040"  fc:name="Harry M. Conger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1041"  fc:name="David A. Coulter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1042"  fc:name="C. Lee Cox"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_335"  fc:name="William S. Davila"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1044"  fc:name="David M. Lawrence, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_217"  fc:name="Mary S. Metz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_55"  fc:name="Carl E. Reichardt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1047"  fc:name="John C. Sawhill"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1048"  fc:name="Barry L. Williams"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="AutoNation">
+ <homepage>
+  <Document dc:title="AutoNation homepage" web:about="http://corp.autonation.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1049"  fc:name="H. Wayne Huizenga"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1050"  fc:name="Michael J. Jackson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1051"  fc:name="Harris W. Hudson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_248"  fc:name="Robert J. Brown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1053"  fc:name="J. P. Bryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1054"  fc:name="Rick L. Burdick"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1055"  fc:name="Michael G. DeGroote"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_253"  fc:name="George D. Johnson, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1057"  fc:name="John J. Melk"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1058"  fc:name="Irene B. Rosenfeld"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Georgia-Pacific">
+ <homepage>
+  <Document dc:title="Georgia-Pacific homepage" web:about="http://www.gp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1059"  fc:name="Alston D. Correll"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1060"  fc:name="James S. Balloun"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1061"  fc:name="Barbara L. Bowles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1062"  fc:name="Worley H. Clark"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_161"  fc:name="Jane Evans"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_4"  fc:name="Donald V. Fites"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1065"  fc:name="Richard V. Giordano"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1066"  fc:name="David R. Goode"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1067"  fc:name="M D. Ivester"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_654"  fc:name="James P. Kelly"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1069"  fc:name="Louis W. Sullivan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1070"  fc:name="James B. Williams"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_129"  fc:name="John D. Zeglis"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="TXU">
+ <homepage>
+  <Document dc:title="TXU homepage" web:about="http://www.txu.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1072"  fc:name="Erle Nye"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1073"  fc:name="David W. Biegler"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1074"  fc:name="H. Jarrell Gibbs"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1075"  fc:name="Michael J. McNally"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1076"  fc:name="Derek C. Bonham"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1077"  fc:name="J. S. Farrington"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1078"  fc:name="William M. Griffin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1079"  fc:name="Kerney Laday"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1080"  fc:name="Jack E. Little"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1081"  fc:name="Margaret N. Maxey"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1082"  fc:name="J. E. Oesterreicher"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1083"  fc:name="Charles R. Perry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1084"  fc:name="Herbert H. Richardson"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="El Paso Corp.">
+ <homepage>
+  <Document dc:title="El Paso Corp. homepage" web:about="http://www.elpaso.com/" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1085"  fc:name="Byron Allumbaugh"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1086"  fc:name="David A. Arledge"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1087"  fc:name="John M. Bissell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1088"  fc:name="Juan Carlos Braniff"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_862"  fc:name="James F. Gibbons, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1090"  fc:name="Anthony W. Hall, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1091"  fc:name="Ronald L. Kuehn, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1092"  fc:name="J Carleton MacNeil, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1093"  fc:name="Thomas R. McDade"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1094"  fc:name="Malcolm Wallop"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1095"  fc:name="William A. Wise"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_624"  fc:name="Joe B. Wyatt"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="New York Life Insurance">
+ <homepage>
+  <Document dc:title="New York Life Insurance homepage" web:about="http://www.newyorklife.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1097"  fc:name="Sy Sternberg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1098"  fc:name="Betty C. Alewine"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1099"  fc:name="Robert M. Baylis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1100"  fc:name="Gary G. Benanav"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1101"  fc:name="James L. Broadhead"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1102"  fc:name="William G. Burns"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1103"  fc:name="Patricia T. Carbine"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_553"  fc:name="Kent B. Foster"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1105"  fc:name="Conrad K. Harper"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1106"  fc:name="Richard M. Kernan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1107"  fc:name="Leslie G. McCraw, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1108"  fc:name="David W. Mitchell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1109"  fc:name="Richard R. Pivirotto"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1110"  fc:name="Frederick J. Sievert"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Bristol-Myers Squibb">
+ <homepage>
+  <Document dc:title="Bristol-Myers Squibb homepage" web:about="http://www.bms.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_6"  fc:name="Charles A. Heimbold Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1112"  fc:name="Peter R. Dolan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1113"  fc:name="Kenneth E. Weg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1114"  fc:name="Robert E. Allen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1115"  fc:name="Lewis B. Campbell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_858"  fc:name="Vance D. Coffman"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_179"  fc:name="Ellen V. Futter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_112"  fc:name="Louis V. Gerstner, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1119"  fc:name="Laurie H. Glimcher, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1120"  fc:name="Leif Johansson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1121"  fc:name="James D. Robinson III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1069"  fc:name="Louis W. Sullivan"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Phillips Petroleum">
+ <homepage>
+  <Document dc:title="Phillips Petroleum homepage" web:about="http://www.phillips66.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1123"  fc:name="J. J. Mulva"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_899"  fc:name="Thomas D. O'Malley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_419"  fc:name="Norman R. Augustine"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1126"  fc:name="David L. Boren"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1127"  fc:name="Robert E. Chappell, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1128"  fc:name="Robert Devlin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1129"  fc:name="Larry D. Horner"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1130"  fc:name="J. Stapleton Roy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1131"  fc:name="Randall L. Tobias"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1132"  fc:name="Victoria J. Tschinkel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1133"  fc:name="Kathryn C. Turner"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Walgreen">
+ <homepage>
+  <Document dc:title="Walgreen homepage" web:about="http://www.walgreens.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1134"  fc:name="L. Daniel Jorndt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1135"  fc:name="David W. Bernauer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1136"  fc:name="William C. Foote"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_890"  fc:name="James J. Howard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1138"  fc:name="Alan G. McNally"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1139"  fc:name="Cordell Reed"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1140"  fc:name="David Y. Schwartz"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1141"  fc:name="John B. Schwemm"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1142"  fc:name="Marilou M. Von Ferstel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1143"  fc:name="Charles R. Walgreen III"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="UnitedHealth Group">
+ <homepage>
+  <Document dc:title="UnitedHealth Group homepage" web:about="http://www.unitedhealthgroup.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1144"  fc:name="William W. McGuire, M.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1145"  fc:name="Stephen J. Hemsley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1146"  fc:name="William C. Ballard, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1147"  fc:name="Richard T. Burke"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_486"  fc:name="James A. Johnson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1149"  fc:name="Thomas H. Kean"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1150"  fc:name="Douglas W. Leatherdale"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1151"  fc:name="Walter F. Mondale"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1152"  fc:name="Mary O. Mundinger"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1153"  fc:name="Robert L. Ryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1154"  fc:name="Donna E. Shalala, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1155"  fc:name="William G. Spears"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1156"  fc:name="Gail R. Wilensky"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Loews">
+ <homepage>
+  <Document dc:title="Loews homepage" web:about="http://www.loews.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1157"  fc:name="Laurence A. Tisch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1158"  fc:name="Preston R. Tisch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1159"  fc:name="James S. Tisch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1160"  fc:name="Jonathan M. Tisch"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1161"  fc:name="Charles B. Benenson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1162"  fc:name="John Brademas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1163"  fc:name="Dennis H. Chookaszian"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1164"  fc:name="Paul J. Fribourg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1165"  fc:name="Bernard Myerson"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1166"  fc:name="Edward J. Noha"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1167"  fc:name="Michael F. Price"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1168"  fc:name="Gloria R. Scott"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1169"  fc:name="Fred Wilpon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1170"  fc:name="Andrew H. Tisch"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Coca-Cola">
+ <homepage>
+  <Document dc:title="Coca-Cola homepage" web:about="http://www.cocacola.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1274"  fc:name="Douglas N. Daft"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1275"  fc:name="Herbert A. Allen,"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1276"  fc:name="Ronald W. Allen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_115"  fc:name="Cathleen Black"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_524"  fc:name="Warren E. Buffett"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1279"  fc:name="Susan B. King"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_137"  fc:name="Donald F. McHenry"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_70"  fc:name="Sam Nunn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1282"  fc:name="Paul F. Oreffice"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1121"  fc:name="James D. Robinson III"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1284"  fc:name="Peter V. Ueberroth"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1285"  fc:name="James B. William,"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="PepsiCo">
+ <homepage>
+  <Document dc:title="PepsiCo homepage" web:about="http://www.pepsico.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1183"  fc:name="Steven S. Reinemund"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_811"  fc:name="John F. Akers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_483"  fc:name="Roger A. Enrico"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1114"  fc:name="Robert E. Allen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1187"  fc:name="Peter Foy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1188"  fc:name="Ray L. Hunt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1189"  fc:name="Arthur C. Martinez"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1190"  fc:name="John J. Murphy"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_360"  fc:name="Franklin D. Raines"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1192"  fc:name="Sharon P. Rockefeller"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_91"  fc:name="Franklin A. Thomas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1194"  fc:name="Cynthia M. Trudell, Ph.D."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_199"  fc:name="Solomon D. Trujillo"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Tech Data">
+ <homepage>
+  <Document dc:title="Tech Data homepage" web:about="http://www.techdata.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1196"  fc:name="Steven A. Raymund"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1197"  fc:name="Charles E. Adair"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1198"  fc:name="Maximilian Ardelt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1199"  fc:name="James M. Cracchiolo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1200"  fc:name="Daniel M. Doyle"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1201"  fc:name="Kathy Misunas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1202"  fc:name="Edward C. Raymund"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1203"  fc:name="David M. Upton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1204"  fc:name="John Y. Williams"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1205"  fc:name="Jeffery P. Howells"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Sara Lee">
+ <homepage>
+  <Document dc:title="Sara Lee homepage" web:about="http://www.saralee.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1206"  fc:name="John H. Bryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_691"  fc:name="C. Steven McMillan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_386"  fc:name="Paul A. Allaire"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1209"  fc:name="Frans H. Andriessen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1210"  fc:name="Duane L. Burnham"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_188"  fc:name="Charles W. Coker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_873"  fc:name="James S. Crown"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_474"  fc:name="Willie D. Davis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_554"  fc:name="Vernon E. Jordan, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1215"  fc:name="James L. Ketelsen"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1216"  fc:name="Joan D. Manley"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_231"  fc:name="Rozanne L. Ridgway"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1218"  fc:name="Richard L. Thomas"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1219"  fc:name="Hans B. Van Liemt"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_129"  fc:name="John D. Zeglis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1221"  fc:name="Cary D. McMillan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1222"  fc:name="Frank L. Meysman"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Supervalu">
+ <homepage>
+  <Document dc:title="Supervalu homepage" web:about="http://www.supervalu.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_792"  fc:name="Michael W. Wright"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1224"  fc:name="Jeffrey Noddle"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1225"  fc:name="Lawrence A. Del Santo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_781"  fc:name="Susan E. Engel"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1227"  fc:name="Edwin C. Gage"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1228"  fc:name="William A. Hodder"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1229"  fc:name="Garnett L. Keith, Jr."/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1230"  fc:name="Richard L. Knowlton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1231"  fc:name="Charles M. Lillis"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1232"  fc:name="Harriet Perlmutter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1233"  fc:name="Steven S. Rogers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1234"  fc:name="Carole F. St. Mark"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="AMR">
+ <homepage>
+  <Document dc:title="AMR homepage" web:about="http://www.amrcorp.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_396"  fc:name="Donald J. Carty"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1236"  fc:name="Robert W. Baker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1126"  fc:name="David L. Boren"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_342"  fc:name="Edward A. Brennan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_799"  fc:name="Earl G. Graves"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_371"  fc:name="Ann McLaughlin"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_347"  fc:name="Michael A. Miles"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1242"  fc:name="Philip J. Purcell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1243"  fc:name="Joe M. Rodgers"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_804"  fc:name="Judith Rodin"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="Caterpillar">
+ <homepage>
+  <Document dc:title="Caterpillar homepage" web:about="http://www.cat.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1245"  fc:name="Glen A. Barton"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_472"  fc:name="Lilyan H. Affinito"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1247"  fc:name="W F. Blount"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1248"  fc:name="John R. Brazil"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_762"  fc:name="John T. Dillon"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_4"  fc:name="Donald V. Fites"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1251"  fc:name="Juan T. Gallardo"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1066"  fc:name="David R. Goode"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1253"  fc:name="James P. Gorter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_583"  fc:name="Peter A. Magowan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1255"  fc:name="William A. Osborn"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1256"  fc:name="Gordon R. Parker"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1257"  fc:name="Charles Powell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1258"  fc:name="George A. Schaefer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1259"  fc:name="Joshua I. Smith"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_857"  fc:name="Clayton K. Yeutter"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1261"  fc:name="Gerald Palmer"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1262"  fc:name="John E. Pfeffer"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+<fc:Company fc:name="CVS">
+ <homepage>
+  <Document dc:title="CVS homepage" web:about="http://www.cvs.com" /> 
+ 
+ </homepage>
+ <fc:board>
+   <fc:Committee>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1035"  fc:name="Thomas M. Ryan"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1264"  fc:name="Eugene Applebaum"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_671"  fc:name="W. Don Cornwell"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_366"  fc:name="Thomas P. Gerrity"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1267"  fc:name="Stanley P. Goldstein"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1028"  fc:name="Marian L. Heard"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1269"  fc:name="William H. Joyce"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1270"  fc:name="Terry R. Lautenbach"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_1008"  fc:name="Terrence Murray"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_694"  fc:name="Sheli Z. Rosenberg"/></fc:member>
+    <fc:member><Person web:about="http://rdfweb.org/2002/02/theyrule#pid_895"  fc:name="Ivan G. Seidenberg"/></fc:member>
+  </fc:Committee>
+ </fc:board>
+</fc:Company>
+
+</web:RDF>
+

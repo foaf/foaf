@@ -1,0 +1,9 @@
+SELECT ?mbox1, ?mbox2
+WHERE
+	(foaf::knows ?p1 ?p2)
+	(foaf::mbox ?p1 ?mbox1)
+	(foaf::mbox ?p2 ?mbox2)
+USING foaf for http://xmlns.com/foaf/0.1/
+
+
+
