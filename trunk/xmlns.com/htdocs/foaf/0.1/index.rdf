@@ -11,7 +11,7 @@
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-04-04 15:21:50 $</dc:date>
+        <dc:date>$Date: 2003-05-02 12:23:45 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -111,6 +111,45 @@
 	rdfs:comment="A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
+
+<!-- ......................... chat IDs ........................... -->
+
+     <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/jabberID"
+        rdfs:label="jabber ID"
+        rdfs:comment="A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node
+TODO: just for account IDs, or resources? chatrooms?">
+       <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+       <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+	</rdf:Property>
+
+
+       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/aimChatID"
+        rdfs:label="AIM chat ID"
+        rdfs:comment="An AIM chat ID">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+	</rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/msnChatID"
+        rdfs:label="MSN chat ID"
+        rdfs:comment="An MSN chat ID">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+      </rdf:Property>
+
+
+    <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/iChatID"
+        rdfs:label="Apple iChat ID"
+        rdfs:comment="An Apple iChat ID">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+      </rdf:Property>
+
+
+
+
+<!-- ....................................................... -->
+
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/name" 
 	rdfs:label="name"
