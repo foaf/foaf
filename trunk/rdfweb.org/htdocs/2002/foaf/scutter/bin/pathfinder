@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.2 2002-07-14 20:00:23 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder,v 1.3 2002-07-14 23:46:14 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -31,7 +31,7 @@
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 
-
+require 'getoptlong'
 
 #
 # 
@@ -335,9 +335,9 @@ class TGraph
       continuing = false
       parents.each do |parent| 
         parentNode = parent.node
-        puts "Doing parent: #{parentNode} " 
+        # puts "Doing parent: #{parentNode} " 
         parentNode.getEdges.each do |edge|
-          puts "Doing edge(s): #{edge} " 
+          # puts "Doing edge(s): #{edge} " 
           childNode = edge.getOtherNode parentNode
           if childNode.notVisited
  	    childNode.setVisited true 
@@ -396,6 +396,9 @@ class TGraph
   def buildGraph (graph)	
     require 'squish' 
     require 'dbi'
+ 
+    # note: final , in select clause. bug in squish.rb
+
     query =<<EOQ;
 
 	SELECT ?mbox1, ?mbox2, ?uri,  
@@ -412,7 +415,8 @@ EOQ
     q = SquishQuery.new.parseFromText query
     DBI.connect ('DBI:Pg:rdfweb1','danbri','') do | dbh |
       dbh.select_all( q.toSQLQuery  ) do | row |
-        puts row.inspect
+        # puts row.inspect
+        print '.' # progressometer
         p = ResultRow.new(row)
 	graph.addPath(p.mbox1, p.mbox2, p.uri)
       end 
@@ -424,6 +428,9 @@ EOQ
   def TGraph.main(args={})
     @complex=true # verbose RDF output
     all=""
+    who = args['who'] 
+    who = 'mailto:danbri@w3.org' if !who
+    genrdf = args['genrdf']
 
     graph = TGraph.new
     graph.buildGraph(graph)
@@ -437,7 +444,7 @@ EOQ
 
      puts "\n\n\n"
 
-     danpath = graph.findShortestPathsFromNodeNamed 'mailto:danbri@w3.org'
+     danpath = graph.findShortestPathsFromNodeNamed who
      puts "\n\nDanpaths: " 
      danpath.each do |e|
        puts "Path:\n"
@@ -449,24 +456,25 @@ EOQ
      puts "\n\n\n"
 
 
-     # see BuildPath for how we might store this graph in SQL
-     # for fast retrieval
+    if genrdf  
+      # see BuildPath for how we might store this graph in SQL
+      # for fast retrieval
 
-    topPerson = nil
-    avLen = 0
+      topPerson = nil
+      avLen = 0
 
-    all += ("<?xml version=\"1.0\" ?>\n")
-    all += ("<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n")
-    all += (" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\">\n")
-    graph.edges.each do |edge|
-      node1 = edge.node1
-      node2 = edge.node2
-      if(!@complex)
+      all += ("<?xml version=\"1.0\" ?>\n")
+      all += ("<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n")
+      all += (" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\">\n")
+      graph.edges.each do |edge|
+        node1 = edge.node1
+        node2 = edge.node2
+        if(!@complex)
                   all += ("<!-- simple description of a codepiction --> \n")
  		  all += ("<rdf:Description rdf:about=\""+node1+"\">\n")
 		  all += ("<foaf:codepiction rdf:resource=\""+node2+"\" />\n")
 		  all += ("</rdf:Description>\n")
-      else
+        else
                   all += ("<!-- complex description of a codepiction --> \n")
   		  all += ("<rdf:Description rdf:about=\""+node1.getText()+"\">\n")
 		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
@@ -474,10 +482,12 @@ EOQ
 		  all += ("<rdf:Description rdf:about=\""+node2.getText()+"\">\n")
 		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
 		  all += ("</rdf:Description>\n\n\n")
+        end
       end
+      all += ("</rdf:RDF>")
+      puts all;
     end
-    all += ("</rdf:RDF>")
-    puts all;
+  
   end
 
 end # /class TGraph
@@ -489,4 +499,26 @@ end # /class TGraph
 
 puts "Running pathfinder..."
 
-TGraph.main 
+
+opt = GetoptLong.new(['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
+    ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
+
+cfg={}
+
+opt.each_option do |name,arg|
+
+  puts "got: #{name} -> #{arg}"
+
+  case name
+
+  when '--paths-from-mbox'
+    cfg['who'] = arg 
+ 
+  when '--generate-rdf'
+    opts['genrdf'] = true
+
+  end
+end
+
+
+TGraph.main(cfg)
