@@ -3,14 +3,6 @@
 # RDFWeb Ruby RDF stuff
 # danbri@w3.org
 
-
-## NOTE: basicrdf.rb bundled with scutter, but
-## is an external package (and W3C software), and will ultimately require a
-## separate install. danbri@W3.org
-##
-
-
-
 # Overview:
 # we use the classes 'Graph', 'Node', and 'Statement'
 # 
@@ -265,7 +257,7 @@ class Graph
 
 
   def toNtriples()
-    out = "\n# Ruby-RDF NTriple serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n#\n\n"
+    out = "\n# Ruby-RDF NTriple serializer $Id: basicrdf.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $ \n#\n\n"
     # forward pointers -- from subject+predicate to object(s)
     @fp.each_key { |key|
       s,junk, p = key.split(/ | /,3)
@@ -280,7 +272,7 @@ class Graph
 #
 def toDotGraph()
     out =""
-# "\n# Ruby-RDF GraphViz *.dot serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n#\n\n"
+# "\n# Ruby-RDF GraphViz *.dot serializer $Id: basicrdf.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $ \n#\n\n"
 
 out += 'digraph G {
   size="25,25";
@@ -370,7 +362,7 @@ count=1
     # We generate SQL script based on a SHA1 dump, same as java code
     # see Node.sha1 method
     rdfsha1={}
-    out = " --- SQL-RDF dump of RDF database $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n"
+    out = " --- SQL-RDF dump of RDF database $Id: basicrdf.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $ \n"
     # sub pred obj person src asserted 
     @fp.each_key do |key|
       s,junk, p = key.split(/ | /,3)
@@ -381,7 +373,7 @@ count=1
       stem = "insert into triples values ('#{sub.sha1}', '#{pred.sha1}', "
       @fp[key].each do  |value| 
         isres = (value.is_resource)? 't':'f'
-        out += "#{stem} '#{value.sha1}','assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $','personidid:notyet','#{isres}'); \n" 
+        out += "#{stem} '#{value.sha1}','assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $','personidid:notyet','#{isres}'); \n" 
         object = "#{value}"
 	object.gsub!("'","") # zapping not ideal, but "\'" and "\\'" failed
 	object.gsub!("^\"","")
@@ -397,7 +389,7 @@ count=1
   end
 
  
-  def toSQLInserts(src='assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $')
+  def toSQLInserts(src='assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $')
     # We generate SQL script based on a SHA1 dump, same as java code
     # see Node.sha1 method
     rdfsha1={}
@@ -477,6 +469,8 @@ count=1
 
   def ask(query)
     # puts "Vapourware ask/query method called, template statement: #{query} "
+    aStatement = query
+    # puts "graph -------- ask() s='#{aStatement.subject}' p='#{aStatement.object}' o='#{aStatement.object}' "   
 
     # ooo: dump all statements in the graph
     if (query.predicate==nil && query.subject==nil && query.object==nil) 

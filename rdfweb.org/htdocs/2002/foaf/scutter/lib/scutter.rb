@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: scutter.rb,v 1.3 2002-07-21 10:26:19 danbri Exp $
+# $Id: scutter.rb,v 1.4 2002-08-05 14:09:15 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -59,8 +59,9 @@ def fetch_and_cache (uri, cache_dir='./', proxy=true, opts={} )
   resp=''
   h = Net::HTTP::new host
 
+##qwerty danbri test...
   begin 
-    if proxy
+    if proxy && host 
       puts "Fetching (via proxy). HTTP GET: host=#{host} res=#{res}" 
       Net::HTTP::Proxy(proxy_addr, proxy_port).start( $1 ) do |http|
         resp, data = http.get(res, my_headers)
@@ -147,11 +148,11 @@ end
 def load_graph_from_cache (file, opts={})
 
   parsed_ok = false
-
+  redparse = true
   # config info
   cache_dir = opts['cache-dir']
   use_xslt= opts['use-xslt'] 
-  redparse = opts['use-raptor'] 
+  redparse = opts['use-raptor'] if opts['use-raptor']
   redparse=false if use_xslt
 
 
@@ -311,6 +312,16 @@ def store_graph graph, cache_id, opts={}
   else 
     puts "Error parsing: #{pmsg}"
   end
+
+  service = DBIDataService.new( dbi_driver, dbi_user, dbi_pass )
+  foaf = 'http://xmlns.com/foaf/0.1/'
+  puts "\nSmushing in db: #{service.inspect}\n"
+  service.defrag [ foaf+'mbox', foaf+'homepage', foaf+'mbox_sha1']
+  #service.defrag [ foaf+'mbox' ] 
+  puts "done smushing.\n\n"
+  service.addAllSuperProperties
+
+
   return graph
 end
 

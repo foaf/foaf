@@ -2,6 +2,9 @@
 -- usage: psql rdfweb1 < conf/scutterdb.sql
 -- do 'drop table ...' to destroy stored data.
 
+DROP TABLE triples;
+DROP TABLE resources;
+
 CREATE TABLE "triples" (
 	"subject" integer,
 	"predicate" integer,
