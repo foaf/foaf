@@ -84,9 +84,18 @@ href="http://www.w3.org/Consortium/Legal/copyright-software-19980720"
       <choose>
         <when test="../@rdf:about">
           <text>&lt;</text>
+          <variable name="resolvedURI">
+            <call-template name="expand">
+              <with-param name="base" select="$baseURI"/>
+              <with-param name="there" select="../@rdf:about"/>
+            </call-template>
+          </variable>
+          <!--
           <value-of select="$baseURI"/>
           <if test="$baseURI!='' and ../@rdf:about!=''">#</if>
           <value-of select="concat(../@rdf:about,'&gt;')"/>
+          -->
+          <value-of select="concat($resolvedURI,'&gt;')"/>
         </when>
 
         <when test="../@rdf:ID">
