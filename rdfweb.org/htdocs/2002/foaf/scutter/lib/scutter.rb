@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: scutter.rb,v 1.2 2002-07-17 11:46:24 danbri Exp $
+# $Id: scutter.rb,v 1.3 2002-07-21 10:26:19 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -154,7 +154,9 @@ def load_graph_from_cache (file, opts={})
   redparse = opts['use-raptor'] 
   redparse=false if use_xslt
 
-  #  rdfdump_bin='redparse/rdfdump'
+
+
+  #rdfdump_bin='redparse/rdfdump' #win32 binary
   rdfdump_bin='rdfdump'		 # path to rdfdump (redland/raptor parser)
 
   if opts['use-raptor'] 
@@ -191,7 +193,7 @@ def load_graph_from_cache (file, opts={})
   # Run Redland/Repat parser
   #
   if redparse
-    puts "Scutter: parsing with redland: #{rdfdump_bin}"
+    puts "Scutter: parsing with redland: '#{rdfdump_bin}'"
 
     begin
       pmsg=`#{rdfdump_bin} -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' `
