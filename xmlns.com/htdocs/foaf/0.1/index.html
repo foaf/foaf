@@ -24,7 +24,7 @@
       <dt>version:</dt>
       <dd>0.1</dd>
       <dt>status:</dt>
-      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.14 2003-02-23 22:26:10 danbri Exp $</dd>
+      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.15 2003-04-04 15:21:50 danbri Exp $</dd>
       <dt>formats:</dt>
       <dd><a href="http://xmlns.com/foaf/0.1/index.html">text/html</a>, <a href="http://xmlns.com/foaf/0.1/index.rdf">application/rdf+xml</a></dd>
       <dt>history:</dt>
@@ -114,21 +114,39 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
 <table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/Person</td> 
- <td>A person.</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/Document</td> 
- <td>A document.</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/Organization</td> 
  <td>An organization.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Project</td> 
  <td>A project.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Person</td> 
+ <td>A person.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Document</td> 
+ <td>A document.</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/plan</td> 
+ <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/nick</td> 
+ <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
  <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
@@ -219,24 +237,6 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 <tr>
  <td>http://xmlns.com/foaf/0.1/title</td> 
  <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/plan</td> 
- <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/theme</td> 
- <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/made</td> 
- <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/nick</td> 
- <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 
 </table>
 
@@ -253,7 +253,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-02-23 22:26:10 $</dc:date>
+        <dc:date>$Date: 2003-04-04 15:21:50 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -268,6 +268,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 	rdfs:label="Person"
 	rdfs:comment="A person.">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Person"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />

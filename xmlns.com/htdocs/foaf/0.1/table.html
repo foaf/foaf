@@ -1,20 +1,38 @@
 <table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/Person</td> 
- <td>A person.</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/Document</td> 
- <td>A document.</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/Organization</td> 
  <td>An organization.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Project</td> 
  <td>A project.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Person</td> 
+ <td>A person.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Document</td> 
+ <td>A document.</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/plan</td> 
+ <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/nick</td> 
+ <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
  <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
@@ -105,24 +123,6 @@
 <tr>
  <td>http://xmlns.com/foaf/0.1/title</td> 
  <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/plan</td> 
- <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/theme</td> 
- <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/made</td> 
- <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/nick</td> 
- <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 
 </table>
 
