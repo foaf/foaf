@@ -1,5 +1,11 @@
 {
     IBClasses = (
+        {
+            CLASS = BookmarkController; 
+            LANGUAGE = Java; 
+            OUTLETS = {bookmarkDrawer = id; bookmarkTable = id; rdfAuthorDocument = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = MySound; LANGUAGE = ObjC; SUPERCLASS = Sound; }, 
         {
@@ -39,7 +45,7 @@
         {
             CLASS = RDFModelView; 
             LANGUAGE = Java; 
-            OUTLETS = {rdfAuthorDocument = id; textDescriptionField = id; }; 
+            OUTLETS = {bookmarkController = id; rdfAuthorDocument = id; textDescriptionField = id; }; 
             SUPERCLASS = NSView; 
         }, 
         {
@@ -57,6 +63,7 @@
             CLASS = RDFToolbar; 
             LANGUAGE = Java; 
             OUTLETS = {
+                bookmarkController = id; 
                 editView = id; 
                 previewModePopup = id; 
                 queryController = id; 

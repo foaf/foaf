@@ -16,6 +16,7 @@ public class RDFToolbar extends NSObject {
     NSPopUpButton previewModePopup;
     
     QueryController queryController;
+    BookmarkController bookmarkController;
     
     static String identifier = "rdf Toolbar";
     static String editToolsIdentifier = "edit tools identifier";
@@ -24,6 +25,7 @@ public class RDFToolbar extends NSObject {
     static String toggleViewsIdentifier = "toggle view identifier";
     static String previewPopupIdentifier = "preview popup identifier";
     static String queryPanelIdentifier = "query panel identifier";
+    static String bookmarkPanelIdentifier = "bookmark panel identifier";
     
     boolean textPreview = false;
     String[] popupMappings;
@@ -89,13 +91,23 @@ public class RDFToolbar extends NSObject {
         }
         else if (itemIdent.equals(queryPanelIdentifier))
         {
-            toolbarItem.setLabel("Show/Hide Query Panel");
-            toolbarItem.setPaletteLabel("Show/Hide Query Panel");
+            toolbarItem.setLabel("Query Panel");
+            toolbarItem.setPaletteLabel("Query Panel");
             
             toolbarItem.setToolTip("Show or hide the query window");
             toolbarItem.setImage(NSImage.imageNamed("queryPanel.tiff"));
             toolbarItem.setTarget(this);
             toolbarItem.setAction(new NSSelector("showQueryPanel", new Class[] { NSToolbarItem.class }));
+        }
+        else if (itemIdent.equals(bookmarkPanelIdentifier))
+        {
+            toolbarItem.setLabel("Bookmarks");
+            toolbarItem.setPaletteLabel("Bookmarks");
+            
+            toolbarItem.setToolTip("Show or hide the bookmark window");
+            toolbarItem.setImage(NSImage.imageNamed("bookmarkWindow.tiff"));
+            toolbarItem.setTarget(this);
+            toolbarItem.setAction(new NSSelector("showBookmarkWindow", new Class[] { NSToolbarItem.class }));
         }
         else
         {
@@ -116,7 +128,8 @@ public class RDFToolbar extends NSObject {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
                 showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
-                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier, queryPanelIdentifier } );
+                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier, queryPanelIdentifier,
+                bookmarkPanelIdentifier } );
     }
     
     public NSArray toolbarAllowedItemIdentifiers(NSToolbar toolbar) {
@@ -126,7 +139,7 @@ public class RDFToolbar extends NSObject {
 	return new NSArray(new String[] 
             {   
                 editToolsIdentifier, showToolsIdentifier, checkIdentifier, toggleViewsIdentifier,
-                previewPopupIdentifier, queryPanelIdentifier,
+                previewPopupIdentifier, queryPanelIdentifier, bookmarkPanelIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
@@ -247,6 +260,11 @@ public class RDFToolbar extends NSObject {
     public void showQueryPanel(NSToolbarItem sender)
     {
         queryController.toggleShow();
+    }
+    
+    public void showBookmarkWindow(NSToolbarItem sender)
+    {
+        bookmarkController.toggleShow();
     }
     
     public void previewModeChanged(Object sender)
