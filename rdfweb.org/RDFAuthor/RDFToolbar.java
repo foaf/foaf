@@ -3,6 +3,8 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.util.Hashtable;
+
 public class RDFToolbar extends NSToolbar {
 
     RDFAuthorDocument rdfAuthorDocument;
@@ -13,14 +15,17 @@ public class RDFToolbar extends NSToolbar {
     NSButton showTypesButton;
     NSButton showIdsButton;
     NSButton showPropertiesButton;
+    NSPopUpButton previewModePopup;
     
     static String identifier = "rdf Toolbar";
     static String editToolsIdentifier = "edit tools identifier";
     static String showToolsIdentifier = "show tools identifier";
     static String checkIdentifier = "check model identifier";
     static String toggleViewsIdentifier = "toggle view identifier";
+    static String previewPopupIdentifier = "preview popup identifier";
     
     boolean textPreview = false;
+    String[] popupMappings;
     
     public RDFToolbar()
     {
@@ -28,7 +33,8 @@ public class RDFToolbar extends NSToolbar {
         setAllowsUserCustomization(true);
 	setAutosavesConfiguration(true);
 	setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
-        //setDelegate(this);
+        
+        popupMappings = new String[] {"RDF/XML-ABBREV", "N-TRIPLE", "N3" };
     }
     
     public void awakeFromNib()
@@ -81,6 +87,15 @@ public class RDFToolbar extends NSToolbar {
 	    toolbarItem.setTarget(this);
 	    toolbarItem.setAction(new NSSelector("toggleView", new Class[] { NSToolbarItem.class }) );
         }
+        else if (itemIdent.equals(previewPopupIdentifier))
+        {
+            toolbarItem.setLabel("Preview Mode");
+	    toolbarItem.setPaletteLabel("Preview Mode");
+            
+	    toolbarItem.setView(previewModePopup);
+            toolbarItem.setMinSize(previewModePopup.frame().size());
+            toolbarItem.setMaxSize(previewModePopup.frame().size());
+        }
         else
         {
 	    // itemIdent refered to a toolbar item that is not provide or supported by us or cocoa.
@@ -100,7 +115,7 @@ public class RDFToolbar extends NSToolbar {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
                 showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
-                checkIdentifier, toggleViewsIdentifier } );
+                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier } );
     }
     
     public NSArray toolbarAllowedItemIdentifiers(NSToolbar toolbar) {
@@ -110,6 +125,7 @@ public class RDFToolbar extends NSToolbar {
 	return new NSArray(new String[] 
             {   
                 editToolsIdentifier, showToolsIdentifier, checkIdentifier, toggleViewsIdentifier,
+                previewPopupIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
@@ -203,13 +219,15 @@ public class RDFToolbar extends NSToolbar {
     {
         if (textPreview)
         {
-            boolean successful = rdfAuthorDocument.showTextPreview(false);  // this will never fail
+            boolean successful = rdfAuthorDocument.showTextPreview(false, null);  // this will never fail
             textPreview = false;
             sender.setImage(NSImage.imageNamed("modelView"));
         }
         else
         {
-            boolean successful = rdfAuthorDocument.showTextPreview(true);
+            String jenaType = popupMappings[previewModePopup.indexOfSelectedItem()];
+            System.out.println("jena Type: " + jenaType);
+            boolean successful = rdfAuthorDocument.showTextPreview(true, jenaType);
             if (!successful)
             {
                 return;

@@ -4,6 +4,7 @@ import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
 import java.io.*;
+import java.util.Hashtable;
 
 public class RDFAuthorDocument extends NSDocument {
     
@@ -22,6 +23,9 @@ public class RDFAuthorDocument extends NSDocument {
     
     
     ArcNodeList rdfModel;
+    
+    Hashtable exportMappings;
+    
     boolean addingNode;
     boolean addingConnection;
     boolean deleting;
@@ -78,14 +82,15 @@ public class RDFAuthorDocument extends NSDocument {
                 return null;
             }
         }
-        else if (aType.equals("RDF/XML Document"))
+        else if (exportMappings.get(aType) != null)
         {
-            String rdfData = rdfModel.exportAsRDF();
+            String outputType = (String) exportMappings.get(aType);
+            String rdfData = rdfModel.exportAsRDF(outputType);
             
             if (rdfData == null)
             {
                 NSAlertPanel alert = new NSAlertPanel();
-                alert.runCriticalAlert("RDF/XML Export Failed",
+                alert.runCriticalAlert("RDF Export Failed",
                     "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
                     null, null, null);
                 return null;
@@ -101,7 +106,7 @@ public class RDFAuthorDocument extends NSDocument {
         }
         else
         {
-            System.out.println("Unknown save type");
+            System.out.println("Unknown save type: " + aType);
             return null;
         }
     }
@@ -161,13 +166,20 @@ public class RDFAuthorDocument extends NSDocument {
         
 	// Attach the toolbar to the document window.
 	window.setToolbar(rdfToolbar);
+        
+        // This is for exporting
+        exportMappings = new Hashtable();
+        
+        exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
+        exportMappings.put("N-Triple Document", "N-TRIPLE");
+        exportMappings.put("N3 Document", "N3");
     }
     
-    public boolean showTextPreview(boolean showPreview)
+    public boolean showTextPreview(boolean showPreview, String type)
     {
         if (showPreview)
         {
-            String rdfData = rdfModel.exportAsRDF();
+            String rdfData = rdfModel.exportAsRDF(type);
             if (rdfData == null)
             {
                 NSAlertPanel alert = new NSAlertPanel();

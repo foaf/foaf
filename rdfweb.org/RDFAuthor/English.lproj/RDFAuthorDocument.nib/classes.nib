@@ -42,6 +42,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 editView = id; 
+                previewModePopup = id; 
                 rdfAuthorDocument = id; 
                 showIdsButton = id; 
                 showPropertiesButton = id; 

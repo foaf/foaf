@@ -93,10 +93,14 @@ public class InfoController extends NSObject {
     
     public void currentWindowChanged(NSNotification notification)
     {
-        currentWindow = (NSWindow) notification.object();
-        RDFAuthorDocument currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
-        ModelItem item = currentDocument.currentObject();
-        setCurrentItem(item);
+        NSWindow window = (NSWindow) notification.object();
+        if (window != currentWindow)
+        {
+            currentWindow = window;
+            RDFAuthorDocument currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
+            ModelItem item = currentDocument.currentObject();
+            setCurrentItem(item);
+        }
     }
     
     public void windowClosed(NSNotification notification)

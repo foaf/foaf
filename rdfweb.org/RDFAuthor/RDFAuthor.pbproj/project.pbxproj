@@ -335,15 +335,51 @@
 			<key>NSExportableAs</key>
 			<array>
 				<string>RDF/XML Document</string>
+				<string>N-Triple Document</string>
+				<string>N3 Document</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rdf</string>
+				<string>xml</string>
+				<string>txt</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>RDF/XML Document</string>
+			<string>XML/RDF Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>text</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ntriple</string>
+				<string>txt</string>
+				<string>rdf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>N-Triple Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>text</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>n3</string>
+				<string>txt</string>
+				<string>rdf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>N3 Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>text</string>
@@ -367,7 +403,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>RDF Author 0.1</string>
+	<string>0.1</string>
 	<key>CFBundleSignature</key>
 	<string>R*FA</string>
 	<key>CFBundleVersion</key>
