@@ -1,0 +1,7 @@
+<p>
+The <code>foaf:Person</code> class represents people. Something is a 
+<code>foaf:Person</code> if it is a person. We don't nitpic about whether they're 
+alive, dead, real, or imaginary. The <code>foaf:Person</code> class is a sub-class of the 
+<code>foaf:Agent</code> class, since all people are considered 'agents' in FOAF. 
+</p>
+

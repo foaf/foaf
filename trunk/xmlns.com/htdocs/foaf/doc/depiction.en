@@ -1,0 +1,33 @@
+<p>
+The <code>foaf:depiction</code> property is a relationship between a thing and an 
+<code>foaf:Image</code> that depicts it. As such it is an inverse of the
+<code>foaf:depiction</code> relationship. 
+</p>
+
+<p>
+A common use of <code>foaf:depiction</code> (and <code>foaf:depicts</code>) is to indicate 
+the contents of a digital image, for example the people or objects represented in an 
+online photo gallery. 
+</p>
+
+<p>
+Extensions to this basic idea include '<a 
+href="http://rdfweb.org/2002/01/photo/">Co-Depiction</a>' (social networks as evidenced in 
+photos), as well as richer photo metadata through the mechanism  of using SVG paths to 
+indicate the <em>regions</em> of an image which depict some particular thing. See <a 
+href="http://www.jibbering.com/svg/AnnotateImage.html">'Annotating Images With SVG'</a> 
+for tools and details.
+</p>
+
+<p>
+The basic notion of 'depiction' could also be extended to deal with multimedia content 
+(video clips, audio), or refined to deal with corner cases, such as pictures of pictures etc.
+</p>
+
+<p>
+The <code>foaf:depiction</code> property is a super-property of the more specific property 
+<code>foaf:img</code>, which is used more sparingly. You stand in a 
+<code>foaf:depiction</code> relation to <em>any</em> <code>foaf:Image</code> that depicts 
+you, whereas <code>foaf:img</code> is typically used to indicate a few images that are 
+particularly representative.
+</p>

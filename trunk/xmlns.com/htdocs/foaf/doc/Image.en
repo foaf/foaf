@@ -1,0 +1,11 @@
+<p>
+The class <code>foaf:Image</code> is a sub-class of <code>foaf:Document</code> 
+corresponding to those documents which are images.
+</p>
+
+<p>
+Digital images (such as JPEG, PNG, GIF bitmaps, SVG diagrams etc.) are examples of 
+<code>foaf:Image</code>. 
+</p>
+
+<!-- much more we could/should say here -->

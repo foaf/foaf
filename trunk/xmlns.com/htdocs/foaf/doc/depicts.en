@@ -1,0 +1,7 @@
+<p>
+The <code>foaf:depicts</code> property is a relationship between a <code>foaf:Image</code> 
+and something that the image depicts. As such it is an inverse of the 
+<code>foaf:depiction</code> relationship. See <code>foaf:depiction</code> for further notes.
+</p>
+
+

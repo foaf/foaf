@@ -1,0 +1,28 @@
+<p>
+The <code>foaf:img</code> property relates a <code>foaf:Person</code> to a 
+<code>foaf:Image</code> that represents them. Unlike its super-property 
+<code>foaf:depiction</code>, we only use <code>foaf:img</code> when an image is 
+particularly representative of some person. The analogy is with the image(s) that might 
+appear on someone's homepage, rather than happen to appear somewhere in their photo album.
+</p>
+
+<p>
+Unlike <code>foaf:depiction</code> (and its inverse, <code>foaf:depicts</code>), the 
+<code>foaf:img</code> property is only used with representations of people (ie. 
+instances of <code>foaf:Person</code>). So you can't use it to find pictures of cats, dogs 
+etc. The basic idea is to have a term whose use is more restricted than 
+<code>foaf:depiction</code> so we can have a useful way of picking out a reasonable image 
+to represent someone.
+</p>
+
+<p>
+Note that <code>foaf:img</code> does not have any restrictions on the dimensions, colour 
+depth, format etc of the <code>foaf:Image</code> it references. 
+</p>
+
+<p>
+Terminology: note that <code>foaf:img</code> is a property (ie. relationship), and that 
+<code>code:Image</code> is a similarly named class (ie. category, a type of thing). It 
+might have been more helpful to call <code>foaf:img</code> 'mugshot' or similar; instead 
+it is named by analogy to the HTML IMG element.
+</p> 
