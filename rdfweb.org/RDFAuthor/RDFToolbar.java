@@ -1,6 +1,6 @@
 /* RDFToolbar */
 
-/* $Id: RDFToolbar.java,v 1.16 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: RDFToolbar.java,v 1.17 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -57,7 +57,7 @@ public class RDFToolbar extends NSObject {
     
     public RDFToolbar()
     {
-        popupMappings = new String[] {"RDF/XML-ABBREV", "N-TRIPLE"}; //, "N3" };
+        popupMappings = new String[] {"RDF/XML", "N-TRIPLE"}; //, "N3" };
     }
     
     public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 

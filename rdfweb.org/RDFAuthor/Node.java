@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.23 2002-02-05 16:02:57 pldms Exp $ */
+/* $Id: Node.java,v 1.24 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -347,7 +347,8 @@ public class Node implements Serializable, ModelItem
             idToShow = idToShow.replace('\n',' ');
             if (idToShow.length() > maxDisplayStringLength)
             {
-                idToShow = idToShow.substring(0, maxDisplayStringLength - 3) + "...";
+                idToShow = idToShow.substring(0, maxDisplayStringLength / 2 + 2) + "...."
+                    + idToShow.substring(idToShow.length() - maxDisplayStringLength / 2 - 2);
             }
             
             if (showType && showId)
