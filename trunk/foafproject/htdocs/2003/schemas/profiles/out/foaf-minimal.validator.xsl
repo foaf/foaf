@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://www.ascc.net/xml/schematron" version="1.0" rdf:dummy-for-xmlns="" rdfs:dummy-for-xmlns="" foaf:dummy-for-xmlns="">
+<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://www.ascc.net/xml/schematron" version="1.0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:dummy-for-xmlns="" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" rdfs:dummy-for-xmlns="" xmlns:foaf="http://xmlns.com/foaf/0.1/" foaf:dummy-for-xmlns="">
 <axsl:output method="html"/>
 <axsl:template mode="schematron-get-full-path" match="*|@*">
 <axsl:apply-templates mode="schematron-get-full-path" select="parent::*"/>
@@ -107,7 +107,7 @@
 <axsl:when test="count(foaf:Person) = count(*)"/>
 <axsl:otherwise>
 <li>
-<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: There must be a single element asa child of rdf:RDF and that must be a foaf:Person element.
+<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: There must be a single element as a child of rdf:RDF and that must be a foaf:Person element.
          ()
       </a>
 </li>
@@ -118,7 +118,7 @@
 <axsl:template mode="M5" priority="3998" match="rdf:RDF/foaf:Person">
 <axsl:if test="rdf:*">
 <li>
-<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Error: illegal use ofelement from rdf namespace
+<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Error: illegal use of element from rdf namespace
          ()
       </a>
 </li>
@@ -264,7 +264,7 @@
 <axsl:template mode="M9" priority="3996" match="foaf:aimChatID">
 <axsl:if test="child::*">
 <li>
-<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literalsshould not have child elements
+<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literals should not have child elements
          ()
       </a>
 </li>
@@ -274,7 +274,7 @@
 <axsl:template mode="M9" priority="3995" match="foaf:icqChatID">
 <axsl:if test="child::*">
 <li>
-<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literals should not have childelements
+<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literals should not have child elements
          ()
       </a>
 </li>
@@ -344,7 +344,7 @@
 <axsl:template mode="M9" priority="3988" match="foaf:plan">
 <axsl:if test="child::*">
 <li>
-<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literals should not havechild elements
+<a title="Link to where this pattern was found" target="out" href="schematron-out.html#{generate-id(.)}">Literals should not have child elements
          ()
       </a>
 </li>
