@@ -515,87 +515,17 @@ stabilise in usage and documentation, they progress through the categories
 '<strong>unstable</strong>', '<strong>testing</strong>' and '<strong>stable</strong>'.
 </p>
 
-<h3>Vocabulary Status</h3>
 
-<h4>stable terms</h4>
-
-<p>At the present time ($Date: 2003-07-26 23:55:42 $), the following FOAF terms are
-considered <strong>stable</strong>.  This means that their names and definitions (in prose
-and in machine form) are unlikely to change dramatically. Clarifications and refinements
-may be made, but major changes are not expected. </p> 
-
-<p><strong>NOTE</strong>: @@TODO this part of the spec should be auto-generated from 
-schema</p>
-
-<ul>
- <li>foaf:Person</li>
- <li>foaf:Document</li>
- <li>foaf:Image</li>
- <li>foaf:name</li>
- <li>foaf:mbox</li>
- <li>foaf:mbox_sha1sum</li>
- <li>foaf:homepage</li>
- <li>foaf:weblog</li>
- <li>foaf:depiction</li>
- <li>foaf:depicts</li>
- <li>foaf:img</li>
- <li>foaf:knows</li>
- <li>foaf:nick</li>
- <li>foaf:topic</li>
- <li>foaf:page</li>
- <li>foaf:workplaceHomepage</li>
- <li>foaf:workInfoHomepage</li>
- <li>foaf:phone</li>
-</ul>
-
-<h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:55:42 $), the following FOAF terms are considered 
-<strong>unstable</strong>. 
-This means that their names and definitions (in prose and in machine form) could still change 
-dramatically. Clarifications and refinements still need to be made, and major changes are quite 
-possible.
-</p>
-<ul>
- <li>foaf:firstName</li>
- <li>foaf:surname</li>
- <li>foaf:family_name</li>
- <li>foaf:sha1</li>
-  <!-- given -->
-</ul>
- 
-<h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:55:42 $), the following FOAF terms are considered 
-to be of '<strong>testing</strong>' status. 
-This means that their names and definitions (in prose and in machine form) could still change, 
-although dramatic changes are (we hope) unlikely.
-Clarifications and refinements are still being made, and major changes in the light of deployment 
-testing and user feedback are still possible.
-</p>
-<ul>
-<li><em>all remaining FOAF terms except those listed above as 'stable' or 'unstable'</em></li>
-</ul>
-
-    <p>The original (if incomplete) <a href="http://rdfweb.org/2000/08/why/">general
-overview</a> provides some background goals for the RDFWeb system. 
-Note that the various RDFWeb tools can make use of a number of
-RDF vocabularies. The properties and types defined here provide some basic
-useful concepts for use in RDFWeb. Other vocabulary (eg. the <a 
+The properties and types defined here provide some basic
+useful concepts for use in FOAF descriptions. Other vocabulary (eg. the <a 
 href="http://dublincore.org/">Dublin Core</a> metadata elements for simple
-bibliographic description) can also be mixed in with FOAF terms, as can local extensions.
-FOAF is designed to be extended.
-</p>
-    <p>FOAF is expressed as an RDF Schema, annotated with <a href="http://www.daml.org/">DAML</a> 
-to express
-the fact that a foaf:mbox uniquely picks out an individual.
-FOAF:mbox is an <a 
-href="http://www.daml.org/2001/03/reference.html#UnambigousProperty-def">UnambiguousProperty</a>,
-in the DAML+OIL sense. Furthermore it is a 'static unambiguous property', in that it picks out at 
-most a 
-single individual, across time and change.
-
+bibliographic description), RSS 1.0 etc can also be mixed in with FOAF terms, as can local 
+extensions. FOAF is designed to be extended. The <a 
+href="http://rdfweb.org/topic/FoafVocab">FoafVocab</a> page in the FOAF wiki lists a 
+number of extension vocabularies that are particularly applicable to use with FOAF.
 </p>
 
-<h3>Publishing and Linking FOAF documents</h3>
+<h3>FOAF Auto-Discovery: Publishing and Linking FOAF files</h3>
 
 <p>If you publish a FOAF self-description (eg. using 
 <a href="http://www.ldodds.com/foaf/foaf-a-matic.html">foaf-a-matic</a>)  
@@ -605,25 +535,28 @@ what filename you choose for your FOAF document, although
 <code>foaf.rdf</code> is a common choice. The linking markup is as 
 follows:</p>
 <pre>
-<code>
 
+<code class="code">
 &lt;link rel="meta" type="application/rdf+xml" title="FOAF" 
 	href="<em>http://example.com/people/~you/foaf.rdf</em>" /&gt;
 </code>
+
 </pre>
 <p>...although of course change the <em>URL</em> to point to your 
 own FOAF document. See also: more on <a 
-href="http://www.tecknik.net/autofoaf/">FOAF autodiscovery</a>.
+href="http://rdfweb.org/mt/foaflog/archives/000041.html">FOAF autodiscovery</a> and 
+services that make use of it.
 </p>
 
 
 
-    <h2>Appendix A: Listing FOAF Classes and Properties</h2>
+<h2>Appendix A: Listing FOAF Classes and Properties</h2>
 
-    <p>
+<p>
 FOAF introduces the following classes and properties.  View this document's source markup to see 
 the RDF/XML version. 
 </p>
+
 <p>
 See also: <a href="http://xmlns.com/foaf/foafsig">rdf schema signature</a> and <a 
 href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a> (@@TODO).
@@ -2609,7 +2542,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-26 23:55:42 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 00:11:56 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
