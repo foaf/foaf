@@ -6,7 +6,16 @@ BODY {
 }
 
 DIV.navbar {
-  font-size: smaller;
+ font-size: smaller;
+}
+
+h2.headline {
+  background: eeeeee;
+
+}
+
+span.date {
+  border-style: inset;
 }
 
 H1, H2, H3, H4, H5 {
@@ -34,6 +43,6 @@ DIV.bottom {
 }
 
 a:hover	{ 
-  background: #ddd;
+  background: #cccccc;
   text-decoration: underline;
 }
