@@ -16,47 +16,8 @@
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/plan</td> 
- <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/theme</td> 
- <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/made</td> 
- <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/nick</td> 
- <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
- <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/img</td> 
- <td>An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/name</td> 
- <td>A name for some thing.</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/mbox</td> 
- <td>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/publications</td> 
- <td>A link to the publications of this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depiction</td> 
- <td>A depiction of some thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/firstName</td> 
- <td>The first name of a person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
- <td>The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>A page or document about this thing.</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/currentProject</td> 
  <td>A current project this person works on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
@@ -70,6 +31,9 @@
  <td>http://xmlns.com/foaf/0.1/geekcode</td> 
  <td>A textual geekcode for this person, see http://www.geekcode.com/geek.html</td><td>http://xmlns.com/foaf/0.1/Person</td><td><em>not specified</em></td></tr> 
 <tr>
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
  <td>http://xmlns.com/foaf/0.1/pastProject</td> 
  <td>A project this person has previously worked on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
 <tr>
@@ -79,8 +43,8 @@
  <td>http://xmlns.com/foaf/0.1/surname</td> 
  <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
- <td>An organization funding a project or person.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
+ <td>A checksum for the DNA of some thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
  <td>A Myers Briggs (MBTI) personality classification.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
@@ -88,17 +52,23 @@
  <td>http://xmlns.com/foaf/0.1/family_name</td> 
  <td>The family_name of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
- <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/title</td> 
+ <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
- <td>A workplace homepage of some person; the homepage of an organization they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
+ <td>An organization funding a project or person.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/phone</td> 
  <td>A fully qualified international phone number, specified using the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/logo</td> 
- <td>A logo representing some thing.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/nick</td> 
+ <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
+ <td>A workplace homepage of some person; the homepage of an organization they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/jabberID</td> 
+ <td>A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
  <td>A work info homepage of some person; a page about their work for some organization.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
@@ -106,23 +76,65 @@
  <td>http://xmlns.com/foaf/0.1/homepage</td> 
  <td>A homepage for some thing.</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/topic</td> 
- <td>A topic of some page or document.</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/weblog</td> 
- <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
- <td>A checksum for the DNA of some thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/page</td> 
- <td>A page or document about this thing.</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/aimChatID</td> 
+ <td>An AIM chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
  <td>A homepage of a school attended by the person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/title</td> 
- <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>http://xmlns.com/foaf/0.1/weblog</td> 
+ <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
+ <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/plan</td> 
+ <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/msnChatID</td> 
+ <td>An MSN chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/logo</td> 
+ <td>A logo representing some thing.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/iChatID</td> 
+ <td>An Apple iChat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
+ <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/img</td> 
+ <td>An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/name</td> 
+ <td>A name for some thing.</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox</td> 
+ <td>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>A topic of some page or document.</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/publications</td> 
+ <td>A link to the publications of this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depiction</td> 
+ <td>A depiction of some thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
+ <td>The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 
 </table>
 
