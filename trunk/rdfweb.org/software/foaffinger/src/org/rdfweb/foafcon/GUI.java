@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.swt.graphics.Font;
 
 /**
  * @author pldms
@@ -42,6 +43,7 @@ public class GUI extends ApplicationWindow
     private Table table;
     private Image presentImage;
     private Image absentImage;
+    private Image logoImage;
     private Text nameText;
     private Text mboxText;
     private Text homepageText;
@@ -56,7 +58,7 @@ public class GUI extends ApplicationWindow
 	private Button revertButton;
 	private Button changeButton;
 	private Button showMboxButton;
-    
+
     public GUI(FoafFingerController controller)
 	{
 		super(null);
@@ -72,10 +74,60 @@ public class GUI extends ApplicationWindow
 	
 	protected Control createContents(Composite parent)
 	{
-	    getShell().setText("Foaf Finger");
+	    getShell().setText("FoafFinger");
 	    
-	    TabFolder tabFolder = new TabFolder(parent, SWT.NONE);
+	    try
+		{
+		    presentImage = 
+			new Image(Display.getCurrent(), "images/present.gif");
+		    absentImage = 
+			new Image(Display.getCurrent(), "images/absent.gif");
+		    logoImage = 
+			new Image(Display.getCurrent(), "images/ffinger.gif");
+		    
+		    getShell().setImage(logoImage);
+		}
+	    catch (SWTException e)
+		{
+		    System.err.println("Error: " + e);
+		}
+
+	    Composite composite = new Composite(parent, SWT.NONE);
 	    
+	    GridLayout layout = new GridLayout();
+	    layout.numColumns = 2;
+	    
+	    composite.setLayout(layout);
+	    
+	    Font bigFont = new Font(Display.getCurrent(),
+				    "helvetica",
+				    20,
+				    SWT.BOLD);
+
+	    Label label = new Label(composite, SWT.NONE);
+	    
+	    label.setFont(bigFont);
+	    label.setText("FoafFinger");
+	    bigFont.dispose();
+	    
+	    label = new Label(composite, SWT.NONE);
+	    
+	    label.setImage(logoImage);
+	    
+	    GridData layoutData =
+		new GridData(GridData.HORIZONTAL_ALIGN_END);
+	    
+	    label.setLayoutData(layoutData);
+	    
+	    layoutData =
+		new GridData(GridData.FILL_HORIZONTAL |
+			     GridData.FILL_VERTICAL);
+	    layoutData.horizontalSpan = 2;
+
+	    TabFolder tabFolder = new TabFolder(composite, SWT.NONE);
+	    
+	    tabFolder.setLayoutData(layoutData);
+
 	    TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
 	    
 	    tabItem.setText("My Details");
@@ -84,16 +136,16 @@ public class GUI extends ApplicationWindow
 	    
 	    tabItem.setControl(container);
 	    
-	    GridLayout layout = new GridLayout();
+	    layout = new GridLayout();
 		layout.numColumns = 2;
 		
-		GridData layoutData =
+		layoutData =
 		    new GridData(GridData.FILL_HORIZONTAL);
 		layoutData.widthHint = 200;
 
 		container.setLayout(layout);
 	    
-		Label label = new Label(container, SWT.NONE);
+		label = new Label(container, SWT.NONE);
 		label.setText("Name:");
 		myNameText = new Text(container, SWT.SINGLE);
 		myNameText.setText(controller.getPerson().getName());
@@ -103,6 +155,7 @@ public class GUI extends ApplicationWindow
 		label = new Label(container, SWT.NONE);
 		label.setText("Mail Box:");
 		myMailText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
+		myMailText.setEnabled(false);
 		myMailText.setText(controller.getPerson().getMbox());
 		myMailText.addModifyListener(this);
 		layoutData =
@@ -168,39 +221,29 @@ public class GUI extends ApplicationWindow
 		revertButton.addSelectionListener(this);
 		revertButton.setEnabled(false);*/
 		
-		label = new Label(container, SWT.NONE);
-
 		changeButton = new Button(container, SWT.PUSH);
 		changeButton.setText("Change");
 		changeButton.addSelectionListener(this);
 		changeButton.setEnabled(false);
 		layoutData =
 		    new GridData(GridData.HORIZONTAL_ALIGN_END);
+		layoutData.horizontalSpan = 2;
 		changeButton.setLayoutData(layoutData);
 		changeButton.setFocus();
 		
-	    tabItem = new TabItem(tabFolder, SWT.NONE);
-	    
-	    tabItem.setText("Local Network");
-	    
-	    SashForm sash = new SashForm(tabFolder, SWT.HORIZONTAL);
-	    
-	    tabItem.setControl(sash);
+		tabItem = new TabItem(tabFolder, SWT.NONE);
+		
+		tabItem.setText("Local Network");
+		
+		SashForm sash = new SashForm(tabFolder, SWT.HORIZONTAL);
+		
+		tabItem.setControl(sash);
 	    
 		table = new Table(sash, SWT.CHECK | SWT.H_SCROLL | 
 				  SWT.V_SCROLL);
 		table.addSelectionListener(this);
 		
-		try
-		{
-		    presentImage = new Image(Display.getCurrent(), "images/present.gif");
-		    absentImage = new Image(Display.getCurrent(), "images/absent.gif");
-		}
-		catch (SWTException e)
-		{
-		    System.err.println("Error: " + e);
-		}
-		System.out.println("Images: " + presentImage + " " + absentImage);
+		
 		
 		container = new Composite(sash, SWT.NONE);
 		layout = new GridLayout();
@@ -248,7 +291,7 @@ public class GUI extends ApplicationWindow
 		layoutData.widthHint = 200;
 		seeAlsoText.setLayoutData(layoutData);
 		
-		return tabFolder;
+		return composite;
 	}
 
 	/* (non-Javadoc)
@@ -331,6 +374,7 @@ public class GUI extends ApplicationWindow
 			{
 				System.out.println("Kicking Service");
 				controller.kickService();
+				changeButton.setEnabled(false);
 			}
 			catch (Exception e)
 			{
