@@ -77,19 +77,19 @@ public class ModelErrorData extends Object {
             Node node = (Node) item;
             if (node.isLiteral())
             {
-                name += "Literal: ";
+                name += "Literal: \n";
                 name += (node.id() == null)?"\"\"":node.id();
             }
             else
             {
-                name += (node.typeName() == null)?"Resource: ":node.typeName() + ": ";
+                name += (node.typeName() == null)?"Resource: \n":node.typeName() + ": \n";
                 name += (node.id() == null)?"<anonymous>":node.id();
             }
         }
         else
         {
             Arc arc = (Arc) item;
-            name += "Arc: ";
+            name += "Arc: \n";
             name += (arc.propertyName() == null)?"<no property>":arc.propertyName();
         }
         
