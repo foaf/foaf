@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.9 2002-12-10 11:15:58 danbri Exp $
+# $Id: ayf.rb,v 1.10 2002-12-10 13:56:02 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -12,6 +12,11 @@
 #   http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
 #   http://www.perceive.net/xml/googlescutter.rdf
 #   http://www.perceive.net/xml/googlescutterNoChatlogs.rdf
+#
+# nearby:
+#   wordnet/ruby hacking, 
+#   http://fireball.danbri.org/people/danbri/2002/07/xmlns-wordnet/dantest.rb
+
 
 require 'net/http'
 require 'RDF4R/Driver/XMLParser'
@@ -255,7 +260,7 @@ end
 
   def SimpleScutter.parse(filename, base_uri)
     consumer = RDF4R::Consumer::Standard.new
-    File.open(filename) do |file|
+    File.open(filename, "r") do |file|
       begin
         return RDF4R::Driver::XMLParser.process(file, base_uri, consumer)
       rescue Exception 
