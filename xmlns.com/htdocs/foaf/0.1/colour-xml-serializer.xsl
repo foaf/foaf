@@ -29,7 +29,7 @@
 
   <xsl:template match="@*">
     <span class="{namespace-uri()}">
-      <xsl:value-of select="concat(' ',name(),'=&quot;',.,'&quot;')"/>
+      <xsl:value-of select="concat(' &#xa;      ',name(),'=&quot;',.,'&quot;')"/>
     </span>
   </xsl:template>
 
