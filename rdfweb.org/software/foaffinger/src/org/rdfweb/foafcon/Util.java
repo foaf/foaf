@@ -2,6 +2,8 @@ package org.rdfweb.foafcon;
 
 import java.io.*;
 import java.net.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 
 public class Util
 {

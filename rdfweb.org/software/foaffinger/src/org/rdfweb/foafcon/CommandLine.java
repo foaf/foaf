@@ -33,8 +33,8 @@ public class CommandLine
 	      new StreamTokenizer(new StringReader(input));
 
 	    // This lets URIs work
-	    inputTokeniser.wordChars(33, 126);
-	    	    
+	    inputTokeniser.wordChars(35, 126);
+	    
 	    int returned = inputTokeniser.nextToken();
 
 	    if ((returned == StreamTokenizer.TT_EOL) ||
@@ -237,7 +237,8 @@ public class CommandLine
       {
 	tt = it.nextToken();
 
-	if (tt != StreamTokenizer.TT_WORD)
+	if ((tt != StreamTokenizer.TT_WORD) &&
+		(tt != '"'))
 	  throw new Exception("Usage: set " + var + " <val>");
 	
 	val = it.sval;

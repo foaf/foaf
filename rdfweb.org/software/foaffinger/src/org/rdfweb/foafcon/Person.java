@@ -1,7 +1,5 @@
 package org.rdfweb.foafcon;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.ArrayList;

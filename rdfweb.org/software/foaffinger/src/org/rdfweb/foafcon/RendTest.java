@@ -38,7 +38,7 @@ public class RendTest
 	System.
 	  err.
 	  println("Usage: RendTest <name> <mailbox> " +
-		  "[<port>]");
+		  "[<address>]");
 	System.exit(1);
       }
 
@@ -48,11 +48,31 @@ public class RendTest
       {
 	try
 	  {
-	    port = Integer.parseInt(args[2]);
+	    inetaddr = InetAddress.getByName(args[2]);
 	  }
-	catch (NumberFormatException e)
+	catch (UnknownHostException e)
 	  {
-	    System.err.println("Port must be an integer.");
+	    System.err.println("Problem with the address: " +
+			       e.getMessage());
+	    System.exit(1);
+	  }
+      }
+    else
+      {
+	try
+	  {
+	    inetaddr = InetAddress.getLocalHost();
+	    if (inetaddr.equals(InetAddress.getByName("127.0.0.1")))
+	      {
+		System.err.println("I can't determine the address of this " +
+				   "host.\nHelp me out by supplying it as " +
+				   "an argument when you run me.");
+		System.exit(1);
+	      }
+	  }
+	catch (UnknownHostException e)
+	  {
+	    System.err.println("Uh-oh: " + e.getMessage());
 	    System.exit(1);
 	  }
       }
@@ -70,9 +90,6 @@ public class RendTest
       {
 	rv = new Rendezvous();
 
-	//inetaddr = InetAddress.getLocalHost();
-	inetaddr = Util.getAddress();
-	
 	System.out.println("Binding to: " + inetaddr);
 
 	si = new ServiceInfo(type,
