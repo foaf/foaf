@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.11 2002-07-14 13:15:57 danbri Exp $
+# $Id: webutil.rb,v 1.12 2002-07-14 14:43:11 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -164,7 +164,7 @@ def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
   proxy_port = 8080
 
   if uri =~ /^\[/
-    puts "Warning, bNode URI."
+    puts "Scutter: fetch remote: warning, bNode URI"
     return nil
   end
 
@@ -296,9 +296,9 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
       puts "load failed " if loaded == nil
 
       seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil) ).objects
-      # puts "SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
+#     puts "URI: #{uri} SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
       seeAlso.each do |doc|
-        # puts "Scutter: adding to TODO list: #{doc} "
+        puts "Scutter: adding to TODO list: #{doc} from URI: #{uri}"
         if (!done[doc.to_s])
           todo.push doc.to_s 
           done[doc.to_s]=1
