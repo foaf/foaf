@@ -1,5 +1,5 @@
 V=../../2003/vocabtable.rb
-GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html	
+GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 
 # todo: vocabtable.rb is kinda primitive, and expects different input
 # to the way we invoke it in this Makefile.
