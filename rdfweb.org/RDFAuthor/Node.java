@@ -29,6 +29,7 @@ public class Node extends ModelItem implements Serializable
     
     NSPoint position;
     NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
+    NSColor literalColor = NSColor.colorWithCalibratedRGB(1F, 1F, 0F, 0.5F);
     NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
     NSSize mySize;
     NSSize defaultSize = new NSSize(20,20);
@@ -81,6 +82,8 @@ public class Node extends ModelItem implements Serializable
     
 	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
 	hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
+        literalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 1F, 0.5F);
+
 	defaultSize = new NSSize(20,20);
         
         calculateSize();
@@ -214,7 +217,14 @@ public class Node extends ModelItem implements Serializable
     
     public void drawNormal()
     {
-        drawMe(normalColor);
+        if (this.isLiteral())
+        {
+            drawMe(literalColor);
+        }
+        else
+        {
+            drawMe(normalColor);
+        }
     }
 
     public void drawHilight()
