@@ -32,7 +32,7 @@
       FOAF: the 'friend of a friend' project
     </h2>
     <p>
-      <a href="cola-corps-sample.png"><img border="0"
+      <a href="examples/edd-foaf.jpeg"><img border="0"
       src="examples/unreadable-thumb.jpeg" alt="foaf sample"
       align="right" /></a>
     </p>
@@ -67,6 +67,19 @@
       <li>
         co-depiction...
       </li>
+      <li>
+        <a href="http://usefulinc.com/foaf/">usefulinc.com</a> FOAF
+        pages (including <a
+        href="http://usefulinc.com/foaf/foafbot">foafbot</a>, <a
+        href="http://usefulinc.com/foaf/signingFoafFiles">PGP
+        signing howto</a> and <a
+        href="http://usefulinc.com/foaf/addingPeople">seeAlso
+        linking</a>).
+      </li>
+      <li>
+        <a href="corp/">FOAFCorp!</a> (including <a
+        href="corp/data/java/intro.html">software</a>)
+      </li>
     </ul>
     <h3>
       The Basic Idea
@@ -93,15 +106,15 @@
       defines some useful constructs that can appear in FOAF files,
       alongside other RDF vocabularies defined elsewhere. For
       example, FOAF defines categories such as 'Person',
-      'Document', 'Image', properties of those things, such as
-      'name', 'mbox' (ie. an internet mailbox), 'homepage' etc., as
-      well as some useful kinds of relationship that hold between
-      members of these categories. One interesting relationship
-      type is 'foaf:depiction'. This relates something (eg. a
-      Person) to an Image. The FOAF demos that feature photos and
-      listings of 'who is in which picture' are based on software
-      tools that parse RDF documents and make use of this
-      properties.
+      'Document', 'Image', alongside some handy properties of those
+      things, such as 'name', 'mbox' (ie. an internet mailbox),
+      'homepage' etc., as well as some useful kinds of relationship
+      that hold between members of these categories. For example,
+      one interesting relationship type is 'foaf:depiction'. This
+      relates something (eg. a Person) to an Image. The FOAF demos
+      that feature photos and listings of 'who is in which picture'
+      are based on software tools that parse RDF documents and make
+      use of this properties.
     </p>
     <p>
       The specific contents of the FOAF vocabulary are detailed in
@@ -113,8 +126,60 @@
       Web of interlinked files, and learn about new people,
       documents, services, data...
     </p>
+    <h3>
+      Extensions
+    </h3>
+    <p>
+      FOAF was designed to be extended. So long as each FOAF file
+      is a well-formed XML document written in valid <a
+      href="http://www.w3.org/RDF/Validator">RDF syntax</a>, you
+      can say pretty much whatever you like in it. Most RDF web
+      harvesting tools, eg. the various 'scutter' programs that
+      explore and index FOAF documents, won't care about which
+      properties and categories your file uses, just that they use
+      RDF/XML syntax correctly. This means we can invent new
+      properties and deploy them pretty cheaply.
+    </p>
+    <p>
+      Why is this interesting? Because it makes FOAF something more
+      than a cheap fad for geeks. FOAF could be a basis for an
+      <em>extensible</em>, <em>standards-based</em> platform for
+      creating cheap fads for geeks. This is much more fun. Once
+      folk get the hang of creating extensions to FOAF that don't
+      break the basic syntax of FOAF (ie. RDF/XML) documents, we
+      could see a whole range of extensions. Some frivolous, some
+      useful.
+    </p>
+    <p>
+      A quick and frivolous example. Imagine you wanted to create
+      an computer-based alarm clock based on FOAF, where instead of
+      an alarm, your computer played sound samples of your friends
+      (and friends' friends) shouting "Wake Up, slacker...". FOAF
+      tools provide most of what you need, ie. tools that harvest
+      information from your friends' Web sites and aggregate it in
+      a local database. Except you need to know one more property
+      associated with people described in FOAF documents. You want
+      to know the URL of an audio clip (eg. MP3 or WAV) of their
+      "wake up" message. All you need to do to deploy your
+      FOAF-based alarm clock is to document the syntax for adding
+      this new piece of information into FOAF documents. Then
+      install a FOAF harvesting tool, write up some motivating
+      documents, and produce some demos or applications that make
+      interesting use of your FOAF extension. For this hypothetical
+      'FOAFAlarmClock' idea, this could be a program that
+      periodically harvested sound clips and used them in an
+      electronic alarm clock. If the tool is useful or fun enough,
+      and your documentation sufficiently straightforward, you
+      might find people even use it. In which case, the claim that
+      FOAF is a platform for cheap fads might gain some
+      plausibility...
+    </p>
+    <p>
+      Which brings us back to the need for examples and clear
+      documentation. Ahem...
+    </p>
 <pre>
-$Id: index.html,v 1.1 2002-07-15 18:06:33 danbri Exp $
+$Id: index.html,v 1.2 2002-07-15 18:43:13 danbri Exp $
 </pre>
   </body>
 </html>
