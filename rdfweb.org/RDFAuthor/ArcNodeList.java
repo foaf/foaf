@@ -19,6 +19,10 @@ import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
 public class ArcNodeList extends java.lang.Object implements Serializable
 {
+    // End problems with serialisation - yes!
+    
+    static final long serialVersionUID = -3654474580567420247L;
+    
     Vector array;
     ModelItem currentObject;
     RDFAuthorDocument controller;

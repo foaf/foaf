@@ -1,4 +1,13 @@
-$Date: 2001-10-25 14:22:30 $ - $Author: pldms $
+$Date: 2001-11-02 18:18:04 $ - $Author: pldms $
+    
+    Fixed revert non-displaying.
+    
+    Fixed save/load problem. I'll handle versioning now, thank you java :-)
+    
+    That last bit also frees me up to do some nice stuff like RDF import. Watch this space...
+
+$Date: 2001-11-02 18:18:04 $ - $Author: pldms $
+    
     Erm - added a changelog ;-)
     
     Bunch of stuff, really. Added N-Triple and N3 export and preview - however N3 doesn't seem
