@@ -8,6 +8,15 @@
     <foaf:homepage rdf:resource="http://www.example.org/foaf/people/christine/"/>
     <foaf:schoolHomepage rdf:resource="http://foafhigh.example.org/" />
     <foaf:weblog rdf:resource="http://www.example.org/foaf/people/christine/" />
+    <foaf:uncle>
+      <foaf:Person>
+        <foaf:name>Donnie Dinko</foaf:name>
+        <foaf:mbox rdf:resource="mailto:dd@foaf.example.org"/>
+        <rdfs:seeAlso rdf:resource="d-foaf.rdf"/>
+      </foaf:Person>
+    </foaf:uncle>
+    <!-- foaf:uncle not in schema yet; see scribbles at 
+ 	http://lists.w3.org/Archives/Public/www-archive/2003Feb/0100.html -->
     <foaf:knows>
       <foaf:Person>
         <foaf:homepage rdf:resource="http://www.example.org/foaf/people/betrand/" />
