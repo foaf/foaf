@@ -1,26 +1,39 @@
 V=../../2003/vocabtable.rb
+GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html	
 
-
-# todo: vocabtable.rb is kina primitive, and expects different input
+# todo: vocabtable.rb is kinda primitive, and expects different input
 # to the way we invoke it in this Makefile.
-#rdfdump -o ntriples -q file:index.rdf > rdf_vdl.nt;   
-# ../../2003/vocabtable.rb > table.html
 
+all: clean index.html 
+clean: tidyup 
 
+tidyup:
+	rm -f $(GENFILES)
+	
+rdf_vdl.nt:
+	rdfdump -o ntriples -q file:index.rdf > rdf_vdl.nt
+
+index.html: index.rdf rdf_vdl.nt table.html _top 
+	rm -f index2.html
+	cat _top > index2.html
+	cat table.html >> index2.html
+	cat index.rdf >> index2.html
+	echo "</body></html>" >> index2.html
+	mv -f index2.html index.html
 
 check:
 	gpg --quiet --verify ../foafsig index.html
 
 sign:
 	@echo "Sign your Schema!"
-	gpg -sab index.rdf 
-	mv index.rdf.asc ../foafsig
+	gpg --quiet -sab index.rdf 
+	gpg --quiet -sab index.html 
 
-	gpg -sab index.html 
-	mv index.html.asc ../htmlfoafsig
-#
+sigfiles: sign
+	mv -f index.rdf.asc ../foafsig
+	mv -f index.html.asc ../htmlfoafsig
 
-vocabtable:
+table.html:
 	rdfdump -o ntriples -q file:index.rdf  | $(V)  > table.html
 
 getrdf:
