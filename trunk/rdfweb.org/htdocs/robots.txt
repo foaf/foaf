@@ -3,5 +3,6 @@ Disallow: /cgi-bin/
 Disallow: /rdf-viz/
 Disallow: /wordnet/
 Disallow: /rweb/
+Disallow: /viewcvs/
 
 
