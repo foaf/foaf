@@ -11,7 +11,33 @@ H1, H2, H3, H4, H5 {
   color: #000000; 
 }
 
-.feature {
-  background: fffacd
 
+/* Layout */
+
+DIV.splashbox {
+  float: right;
+  width: 35%;
+  padding: 0px;
 }
+
+DIV.splashblurb {
+  float: left;
+  width: 60%;
+  padding: 3px;
+}
+
+DIV.bottom {
+  clear: both;
+}
+
+/* Look */
+
+A {
+  text-decoration: none;
+}
+
+TABLE {
+  width:100%;
+}
+
+// borrowed from larve.net, hugo start page
