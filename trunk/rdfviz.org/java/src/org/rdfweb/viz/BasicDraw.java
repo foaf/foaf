@@ -148,7 +148,7 @@ MouseListener, ActionListener, DocumentListener {
 
         JMenuItem node = new JMenuItem("New node");
         JMenuItem arc = new JMenuItem("New arc");
-        JMenuItem imu = new JMenuItem("Import url");
+        JMenuItem imu = new JMenuItem("Load categories and link-types from Web");
         JMenuItem imf = new JMenuItem("Import file");
         JMenuItem export = new JMenuItem("Export");
 	JMenuItem quit = new JMenuItem("Quit");
@@ -435,7 +435,7 @@ MouseListener, ActionListener, DocumentListener {
             }//end if choice
 
 
-        } else if (e.getActionCommand().equals("Import url")) {
+        } else if (e.getActionCommand().equals("Load categories and link-types from Web")) {
 
             String inputValue = JOptionPane.showInputDialog("Please input a url");
 
