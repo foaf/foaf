@@ -1,0 +1,171 @@
+<web:RDF xmlns:web="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+ 	 xmlns:moo="http://xmlns.com/2001/04/moosw#"
+ 	 xmlns:wn="http://xmlns.com/wordnet/1.6/"
+ 	 xmlns="http://xmlns.com/2001/04/moosw#">
+
+<!-- issues: use URIs for locations, exits etc... -->
+
+<Location oid="001"  
+	about="http://moo.rdfweb.org/oid/001"
+	name="The Coat Closet" 
+	description="A small, cubardy room.">
+
+<contents>
+  <wn:Coat moo:name="A fur coat" moo:oid="343" />
+</contents>
+
+<contents>
+  <wn:Book moo:name="A book" moo:oid="432" />
+</contents>
+
+<contents>
+  <wn:Music moo:name="Some music" moo:oid="666" />
+</contents>
+
+
+  <locexit>
+    <Exit name="Wooden door" oid="002"
+	from="001" to="003"
+	player_msg="You head north, closing the door behind you"
+	loc_msg="{agent}::moo_name heads north.">
+	<direction>north</direction> 
+	<direction>open</direction>
+     </Exit>
+  </locexit>
+
+</Location>
+
+<Location oid="003"
+	name="Crossroads"
+	description="A conveniently lacklustre meeting point. Paths lead 
+	off to north, east and west. A door to the south heads to
+	the coat closet.">
+
+<locexit>
+  <Exit name="Wooden door" oid="004"
+	from="003" to="001"
+		player_msg="You head south into the closet, closing the door behind you"
+		loc_msg="{agent}::moo_name heads south, into the coat closet."
+	>
+        <direction>south</direction>
+	<direction>open</direction>
+  </Exit>
+
+</locexit>
+<locexit>
+  <Exit name="Dusty road" oid="099"
+	from="003" to="005"
+		player_msg="You wander north up a dusty road towards a
+		cluster of buildings."
+		loc_msg="{agent}::moo_name wanders north."
+	>
+        <direction>north</direction>
+  </Exit>
+</locexit>
+</Location>
+
+
+<Location oid="005"
+	name="Scholary Buildings"
+	description="A fictional square, with buildings off to north
+	(LCS), east (ILRT) and west (HPLabs). A dusty road leads south towards
+	a crossroads.">
+
+<locexit>
+  <Exit name="Dusty road" oid="006"
+	from="005" to="003"
+		player_msg="You head south down a dusty track, leaving
+		behind a cluster of scholarly buildings."
+		loc_msg="{agent}::moo_name wanders south down the dusty road."
+	>
+        <direction>south</direction>
+        <direction>road</direction>
+  </Exit>
+</locexit>
+
+<locexit>
+  <Exit name="Glass doors of a many-floored concrete building." oid="007"
+	from="005" to="100"
+		player_msg="You head north, entering MIT's LCS buildng."
+		loc_msg="{agent}::moo_name enters the Lab for Computer Science to the north."
+	>
+        <direction>north</direction>
+        <direction>lcs</direction>
+  </Exit>
+</locexit>
+
+
+<locexit>
+  <Exit name="Steps up to ILRT Towers" oid="008"
+	from="005" to="101"
+		player_msg="You head east, climbing a short flight of
+		steps into the foyer of ILRT Towers."
+		loc_msg="{agent}::moo_name climbs the steps east to ILRT Towers."
+	>
+        <direction>east</direction>
+        <direction>ilrt</direction>
+  </Exit>
+</locexit>
+
+<locexit>
+  <Exit name="A high security entrance to HP Labs Bristol." oid="009"
+	from="005" to="102"
+		player_msg="You somehow make it past the security guards 
+		into the glass and greenery of a large HP Labs building."
+		loc_msg="{agent}::moo_name slips past HP Labs security, heading west into a large glass-based building."
+	>
+        <direction>west</direction>
+        <direction>hp</direction>
+  </Exit>
+</locexit>
+
+</Location>
+
+<Location oid="101"
+	name="ILRT Towers, downstairs"
+	description="Downstairs at ILRT towers, stairs lead up. A door
+	exits to the west.">
+
+<contains>
+  <Calendar oid="200" name="the ILRT calendar">
+    <description>A calendar describing the activites of various ILRT staff.</description>
+    <ownerid>1000</ownerid>
+    <location>101</location>
+  </Calendar>
+</contains>
+
+<locexit>
+  <Exit name="Steps up to ILRT Towers" oid="010"
+	from="101" to="005"
+		player_msg="You leave the downstairs area of ILRT Towers,
+heading west to a clearing amongst a bunch of buildings."
+		loc_msg="{agent}::moo_name leaves ILRT, heading west."
+	>
+        <direction>west</direction>
+  </Exit>
+</locexit>
+
+</Location>
+
+
+
+
+<Location oid="102"
+	name="A large glass building belonging to HP Labs (Bristol)"
+	description="Exit is to the east through a spacious foyer.">
+
+<locexit>
+  <Exit name="Glass doors and high security." oid="010"
+	from="102" to="005"
+		player_msg="You leave through the glass doors. Security pay you no attention."
+		loc_msg="{agent}::moo_name leaves through the glass doors."
+	>
+        <direction>east</direction>
+  </Exit>
+</locexit>
+
+</Location>
+	
+</web:RDF>
+
