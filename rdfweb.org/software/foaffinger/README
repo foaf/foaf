@@ -1,0 +1,11 @@
+FoafFinger - @BUILDDATE@
+
+Windows (and probably everything other than mac):
+
+java -Djava.library.path=lib -jar FoafFinger.jar --gui "My Name" me@example.com
+
+Mac and Linux:
+
+./run.sh --gui "My Name" me@example.com
+
+Use --cl rather than --gui for a command line version.

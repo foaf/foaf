@@ -32,13 +32,66 @@
 
   <mkdir dir="${dist}" />
   
-  <jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}">
+	<antcall target="package">
+		<param name="platform" value="mac"/>
+		<param name="platform_jars" value="lib/swt.jar lib/swt-pi.jar"/>
+	</antcall>
+	
+	<antcall target="package">
+		<param name="platform" value="linux"/>
+		<param name="platform_jars" value="lib/swt.jar lib/swt-pi.jar"/>
+	</antcall>
+	
+	<antcall target="package">
+		<param name="platform" value="win32"/>
+		<param name="platform_jars" value="lib/swt.jar"/>
+	</antcall>
+</target>
+
+<target name="package">
+	
+	<property name="dist_dir" value="${dist}/${ant.project.name}-${platform}"/>
+	
+	<mkdir dir="${dist_dir}"/>
+	<mkdir dir="${dist_dir}/lib"/>
+	<mkdir dir="${dist_dir}/images"/>
+	
+	<jar jarfile="${dist_dir}/${ant.project.name}.jar" basedir="${build}">
     <manifest>
       <attribute name="Built-by" value="${user.name}"/>
       <attribute name="Main-Class" value="org.rdfweb.foafcon.FoafFingerController"/>
-      <attribute name="Class-Path" value="jmdns.jar"/>
+      <attribute name="Class-Path" value="lib/jmdns.jar lib/jface.jar lib/runtime.jar ${platform_jars}"/>
     </manifest>
   </jar>
+	
+	<copy todir="${dist_dir}/lib">
+		<fileset dir="lib">
+			<exclude name="CVS"/>
+			<exclude name=".*"/>
+			<exclude name="*~"/>
+		</fileset>
+		<fileset dir="lib_${platform}">
+			<exclude name="CVS"/>
+			<exclude name=".*"/>
+			<exclude name="*~"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="${dist_dir}/images">
+		<fileset dir="images">
+			<include name="*.gif"/>
+		</fileset>
+	</copy>
+	
+	<copy todir="src">
+		<fileset dir="src"/>
+	</copy>
+	
+	<!-- Only for macs, btw -->
+	
+	<chmod file="${dist_dir}/lib/java_swt" perm="u+x"/>
+	
+	<tar destfile="${dist_dir}.tar.gz" basedir="${dist_dir}" compression="gzip"/>
 </target>
 
 </project>
