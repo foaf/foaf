@@ -27,15 +27,21 @@ public class RDFModelView extends NSView {
         // Register for dragging types
         dragTypesArray.addObject(NSPasteboard.URLPboardType);
         dragTypesArray.addObject(NSPasteboard.StringPboardType);
+        dragTypesArray.addObject(SchemaData.ClassPboardType);
+        dragTypesArray.addObject(SchemaData.PropertyPboardType);
         
         registerForDraggedTypes((NSArray) dragTypesArray);
         
         // Put info for each drag type into hash for info field
         
         dragInformation.put(NSPasteboard.URLPboardType,
-            "Drag URL on node to set its id. Otherwise creates a new node with this id.");
+            "Drop URL on node to set its id. Otherwise creates a new node with this id.");
         dragInformation.put(NSPasteboard.StringPboardType,
-            "Drag String on node to set its id. Otherwise creates a new node with this id.");
+            "Drop String on node to set its id. Otherwise creates a new node with this id.");
+        dragInformation.put(SchemaData.ClassPboardType,
+            "Drop class on node to set its type. Otherwise creates a new node of this type.");
+        dragInformation.put(SchemaData.PropertyPboardType,
+            "Drop property on arc to set the arc's property"); 
     }
     
     public boolean isOpaque()
@@ -210,9 +216,28 @@ public class RDFModelView extends NSView {
             
             myDocument.setIdForNodeAtPoint(id, point);
         }
+        else if (type.equalsIgnoreCase(SchemaData.ClassPboardType))
+        {
+            NSDictionary info = (NSDictionary) pboard.propertyListForType(
+                SchemaData.ClassPboardType);
+            String name = (String) info.objectForKey("Name");
+            String namespace = (String) info.objectForKey("Namespace");
+            
+            myDocument.setTypeForNodeAtPoint(namespace, name, point);
+        }
+        else if (type.equalsIgnoreCase(SchemaData.PropertyPboardType))
+        {
+            NSDictionary info = (NSDictionary) pboard.propertyListForType(
+                SchemaData.PropertyPboardType);
+            String name = (String) info.objectForKey("Name");
+            String namespace = (String) info.objectForKey("Namespace");
+            
+            myDocument.setTypeForArcAtPoint(namespace, name, point);
+        }
         else {
             NSAlertPanel alert = new NSAlertPanel();
-            alert.runAlert("Incorrect Type", "The view has not registered for this drag type", null, null, null);
+            alert.runAlert("Incorrect Type",
+                "The view has not registered for this drag type", null, null, null);
         }
         
         // Restore description to previous value, and redraw
