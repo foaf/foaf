@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.3 2002-07-14 23:46:14 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder,v 1.4 2002-07-15 00:09:18 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -12,6 +12,19 @@
 #
 # see http://rdfweb.org/people/damian/2002/02/foafnation/
 # http://swordfish.rdfweb.org/people/libby/rdfweb/paths/
+#
+#  what is this?
+#
+#  pathfinder will find paths through a graph of edges and nodes.
+#
+#  the data is loaded from an RDF query service. Sample uses include
+#  'codepiction paths', ie. connections between people where photos   
+#  are the edges; also FOAFCorp paths, with companies as nodes, and 
+#  their board-members as members. Other apps might include the usual
+#  movies, musicians, mathematicians, or combinations of all these.
+#
+#  todo: improve configurability, API; database storage of paths.
+#
 #
 #
 # Copyright 2002 Dan Brickley, Libby Miller, Damian Steer.
@@ -123,19 +136,7 @@ class TNode
     @hash = 0 #int
     @visited= false #boolean
   end
-
-  def setName name
-    @name=name
-  end
-
-  def getName
-    return @name
-  end
-
-  def setVisited visited
-    @visited = visited
-  end
-
+  
   def notVisited
     return !@visited #boolean
   end
@@ -261,7 +262,7 @@ class TGraph
      if (nodeObj1 == nil)
        nodeObj1 = TNode.new node1
        if(name1!=nil)
-   	 nodeObj1.setName name1
+   	 nodeObj1.name=name1
        end
        @nodes.push(nodeObj1)
        @nodeLookup[node1]= nodeObj1
@@ -270,7 +271,7 @@ class TGraph
      if (nodeObj2 == nil)
        nodeObj2 = TNode.new node2
        if(name2!=nil)
-         nodeObj2.setName(name2)
+         nodeObj2.name=name2
        end
        @nodes.push(nodeObj2)
        @nodeLookup[node2] = nodeObj2
@@ -314,12 +315,12 @@ class TGraph
   def findShortestPathsFromNode(root)
   # Clear graph for search
     @nodes.each do |node|
-      node.setVisited false
+      node.visited=false
     end
 
     # But (of course) we start with a node, so let's say it's been visited
 
-    root.setVisited true
+    root.visited=true
 
     # Set up the root of the tree
     treeRoot = TElement.new(root, nil)
@@ -340,7 +341,7 @@ class TGraph
           # puts "Doing edge(s): #{edge} " 
           childNode = edge.getOtherNode parentNode
           if childNode.notVisited
- 	    childNode.setVisited true 
+ 	    childNode.visited=true 
             puts "visited: #{childNode}"
             child = TElement.new (childNode, parent, edge)
             leaves.push child
@@ -415,8 +416,8 @@ EOQ
     q = SquishQuery.new.parseFromText query
     DBI.connect ('DBI:Pg:rdfweb1','danbri','') do | dbh |
       dbh.select_all( q.toSQLQuery  ) do | row |
-        # puts row.inspect
-        print '.' # progressometer
+        puts row.inspect
+        # print '.' # progressometer
         p = ResultRow.new(row)
 	graph.addPath(p.mbox1, p.mbox2, p.uri)
       end 
