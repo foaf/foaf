@@ -1,9 +1,99 @@
 <p>
-The <code>foaf:Group</code> represents a group of people, in the social rather than 
-mathematical sense. This concept is intentionally quite broad, covering informal and 
+The <code>foaf:Group</code> class represents a collection of individual agents (and may 
+itself play the role of a <code>foaf:Agent</code>.
+</p>
+</p>
+This concept is intentionally quite broad, covering informal and 
 ad-hoc groups, long-lived communities, organizational groups within a workplace, etc. Some 
 such groups may have associated characteristics which could be captured in RDF (perhaps a 
-<code>foaf:homepage</code>, <code>foaf:name</code> or mailing list?).
+<code>foaf:homepage</code>, <code>foaf:name</code>, mailing list etc.).
+</p>
+
+<p>
+While a <code>foaf:Group</code> has the characteristics of a <code>foaf:Agent</code>, it 
+is also associated with a number of other <code>foaf:Agents</code> (typically people) who 
+constitute the <code>foaf:Group</code>. FOAF provides a mechanism, the 
+<code>foaf:membershipClass</code> property, which relates a <code>foaf:Group</code> to a 
+sub-class of the class <code>foaf:Agent</code> who are members of the group. This is a 
+little complex, but allows us to make group membership rules explicit.
+</p>
+
+
+<p>The markup for defining a group can be complex. Here we define a 
+<code>foaf:Group</code> representing those people who are ILRT staff members. The 
+<code>foaf:membershipClass</code> property connects the group (conceived of as a social 
+entity and agent in its own right) with the class definition for those people who 
+constitute it. In this case, the OWL rule is that all group members are in the 
+ILRTStaffPerson class, which is in turn populated by all those things that are a 
+<code>foaf:Person</code> and which have a <code>foaf:workplaceHomepage</code> of 
+http://www.ilrt.bris.ac.uk/.
+</p>
+
+<p class="example">
+
+&lt;!-- here we see a FOAF group described.
+     each foaf group may be associated with an OWL definition 
+     specifying the class of agents that constitute the group's membership --&gt;
+&lt;foaf:Group&gt;
+ &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
+ &lt;foaf:membershipClass&gt;
+    &lt;eg:ILRTStaffPerson&gt;
+     &lt;rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/&gt;
+     &lt;rdfs:subClassOf&gt;
+       &lt;owl:Restriction&gt; 
+         &lt;owl:onProperty rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage"/&gt;
+         &lt;owl:hasValue rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
+       &lt;/owl:Restriction&gt; 
+     &lt;/rdfs:subClassOf&gt;
+   &lt;/eg:ILRTStaffPerson&gt;
+ &lt;/foaf:membershipClass&gt;
+&lt;/foaf:Group&gt;
+</p>
+  
+<p>
+While this markup is fancy, the basic mechanism for saying that someone is in a 
+<code>foaf:Group</code> is very simple. We simply use a <code>foaf:member</code> 
+property of the <code>foaf:Group</code> to indicate the agents that are members of the 
+group. For example:
+</p>
+<p class="example">
+&lt;foaf:Group&gt;
+ &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
+ &lt;foaf:member&gt;
+  &lt;foaf:Person&gt;
+   &lt;foaf:name&gt;Libby Miller&lt;/foaf:name&gt;
+   &lt;foaf:homepage rdf:resource="http://ilrt.org/people/libby/"/&gt;
+   &lt;foaf:workplaceHomepage rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
+  &lt;/foaf:Person&gt;
+ &lt;/foaf:member&gt;
+&lt;/foaf:Group&gt;
+</p>
+
+<p>
+Note that while these example OWL rules for being in the eg:ILRTStaffPerson class are 
+based on a <code>foaf:Person</code> having a particular 
+<code>foaf:workplaceHomepage</code>, this places no obligations on the authors of actual 
+FOAF documents to include this information. If the information <em>is</em> included, then 
+generic OWL tools may infer that some person is an eg:ILRTStaffPerson. To go the extra 
+step and infer that some eg:ILRTStaffPerson is a <code>foaf:member</code> of the group 
+whose <code>foaf:name</code> is "ILRT staff", tools will need some knowledge of the way 
+FOAF deals with groups. In other words, generic OWL technology gets us most of the way, 
+but the full <code>foaf:Group</code> machinery requires extra work for implimentors.
+</p>
+
+<p>
+The current design names the relationship as pointing <em>from</em> the group, 
+to the member. This is convenient when writing XML/RDF that encloses the members within 
+markup that describes the group. Alternate representations of the same content are 
+allowed in RDF, so you can write claims about the Person and the Group without having to 
+nest either description inside the other. For (brief) example:
+</p>
+
+<p class="example">
+&lt;foaf:Group&gt;
+ &lt;foaf:member rdf:nodeID="libby"/&gt;
+&lt;/foaf:Group&gt;
+&lt;foaf:Person rdf:nodeID="libby"/&gt;
 </p>
 
 <p>
@@ -11,5 +101,7 @@ There is a FOAF <a href="http://rdfweb.org/issues/show_bug.cgi?id=8">issue track
 associated with this FOAF term. A design goal is to make the most of W3C's <a 
 href="http://www.w3.org/2001/sw/WebOnt">OWL</a> language for representing group-membership 
 criteria, while also making it easy to leverage existing groups and datasets available 
-online (eg. buddylists, mailing list membership lists etc).
+online (eg. buddylists, mailing list membership lists etc). Feedback on the current design 
+is solicited!
 </p>
+
