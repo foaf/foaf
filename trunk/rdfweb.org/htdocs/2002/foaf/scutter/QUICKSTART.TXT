@@ -1,6 +1,17 @@
 On a good day (and a Unix-like system) this should get you up and
 running.
 
+Short version: (for debian users)
+
+	apt-get install ruby ruby-dev postgresql webrick 
+
+...and see below re additional setup (directories, databases...)
+
+You also need to install RubyRDF and Redland/Raptor by hand (although 
+Debian packages are in the works).
+
+
+Long version:
 
 1. install Ruby, http://www.ruby-lang.org/
 
