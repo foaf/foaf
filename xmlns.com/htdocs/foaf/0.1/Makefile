@@ -2,14 +2,14 @@
 V=./specgen.rb
 GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 
-# todo: vocabtable.rb is kinda primitive, and expects different input
-# to the way we invoke it in this Makefile.
+
+# GET http://xmlns.com/foaf/0.1/ | gpg --verify ../htmlfoafsig -
 
 all: clean colour.html index.html
 clean: tidyup 
 
 site:
-	make; cvs commit -m 'regen' index.html;ssh rdfweb.org make slaves
+	make; sigfiles; cd ../; cvs commit -m 'regen';ssh rdfweb.org make slaves
 
 tmpsite:
 	make; cp index.html _tmp.html; cvs commit -m 'regen' _tmp.html;ssh rdfweb.org make slaves
@@ -35,10 +35,12 @@ xxxindex.html: index.rdf rdf_vdl.nt table.html wip.html
 check:
 	gpg --quiet --verify ../foafsig index.html
 
+# todo: need to get agent working...
 sign:
 	@echo "Sign your Schema!"
-	gpg --quiet -sab index.rdf 
-	gpg --quiet -sab index.html 
+	rm -f index.rdf.asc index.html.asc
+	gpg --no-use-agent --quiet -sab index.rdf 
+	gpg --no-use-agent --quiet -sab index.html 
 
 sigfiles: sign
 	mv -f index.rdf.asc ../foafsig
