@@ -1,0 +1,107 @@
+*** HyperArch.py.orig	Sun Jun 22 15:51:55 2003
+--- HyperArch.py	Sun Jun 22 15:52:53 2003
+*************** class HyperArchive(pipermail.T):
+*** 744,749 ****
+--- 744,827 ----
+               },
+              mlist=self.maillist)
+  
++     def RSS(self):
++         "Generate RSS file listing the NUM_ARTICLES most recent articles"
++         NUM_ARTICLES = 15
++ 
++         mlist = self.maillist
++ 	listinfo = mlist.GetScriptURL('listinfo', absolute=1)
++ 	rss = """<?xml version="1.0"?>
++ <rdf:RDF
++  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
++  xmlns="http://purl.org/rss/1.0/"
++  xmlns:dc="http://purl.org/dc/elements/1.1/"
++ >"""
++         # Write channel header
++         rss += """<channel rdf:about="%s">
++            <title>%s</title>
++            <link>%s</link>
++         """ % (CGIescape(listinfo), CGIescape(mlist.real_name),
++                CGIescape(listinfo) )
++ 
++ 	# Get the NUM_ARTICLES most recent messages.	
++         items = []
++         try:
++    	    date, msgid = self.database.dateIndex.first()
++ 	    items.append(msgid)
++         except KeyError:
++             pass
++ 	
++         while 1:
++             try:
++    	        date, msgid = self.database.dateIndex.next()
++ 	        items.append(msgid)
++                 items = items[-NUM_ARTICLES:]
++             except KeyError:
++                 break
++ 
++         for i in range(len(items)):
++             items[i] = self.database.getArticle(self.archive, items[i])
++             # XXX this only generates a filename, but it needs to be
++             # a full URL!
++ 
++             # patched RSS patch by Dan Brickley <danbri@w3.org>
++             # not confident this works properly yet; get_archives() below
++             # fixes the date hardcoding problem, but I'm assuming it always
++             # returns a string. may not work if list returned (eg. with 
++             # crossposted messages?). advice from MailMain folk needed!
++             # cf https://sourceforge.net/tracker/index.php?func=detail&aid=657951&group_id=103&atid=300103
++             url = 'http://%s/pipermail/%s/%s/%s' % (
++                           mlist.host_name, 
++                           mlist.internal_name(),
++                           self.get_archives(items[i]), 
++                           self.get_filename(items[i]))
++             items[i].url = url
++ 
++         rss += "<items><rdf:Seq>"
++         for article in items:
++             rss += '<rdf:li rdf:resource="%s" />\n' % CGIescape(article.url)
++             rss += "<!-- get_archives(): "+self.get_archives(article)+" -->\n"         
++ 
++         rss += "</rdf:Seq></items>"
++ 
++         rss += "<description>%s</description>\n" % CGIescape(mlist.description)
++         rss += "</channel>"
++ 
++         for article in items:
++             rss += """<item rdf:about="%s">
++               <title>%s</title>
++               <link>%s</link>
++               <dc:date>%s</dc:date>
++               <dc:author>%s</dc:author>
++             </item>\n""" % (CGIescape(article.url),
++                             CGIescape(article.subject),
++                             CGIescape(article.url),
++                             CGIescape(article.get_iso8601_date()),
++                             CGIescape(article.author))
++                            
++         rss += '</rdf:RDF>'
++         return rss
++ 
+      def GetArchLock(self):
+          if self._lock_file:
+              return 1
+*************** class HyperArchive(pipermail.T):
+*** 1003,1013 ****
+--- 1081,1095 ----
+          omask = os.umask(002)
+          try:
+              toc = open(os.path.join(self.basedir, 'index.html'), 'w')
++             rss = open(os.path.join(self.basedir, 'rss.xml'), 'w')
+          finally:
+              os.umask(omask)
+          toc.write(self.html_TOC())
+          toc.close()
+  
++         rss.write(self.RSS())
++         rss.close()
++ 
+      def write_article(self, index, article, path):
+          # called by add_article
+          omask = os.umask(002)
