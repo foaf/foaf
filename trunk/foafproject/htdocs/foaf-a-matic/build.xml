@@ -47,7 +47,7 @@
 
    <target name="makeApp" description="Make a version of the application">
       <style in="src/${lang}.xml" out="foaf-a-matic.${lang}.html" style="xsl/foaf-a-matic.xsl">
-          <outputproperty name="method" value="html"/>
+          <outputproperty name="method" value="xml"/>
           <outputproperty name="encoding" value="${charset}"/>
       </style>      
    </target>
@@ -63,7 +63,7 @@
   <!--   
     <target name="makeEN" description="Create all language versions of the FOAF-a-Matic">
       <style in="src/en.xml" out="foaf-a-matic.en.html" style="xsl/foaf-a-matic.xsl">
-          <outputproperty name="method" value="html"/>
+          <outputproperty name="method" value="xml"/>
           <outputproperty name="encoding" value="UTF-8"/>
       </style>
    </target>
@@ -77,7 +77,7 @@
 
   <target name="makeJP" description="Create all language versions of the FOAF-a-Matic">
       <style in="src/ja.xml" out="foaf-a-matic.ja.html" style="xsl/foaf-a-matic.xsl">
-          <outputproperty name="method" value="html"/>
+          <outputproperty name="method" value="xml"/>
           <outputproperty name="encoding" value="UTF-8"/>
       </style>
    </target>
