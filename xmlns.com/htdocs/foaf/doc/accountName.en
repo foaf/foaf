@@ -1,0 +1,5 @@
+<p>
+The <code>foaf:accountName</code> property of a <code>foaf:OnlineAccount</code> is a 
+textual representation of the account name (unique ID) associated with that account.
+</p>
+

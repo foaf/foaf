@@ -1,0 +1,14 @@
+<p>
+A <code>foaf:OnlineAccount</code> represents the provision of some form of online 
+service, by some party (indicated indirectly via a 
+<code>foaf:accountServiceHomepage</code>) to some <code>foaf:Agent</code>. The 
+<code>foaf:holdsAccount</code> property of the agent is used to indicate accounts that are 
+associated with the agent.
+</p>
+
+<p>
+See <code>foaf:OnlineChatAccount</code> for an example. Other sub-classes include 
+<code>foaf:OnlineEcommerceAccount</code> and <code>foaf:OnlineGamingAccount</code>.
+</p>
+
+

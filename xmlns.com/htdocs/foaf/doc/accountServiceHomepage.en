@@ -1,0 +1,4 @@
+<p>
+The <code>foaf:accountServiceHomepage</code> property indicates a relationship between a 
+<code>foaf:OnlineAccount</code> and the homepage of the supporting service provider.
+</p>
