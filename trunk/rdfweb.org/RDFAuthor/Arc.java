@@ -9,9 +9,9 @@ public class Arc extends ModelItem
     Node fromNode;
     Node toNode;
     ArcNodeList myList;
-    String typeName;
-    String typeNamespace;
-    boolean showType = false;
+    String propertyName;
+    String propertyNamespace;
+    boolean showProperty = false;
     
     NSColor normalColor = NSColor.blueColor();
     NSColor hilightColor = NSColor.redColor();
@@ -27,7 +27,7 @@ public class Arc extends ModelItem
         this.toNode = toNode;
         fromNode.addFromArc(this);
         toNode.addToArc(this);
-        setType(name, namespace);
+        setProperty(name, namespace);
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
         arrowHead.lineToPoint(new NSPoint(10.0F, -20.0F));
@@ -40,20 +40,27 @@ public class Arc extends ModelItem
         myList = list;
     }
 
-    public void setType(String namespace, String name)
+    public void setShowProperty(boolean value)
     {
-        typeName = name;
-        typeNamespace = namespace;
+        showProperty = value;
+        calculateSize();
     }
 
-    public String typeName()
+    public void setProperty(String namespace, String name)
     {
-        return typeName;
+        propertyName = name;
+        propertyNamespace = namespace;
+        calculateSize();
+    }
+
+    public String propertyName()
+    {
+        return propertyName;
     }
     
-    public String typeNamespace()
+    public String propertyNamespace()
     {
-        return typeNamespace;
+        return propertyNamespace;
     }
     
     public void delete()
@@ -74,6 +81,11 @@ public class Arc extends ModelItem
             toNode.removeToArc(this);
         }
         myList.removeObject(this);
+    }
+    
+    public void nodeMoved()
+    {
+        calculateRectangle();
     }
     
     public boolean isNode()
@@ -131,16 +143,16 @@ public class Arc extends ModelItem
     
     public void calculateSize()
     {
-        if (!showType)
+        if (!showProperty)
         {
             mySize = defaultSize;
             displayString = null;
         }
         else
         {
-            String typeToShow = (typeName == null)?"-- None --":typeName;
+            String propertyToShow = (propertyName == null)?"-- None --":propertyName;
             
-            displayString = new NSAttributedString(typeName);
+            displayString = new NSAttributedString(propertyToShow);
             
             mySize = NSGraphics.sizeOfAttributedString(displayString);
         }

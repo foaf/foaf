@@ -29,11 +29,10 @@ public class Node extends ModelItem
 
     public Node(String id, String typeNamespace, String typeName, NSPoint position)
     {
-        size = 10.0F;
         literal = false;
         this.id = id;
-        setType(typeNamespace,typeName);
         this.position = position;
+        setType(typeNamespace,typeName);
         arcsFrom = new Vector();
         arcsTo = new Vector();
     }
@@ -119,13 +118,36 @@ public class Node extends ModelItem
     public void setPosition(NSPoint position)
     {
         this.position = position;
+        for (Enumeration enumerator = arcsFrom.elements(); enumerator.hasMoreElements(); )
+        {
+            Arc arc = (Arc)enumerator.nextElement();
+            arc.nodeMoved();
+        }
+        for (Enumeration enumerator = arcsTo.elements(); enumerator.hasMoreElements(); )
+        {
+            Arc arc = (Arc)enumerator.nextElement();
+            arc.nodeMoved();
+        }
+        calculateRectangle();
     }
 
     public boolean isNode()
     {
         return true;
     }
-
+    
+    public void setShowType(boolean value)
+    {
+        showType = value;
+        calculateSize();
+    }
+    
+    public void setShowId(boolean value)
+    {
+        showId = value;
+        calculateSize();
+    }
+    
     public void drawNormal()
     {
         drawMe(normalColor);
@@ -138,6 +160,8 @@ public class Node extends ModelItem
 
     public void drawMe(NSColor myColor)
     {
+        myColor.set();
+        
         NSBezierPath.bezierPathWithOvalInRect(myRect).fill();
         if (displayString != null)
         {
@@ -169,15 +193,15 @@ public class Node extends ModelItem
             
             if (showType && showId)
             {
-                displayString = new NSAttributedString(typeName + "\n" + id);
+                displayString = new NSAttributedString(typeToShow + "\n" + idToShow);
             }
             else if (showType)
             {
-                displayString = new NSAttributedString(typeName);
+                displayString = new NSAttributedString(typeToShow);
             }
             else
             {
-                displayString = new NSAttributedString(id);
+                displayString = new NSAttributedString(idToShow);
             }
             
             mySize = NSGraphics.sizeOfAttributedString(displayString);
