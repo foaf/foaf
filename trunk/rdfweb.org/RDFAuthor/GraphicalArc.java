@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalArc.java,v 1.5 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: GraphicalArc.java,v 1.6 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -88,8 +88,8 @@ public class GraphicalArc implements GraphicalObject
     {
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
-        arrowHead.lineToPoint(new NSPoint(-20.0F, 3.0F));
-        arrowHead.lineToPoint(new NSPoint(-20.0F, -3.0F));
+        arrowHead.lineToPoint(new NSPoint(-20.0F, 4.0F));
+        arrowHead.lineToPoint(new NSPoint(-20.0F, -4.0F));
         arrowHead.closePath();
     }
 
@@ -252,7 +252,7 @@ public class GraphicalArc implements GraphicalObject
     {
         writer.write("<defs>\n");
         
-        writer.write("<path id=\"ArrowHead\" d=\"M 0 0 L -20 3 L -20 -3 Z\"/>\n");
+        writer.write("<path id=\"ArrowHead\" d=\"M 0 0 L -20 4 L -20 -4 Z\"/>\n");
         
         writer.write("</defs>\n");
     }

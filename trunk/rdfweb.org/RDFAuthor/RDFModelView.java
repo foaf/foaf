@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.22 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.23 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -534,9 +534,21 @@ public class RDFModelView extends NSView {
         }
         else if (type.equals(NSPasteboard.StringPboardType)) {
             
+            // Here I'm going to be sneaky. IE (and other Carbon apps) don't seem to
+            // set the drag type for URLs - they are just strings. So I use the URI
+            // checker. This is better since all URIs will be detected, but OTOH
+            // URIs can match unintentionally.
+            
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
-            rdfAuthorDocument.setIdForNodeAtPoint(id, point, true); // true - if new node make it a literal
+            if (RDFAuthorUtilities.isValidURI(id))
+            {
+                rdfAuthorDocument.setIdForNodeAtPoint(id, point, false);
+            }
+            else
+            {
+                rdfAuthorDocument.setIdForNodeAtPoint(id, point, true);
+            }
         }
         else if (type.equals(SchemaData.ClassPboardType))
         {

@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalNode.java,v 1.5 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: GraphicalNode.java,v 1.6 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -105,7 +105,14 @@ public class GraphicalNode implements GraphicalObject
         {
             myColor.set();
             
-            NSBezierPath.bezierPathWithOvalInRect(bounds).fill();
+            if (node.isLiteral())
+            {
+                NSBezierPath.fillRect(bounds);
+            }
+            else
+            {
+                NSBezierPath.bezierPathWithOvalInRect(bounds).fill();
+            }
             if (displayString != null)
             {
                 NSGraphics.drawAttributedString(displayString, bounds);
@@ -178,16 +185,30 @@ public class GraphicalNode implements GraphicalObject
         
         writer.write("<g " + fontSpec + ">\n");
         
-        writer.write("<ellipse cx=\"" + node.x() + "px\" cy=\"" + node.y() + "px\" rx=\"" + mySize.width() / 2F +
-            "px\" ry=\"" + mySize.height() / 2F + "px\" fill=\"" + svgColour +
-            "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n");
+        if (node.isLiteral())
+        {
+            writer.write("<rect x=\"" + bounds.x() + "px\" y=\"" + bounds.y() + 
+                "px\" width=\"" + bounds.width() +
+                "px\" height=\"" + bounds.height() + "px\" fill=\"" + svgColour +
+                "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n");
+        }
+        else
+        {
+            writer.write("<ellipse cx=\"" + node.x() + "px\" cy=\"" + node.y() + 
+                "px\" rx=\"" + mySize.width() / 2F +
+                "px\" ry=\"" + mySize.height() / 2F + "px\" fill=\"" + svgColour +
+                "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n");
+        }
         
         String stringToDraw = node.displayString();
+        
         if (stringToDraw != null)
         {
             if (stringToDraw.indexOf("\n") > -1)
             {
-                // This will break for some literals with many line breaks
+                // Display string has been fixed, so it will only ever contain
+                // one new line - thus the following always works
+                
                 String top = stringToDraw.substring(0,stringToDraw.indexOf("\n"));
                 String bottom = stringToDraw.substring(stringToDraw.indexOf("\n") + 1);
                 
