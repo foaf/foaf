@@ -52,9 +52,8 @@ public class Node implements Serializable, ModelItem
     
     GraphicalNode graphicNode;
 
-    public Node(ArcNodeList myList, String id, String typeNamespace, String typeName, float x, float y)
+    public Node(String id, String typeNamespace, String typeName, float x, float y)
     {
-        this.myList = myList;
         literal = false;
         this.id = id;
         this.x = x;
@@ -64,12 +63,25 @@ public class Node implements Serializable, ModelItem
         arcsFrom = new ArrayList();
         arcsTo = new ArrayList();
     }
-   
+
+    // As before - but set literal
+    
+    public Node(String id, String typeNamespace, String typeName, float x, float y, boolean literal)
+    {
+        this.literal = literal;
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.typeNamespace = typeNamespace;
+        this.typeName = typeName;
+        arcsFrom = new ArrayList();
+        arcsTo = new ArrayList();
+    }
+    
     // Same as before - but split the type into namespace & name
     
-    public Node(ArcNodeList myList, String id, String type, float x, float y)
+    public Node(String id, String type, float x, float y)
     {
-        this.myList = myList;
         literal = false;
         this.id = id;
         this.x = x;
@@ -257,6 +269,15 @@ public class Node implements Serializable, ModelItem
             Arc arc = (Arc)enumerator.next();
             arc.nodeMoved();
         }
+        
+        myList.itemChanged(this);
+        if (graphicNode != null) graphicNode.calculateRectangle();
+    }
+    
+    public void setPositionDumb(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
         
         myList.itemChanged(this);
         if (graphicNode != null) graphicNode.calculateRectangle();

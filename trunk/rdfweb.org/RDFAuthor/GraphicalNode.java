@@ -30,6 +30,8 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.io.Writer;
+
 public class GraphicalNode implements GraphicalObject
 {
     
@@ -147,36 +149,35 @@ public class GraphicalNode implements GraphicalObject
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
     }
     
-    public String drawSvgNormal()
+    public void drawSvgNormal(Writer writer) throws java.io.IOException
     {
         if (node.isLiteral())
         {
-            return drawSvg(literalColor);
+            drawSvg(writer, literalColor);
         }
         else
         {
-            return drawSvg(normalColor);
+            drawSvg(writer, normalColor);
         }
     }
     
-    public String drawSvgHilight()
+    public void drawSvgHilight(Writer writer) throws java.io.IOException
     {
-        return drawSvg(hilightColor);
+        drawSvg(writer, hilightColor);
     }
     
-    public String drawSvg(NSColor colour)
+    public void drawSvg(Writer writer, NSColor colour) throws java.io.IOException
     {
         String svgColour = "rgb(" + colour.redComponent() * 100 + "%," +
             colour.greenComponent() * 100 + "%," + colour.blueComponent() * 100 + "%)";
         
-        String svg = "";
-        
         String fontSpec = "font-family=\"Helvetica\" font-size=\"12\"";
-        svg += "<g " + fontSpec + ">\n";
         
-        svg += "<ellipse cx=\"" + node.x() + "px\" cy=\"" + node.y() + "px\" rx=\"" + mySize.width() / 2F +
+        writer.write("<g " + fontSpec + ">\n");
+        
+        writer.write("<ellipse cx=\"" + node.x() + "px\" cy=\"" + node.y() + "px\" rx=\"" + mySize.width() / 2F +
             "px\" ry=\"" + mySize.height() / 2F + "px\" fill=\"" + svgColour +
-            "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n";
+            "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n");
         
         String stringToDraw = node.displayString();
         if (stringToDraw != null)
@@ -187,25 +188,23 @@ public class GraphicalNode implements GraphicalObject
                 String top = stringToDraw.substring(0,stringToDraw.indexOf("\n"));
                 String bottom = stringToDraw.substring(stringToDraw.indexOf("\n") + 1);
                 
-                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" 
-                    + (bounds.y()+mySize.height()/2 - 4) +"px\" fill=\"black\">";
-                svg += top + "</text>\n";
+                writer.write("<text x=\"" + (bounds.x()) +"px\" y=\"" 
+                    + (bounds.y()+mySize.height()/2 - 4) +"px\" fill=\"black\">");
+                writer.write(top + "</text>\n");
                 
-                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" + 
-                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">";
-                svg += bottom + "</text>\n";
+                writer.write("<text x=\"" + (bounds.x()) +"px\" y=\"" + 
+                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">");
+                writer.write(bottom + "</text>\n");
             }
             else
             {
-                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" +
-                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">";
-                svg += stringToDraw + "</text>\n";
+                writer.write("<text x=\"" + (bounds.x()) +"px\" y=\"" +
+                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">");
+                writer.write(stringToDraw + "</text>\n");
             }
         }
         
-        svg += "</g>\n\n";
-        
-        return svg;
+        writer.write("</g>\n\n");
     }
 
 }

@@ -95,7 +95,8 @@ public class ArcNodeList implements Serializable
                     x = (float) java.lang.Math.random() * 100 + 100;
                     y = (float) java.lang.Math.random() * 100 + 100;
                     // This is dodgy - object might be a literal (I guess)
-                    subjectNode = new Node(this, id, object.toString(), x, y);
+                    subjectNode = new Node(id, object.toString(), x, y);
+                    subjectNode.setMyList(this);
                     jenaNodeToNode.put(subject, subjectNode);
                     array.add(subjectNode);
                 }
@@ -114,7 +115,8 @@ public class ArcNodeList implements Serializable
                     if (id != null) id = (id.equals(""))?null:id;
                     x = (float) java.lang.Math.random() * 100 + 100;
                     y = (float) java.lang.Math.random() * 100 + 100;
-                    subjectNode = new Node(this, id, null, null, x, y);
+                    subjectNode = new Node(id, null, null, x, y);
+                    subjectNode.setMyList(this);
                     jenaNodeToNode.put(subject, subjectNode);
                     array.add(subjectNode);
                 }
@@ -127,7 +129,8 @@ public class ArcNodeList implements Serializable
                         if (id != null) id = (id.equals(""))?null:id;
                         x = (float) java.lang.Math.random() * 100 + 100;
                         y = (float) java.lang.Math.random() * 100 + 100;
-                        objectNode = new Node(this, id, null, null, x, y);
+                        objectNode = new Node(id, null, null, x, y);
+                        objectNode.setMyList(this);
                         jenaNodeToNode.put(object, objectNode);
                         array.add(objectNode);
                     }
@@ -137,8 +140,8 @@ public class ArcNodeList implements Serializable
                         content = (content.equals(""))?null:content;
                         x = (float) java.lang.Math.random() * 100 + 100;
                         y = (float) java.lang.Math.random() * 100 + 100;
-                        objectNode = new Node(this, content, null, null, x, y);
-                        objectNode.setIsLiteral(true);
+                        objectNode = new Node(content, null, null, x, y, true); // true - is literal
+                        objectNode.setMyList(this);
                         objectNode.literal = true;
                         jenaNodeToNode.put(object, objectNode);
                         array.add(objectNode);
@@ -147,7 +150,8 @@ public class ArcNodeList implements Serializable
                 
                 // Now create the arc
                 
-                Arc arc = new Arc( this, subjectNode, objectNode, property.getNameSpace(), property.getLocalName() );
+                Arc arc = new Arc(subjectNode, objectNode, property.getNameSpace(), property.getLocalName() );
+                arc.setMyList(this);
                 array.add(arc);
             }
         }
@@ -163,6 +167,7 @@ public class ArcNodeList implements Serializable
      throws IOException
     {
         out.writeObject(array);
+        out.writeObject(selection);
     }
     
     private void readObject(java.io.ObjectInputStream in)
@@ -171,7 +176,19 @@ public class ArcNodeList implements Serializable
         // Like node - I changed to ArrayLists from vectors. This gets round an annoying problem
         AbstractList arrayTemp = (AbstractList) in.readObject();
         array = new ArrayList(arrayTemp);
-        //currentObject = in.readObject();
+
+        // I moved from a single selection (ModelItem) to using multiple selections (ArcNodeSelection)
+        // This keeps things backwards compatible
+        Object selectionObject = in.readObject();
+        if (selectionObject instanceof ModelItem) // this is the old way
+        {
+            selection = new ArcNodeSelection();
+            selection.add((ModelItem) selectionObject);
+        }
+        else
+        {
+            selection = (ArcNodeSelection) selectionObject;
+        }
     }
 
     public int size()
@@ -231,6 +248,11 @@ public class ArcNodeList implements Serializable
     public void addToSelection(ModelItem object)
     {
         selection.add(object);
+    }
+
+    public void selectAll()
+    {
+        selection.add(array);
     }
     
     public ArcNodeSelection selection()
@@ -376,74 +398,58 @@ public class ArcNodeList implements Serializable
         controller.modelChanged();
     }
     
-    public String exportAsRDF(String outputType)
+    public void exportAsRDF(Writer writer, String outputType) throws RDFException
     {
         Model memModel=new ModelMem();
-        String rdfReturned = null;
         HashMap nodeToJenaNode = new HashMap();
         
-        // Wrap this in one big try/catch
+        // Create each node
         
-        try {
-            // Create each node
-            
-            for (Iterator enumerator = this.getNodes(); enumerator.hasNext(); )
-            {
-                Node node = (Node) enumerator.next();
+        for (Iterator enumerator = this.getNodes(); enumerator.hasNext(); )
+        {
+            Node node = (Node) enumerator.next();
                     
-                if (node.isLiteral())
+            if (node.isLiteral())
+            {
+                String id = (node.id() == null)?"":node.id();
+                nodeToJenaNode.put(node, memModel.createLiteral(id));
+            }
+            else
+            {
+                if ((node.id() == null) && (node.typeNamespace() == null))
                 {
-                    String id = (node.id() == null)?"":node.id();
-                    nodeToJenaNode.put(node, memModel.createLiteral(id));
+                    nodeToJenaNode.put(node, memModel.createResource() );
+                }
+                else if (node.typeNamespace() == null)
+                {
+                    nodeToJenaNode.put(node, memModel.createResource( node.id() ));
+                }
+                else if (node.id() == null)
+                {
+                    Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
+                    nodeToJenaNode.put(node, memModel.createResource( type ) );
                 }
                 else
                 {
-                    if ((node.id() == null) && (node.typeNamespace() == null))
-                    {
-                        nodeToJenaNode.put(node, memModel.createResource() );
-                    }
-                    else if (node.typeNamespace() == null)
-                    {
-                        nodeToJenaNode.put(node, memModel.createResource( node.id() ));
-                    }
-                    else if (node.id() == null)
-                    {
-                        Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                        nodeToJenaNode.put(node, memModel.createResource( type ) );
-                    }
-                    else
-                    {
-                        Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                        nodeToJenaNode.put(node, memModel.createResource( node.id(), type ) );
-                    }
+                    Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
+                    nodeToJenaNode.put(node, memModel.createResource( node.id(), type ) );
                 }
             }
-            
-            // Create arcs
-            
-            for (Iterator enumerator = this.getArcs(); enumerator.hasNext(); )
-            {
-                Arc arc = (Arc) enumerator.next();
-                
-                Property property = memModel.createProperty( arc.propertyNamespace() +
-                        arc.propertyName() );
-                memModel.add( (Resource) nodeToJenaNode.get( arc.fromNode() ), 
-                        property, (RDFNode) nodeToJenaNode.get( arc.toNode() ) );
-            }
-            
-            StringWriter stringOutput = new StringWriter();
-            
-            memModel.write(stringOutput, outputType);
-            
-            rdfReturned = stringOutput.toString();
-        }
-        catch (Exception error)
-        {
-            System.err.println("Error serialising: " + error);
-            return null;
         }
         
-        return rdfReturned;
+        // Create arcs
+
+        for (Iterator enumerator = this.getArcs(); enumerator.hasNext(); )
+        {
+            Arc arc = (Arc) enumerator.next();
+                
+            Property property = memModel.createProperty( arc.propertyNamespace() +
+                                                         arc.propertyName() );
+            memModel.add( (Resource) nodeToJenaNode.get( arc.fromNode() ),
+                          property, (RDFNode) nodeToJenaNode.get( arc.toNode() ) );
+        }
+            
+        memModel.write(writer, outputType);
     }
     
     public void checkModel(ModelErrorData errorData)

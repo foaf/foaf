@@ -30,8 +30,11 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.io.*;
 
-public class BookmarkItem extends Object {
+public class BookmarkItem implements Serializable {
     
     Object data;
     String type;
@@ -82,6 +85,84 @@ public class BookmarkItem extends Object {
             displayName = name;
             data = info;
             dataIsPropertyList = true;
+        }
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out)
+        throws IOException
+    {
+        out.writeObject(ns2java(data));
+        out.writeObject(type);
+        out.writeObject(displayName);
+        out.writeObject(namespace);
+        out.writeObject(name);
+        out.writeBoolean(dataIsPropertyList);
+    }
+
+    private void readObject(java.io.ObjectInputStream in)
+        throws IOException, ClassNotFoundException
+    {
+        data = java2ns(in.readObject());
+        type = (String) in.readObject();
+        displayName = (String) in.readObject();
+        namespace = (String) in.readObject();
+        name = (String) in.readObject();
+        dataIsPropertyList = in.readBoolean();
+    }
+
+    // This is a kludge. The Cocoa (NS*) classes won't serialise, so the next two methods
+    // convert between the two
+    
+    private Object ns2java(Object object)
+    {
+        if (object instanceof String) // Simple case
+        {
+            return object;
+        }
+        else if (object instanceof NSDictionary)
+        {
+            HashMap map = new HashMap();
+            map.put("Namespace", ((NSDictionary) object).objectForKey("Namespace"));
+            map.put("Name", ((NSDictionary) object).objectForKey("Name"));
+            return map;
+        }
+        else if (object instanceof NSArray) // this is for URL types - this is odd. Why an array?
+        {
+            ArrayList array = new ArrayList();
+            array.add(((NSArray) object).objectAtIndex(0));
+            array.add(((NSArray) object).objectAtIndex(1));
+
+            return array;
+        }
+        else
+        {
+            System.out.println("Oh dear..");
+            return null;
+        }
+    }
+
+    private Object java2ns(Object object)
+    {
+        if (object instanceof String) // Simple case
+        {
+            return object;
+        }
+        else if (object instanceof HashMap)
+        {
+            NSMutableDictionary map = new NSMutableDictionary();
+            map.setObjectForKey(((HashMap) object).get("Namespace"), "Namespace");
+            map.setObjectForKey(((HashMap) object).get("Name"), "Name");
+            return map;
+        }
+        else if (object instanceof ArrayList)
+        {
+            NSArray array = new NSArray(((ArrayList) object).toArray());
+            return array;
+        }
+        else
+        {
+            System.out.println("Oh dear..");
+            return null;
         }
     }
     

@@ -27,12 +27,18 @@
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.io.*;
 
-public class ArcNodeSelection {
+public class ArcNodeSelection implements Serializable
+{
     
     static final int Empty = 0;
     static final int Single = 1;
     static final int Multiple = 2;
+
+    static final String GraphPboardType = "org.rdfweb.RDFAuthor.selection";
     
     HashSet selection;
     HashSet nodes; // this is useful since I often want complete graphs
@@ -41,6 +47,20 @@ public class ArcNodeSelection {
     {
         selection = new HashSet();
         nodes = new HashSet();
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out)
+        throws IOException
+    {
+        out.writeObject(selection);
+        out.writeObject(nodes);
+    }
+
+    private void readObject(java.io.ObjectInputStream in)
+        throws IOException, ClassNotFoundException
+    {
+        selection = (HashSet) in.readObject();
+        nodes = (HashSet) in.readObject();
     }
     
     public int kind()
@@ -69,8 +89,9 @@ public class ArcNodeSelection {
     
     public void add(ModelItem object)
     {
+        if (object == null) return;
         selection.add(object);
-        object.graphicRep().changed();
+        if (object.graphicRep() !=null) object.graphicRep().changed();
         findNodes();
     }
     
@@ -160,13 +181,15 @@ public class ArcNodeSelection {
     
     // This is hard :-(
     // return an array of copies of all the items. The positions are relativised
-    /*
-    public Object[] copy()
+    
+    public ArrayList copy()
     {
         HashMap nodeToNewNode = new HashMap();
         
         float minX = 1000000;
         float minY = 1000000;
+
+        ArrayList copiedObjects = new ArrayList();
         
         // first find the minimum x and y values
         
@@ -182,7 +205,31 @@ public class ArcNodeSelection {
         for (Iterator iterator = nodes.iterator(); iterator.hasNext();)
         {
             Node oldNode = (Node) iterator.next();
-            Node newNode = new Node( null, oldNode.id(), oldNode.typeNamespace(),
-                    oldNode.typeName, 
-                    */
+            Node newNode = new Node(oldNode.id(), oldNode.typeNamespace(),
+                                     oldNode.typeName, oldNode.x() - minX, oldNode.y() - minY, oldNode.isLiteral() );
+            copiedObjects.add(newNode);
+            nodeToNewNode.put(oldNode, newNode);
+        }
+
+        // Finally we copy the arcs
+
+        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        {
+            ModelItem object = (ModelItem) iterator.next();
+
+            if (!object.isNode())
+            {
+                Arc arc = (Arc) object;
+
+                Node fromNode = (Node) nodeToNewNode.get( arc.fromNode() );
+                Node toNode = (Node) nodeToNewNode.get( arc.toNode() );
+
+                Arc newArc = new Arc(fromNode, toNode, arc.propertyNamespace(), arc.propertyName());
+                copiedObjects.add(newArc);
+            }
+        }
+
+        return copiedObjects;
+    }
+                    
 }

@@ -27,7 +27,7 @@ import com.apple.cocoa.application.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BookmarkController extends NSObject {
+public class BookmarkController {
 
     NSDrawer bookmarkDrawer;
 
@@ -70,6 +70,17 @@ public class BookmarkController extends NSObject {
     public void toggleShow()
     {
         bookmarkDrawer.toggle(this);
+    }
+
+    public ArrayList items()
+    {
+        return bookmarkedItems;
+    }
+
+    public void setItems(ArrayList items)
+    {
+        bookmarkedItems = items;
+        bookmarkTable.reloadData();
     }
     
     public void addItem(NSPasteboard pb, String type)

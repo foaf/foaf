@@ -30,6 +30,8 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.io.Writer;
+
 public class GraphicalArc implements GraphicalObject
 {
 
@@ -192,71 +194,63 @@ public class GraphicalArc implements GraphicalObject
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
     }
     
-    public String drawSvgNormal()
+    public void drawSvgNormal(Writer writer) throws java.io.IOException
     {
-        return drawSvg(normalColor);
+        drawSvg(writer, normalColor);
     }
     
-    public String drawSvgHilight()
+    public void drawSvgHilight(Writer writer) throws java.io.IOException
     {
-        return drawSvg(hilightColor);
+        drawSvg(writer, hilightColor);
     }
     
-    public String drawSvg(NSColor colour)
+    public void drawSvg(Writer writer, NSColor colour) throws java.io.IOException
     {
         String svgColour = "rgb(" + colour.redComponent() * 100 + "%," +
             colour.greenComponent() * 100 + "%," + colour.blueComponent() * 100 + "%)";
         
-        String svg = "";
-        
         String fontSpec = "font-family=\"Helvetica\" font-size=\"12\"";
-        svg += "<g " + fontSpec + " fill=\"" + svgColour +"\" fill-opacity=\"" + colour.alphaComponent() +
-            "\">\n";
+        writer.write("<g " + fontSpec + " fill=\"" + svgColour +"\" fill-opacity=\"" + colour.alphaComponent() +
+            "\">\n");
         
-        svg += "<rect x=\"" + handleRect.x() + "px\" y=\"" + handleRect.y() + "px\" width=\"" + mySize.width() +
-            "px\" height=\"" + mySize.height() + "px\"/>\n"; 
+        writer.write("<rect x=\"" + handleRect.x() + "px\" y=\"" + handleRect.y() + "px\" width=\"" + mySize.width() +
+            "px\" height=\"" + mySize.height() + "px\"/>\n"); 
         
-        svg += "<line x1=\"" + arc.fromNode().x() + "px\" y1=\"" + arc.fromNode().y() +
+        writer.write("<line x1=\"" + arc.fromNode().x() + "px\" y1=\"" + arc.fromNode().y() +
             "px\" x2=\"" + arc.toNode().x() + "px\" y2=\"" + arc.toNode().y() + "px\" stroke=\""
-            + svgColour + "\" stroke-opacity=\"" + colour.alphaComponent() + "\"/>\n";
+            + svgColour + "\" stroke-opacity=\"" + colour.alphaComponent() + "\"/>\n");
         
         double dx = arc.toNode().x() - arc.fromNode().x();
         double dy = arc.toNode().y() - arc.fromNode().y();
         double angle = Math.toDegrees(Math.atan2(dy,dx));
         
-        svg += "<g transform=\"translate(" + arc.toNode().x() + "," + arc.toNode().y() + ")\">\n";
-        svg += "<g transform=\"rotate(" + angle + ")\">\n";
+        writer.write("<g transform=\"translate(" + arc.toNode().x() + "," + arc.toNode().y() + ")\">\n");
+        writer.write("<g transform=\"rotate(" + angle + ")\">\n");
         
-        svg += "<use xlink:href=\"#ArrowHead\"/>\n";
+        writer.write("<use xlink:href=\"#ArrowHead\"/>\n");
         
-        svg += "</g>\n";
+        writer.write("</g>\n");
         
-        svg += "</g>\n";
+        writer.write("</g>\n");
         
         String stringToDraw = arc.displayString();
         if (stringToDraw != null)
         {
             // This will never contain a line break (well, here's hoping :-)
-            svg += "<text x=\"" + (handleRect.x()) +"px\" y=\"" + 
-                (handleRect.y()+mySize.height()-4) +"px\" fill=\"black\" fill-opacity=\"1.0\">";
-            svg += stringToDraw + "</text>\n";
+            writer.write("<text x=\"" + (handleRect.x()) +"px\" y=\"" + 
+                (handleRect.y()+mySize.height()-4) +"px\" fill=\"black\" fill-opacity=\"1.0\">");
+            writer.write(stringToDraw + "</text>\n");
         }
         
-        svg += "</g>\n\n";
-        
-        return svg;
+        writer.write("</g>\n\n");
     }
     
-    public static String svgArrowHead()
+    public static void svgArrowHead(Writer writer) throws java.io.IOException
     {
-        String svg = "";
+        writer.write("<defs>\n");
         
-        svg += "<defs>\n";
+        writer.write("<path id=\"ArrowHead\" d=\"M 0 0 L -20 3 L -20 -3 Z\"/>\n");
         
-        svg += "<path id=\"ArrowHead\" d=\"M 0 0 L -20 3 L -20 -3 Z\"/>\n";
-        
-        svg += "</defs>\n";
-        
-        return svg;
+        writer.write("</defs>\n");
     }
 }

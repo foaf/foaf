@@ -32,6 +32,7 @@ import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
 import java.lang.Math;
+import java.util.HashMap;
 
 public class RDFAuthorUtilities {
     
@@ -82,6 +83,7 @@ public class RDFAuthorUtilities {
     
     public static void layoutModel(ArcNodeList model, float minX, float minY, float maxX, float maxY)
     {
+        long startTime = java.util.Calendar.getInstance().getTime().getTime();
         float margin = 50;
         float springConstant = 0.01f;
         float springExtension = 150;
@@ -94,11 +96,14 @@ public class RDFAuthorUtilities {
         minY += margin;
         maxY -= margin;
         
-        float edgeResistance = 9; // This is for the edge resistance stuff which (hopefully) keeps the model in the frame
+        springExtension = (float) Math.sqrt((maxX - minX) * (maxY - minY) / numberOfNodes);
+        
+        float edgeResistance = 6; // This is for the edge resistance stuff which (hopefully) keeps the model in the frame
         float xCentreConstant = 2 * edgeResistance / (minX + maxX);
         float yCentreConstant = 2 * edgeResistance / (minY + maxY);
         
         Node[] nodes = new Node[numberOfNodes];
+        HashMap nodeToIndex = new HashMap();
         float[] x = new float[numberOfNodes];
         float[] y = new float[numberOfNodes];
         float[] xVel = new float[numberOfNodes];
@@ -107,11 +112,13 @@ public class RDFAuthorUtilities {
         
         // Set nodes
         int i = 0;
+        int j;
         
         for (ArcNodeListIterator iterator = model.getNodes(); iterator.hasNext();)
         {
             Node node = (Node) iterator.next();
             nodes[i] = node;
+            nodeToIndex.put(node, new Integer(i));
             x[i] = node.x();
             y[i] = node.y();
             xVel[i] = 0;
@@ -119,39 +126,25 @@ public class RDFAuthorUtilities {
             i++;
         }
         
-        for (i = 0; i < numberOfNodes - 1; i++)
+        // fill in connected[][] - true if i and j are connected
+        
+        for (ArcNodeListIterator iterator = model.getArcs(); iterator.hasNext();)
         {
-            for (int j = i + 1; j < numberOfNodes; j++)
-            {
-                // This is silly - improve me
-                
-                connected[i][j] = false;
-                
-                for (ArcNodeListIterator iterator = model.getArcs(); iterator.hasNext();)
-                {
-                    Arc arc = (Arc) iterator.next();
-                    if ((arc.toNode() == nodes[i]) && (arc.fromNode() == nodes[j]))
-                    {
-                        connected[i][j] = true;
-                        break;
-                    }
-                    else if ((arc.toNode() == nodes[j]) && (arc.fromNode() == nodes[i]))
-                    {
-                        connected[i][j] = true;
-                        break;
-                    }
-                }
-            }
+            Arc arc = (Arc) iterator.next();
+            i = ((Integer) nodeToIndex.get(arc.toNode())).intValue();
+            j = ((Integer) nodeToIndex.get(arc.fromNode())).intValue();
+            connected[i][j] = true;
+            connected[j][i] = true;
         }
         
         // let's try this a few times
         
-        for (int repeating = 0; repeating < 100; repeating++)
+        for (int repeating = 0; repeating < 200; repeating++)
         {
         
             for (i = 0; i < numberOfNodes - 1; i++)
             {
-                for (int j = i + 1; j < numberOfNodes; j++)
+                for (j = i + 1; j < numberOfNodes; j++)
                 {
                     // this is for calculating interactions between nodes
                     float dx = x[i] - x[j];
@@ -159,15 +152,17 @@ public class RDFAuthorUtilities {
                     
                     float dist = (float) Math.sqrt(dx*dx + dy*dy);
                     
+                    float inv = 1/dist; // this is pretty useful and speeds things a little
+                    
                     float force;
                     if (connected[i][j]) // if connected then work out springy force
                     {
                         force = - springConstant * (dist - springExtension);
                     }
-                    else force = 100/dist; // else purely repulsive (but falls off with distance)
+                    else force = 70 * inv; // else purely repulsive (but falls off with distance)
                     
-                    float xForce = force * dx / dist; // x (y) components of the force
-                    float yForce = force * dy / dist;
+                    float xForce = force * dx * inv; // x (y) components of the force
+                    float yForce = force * dy * inv;
                     
                     xVel[i] += xForce;
                     xVel[j] -= xForce;
@@ -214,9 +209,20 @@ public class RDFAuthorUtilities {
         
         for (i = 0; i < numberOfNodes; i++)
         {
-            nodes[i].setPosition( x[i], y[i] );
+            nodes[i].setPositionDumb( x[i], y[i] );
         }
+        
+        for (ArcNodeListIterator iterator = model.getArcs(); iterator.hasNext();)
+        {
+            Arc arc = (Arc) iterator.next();
+            if (arc.graphicRep() != null)
+            {
+            	arc.graphicRep().calculateRectangle();
+            }
+        }
+        
+        System.out.println("Took: " + (java.util.Calendar.getInstance().getTime().getTime() - startTime)
+            + " milliseconds");
     }
-
 
 }
