@@ -1,11 +1,14 @@
-./scutter/bin
+./scutter/webutil.rb
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
-./scutter/pub/rssdir.html
 ./scutter/conf/scutterdb.sql
+./scutter/conf/rdfc14n.xsl
+./scutter/conf/rdfc2nt.xsl
 ./scutter/install.rb
+./scutter/README.TXT
 ./scutter/LICENSE.TXT
 ./scutter/INSTALL.TXT
-./scutter/webutil.rb
+./scutter/QUICKSTART.TXT
+./scutter/FILES
