@@ -8,37 +8,19 @@ require '../2004/bin/section_util'
 #
 # log:
 # $Log: not supported by cvs2svn $
-
+# Revision 1.1  2004/08/14 20:38:13  danbri
+# working on remaster script now
 #
-#
-# 
 
 file = './web/index.html'
 master_file = './master/web_section_master.html'
 
-to_restore = ['SecondaryNavigation','MainNavigation']
-
-doc = DocFile.new(file)  
-puts "Scanning file: #{file} title: #{doc.title} "
-
-master = DocFile.new(master_file)
-puts "Scanning file: #{master_file} title: #{master.title} "
-
-doc.scan
+master = DocFile.new master_file
+doc = DocFile.new file
+doc.defers_to = master
+doc.remasters = ['SecondaryNavigation','MainNavigation']
+	
 master.scan
+doc.scan
 
-doc.sections.each do |name,content| 
-    puts "Found a section called: '#{name}' "
-      puts "...which is also in the master" if master.sections[name]
-      if to_restore.member?(name)
-        puts "...restore requested!" 
-        if doc.sections[name].eql?(master.sections[name])
-          puts "...but they're the same already; nothing to be done."
-        else
-          puts "They're different!: "
-          puts " compare: doc=#{doc.sections[name]} master=#{master.sections[name]}"
-        end
-      end
-end
-
-
+puts doc.refresh_from_master!
