@@ -18,10 +18,35 @@ public class People
     online = new ArrayList();
   }
 
+  public synchronized void add(String mboxHash)
+  {
+    Person person = new Person(mboxHash);
+
+    if (person.equals(controller.getPerson()))
+      return;
+
+    int index = people.indexOf(person);
+
+    if (index != -1)
+      {
+	online.set(index, Boolean.TRUE);
+
+	Person existing = (Person) people.get(index);
+
+	controller.showMessage("[" +
+			       index +
+			       "] " +
+			       existing.getName() +
+			       " is online.");
+      }
+    else
+      {
+	controller.showMessage("Someone came online, but I have no information about them. (?)");
+      }
+  }
+    
   public synchronized void add(ServiceInfo info)
   {
-    //System.out.println("I got: " + info);
-    
     Person person =
       new Person(info.getPropertyString(Person.NAME),
 		 info.getName(),
@@ -31,7 +56,7 @@ public class People
 
     if (person.equals(controller.getPerson()))
 	return;
-
+    
     int index = people.indexOf(person);
 
     if (index != -1)
