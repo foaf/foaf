@@ -8,8 +8,6 @@ import java.util.HashMap;
 
 public class SchemaWindowController extends NSObject {
 
-    static String schemaItemChangedNotification = "org.rdfweb.RDFAuthor.schemaItemChanged";
-
     NSMenuItem schemaMenuItem;
 
     NSOutlineView schemaOutlineView;
@@ -70,29 +68,5 @@ public class SchemaWindowController extends NSObject {
     {
         return ((SchemaItem) item).selectable();
     }
-    
-    public boolean outlineViewShouldEditTableColumn( NSOutlineView outlineView, NSTableColumn tableColumn, Object item)
-    {
-        return false;
-    }
-    
-    public void outlineViewSelectionDidChange(NSNotification notification)
-    {
-        SchemaItem newItem;
-        
-        // First - get row of selected item
-        
-        int row = schemaOutlineView.selectedRow();
-        if (row == -1) // No selected row
-        {
-            newItem = new SchemaItem(null, null, null, null, null); // Post empty object
-        }
-        else
-        {
-            newItem = (SchemaItem) schemaOutlineView.itemAtRow(row);
-        }
-        
-        NSNotificationCenter.defaultCenter().postNotification(new NSNotification 
-            ( schemaItemChangedNotification , newItem) );
-    }
+
 }

@@ -15,10 +15,12 @@ import java.util.HashMap;
 public class QueryResultSource {
     
     ArrayList resultsArray;
+    HashMap varToObject;
     
-    public QueryResultSource(ArrayList results)
+    public QueryResultSource(ArrayList results, HashMap varToObject)
     {
         resultsArray = results;
+        this.varToObject = varToObject;
     }
     
     public int numberOfRowsInTableView(NSTableView aTableView)
@@ -36,5 +38,10 @@ public class QueryResultSource {
     public HashMap getRow(int row)
     {
         return (HashMap) resultsArray.get( row );
+    }
+    
+    public HashMap variableToObjectMapping()
+    {
+        return varToObject;
     }
 }

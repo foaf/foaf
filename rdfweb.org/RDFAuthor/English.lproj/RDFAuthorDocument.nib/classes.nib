@@ -3,7 +3,12 @@
         {
             CLASS = BookmarkController; 
             LANGUAGE = Java; 
-            OUTLETS = {bookmarkDrawer = id; bookmarkTable = id; rdfAuthorDocument = id; }; 
+            OUTLETS = {
+                autoAddSwitch = id; 
+                bookmarkDrawer = id; 
+                bookmarkTable = id; 
+                rdfAuthorDocument = id; 
+            }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
@@ -14,6 +19,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 infoTextField = id; 
+                queryButton = id; 
                 queryDrawer = id; 
                 rdfAuthorDocument = id; 
                 resultTable = id; 
@@ -70,6 +76,7 @@
                 previewModePopup = id; 
                 queryController = id; 
                 rdfAuthorDocument = id; 
+                rdfModelView = id; 
                 showIdsButton = id; 
                 showPropertiesButton = id; 
                 showTypesButton = id; 

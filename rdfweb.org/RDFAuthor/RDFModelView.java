@@ -8,10 +8,17 @@ import java.util.HashMap;
 public class RDFModelView extends NSView {
 
     RDFAuthorDocument rdfAuthorDocument;
-    boolean addingConnection = false;
+    
+    static final int AddConnectionMode = 1;
+    static final int AddNodeMode = 2;
+    static final int AddQueryItemMode = 3;
+    static final int MoveSelectMode = 4;
+    static final int DeleteItemsMode =5;
+    
     boolean draggingConnection = false;
-    boolean addingNode = false;
-    boolean deleting = false;
+    
+    int currentEditingMode = MoveSelectMode;
+    
     String saveDescription;
     
     float currentScale = 1F;
@@ -65,7 +72,7 @@ public class RDFModelView extends NSView {
         // Drawing code here.
         
         NSColor.whiteColor().set();
-        NSBezierPath.fillRect(this.frame());
+        NSBezierPath.fillRect(rect);
         
         if (draggingConnection)
         {
@@ -88,26 +95,34 @@ public class RDFModelView extends NSView {
     
     public void sliderChanged(NSSlider slider)
     {
+        // This is pretty sneaky - though maybe standard (I don't know)
+        // We set the scale for the clip view of the scroll view - the
+        // rdf model view is unchanged.
+        
         NSClipView clipView = this.enclosingScrollView().contentView();
         
         float newScale = slider.floatValue() / 100F;
         
+        // Scaling is cumulative for NSViews, so this sets the absolute scale
+        
         float scaleValue = newScale / currentScale;
+        
+        // Remember the center so that we can move to it afterwards
         
         float midX = this.visibleRect().midX();
         float midY = this.visibleRect().midY();
         
         currentScale = newScale;
         
-        NSSize oldSize = clipView.frame().size();
         clipView.scaleUnitSquareToSize(new NSSize(scaleValue, scaleValue));
+        
+        // Now scaling has occured try to center on the previous center
+        // (visible rect has now changed due to the scaling)
         
         float x = midX - this.visibleRect().width()/2F;
         float y = midY - this.visibleRect().height()/2F;
         
         this.scrollPoint(new NSPoint(x,y));
-        
-        this.setNeedsDisplay(true);
     }
     
     public boolean acceptsFirstResponder()
@@ -139,69 +154,68 @@ public class RDFModelView extends NSView {
     public void mouseDown(NSEvent theEvent)
     {
         NSPoint point = convertPointFromView(theEvent.locationInWindow(), null);
-        if (addingConnection)
+                
+        switch (currentEditingMode)
         {
-            startPoint = point;
-        }
-        else if (addingNode)
-        {
-            rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false); // false - default to resource
-        }
-        else if (deleting)
-        {
-            rdfAuthorDocument.deleteObjectAtPoint(point);
-        }
-        else
-        {
-            rdfAuthorDocument.setCurrentObjectAtPoint(point);
+            case AddConnectionMode:	startPoint = point; break;
+            case DeleteItemsMode:	rdfAuthorDocument.deleteObjectAtPoint(point); break;
+            case AddNodeMode:		rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false);
+                                        break; // false above - default to resource
+            case AddQueryItemMode:	rdfAuthorDocument.addQueryItemAtPoint(point); break;
+            case MoveSelectMode:	rdfAuthorDocument.setCurrentObjectAtPoint(point);
         }
     }
     
     public void mouseDragged(NSEvent theEvent)
     {
         NSPoint point = convertPointFromView(theEvent.locationInWindow(), null);
-        if (addingConnection)
+        
+        switch (currentEditingMode)
         {
-            endPoint = point;
-            draggingConnection = true;
-            setNeedsDisplay(true);
-        }
-        else
-        {
-            rdfAuthorDocument.moveCurrentObjectToPoint(point);
+            case AddConnectionMode:	endPoint = point;
+                                        draggingConnection = true;
+                                        setNeedsDisplay(true);
+                                        break;
+            case MoveSelectMode:
+            case AddNodeMode:		rdfAuthorDocument.moveCurrentObjectToPoint(point);
+                                        break;
         }
     }
     
     public void mouseUp(NSEvent theEvent)
     {
         NSPoint point = convertPointFromView(theEvent.locationInWindow(), null);
-        if (draggingConnection)
+        
+        switch (currentEditingMode)
         {
-            draggingConnection = false;
-            rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
+            case AddConnectionMode:	draggingConnection = false;
+                                        rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
+                                        break;
+            case MoveSelectMode:	if (theEvent.clickCount() == 2) // double click - show Info for item
+                                        {
+                                            rdfAuthorDocument.showInfoForObjectAtPoint(point);
+                                        }
         }
-        else if (!addingNode)
+    }
+    
+    public void setEditingMode(int mode)
+    {
+        currentEditingMode = mode;
+        
+        switch (currentEditingMode)
         {
-            if (theEvent.clickCount() == 2) // double click - show Info for item
-            {
-                rdfAuthorDocument.showInfoForObjectAtPoint(point);
-            }
+            case MoveSelectMode:	textDescriptionField.setStringValue(""); break;
+            case AddNodeMode:		textDescriptionField.setStringValue("Click to place a new node");
+                                        break;
+            case AddConnectionMode:	textDescriptionField.setStringValue("Drag between two nodes to connect");
+                                        break;
+            case DeleteItemsMode:	
+                    textDescriptionField.setStringValue("Click on items to remove them from the model");
+                    break;
+            case AddQueryItemMode:	
+                    textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
+                    break;
         }
-    }
-    
-    public void addConnection(boolean value)
-    {
-        addingConnection = value;
-    }
-    
-    public void addNode(boolean value)
-    {
-        addingNode = value;
-    }
-    
-    public void deleteMode(boolean value)
-    {
-        deleting = value;
     }
     
     // Drag and Drop stuff begins here.
@@ -278,7 +292,7 @@ public class RDFModelView extends NSView {
         
         bookmarkController.addItem(pboard, type);
         
-        if (type.equalsIgnoreCase(NSPasteboard.URLPboardType)) {
+        if (type.equals(NSPasteboard.URLPboardType)) {
         
             NSArray URLs = (NSArray) pboard.propertyListForType(NSPasteboard.URLPboardType);
 
@@ -286,13 +300,13 @@ public class RDFModelView extends NSView {
             
             rdfAuthorDocument.setIdForNodeAtPoint(id, point, false); // false - if new node don't want a literal
         }
-        else if (type.equalsIgnoreCase(NSPasteboard.StringPboardType)) {
+        else if (type.equals(NSPasteboard.StringPboardType)) {
             
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
             rdfAuthorDocument.setIdForNodeAtPoint(id, point, true); // true - if new node make it a literal
         }
-        else if (type.equalsIgnoreCase(SchemaData.ClassPboardType))
+        else if (type.equals(SchemaData.ClassPboardType))
         {
             NSDictionary info = (NSDictionary) pboard.propertyListForType(
                 SchemaData.ClassPboardType);
@@ -301,7 +315,7 @@ public class RDFModelView extends NSView {
             
             rdfAuthorDocument.setTypeForNodeAtPoint(namespace, name, point);
         }
-        else if (type.equalsIgnoreCase(SchemaData.PropertyPboardType))
+        else if (type.equals(SchemaData.PropertyPboardType))
         {
             NSDictionary info = (NSDictionary) pboard.propertyListForType(
                 SchemaData.PropertyPboardType);

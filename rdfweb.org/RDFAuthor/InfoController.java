@@ -36,9 +36,9 @@ public class InfoController extends NSObject {
 
     NSTextField resourceTypeField;
     
-    static String itemChangedNotification = "org.rdfweb.RDFAuthor.itemChanged";
+    static final String itemChangedNotification = "org.rdfweb.RDFAuthor.itemChanged";
     
-    static String showInfoNotification = "org.rdfweb.RDFAuthor.showInfo";
+    static final String showInfoNotification = "org.rdfweb.RDFAuthor.showInfo";
     
     ModelItem currentItem = null;
     

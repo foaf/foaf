@@ -17,7 +17,7 @@ public class ErrorWindowController extends NSObject {
     
     NSWindow currentWindow = null;
     
-    static String checkModelNotification = "org.rdfweb.RDFAuthor.checkModel";
+    static final String checkModelNotification = "org.rdfweb.RDFAuthor.checkModel";
     
     public ErrorWindowController()
     {
@@ -52,21 +52,22 @@ public class ErrorWindowController extends NSObject {
         errorTable.setTarget(this);
         errorTable.setDoubleAction(doubleSelector);
         
-        // Yuk - all this to have a column with images
-        NSTableColumn imageCol = new NSTableColumn();
-        imageCol.setIdentifier("Type");
-        NSImageCell imageCell = new NSImageCell();
-        imageCell.setImageAlignment(NSImageCell.ImageAlignTop);
-        imageCol.setDataCell(imageCell);
-        //imageCol.setMaxWidth(30);
-        //imageCol.setMinWidth(30);
-        imageCol.setWidth(30);
-        imageCol.setResizable(false);
-        imageCol.setHeaderCell(new NSTableHeaderCell(""));
+        // Column 'Type' should be an image cell
         
-        errorTable.addTableColumn(imageCol);
-        errorTable.moveColumnToColumn(2, 0); // put the new column at the front
-        errorTable.sizeLastColumnToFit();
+        NSTableColumn col = errorTable.tableColumnWithIdentifier("Type");
+        NSImageCell imageCell = new NSImageCell();
+        imageCell.setImageAlignment(NSImageCell.ImageAlignTopLeft);
+        col.setDataCell(imageCell);
+        
+        // Columns 'Messages' and 'Item' should wrap...
+        
+        col = errorTable.tableColumnWithIdentifier("Messages");
+        NSCell textCell = col.dataCell();
+        textCell.setWraps(true);
+        
+        col = errorTable.tableColumnWithIdentifier("Item");
+        textCell = col.dataCell();
+        textCell.setWraps(true);
     }
     
     public void showErrorWindow(Object sender) 
