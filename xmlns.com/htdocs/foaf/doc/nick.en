@@ -18,11 +18,7 @@ FOAF provides some convenience properties: <code>foaf:jabberID</code>,
 <code>foaf:aimChatID</code>, <code>foaf:msnChatID</code> and 
 <code>foaf:icqChatID</code>. Beyond this, the problem of representing such accounts is not 
 peculiar to Instant Messanging, and it is not scaleable to attempt to enumerate each 
-naming database as a distinct FOAF property. 
+naming database as a distinct FOAF property. The <code>foaf:OnlineAccount</code> term (and 
+supporting vocabulary) are provided as a more verbose and more expressive generalisation 
+of these properties.
 </p>
-
-<p>
-Future work in this area may provide more specific terms for describing online accounts 
-and related user data.
-</p>
-

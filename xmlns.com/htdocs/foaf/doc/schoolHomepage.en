@@ -7,7 +7,7 @@ person attended.
 <p>
 FOAF does not (currently) define a class for 'School' (if it did, it would probably be as 
 a sub-class of <code>foaf:Organization</code>). The original application area for 
-<code>foaf:schoolHomepage</code> was for 'schools' in the English-English sense; however 
+<code>foaf:schoolHomepage</code> was for 'schools' in the British-English sense; however 
 American-English usage has dominated, and it is now perfectly reasonable to describe 
 Universities, Colleges and post-graduate study using <code>foaf:schoolHomepage</code>.
 </p>
