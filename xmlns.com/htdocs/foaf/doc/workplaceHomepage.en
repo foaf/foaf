@@ -1,0 +1,38 @@
+<p>
+The <code>foaf:workplaceHomepage</code> of a <code>foaf:Person</code> is a 
+<code>foaf:Document</code> that is the <code>foaf:homepage</code> of a 
+<code>foaf:Organization</code> that they work for.
+</p>
+
+<p>
+By directly relating people to the homepages of their workplace, we have a simple convention 
+that takes advantage of a set of widely known identifiers, while taking care not to confuse the 
+things those identifiers identify (ie. organizational homepages) with the actual organizations 
+those homepages describe.
+</p>
+
+<div class="example">
+<p>
+For example, Dan Brickley works at W3C. Dan is a <code>foaf:Person</code> with a 
+<code>foaf:homepage</code> of http://rdfweb.org/people/danbri/; W3C is a 
+<code>foaf:Organization</code> with a <code>foaf:homepage</code> of http://www.w3.org/. This 
+allows us to say that Dan has a <code>foaf:workplaceHomepage</code> of http://www.w3.org/.
+</p>
+
+<pre>
+&lt;foaf:Person&gt;
+ &lt;foaf:name>Dan Brickley&lt;/foaf:name&gt;
+ &lt;foaf:workplaceHomepage rdf:resource="http://www.w3.org/"/&gt;
+&lt;/foaf:Person&gt;
+</pre>
+</div>
+
+
+<p>
+Note that several other FOAF properties work this way; 
+<code>foaf:schoolHomepage</code> is the most similar. In general, FOAF often indirectly 
+identifies things via Web page identifiers where possible, since these identifiers are widely 
+used and known. FOAF does not currently have a term for the name of the relation (eg. 
+"workplace") that holds 
+between a <code>foaf:Person</code> and an <code>foaf:Organization</code> that they work for.
+</p>
