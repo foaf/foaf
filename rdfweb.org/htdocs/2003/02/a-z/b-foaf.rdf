@@ -1,0 +1,10 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <foaf:Person>
+    <foaf:name>Betrand Bustlethwaite</foaf:name>
+    <foaf:mbox rdf:resource="mailto:bb@foaf.example.org"/>
+    <foaf:homepage rdf:resource="http://www.example.org/foaf/people/betrand/"/>
+    <foaf:schoolHomepage rdf:resource="http://foafhigh.example.org/" />
+  </foaf:Person>
+</rdf:RDF>
