@@ -1,68 +1,173 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta name="generator" content="HTML Tidy, see www.w3.org" />
-<title>RDFWeb: SVG-Semantics: "PICS NG" Demo</title>
-<link rel="stylesheet" href="/ssi/main.css" type="text/css" />
-</head>
-<body bgcolor="#ffffff">
-<div class="navbar">
-<table border="0" cellpadding="15"
-background="/images/glib5-pale.jpg" cellspacing="0"
-summary="rdfweb site navigation links" width="100%">
-<tr>
-<td align="left" valign="top"><strong><a href="/"
-class="sitepart">RDFWeb</a>: <span class="sitepart">SVG-Semantics: "PICS NG" Demo</span></strong> </td>
-<td align="right"><span class="siteutil"><a
-href="/about.html">about</a> | <a
-href="/projects.html">projects</a> | <a
-href="/dev.html">developers</a> | <a
-href="/sitemap.html">sitemap</a> | <a
-href="/search.html">search</a></span> </td>
-</tr>
-</table>
-</div>
-
-
-<h2>SVG-Semantics: "PICS NG" Demo</h2>
-
-<p>
-The sekret truth about RDF, SVG and internet content filtering...</p>
-
-<p>
-Here's a quick demo showing the use of RDF combined with
-SVG in a way that supports a classic Web application:
-internet content filtering in the style of <a
-href="http://www.w3.org/PICS/">PICS</a>.
-</p>
-
-<p>
-RDF was designed as fancier successor to PICS. Here we
-show how RDF plus SVG annotations can be used to
-describe regions of an image, and then how SVG
-transformations can be used to tastefully filter out
-allegedly "rude" regions of digital images.
-Amusingly, pretty much
-the same technology could be applied in the contrary
-direction, supporting discovery and indexing of certain
-kinds of content. That's why anti-censorship folk
-shouldn't get their knickers in a twist about this...
-</p>
-
-<p>Anyway, the demo. It's just a bunch of files, really...</p>
-
-<dl>
-
-<dt></dt>
-<dd></dd>
-
-</dl>
-
-
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: SVG-Semantics: "PICS NG" Demo
+    </title>
+    <link rel="stylesheet" href="/ssi/main.css" type="text/css" />
+  </head>
+  <body bgcolor="#ffffff">
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="/images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">SVG-Semantics: "PICS NG"
+            Demo</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="/about.html">about</a>
+            | <a href="/projects.html">projects</a> | <a
+            href="/dev.html">developers</a> | <a
+            href="/sitemap.html">sitemap</a> | <a
+            href="/search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h2>
+      SVG-Semantics: "PICS NG" Demo
+    </h2>
+    <p>
+      The sekret truth about RDF, SVG and internet content
+      filtering...
+    </p>
+    <p>
+      Here's a quick demo showing the use of RDF combined with SVG
+      in a way that supports a classic Web application: internet
+      content filtering in the style of <a
+      href="http://www.w3.org/PICS/">PICS</a>.
+    </p>
+    <p>
+      RDF was designed as fancier successor to PICS. Here we show
+      how RDF plus SVG annotations can be used to describe regions
+      of an image, and then how SVG transformations can be used to
+      tastefully filter out allegedly "rude" regions of digital
+      images. Amusingly, pretty much the same technology could be
+      applied in the contrary direction, supporting discovery and
+      indexing of certain kinds of content. That's why
+      anti-censorship folk shouldn't get their knickers in a twist
+      about this...
+    </p>
+    <p>
+      Anyway, the demo. It's just a bunch of files, really...
+    </p>
+    <p>
+      To really appreciate this, you'll need a Web browser that
+      supports SVG graphics. The <a
+      href="http://www.adobe.com/svg/viewer/install/">Adobe
+      plugin</a> is probably what you want.
+    </p>
+    <h3>
+      SVG/RDF PICS NG demo
+    </h3>
+    <p>
+      Basic idea: there's some photo online, some folk might not
+      want to see bits of it 'cos it depicts naked body parts.
+      Others might want bits of it blurred/filtered in case
+      innocent children were corrupted by it. RDF and SVG to the
+      rescue...
+    </p>
+    <ul>
+      <li>
+        <a
+        href="http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG">
+        Some JPEG image in the Web</a>
+      </li>
+      <li>
+        <a href="/picsdemo/rdf-taboo.rdf">An RDF/XML file
+        describing it</a> (in some detail)
+      </li>
+      <li>
+        <a href="/picsdemo/rdf-taboo.nt">N-Triples representation
+        of this RDF description</a>
+      </li>
+      <li>
+        <a href="/picsdemo/aboutimage.rb">A simple script (in Ruby)
+        that reads this description and generates textual and SVG
+        output</a>
+      </li>
+      <li>
+        <a href="/picsdemo/sampleoutput.txt">sample plain text
+        output from (old version of) script</a>
+      </li>
+      <li>
+        finished product: <a
+        href="/picsdemo/sample_filtered_output.svg">Filtering SVG
+        annotation of the image</a>
+      </li>
+    </ul>
+    <p>
+      So once more, slowly, here's what is happening. We have an
+      image. We write (using Jim Ley's <a
+      href="http://www.jibbering.com/">neat tools</a>) some RDF
+      describing the types of thing depicted in the image,
+      including -- <em>crucially</em> a description of which bit of
+      the image depicts which thing. We load this into an RDF
+      program, aboutimage.rb (using the <a
+      href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a>
+      library, see experimental <a
+      href="picsdemo/rubyrdf-0.9.deb">Debian package</a>). The RDF
+      program simply loops through the list of all the described
+      sub-regions of the image, and checks to see what type or
+      class of thing each depicted object is. If the thing is
+      deemed 'rude', by the simplemined process of looking in the
+      RDF description to see if there is a 'rudeThing' property of
+      the class with a value of 'true', then an SVG filter is
+      emitted. The generated SVG takes the outlining path info from
+      the RDF and tastefully overlays the photo with a filter
+      hiding any rudeness from innocent bystanders. That's it,
+      really.
+    </p>
+    <h3>
+      What this shows...
+    </h3>
+    <p>
+      (1) RDF and SVG combined can do something neither achieve
+      alone: describe images and their parts in pretty
+      sophisticated detail.
+    </p>
+    <p>
+      (2) The filtering strategy shown is way too simplistic. Take
+      our actual example here. The RDF filtering code can be as
+      simple or as complex as we care to implement. The current
+      demo implicitly takes the view that certain types of thing
+      just are 'rude', and generates image filters accordingly.
+      Others might object on the basis that this particular image,
+      for example, depicts an Art Happening. That's just fine, we
+      could write this in RDF, if we cared, and write smarter
+      filters. We could write that the image is a depction of an
+      ArtisticEvent called "Taboo" written and performed by Trevor
+      Stuart, at the Bath Fringe Festival 2002.
+    </p>
+    <p>
+      Maybe we should extend the demo to do just this.
+    </p>
+    <h3>
+      Conclusions
+    </h3>
+    <p>
+      RDF and SVG will be used on the Semantic Web for...
+    </p>
+    <ul>
+      <li>
+        Describing and locating images of various kinds
+      </li>
+      <li>
+        Hiding, filtering and avoiding images of various kinds
+      </li>
+    </ul>
+    <p>
+      The same technology works for both applications. Unexpected
+      Bargain. PICS NG...
+    </p>
 <pre>
-$Id: picsng-demo.html,v 1.1 2002-06-07 21:17:47 danbri Exp $
+$Id: picsng-demo.html,v 1.2 2002-06-07 21:40:30 danbri Exp $
 </pre>
-</body>
+  </body>
 </html>
 
