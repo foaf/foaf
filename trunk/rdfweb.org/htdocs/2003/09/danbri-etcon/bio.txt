@@ -1,5 +1,4 @@
-Dan Brickley is on the technical staff of the World Wide Web Consortium (W3C). 
-He has been involved with W3C's RDF work since 1997; his recent  
-responsibilities include chairing the RDF Interest Group, and directing the 
-SWAD-Europe project. Dan is also co-creator of FOAF and occasionally gets to write 
-software.
+Dan Brickley is on the technical staff of the World Wide Web Consortium (W3C).He has 
+been involved with W3C's RDF work since 1997; his current responsibilities include 
+chairing the RDF Interest Group and directing the SWAD-Europe project. Dan is also 
+co-creator of FOAF and occasionally gets to write software.
