@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+#
+# foafalarm
+# $Id: foafalarm,v 1.1 2002-07-17 13:35:28 danbri Exp $
+#
+# author: Dan Brickley <danbri@rdfweb.org>
+#
+# A simple application that uses the previously-hypothetical
+# foaf:wakeUpSlacker property. It queries our local database,
+# pulls out all the 'wake up' calls, and (on unix systems with 
+# xaudio) plays them in turn.
+
+
+require 'dbi'
+require 'squish'
+require 'basicrdf'
+require 'scutter'
+
+query = SquishQuery.new.parseFromText <<EOQ;
+
+	SELECT ?who, ?audio, ?name,  
+ 	 WHERE 
+	 (foaf::wakeUpSlacker ?who ?audio)
+	 (foaf::name ?who ?name)
+	USING 
+	 foaf for http://xmlns.com/foaf/0.1/
+EOQ
+
+DBI.connect('DBI:Pg:rdfweb1','danbri','') do | dbh |
+  dbh.select_all query.toSQLQuery   do |a|
+    alarm = ResultRow.new a
+    audio = alarm.audio
+    name = esc_utf8 alarm.name
+    puts "Alarm: #{audio} by #{name} "
+    puts `xaudio #{audio}`
+  end
+end
