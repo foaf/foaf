@@ -10,6 +10,11 @@ DIV.navbar {
  font-weight: bold;
 }
 
+
+DIV.prose {
+  margin: 2em 1em 1em 30px;
+}
+
 .sitepart {
  background: white;
 }
