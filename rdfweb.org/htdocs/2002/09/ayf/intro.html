@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for Cygwin (vers 1st August 2002), see www.w3.org" />
+
+    <title>ayf!</title>
+  </head>
+
+  <body bgcolor="#ffffff">
+    <h1>ayf: a disposable foaf harvester</h1>
+
+    <p>Nearby: <a href="/foaf/">FOAF home page</a></p>
+
+    <p>This is one to throw away: a quick Perl script which
+    traverses a Web of FOAF RDF documents, using Perl regular
+    expressions rather than a proper RDF (or even XML+namespaces)
+    parser. It starts at a specified URL, and will continue until
+    it runs out of documents linked by 'rdfs:seeAlso' references.
+    See the <a href="ayf.pl">script source</a> for more details and
+    a list of bugs/flaws etc.</p>
+
+    <p>Why do this? It's a zero-hassle install, with no
+    dependencies on XML and RDF libraries of any kind. It is very
+    rough, doesn't traverse the full FOAF Web, and doesn't make
+    much use of the RDF documents it discovers. <em>However</em>,
+    it does show the core simplicity of Semantic Web hypertext, and
+    should give you an idea of where you could plug in more robust
+    infrastructure (RDF parser, database, PGP signature checking),
+    and of the kind of applications you could build with such an
+    approach (RSS discovery, Web service discovery, distributed
+    address books, etc...). Have a look, have fun, have a look for
+    something better (eg. see <a
+    href="http://usefulinc.com/foaf/">usefulinc's foafbot
+    pages</a>).</p>
+
+    <p>The script current outputs an HTML document (which it
+    updates continually while harvesting). The output is a proof of
+    concept, in this case proving the concept that you can use FOAF
+    to find pictures of people.</p>
+
+    <p>The <a href="ayb.pl">Perl script itself</a> and <a
+    href="_allyourfoaf.html">sample output</a> are available.</p>
+  </body>
+</html>
+
