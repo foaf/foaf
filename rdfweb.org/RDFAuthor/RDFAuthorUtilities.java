@@ -5,7 +5,7 @@
 //  Created by pldms on Wed Nov 07 2001.
 //
 
-/* $Id: RDFAuthorUtilities.java,v 1.12 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: RDFAuthorUtilities.java,v 1.13 2002-03-27 10:22:36 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -194,6 +194,8 @@ public final class RDFAuthorUtilities {
                 }
             }
             
+            //float totalVel = 0;
+            
             for (i = 0; i < numberOfNodes; i++)
             {
                 // edge adjustment
@@ -218,7 +220,11 @@ public final class RDFAuthorUtilities {
                 
                 x[i] += xVel[i];
                 y[i] += yVel[i];
+                
+                //totalVel += Math.abs(xVel[i]);
+                //totalVel += Math.abs(yVel[i]);
             }
+            //System.out.println("Total velocities: " + totalVel);
         }
         
         // finished - so set postitions
@@ -239,6 +245,5 @@ public final class RDFAuthorUtilities {
         
         System.out.println("Took: " + (java.util.Calendar.getInstance().getTime().getTime() - startTime)
             + " milliseconds");
-    }
-
+    }    
 }

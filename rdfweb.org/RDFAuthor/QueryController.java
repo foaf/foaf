@@ -1,6 +1,6 @@
 /* QueryController */
 
-/* $Id: QueryController.java,v 1.9 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: QueryController.java,v 1.10 2002-03-27 10:22:36 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -97,6 +97,7 @@ public class QueryController extends NSObject {
         
         queryButton.setTitle("Kill");
     }
+    
     
     private void killQuery(Object context, int returnCode)
     {
@@ -195,6 +196,8 @@ public class QueryController extends NSObject {
             {
                 queryObjects.add(item);
             }
+            
+            rdfAuthorDocument.rdfModelView.setNeedsDisplay(item.graphicRep().bounds());
         }
     }
     
@@ -212,7 +215,7 @@ public class QueryController extends NSObject {
         }
     }
     
-    public void drawQueryItems()
+    public void drawQueryItems(NSRect rect)
     {
         if (queryObjects.isEmpty())
         {
@@ -225,15 +228,18 @@ public class QueryController extends NSObject {
             
             NSPoint point = item.graphicRep().bounds().origin();
             
-            NSRect rect = new NSRect( point, size );
+            NSRect queryTag = new NSRect( point, size );
             
-            NSColor.yellowColor().set();
-            
-            NSBezierPath.fillRect(rect);
-            
-            NSColor.blackColor().set();
-            
-            NSBezierPath.strokeRect(rect);
+            if (rect.intersectsRect(queryTag))
+            {
+                NSColor.yellowColor().set();
+                
+                NSBezierPath.fillRect(queryTag);
+                
+                NSColor.blackColor().set();
+                
+                NSBezierPath.strokeRect(queryTag);
+            }
         }
     }
     

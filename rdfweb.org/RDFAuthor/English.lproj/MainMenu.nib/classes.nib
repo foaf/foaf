@@ -11,6 +11,7 @@
             ACTIONS = {
                 autoLayout = id; 
                 doCheckModel = id; 
+                openUrl = id; 
                 previewModeChanged = id; 
                 selectAddArcMode = id; 
                 selectAddNodeMode = id; 
@@ -50,6 +51,13 @@
                 resourceView = id; 
             }; 
             SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {openUrl = id; urlSubmitted = id; userCancelled = id; }; 
+            CLASS = RDFDocumentController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {openUrlPanel = NSPanel; urlComboBox = NSComboBox; }; 
+            SUPERCLASS = NSDocumentController; 
         }, 
         {
             ACTIONS = {addSchema = id; deleteSelectedItem = id; showSchemaWindow = id; }; 
