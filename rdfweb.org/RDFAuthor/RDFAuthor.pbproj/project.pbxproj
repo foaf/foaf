@@ -330,6 +330,10 @@
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
 			<string>RDFAuthorDocument</string>
+			<key>NSExportableAs</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -346,6 +350,21 @@
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
 			<string>RDFAuthorDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rdf</string>
+				<string>xml</string>
+				<string>*</string>
+				<string>txt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>(txt.icns)</string>
+			<key>CFBundleTypeName</key>
+			<string>NSStringPboardType</string>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

@@ -3,7 +3,7 @@
 
 import com.apple.cocoa.foundation.NSPoint;
 
-public class ModelItem
+public class ModelItem extends java.lang.Object
 {
     public ModelItem()
     {

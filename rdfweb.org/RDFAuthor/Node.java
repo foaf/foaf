@@ -50,23 +50,15 @@ public class Node extends ModelItem implements Serializable
     private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
     {
-        System.out.println("Serialising " + this);
         out.writeFloat(position.x());
-        System.out.println("Wrote node position x");
         out.writeFloat(position.y());
-        System.out.println("Wrote node position y");
         out.writeObject(id);
-        System.out.println("Wrote node id");
         out.writeObject(typeNamespace);
-        System.out.println("Wrote node type n/s");
         out.writeObject(typeName);
-        System.out.println("Wrote node type name");
         out.writeObject(arcsFrom);
-        System.out.println("Wrote node arcs from");
         out.writeObject(arcsTo);
-        System.out.println("Wrote node arcs to");
         out.writeBoolean(literal);
-        System.out.println("Wrote node literal");
+        out.writeObject(myList);
     }
     
     private void readObject(java.io.ObjectInputStream in)
@@ -81,6 +73,14 @@ public class Node extends ModelItem implements Serializable
         arcsFrom = (Vector) in.readObject();
         arcsTo = (Vector) in.readObject();
         literal = in.readBoolean();
+        myList = (ArcNodeList) in.readObject();
+        
+        showType = false;
+        showId = false;
+    
+	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
+	hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
+	defaultSize = new NSSize(20,20);
         
         calculateSize();
     }

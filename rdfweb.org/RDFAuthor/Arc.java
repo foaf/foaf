@@ -46,17 +46,11 @@ public class Arc extends ModelItem implements Serializable
     private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
     {
-        System.out.println("Serialising " + this);
         out.writeObject(fromNode);
-        System.out.println("Wrote arc from node");
         out.writeObject(toNode);
-        System.out.println("Wrote arc to node");
-        out.writeObject(myList);
-        System.out.println("Wrote arc my list");
         out.writeObject(propertyNamespace);
-        System.out.println("Wrote arc property n/s");
         out.writeObject(propertyName);
-        System.out.println("Wrote arc property n");
+        out.writeObject(myList);
     }
     
     private void readObject(java.io.ObjectInputStream in)
@@ -64,9 +58,15 @@ public class Arc extends ModelItem implements Serializable
     {
         fromNode = (Node) in.readObject();
         toNode = (Node) in.readObject();
-        myList = (ArcNodeList) in.readObject();
         propertyNamespace = (String) in.readObject();
         propertyName = (String) in.readObject();
+        myList = (ArcNodeList) in.readObject();
+        
+        showProperty = false;
+    
+        normalColor = NSColor.colorWithCalibratedRGB(0F, 0F, 1F, 0.5F);
+        hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
+        defaultSize = new NSSize(15,15);
         
         calculateSize();
         initArrowHead();
