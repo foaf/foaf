@@ -1,0 +1,26 @@
+<p>
+The <code>foaf:mbox</code> property is a relationship between the owner of a mailbox and 
+a mailbox. These are typically identified using the mailto: URI scheme (see <a 
+href="http://ftp.ics.uci.edu/pub/ietf/uri/rfc2368.txt">RFC 2368</a>).
+</p>
+
+<p>
+Note that there are many mailboxes (eg. shared ones) which are not the 
+<code>foaf:mbox</code> of anyone. Furthermore, a person can have multiple 
+<code>foaf:mbox</code> properties. 
+</p>
+
+<p>
+In FOAF, we often see <code>foaf:mbox</code> used as an indirect way of identifying its 
+owner. This works even if the mailbox is itself out of service (eg. 10 years old), since 
+the property is defined in terms of its primary owner, and doesn't require the mailbox to 
+actually be being used for anything.
+</p>
+
+<p>
+Many people are wary of sharing information about their mailbox addresses in public. To 
+address such concerns whilst continuing the FOAF convention of indirectly identifying 
+people by referring to widely known properties, FOAF also provides the 
+<code>foaf:mbox_sha1sum</code> mechanism, which is a relationship between a person and 
+the value you get from passing a mailbox URI to the SHA1 mathematical function.
+</p>
