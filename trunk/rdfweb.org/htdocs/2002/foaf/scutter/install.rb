@@ -47,6 +47,8 @@ end
 
 # run tests here?
 
-install_rb(".", ["webutil.rb"])
+install_rb("./lib", ["scutter.rb","pathfinder.rb","basicrdf.rb","squish.rb"])
 
 puts "Ruby install.rb: INSTALLING INTO:"+ Config::CONFIG["rubylibdir"]
+puts "For Scutter: see http://rdfweb.org/foaf/"
+puts "Supporting library (RubyRDF) see http://www.w3.org/2001/12/rubyrdf/intro.html"

@@ -2,7 +2,9 @@
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
 ./scutter/bin/vocabstats.rb
-./scutter/bin/pathfinder
+./scutter/bin/paths
+./scutter/lib/pathfinder.rb
+./scutter/lib/scutter.rb
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
 ./scutter/doc/pathfinder_example.txt
@@ -19,3 +21,6 @@
 ./scutter/QUICKSTART.TXT
 ./scutter/FILES
 ./scutter/Makefile
+CVS
+pathfinder.rb
+scutter.rb

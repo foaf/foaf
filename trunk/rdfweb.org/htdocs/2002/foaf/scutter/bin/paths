@@ -1,0 +1,75 @@
+#!/usr/bin/env ruby
+#
+require 'getoptlong'
+require 'lib/pathfinder'
+
+# todo: get pathfinder installed
+
+puts "Running pathfinder..."
+
+
+opt = GetoptLong.new(
+	['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
+	['--input', '-i', GetoptLong::REQUIRED_ARGUMENT],
+	['--search', '-s', GetoptLong::REQUIRED_ARGUMENT],
+    ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
+
+opts={}
+
+opt.each_option do |name,arg|
+  #  puts "got: #{name} -> #{arg}"
+  case name
+
+  when '--paths-from-mbox'
+    opts['who'] = arg 
+ 
+  when '--generate-rdf'
+    opts['genrdf'] = true
+
+  when '--input'
+    opts['input'] = arg
+
+  when '--search'
+    opts['search'] = arg
+
+  end
+end
+
+
+puts "Running main loop. opts: #{opts.inspect}"
+
+if !opts['input'] 
+  TGraph.main(opts) 
+else
+  puts "Loading from file..."
+
+  graph = TGraph.new       
+
+  f = File::new opts['input']
+  #data = f.read
+  f.each do |line|
+  line.chomp!
+  p = line.split(/\s+/)
+  # puts "Got: #{p.inspect} "
+  graph.addPath(p[0], p[1], p[2])
+  end
+
+  if opts['search']
+    target = opts['search'] 
+  else
+    target= 'mailto:libby.miller@bristol.ac.uk'
+  end
+
+  path = graph.findShortestPathsFromNodeNamed target
+  puts "\n\nDanpaths: " 
+  path.each do |e|
+    puts "\n\nPath:\n"
+    while (e.parent != nil) 
+      puts " link: " + e.to_s + " via: "+e.edge.to_s
+      e = e.parent
+    end
+    puts " link: "+target
+  end
+  puts "\n\n\n"
+
+end

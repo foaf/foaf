@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.16 2002-07-16 23:43:42 danbri Exp $
+# $Id: scutter.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
