@@ -2,23 +2,32 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:foaf="http://xmlns.com/foaf/0.1/"
-         xmlns:foaf="http://xmlns.com/wot/0.1/"
+         xmlns:wot="http://xmlns.com/wot/0.1/"
 	 xmlns:fc="http://xmlns.com/foaf/corp#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:bio="http://purl.org/vocab/bio/0.1/">
     
     <foaf:Document rdf:about="">
       <wot:assurance rdf:resource="jetblue.rdf.asc"/>
-      <!-- this document may have a detached digital signature, using PGP -->
+      <!-- this document may have a detached digital signature, using PGP 
+           gpg -ab jetblue.rdf -->
+      <foaf:topic rdf:nodeID="jetblue"/>
+      <dc:title>RDF description of documents about Jet Blue, privacy and total information.</dc:title>
+      <dc:description>Various documents, their authors, etc. and related info about the company. Collected and annotated in RDF to explore the use of Semantic Web technologies for journalism and activism.</dc:description>
+      <foaf:maker>
+        <foaf:Person>
+          <foaf:name>Dan Brickley</foaf:name>
+          <foaf:mbox rdf:resource="mailto:danbri@rdfweb.org"/>
+          <rdfs:seeAlso rdf:resource="http://www.w3.org/2000/01/rdf-schema#"/>
+        </foaf:Person>
+      </foaf:maker>
+      
     </foaf:Document>
 
     <fc:Company rdf:nodeID="jetblue">
       <fc:name>JetBlue Airways</fc:name>
       <fc:nasdaq>JBLU</fc:nasdaq>
-     
-
     </fc:Company>
-
 
 <foaf:Document rdf:about="http://www.sciam.com/article.cfm?articleID=0000E915-334A-1F4E-8D6E80A84189EEDF&amp;catID=4">
   <dc:title>Handicaps in CAPPS - Computerized passenger screening is not so easy</dc:title>
@@ -53,7 +62,16 @@
   <foaf:topic rdf:nodeID="jetblue"/>
 </foaf:Document>
 
-
+<foaf:Document rdf:about="http://www.nbc4.tv/travelgetaways/2466216/detail.html">
+  <dc:title>Government, Airlines Plan Color Coding For Air Travelers</dc:title>
+  <dc:description>From 'Travel Getaways' Web site. "Government-Run System Will Replace Airline-Administered 
+Program. ". Excerpts follow: WASHINGTON -- The government already has color-coded terror alerts -- now it's 
+preparing to color-code air travelers. According to The Washington Post, the government and airlines will phase 
+in a computer system next year to measure the risk posed by every passenger who boards a flight in the United States. Passengers will be assigned 
+one of three codes, based in part on their travel plans, traveling companions and the date the ticket was 
+purchased.
+  </dc:description>
+</foaf:Document>
 
 
 <!-- 	http://news.google.co.uk/news?q=jetblue 
