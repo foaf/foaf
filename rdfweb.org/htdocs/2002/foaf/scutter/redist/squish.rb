@@ -2,7 +2,7 @@
 #
 # Ruby-RDF 
 # RDF Query support
-# $Id: squish.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $
+# $Id: squish.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $
 
 ## NOTE: squish.rb bundled with scutter, but 
 ## is an external package (and W3C software), and will ultimately require a 

@@ -265,7 +265,7 @@ class Graph
 
 
   def toNtriples()
-    out = "\n# Ruby-RDF NTriple serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $ \n#\n\n"
+    out = "\n# Ruby-RDF NTriple serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n#\n\n"
     # forward pointers -- from subject+predicate to object(s)
     @fp.each_key { |key|
       s,junk, p = key.split(/ | /,3)
@@ -280,7 +280,7 @@ class Graph
 #
 def toDotGraph()
     out =""
-# "\n# Ruby-RDF GraphViz *.dot serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $ \n#\n\n"
+# "\n# Ruby-RDF GraphViz *.dot serializer $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n#\n\n"
 
 out += 'digraph G {
   size="25,25";
@@ -370,7 +370,7 @@ count=1
     # We generate SQL script based on a SHA1 dump, same as java code
     # see Node.sha1 method
     rdfsha1={}
-    out = " --- SQL-RDF dump of RDF database $Id: basicrdf.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $ \n"
+    out = " --- SQL-RDF dump of RDF database $Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $ \n"
     # sub pred obj person src asserted 
     @fp.each_key do |key|
       s,junk, p = key.split(/ | /,3)
@@ -381,7 +381,7 @@ count=1
       stem = "insert into triples values ('#{sub.sha1}', '#{pred.sha1}', "
       @fp[key].each do  |value| 
         isres = (value.is_resource)? 't':'f'
-        out += "#{stem} '#{value.sha1}','assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $','personidid:notyet','#{isres}'); \n" 
+        out += "#{stem} '#{value.sha1}','assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $','personidid:notyet','#{isres}'); \n" 
         object = "#{value}"
 	object.gsub!("'","") # zapping not ideal, but "\'" and "\\'" failed
 	object.gsub!("^\"","")
@@ -397,7 +397,7 @@ count=1
   end
 
  
-  def toSQLInserts(src='assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $')
+  def toSQLInserts(src='assertid-src-notyet:ruby-rdf:$Id: basicrdf.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $')
     # We generate SQL script based on a SHA1 dump, same as java code
     # see Node.sha1 method
     rdfsha1={}
