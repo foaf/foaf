@@ -58,6 +58,8 @@ public class Node extends ModelItem implements Serializable
         out.writeObject(arcsFrom);
         out.writeObject(arcsTo);
         out.writeBoolean(literal);
+        out.writeBoolean(showType);
+        out.writeBoolean(showId);
         out.writeObject(myList);
     }
     
@@ -73,10 +75,9 @@ public class Node extends ModelItem implements Serializable
         arcsFrom = (Vector) in.readObject();
         arcsTo = (Vector) in.readObject();
         literal = in.readBoolean();
+        showType = in.readBoolean();
+        showId = in.readBoolean();
         myList = (ArcNodeList) in.readObject();
-        
-        showType = false;
-        showId = false;
     
 	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
 	hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);

@@ -190,6 +190,10 @@
 				F660C47701732AA701000211,
 				F660C4790173300201000211,
 				F54297F30174F93501C4327A,
+				F6167DE1017AD49E01000211,
+				F6B09AE2017AFA4501000211,
+				F6167DCB0179D93301000211,
+				F6167DD9017A0A9401000211,
 				F660C47B0173870901000211,
 				02218D9AFECEFA92C02AAC07,
 				2A37F4C3FDCFA73011CA2CEA,
@@ -399,6 +403,13 @@
 				080E96DAFE201CDB7F000001,
 				080E96DBFE201CDB7F000001,
 				089C1661FE840EACC02AAC07,
+				F6167DC80179D79C01000211,
+				F6167DD0017A019901000211,
+				F6167DD2017A01BF01000211,
+				F6167DD4017A08E801000211,
+				F6167DD6017A08F301000211,
+				F6167DD8017A090601000211,
+				F6167DE0017A2C6F01000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -416,6 +427,9 @@
 				F660C47801732AA801000211,
 				F660C47A0173300201000211,
 				F54297F40174F93601C4327A,
+				F6167DCC0179D93401000211,
+				F6167DE2017AD49E01000211,
+				F6B09AE3017AFA4501000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -500,6 +514,119 @@
 //F62
 //F63
 //F64
+		F6167DC70179D79C01000211 = {
+			isa = PBXFileReference;
+			path = Arrow.tiff;
+			refType = 4;
+		};
+		F6167DC80179D79C01000211 = {
+			fileRef = F6167DC70179D79C01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DCB0179D93301000211 = {
+			isa = PBXFileReference;
+			path = RDFToolbar.java;
+			refType = 4;
+		};
+		F6167DCC0179D93401000211 = {
+			fileRef = F6167DCB0179D93301000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DCF017A019901000211 = {
+			isa = PBXFileReference;
+			path = addArc.tiff;
+			refType = 4;
+		};
+		F6167DD0017A019901000211 = {
+			fileRef = F6167DCF017A019901000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DD1017A01BF01000211 = {
+			isa = PBXFileReference;
+			path = addNode.tiff;
+			refType = 4;
+		};
+		F6167DD2017A01BF01000211 = {
+			fileRef = F6167DD1017A01BF01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DD3017A08E801000211 = {
+			isa = PBXFileReference;
+			path = showIds.tiff;
+			refType = 4;
+		};
+		F6167DD4017A08E801000211 = {
+			fileRef = F6167DD3017A08E801000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DD5017A08F301000211 = {
+			isa = PBXFileReference;
+			path = showProperties.tiff;
+			refType = 4;
+		};
+		F6167DD6017A08F301000211 = {
+			fileRef = F6167DD5017A08F301000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DD7017A090601000211 = {
+			isa = PBXFileReference;
+			path = showTypes.tiff;
+			refType = 4;
+		};
+		F6167DD8017A090601000211 = {
+			fileRef = F6167DD7017A090601000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DD9017A0A9401000211 = {
+			children = (
+				F6167DC70179D79C01000211,
+				F6167DCF017A019901000211,
+				F6167DD1017A01BF01000211,
+				F6167DD3017A08E801000211,
+				F6167DD5017A08F301000211,
+				F6167DD7017A090601000211,
+				F6167DDF017A2C6E01000211,
+			);
+			isa = PBXGroup;
+			name = Images;
+			refType = 4;
+		};
+		F6167DDF017A2C6E01000211 = {
+			isa = PBXFileReference;
+			path = delete.tiff;
+			refType = 4;
+		};
+		F6167DE0017A2C6F01000211 = {
+			fileRef = F6167DDF017A2C6E01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6167DE1017AD49E01000211 = {
+			isa = PBXFileReference;
+			path = ErrorWindowController.java;
+			refType = 4;
+		};
+		F6167DE2017AD49E01000211 = {
+			fileRef = F6167DE1017AD49E01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F660C47701732AA701000211 = {
 			isa = PBXFileReference;
 			path = SchemaWindowController.java;
@@ -587,6 +714,17 @@
 				ATTRIBUTES = (
 					Merge,
 				);
+			};
+		};
+		F6B09AE2017AFA4501000211 = {
+			isa = PBXFileReference;
+			path = ModelErrorData.java;
+			refType = 4;
+		};
+		F6B09AE3017AFA4501000211 = {
+			fileRef = F6B09AE2017AFA4501000211;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		F6E8FB6E0171D52E01000211 = {

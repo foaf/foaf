@@ -109,6 +109,14 @@ public class RDFModelView extends NSView {
             draggingConnection = false;
             rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
         }
+        else if (!addingNode)
+        {
+            if (theEvent.clickCount() == 2)
+            {
+                NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.showInfoNotification, null) );
+            }
+        }
     }
     
     public void addConnection(boolean value)

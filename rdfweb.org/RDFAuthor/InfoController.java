@@ -22,6 +22,8 @@ public class InfoController extends NSObject {
     
     static String itemChangedNotification = "org.rdfweb.RDFAuthor.itemChanged";
     
+    static String showInfoNotification = "org.rdfweb.RDFAuthor.showInfo";
+    
     ModelItem currentItem = null;
     
     RDFAuthorDocument currentDocument = null;
@@ -36,8 +38,14 @@ public class InfoController extends NSObject {
         NSSelector windowSelector = new NSSelector("currentWindowChanged", 
                 new Class[] {NSNotification.class} );
         
+        NSSelector infoSelector = new NSSelector("showInfo", 
+                new Class[] {NSNotification.class} );
+        
         NSNotificationCenter.defaultCenter().addObserver(
             this, itemSelector, itemChangedNotification, null);
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            this, infoSelector, showInfoNotification, null);
         
         NSNotificationCenter.defaultCenter().addObserver(
             this, windowSelector, NSWindow.WindowDidBecomeMainNotification, null);
@@ -174,7 +182,8 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void showInfoWindow(Object sender) {
+    public void showInfoWindow(Object sender) 
+    {
         if (infoWindow.isVisible())
         {
             infoWindow.orderOut(this);
@@ -185,6 +194,11 @@ public class InfoController extends NSObject {
         }
     }
     
+    public void showInfo(NSNotification notification)
+    {
+        infoWindow.makeKeyAndOrderFront(this);
+    }
+        
     public void showNothing()
     {
         literalButton.setState(NSCell.OffState);

@@ -16,8 +16,8 @@
             OUTLETS = {
                 addArcButton = id; 
                 addNodeButton = id; 
-                descriptionTextField = id; 
                 rdfModelView = id; 
+                textDescriptionField = id; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 

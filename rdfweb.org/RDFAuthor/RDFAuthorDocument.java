@@ -7,30 +7,46 @@ import java.io.*;
 
 public class RDFAuthorDocument extends NSDocument {
     
-    NSButton addArcButton;
-
-    NSButton addNodeButton;
-
-    NSTextField descriptionTextField;
+    String FileFormatVersion = "RDFAuthor File Format Version 0.1";
+    
+    NSTextField textDescriptionField;
 
     RDFModelView rdfModelView;
+    
+    RDFToolbar rdfToolbar;
+    
+    NSWindow window;
     
     ArcNodeList rdfModel;
     boolean addingNode;
     boolean addingConnection;
-    boolean showTypes = false;
-    boolean showIds = false;
-    boolean showProperties = false;
+    boolean showTypes;
+    boolean showIds;
+    boolean showProperties;
     
     public RDFAuthorDocument() {
         super();
         rdfModel = new ArcNodeList(this);
+        showTypes = false;
+        showIds = false;
+        showProperties = false;
     }
     
     public RDFAuthorDocument(String fileName, String fileType) {
         super(fileName, fileType);
     }
-        
+    
+    public void printDocumentUsingPrintPanel(boolean flag)
+    {
+        NSPrintOperation printOperation = 
+            NSPrintOperation.printOperationWithView((NSView) rdfModelView);
+        printOperation.runModalOperation(window, null, null, null);
+    }
+    
+    public void printDocument(Object sender) {
+        printDocumentUsingPrintPanel(true);
+    }
+    
     public NSData dataRepresentationOfType(String aType) {
         // Insert code here to create and return the data for your document.
         System.out.println("Wants to save as " + aType);
@@ -39,18 +55,22 @@ public class RDFAuthorDocument extends NSDocument {
         {
             try
             {
-            //NSData savedData = NSArchiver.archivedDataWithRootObject(rdfModel);
+                //NSData savedData = NSArchiver.archivedDataWithRootObject(rdfModel);
             
-            // Hmm - I had problems with NSArchiver and java serialization
-            // So I just used java serialisation
+                // Hmm - I had problems with NSArchiver and java serialization
+                // So I just used java serialisation
             
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            ObjectOutputStream s = new ObjectOutputStream(out);
-            s.writeObject(rdfModel);
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                ObjectOutputStream s = new ObjectOutputStream(out);
+                s.writeObject(FileFormatVersion);
+                s.writeBoolean(showTypes);
+                s.writeBoolean(showIds);
+                s.writeBoolean(showProperties);
+                s.writeObject(rdfModel);
+                
+                NSData savedData = new NSData(out.toByteArray());
 
-            NSData savedData = new NSData(out.toByteArray());
-
-            return savedData;
+                return savedData;
             }
             catch (Exception e)
             {
@@ -93,8 +113,21 @@ public class RDFAuthorDocument extends NSDocument {
                 ByteArrayInputStream in = 
                     new ByteArrayInputStream( data.bytes(0, data.length()) );
                 ObjectInputStream s = new ObjectInputStream(in);
+                String formatVersion = (String) s.readObject();
+                if (!formatVersion.equals(FileFormatVersion))
+                {
+                    NSAlertPanel alert = new NSAlertPanel();
+                    alert.runAlert("Incompatible File Format",
+                        "This version requires " + FileFormatVersion + ", but this file is in " + formatVersion
+                        + ".\nBlame the author." ,
+                        null, null, null);
+                    return false;
+                }
+                showTypes = s.readBoolean();
+                showIds = s.readBoolean();
+                showProperties = s.readBoolean();                
                 rdfModel = (ArcNodeList) s.readObject();
-            
+
                 rdfModel.setController(this);
             
                 return true;
@@ -119,6 +152,21 @@ public class RDFAuthorDocument extends NSDocument {
     public void windowControllerDidLoadNib(NSWindowController  aController) {
         super.windowControllerDidLoadNib(aController);
         // Add any code here that need to be executed once the windowController has loaded the document's window.
+        NSToolbar toolbar = new NSToolbar(RDFToolbar.identifier);
+	
+	// Set up toolbar properties: Allow customization, give a default display mode, and remember state in user defaults.
+	toolbar.setAllowsUserCustomization(true);
+	toolbar.setAutosavesConfiguration(true);
+	toolbar.setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
+	
+        rdfToolbar = new RDFToolbar(this);
+        
+	toolbar.setDelegate(rdfToolbar);
+	
+        window = aController.window();
+        
+	// Attach the toolbar to the document window.
+	window.setToolbar(toolbar);
     }
     
     public void modelChanged()
@@ -142,70 +190,60 @@ public class RDFAuthorDocument extends NSDocument {
             new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    public void showTypes(NSButton sender) 
+    public void showTypes()
     {
-        showTypes = (sender.state() == NSCell.OnState);
+        showTypes = !showTypes;
         rdfModel.showTypes(showTypes);
     }
 
-    public void showName(NSButton sender) 
+    public void showIds() 
     {
-        showIds = (sender.state() == NSCell.OnState);
+        showIds = !showIds;
         rdfModel.showIds(showIds);
     }
 
-    public void showProperties(NSButton sender) 
+    public void showProperties() 
     {
-        showProperties = (sender.state() == NSCell.OnState);
+        showProperties = !showProperties;
         rdfModel.showProperties(showProperties);
     }
 
-    public void addNode(Object sender) 
+    public void addNodes(boolean addThem) 
     {
-        if (addingNode)
+        if (addThem)
         {
-            addingNode = false;
-            descriptionTextField.setStringValue("");
-            rdfModelView.addNode(false);
-        }
-        else
-        {
-            if (addArcButton.state() == NSCell.OnState)
-            {
-                addArcButton.setState(NSCell.OffState);
-                addingConnection = false;
-                rdfModelView.addConnection(false);
-            }
-            descriptionTextField.setStringValue("Click to place a new node");
+            addingConnection = false;
+            rdfModelView.addConnection(false);
+            textDescriptionField.setStringValue("Click to place a new node");
             addingNode = true;
             rdfModelView.addNode(true);
         }
+        else
+        {
+            addingNode = false;
+            rdfModelView.addNode(false);
+            textDescriptionField.setStringValue("");
+        }
     }
 
-    public void addArc(Object sender) 
+    public void addArcs(boolean addThem)
     {
-        if (addingConnection)
+        if (addThem)
         {
-            addingConnection = false;
-            descriptionTextField.setStringValue("");
-            rdfModelView.addConnection(false);
+            rdfModelView.addConnection(true);
+            rdfModelView.addNode(false);
+            addingConnection = true;
+            textDescriptionField.setStringValue("Drag between two nodes to connect");
         }
         else
         {
-            rdfModelView.addConnection(true);
-            addingConnection = true;
-            rdfModelView.addConnection(true);
-            if (addNodeButton.state() == NSCell.OnState)
-            {
-                addNodeButton.setState(NSCell.OffState);
-                addingNode = false;
-                rdfModelView.addNode(false);
-            }
-            descriptionTextField.setStringValue("Drag between two nodes to connect");
+            addingConnection = false;
+            rdfModelView.addConnection(false);
+            textDescriptionField.setStringValue("");
         }
     }
 
-    public void deleteCurrentItem(Object sender)
+    public void deleteCurrentItem()
     {
         rdfModel.deleteCurrentObject();
     }
@@ -236,6 +274,11 @@ public class RDFAuthorDocument extends NSDocument {
         {
             rdfModelView.setNeedsDisplay(true); // need this to get rid of drag line
         }
+    }
+    
+    public void setCurrentObject(ModelItem item)
+    {
+        rdfModel.setCurrentObject(item);
     }
     
     public void setCurrentObjectAtPoint(NSPoint point)
@@ -291,5 +334,16 @@ public class RDFAuthorDocument extends NSDocument {
     public void drawModel()
     {
         rdfModel.drawModel();
+    }
+    
+    public void doCheckModel()
+    {
+        NSNotificationCenter.defaultCenter().postNotification(
+            new NSNotification(ErrorWindowController.checkModelNotification, window) );
+    }
+    
+    public void checkModel(ModelErrorData errorData)
+    {
+        rdfModel.checkModel(errorData);
     }
 }

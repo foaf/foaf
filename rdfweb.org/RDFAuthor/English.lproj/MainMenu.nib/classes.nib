@@ -1,5 +1,12 @@
 {
     IBClasses = (
+        {
+            ACTIONS = {showErrorWindow = id; }; 
+            CLASS = ErrorWindowController; 
+            LANGUAGE = Java; 
+            OUTLETS = {errorTable = id; errorWindow = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
