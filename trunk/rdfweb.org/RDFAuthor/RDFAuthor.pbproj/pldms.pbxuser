@@ -1,0 +1,120 @@
+// !$*UTF8*$!
+{
+	030F85300016749011CA2CE8 = {
+		activeArgIndex = 2147483647;
+		argumentStrings = (
+		);
+		debuggerPlugin = JavaDebugging;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		isa = PBXExecutable;
+		shlibInfoDictList = (
+		);
+		sourceDirectories = (
+		);
+	};
+	2A37F4A9FDCFA73011CA2CEA = {
+		activeBuildStyle = 4A9504D6FFE6A4CB11CA0CBA;
+		activeTarget = 2A37F4C6FDCFA73011CA2CEA;
+		addToTargets = (
+			2A37F4C6FDCFA73011CA2CEA,
+		);
+		perUserDictionary = {
+			PBXWorkspaceConfiguration = {
+				ContentSize = "{974, 654}";
+				LeftSlideOut = {
+					ActiveTab = 0;
+					Frame = "{{0, 23}, {974, 631}}";
+					Split0 = {
+						ActiveTab = 1;
+						Frame = "{{334, 0}, {640, 631}}";
+						Split0 = {
+							Frame = "{{0, 163}, {640, 468}}";
+						};
+						SplitCount = 1;
+						Tab0 = {
+							Debugger = {
+								Frame = "{{0, 0}, {785, 422}}";
+								Split0 = {
+									Frame = "{{0, 120}, {785, 302}}";
+									Split0 = {
+										Frame = "{{0, 0}, {380, 302}}";
+									};
+									Split1 = {
+										Frame = "{{389, 0}, {396, 302}}";
+									};
+									SplitCount = 2;
+								};
+								SplitCount = 1;
+								Tab0 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								Tab1 = {
+									Frame = "{{0, 0}, {100, 50}}";
+								};
+								TabCount = 2;
+							};
+							Frame = "{{0, 0}, {785, 422}}";
+							LauncherConfigVersion = 4;
+						};
+						Tab1 = {
+							Frame = "{{0, 0}, {640, 139}}";
+							LauncherConfigVersion = 3;
+							Runner = {
+								Frame = "{{0, 0}, {640, 139}}";
+							};
+						};
+						Tab2 = {
+							BuildMessageFrame = "{{0, 0}, {642, 138}}";
+							BuildTranscriptFrame = "{{0, 147}, {642, 146}}";
+							Frame = "{{0, 0}, {640, 291}}";
+						};
+						Tab3 = {
+							Frame = "{{0, 0}, {785, 295}}";
+						};
+						TabCount = 4;
+					};
+					SplitCount = 1;
+					Tab0 = {
+						Frame = "{{0, 0}, {310, 631}}";
+					};
+					Tab1 = {
+						ClassesFrame = "{{0, 0}, {202, 56}}";
+						Frame = "{{0, 0}, {200, 100}}";
+						MembersFrame = "{{0, 65}, {202, 35}}";
+						OptionsSetName = "Hierarchy, all classes";
+					};
+					Tab2 = {
+						Frame = "{{0, 0}, {200, 100}}";
+					};
+					Tab3 = {
+						Frame = "{{0, 0}, {200, 631}}";
+						Split0 = {
+							Frame = "{{0, 0}, {200, 307}}";
+						};
+						Split1 = {
+							Frame = "{{0, 316}, {200, 315}}";
+						};
+						SplitCount = 2;
+					};
+					Tab4 = {
+						Frame = "{{0, 0}, {250, 100}}";
+					};
+					TabCount = 5;
+				};
+			};
+		};
+		wantsIndex = 1;
+		wantsSCM = -1;
+	};
+	2A37F4C6FDCFA73011CA2CEA = {
+		activeExec = 0;
+		targetExecs = {
+			macosx = (
+				030F85300016749011CA2CE8,
+			);
+		};
+	};
+}
