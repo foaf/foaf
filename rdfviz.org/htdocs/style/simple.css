@@ -1,0 +1,13 @@
+BODY {
+  margin: 2em 1em 2em 50px;
+  font-family: sans-serif;
+  color: black;
+}
+
+H1, H2, H3, H4, H5 {
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: #880000; 
+}
+

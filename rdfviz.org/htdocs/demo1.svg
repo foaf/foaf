@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<svg width="1738pt" height="265pt" xmlns="http://www.w3.org/2000/svg">
+<ellipse  cx="40" cy="123" rx="39" ry="18" style="fill:none;stroke:black" />
+<text x="9" y="126" style="font-family:Times;font-size:11.00" >wordnet::Web</text>
+<ellipse  cx="1706" cy="183" rx="31" ry="18" style="fill:none;stroke:black" />
+<text x="1682" y="186" style="font-family:Times;font-size:11.00" >rdfs::Class</text>
+<g  style="fill:none;stroke:black"><path d="M67 110C82 102 98 94 98 94 135 82 172 70 210 66 321 56 432 51 542 50 542 50 542 50 1531 50 1585 51 1653 121 1686 159"/></g>
+<polygon  style="fill:black" points="1685,161 1693,167 1688,158 1685,161 "/>
+<text x="1176" y="46" style="font-family:Times;font-size:12.00" >rdf::type</text>
+<text x="513" y="99" style="font-family:Times;font-size:11.00" > \'\'Web [ 1 ]\'\'</text>
+<g  style="fill:none;stroke:black"><path d="M79 121C172 116 402 104 499 98"/></g>
+<polygon  style="fill:black" points="497,100 507,98 497,95 497,100 "/>
+<text x="121" y="111" style="font-family:Times;font-size:12.00" >rdfs::label</text>
+<text x="216" y="153" style="font-family:Times;font-size:11.00" > \'\'an intricate network suggesting something that was formed by weaving or interweaving; \'the trees cast a delicate web of shadows over the lawn\'\'\'</text>
+<g  style="fill:none;stroke:black"><path d="M70 135C80 138 90 141 98 141 128 143 164 144 202 145"/></g>
+<polygon  style="fill:black" points="200,147 210,145 200,142 200,147 "/>
+<text x="106" y="137" style="font-family:Times;font-size:12.00" >rdfs::description</text>
+<ellipse  cx="542" cy="204" rx="44" ry="18" style="fill:none;stroke:black" />
+<text x="506" y="207" style="font-family:Times;font-size:11.00" >wordnet::Object</text>
+<g  style="fill:none;stroke:black"><path d="M58 139C70 149 86 161 98 165 203 200 396 205 490 205"/></g>
+<polygon  style="fill:black" points="488,207 498,205 488,202 488,207 "/>
+<text x="105" y="161" style="font-family:Times;font-size:12.00" >rdfs::subClassOf</text>
+<g  style="fill:none;stroke:black"><path d="M586 202C656 199 794 191 874 180 940 172 1002 138 1068 137 1068 137 1068 137 1531 137 1571 138 1633 157 1671 170"/></g>
+<polygon  style="fill:black" points="1669,172 1679,173 1671,167 1669,172 "/>
+<text x="1284" y="133" style="font-family:Times;font-size:12.00" >rdf::type</text>
+<ellipse  cx="1068" cy="204" rx="64" ry="18" style="fill:none;stroke:black" />
+<text x="1012" y="207" style="font-family:Times;font-size:11.00" >wordnet::Physical_object</text>
+<g  style="fill:none;stroke:black"><path d="M586 204C676 204 882 204 994 204"/></g>
+<polygon  style="fill:black" points="994,206 1004,204 994,201 994,206 "/>
+<text x="899" y="200" style="font-family:Times;font-size:12.00" >rdfs::subClassOf</text>
+<g  style="fill:none;stroke:black"><path d="M1122 194C1132 192 1142 191 1150 191 1298 186 1565 184 1665 183"/></g>
+<polygon  style="fill:black" points="1664,185 1674,183 1664,180 1664,185 "/>
+<text x="1392" y="182" style="font-family:Times;font-size:12.00" >rdf::type</text>
+<ellipse  cx="1305" cy="229" rx="42" ry="18" style="fill:none;stroke:black" />
+<text x="1270" y="232" style="font-family:Times;font-size:11.00" >wordnet::Entity</text>
+<g  style="fill:none;stroke:black"><path d="M1128 210C1167 215 1219 220 1256 224"/></g>
+<polygon  style="fill:black" points="1254,226 1264,225 1254,221 1254,226 "/>
+<text x="1157" y="208" style="font-family:Times;font-size:12.00" >rdfs::subClassOf</text>
+<g  style="fill:none;stroke:black"><path d="M1347 227C1408 224 1519 219 1584 214 1607 212 1643 202 1669 195"/></g>
+<polygon  style="fill:black" points="1669,198 1678,192 1668,193 1669,198 "/>
+<text x="1510" y="210" style="font-family:Times;font-size:12.00" >rdf::type</text>
+<ellipse  cx="1531" cy="283" rx="53" ry="18" style="fill:none;stroke:black" />
+<text x="1486" y="286" style="font-family:Times;font-size:11.00" >wordnet::Something</text>
+<g  style="fill:none;stroke:black"><path d="M1330 244C1342 250 1356 257 1366 260 1395 267 1438 272 1473 276"/></g>
+<polygon  style="fill:black" points="1471,278 1481,277 1471,273 1471,278 "/>
+<text x="1373" y="256" style="font-family:Times;font-size:12.00" >rdfs::subClassOf</text>
+<g  style="fill:none;stroke:black"><path d="M1583 279C1609 276 1639 270 1656 260 1672 251 1686 228 1694 209"/></g>
+<polygon  style="fill:black" points="1696,211 1698,201 1691,209 1696,211 "/>
+<text x="1608" y="256" style="font-family:Times;font-size:12.00" >rdf::type</text>
+</svg>
