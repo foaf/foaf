@@ -44,6 +44,7 @@
     <foaf:Person>
       <foaf:name>Wendy M. Grossman</foaf:name> 
       <foaf:homepage rdf:resource="http://www.pelicancrossing.net/"/> <!-- 99% sure this is the right Wendy -->
+      <foaf:icqChatID>1555833</foaf:icqChatID><!-- from http://www.honk.co.uk/fleetstreet/members.htm -->
     </foaf:Person>
   </foaf:maker>
   <foaf:topic rdf:nodeID="jetblue"/>
