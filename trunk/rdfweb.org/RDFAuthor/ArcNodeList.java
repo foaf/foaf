@@ -90,7 +90,7 @@ public class ArcNodeList
         controller.modelChanged();
         if (item == currentObject)
         {
-            controller.currentObjectChanged();
+            controller.currentObjectChanged(); // for the info wndow
         }
     }
     
