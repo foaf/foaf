@@ -24,7 +24,7 @@ VS = 'http://www.w3.org/2003/06/sw-vocab-status/ns#'
 attr_accessor :spec, :termlist, :ranges, :domains
 
 def initialize 
-  STDERR.puts "Vocabulary class starting up..."
+  # STDERR.puts "Vocabulary class starting up..."
   ranges={}
   domains={}
 end
@@ -95,6 +95,17 @@ def htmlDocInfo(t, termdir='../doc/', doc='')
   else
     STDERR.puts "No detailed documentation for term '#{t}'"
   end
+
+  # CDATA handling no workie! help! not using this for now...
+  doc.gsub!(/(.*)<\!\[CDATA\[([^[]+)\]\]>(.*)/) {  
+    x=$2
+    x=x.gsub(/&/,'&amp;');
+    x=x.gsub(/</,'&lt;');
+    x=x.gsub(/>/,'&gt;');
+    STDERR.puts "\nCDATA fixed: #{x} \n\n"
+    return ("#{$1}#{x}#{$3}")
+  }
+#  STDERR.puts "\nDOC fixed: #{doc} \n\n"
   return doc
 end
 
@@ -102,9 +113,10 @@ end
 # spec is an RDF graph, and doc is string we're appending to.
 #
 def docTerms(category, list, spec, doc='')
+nspre='foaf' # hardcoded for now
 list.each do |t|
   term = Node.getResource(FOAF+t, spec)
-  doc += "<div class=\"specterm\">\n<h3>#{category}: <a  name=\"term_#{t}\">foaf:#{t}</h3>\n"
+  doc += "<div class=\"specterm\" id=\"term_#{t}\">\n<h3>#{category}: #{nspre}:#{t}</h3>\n"
   # almost vocab neutral. todo: 'foaf' shouldn't be hardcoded.
   l= term.rdfs_label.to_s
   c= term.rdfs_comment.to_s
@@ -117,6 +129,7 @@ list.each do |t|
   doc += rdfsInfo(term) if category=='Property'
   doc += "</table>\n"
   doc += htmlDocInfo(t)
+  doc += "<p>[<a style=\"float: right; font-size: small;\" href=\"#glance\">back to top</a>]</p>\n"
   doc += "</div>\n\n"
 end
 return doc
@@ -184,7 +197,7 @@ azlist += "</div>\n"
 
 ## Full details in HTML
 
-termlist = "<h4>Classes and Properties (full detail)</h4>"
+termlist = "<h3>Classes and Properties (full detail)</h3>"
 termlist += docTerms('Property',plist,spec)
 termlist += docTerms('Class',clist,spec)
 
@@ -206,7 +219,7 @@ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w
 EOT
 
 nslist.gsub!(/ /,"\n  ")
-pretty.gsub!(/rdf:RDF/, "rdf:RDF "+nslist)
+pretty.gsub!(/&lt;rdf:RDF/, "\n&lt;rdf:RDF "+nslist)
 
 template.gsub!(/<!--AZLIST-->/,azlist)
 template.gsub!(/<!--TERMLIST-->/,termlist)
