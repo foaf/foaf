@@ -165,7 +165,14 @@ public class RDFAuthorDocument extends NSDocument {
         window = aController.window();
         
 	// Attach the toolbar to the document window.
-	window.setToolbar(rdfToolbar);
+	NSToolbar theToolbar = new NSToolbar(RDFToolbar.identifier);
+        theToolbar.setAllowsUserCustomization(true);
+	theToolbar.setAutosavesConfiguration(true);
+	theToolbar.setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
+        
+        theToolbar.setDelegate((NSObject) rdfToolbar);
+        
+        window.setToolbar(theToolbar);
         
         // This is for exporting
         exportMappings = new Hashtable();
@@ -179,20 +186,13 @@ public class RDFAuthorDocument extends NSDocument {
     {
         if (showPreview)
         {
-            String rdfData = rdfModel.exportAsRDF(type);
-            if (rdfData == null)
+            boolean success = createPreviewText(type);
+            if (!success)
             {
-                NSAlertPanel alert = new NSAlertPanel();
-                alert.runCriticalAlert("RDF/XML Serialisation Failed",
-                    "I couldn't convert this to RDF/XML. Try using 'Check Model' for possible problems.",
-                    null, null, null);
                 return false;
             }
-            
             NSRect rect = rdfModelView.frame();
             previewView.setFrame(rect);
-            previewTextView.setString(rdfData);
-
             window.contentView().replaceSubview(rdfModelView, previewView);
             return true;
         }
@@ -204,7 +204,24 @@ public class RDFAuthorDocument extends NSDocument {
             return true;
         }
     }
-            
+    
+    public boolean createPreviewText(String type)
+    {
+        String rdfData = rdfModel.exportAsRDF(type);
+        if (rdfData == null)
+        {
+            NSAlertPanel alert = new NSAlertPanel();
+            alert.runCriticalAlert("Serialisation Failed",
+                "I couldn't convert this to '" + type + 
+                "'. Try using 'Check Model' for possible problems.\n(Note: N3 Doesn't work currently)",
+                null, null, null);
+            previewTextView.setString("");
+            return false;
+        }
+        
+        previewTextView.setString(rdfData);
+        return true;
+    }
     
     public void modelChanged()
     {
@@ -317,6 +334,14 @@ public class RDFAuthorDocument extends NSDocument {
         if (item != null)
         {
             rdfModel.deleteObject(item);
+        }
+    }
+    
+    public void deleteCurrentObject()
+    {
+        if (rdfModel.currentObject() != null)
+        {
+            rdfModel.deleteObject(rdfModel.currentObject());
         }
     }
     

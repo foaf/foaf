@@ -6,6 +6,8 @@ import com.apple.cocoa.application.*;
 import java.net.URL;
 import java.net.MalformedURLException;
 
+import com.hp.hpl.mesa.rdf.jena.common.*;
+
 public class InfoController extends NSObject {
 
     NSPanel infoWindow;
@@ -199,13 +201,10 @@ public class InfoController extends NSObject {
         {
             if (checkUrl(property))
             {
-                int sep = property.lastIndexOf("/");
-                int hash = property.lastIndexOf("#");
+                int sep = Util.splitNamespace(property);
                 
-                sep = (hash > sep)?hash:sep;
-                
-                String namespace = property.substring(0, sep+1);
-                String name = property.substring(sep+1);
+                String namespace = property.substring(0, sep);
+                String name = property.substring(sep);
                 ((Arc) currentItem).setProperty(namespace, name);
             }
         }
@@ -228,10 +227,10 @@ public class InfoController extends NSObject {
         }
         else
         {
-            if (checkUrl(id))
-            {
+            //if (checkUrl(id)) // Removed check on this
+            //{
                 ((Node) currentItem).setId(id);
-            }
+            //}
         }
         
         if (type.equals(""))
@@ -242,13 +241,9 @@ public class InfoController extends NSObject {
         {
             if (checkUrl(type))
             {
-                int sep = type.lastIndexOf("/");
-                int hash = type.lastIndexOf("#");
-                
-                sep = (hash > sep)?hash:sep;
-                
-                String namespace = type.substring(0, sep+1);
-                String name = type.substring(sep+1);
+                int sep = Util.splitNamespace(type);
+                String namespace = type.substring(0, sep);
+                String name = type.substring(sep);
                 ((Node) currentItem).setType(namespace, name);
             }
         }

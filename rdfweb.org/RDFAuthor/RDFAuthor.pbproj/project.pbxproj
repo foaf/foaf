@@ -194,6 +194,7 @@
 				02218D9AFECEFA92C02AAC07,
 				2A37F4C3FDCFA73011CA2CEA,
 				19C28FB0FE9D524F11CA2CBB,
+				F6AC16230188448F01000211,
 			);
 			isa = PBXGroup;
 			name = RDFAuthor;
@@ -454,6 +455,7 @@
 				F68396760181CC1601000211,
 				F68396780181CC3E01000211,
 				F68C94950181F1D101000211,
+				F6AC16240188448F01000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -493,7 +495,6 @@
 				F660C4800173870901000211,
 				F660C4810173870901000211,
 				F660C4820173870901000211,
-				F660C4830173870901000211,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -693,7 +694,6 @@
 				F660C47C0173870901000211,
 				F660C47D0173870901000211,
 				F660C47E0173870901000211,
-				F660C47F0173870901000211,
 			);
 			isa = PBXGroup;
 			name = Jena;
@@ -712,11 +712,6 @@
 		F660C47E0173870901000211 = {
 			isa = PBXFileReference;
 			path = jena.jar;
-			refType = 4;
-		};
-		F660C47F0173870901000211 = {
-			isa = PBXFileReference;
-			path = sax2.jar;
 			refType = 4;
 		};
 		F660C4800173870901000211 = {
@@ -739,15 +734,6 @@
 		};
 		F660C4820173870901000211 = {
 			fileRef = F660C47E0173870901000211;
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					Merge,
-				);
-			};
-		};
-		F660C4830173870901000211 = {
-			fileRef = F660C47F0173870901000211;
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
@@ -882,6 +868,17 @@
 		};
 		F692E0F9017CC9FF01000211 = {
 			fileRef = F692E0F2017CC9FF01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6AC16230188448F01000211 = {
+			isa = PBXFileReference;
+			path = Changelog;
+			refType = 4;
+		};
+		F6AC16240188448F01000211 = {
+			fileRef = F6AC16230188448F01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};

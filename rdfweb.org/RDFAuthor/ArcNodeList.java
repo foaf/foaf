@@ -57,12 +57,13 @@ public class ArcNodeList extends java.lang.Object implements Serializable
 
     public void deleteObject(ModelItem item)
     {
-        array.removeElement(item);
-        item.delete();
         if (item == currentObject)
         {
-            setCurrentObject(null);
+            selectPreviousObject();
         }
+        
+        array.removeElement(item);
+        item.delete();
         controller.modelChanged();
     }
 
@@ -273,6 +274,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         }
         catch (Exception error)
         {
+            System.err.println("Error serialising: " + error);
             return null;
         }
         
@@ -298,11 +300,12 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 }
                 else
                 {
-                    if ((node.id() != null) && !isValidUrl(node.id()))
-                    {
-                        errorData.addError(item, 
-                            "Id does not have a valid URI. Ids need to be either empty (anonymous), or URIs");
-                    }
+                    // Removed this check - let in everything
+                    //if ((node.id() != null) && !isValidUrl(node.id()))
+                    //{
+                    //    errorData.addError(item, 
+                    //        "Id does not have a valid URI. Ids need to be either empty (anonymous), or URIs");
+                    //}
                     
                     if ((node.typeNamespace() != null) && !isValidUrl(node.typeNamespace() + node.typeName()))
                     {
