@@ -18,7 +18,7 @@ CREATE TABLE "triples" (
 --
 
 CREATE TABLE "resources" (
-	"key" integer,
+	"keyhash" integer,
 	"value" character varying
 );
 
