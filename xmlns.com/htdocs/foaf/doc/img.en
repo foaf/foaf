@@ -7,12 +7,14 @@ appear on someone's homepage, rather than happen to appear somewhere in their ph
 </p>
 
 <p>
-Unlike <code>foaf:depiction</code> (and its inverse, <code>foaf:depicts</code>), the 
-<code>foaf:img</code> property is only used with representations of people (ie. 
-instances of <code>foaf:Person</code>). So you can't use it to find pictures of cats, dogs 
-etc. The basic idea is to have a term whose use is more restricted than 
-<code>foaf:depiction</code> so we can have a useful way of picking out a reasonable image 
-to represent someone.
+Unlike the more general <code>foaf:depiction</code> property (and its inverse, 
+<code>foaf:depicts</code>), the <code>foaf:img</code> property is only used with 
+representations of people (ie. instances of <code>foaf:Person</code>). So you can't use 
+it to find pictures of cats, dogs etc. The basic idea is to have a term whose use is more 
+restricted than <code>foaf:depiction</code> so we can have a useful way of picking out a 
+reasonable image to represent someone. FOAF defines <code>foaf:img</code> as a 
+sub-property of <code>foaf:depiction</code>, which means that the latter relationship is 
+implied whenever two things are related by the former.
 </p>
 
 <p>
