@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.11 2002-12-10 19:30:42 danbri Exp $
+# $Id: ayf.rb,v 1.12 2002-12-10 20:02:20 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -33,65 +33,54 @@ def go(uri)
   contact="http://www.w3.org/2000/10/swap/pim/contact#" 
   air= 'http://www.megginson.com/exp/ns/airports#'
 
-  ayf = SimpleScutter.new  
-  ayf.left.push uri
+  ayf = SimpleScutter.new uri
   pagecount=0
 
   # a code block to output basic info about each RDF page encountered
   # 
-  page_summary = Proc.new do |uri,page|  
-    puts "RDFDOC: count='#{pagecount}': uri:#{uri} gave RDF graph #{page} \
+  page_summary = Proc.new do |crawler,page|  
+    puts "RDFDOC: count='#{pagecount}': uri:#{crawler.uri} gave RDF graph #{page} \
 	with #{page.size} triples\n" 
     pagecount=pagecount+1
   end
 
   # a code block to see if some page provides nearestAirport information:  
   #
-  airports = Proc.new do |uri,page|  
+  airports = Proc.new do |crawler,page| 
     rs = page.ask Statement.new(nil, air+"iata", nil)
     rs.objects.each do |a|
       a.graph=page
-      puts "AIRPORT: #{a} (found an airport code)" if (a.to_s =~ /\S/) 
+      puts "AIRPORT: #{a} (found an airport code in #{crawler.uri})" if (a.to_s =~ /\S/) 
     end					# the 'if' is fix for parser bug
   end
 
 
-  mugshots = Proc.new do |uri,page|
-
-   # fixme:
-   ## todo, we need the Scutter object, not a uri.
-   # so uri should be a field of the scutter state instead.
-   # fix the other handlers too as this is an interface issue
-
+  mugshots = Proc.new do |crawler,page|
     images=[]
     img = page.ask Statement.new(nil,  foaf+'img', nil)
     img.objects.each {|a| images.push a.to_s }
-
     img = page.ask Statement.new(nil,  foaf+'depiction',nil)
     img.objects.each {|a| images.push a.to_s }
-
+		    # todo: store this state locally instead of inside crawler
     images.each do |pic|
       next if (!pic =~ /\S/) #bug in Liber RDF parser.
-      if seenpic[pic]==0  ### how to do this as a Proc? fixme
-        puts "!!! <img src='#{pic}' width='128' height='128' />" 
-        puts "!!! <!-- from #{uri} -->\n\n"
+      if crawler.seenpic[pic]==0  ### how to do this as a Proc? fixme
+        crawler.out += "<img src='#{pic}' width='128' height='128' />" 
+        crawler.out += "<!-- linked at: #{crawler.uri} -->\n\n"
       end
-      seenpic[pic]=seenpic[pic]+1
+      crawler.seenpic[pic]=crawler.seenpic[pic]+1
     end
-
-  end  ######## end block
-
-
+  end
 
       
-  loopstats = Proc.new do |uri,s|
-    puts "INIT: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{uri}"
+  loopstats = Proc.new do |s|
+    puts "INIT: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{s.uri}"
   end
 
   error_logger = Proc.new {|e| puts "ERROR: #{e}" }
 
   # register some handlers:
-  ayf.pagehandlers.push page_summary, airports ### , mugshots
+  ayf.pagehandlers.push page_summary, airports, mugshots
   ayf.inithandlers.push loopstats
   ayf.errorhandlers.push error_logger 
 
@@ -108,22 +97,28 @@ end
 class SimpleScutter
 
   attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, \
-	:out,	:outfile, :left, :pagehandlers, :inithandlers, :errorhandlers
+	:uri, :out, :outfile, :left, :pagehandlers, :inithandlers, :errorhandlers
 
 
   # Set up state needed for each crawler
   # 
-  def initialize
+  def initialize(start_uri='')
+
+    @left=[]
+    @uri=start_uri 			# todo: should allow for a list?
+    if uri != ''
+      puts "INITIALISED with uri=#{uri}" 
+      @left.push uri
+    end
 
     @debug=true
 
     @pagehandlers=[]
     @inithandlers=[]
     @errorhandlers=[]
-
+  
     @seen=Hash.new(0) 		# counter for whether a rdf uri has been seen
     @seealso=Hash.new(0) # counter
-    @left=[]
 
     @seenpic=Hash.new(0)	# counter for whether a pic been seen
 
@@ -153,7 +148,7 @@ class SimpleScutter
       # call initialization handlers 
       #
       @inithandlers.each do |handler|
-        handler.call(uri,self) 
+        handler.call(self) 
       end
 
      
@@ -206,27 +201,27 @@ class SimpleScutter
     # (could do all this via handlers/blocks?)
 
 
-    foaf='http://xmlns.com/foaf/0.1/'
-    images=[]
+#    foaf='http://xmlns.com/foaf/0.1/'
+#    images=[]
 
 
 
     ##
     # code to gather some images #
-    img = page.ask Statement.new(nil,  foaf+'img', nil)
-    img.objects.each {|a| images.push a.to_s }
+#    img = page.ask Statement.new(nil,  foaf+'img', nil)
+#    img.objects.each {|a| images.push a.to_s }
 
-    img = page.ask Statement.new(nil,  foaf+'depiction',nil)
-    img.objects.each {|a| images.push a.to_s }
+#    img = page.ask Statement.new(nil,  foaf+'depiction',nil)
+#    img.objects.each {|a| images.push a.to_s }
 
-    images.each do |pic|
-      return if (!pic =~ /\S/) #bug in Liber RDF parser.
-      if seenpic[pic]==0 
-        @out += "<img src='#{pic}' width='128' height='128' />" 
-        @out += "<!-- from #{uri} -->\n\n"
-      end
-      seenpic[pic]=seenpic[pic]+1
-    end
+#    images.each do |pic|
+#      return if (!pic =~ /\S/) #bug in Liber RDF parser.
+#      if seenpic[pic]==0 
+#        @out += "<img src='#{pic}' width='128' height='128' />" 
+#        @out += "<!-- from #{uri} -->\n\n"
+#      end
+#      seenpic[pic]=seenpic[pic]+1
+#    end
 
     ######## end block
 
@@ -266,7 +261,7 @@ class SimpleScutter
     # Call the pagehandlers (if there was one)
 
     pagehandlers.each do |handler|
-      handler.call(uri,page)
+      handler.call(self,page)
     end
  
   end # big loop
@@ -332,7 +327,7 @@ end
     begin 
       models = SimpleScutter.parse(fn, base)
     rescue
-      puts "RDF parser error. #{$!}\n"	
+      raise "RDF parser error. #{$!}\n"	
     end
 
     return(rdfdata) if models==nil 
