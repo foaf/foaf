@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.16 2002-12-11 21:11:35 danbri Exp $
+# $Id: ayf.rb,v 1.17 2002-12-11 22:12:01 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -44,8 +44,8 @@ def go(uri)
   air= 'http://www.megginson.com/exp/ns/airports#'
 
   ayf = SimpleScutter.new uri
-  pagecount=0
 
+  pagecount=0
   # a code block to output basic info about each RDF page encountered
   # 
   page_summary = Proc.new do |crawler,page|  
@@ -68,17 +68,9 @@ def go(uri)
   end
 
 
-  # a code block that writes an html page based on the crawler's .out property 
-  #
-  htmler = Proc.new do |crawler,page|
-      html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
-      html += "<h1>AllYourFoaf Image Index</h1>\n"  
-      html += "<p><strong>stats:</strong>: left.size=#{crawler.left.size} \
-	seen.size=#{crawler.seen.size} seenpic.size=#{crawler.seenpic.size} current:{crawler.uri} </p> "
-      html += "<hr />\n\n" + crawler.out
-      html += "</body></html>\n\n"
-      SimpleScutter.writefile(crawler.outfile,html)
-  end
+  # the mugshots and htmler blocks are related, and share some state:
+  report=""
+  seenpic=Hash.new(0) 	# counter
 
   # basic image metadata harvesting
   #
@@ -91,13 +83,24 @@ def go(uri)
 		    # todo: store this state locally instead of inside crawler
     images.each do |pic|
       next if (!pic =~ /\S/) #bug in Liber RDF parser.
-      if crawler.seenpic[pic]==0  ### how to do this as a Proc? fixme
-        crawler.out += "<img src='#{pic}' width='128' height='128' />" 
-        crawler.out += "<!-- linked at: #{crawler.uri} -->\n\n"
+      if seenpic[pic]==0  ### how to do this as a Proc? fixme
+        report += "<img src='#{pic}' width='128' height='128' />" 
+        report += "<!-- linked at: #{crawler.uri} -->\n\n"
       end
-      crawler.seenpic[pic]=crawler.seenpic[pic]+1
+      seenpic[pic]=seenpic[pic]+1
     end
-    # todo: some thought needed w.r.t. outfile/html generation and state
+  end
+
+  # a code block that writes an html page based on the crawler's .out property 
+  #
+  htmler = Proc.new do |crawler,page|
+      html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
+      html += "<h1>AllYourFoaf Image Index</h1>\n"  
+      html += "<p><strong>stats:</strong>: left.size=#{crawler.left.size} \
+	seen.size=#{crawler.seen.size} seenpic.size=#{seenpic.size} current:#{crawler.uri} </p> "
+      html += "<hr />\n\n" + report
+      html += "</body></html>\n\n"
+      SimpleScutter.writefile(crawler.outfile,html)
   end
 
   # stats to be output at start of each loop      
@@ -112,20 +115,15 @@ def go(uri)
   ayf.pagehandlers.push page_summary, airports, mugshots, htmler
   ayf.inithandlers.push loopstats
   ayf.errorhandlers.push error_logger 
-
   ayf.run  # set crawler running!
 end 
 
-   
-
 #############################################################################
-#############################################################################
-
 
 class SimpleScutter
 
   attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, \
-	:uri, :out, :outfile, :left, :pagehandlers, :inithandlers, :errorhandlers
+	:uri, :outfile, :left, :pagehandlers, :inithandlers, :errorhandlers
 
   def initialize(start_uri='',outfile="_allyourfoaf.html")
     @left=[]
@@ -137,13 +135,10 @@ class SimpleScutter
     @errorhandlers=[]
     @seen=Hash.new(0) 		# counter for whether a rdf uri has been seen
     @seealso=Hash.new(0) 	# all the seealso uris we've seen, counted
-    @seenpic=Hash.new(0) 	# counter for whether a pic been seen
     @outfile=outfile 		# output filename
-    @out=""                     # output content
   end
 
   def run
-    rdfs='http://www.w3.org/2000/01/rdf-schema#'
     while left.size>0
       @uri = @left.pop.to_s
       page = nil
@@ -162,8 +157,10 @@ class SimpleScutter
       end
       next if page.size==0 # skip to next URI if empty graph
 
-      # We have some RDF; inspect it for seeAlso links to more RDF:
-      # 
+      # Extract any seeAlso'd links from the RDF: 
+      #
+      rdfs='http://www.w3.org/2000/01/rdf-schema#'
+
       also = page.ask Statement.new(nil,  rdfs+'seeAlso',nil)
       also.objects.each do |a|
         a=a.to_s
@@ -175,107 +172,87 @@ class SimpleScutter
       self.left=[] # reset and rebuild
       seealso.each_key {|k| left.push(k) if seen[k]==0 }
 
-    # Call any pagehandlers:
     pagehandlers.each {|handler| handler.call(self,page)} # call pagehandlers
   end 
   puts "RDF crawl complete. Exiting!" if @debug
 end
 
 
-
-
 #########################################################################
-#########################################################################
-#
 #
 # temporary stuff that should be in a library...
 
-
 def SimpleScutter.writefile(fn,html)
-      begin 
-        File::delete fn if File::exists? fn
-      rescue Exception
-        puts "HTML logfile locked? Skipping. #{$!}"
-        next
-      end 
-      begin
-        cf = File::new( fn, File::CREAT|File::RDWR, 0644)
-        cf.write html
-        cf.close
-      rescue Exception
-        puts "ERROR: can't write HTML logfile #{cf} "
-      end
+  begin 
+    File::delete fn if File::exists? fn
+  rescue Exception
+    puts "HTML logfile locked? Skipping. #{$!}"
+    next
+  end 
+  begin
+    cf = File::new( fn, File::CREAT|File::RDWR, 0644)
+    cf.write html
+    cf.close
+  rescue Exception
+    puts "ERROR: can't write HTML logfile #{cf} "
+  end
 end
 
-
-
-  def SimpleScutter.parse(filename, base_uri)
-    consumer = RDF4R::Consumer::Standard.new
-    File.open(filename, "r") do |file|
-      begin
-        return RDF4R::Driver::XMLParser.process(file, base_uri, consumer)
-      rescue Exception 
-        raise "Expat setup error. url=#{base_uri} error: #{$!}"
-      end
-    end
-  end
-
-
-  def rdfget(uri)
-    uri=uri.to_s
-    uri.chomp!
-    uri =~ /:\/\/([^\/]+)(\/*.*)$/
-    host = $1
-    res = $2
-    h = Net::HTTP::new host
-    user_agent = 'RDFWeb-SimpleScutter-200212;http://rdfweb.org/foaf/'
-    rdfdata=Graph.new([])
-    my_headers = {'Accept' => 'application/rdf+xml', 'User-agent' => user_agent }  
-    h.open_timeout = 10   
-    h.read_timeout = 60
-    begin 
+def rdfget(uri)
+  uri=uri.to_s
+  uri.chomp!
+  models=[] 
+  uri =~ /:\/\/([^\/]+)(\/*.*)$/
+  host = $1
+  res = $2
+  h = Net::HTTP::new host
+  user_agent = 'RDFWeb-SimpleScutter-200212;http://rdfweb.org/foaf/'
+  rdfdata=Graph.new([])
+  my_headers = {'Accept' => 'application/rdf+xml', 'User-agent' => user_agent }  
+  h.open_timeout = 10   
+  h.read_timeout = 60
+  begin 
     resp, data = h.get(res, my_headers)
     rescue
-      error_msg="rdfget: HTTP GET failed. Returning empty graph. error:#{$!}"
-      errorhandlers.each {|handler| handler.call error_msg } 
-      return rdfdata
-    end
+    error_msg="rdfget: HTTP GET failed. Returning empty graph. error:#{$!}"
+    errorhandlers.each {|handler| handler.call error_msg } 
+    return rdfdata
+  end
 
-    base=uri
-    fn="_local.rdf" # temporary file; shouldn't need this :(
-    File::delete fn if File::exists? fn
-    cf = File::new( fn, File::CREAT|File::RDWR, 0644)
-    cf.write data  
-    cf.close
+  base=uri
+  fn="_local.rdf" 	# temporary file; shouldn't need this :(
+  File::delete fn if File::exists? fn
+  cf = File::new( fn, File::CREAT|File::RDWR, 0644)
+  cf.write data  
+  cf.close
 
-    begin 
-      models = SimpleScutter.parse(fn, base)
+  begin 
+    consumer = RDF4R::Consumer::Standard.new
+    File.open(fn, "r") do |file|
+        begin
+          models=RDF4R::Driver::XMLParser.process(file, base, consumer)
+        rescue Exception 
+          raise "Expat setup error. url=#{base} error: #{$!}"
+        end
+      end
     rescue
       raise "RDF parser error. #{$!}\n"	
     end
-    return(rdfdata) if models==nil 
 
-    if models.size == 0		# messed up remains of a liber script
-    elsif models.size > 1	# todo: tidy up. just grab 1st model if any
-    else
-      model = models.shift
-      model.statements.each do |s|
-      s.each do |bit|
-        if bit.type.to_s =~ /RDF4R/
-          nt = bit.to_ntriple
-          begin
-            Loader.parseline nt.to_s, rdfdata, {} # ugly. fixme!
-          rescue
-            puts "rdfget: error w/ parseline. #{$!} "
-          end
-        end
+    return rdfdata if models==nil 
+    return rdfdata if models==0
+
+    model = models.shift
+    model.statements.each_value do |s|
+      begin  
+        Loader.parseline s.to_ntriple.to_s, rdfdata, {} # fixme!
+      rescue
+        puts "rdfget: error w/ parseline. #{$!} "
       end
     end
+    return rdfdata
   end
-  return rdfdata
-end	
 end
-
 
 ################################################################# 
 
