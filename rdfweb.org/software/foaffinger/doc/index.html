@@ -1,31 +1,92 @@
+<html>
+  <head>
+    <title>FOAFFinger</title>
+    <link rel="stylesheet" 
+	  href="http://rdfweb.org/people/damian/simple.css" 
+	  type="text/css" />
+  </head>
+  <body>
+    <h2>Welcome to FOAFFinger</h2>
 
+    <h5>The first rule of FOAFFinger is: don't shout out information
+    you want to keep secret</h5>
+
+    <hr></hr>
+    
+    <h3>What is FOAFFinger?</h3>
+
+    <p>
+      FOAFFinger combines the excitement of <a
+      href="http://rdfweb.org/foaf/">FOAF</a> with visceral thrill of
+      <a href="http://www.zeroconf.org/">Zeroconf</a> (aka
+      Rendezvous). Or, more acurately, it's a little java application
+      that lets you publish FOAF information on a local network, and
+      view information about other on the network. See the example
+      below to get an idea of what's going on. It uses <a
+      href="http://www.strangeberry.com/java_rendevous.htm">jRendezvous</a>
+      to do the zeroconf voodoo..
+    </p>
+    
+    <h3>Where can I get it?</h3>
+    
+    <p>
+      <a href="FoafFinger-20030521.jar">Here it is</a>, a tiny java
+      file. That's all you need. Well, you need Java.
+    </p>
+    
+    <h3>How do I use it?</h3>
+    
+    <p>
+      Run it like this:
+      
+      <pre>
 pldms@evila > java -jar FoafFinger-20030521.jar "Damian Steer" pldms@mac.com
 Binding to: evila.danbri.org/10.0.2.17
 HttpServer running on port 7654
-> 
+>
+      </pre>
+      
+      but using you own name and address. On some machines it might
+      complain that it can't determine the IP address of the host. In
+      that case add the IP address of your machine to the arguments.
+    </p>
+
+    <p>
+      Pressing return shows that some people are online already.
+
+      <pre>
 [0] Joe Bloggs is online.
 [1] Gretchen Franklin is online.
 > 
+      </pre>
+      
+      Now let's add some information about me:
+
+      <pre>
 > set interest http://rdfweb.org/foaf/
 > set homepage http://rdfweb.org/people/damian/
+      </pre>
+      
+      Next I'll find people interested in rdf:
+      
+      <pre>
 > find rdf
 	Name		Homepage		Interest
 [0]	Joe Bloggs	http://example.com/joe/	http://w3.org/rdf
+      </pre>
+      
+      Without an argument find shows everyone:
+      
+      <pre>
 > find
 	Name		Homepage		Interest
 [0]	Joe Bloggs	http://example.com/joe/	http://w3.org/rdf
 [1]	Gretchen Franklin	http://www.freeserve.net/people/gf/	http://www.bbc.co.uk/eastenders/
-> show 0
-Name: Joe Bloggs
-Hash Mbox: 4445904ac65039ef7a91506207f19162ac4dea73
-Homepage: http://example.com/joe/
-Interest: http://w3.org/rdf
-Plan: 
-I'm bumming around on irc://irc.freenode.net/%23rdfig, drinking cider.
-
-Currently working on a P2P XP B2B dev system, using YAML, UDL, XHHML and TINAML.
-
-
+      </pre>
+      
+      You can see more information using 'show':
+      
+      <pre>
 > show 1
 Name: Gretchen Franklin
 Hash Mbox: 317e4d5ff06431b79cd070fa841758b0ac56ccc7
@@ -37,64 +98,111 @@ Working on a pilot for "Monkey Tennis"
 
 Destroy all humans
 
+      </pre>
+      
+      Note that this person's email address is available. By default
+      your email address is not made public, but you can change this:
 
+      <pre>
 > set showmbox true
-> ikn   dump
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
+      </pre>
+      
+      You can see your information in RDF/XML:
+
+      <pre>
+> dump 
+&lt;?xml version="1.0"?>
+&lt;rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 >
 
-<Person>
-    <name>Damian Steer</name>
-    <mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76</mbox_sha1sum>
-    <mbox rdf:resource="mailto:pldms@mac.com"/>
-    <interest rdf:resource="http://rdfweb.org/foaf/"/>
-    <homepage rdf:resource="http://rdfweb.org/people/damian/"/>
-</Person>
-</rdf:RDF>
+&lt;Person>
+    &lt;name>Damian Steer&lt;/name>
+    &lt;mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76&lt;/mbox_sha1sum>
+    &lt;mbox rdf:resource="mailto:pldms@mac.com"/>
+    &lt;interest rdf:resource="http://rdfweb.org/foaf/"/>
+    &lt;homepage rdf:resource="http://rdfweb.org/people/damian/"/>
+&lt;/Person>
+&lt;/rdf:RDF>
+      </pre>
+
+      I happen to know Joe Bloggs, and I can add that information by typing:
+
+      <pre>
 > iknow 0
 > dump
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
+&lt;?xml version="1.0"?>
+&lt;rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 >
 
-<Person>
-    <name>Damian Steer</name>
-    <mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76</mbox_sha1sum>
-    <mbox rdf:resource="mailto:pldms@mac.com"/>
-    <interest rdf:resource="http://rdfweb.org/foaf/"/>
-    <homepage rdf:resource="http://rdfweb.org/people/damian/"/>
-    <knows>
-    <Person>
-        <name>Joe Bloggs</name>
-        <mbox_sha1sum>4445904ac65039ef7a91506207f19162ac4dea73</mbox_sha1sum>
-        <interest rdf:resource="http://w3.org/rdf"/>
-        <homepage rdf:resource="http://example.com/joe/"/>
-    </Person>
-    </knows>
-</Person>
-</rdf:RDF>
-> 
+&lt;Person>
+    &lt;name>Damian Steer&lt;/name>
+    &lt;mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76&lt;/mbox_sha1sum>
+    &lt;mbox rdf:resource="mailto:pldms@mac.com"/>
+    &lt;interest rdf:resource="http://rdfweb.org/foaf/"/>
+    &lt;homepage rdf:resource="http://rdfweb.org/people/damian/"/>
+    &lt;knows>
+    &lt;Person>
+        &lt;name>Joe Bloggs&lt;/name>
+        &lt;mbox_sha1sum>4445904ac65039ef7a91506207f19162ac4dea73&lt;/mbox_sha1sum>
+        &lt;interest rdf:resource="http://w3.org/rdf"/>
+        &lt;homepage rdf:resource="http://example.com/joe/"/>
+        &lt;rdfs:seeAlso rdf:resource="http://example.com/joe/webwho.rdf"/>
+    &lt;/Person>
+    &lt;/knows>
+&lt;/Person>
+&lt;/rdf:RDF>
+>
+      </pre>
+
+      Often you'll see messages like:
+
+      <pre>
 > 
 [0] Joe Bloggs is offline.
 [0] Joe Bloggs is online.
+      </pre>
+      
+      Which occurs when people change their information. If they annoy you use:
+
+      <pre>
 > messages off
+      </pre>
+
+      Finally I'll save my information in RDF/XML using:
+
+      <pre>
 > dump webwho.rdf
 Information saved to webwho.rdf
+      </pre>
+
+      I now have a simple FOAF file to play with, which I'll put on my
+      website. Once that's done I'll let other people know:
+      
+      <pre>
 > set seealso http://rdfweb.org/people/damian/webwho.rdf
+      </pre>
+
+      There is one other property you can set, which is (essentially)
+      a dumping ground. Enter anything you want, but remember the
+      first rule of FOAFFinger.
+
+      <pre>
 > set plan
 (Enter text, and finish with two blank lines)
-This is my first pa lan.
+This is my first plan.
 I have no plan, but you've got to have a plan.
 I plan to get a plan.
 
+      </pre>
+      
+      There's a help command in case of emergencies.
 
-> quit
-pldms@evila > exit
-exit
+    </p>
+    
+  </body>
 
-Script done on Wed May 21 11:44:23 2003
+</html>
