@@ -27,7 +27,7 @@ import javax.swing.event.*;
 import java.util.*;
 import javax.swing.border.*;
 
-public class Viz extends JComponent implements  ActionListener, DocumentListener {
+public class Viz extends JComponent implements DocumentListener, ActionListener {
 
 
     public static int NODE_FOCUS = 1;
@@ -152,20 +152,21 @@ public class Viz extends JComponent implements  ActionListener, DocumentListener
         JMenuItem export = new JMenuItem("Export");
 	JMenuItem quit = new JMenuItem("Quit");
 
+
         menuNodes.add(node);
-        node.addActionListener(this);
+        node.addActionListener(new NodeActionListener(this));
 
         menuArcs.add(arc);
-        arc.addActionListener(this);
+        arc.addActionListener(new ArcActionListener(this));
 
         file.add(imu);
-        imu.addActionListener(this);
+        imu.addActionListener(new ImportActionListener(this));
 
         file.add(imf);
-        imf.addActionListener(this);
+        imf.addActionListener(new ImportActionListener(this));
 
         file.add(export);
-        export.addActionListener(this);
+        export.addActionListener(new ExportActionListener(this));
 
 	file.add(quit);
 	quit.addActionListener(this);
@@ -190,7 +191,7 @@ public class Viz extends JComponent implements  ActionListener, DocumentListener
 
 /**
 
-get method for EditState
+various get and set methoids for event and action handling classes
 
 */
 
@@ -208,8 +209,19 @@ public Vector getArcs(){
 return arcs;
 }
 
+public Vector getNodes(){
+return nodes;
+}
 
-public DefaultStyledDocument getPropertyPane(){
+public Vector getSchemas(){
+return schemas;
+}
+
+public JFrame getFrame(){//main frame
+return frame;
+}
+
+public DefaultStyledDocument getPropertyPane(){//properties for focussed node
 return lsd;
 }
 
@@ -297,13 +309,13 @@ return lsd;
 
 
     /**
-    main just creates a Basic Draw object at the moment
+    main just creates a Viz object at the moment
 
     */
 
     public static void main(String[] args) {
 
-        BasicDraw bb = new BasicDraw();
+        Viz viz = new Viz();
 
     }
 
@@ -317,240 +329,15 @@ return lsd;
 
     /**
 
-     actionPerformed captures events from the menu.
-     Node creates a new node, initialises it, puts it in the nodes vector, and repaints
-     Arc creates a new arc, initialises it, puts it in the arcs vector and repaints
-     arc also puts the state in state2
+actionperformed is now in different listeners:
+NodeActionlistener (creating new nodes of various sorts)
+ArcActionlistener (creating new arcs of various sorts)
+ImportActionListener (importing as files or url)
+ExportActionListener (exporting as RDF)
+FileActionlistner (for quit)
+
      */
 
-    public void actionPerformed(ActionEvent e) {
-
-        System.out.println("got action: "+ e.getActionCommand());
-        String errorMsg = "couldn't load url ";
-
-        if (e.getActionCommand().equals("New node")) {
-
-            if (edit_state == NODE_FOCUS) {//i.e. state is - current focus is a node
-
-                //System.out.println("NEW node: x "+x+" y "+y);
-
-                DrawableNode n = new DrawableNode(100, 100);
-                cNode = n;
-                nodes.addElement(cNode);
-            }
-            repaint();
-
-        } else if (e.getActionCommand().equals("New arc")) {
-            try {
-
-                //		cArc= new DrawableProperty(defaultURL);
-                DrawableProperty p = new DrawableProperty(defaultURL);
-
-                cArc = p;
-                arcs.addElement(cArc);
-
-            } catch (RDFException ex) {
-                System.err.println("can't create property "+ex);
-            }
-
-            edit_state = ARC_DRAG;
-            repaint();
-
-        } else if (e.getActionCommand().equals("Import file")) {
-
-
-            FileInputStream in = null;
-            ///...
-
-
-            String inputFileName = "";
-
-            JFileChooser jfc = new JFileChooser();
-            jfc.setSize(500, 250);
-            //Container parent = openItem.getParent();
-            int choice = jfc.showOpenDialog(frame);
-
-            if (choice == JFileChooser.APPROVE_OPTION) {
-
-                inputFileName = jfc.getSelectedFile().getAbsolutePath();
-                inputFileName = "file://"+inputFileName;
-
-
-                if (!inputFileName.trim().equals("")) {
-
-                    Model m = new ModelMem();
-
-                    try {
-
-                        m = m.read(inputFileName);
-
-                    } catch (Exception ez) {
-
-                        errorMsg = errorMsg + ez;
-
-                        //System.out.println(errorMsg);
-
-                        JOptionPane.showMessageDialog(null, errorMsg, "alert",
-                                JOptionPane.ERROR_MESSAGE);
-
-                    }
-
-
-                    try {
-                        if (m.size() == 0) {
-                            JOptionPane.showMessageDialog(null,
-                                    errorMsg, "alert",
-                                    JOptionPane.ERROR_MESSAGE);
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "url loaded",
-                                    "information",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                            schemas.addElement(m);
-                            updateMenus(m);
-                        }
-
-                    } catch (Exception ii) {
-
-                    }
-
-                }
-
-            }//end if choice
-
-
-        } else if (e.getActionCommand().equals("Load categories and link-types from Web")) {
-
-            String inputValue = JOptionPane.showInputDialog("Please input a url");
-
-            if (!inputValue.trim().equals("")) {
-
-
-                Model m = new ModelMem();
-
-                try {
-
-                    m = m.read(inputValue);
-
-
-                } catch (Exception ez) {
-                    errorMsg = errorMsg + ez;
-
-                    //System.out.println(errorMsg);
-
-                    JOptionPane.showMessageDialog(null, errorMsg, "alert",
-                            JOptionPane.ERROR_MESSAGE);
-
-                }
-
-
-                try {
-                    if (m.size() == 0) {
-                        JOptionPane.showMessageDialog(null, errorMsg, "alert",
-                                JOptionPane.ERROR_MESSAGE);
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "url loaded",
-                                "information",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        schemas.addElement(m);
-                        updateMenus(m);
-                    }
-
-                } catch (Exception ii) {
-
-                }
-
-            }//end if not ""
-
-        }
-
-
-        //so now how do we get this into a jena model?
-        //we have strings but need something better.
-        //h'm we want a reader
-
-        else if (e.getActionCommand().equals("Export")) {
-
-            try {
-                Enumeration en = arcs.elements();
-                while (en.hasMoreElements()) {
-                    DrawableProperty a =
-                            (DrawableProperty) en.nextElement();
-                    DrawableNode startN = (DrawableNode) a.startNode;
-                    DrawableNode endN = (DrawableNode) a.endNode;
-
-                    String sText = startN.getTmpText();
-                    String eText = endN.getTmpText();
-
-                    URL eUri = null;
-
-                    try {
-                        eUri = new URL(eText);
-                    } catch (Exception ex2) {
-                        System.err.println("not a uri "+ex2);
-                    }
-
-                    RDFNode endNode;
-                    Resource startNode;
-                    Property prop;
-
-                    if (eUri != null) {
-                        endNode = mem.createResource(eText);
-                        System.out.println("GOT resource!");
-                    } else {
-                        System.out.println("GOT literal! [1] "+eText);
-                        endNode = mem.createLiteral(eText);
-                        System.out.println("GOT literal! [2] "+eText);
-                    }
-
-                    System.out.println("stext "+sText);
-                    if (sText.trim().equals("")) {
-                        startNode = mem.createResource();
-                    } else {
-                        startNode = mem.createResource(sText);
-                    }
-                    System.out.println("[1]");
-
-                    prop = mem.createProperty(a.getTmpText());
-
-                    System.out.println("[2]");
-
-                    //add to the model
-                    mem.add(startNode, prop, endNode);
-
-                    System.out.println("[3] startnode "+
-                            startNode.toString() + " "+
-                            prop.toString() + " "+endNode.toString());
-
-                }
-
-            } catch (Exception ex) {
-                System.err.println("something went wrong in conversion "+ex);
-            }
-
-            //	System.out.println(mem.toString());
-
-            try {
-                mem.write(new PrintWriter(System.out));
-            } catch (Exception er) {
-                System.err.println("could not write "+er);
-            }
-
-        }//end if export
-	else if (e.getActionCommand().equals("Quit")){
-	   System.out.println("TODO: implement Quit handler");
-	}
-        else {
-
-            //pass all remaining commands through??
-
-
-
-
-        }
-
-    }
 
 
     /**
@@ -811,6 +598,17 @@ f=focus;
     }
 
 
+   public void actionPerformed(ActionEvent e) {
+    
+        System.out.println("got action: "+ e.getActionCommand());
+     
+        if (e.getActionCommand().equals("quit")) {
+
+                        System.exit(0);
+
+	}
+
+   }
 
 }
 
