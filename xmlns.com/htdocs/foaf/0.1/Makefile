@@ -5,7 +5,7 @@ GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 
 # GET http://xmlns.com/foaf/0.1/ | gpg --verify ../htmlfoafsig -
 
-all: 	checkin publish
+all: 	index.html checkin publish
 
 clean: tidyup 
 
