@@ -1,0 +1,19 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/">
+      
+<foaf:Image rdf:about="http://ldodds.com/photos/ethan/i_hate_posing_for_photos.jpg">
+   <dc:title>I Hate Posing For Photos</dc:title>
+   <dc:creator>Leigh Dodds</dc:creator>
+   <foaf:depicts>
+      <foaf:Person>
+         <foaf:mbox_sha1sum>f79f8c2ba7bf7fd8aa44fa0805d263d503d5bbd6</foaf:mbox_sha1sum>
+         <rdfs:seeAlso rdf:resource="http://www.ldodds.com/ldodds.rdf"/>
+      </foaf:Person>
+   </foaf:depicts>
+   
+</foaf:Image>
+
+</rdf:RDF>

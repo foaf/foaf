@@ -1,0 +1,35 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:foo="bar">
+      
+<foaf:Person foaf:name="Leigh Dodds">
+   <foo:blah/>
+   <foaf:title>Mr</foaf:title>
+   <foaf:firstName>Leigh</foaf:firstName>
+   <foaf:surname>Dodds</foaf:surname>
+   <foaf:nick>ldodds</foaf:nick>
+
+   <foaf:mbox_sha1sum>1bca73e5c6916c738d6ec7cc0597ad0e395e7ace</foaf:mbox_sha1sum>
+   <foaf:mbox rdf:resource="ldodds@ingenta.com"/>
+   <foaf:homepage rdf:resource="http://www.ldodds.com"/>
+   <foaf:weblog rdf:resource="http://www.ldodds.com/blog"/>
+   <foaf:depiction rdf:resource="http://www.ldodds.com/ldodds.jpg"/>
+   <foaf:workplaceHomepage rdf:resource="http://www.ingenta.com"/>
+
+   <foaf:knows>
+      <foaf:Person>
+      <foaf:name>Ethan Dodds</foaf:name>
+      <foaf:mbox_sha1sum>f79f8c2ba7bf7fd8aa44fa0805d263d503d5bbd6</foaf:mbox_sha1sum>
+
+      <foaf:depiction rdf:resource="http://ldodds.com/photos/ethan/i_hate_posing_for_photos.jpg"/>
+      </foaf:Person>
+   </foaf:knows>
+   
+</foaf:Person>
+
+<foaf:Image/>
+
+</rdf:RDF>

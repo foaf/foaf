@@ -1,0 +1,18 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+<foaf:Person>
+   <foaf:title>Mr</foaf:title>
+   <foaf:firstName>Leigh</foaf:firstName>
+   <foaf:surname>Dodds</foaf:surname>
+   <foaf:mbox_sha1sum>1bca73e5c6916c738d6ec7cc0597ad0e395e7ace</foaf:mbox_sha1sum>
+   <foaf:homepage rdf:resource="http://www.ldodds.com"/>
+   <foaf:weblog rdf:resource="http://www.ldodds.com/blog"/>
+   <foaf:depiction rdf:resource="http://www.ldodds.com/ldodds.jpg"/>
+   <foaf:workplaceHomepage rdf:resource="http://www.ingenta.com"/>
+   <foaf:name>Leigh Dodds</foaf:name>      
+</foaf:Person>
+
+</rdf:RDF>
