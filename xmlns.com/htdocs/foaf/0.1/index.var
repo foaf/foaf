@@ -1,0 +1,11 @@
+#URI: index
+#see http://httpd.apache.org/docs-2.0/content-negotiation.html
+ 
+URI: index.html
+Content-type: text/html
+ 
+URI: index.rdf
+Content-type: application/rdf+xml
+
+# is this working or is it working via Multiviews ?
+# todo!
