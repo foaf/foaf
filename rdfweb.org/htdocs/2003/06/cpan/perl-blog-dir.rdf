@@ -23,10 +23,11 @@
 </foaf:Person>
 
 <foaf:Person>
+  <foaf:name>Norm Walsh</foaf:name>
   <cpan:id>NWALSH</cpan:id>
   <foaf:mbox rdf:resource="mailto:ndw@nwalsh.com"/>
   <foaf:mbox_sha1sum>9f5c771a25733700b2f96af4f8e6f35c9b0ad327</foaf:mbox_sha1sum>
-  <foaf:homepage rdf:resource="http://nwalsh.com/people/ndw/"/>
+  <foaf:homepage rdf:resource="http://nwalsh.com/" />
   <foaf:weblog>
     <foaf:Document rdf:about="http://norman.walsh.name/">
       <foaf:rssfeed rdf:resource="http://norman.walsh.name/index.rss"/>
@@ -43,10 +44,10 @@
   <foaf:homepage rdf:resource="http://downlode.org/"/>
   <foaf:weblog>
     <foaf:Document rdf:about="http://downlode.org/blog.pl">
+      <foaf:rssfeed rdf:resource="http://downlode.org/blog.pl/index.rss10"/>
       <dc:title>two bits short of a byte</dc:title>
-      <dc:description>usings, links commentary onspace, technology and culture by Earle Martin.</dc:description>
+      <dc:description>musings, links commentary on space, technology and culture by Earle Martin.</dc:description>
     </foaf:Document>
-    <foaf:rssfeed rdf:resource="http://downlode.org/blog.pl/index.rss10"/>
   </foaf:weblog>
 </foaf:Person>
 
