@@ -1,12 +1,22 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.14 2002-12-11 00:48:12 danbri Exp $
+# $Id: ayf.rb,v 1.15 2002-12-11 15:53:27 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
-# and creates an HTML page _allyourfoaf.html that links each image 
-# mentioned in the RDF it finds.
+# and calls application-specific handlers before and after it 
+# retrieves each RDF document. It comes with some demo code blocks that
+# collect photo information, look out for mentions of airports, and 
+# generate basic logging records.
+#
+# TODO list:
+#
+# - parser may have a fixme re genid generation from ntriples
+#   bug is probably in the parser wrapping code I wrote.
+#   a good point at which to write syntax tests?
+#
+# - parser also generates \n triples -- need to investigate.
 #
 # some possible starting points:
 #   http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
@@ -46,11 +56,14 @@ def go(uri)
 
   # a code block to see if some page provides nearestAirport information:  
   #
+  #  <contact:nearestAirport><wn:Airport air:icao="EGGD" air:iata="BRS"/>...
+  #    page.reg_xmlns 'http://www.megginson.com/exp/ns/airports#', 'air'
+  #
   airports = Proc.new do |crawler,page| 
     rs = page.ask Statement.new(nil, air+"iata", nil)
     rs.objects.each do |a|
       a.graph=page
-      puts "AIRPORT: #{a} (found an airport code in #{crawler.uri})" if (a.to_s =~ /\S/) 
+      puts "AIRPORT: #{a} -got airport code in #{crawler.uri})" if (a.to_s =~ /\S/) 
     end					# the 'if' is fix for parser bug
   end
 
@@ -204,7 +217,6 @@ end
 
   def rdfget(uri)
     uri=uri.to_s
-    fn="_local.rdf"
     uri.chomp!
     uri =~ /:\/\/([^\/]+)(\/*.*)$/
     host = $1
@@ -213,9 +225,8 @@ end
     user_agent = 'RDFWeb-SimpleScutter-200212;http://rdfweb.org/foaf/'
     rdfdata=Graph.new([])
     my_headers = {'Accept' => 'application/rdf+xml', 'User-agent' => user_agent }  
-    h.open_timeout = 30   
-    h.read_timeout = 60   
-
+    h.open_timeout = 10   
+    h.read_timeout = 60
     begin 
     resp, data = h.get(res, my_headers)
     rescue
@@ -224,8 +235,8 @@ end
       return rdfdata
     end
 
-    # puts "Got data: #{data.inspect} from host:#{host} res:#{res} uri:#{uri}\n\n"
     base=uri
+    fn="_local.rdf" # temporary file; shouldn't need this :(
     File::delete fn if File::exists? fn
     cf = File::new( fn, File::CREAT|File::RDWR, 0644)
     cf.write data  
@@ -236,12 +247,10 @@ end
     rescue
       raise "RDF parser error. #{$!}\n"	
     end
-
     return(rdfdata) if models==nil 
 
-    # cruft: fixme / delete?:
-    if models.size == 0
-    elsif models.size > 1
+    if models.size == 0		# messed up remains of a liber script
+    elsif models.size > 1	# todo: tidy up. just grab 1st model if any
     else
       model = models.shift
       model.statements.each do |s|
@@ -249,8 +258,7 @@ end
         if bit.type.to_s =~ /RDF4R/
           nt = bit.to_ntriple
           begin
-            # this is nasty way to hook apis together.
-            Loader.parseline nt.to_s, rdfdata, {}
+            Loader.parseline nt.to_s, rdfdata, {} # ugly. fixme!
           rescue
             puts "rdfget: error w/ parseline. #{$!} "
           end
@@ -260,29 +268,11 @@ end
   end
   return rdfdata
 end	
-
 end
-
 
 
 ################################################################# 
 
-
-start_uri = ARGV.shift if ARGV.shift
-if ARGV.shift
-  start_uri=ARGV.shift
-else
-  start_uri = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
-end
-
-go start_uri
-
-
-
-#<contact:nearestAirport><wn:Airport air:icao="EGGD" air:iata="BRS" />...
-#    page.reg_xmlns 'http://www.megginson.com/exp/ns/airports#', 'air'
-#
-# TODO
-# PARSER may have a fixme re genid generation from ntriples
-# bug is probably in the parser wrapping code I wrote.
-# a good point at which to write syntax tests?
+start_uri = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
+start_uri = ARGV.shift if ARGV.length > 0
+go(start_uri)
