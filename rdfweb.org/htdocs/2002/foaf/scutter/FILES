@@ -1,0 +1,15 @@
+.
+./bin
+./bin/scutter
+./bin/rdfweb_server
+./doc
+./doc/notes.txt
+./doc/scutter.html
+./pub
+./pub/rssdir.html
+./conf
+./conf/scutterdb.sql
+./install.rb
+./LICENSE.TXT
+./INSTALL.TXT
+./webutil.rb
