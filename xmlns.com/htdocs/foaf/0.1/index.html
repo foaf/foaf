@@ -24,14 +24,16 @@
       <dt>version:</dt>
       <dd>0.1</dd>
       <dt>status:</dt>
-      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.11 2003-02-23 21:57:59 danbri Exp $</dd>
+      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.12 2003-02-23 22:02:56 danbri Exp $</dd>
       <dt>formats:</dt>
       <dd><a href="http://xmlns.com/foaf/0.1/index.html">text/html</a>, <a href="http://xmlns.com/foaf/0.1/index.rdf">application/rdf+xml</a></dd>
+      <dt>history:</dt>
+      <dd>see <a href="http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/">cvs version history</dd>
       <dt>authors:</dt>
       <dd>dan brickley, libby miller, rdfweb-dev listmembers</dd>
     </dl>
     <p>
-This document contains embedded XML/RDF statements defining and describing the foaf vocabulary.
+This document contains embedded XML/RDF statements defining and describing the FOAF vocabulary.
 </p>
     <h2>FOAF?</h2>
     <p>FOAF is an <a href="http://rdfweb.org/">RDFWeb</a> project. It is only partially documented, but is 
@@ -112,21 +114,51 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
 <table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/Organization</td> 
- <td>An organisation</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/Project</td> 
- <td>A project</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/Person</td> 
  <td>A person.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Document</td> 
  <td>A document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Organization</td> 
+ <td>An organisation</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Project</td> 
+ <td>A project</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depicts</td> 
+ <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/givenname</td> 
+ <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/id</td> 
+ <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
+ <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/surname</td> 
+ <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/theme</td> 
  <td>theme</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
@@ -205,36 +237,6 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 <tr>
  <td>http://xmlns.com/foaf/0.1/depiction</td> 
  <td>a depiction of some thing</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/topic</td> 
- <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/firstName</td> 
- <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/page</td> 
- <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depicts</td> 
- <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/givenname</td> 
- <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/id</td> 
- <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
- <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/surname</td> 
- <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 
 </table>
 
@@ -251,7 +253,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>The Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>Classes and Properties comprising the FOAF RDF/XML vocabulary</dc:description>
-        <dc:date>$Date: 2003-02-23 21:57:59 $</dc:date>
+        <dc:date>$Date: 2003-02-23 22:02:56 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
