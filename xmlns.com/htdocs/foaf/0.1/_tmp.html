@@ -168,27 +168,26 @@ Commented out so we can XHTML validate. Very unfortunate way of doing things...
 <div class="status">
 <h2>Status of This Document</h2>
 
-<p><strong>NOTE:</strong> You are looking at a very rough draft; I'm 
-playing with re-formatting the FOAF Spec. This may yet all change. 
---danbri</p>
+<p><strong>NOTE:</strong> You are looking at a very rough draft @@TODO</p>
 
-<p><em>This section describes the status of this document at the time of its
-publication. Other documents may supersede this document. 
+<p><em>This section describes the status of this document at the time of its publication. 
+Other documents may supersede this document. 
 </em></p>
 
 <p>
-This document is produced as part of the <a href="http://rdfweb.org/">RDFWeb project</a>, to provide authoritative documentation of the contents, status and purpose of the RDF/XML vocabulary 
-known as 'FOAF' and identified by the URI '<code>http://xmlns.com/foaf/0.1/</code>'.
+This document is produced as part of the <a href="http://rdfweb.org/">RDFWeb project</a>, 
+to provide authoritative documentation of the contents, status and purpose of the RDF/XML 
+vocabulary and document formats known informally as 'FOAF'.
 </p>
 
 
-<p>The authors welcome comments on this document, but do not guarantee 
-a reply or any further action. Please send comments on this document to the FOAF developers list
+<p>The authors welcome comments on this document. 
+Please send comments on this document to the FOAF developers list
 <a href="mailto:rdfweb-dev@vapours.rdfweb.org">rdfweb-dev@vapours.rdfweb.org</a>; 
 <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">public 
 archives</a> are available.  This document may be updated or added to based 
 on implementation experience, but no commitment is made by the authors, or the RDFWeb project, 
-regarding future updates.
+regarding future updates. <!-- todo: link to stability section -->
 </p> 
 
 </div> 
@@ -239,23 +238,23 @@ Appendix A: RDFS/OWL formal specification
 </pre>
 
 <hr />
-<h1>Actual section headings</h1>
-<h2>FOAF At A Glance</h2>
-<h2>FOAF Overview</h2>
-<h3>FOAF Basics</h3>
-<h3>Personal Info</h3>
-<h3>FOAF Classes (types)</h3>
-<h3>IM / Chat</h3>
-<h3>Projects and Groups</h3>
-<h3>Documents and Images</h3>
-<h2 id="intro">1 Introduction</h2>
-<h2>FOAF Basics</h2>
-<h2>Example</h2>
-<h2>Background</h2>
-<h2>FOAF and Standards</h2>
-    <h2>The FOAF Vocabulary Description</h2>
-<h3>Evolution and Extension of FOAF</h3>
-<h2>FOAF Auto-Discovery: Publishing and Linking FOAF files</h2>
+FOAF At A Glance
+FOAF Overview
+FOAF Basics
+Personal Info
+
+FOAF Classes (types)
+IM / Chat
+Projects and Groups
+Documents and Images
+Introduction
+FOAF Basics
+Example
+Background
+FOAF and Standards
+The FOAF Vocabulary Description
+Evolution and Extension of FOAF
+FOAF Auto-Discovery: Publishing and Linking FOAF files
 <hr />
 
 
@@ -287,6 +286,8 @@ are used mainly to indicate the appropriate use for the various properties.
 
 <h3>FOAF Basics</h3>
 <ul>
+<li><a href="#term_Agent">Agent</a></li>
+<li><a href="#term_Person">Person</a></li>
 <li><a href="#term_name">name</a></li>
 <li><a href="#term_nick">nick</a></li>
 <li><a href="#term_title">title</a></li>
@@ -322,26 +323,13 @@ are used mainly to indicate the appropriate use for the various properties.
 </ul>
 </div>
 
-<div class="rdf-classlist">
-<h3>FOAF Classes (types)</h3>
+<div class="rdf-proplist">
+<h3>IM / Chat</h3>
 <ul>
-<li><a href="#term_Group">Group</a></li>
-<li><a href="#term_Person">Person</a></li>
-<li><a href="#term_Agent">Agent</a></li>
-<li><a href="#term_Project">Project</a></li>
-<li><a href="#term_Document">Document</a></li>
-<li><a href="#term_Image">Image</a></li>
-<li><a href="#term_Organization">Organization</a></li>
 <li><a href="#term_OnlineAccount">OnlineAccount</a></li>
 <li><a href="#term_OnlineChatAccount">OnlineChatAccount</a></li>
 <li><a href="#term_OnlineEcommerceAccount">OnlineEcommerceAccount</a></li>
 <li><a href="#term_OnlineGamingAccount">OnlineGamingAccount</a></li>
-</ul>
-</div>
-
-<div class="rdf-proplist">
-<h3>IM / Chat</h3>
-<ul>
 <li><a href="#term_icqChatID">icqChatID</a></li>
 <li><a href="#term_msnChatID">msnChatID</a></li>
 <li><a href="#term_aimChatID">aimChatID</a></li>
@@ -355,6 +343,9 @@ are used mainly to indicate the appropriate use for the various properties.
 <h3>Projects and Groups</h3>
 <!-- junk some of this maybe -->
 <ul>
+<li><a href="#term_Group">Group</a></li>
+<li><a href="#term_Project">Project</a></li>
+<li><a href="#term_Organization">Organization</a></li>
 <li><a href="#term_linkedWith">linkedWith</a></li>
 <li><a href="#term_fundedBy">fundedBy</a></li>
 <li><a href="#term_theme">theme</a></li>
@@ -364,6 +355,8 @@ are used mainly to indicate the appropriate use for the various properties.
 <div class="rdf-proplist">
 <h3>Documents and Images</h3>
 <ul>
+<li><a href="#term_Document">Document</a></li>
+<li><a href="#term_Image">Image</a></li>
 <li><a href="#term_topic">topic</a> (<a href="#term_page">page</a>)</li>
 <li><a href="#term_publications">publications</a></li>
 <li><a href="#term_sha1">sha1</a></li>
@@ -2564,7 +2557,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-27 16:12:22 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 16:21:42 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
