@@ -9,12 +9,13 @@ content="HTML Tidy for Linux/x86 (vers 1st March 2002), see www.w3.org" />
 <body>
 <h1>CVS/SSH server access</h1>
 
-<p>Brief info on access to the rdfweb CVS server.</p>
+<p>Brief info on access to the RDFWeb CVS server.</p>
 
-<p>Using Jim as an example, here is how we set up CVS-over-SSH,
-noting that the SSH server currently runs on an unfashionable port,
-so we need a tiny wrapper script, <code>./fssh</code> to deal with
-this.</p>
+<p>Using Jim as an example, here is how we set up CVS-over-SSH, 
+using either password authentication or pubkey setup if you have 
+that working (allowing ssh-agent to cache password and saving you 
+some typing).
+</p>
 
 <pre>
 [foafnaut]$ export CVS_RSH='ssh'
@@ -37,7 +38,7 @@ FAQs</a>), for MacOS X users.</li>
 <hr />
 Author: <a href="mailto:danbri-sysadmin@rdfweb.org">Dan
 Brickley</a> <br />
-$Id: 01-server-access.html,v 1.3 2003-01-31 13:35:33 danbri Exp $
+$Id: 01-server-access.html,v 1.4 2003-01-31 13:37:41 danbri Exp $
 </body>
 </html>
 
