@@ -1,0 +1,28 @@
+<p>
+The <code>foaf:nick</code> property relates a <code>foaf:Person</code> to a short (often 
+abbreviated) nickname, such as those use in IRC chat, online accounts, and computer 
+logins.
+</p>
+
+<p>
+This property is necessarily vague, because it does not indicate any particular naming 
+control authority, and so cannot distinguish a person's login from their (possibly 
+various) IRC nicknames or other similar identifiers. However it has some utility, since 
+many people use the same string (or slight variants) across a variety of such 
+environments.
+</p>
+
+<p>
+For specific controlled sets of names (relating primarily to Instant Messanger accounts), 
+FOAF provides some convenience properties: <code>foaf:jabberID</code>, 
+<code>foaf:aimChatID</code>, <code>foaf:msnChatID</code> and 
+<code>foaf:icqChatID</code>. Beyond this, the problem of representing such accounts is not 
+peculiar to Instant Messanging, and it is not scaleable to attempt to enumerate each 
+naming database as a distinct FOAF property. 
+</p>
+
+<p>
+Future work in this area may provide more specific terms for describing online accounts 
+and related user data.
+</p>
+
