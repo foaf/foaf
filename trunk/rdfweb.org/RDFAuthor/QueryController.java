@@ -132,7 +132,7 @@ public class QueryController extends NSObject {
         queryButton.setTitle("Query");
     }
         
-    public void queryCompleted(QueryThread sender, ArrayList rows, HashMap varToObject, long duration)
+    public void queryCompleted(QueryThread sender, ArrayList rows, HashMap varToObject, double duration)
     {
         // Since I can't kill threads safely better make sure this is the query I want
         

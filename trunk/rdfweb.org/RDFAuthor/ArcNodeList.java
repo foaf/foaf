@@ -72,9 +72,16 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         memModel.read(reader, ""); // Hmm - what's base?
         
         HashMap jenaNodeToNode = new HashMap(); 
+        HashMap nodeToX = new HashMap();
+        HashMap nodeToY = new HashMap();
         
         float x = 70; // nasty out layout. Improve me!
         float y = 70;
+        
+        float minX = 100000; // these are for calculating the extent of the nodes
+        float minY = 100000;
+        float maxX = -100000;
+        float maxY = -100000;
         
         for (StmtIterator iterator = memModel.listStatements(); iterator.hasNext(); )
         {
@@ -107,6 +114,69 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 {
                     // This is dodgy - see above
                     subjectNode.setType(object.toString());
+                }
+            }
+            // Ok - this is a special hack for embedded positioning info
+            else if (property.toString().equals("http://rdfweb.org/people/damian/2001/10/RDFAuthor/schema/x")) // x coord
+            {
+                if (subjectNode == null) // not added yet
+                {
+                    String id = subject.getURI();
+                    if (id != null) id = (id.equals(""))?null:id;
+                    subjectNode = new Node(this, id, object.toString(),
+                        new NSPoint( x, y));
+                    x += 70; y += 10;
+                    if (x > 400F) x = 70;
+                    jenaNodeToNode.put(subject, subjectNode);
+                    array.add(subjectNode);
+                }
+                
+                Float xVal = new Float(object.toString());
+                
+                nodeToX.put(subjectNode, xVal);
+                
+                float xpos = xVal.floatValue();
+                
+                if ((maxX == -100000) && (minX == 100000)) // neither set yet
+                {
+                    maxX = xpos;
+                    minX = xpos;
+                }
+                else
+                {
+                    if (xpos > maxX) maxX = xpos;
+                    if (xpos < minX) minX = xpos;
+                }
+            }
+            else if (property.toString().equals("http://rdfweb.org/people/damian/2001/10/RDFAuthor/schema/y")) // y coord
+            {
+                if (subjectNode == null) // not added yet
+                {
+                    String id = subject.getURI();
+                    if (id != null) id = (id.equals(""))?null:id;
+                    subjectNode = new Node(this, id, object.toString(),
+                        new NSPoint( x, y));
+                    x += 70; y += 10;
+                    if (x > 400F) x = 70;
+                    jenaNodeToNode.put(subject, subjectNode);
+                    array.add(subjectNode);
+                }
+                
+                Float yVal = new Float(object.toString());
+                
+                nodeToY.put(subjectNode, yVal);
+                
+                float ypos = yVal.floatValue();
+                
+                if ((maxY == -100000) && (minY == 100000)) // neither set yet
+                {
+                    maxY = ypos;
+                    minY = ypos;
+                }
+                else
+                {
+                    if (ypos > maxY) maxY = ypos;
+                    if (ypos < minY) minY = ypos;
                 }
             }
             else
@@ -152,6 +222,26 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 
                 Arc arc = new Arc( this, subjectNode, objectNode, property.getNameSpace(), property.getLocalName() );
                 array.add(arc);
+            }
+        }
+        
+        // Deal with the extent
+        
+        System.out.println("Extent is: (" + minX + "," + minY + "," + maxX + "," + maxY +")");
+        
+        
+        
+        // Ok - now look at coord info (if any)
+        
+        for (Iterator iterator = this.getNodes(); iterator.hasNext();)
+        {
+            Node node = (Node) iterator.next();
+            if ((nodeToX.get(node) != null) && (nodeToY.get(node) != node)) // if we have both coords
+            {
+                float xval = ((Float) nodeToX.get(node)).floatValue() - minX + 20;
+                float yval = ((Float) nodeToY.get(node)).floatValue() - minY + 20;
+                
+                node.setPosition(new NSPoint(xval, yval));
             }
         }
     }
@@ -220,8 +310,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         return new ArcNodeListIterator(array, false);
     }
         
-    public void drawModel()
+    public void drawModel(NSRect rect)
     {
+        /*
         for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
             ModelItem anObject = (ModelItem)enumerator.next();
@@ -229,6 +320,23 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 anObject.drawHilight();
             else
                 anObject.drawNormal();
+        }
+        */
+        for (Iterator iterator = this.getArcs(); iterator.hasNext();)
+        {
+            ModelItem anObject = (ModelItem) iterator.next();
+            if (anObject == currentObject)
+                anObject.drawHilight(rect);
+            else
+                anObject.drawNormal(rect);
+        }
+        for (Iterator iterator = this.getNodes(); iterator.hasNext();)
+        {
+            ModelItem anObject = (ModelItem) iterator.next();
+            if (anObject == currentObject)
+                anObject.drawHilight(rect);
+            else
+                anObject.drawNormal(rect);
         }
     }
 
@@ -305,6 +413,15 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     public void itemChanged(ModelItem item)
     {
         controller.modelChanged();
+        if (item == currentObject)
+        {
+            controller.currentObjectChanged(); // for the info wndow
+        }
+    }
+    
+    public void itemChanged(ModelItem item, NSRect rect) // variation of above where a rect needs redrawing
+    {
+        controller.modelChanged(rect);
         if (item == currentObject)
         {
             controller.currentObjectChanged(); // for the info wndow

@@ -101,47 +101,32 @@ public class RDFModelView extends NSView {
             NSBezierPath.strokeLineFromPoint(startPoint, endPoint);
         }
         
-        rdfAuthorDocument.drawModel();
-    }
-    /*
-    public boolean knowsPageRange(NSMutableRange range)
-    {
-        NSPrintInfo printInfo = NSPrintInfo.sharedPrintInfo(); // get info on printing
-        float pageWidth = printInfo.paperSize().width() - printInfo.leftMargin() - printInfo.rightMargin();
-        float pageHeight = printInfo.paperSize().height() - printInfo.topMargin() - printInfo.bottomMargin();
-        
-        int pagesAcross = (int) java.lang.Math.ceil( (double) this.frame().size().width() / (double) pageWidth );
-        int pagesDown = (int) java.lang.Math.ceil( (double) this.frame().size().height() / (double) pageHeight );
-        
-        System.out.println("Pages across: " + pagesAcross + " Pages down: " + pagesDown);
-        
-        range.setLength( pagesAcross * pagesDown );
-        
-        return true;
+        rdfAuthorDocument.drawModel(rect);
     }
     
-    public NSRect rectForPage(int page)
-    {   
-        NSPrintInfo printInfo = NSPrintInfo.sharedPrintInfo();
+    public NSData TIFFRepresentation() // I have half an idea what's going on here :-)
+    {
+        NSRect bounds = this.bounds();
+        NSImage image;
+        NSData tiffData;
+        NSGraphicsContext currentContext;
         
-        float pageWidth = printInfo.paperSize().width() - printInfo.leftMargin() - printInfo.rightMargin();
-        float pageHeight = printInfo.paperSize().height() - printInfo.topMargin() - printInfo.bottomMargin();
-        
-        int pagesAcross = (int) java.lang.Math.ceil( (double) this.frame().size().width() / (double) pageWidth );
-        int pagesDown = (int) java.lang.Math.ceil( (double) this.frame().size().height() / (double) pageHeight );
-        
-        int across = (page - 1) / pagesAcross;
-        int down = (page - 1) % pagesAcross;
-        
-        System.out.println("Print page: " + page + " at (" + across + " , " + down +")" );
-        
-        NSRect rect = new NSRect( pageWidth*(float)across , pageHeight*(float)down , pageWidth, pageHeight);
-        
-        System.out.println("Print rect: " + rect);
-        
-        return rect;
+        if (bounds.isEmpty()) {
+            return null;
+        }
+        image = new NSImage(bounds.size());
+        image.setFlipped(true);
+        image.lockFocus();
+        currentContext = NSGraphicsContext.currentContext();
+        currentContext.saveGraphicsState();
+        this.drawRect(bounds);
+        currentContext.restoreGraphicsState();
+        image.unlockFocus();
+        tiffData = image.TIFFRepresentation();
+        return tiffData;
     }
-    */
+
+    
     public void setSizeFromPrintInfo(NSPrintInfo printInfo)
     {
         // This would be simple, but for the margins

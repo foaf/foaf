@@ -45,7 +45,8 @@ public class Arc extends ModelItem implements Serializable
     NSBezierPath arrowHead;
     NSSize mySize;
     NSSize defaultSize = new NSSize(15,15);
-    NSRect myRect;
+    NSRect myRect = NSRect.ZeroRect;
+    NSRect boundsRect = NSRect.ZeroRect;
     NSAttributedString displayString = null;
 
     public Arc(ArcNodeList myList, Node fromNode, Node toNode, String namespace, String name)
@@ -83,8 +84,8 @@ public class Arc extends ModelItem implements Serializable
     {
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
-        arrowHead.lineToPoint(new NSPoint(6.0F, -20.0F));
-        arrowHead.lineToPoint(new NSPoint(-6.0F, -20.0F));
+        arrowHead.lineToPoint(new NSPoint(3.0F, -20.0F));
+        arrowHead.lineToPoint(new NSPoint(-3.0F, -20.0F));
         arrowHead.closePath();
     }
     
@@ -112,6 +113,8 @@ public class Arc extends ModelItem implements Serializable
         normalColor = NSColor.colorWithCalibratedRGB(0F, 0F, 1F, 0.5F);
         hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
         defaultSize = new NSSize(15,15);
+        myRect = NSRect.ZeroRect;
+        boundsRect = NSRect.ZeroRect;
         
         calculateSize();
         initArrowHead();
@@ -137,8 +140,8 @@ public class Arc extends ModelItem implements Serializable
     {
         propertyName = name;
         propertyNamespace = namespace;
-        calculateSize();
-        myList.itemChanged(this);
+        //calculateSize();
+        myList.itemChanged(this, calculateSize());
     }
     
     // Version of above but property not split
@@ -195,7 +198,8 @@ public class Arc extends ModelItem implements Serializable
     
     public void nodeMoved()
     {
-        calculateRectangle();
+        //calculateRectangle();
+        myList.itemChanged(this, calculateSize());
     }
     
     public boolean isNode()
@@ -203,18 +207,20 @@ public class Arc extends ModelItem implements Serializable
         return false;
     }
 
-    public void drawNormal()
+    public void drawNormal(NSRect rect)
     {
-        drawMe(normalColor);
+        drawMe(normalColor, rect);
     }
 
-    public void drawHilight()
+    public void drawHilight(NSRect rect)
     {
-        drawMe(hilightColor);
+        drawMe(hilightColor, rect);
     }
 
-    public void drawMe(NSColor myColor)
+    public void drawMe(NSColor myColor, NSRect rect)
     {
+        if (boundsRect.intersectsRect(rect))
+        {
         double dx = toNode.position().x() - fromNode.position().x();
         double dy = toNode.position().y() - fromNode.position().y();
         float angle = (float)Math.atan2(dx, dy);
@@ -244,6 +250,8 @@ public class Arc extends ModelItem implements Serializable
         {
             NSGraphics.drawAttributedString(displayString, myRect);
         }
+        
+        }
     }
 
     public boolean containsPoint(NSPoint point)
@@ -251,7 +259,7 @@ public class Arc extends ModelItem implements Serializable
         return myRect.containsPoint(point, true); // always flipped
     }
     
-    public void calculateSize()
+    public NSRect calculateSize()
     {
         if (!showProperty)
         {
@@ -267,17 +275,22 @@ public class Arc extends ModelItem implements Serializable
             mySize = NSGraphics.sizeOfAttributedString(displayString);
         }
         
-        calculateRectangle();
+        return calculateRectangle();
     }
     
-    public void calculateRectangle()
+    public NSRect calculateRectangle() // returns the rectangle affected by this change
     {
+        NSRect changedRect = boundsRect;
         float x = (toNode.position().x() + fromNode.position().x()) / 2.0F;
         float y = (toNode.position().y() + fromNode.position().y()) / 2.0F;
         myRect = new NSRect(x - mySize.width()/2F,
                             y - mySize.height()/2F,
                             mySize.width(),
                             mySize.height() );
+        boundsRect = toNode.rect().rectByUnioningRect(fromNode.rect());
+        boundsRect = boundsRect.rectByUnioningRect(myRect);
+        
+        return changedRect.rectByUnioningRect(boundsRect);
     }
         
 }

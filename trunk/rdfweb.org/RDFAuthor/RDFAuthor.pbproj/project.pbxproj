@@ -346,6 +346,9 @@
 				<string>RDF/XML Document</string>
 				<string>N-Triple Document</string>
 				<string>N3 Document</string>
+				<string>PDF Document</string>
+				<string>EPS Document</string>
+				<string>TIFF Image</string>
 			</array>
 		</dict>
 		<dict>
@@ -394,6 +397,48 @@
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>text</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pdf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PDF Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>pdf </string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>eps</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>EPS Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>eps </string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>tiff</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TIFF Image</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>tiff</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
