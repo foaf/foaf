@@ -8,10 +8,13 @@ import com.strangeberry.rendezvous.*;
 public class CommandLine
 {
   RendTest controller;
-
+  List messageQueue;
+  
   public CommandLine(RendTest controller)
   {
     this.controller = controller;
+    this.messageQueue =
+      Collections.synchronizedList(new ArrayList());
   }
   
   public void run()
@@ -25,8 +28,10 @@ public class CommandLine
       {
 	try
 	  {
-	    System.out.print("% ");
+	    flushMessages();
 	    
+	    System.out.print("> ");
+
 	    input = inputReader.readLine();
 	    
 	    inputTokeniser =
@@ -326,6 +331,21 @@ public class CommandLine
     else
       return toReturn;
   }
+
+public synchronized void addMessage(String message)
+{
+messageQueue.add(message);
+}
+
+public synchronized void flushMessages()
+{
+for (Iterator i = messageQueue.iterator();i.hasNext();)
+{
+System.out.println((String) i.next());
+}
+
+messageQueue.clear();
+}
 
   public void help()
   {

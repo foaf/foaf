@@ -18,7 +18,9 @@ public class Person
   String homepage;
   String interest;
   String seeAlso;
-  
+
+  boolean available;
+    
   boolean showMbox = false;
   
   ArrayList knows;

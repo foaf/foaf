@@ -11,11 +11,14 @@ public class HttpServer implements Runnable
   int port;
   HTTPRequestHandler reqHandler;
   Thread listenThread;
+  RendTest controller;
   
-  public HttpServer(int port, HTTPRequestHandler reqHandler)
+  public HttpServer(int port, HTTPRequestHandler reqHandler,
+		    RendTest controller)
   {
     this.port = port;
     this.reqHandler = reqHandler;
+    this.controller = controller;
   }
 
   public void start()
@@ -32,7 +35,7 @@ public class HttpServer implements Runnable
     try
       {
 	socket = new ServerSocket(port);
-	System.out.println("httpServer running on port " + 
+	controller.showMessage("HttpServer running on port " + 
 			   socket.getLocalPort());
 	
 	while(true)
