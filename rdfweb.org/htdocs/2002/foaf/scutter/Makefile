@@ -23,3 +23,7 @@ harvest:
 
 xsltharvest:
 	bin/scutter --use-xslt --scutter
+
+stats:
+	bin/vocabstats.rb
+
