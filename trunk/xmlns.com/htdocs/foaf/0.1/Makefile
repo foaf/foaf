@@ -1,6 +1,6 @@
 check:
 	gpg --quiet --verify ../foafsig index.html
-
+V=../../2003/vocabtable.rb
 
 sign:
 	@echo "Sign your Schema!"
@@ -12,23 +12,12 @@ sign:
 #
 
 vocabtable:
-	rdfdump -o ntriples -q file:index.rdf  | ./vocabtable.rb  > table.html
-
-jenavoc:
-	rdfdump -o ntriples -q file:index.rdf  | ./vocab2jena.rb  > FOAFJena.java
+	rdfdump -o ntriples -q file:index.rdf  | $(V)  > table.html
 
 getrdf:
 	xsltproc ../../2002/07/extractrdf.xsl index.html > index.rdf
 
-
 # should this be the rdf version i'm signing? both?
-
-
-PARSER=/home/pldab/working/w3c/perl/modules/W3C/Rdf/bin/xrdfparser
-
-test:
-	$(PARSER) index.html
-
 
 
 # generate the RDF version:
