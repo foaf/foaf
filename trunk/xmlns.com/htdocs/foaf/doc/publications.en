@@ -1,5 +1,5 @@
 <p>
-The <code>foaf:publications</code> property indicates a <foaf:code>Document</code>
+The <code>foaf:publications</code> property indicates a <code>Document</code>
 listing (primarily in human-readable form) some publications associated with a 
 <code>foaf:Person</code>. Such documents are typically published alongside one's 
 <code>foaf:homepage</code>.

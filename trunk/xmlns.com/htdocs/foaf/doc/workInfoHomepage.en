@@ -1,7 +1,7 @@
 <p>
 The <code>foaf:workInfoHomepage</code> of a <code>foaf:Person</code> is a 
 <code>foaf:Document</code> that describes their work. It is generally (but not necessarily) a 
-different document from their <code>foaf:homepage</a>, and from any 
+different document from their <code>foaf:homepage</code>, and from any 
 <code>foaf:workplaceHomepage</code>(s) they may have. 
 </p>
 
