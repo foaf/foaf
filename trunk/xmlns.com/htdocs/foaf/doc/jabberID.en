@@ -17,13 +17,6 @@ of Jabber users and services.
 </p>
 
 <p>
-Note that it may be impolite to carelessly reveal someone else's chat identifier (which might 
-also serve as an indicate of email address) As with email,  there are privacy and anti-SPAM 
-considerations. FOAF does not currently provide a way to  represent an obfuscated chat ID (ie. 
-there is no parallel to the <code>foaf:mbox</code> / <code>foaf:mbox_sha1sum</code> mapping). 
-Future extensions to FOAF may address the general  problem of representing online accounts (for 
-mail, ecommerce etc); treatment of privacy should be ddressed within such a broader framework. 
-The FOAF chat ID properties (<code>foaf:aimChatID</code>, <code>foaf:msnChatID</code>, 
-<code>foaf:yahooChatID</code>, <code>foaf:msnChatID</code>) are provided as a convenient 
-shorthand for some common cases; their use may not always be appropriate.
+See <code>foaf:OnlineChatAccount</code> (and <code>foaf:OnlineAccount</code>) for a
+more general (and verbose) mechanism for describing IM and chat accounts.
 </p>
