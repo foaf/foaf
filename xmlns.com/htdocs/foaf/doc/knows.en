@@ -1,0 +1,82 @@
+<p>
+The <code>foaf:knows</code> property relates a <code>foaf:Person</code> to another 
+<code>foaf:Person</code> that he or she knows. 
+</p>
+
+<p>
+We take a broad view of 'knows', but do require some form of reciprocated interaction (ie. 
+stalkers need not apply). Since social attitudes and conventions on this topic vary 
+greatly between communities, counties and cultures, it is not appropriate for FOAF to be 
+overly-specific here. 
+</p>
+
+<p>
+If someone <code>foaf:knows</code> a person, it would be usual for 
+the relation to be reciprocated. However this doesn't mean that there is any obligation 
+for either party to publish FOAF describing this relationship. A <code>foaf:knows</code> 
+relationship does not imply friendship, endorsement, or that a face-to-face meeting 
+has taken place: phone, fax, email, and smoke signals are all perfectly 
+acceptable ways of communicating with people you know. 
+</p>
+<p>
+You probably know hundreds of people, yet may only list a few in your public FOAF file. 
+That's OK. Or you might list them all. It is perfectly fine to have a FOAF file and not 
+list anyone else in it at all. 
+This illustrates the Semantic Web principle of partial description: RDF documents 
+rarely describe the entire picture. There is always more to be said, more information 
+living elsewhere in the Web (or in our heads...).
+</p>
+
+<p>
+Since <code>foaf:knows</code> is vague by design, it may be suprising that it has uses. 
+Typically these involve combining other RDF properties. For example, an application might 
+look at properties of each <code>foaf:weblog</code> that was <code>foaf:made</code> by 
+someone you "<code>foaf:knows</code>". Or check the newsfeed of the online photo archive 
+for each of these people, to show you recent photos taken by people you know.
+</p>
+
+<p>
+To provide an additional level of filtering, FOAF applications can do several things. 
+</p>
+<p>
+They can use more precise relationships than <code>foaf:knows</code> to relate people to 
+people. The original FOAF design included two of these ('knowsWell','friend') which we 
+removed because they were too <em>awkward</em> to actually use. Other extensions have 
+been proposed, including Eric Vitiello's <a 
+href="http://www.perceive.net/schemas/20021119/relationship/">Relationship module</a> for 
+FOAF.
+</p>
+
+<p>
+In addition to using more specialised inter-personal relationship types 
+(eg rel:acquaintanceOf etc) it is often just as good to use RDF descriptions of the states 
+of affairs which imply particular kinds of relationship. So for example, two people who 
+have the same value for their <code>foaf:workplaceHomepage</code> property are 
+typically colleagues. We don't (currently) clutter FOAF up with these extra relationships, 
+but the facts can be written in FOAF nevertheless. Similarly, if there exists a 
+<code>foaf:Document</code> that has two people listed as its <code>foaf:maker</code>s, 
+then they are probably collaborators of some kind. Or if two people appear in 100s of 
+digital photos together, there's a good chance they're friends and/or colleagues.
+</p>
+
+<p>
+So FOAF is quite pluralistic in its approach to representing relationships between people. 
+FOAF is built on top of a general purpose machine language for representing relationships 
+(ie. RDF), so is quite capable of representing any kinds of relationship we care to add. 
+The problems are generally social rather than technical; deciding on appropriate ways of 
+describing these interconnections is a subtle art.
+</p>
+
+<p>
+Perhaps the most important use of <code>foaf:knows</code> is, alongside the 
+<code>rdfs:seeAlso</code> property, to connect FOAF files together. Taken alone, a FOAF 
+file is somewhat dull. But linked in with 1000s of other FOAF files it becomes more 
+interesting, with each FOAF file saying a little more about people, places, documents, things... 
+By mentioning other people (via <code>foaf:knows</code> or other relationships), and by 
+providing an <code>rdfs:seeAlso</code> link to their FOAF file, you can make it easy for 
+FOAF indexing tools ('<a href="http://rdfweb.org/topic/ScutterSpec">scutters</a>') to find 
+your FOAF and the FOAF of the people you've mentioned. And the FOAF of the people they 
+mention, and so on. This makes it possible to build FOAF aggregators without the need for 
+a centrally managed directory of FOAF files...
+</p>
+
