@@ -5,6 +5,9 @@
 ./scutter/bin/pathfinder
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
+./scutter/doc/pathfinder_example.txt
+./scutter/doc/sample_foafcorp.txt
+./scutter/doc/sample_pathdata.txt
 ./scutter/conf/scutterdb.sql
 ./scutter/conf/scutterdb-mysql.sql
 ./scutter/conf/rdfc14n.xsl
