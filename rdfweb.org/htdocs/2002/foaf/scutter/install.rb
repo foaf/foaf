@@ -33,14 +33,20 @@ def install_rb(libdir = "lib", files = nil)
       dir |= [File.dirname(f)]
     end
   end
+
   for f in dir
     if f == "."
       File::makedirs(File.join($destdir, $libdir))
     else
+  puts "removing : from destdir (Win32 hack --danbri)"
+  $libdir.gsub!(/:/,'/') 
       File::makedirs(File.join($destdir, $libdir, f))
     end
   end
+
+
   for f in path
+  f.gsub!(/:/,'/')  #danbri
     File::install(File.join(libdir, f), File.join($destdir, $libdir, f), nil, true)
   end
 end

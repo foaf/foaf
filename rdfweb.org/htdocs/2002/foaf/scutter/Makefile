@@ -25,11 +25,15 @@ destroydata:
 harvest:
 	bin/scutter --use-raptor=rdfdump --scutter
 
-winharvest:
+xwinharvest:
 	bin/scutter --dbdriver=Mysql --use-xslt --scutter
 
-redwin:
+redwinharvest:
 	ruby bin/scutter --use-raptor=./redparse/rdfdump --dbdriver=Mysql --scutter
+
+
+msqldump:
+	mysqldump -c rdfweb1 > _rdfweb1.mysql
 
  
 stats:
