@@ -33,25 +33,51 @@ public class RDFAuthorDocument extends NSDocument {
         // Insert code here to create and return the data for your document.
         System.out.println("Wants to save as " + aType);
         
-        String rdfData = rdfModel.exportAsRDF();
-        
-        if (rdfData == null)
+        if (aType.equals("RDFAuthor Document"))
         {
-            return null;
+            return NSArchiver.archivedDataWithRootObject(rdfModel);
+        }
+        else if (aType.equals("RDF Document"))
+        {
+            String rdfData = rdfModel.exportAsRDF();
+            
+            if (rdfData == null)
+            {
+                return null;
+            }
+            else
+            {
+                // Ugh 
+                System.out.println(rdfData);
+                NSMutableStringReference rdfString = new NSMutableStringReference();
+                rdfString.setString(rdfData);
+                return rdfString.dataUsingEncoding(
+                    NSStringReference.UTF8StringEncoding, false);
+            }
         }
         else
         {
-            // Ugh 
-            System.out.println(rdfData);
-            NSMutableStringReference rdfString = new NSMutableStringReference();
-            rdfString.setString(rdfData);
-            return rdfString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
+            System.out.println("Unknown save type");
+            return null;
         }
     }
 
     public boolean loadDataRepresentation(NSData data, String aType) {
         // Insert code here to read your document from the given data.
-        return true;
+        System.out.println("Wants to load something of type " + aType);
+        
+        if (aType.equals("RDFAuthor Document"))
+        {
+            Object got = NSUnarchiver.unarchiveObjectWithData(data);
+            System.out.println("Got: " + got);
+            //rdfModelView.setNeedsDisplay(true);
+            return true;
+        }
+        else
+        {
+            System.out.println("Don't know this type");
+            return false;
+        }
     }
     
     public String windowNibName() {

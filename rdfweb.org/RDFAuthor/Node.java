@@ -6,6 +6,7 @@ import com.apple.cocoa.application.*;
 
 import java.util.Enumeration;
 import java.util.Vector;
+import java.io.*;
 
 import com.hp.hpl.mesa.rdf.jena.model.*;
 import com.hp.hpl.mesa.rdf.jena.mem.*;
@@ -13,12 +14,11 @@ import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
-public class Node extends ModelItem
+public class Node extends ModelItem implements Serializable
 {
     String id;
     String typeNamespace;
     String typeName;
-    float size;
     Vector arcsFrom;
     Vector arcsTo;
     ArcNodeList myList;
@@ -44,6 +44,45 @@ public class Node extends ModelItem
         setType(typeNamespace,typeName);
         arcsFrom = new Vector();
         arcsTo = new Vector();
+    }
+    
+        
+    private void writeObject(java.io.ObjectOutputStream out)
+     throws IOException
+    {
+        System.out.println("Serialising " + this);
+        out.writeFloat(position.x());
+        System.out.println("Wrote node position x");
+        out.writeFloat(position.y());
+        System.out.println("Wrote node position y");
+        out.writeObject(id);
+        System.out.println("Wrote node id");
+        out.writeObject(typeNamespace);
+        System.out.println("Wrote node type n/s");
+        out.writeObject(typeName);
+        System.out.println("Wrote node type name");
+        out.writeObject(arcsFrom);
+        System.out.println("Wrote node arcs from");
+        out.writeObject(arcsTo);
+        System.out.println("Wrote node arcs to");
+        out.writeBoolean(literal);
+        System.out.println("Wrote node literal");
+    }
+    
+    private void readObject(java.io.ObjectInputStream in)
+     throws IOException, ClassNotFoundException
+    {
+        float x = in.readFloat();
+        float y = in.readFloat();
+        position = new NSPoint(x, y);
+        id = (String) in.readObject();
+        typeNamespace = (String) in.readObject();
+        typeName = (String) in.readObject();
+        arcsFrom = (Vector) in.readObject();
+        arcsTo = (Vector) in.readObject();
+        literal = in.readBoolean();
+        
+        calculateSize();
     }
     
     public void setJenaNode(RDFNode theNode)

@@ -7,7 +7,8 @@ import com.apple.cocoa.application.*;
 import java.util.Enumeration;
 import java.util.Vector;
 import java.io.StringWriter;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
+import java.io.*;
 
 import com.hp.hpl.mesa.rdf.jena.model.*;
 import com.hp.hpl.mesa.rdf.jena.mem.*;
@@ -15,7 +16,7 @@ import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
-public class ArcNodeList
+public class ArcNodeList implements Serializable
 {
     Vector array;
     ModelItem currentObject;
@@ -27,7 +28,24 @@ public class ArcNodeList
         array = new Vector();
         this.controller = controller;
     }
-
+    
+    private void writeObject(java.io.ObjectOutputStream out)
+     throws IOException
+    {
+        System.out.println("Serialising " + this);
+        out.writeObject(array);
+        System.out.println("Wrote ArcNodeList array");
+        out.writeObject(currentObject);
+        System.out.println("Wrote currentObject");
+    }
+    
+    private void readObject(java.io.ObjectInputStream in)
+     throws IOException, ClassNotFoundException
+    {
+        array = (Vector) in.readObject();
+        currentObject = (ModelItem) in.readObject();
+    }
+    
     public void add(ModelItem anObject)
     {
         array.add(anObject);
