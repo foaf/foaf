@@ -1,104 +1,171 @@
-<html>
-<head>
-<title>RDFWeb: Scutter v2.0a1 documentation</title>
-</head>
-
-<body>
-
-<h1>Scutter</h2>
-
-<p>
-<em>'Scutter'</em> is an RDF harvesting and indexing service. It
-consists of a collection of libraries and utilities that support the
-traversal, storage and query of a distributed web of RDF/XML documents. 
-</p>
-
-<p>
-Scutter is written in <a href="http://www.ruby-lang.org/">Ruby</a>, and
-uses the <a href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a> for most of its
-functionality. In addition, an RDF parser is required, alongside an
-RDBMS/SQL database for storage of the harvested data. Scutter can make
-use of PGP/GPG cryptographic signatures of the RDF content, if GPG is
-installed. Web interfaces (for humans and machines) to the aggregated
-RDF data can be created using HTTP (via the <em>WebRick</em> library)
-and/or SOAP (using <em>SOAP4R</em>). 
-</p>
-
-<h3>Dependencies</h3>
-
-<p>Scutter has the following dependencies...</p>
-
-<h4>Ruby</h4>
-
-<p>A Ruby interpreter (1.6+) is needed.</p>
-<p>debian: apt-get ruby</p>
-
-
-<h4>an RDF parser</h4>
-<p>
-Scutter requires an RDF parser that can generate N-Triples. It currently
-uses Redland's Raptor parser, via the 'rdfdump' command line utility.
-</p>
-<p>Notes:
-<ul>
-<li>Redland now has a Ruby API, so we could call the parser directly.</li>
-<li>The RubyRDF package includes a copy of Max Froumentin's XSLT RDF
-parser, <em>Parser#5</em>. This should be an option within Scutter.</li>
-<li>The Liber RDF/Ruby library has (apparently) an RDF parser. At time
-of writing it doesn't seem to be available.</li>
-<li>There is an RDF parser written in PHP (translation of REPAT). It
-might be relatively easy to port this to Ruby.</li>
-<li>Redland is being packaged for Debian; should make sure that Scutter
-debian package knows about this.</li>
-
-<h3>an SQL/RDBMS database</h3>
-
-<p>
-Scutter stores RDF in a relational database. While not the fastest means
-for querying RDF, an RDBMS makes various data management and merging
-tasks easy. We can always dump data from the SQL store for faster query
-in other systems. Scutter currently uses PostgreSQL, but the basic
-approach (using RubyRDF's Squish-to-SQL rewriter) should generalise to
-other SQL implementations that allow self-joins on a table.
-</p>
-
-<ul>
-<li>PostgreSQL needs to be installed and running</li>
-<li>Scutter needs to run as a user with read/write priveleges. It
-currently assumes a default database name of 'rdfweb1'. This should be 
-made a configurable option.</li>
-<li>Scutter requires both the Ruby DBI library (@@url...) and the
-Postgres library (@@url) for communicating with its database.</li>
-<li>Turn off PostgreSQL's Genetic Algorithm Query Optimiser. It performs 
-erratically on the kind of queries typical of RDF data. SET GEQO=OFF
-(somewhere...)</li>
-<li>The SQL schema used is the one assumed by RubyRDF and the Java
-Inkling tools. It may improve in future releases.
-</li>
-<li>debian:(@@?) apt-get install postgres</li>
-</ul>
-
-<h4>Web interfaces</h4>
-<ul>
-<li>WebRick can be used to create Servlet/WWW apps that use Scutter's 
-database and the RubyRDF APIs</li>
-<li>debian: (@@?) apt-get install webrick</li>
-<li>SOAP4R can be used for SOAP interfaces</li>
-</ul>
-
-
-<p>
-...also various Unix/Linux-isms probably pollute the code. Basics are 
-pretty cross-platform. This is an alpha release, and the chances of
-success are correlated with how similar your machine's setup is to
-mine. Let me know if you have any problems, with the documentation or
-code.
-</p>
-
-
-<hr />
-
-danbri@rdfweb.org
-
-</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: Scutter v2.0a1 documentation
+    </title>
+  </head>
+  <body>
+    <h1>
+      Scutter
+    </h1>
+    <p>
+      <em>'Scutter'</em> is an RDF harvesting and indexing service.
+      It consists of a collection of libraries and utilities that
+      support the traversal, storage and query of a distributed web
+      of RDF/XML documents.
+    </p>
+    <p>
+      Scutter is written in <a
+      href="http://www.ruby-lang.org/">Ruby</a>, and uses the <a
+      href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a> for
+      most of its functionality. In addition, an RDF parser is
+      required, alongside an RDBMS/SQL database for storage of the
+      harvested data. Scutter can make use of PGP/GPG cryptographic
+      signatures of the RDF content, if GPG is installed. Web
+      interfaces (for humans and machines) to the aggregated RDF
+      data can be created using HTTP (via the <em>WebRick</em>
+      library) and/or SOAP (using <em>SOAP4R</em>).
+    </p>
+    <h3>
+      Dependencies
+    </h3>
+    <p>
+      Scutter has the following dependencies...
+    </p>
+    <h4>
+      Ruby
+    </h4>
+    <p>
+      A Ruby interpreter (1.6+) is needed.
+    </p>
+    <p>
+      debian: apt-get ruby
+    </p>
+    <h4>
+      an RDF parser
+    </h4>
+    <p>
+      Scutter requires an RDF parser that can generate N-Triples.
+      It currently uses Redland's Raptor parser, via the 'rdfdump'
+      command line utility.
+    </p>
+    <p>
+      Notes:
+    </p>
+    <ul>
+      <li>
+        Redland now has a Ruby API, so we could call the parser
+        directly.
+      </li>
+      <li>
+        The RubyRDF package includes a copy of Max Froumentin's
+        XSLT RDF parser, <em>Parser#5</em>. This should be an
+        option within Scutter.
+      </li>
+      <li>
+        The Liber RDF/Ruby library has (apparently) an RDF parser.
+        At time of writing it doesn't seem to be available.
+      </li>
+      <li>
+        There is an RDF parser written in PHP (translation of
+        REPAT). It might be relatively easy to port this to Ruby.
+      </li>
+      <li>
+        Redland is being packaged for Debian; should make sure that
+        Scutter debian package knows about this.
+      </li>
+    </ul>
+    <h3>
+      an SQL/RDBMS database
+    </h3>
+    <p>
+      Scutter stores RDF in a relational database. While not the
+      fastest means for querying RDF, an RDBMS makes various data
+      management and merging tasks easy. We can always dump data
+      from the SQL store for faster query in other systems. Scutter
+      currently uses PostgreSQL, but the basic approach (using
+      RubyRDF's Squish-to-SQL rewriter) should generalise to other
+      SQL implementations that allow self-joins on a table.
+    </p>
+    <ul>
+      <li>
+        PostgreSQL needs to be installed and running
+      </li>
+      <li>
+        Scutter needs to run as a user with read/write priveleges.
+        It currently assumes a default database name of 'rdfweb1'.
+        This should be made a configurable option.
+      </li>
+      <li>
+        Scutter requires both the Ruby DBI library (@@url...) and
+        the Postgres library (@@url) for communicating with its
+        database.
+      </li>
+      <li>
+        Turn off PostgreSQL's Genetic Algorithm Query Optimiser. It
+        performs erratically on the kind of queries typical of RDF
+        data. SET GEQO=OFF (somewhere...)
+      </li>
+      <li>
+        The SQL schema used is the one assumed by RubyRDF and the
+        Java Inkling tools. It may improve in future releases.
+      </li>
+      <li>
+        debian:(@@?) apt-get install postgres
+      </li>
+    </ul>
+    <h4>
+      Web interfaces
+    </h4>
+    <ul>
+      <li>
+        WebRick can be used to create Servlet/WWW apps that use
+        Scutter's database and the RubyRDF APIs
+      </li>
+      <li>
+        debian: (@@?) apt-get install webrick
+      </li>
+      <li>
+        SOAP4R can be used for SOAP interfaces
+      </li>
+    </ul>
+    <p>
+      ...also various Unix/Linux-isms probably pollute the code.
+      Basics are pretty cross-platform. This is an alpha release,
+      and the chances of success are correlated with how similar
+      your machine's setup is to mine. Let me know if you have any
+      problems, with the documentation or code.
+    </p>
+    <h2>
+      Usage Instructions
+    </h2>
+    <p>
+      Scutter is run from the commandline.
+    </p>
+    <p>
+      You should be able to get some results by typing 'bin/scutter
+      --scutter' from the directory in which you unpacked these
+      files.
+    </p>
+    <p>
+      Use 'bin/scutter --scutter some-url' to chose a different
+      starting point.
+    </p>
+    <p>
+      'bin/rdfweb_server' runs a sample servlet under the WebRick
+      framework. Connect to http://localhost:2000/rss/ to see a
+      list of all the RSS files the harvester found. The servlet
+      can also download and display the current contents of each
+      channel.
+    </p>
+    <p>
+      More documentation needed here (eg. GPG/PGP assurances)
+    </p>
+    <hr />
+    danbri@rdfweb.org
+  </body>
 </html>
+
