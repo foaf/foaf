@@ -19,3 +19,6 @@ destroydata:
 
 harvest:
 	bin/scutter --scutter
+
+xsltharvest:
+	bin/scutter --use-xslt --scutter
