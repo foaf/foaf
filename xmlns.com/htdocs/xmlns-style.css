@@ -1,4 +1,32 @@
+.code {
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    background-color: #FFFFEE;
+    white-space: pre;
+    border-style: solid;
+    border-width: 1pt;
+    border-color: #999999;
+    color:#111111;
+    padding-left: 0.4%;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+    width: 99.6%;
+}
 
+textarea {
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    background-color: #FFFFEE;
+    white-space: pre;
+    border-style: dotted;
+    border-width: 1pt;
+    border-color: #999999;
+    color:#111111;
+    padding-left: 0.4%;
+    padding-top: 2pt;
+    padding-bottom: 2pt;
+    width: 99.6%;
+}
 
 /* OK I'm going to create a derrivative work from this. I guess I leave 
    in the W3C copyright and state the differences here. 
