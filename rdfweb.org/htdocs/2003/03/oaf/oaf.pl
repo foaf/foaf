@@ -28,10 +28,13 @@
 #  - normalise indenting
 #  - if it works, my tests should scrawl into http://rdfweb.org/rweb/wiki/wiki?ScratchPad
 #
-# cvs version: $Id: oaf.pl,v 1.3 2003-03-29 23:26:42 danbri Exp $
+# cvs version: $Id: oaf.pl,v 1.4 2003-03-30 00:24:46 danbri Exp $
 # cvsweb: http://rdfweb.org/viewcvs/viewcvs.cgi/rdfweb.org/htdocs/2003/03/oaf/
 # Recent changes:
 # $Log: not supported by cvs2svn $
+# Revision 1.3  2003/03/29 23:26:42  danbri
+# It basically works. Need to track nick of who made comment.
+#
 # Revision 1.2  2003/03/29 23:02:49  danbri
 # Working on gluing POE events into the Wiki-oriented code.
 # Focussing on new on_poe_public function, to replace Net::IRC-based on_public.
@@ -59,8 +62,8 @@ my $version = "0.21-OAF-Forkv0.0";
 $ua->agent('Wikibot/$version');
 
 my $listen = {
-    nick => 'oafbot',
-    chan => '#foaf',
+    nick => 'oafbot-dev',
+    chan => '#foaf2',
     feed => 'FOAF',
     server => 'irc.freenode.net',
 };
@@ -255,12 +258,15 @@ sub on_poe_public {
 	#~danbri@pc-80-192-52-217-az.blueyonder.co.uk 
 	# chan=ARRAY(0x8587ba0)
 
-        # print STDERR "[on_poe_public]: msg=$msg sender=$sender who=$who chan=$chan\n\n"; # xxx
+	# print STDERR "[on_poe_public]: msg=$msg sender=$sender who=$who chan=$chan\n\n"; # xxx
 	my ($self, $event) = @_;
 	my @to=('oaf'); # danbri TODO: this is wrong! FIXME
+
         my ($nick, $mynick)=('whoever','oafbot');#$listen{'nick'});  # FIXME
+        $who =~ s/(.*)!.*/$1/;
+        my $nick = $who;
         my $arg=$msg;
-        print "[oaf] considering '$arg'\n\n"; # what's up?
+        print "[oaf] from nick:'$nick'  considering '$arg'\n\n"; 
 	if (($nick eq $owner) && ($arg =~ /^$mynick, leave/i)) {
 		print "Quitting.\n";
 		$self->quit("$quitmsg");
