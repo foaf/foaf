@@ -15,7 +15,7 @@ CREATE TABLE triples (
 # note: 'keyhash' was called 'key' in postgres.
 #
 CREATE TABLE resources (
-  keyhash int(10) unsigned DEFAULT '0' NOT NULL,
+  keyhash int(10) DEFAULT '0' NOT NULL,
   value text
 );
 
