@@ -1,7 +1,29 @@
 #!/usr/bin/env ruby
+# 
+# Scutter, an RDF harvesting and indexing program.
+# $Id: scutter,v 1.3 2002-07-11 13:10:46 danbri Exp $
+#
+# Copyright 2002 Dan Brickley 
+#
+# 
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program; if not, write to the Free Software
+#    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+
 
 
 require 'webutil'	
+
 
 opt = GetoptLong.new (
     ['--import','-i', GetoptLong::NO_ARGUMENT],
@@ -21,6 +43,14 @@ opt = GetoptLong.new (
 
 proxy=true
 crawl=true
+
+
+# note: I moved all the smarts out into webutil.rb
+# this needs re-arranging. the robot stuff should be separated from 
+# the web / rdf utilities.
+#
+# curently, there's nothing much here.
+
 
 opt.each_option do |name,arg|
 case name
