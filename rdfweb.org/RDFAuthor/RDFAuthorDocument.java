@@ -423,18 +423,6 @@ public class RDFAuthorDocument extends NSDocument {
         //}
     }
     
-    public ModelItem currentObject()
-    {
-        return rdfModel.currentObject();
-    }
-    
-    public void currentObjectChanged()
-    {
-        // Tell info window current item changed
-        NSNotificationCenter.defaultCenter().postNotification(
-            new NSNotification(InfoController.itemChangedNotification, this) );
-    }
-    
     public void showTypes(boolean value)
     {
         showTypes = value;
@@ -458,7 +446,7 @@ public class RDFAuthorDocument extends NSDocument {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
         {
-            setCurrentObject(item);
+            rdfModel.selection.set(item);
             NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.showInfoNotification, null) );
         }
@@ -501,15 +489,6 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void deleteCurrentObject()
-    {
-        if (rdfModel.currentObject() != null)
-        {
-            rdfModel.deleteObject(rdfModel.currentObject());
-            queryController.checkForDeletedItems(rdfModel);
-        }
-    }
-    
     public void addNodeAtPoint(String id, String typeNamespace, String typeName, NSPoint point, boolean isLiteral)
     {
         // Do the 'defaults' thing
@@ -526,7 +505,7 @@ public class RDFAuthorDocument extends NSDocument {
 
         // These have to come after the above otherwise the node tries to message a null
 
-        rdfModel.setCurrentObject(newNode);
+        rdfModel.selection().set(newNode);
         newNode.setShowId(showIds);
         newNode.setShowType(showTypes);
         newNode.setIsLiteral(isLiteral);
@@ -549,32 +528,24 @@ public class RDFAuthorDocument extends NSDocument {
             
             // These come afterwards to stop something messaging a non-existent GraphicalArc
             
-            rdfModel.setCurrentObject(newArc);
+            rdfModel.selection().set(newArc);
             newArc.setShowProperty(showProperties);
         }
     }
-    
-    public void setCurrentObject(ModelItem item)
-    {
-        rdfModel.setCurrentObject(item);
-    }
-    
-    public void setCurrentObjectAtPoint(NSPoint point)
-    {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        rdfModel.setCurrentObject(item);
-    }
-    
-    public void addObjectAtPointToSelection(NSPoint point)
+ 
+    public boolean addObjectAtPointToSelection(NSPoint point)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
         {
             rdfModel.selection().add(item);
+            return true;
         }
+        
+        return false;
     }
     
-    public void setSelectionToObjectAtPoint(NSPoint point)
+    public boolean setSelectionToObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
@@ -583,7 +554,13 @@ public class RDFAuthorDocument extends NSDocument {
             {
                 rdfModel.selection().set(item);
             }
+            return true;
         }
+        else
+        {
+            rdfModel.selection().set(null);
+        }
+        return false;
     }
     
     public void moveSelectionBy(float dx, float dy)
@@ -607,16 +584,7 @@ public class RDFAuthorDocument extends NSDocument {
     {
         rdfModel.selectPreviousObject();
     }
-    
-    public void moveCurrentObjectToPoint(NSPoint point)
-    {
-        ModelItem item = rdfModel.currentObject();
-        if ((item !=null) && item.isNode())
-        {
-            ((Node) item).setPosition(point.x(), point.y());
-        }
-    }
-    
+
     public void setIdForNodeAtPoint(String id, NSPoint point, boolean isLiteral)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
