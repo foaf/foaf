@@ -1,0 +1,59 @@
+<!-- got an image, URI: http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG -->
+<!-- 
+
+
+	Image description tells of an SVG region: [local:bnodeid:98028241
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:73986268 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Truck' foaf:rudeThing=false 
+
+
+ -->
+
+<!-- 	This is a wordnet class; todo: lookup more info!... -->
+
+<!-- 
+
+
+	Image description tells of an SVG region: [local:bnodeid:53297271
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:463861 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Man' foaf:rudeThing=false 
+
+
+ -->
+
+<!-- 	This is a wordnet class; todo: lookup more info!... -->
+
+<!-- 
+
+
+	Image description tells of an SVG region: [local:bnodeid:54644522
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:95440224 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Straightjacket' foaf:rudeThing=false 
+
+
+ -->
+
+<!-- 	This is a wordnet class; todo: lookup more info!... -->
+
+<!-- 
+
+
+	Image description tells of an SVG region: [local:bnodeid:98847722
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:86608222 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Penis' foaf:rudeThing=true 
+
+
+ -->
+
+<!-- **** foaffamilyfilter activated! **** -->
+  <svg width="100%" height="100%" enable-background="new" >
+   <defs><filter id="pixelize" x="-0.5" y="-0.5" width="2" height="2" filterRes="8"><feOffset in="BackgroundImage"/></filter></defs>
+   <image opacity="1" width="640" height="480" x="0" y="0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG"/>
+   <path stroke-width="10" filter="url(#pixelize)"  id="pathref0" d="M137.0721649484536 214.26804123711338 L137.0721649484536 214.26804123711338 L128.3298969072165 218.22680412371133 M128.3298969072165 218.22680412371133 L130.1443298969072 227.46391752577318 M130.1443298969072 227.46391752577318 L135.58762886597938 231.25773195876286 M135.58762886597938 231.25773195876286 L140.04123711340208 230.59793814432987 M140.04123711340208 230.59793814432987 L144.82474226804123 241.48453608247422 M144.82474226804123 241.48453608247422 L149.60824742268042 240.98969072164948 M149.60824742268042 240.98969072164948 L151.75257731958763 236.2061855670103 M151.75257731958763 236.2061855670103 L148.61855670103094 227.79381443298968 M148.61855670103094 227.79381443298968 L147.1340206185567 222.18556701030928 M147.1340206185567 222.18556701030928 L145.31958762886597 219.2164948453608 M145.31958762886597 219.2164948453608 L137.0721649484536 214.26804123711338 z" />
+  </svg>
+<!-- 	This is a wordnet class; todo: lookup more info!... -->
+

@@ -1,0 +1,32 @@
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/foaf/0.1/Image> .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://purl.org/dc/elements/1.1/title> "Taboo Performance in Bath" .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#height> "480" .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#width> "640" .
+_:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://jibbering.com/2002/3/svg/#Polygon> .
+_:genid1 <http://jibbering.com/2002/3/svg/#polypath> "M73 348 L73 348 L75 343 M75 343 L85 341 M85 341 L87 303 M87 303 L103 271 M103 271 L102 242 M102 242 L109 223 M109 223 L115 204 M115 204 L119 187 M119 187 L110 185 M110 185 L104 170 M104 170 L104 146 M104 146 L117 134 M117 134 L110 122 M110 122 L110 105 M110 105 L116 92 M116 92 L124 89 M124 89 L134 89 M134 89 L139 94 M139 94 L143 99 M143 99 L143 105 M143 105 L142 113 M142 113 L144 117 M144 117 L151 114 M151 114 L157 118 M157 118 L161 122 M161 122 L164 132 M164 132 L168 146 M168 146 L173 160 M173 160 L174 168 M174 168 L173 180 M173 180 L174 191 M174 191 L178 203 M178 203 L176 208 M176 208 L176 224 M176 224 L174 236 M174 236 L170 256 M170 256 L170 270 M170 270 L169 281 M169 281 L173 292 M173 292 L176 302 M176 302 L176 312 M176 312 L173 324 M173 324 L173 330 M173 330 L173 340 M173 340 L174 355 M174 355 L174 359 M174 359 L184 365 M184 365 L185 371 M185 371 L178 374 M178 374 L160 370 M160 370 L154 360 M154 360 L161 353 M161 353 L157 327 M157 327 L156 297 M156 297 L149 286 M149 286 L146 251 M146 251 L139 239 M139 239 L137 242 M137 242 L134 253 M134 253 L128 264 M128 264 L120 277 M120 277 L116 286 M116 286 L112 297 M112 297 L111 307 M111 307 L106 319 M106 319 L98 333 M98 333 L98 346 M98 346 L94 353 M94 353 L73 348  z" .
+_:genid2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/wordnet/1.6/Man> .
+_:genid1 <http://xmlns.com/foaf/0.1/regionDepicts> _:genid2 .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#hasPart> _:genid1 .
+_:genid3 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://jibbering.com/2002/3/svg/#Polygon> .
+_:genid3 <http://jibbering.com/2002/3/svg/#polypath> "M108 112 L108 112 L103 141 M103 141 L101 152 M101 152 L109 188 M109 188 L178 186 M178 186 L179 151 M179 151 L164 117 M164 117 L146 111 M146 111 L133 87 M133 87 L108 104 M108 104 L108 112  z" .
+_:genid4 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/wordnet/1.6/Straightjacket> .
+_:genid3 <http://xmlns.com/foaf/0.1/regionDepicts> _:genid4 .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#hasPart> _:genid3 .
+_:genid5 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://jibbering.com/2002/3/svg/#Polygon> .
+_:genid5 <http://jibbering.com/2002/3/svg/#polypath> "M137.0721649484536 214.26804123711338 L137.0721649484536 214.26804123711338 L128.3298969072165 218.22680412371133 M128.3298969072165 218.22680412371133 L130.1443298969072 227.46391752577318 M130.1443298969072 227.46391752577318 L135.58762886597938 231.25773195876286 M135.58762886597938 231.25773195876286 L140.04123711340208 230.59793814432987 M140.04123711340208 230.59793814432987 L144.82474226804123 241.48453608247422 M144.82474226804123 241.48453608247422 L149.60824742268042 240.98969072164948 M149.60824742268042 240.98969072164948 L151.75257731958763 236.2061855670103 M151.75257731958763 236.2061855670103 L148.61855670103094 227.79381443298968 M148.61855670103094 227.79381443298968 L147.1340206185567 222.18556701030928 M147.1340206185567 222.18556701030928 L145.31958762886597 219.2164948453608 M145.31958762886597 219.2164948453608 L137.0721649484536 214.26804123711338  z" .
+_:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/wordnet/1.6/Penis> .
+_:genid5 <http://xmlns.com/foaf/0.1/regionDepicts> _:genid6 .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#hasPart> _:genid5 .
+_:genid7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://jibbering.com/2002/3/svg/#Polygon> .
+_:genid7 <http://jibbering.com/2002/3/svg/#polypath> "M256 365.5257731958763 L256 365.5257731958763 L265.2371134020618 391.25773195876286 M265.2371134020618 391.25773195876286 L299.5463917525773 395.87628865979383 M299.5463917525773 395.87628865979383 L315.3814432989691 377.40206185567007 M315.3814432989691 377.40206185567007 L296.24742268041234 370.1443298969072 M296.24742268041234 370.1443298969072 L283.0515463917526 368.82474226804123 M283.0515463917526 368.82474226804123 L256 365.5257731958763  z" .
+_:genid8 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://xmlns.com/wordnet/1.6/Truck> .
+_:genid7 <http://xmlns.com/foaf/0.1/regionDepicts> _:genid8 .
+<http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG> <http://jibbering.com/2002/3/svg/#hasPart> _:genid7 .
+<http://xmlns.com/wordnet/1.6/Man> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://xmlns.com/wordnet/1.6/Man> <http://xmlns.com/foaf/0.1/rudeThing> "false" .
+<http://xmlns.com/wordnet/1.6/Truck> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://xmlns.com/wordnet/1.6/Truck> <http://xmlns.com/foaf/0.1/rudeThing> "false" .
+<http://xmlns.com/wordnet/1.6/Penis> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://xmlns.com/wordnet/1.6/Penis> <http://xmlns.com/foaf/0.1/rudeThing> "true" .
+<http://xmlns.com/wordnet/1.6/Straightjacket> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://xmlns.com/wordnet/1.6/Straightjacket> <http://xmlns.com/foaf/0.1/rudeThing> "false" .
