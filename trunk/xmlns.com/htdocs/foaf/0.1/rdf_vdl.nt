@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-09 10:26:51 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-09 18:35:18 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -287,7 +287,7 @@
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#label> "topic" .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#comment> "A topic of some page or document." .
-<http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Document> .
+<http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/page> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
@@ -295,7 +295,7 @@
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#label> "page" .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#comment> "A page or document about this thing." .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
-<http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Document> .
+<http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/topic> .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
