@@ -9,3 +9,23 @@ Mac and Linux:
 ./run.sh --gui "My Name" me@example.com
 
 Use --cl rather than --gui for a command line version.
+
+Linux problems:
+
+1) Can't find address of the host
+
+FoafFinger has problems finding the host address on Linux sometimes.
+Help it out by running it as:
+
+./run.sh --gui "My Name" me@example.com my.host.name
+
+or
+
+./run.sh --gui "My Name" me@example.com 1.2.3.4
+
+(replace these with your host name or ip address - see /sbin/ifconfig)
+
+2) I can't see anyone, but they're definitely there!
+
+Some linux drivers seem to have a bug and need to be in promiscuous mode to see multicast.
+A (dumb) solution is running a packet sniffer (eg tcpdump) which will force that mode.

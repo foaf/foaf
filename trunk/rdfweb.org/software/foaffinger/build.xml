@@ -50,7 +50,7 @@
 
 <target name="package">
 	
-	<property name="dist_dir" value="${dist}/${ant.project.name}-${platform}"/>
+	<property name="dist_dir" value="${dist}/${platform}/${ant.project.name}-${platform}"/>
 	
 	<mkdir dir="${dist_dir}"/>
 	<mkdir dir="${dist_dir}/lib"/>
@@ -83,15 +83,21 @@
 		</fileset>
 	</copy>
 	
-	<copy todir="src">
+	<copy todir="${dist_dir}" file="README"/>
+	<copy todir="${dist_dir}" file="run.sh"/>
+	
+	<copy todir="${dist_dir}/src">
 		<fileset dir="src"/>
 	</copy>
+	
+	<chmod file="${dist_dir}/run.sh" perm="u+x"/>
 	
 	<!-- Only for macs, btw -->
 	
 	<chmod file="${dist_dir}/lib/java_swt" perm="u+x"/>
 	
-	<tar destfile="${dist_dir}.tar.gz" basedir="${dist_dir}" compression="gzip"/>
+	<tar destfile="${dist}/${ant.project.name}-${platform}.tar.gz" 
+		basedir="${dist}/${platform}" compression="gzip">
+	</tar>
 </target>
-
 </project>
