@@ -1,4 +1,4 @@
-$Date: 2001-11-08 16:12:48 $ - pldms
+2001/11/08 16:12:48 - pldms
     
     Queries now threaded. This is because they can take too long to hold up users. (By
     contrast Schema Imports are pretty nippy).
