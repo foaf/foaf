@@ -60,7 +60,9 @@
       To really appreciate this, you'll need a Web browser that
       supports SVG graphics. The <a
       href="http://www.adobe.com/svg/viewer/install/">Adobe
-      plugin</a> is probably what you want.
+      plugin</a> is probably what you want. I should make some 
+screenshots or JPEG-rasterized version of the final output for 
+the SVG impaired. Someday.
     </p>
     <h3>
       SVG/RDF PICS NG demo
@@ -106,7 +108,7 @@
       image. We write (using Jim Ley's <a
       href="http://www.jibbering.com/">neat tools</a>) some RDF
       describing the types of thing depicted in the image,
-      including -- <em>crucially</em> a description of which bit of
+      including -- <em>crucially</em> -- a description of which bit of
       the image depicts which thing. We load this into an RDF
       program, aboutimage.rb (using the <a
       href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a>
@@ -115,7 +117,7 @@
       program simply loops through the list of all the described
       sub-regions of the image, and checks to see what type or
       class of thing each depicted object is. If the thing is
-      deemed 'rude', by the simplemined process of looking in the
+      deemed 'rude', by the simpleminded process of looking in the
       RDF description to see if there is a 'rudeThing' property of
       the class with a value of 'true', then an SVG filter is
       emitted. The generated SVG takes the outlining path info from
@@ -127,12 +129,12 @@
       What this shows...
     </h3>
     <p>
-      (1) RDF and SVG combined can do something neither achieve
+     RDF and SVG combined can do something neither achieve
       alone: describe images and their parts in pretty
       sophisticated detail.
     </p>
     <p>
-      (2) The filtering strategy shown is way too simplistic. Take
+      The filtering strategy shown is way too simplistic. Take
       our actual example here. The RDF filtering code can be as
       simple or as complex as we care to implement. The current
       demo implicitly takes the view that certain types of thing
@@ -166,7 +168,7 @@
       Bargain. PICS NG...
     </p>
 <pre>
-$Id: picsng-demo.html,v 1.2 2002-06-07 21:40:30 danbri Exp $
+$Id: picsng-demo.html,v 1.3 2002-06-07 21:48:07 danbri Exp $
 </pre>
   </body>
 </html>
