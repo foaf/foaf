@@ -1,12 +1,10 @@
 
+'Scutter' is free software, available under the GNU Public License.
 
-This software is not yet distributed / packaged. I'm working on it!
-Hence this filetree and LICENSE.TXT.
+See COPYING.TXT for details.
 
-I expect to release Scutter under the GPL.
 
-I need to double-check for dependencies etc and relationships to other
-packages.
+Notes:
 
 RubyRDF (see http://www.w3.org/2001/12/rubyrdf/) will likely be released
 under W3C's Software License (which itself permits subsequent
@@ -23,3 +21,4 @@ work for exposing Scutter's database; example code for WebRick and for
 SOAP4R is included.
 
  
+contact: danbri@rdfweb.org
