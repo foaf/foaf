@@ -1,0 +1,84 @@
+BODY {
+/*  margin: 2em 1em 2em 30px; */
+ margin: 0em 2em 2em 30px;
+ font-family: Arial, Helvetica, sans-serif;  
+  color: black;
+  background: white;
+}
+
+DIV.navbar {
+ font-weight: bold;
+}
+
+
+DIV.prose {
+  margin: 2em 1em 1em 30px;
+}
+
+.sitepart {
+ background: white;
+}
+
+.navtext {
+ font-weight: bold;
+ /* background: white; */
+}
+
+SPAN.sitepart {
+ letter-spacing: 2px; 
+}
+
+A:hover.sitepart {
+/*  background: red; */
+}
+
+SPAN.siteutil {
+ background: white;
+ font-size: smaller;
+}
+
+h2.headline {
+  background: eeeeee;
+
+}
+
+span.date {
+/*  border-style: inset; */
+}
+
+H1, H2, H3, H4, H5 {
+  text-align: left;
+  font-weight: normal;
+  font-family: Verdana, Arial, Helvetica, sans-serif; 
+  color: black;
+  background: white;
+}
+
+.splashbox {
+  float: right;
+  width: 25%;
+  font-size: smaller;
+}
+
+DIV.splashblurb {
+  float: left;
+  width: 65%; 
+  padding: 3px;
+}
+
+IMG.rdflogo {
+  float: top;
+}
+
+DIV.bottom {
+  clear: both;
+}
+
+a:hover	{ 
+  background: #cccccc;
+  text-decoration: underline;
+}
+
+td {
+  background: #eeeeee;
+}
