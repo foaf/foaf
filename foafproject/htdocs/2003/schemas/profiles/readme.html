@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux/x86 (vers 1st July 2003), see www.w3.org" />
+<title>foaf syntactic schemas</title>
+</head>
+<body>
+<h1>foaf syntactic schemas</h1>
+<p>Explanation from Leigh Dodds follows:</p>
+<hr />
+<p>This package shows the specification (and implementation with
+Schematron and XSLT) of three syntactic profiles, ie. document
+formats, based on FOAF RDF/XML.</p>
+<dl>
+<dt>foaf-image.sch</dt>
+<dd>Simple, restricted syntax for a format for publishing lists of
+images. Images must have title and creator, and must depict at
+least one foaf:Person. foaf:Person elements restricted to seeAlso
+and mbox_sha1sum.</dd>
+<dt>foaf-basic.sch</dt>
+<dd>...</dd>
+<dt>foaf-minimal.sch</dt>
+<dd>...</dd>
+</dl>
+<p><a href="../profiles/">The package includes</a> the following
+files:</p>
+<dl>
+<dt>build.xml</dt>
+<dd>Ant build script to generate FOAF-Basic and FOAF-Minimal
+validators; includes schematron compilation step</dd>
+<dt>schema.rdf</dt>
+<dd>copy of FOAF Schema</dd>
+<dt>/schema</dt>
+<dd>basic schemas</dd>
+<dt>/xsl</dt>
+<dd>stylesheets to generate Schematron assertions based on poking
+around in the schema. E.g. all literals, all properties of
+foaf:Agent/foaf:Person, etc.</dd>
+<dt>/out</dt>
+<dd>final versions of the schema incorporating data from
+transforms.</dd>
+<dt>profiles.txt</dt>
+<dd>notes on profiles</dd>
+<dt>ldodds.rdf</dt>
+<dd>test file, with some deliberately broken bits.</dd>
+</dl>
+<p>We also have Valid and invalid test documents. Notice that
+foaf:minimal.rdf also validates as foaf-basic.rdf as you'd
+expect.</p>
+<p>just run "ant" to build them both. If you want to make manual
+changes change the versions under /schema.</p>
+<h3>Notes from Leigh</h3>
+<p>This is probably overkill, but it saved me manually typing in a
+bunch of property names. Should be possible to re-generate them if
+the schema changes as well, so thats an additional benefit. Would
+be easy to adapt this to only include properties with a particular
+version label as well, e.g. FOAF-Minimal with only stable
+properties. Further parameterising the stylesheets would also allow
+this to be generalised to other vocabularies, so there may be some
+additional mileage.</p>
+<p>foaf-basic and foaf-minimal schemas are probably complete enough
+for demoing purposes.</p>
+<p>They may not be as strict as they might be, but without clearer
+specification of the syntax constraints it's hard to know where to
+go next. Happy to add more constraints if you think of 'em, or
+based on discussions. See schema comments for a list of implemented
+constraints.</p>
+<p>Hopefully this meets your needs. I can also look at a RELAX NG
+versions of the schemas (in fact I think that they could also be
+done with DTDs, no really complicated constraints) if you think
+that's necessary, but the Schematron versions make better online
+validator tools methinks.</p>
+<p>This has been an interesting exercise. Makes me wonder whether
+it would be possible to generalise the stylesheets I created to
+grab lists of properties from the schema into a more general
+framework. If syntactic profiles become common-place (and I'm
+beginning to wonder whether this subset/fork/syntax debate is going
+to recur for any popular RDF format!) then the may also be mileage
+in defining a way to declaratively say, "these classes and
+properties are valid in this profile". Based on my tinkerings here,
+this looks possible.</p>
+<h3>Issues and Bugs</h3>
+<p>There is also a "tests" target but this breaks with the same
+error you were getting. Am wondering if this is a bug in the parser
+-- Schemas work fine with the Topologi XML Validator tool.</p>
+
+<h3>Profile Descriptions (draft)</h3>
+
+<p>
+There are various kinds of RDF/XML document that use FOAF. Here we try to 
+characterise some particular use cases, so that syntactic schemas, test data etc. 
+can be produced.
+</p>
+
+<h4>FOAF-Minimal</h4>
+<p>
+Minimally useful FOAF. Basically just a series of 
+properties about a person. Should allow only a single 
+foaf:Person, any properties associated with foaf:Person 
+or foaf:Agent, no elements from other namespaces, no 
+other foaf elements, including foaf:knows.
+</p>
+<p>
+Sort of like vCard but using FOAF. 
+</p>
+
+<h4>FOAF-Basic</h4>
+
+<p>
+"FOAF-a-Matic FOAF". Above, but relaxes the restrictions 
+on foaf:knows, allowing other people to be included, as 
+nested elements only. Again no elements from other namespaces, 
+no other foaf elements.
+</p>
+<p>
+Lot of FOAF out there falls in this category (intentionally or by accident).
+</p>
+
+<h4>FOAF-Classic</h4>
+
+<p>FOAF is all its glorious variability. Any RDF/XML document using FOAF (eg. 
+annotated RSS feeds) would also count.
+</p>
+
+<h4>FOAF-Image</h4>
+<p>Lists of Images, depictions</p>
+
+<h4>FOAF-Biblio</h4>
+<p>Lists of Documents, makers</p>
+
+
+
+<hr />
+<address>page maintained by: <a href=
+"mailto:danbri@rdfweb.org">danbri@rdfweb.org</a><br />
+Last updated: $Date: 2003-08-29 21:27:56 $</address>
+</body>
+</html>
