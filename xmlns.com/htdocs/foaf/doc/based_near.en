@@ -5,7 +5,7 @@
 things"
 (anything that can <em>be somewhere</em>), the latter typically
 described using the geo:lat / geo:long
-<a href="http://www.w3.org/2003/01/geo/wgs84_84#">geo-positioning vocabulary</a>
+<a href="http://www.w3.org/2003/01/geo/wgs84_pos#">geo-positioning vocabulary</a>
 (See <a href="http://esw.w3.org/topic/GeoInfo">GeoInfo</a> in the W3C semweb
 wiki for details). This allows us to say describe the typical latitute and 
 longitude of, say, a Person (people are spatial things - they can be 
