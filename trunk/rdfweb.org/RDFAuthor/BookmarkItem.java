@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: BookmarkItem.java,v 1.3 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: BookmarkItem.java,v 1.4 2002-02-06 00:36:23 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -26,8 +26,8 @@
 
 */
 
-// This class is initialised from a dragged item. It tries to keep as much of this info as possible
-// to create a drag object later.
+// This class is initialised from a dragged item. It tries to keep as much of 
+// this info as possible to create a drag object later.
 
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
@@ -38,12 +38,12 @@ import java.io.*;
 
 public class BookmarkItem implements Serializable {
     
+    static final String StringPboardType = "org.rdfweb.RDFAuthor.String";
+    static final String URLPboardType = "org.rdfweb.RDFAuthor.URL";
+    
     Object data;
     String type;
     String displayName;
-    String namespace = ""; // these two make life easier
-    String name = "";
-    boolean dataIsPropertyList;
     
     public BookmarkItem(NSPasteboard pboard, String type)
     {
@@ -56,116 +56,129 @@ public class BookmarkItem implements Serializable {
             
             displayName = id;
             data = URLs;
-            dataIsPropertyList = true;
         }
         else if (type.equals(NSPasteboard.StringPboardType)) {
             
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
             displayName = id;
-            data = id;
-            dataIsPropertyList = false;
+            
+            // Here I'm going to be sneaky. IE (and other Carbon apps) don't seem to
+            // set the drag type for URLs - they are just strings. So I use the URI
+            // checker. This is better since all URIs will be detected, but OTOH
+            // URIs can match unintentionally.
+            // If the string is a URI fix the data.
+            
+            if (RDFAuthorUtilities.isValidURI(id))
+            {
+                data = new NSArray( new String[]{ id, "" } );
+                this.type = NSPasteboard.URLPboardType;
+            }
+            else
+            {
+                data = id;
+            }
         }
         else if (type.equals(SchemaData.ClassPboardType))
         {
             NSDictionary info = (NSDictionary) pboard.propertyListForType(
                 SchemaData.ClassPboardType);
-            name = (String) info.objectForKey("Name");
-            namespace = (String) info.objectForKey("Namespace");
             
-            displayName = name;
+            displayName = (String) info.objectForKey("Name");
             data = info;
-            dataIsPropertyList = true;
         }
         else if (type.equals(SchemaData.PropertyPboardType))
         {
             NSDictionary info = (NSDictionary) pboard.propertyListForType(
                 SchemaData.PropertyPboardType);
-            name = (String) info.objectForKey("Name");
-            namespace = (String) info.objectForKey("Namespace");
             
-            displayName = name;
+            displayName = (String) info.objectForKey("Name");
             data = info;
-            dataIsPropertyList = true;
         }
     }
 
     private void writeObject(java.io.ObjectOutputStream out)
         throws IOException
     {
-        out.writeObject(ns2java(data));
-        out.writeObject(type);
+        out.writeObject(mapTypes(type));
+        out.writeObject( ns2java(data, type) );
         out.writeObject(displayName);
-        out.writeObject(namespace);
-        out.writeObject(name);
-        out.writeBoolean(dataIsPropertyList);
     }
 
     private void readObject(java.io.ObjectInputStream in)
         throws IOException, ClassNotFoundException
     {
-        data = java2ns(in.readObject());
-        type = (String) in.readObject();
+        type = mapTypes( (String) in.readObject() );
+        data = java2ns(in.readObject(), type);
         displayName = (String) in.readObject();
-        namespace = (String) in.readObject();
-        name = (String) in.readObject();
-        dataIsPropertyList = in.readBoolean();
     }
 
-    // This is a kludge. The Cocoa (NS*) classes won't serialise, so the next two methods
-    // convert between the two
+    /*
+        The following gets hairy. The problem is that we don't want to save
+        NS (Cocoa) specific data. There are two issues:
+        
+        1) Cocoa objects need to be changed to java-serialisable things
+        2) We don't want the pboard type to be Cocoa specific
+        
+        So the following converts between the two.
+    */
     
-    private Object ns2java(Object object)
+    private String mapTypes(String type)
     {
-        if (object instanceof String) // Simple case
-        {
-            return object;
-        }
-        else if (object instanceof NSDictionary)
+        // Convert NS to cross platform
+        if (type.equals(NSPasteboard.StringPboardType)) return StringPboardType;
+        if (type.equals(NSPasteboard.URLPboardType)) return URLPboardType;
+            
+        // Next two are the inverses of the previous
+        if (type.equals(StringPboardType)) return NSPasteboard.StringPboardType;
+        if (type.equals(URLPboardType)) return NSPasteboard.URLPboardType;
+        
+        // SchemaTypes - no problem
+        return type;
+    }
+    
+    private Object ns2java(Object object, String nsType)
+    {
+        if (nsType.equals(NSPasteboard.StringPboardType)) return object;
+            
+        if ( (nsType.equals(SchemaData.ClassPboardType)) ||
+                    (nsType.equals(SchemaData.PropertyPboardType)) )
         {
             HashMap map = new HashMap();
             map.put("Namespace", ((NSDictionary) object).objectForKey("Namespace"));
             map.put("Name", ((NSDictionary) object).objectForKey("Name"));
             return map;
         }
-        else if (object instanceof NSArray) // this is for URL types - this is odd. Why an array?
+        
+        if (nsType.equals(NSPasteboard.URLPboardType))
         {
-            ArrayList array = new ArrayList();
-            array.add(((NSArray) object).objectAtIndex(0));
-            array.add(((NSArray) object).objectAtIndex(1));
-
-            return array;
+                String url = (String) ((NSArray) object).objectAtIndex(0);
+                return url;
         }
-        else
-        {
-            System.out.println("Oh dear..");
-            return null;
-        }
+        
+        return null; // Shouldn't get here
     }
 
-    private Object java2ns(Object object)
+    private Object java2ns(Object object, String crossType)
     {
-        if (object instanceof String) // Simple case
-        {
-            return object;
-        }
-        else if (object instanceof HashMap)
+        if (crossType.equals(StringPboardType)) return object;
+            
+        if ( (crossType.equals(SchemaData.ClassPboardType)) ||
+                    (crossType.equals(SchemaData.PropertyPboardType)) )
         {
             NSMutableDictionary map = new NSMutableDictionary();
             map.setObjectForKey(((HashMap) object).get("Namespace"), "Namespace");
             map.setObjectForKey(((HashMap) object).get("Name"), "Name");
             return map;
         }
-        else if (object instanceof ArrayList)
+        
+        if (crossType.equals(URLPboardType))
         {
-            NSArray array = new NSArray(((ArrayList) object).toArray());
-            return array;
+                NSArray array = new NSArray(new String[]{ (String) object, "" });
+                return array;
         }
-        else
-        {
-            System.out.println("Oh dear..");
-            return null;
-        }
+        
+        return null; // Bad thing if we find ourselves here
     }
     
     public boolean equals(Object item)
@@ -174,8 +187,7 @@ public class BookmarkItem implements Serializable {
         
         if (!type.equals(theItem.type())) return false;
         if (!displayName.equals(theItem.displayName())) return false;
-        if (!namespace.equals(theItem.namespace())) return false;
-        if (!name.equals(theItem.name())) return false;
+        if (!data.equals(theItem.data)) return false;
         
         return true;
     }
@@ -190,14 +202,9 @@ public class BookmarkItem implements Serializable {
         return type;
     }
     
-    public String name()
+    public Object data()
     {
-        return name;
-    }
-    
-    public String namespace()
-    {
-        return namespace;
+        return data;
     }
     
     public void createDragItem(NSPasteboard pboard)
@@ -205,7 +212,7 @@ public class BookmarkItem implements Serializable {
         NSArray types = new NSArray(type);
             
         pboard.declareTypes(types, null);
-        if (dataIsPropertyList)
+        if (!(data instanceof String)) // Only occasion we don't create a plist
         {
             pboard.setPropertyListForType(data, type);
         }

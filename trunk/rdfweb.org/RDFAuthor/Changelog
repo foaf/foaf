@@ -1,4 +1,9 @@
-$Date: 2002-02-05 16:02:57 $ - pldms
+$Date: 2002-02-06 00:36:23 $ - pldms
+
+    Think I've fixed bookmarks so that they will serialise in a nice way
+    (no Cocoa-specific stuff).
+
+2002/02/05 16:02:57 - pldms
 
     Literals are now rectangles.
     

@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.23 2002-02-05 16:02:57 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.24 2002-02-06 00:36:23 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -522,6 +522,9 @@ public class RDFModelView extends NSView {
         // check type to make sure it conforms with type you registered
         String type = pboard.availableTypeFromArray((NSArray) dragTypesArray);
         
+        // Inform the bookmark controller that the user added something
+        // (for auto add)
+        
         bookmarkController.addItem(pboard, type);
         
         if (type.equals(NSPasteboard.URLPboardType)) {
@@ -530,7 +533,8 @@ public class RDFModelView extends NSView {
 
             String id = (String) URLs.objectAtIndex(0);
             
-            rdfAuthorDocument.setIdForNodeAtPoint(id, point, false); // false - if new node don't want a literal
+            // false - if new node don't want a literal
+            rdfAuthorDocument.setIdForNodeAtPoint(id, point, false); 
         }
         else if (type.equals(NSPasteboard.StringPboardType)) {
             
@@ -543,10 +547,12 @@ public class RDFModelView extends NSView {
             
             if (RDFAuthorUtilities.isValidURI(id))
             {
+                // false - if new node don't want literal
                 rdfAuthorDocument.setIdForNodeAtPoint(id, point, false);
             }
             else
             {
+                // true - if new node want literal
                 rdfAuthorDocument.setIdForNodeAtPoint(id, point, true);
             }
         }
@@ -572,9 +578,8 @@ public class RDFModelView extends NSView {
             System.err.println("The view has not registered for drag type: " + type);
         }
         
-        // Restore description to previous value, and redraw
+        // Restore description to previous value
         textDescriptionField.setStringValue(saveDescription);
-        setNeedsDisplay(true);
     }
 
 }
