@@ -34,7 +34,7 @@
   </xsl:template>
 
   <xsl:template match="comment()">
-    <xsl:value-of select="concat('&lt;--',.,'-->')"/>
+    <xsl:value-of select="concat('&lt;!--',.,'-->')"/>
   </xsl:template>
 
   <xsl:template match="processing-instruction()">
