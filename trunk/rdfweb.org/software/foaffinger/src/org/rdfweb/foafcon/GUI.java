@@ -297,7 +297,7 @@ public class GUI extends ApplicationWindow
 		    new GridData(GridData.FILL_HORIZONTAL);
 		layoutData.widthHint = 200;
 		seeAlsoText.setLayoutData(layoutData);
-
+		
 		moreInfoButton = new Button(container, SWT.PUSH);
 		moreInfoButton.setText("More Information...");
 		moreInfoButton.addSelectionListener(this);
