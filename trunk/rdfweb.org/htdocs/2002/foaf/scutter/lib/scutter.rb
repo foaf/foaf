@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: scutter.rb,v 1.4 2002-08-05 14:09:15 danbri Exp $
+# $Id: scutter.rb,v 1.5 2002-08-19 03:51:09 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -57,7 +57,13 @@ def fetch_and_cache (uri, cache_dir='./', proxy=true, opts={} )
   res = $2
   data=''
   resp=''
+  raise "No http: host detected in uri '#{uri}'"  if !host
+
   h = Net::HTTP::new host
+
+			# let's not hang around
+  h.open_timeout = 30 	# secs  
+  h.read_timeout = 60 	# secs
 
 ##qwerty danbri test...
   begin 
