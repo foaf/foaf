@@ -706,10 +706,16 @@ member of this group. End-users of FOAF need not pay attention to these details.
 Here is an example. We define a <code><a href="#term_Group">foaf:Group</a></code> representing those people who 
 are ILRT staff members. The <code><a href="#term_membershipClass">foaf:membershipClass</a></code> property connects the group (conceived of as a social 
 entity and agent in its own right) with the class definition for those people who 
-constitute it. In this case, the OWL rule is that all group members are in the 
+constitute it. In this case, the rule is that all group members are in the 
 ILRTStaffPerson class, which is in turn populated by all those things that are a 
 <code><a href="#term_Person">foaf:Person</a></code> and which have a <code><a href="#term_workplaceHomepage">foaf:workplaceHomepage</a></code> of 
-http://www.ilrt.bris.ac.uk/.
+http://www.ilrt.bris.ac.uk/. This is typical: FOAF groups are created by 
+specifying a sub-class of <code><a href="#term_Agent">foaf:Agent</a></code> (in fact usually this 
+will be a sub-class of <code><a href="#term_Person">foaf:Person</a></code>), and giving criteria 
+for which things fall in or out of the sub-class. For this, we use the 
+<code>owl:onProperty</code> and <code>owl:hasValue</code> properties, 
+indicating the property/value pairs which must be true of matching 
+agents.
 </p>
 
 <div class="example">
@@ -720,7 +726,7 @@ http://www.ilrt.bris.ac.uk/.
 &lt;foaf:Group&gt;
  &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
  &lt;foaf:membershipClass&gt;
-    &lt;eg:ILRTStaffPerson&gt;
+    &lt;owl:Class rdf:about="http://ilrt.example.com/groups#ILRTStaffPerson"&gt;
      &lt;rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/&gt;
      &lt;rdfs:subClassOf&gt;
        &lt;owl:Restriction&gt; 
@@ -728,7 +734,7 @@ http://www.ilrt.bris.ac.uk/.
          &lt;owl:hasValue rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
        &lt;/owl:Restriction&gt; 
      &lt;/rdfs:subClassOf&gt;
-   &lt;/eg:ILRTStaffPerson&gt;
+   &lt;/owl:Class&gt;
  &lt;/foaf:membershipClass&gt;
 &lt;/foaf:Group&gt;
 </pre>
@@ -2730,7 +2736,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-27 19:26:50 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 20:08:55 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
