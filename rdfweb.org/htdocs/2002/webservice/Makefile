@@ -1,3 +1,12 @@
+SCRIPTS=.
+INDEXPAGE=names.html
 
-photos:
-	./imgquery.pl > names.html
+
+index:	$(SCRIPTS)/imgquery.pl $(INDEXPAGE)
+
+
+names.html: 
+	$(SCRIPTS)/imgquery.pl > $(INDEXPAGE)
+
+clean:
+	rm $(INDEXPAGE)
