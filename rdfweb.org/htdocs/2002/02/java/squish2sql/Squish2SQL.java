@@ -1,12 +1,39 @@
+/* $Id: Squish2SQL.java,v 1.2 2002-08-02 17:35:21 libby Exp $ */
+
+
+/*
+
+Copyright (C) 2002 University of Bristol 
+
+This file is part of Inkling <http://swordfish.rdfweb.org/rdfquery>.
+
+Inkling is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+Inkling is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+Libby Miller <libby.miller@bristol.ac.uk>
+
+*/
+
 // This stuff no longer in a package
-// package org.desire.rudolf.query;
+//package org.desire.rudolf.query;
 
 import java.util.*;
 import java.security.MessageDigest;
 
 import org.desire.rudolf.util.ErrorLog;
 import org.desire.rudolf.rdf.Triple;
-import org.desire.rudolf.query.ParsedQuery;
+import org.desire.rudolf.query.squishparser.*;
 
 import java.io.RandomAccessFile;
 
@@ -14,135 +41,143 @@ import java.security.MessageDigest;
 
 /**
 
+need to work out how to supply datatyping via the jdbc framework
+note that every a1.... is a triple
+could we return a shadow datatype with each object
+
+maybe we could return an object ?var.type for each ?var
+shame don't seemt to be able to use rsmd
+
+
 See docs/rewriter.html for Libby's docs (trimmed from here for now)
 
 This is basically a text filter, though it currently has smarts for
 talking to databases too (and associated dependencies). See docs/
-HTML for writeup of the dependencies. 
+HTML for writeup of the dependencies.
 
 Commandline interface:
 
-  java Squish2SQL 'squishquery' [search] [dbname] 
+  java Squish2SQL 'squishquery' [search] [dbname]
 
  */
 
 
 public class Squish2SQL {
 
+    boolean debug = false;
+
     public static void main(String args[]) throws Exception {
 
-	String serverhost = "localhost"; 
-	String dbname = "codepict";
-	boolean genhtml = false;
-	boolean genreport = false;
-	boolean showsql = false;
+        String serverhost = "localhost";
+        String dbname = "codepict";
+        boolean genhtml = false;
+        boolean genreport = false;
+        boolean showsql = false;
 
-	String mode = "onlysql";
+        String mode = "onlysql";
 
-	String squish_query= "SELECT ?thumb, ?name, ?dd, ?mbox, ?uri WHERE "+
-	      "(foaf::depiction ?x ?uri) "+
-	      "(foaf::depiction ?z ?uri) "+
-	      "(foaf::mbox ?x mailto:libby.miller@bristol.ac.uk) "+
-	      "(foaf::mbox ?z ?mbox) "+
-	      "(foaf::name ?z ?name) "+
-	      "(foaf::thumbnail ?uri ?thumb) "+
-	      "(dc::description ?uri ?dd) "+
-	      " USING foaf for http://xmlns.com/foaf/0.1/ "+
-	      " dc for http://purl.org/dc/elements/1.1/ ";
+        String squish_query =
+                "SELECT ?thumb, ?name, ?dd, ?mbox, ?uri WHERE "+ "(foaf::depiction ?x ?uri) "+
+                "(foaf::depiction ?z ?uri) "+ "(foaf::mbox ?x mailto:libby.miller@bristol.ac.uk) "+
+                "(foaf::mbox ?z ?mbox) "+ "(foaf::name ?z ?name) "+ "(foaf::thumbnail ?uri ?thumb) "+
+                "(dc::description ?uri ?dd) "+ " USING foaf for http://xmlns.com/foaf/0.1/ "+
+                " dc for http://purl.org/dc/elements/1.1/ ";
 
-	 if (args.length > 0) {
-	    try { 
-	      squish_query = textFromFile(args[0]);
+        if (args.length > 0) {
+            try {
+                squish_query = textFromFile(args[0]);
             } catch (Exception e) {
-              System.err.println("Reverting to default. Error opening file "+args[0]);
-	      throw ( e);
+                System.err.println("Reverting to default. Error opening file "+
+                        args[0]);
+                throw (e);
             }
-	}
-
-	 if (args.length > 1) {
-	     if (args[1].equals("search")) {
-		System.out.println("Searching...");
-	        mode=args[1];
-	     }
-	 }
-
-	 if (args.length > 2) {
-	     dbname=args[2];
-	     System.out.println("dbname: "+dbname);
-	 }
-
-
-        ParsedQuery pq = ParsedQuery.parse(squish_query);
-        String sql_query = Squish2SQL.convert(pq);
-
-	if (mode.equals("onlysql")) {
-          System.out.println("\n"+sql_query+"\n");
-	  System.exit(0);
         }
 
-	  System.err.println("QUERYING DATABASE:");
+        if (args.length > 1) {
+            if (args[1].equals("search")) {
+                System.out.println("Searching...");
+                mode = args[1];
+            }
+        }
+
+        if (args.length > 2) {
+            dbname = args[2];
+            System.out.println("dbname: "+dbname);
+        }
 
 
-	String summary = "Squish: "+squish_query+"\n SQL: "+sql_query+"\n dbname: "+dbname+"\n serverhost: "+serverhost+"\n\n";
-	System.err.println("Debug summary: "+summary);
+        SquishParser pq = SquishParser.parse(squish_query);
+        String sql_query = Squish2SQL.convert(pq);
+
+        if (mode.equals("onlysql")) {
+            System.out.println("\n"+sql_query + "\n");
+            System.exit(0);
+        }
+
+        System.err.println("QUERYING DATABASE:");
 
 
-	// ************* database query and connectivity code **********
-
-	java.sql.Driver mydriver=null;
-	java.sql.Connection myconn= null;
-	java.sql.ResultSet results = null;
-	try {
-
-	mydriver = (java.sql.Driver) Class.forName("org.postgresql.Driver").newInstance();
-	myconn = java.sql.DriverManager.getConnection("jdbc:postgresql://"+serverhost+":5432/"+dbname+"?user=pgsql");
-	java.sql.Statement s = myconn.createStatement();
-	results = s.executeQuery(sql_query);
+        String summary =
+                "Squish: "+squish_query + "\n SQL: "+sql_query + "\n dbname: "+
+                dbname + "\n serverhost: "+serverhost + "\n\n";
+        System.err.println("Debug summary: "+summary);
 
 
-	int numcols = results.getMetaData().getColumnCount();
-	String colname;
-	String value;
-	String table = "<html><head><title>query results</title></head><body>\n<h1>rdf query results</h1>\n\n";
+        // ************* database query and connectivity code **********
 
-	System.out.println("summary: "+summary);
-	table += summary + "<table><tr>\n";
+        java.sql.Driver mydriver = null;
+        java.sql.Connection myconn = null;
+        java.sql.ResultSet results = null;
+        try {
+
+            mydriver = (java.sql.Driver) Class.forName(
+                    "org.postgresql.Driver").newInstance();
+            myconn =
+                    java.sql.DriverManager.getConnection("jdbc:postgresql://"+
+                    serverhost + ":5432/"+dbname + "?user=postgres");
+            java.sql.Statement s = myconn.createStatement();
+            results = s.executeQuery(sql_query);
 
 
-	for (int i=0; i<numcols; i++) {
-    	    colname = results.getMetaData().getColumnLabel(i+1);
-	    table += " <th>"+colname+"</th>\n";
-	}
-	table += "</tr>\n";
+            int numcols = results.getMetaData().getColumnCount();
+            String colname;
+            String value;
+            String table = "<html><head><title>query results</title></head><body>\n<h1>rdf query results</h1>\n\n";
 
-	while (results.next())
-	  {
+            System.out.println("summary: "+summary);
+            table += summary + "<table><tr>\n";
 
-	      table += "<tr>\n";
-	      for (int i=0; i<numcols; i++) {
-		  colname = results.getMetaData().getColumnLabel(i+1);
-		  value = results.getString(colname); 
-		  System.out.println(" "+ colname+ ": "+ value );
-		  table += "<td>"+value+"</td>\n";
-	      }
-	      table += "</tr>\n";
-	    System.out.println("\n");
-	  }
-	table += "</table>\n\n";
-	if (genhtml) {
-	    System.out.println (table);
-	}
-	}
-	
-	catch (Exception e)
-	{
-	    System.err.println("Error in database query operation " + e);
-	}
-	finally
-	{
-	    try{	myconn.close();} catch (Exception e) {}
-	}
-	
+
+            for (int i = 0; i < numcols; i++) {
+                colname = results.getMetaData().getColumnLabel(i + 1);
+                table += " <th>"+colname + "</th>\n";
+            }
+            table += "</tr>\n";
+
+            while (results.next()) {
+
+                table += "<tr>\n";
+                for (int i = 0; i < numcols; i++) {
+                    colname = results.getMetaData().getColumnLabel(i + 1);
+                    value = results.getString(colname);
+                    System.out.println(" "+ colname + ": "+ value);
+                    table += "<td>"+value + "</td>\n";
+                }
+                table += "</tr>\n";
+                System.out.println("\n");
+            }
+            table += "</table>\n\n";
+            if (genhtml) {
+                System.out.println (table);
+            }
+        }
+        catch (Exception e) {
+            System.err.println("Error in database query operation " + e);
+        }
+        finally { try {
+                myconn.close();
+            } catch (Exception e) {}
+        }
     }
 
 
@@ -162,7 +197,6 @@ public class Squish2SQL {
 
     //this is just for the a* variables
     Hashtable realToSqlVariableNameMapA = new Hashtable();
-
 
     //table names
     String main_table = "triples";
@@ -199,19 +233,19 @@ public class Squish2SQL {
 
     /**
 
-      This method produces a string SQL query from a minimum  of
+       This method produces a string SQL query from a minimum  of
 
-       * a (full) list of variables  (i.e. not just the ones you want returned (actually
-      this could be a problem));
+        * a (full) list of variables  (i.e. not just the ones you want returned (actually
+       this could be a problem));
 
-       * the variables you actually want
+        * the variables you actually want
 
-       * a vector of arrays of clauses: each array: (pred, sub, obj).
+        * a vector of arrays of clauses: each array: (pred, sub, obj).
 
-       * a vector of arrays of constraints (as pseudo triples at the moment (e.g. array
-      is (~ ?y bla)).
+        * a vector of arrays of constraints (as pseudo triples at the moment (e.g. array
+       is (~ ?y bla)).
 
-      */
+       */
 
 
     public String triple_sql(Vector allQueryVariables,
@@ -286,19 +320,18 @@ public class Squish2SQL {
                     String variableNameToMatch =
                             (String) queryVariablesIterator.nextElement();
 
-
                     try {
+
 
                         //i.e. if variable names are the same in each case
                         if (subject.equals(variableNameToMatch)) {
-
 
                             //this adds a mapping from the real name of the variable to its sql name
                             realToSqlVariableNameMapA.put(
                                     variableNameToMatch,
                                     "a"+clause_idxA + "."+sss + "");
-                            subject_bound = 1;
 
+                            subject_bound = 1;
 
                         }
 
@@ -309,8 +342,6 @@ public class Squish2SQL {
                                     variableNameToMatch,
                                     "a"+clause_idxA + "."+ppp + "");
 
-
-
                         }
 
                         if (object.equals(variableNameToMatch)) {
@@ -319,6 +350,7 @@ public class Squish2SQL {
                             realToSqlVariableNameMapA.put(
                                     variableNameToMatch,
                                     "a"+clause_idxA + "."+ooo + "");
+
                         }
 
                     } catch (Exception pp) {
@@ -344,7 +376,7 @@ public class Squish2SQL {
                 String sh1Obj = "";
 
                 try {
-			sh1Sub = sh1Sub + sha1(subject);
+                    sh1Sub = sh1Sub + sha1(subject);
                     sh1Pred = sh1Pred + sha1(pred);
                     sh1Obj = sh1Obj + sha1(object);
                 } catch (Exception es) {
@@ -503,12 +535,24 @@ public class Squish2SQL {
 
                 if (variablesWeWant.contains(key)) {
 
-                    //		   String num=(String)numbersHash.get("?"+kk);
-
                     selectvars.addElement("b"+ clause_idxB + ".value AS "+kk);
+
+
+                    //.....literals attempt
+                    //change this - put the boolean literal in resources table not triples
+                    //leave this for now
+                    /*
+                    		    selectvars.addElement("a"+ clause_idxB + ".isresource AS "+kk+"type");
+
+                                        selectvars.addElement("b"+ clause_idxB + ".isresource AS "+kk+"type");
+                    */
+
+                    //.....literals attempt
+
+
                     sqlVariableNamesB.addElement("b"+ clause_idxB);
 
-                    whereB.addElement("b"+ clause_idxB + ".key="+val);
+                    whereB.addElement("b"+ clause_idxB + ".keyhash="+val);
 
                     //need to add in the constraints stuff here
                     //hash of vectors?
@@ -541,6 +585,23 @@ public class Squish2SQL {
 
             //real variable names 'x, y' etc
 
+            /*
+            	    ///attempt at literal
+            	    Enumeration litloop = literalToSqlVariableName.keys();
+
+            	    while(litloop.hasMoreElements()){
+            		String key=(String)litloop.nextElement();
+            		String val=(String)literalToSqlVariableName.get(key);
+
+                            //the keys should not start with "?" any more
+                            if (key.startsWith("?")) {
+                                key = key.substring(1);
+                            }
+
+            		sql.append(" "+val+" as "+key+", ");
+            	    }
+            	    ///attempt at literal
+            */
 
             for (int q = 0; q < selectvars.size(); q++) {
 
@@ -615,10 +676,12 @@ public class Squish2SQL {
 
             if (constraints != null) {
 
+
                 for (int zz = 0; zz < constraints.size(); zz++) {
 
                     String[] tr = (String[]) constraints.elementAt(zz);
                     String key = tr[1].trim();
+
                     String s = (String) realToSqlVariableNameMapA.get(key);
 
                     String ss = tr[0];
@@ -647,60 +710,76 @@ public class Squish2SQL {
 
                     String tocast = tr[2];
 
-                    if (ss.trim().equals("~")) {
+                    //shoudl have proper equals for strings - not sure of syntax
+
+
+                    if (ss.trim().equals("~") ||
+                            ss.trim().toLowerCase().equals("like")) {
                         //assume a string
-                        sql.append("lower("+s + ") like '%"+tocast + "%'");
+                        //System.out.println("~ or like "+tocast);
+
+                        sql.append("lower("+s + ") like lower('%"+
+                                tocast + "%')");
+                    } else if (ss.trim().equals("eq")) {
+
+                        sql.append(s + "='"+tocast + "'");
+
+                        //System.out.println("eq "+tocast);
+                    } else if (ss.trim().equals("ne")) {
+
+                        //assume a string
+                        sql.append(s + "!='"+tocast + "'");
+                        //                        sql.append(" not(lower("+s + ") like lower('%"+tocast + "%'))");
+                        //System.out.println("neq "+tocast);
+
                     } else {
+
+                        if (ss.trim().equals("==") ||
+                                ss.trim().equals("=")) {
+                            ss = "=";
+                        }
+
+                        //System.out.println("= "+tocast);
 
                         try {
                             Integer test = new Integer(tocast);
-                            sql.append("CAST ("+s + " as INTEGER) "+
+
+
+                            sql.append("CAST(CAST("+s + " as TEXT) as INTEGER) "+
                                     ss + " "+tocast);
+
+
                         } catch (Exception e1) {
                             ErrorLog.write("Not an Integer");
 
                             try {
                                 Float test = new Float(tocast);
-                                sql.append("CAST ("+s + " as FLOAT) "+
+
+                                sql.append("CAST(CAST("+s + " as TEXT) as FLOAT) "+
                                         ss + " "+tocast);
+
                             } catch (Exception e2) {
+
+
                                 ErrorLog.write("Not a Float");
 
-                                //java doesn't like the RFC 2445 date format :(
-                                //how can we tell if it's a date?
-                                //it will look something like this: 20011028T010000Z
-                                //not sure what formats postgres will accept
 
-
-                                //also need to test for the sql format, in which case requires
-                                //inverted commas arounf literl
-
-                                /*
-                                						Date test = DateUtil.iCal2Date(tocast);
-
-                                						   if(test!=null)
-                                						   {
-                                //casting to the spostgres sql format
-
-                                							sql.append("CAST("+s+" as INT8) "+ss+" '"+DateUtil.longDatestamp(tocast)+"'");
-                                						   }
-                                						   else
-                                						   {
-
-                                							ErrorLog.write("Defaulting to string");
+                                ErrorLog.write("Defaulting to string");
 
                                 //may fail...last resort
-                                							sql.append(s+" "+ss+" '"+tocast+"'");
-                                						   }
-                                */
+                                sql.append(s + " "+ss + " '"+tocast + "'");
 
 
                             }//end catch
 
                         }//end catch
 
+                    }
+                    //		    }else{
 
-                    }//end else
+                    //	               	sql.append(s+" "+ss+" '"+tocast+"'");
+
+                    //                  }//end else
 
 
                     if (zz == constraints.size() - 1) {
@@ -719,7 +798,9 @@ public class Squish2SQL {
             yt.printStackTrace();
         }
 
-
+        if (debug) {
+            System.out.println("SQL query is "+sql.toString());
+        }
         return sql.toString();
 
     }
@@ -744,16 +825,25 @@ public class Squish2SQL {
     }
 
 
+    /** a utility method: squish query string to SQL query string*/
+
+	public String convertString(String squish_query){
+
+        SquishParser pq = SquishParser.parse(squish_query);
+        String sql_query = Squish2SQL.convert(pq);
+
+	return sql_query;
+
+	}
 
 
     /**
-      basically the main method: takes a parsed query and returns a
-      converted SQL query as a string
-      */
+       basically the main method: takes a parsed query and returns a
+       converted SQL query as a string
+       */
 
 
-
-    public static String convert(ParsedQuery p) {
+    public static String convert(SquishParser p) {
 
 
         //all the variables
@@ -821,27 +911,25 @@ public class Squish2SQL {
 
     }
 
-  public static int sha1 (String sha1) throws Exception {
-    MessageDigest md = MessageDigest.getInstance("SHA1");
-    md.update(sha1.getBytes() );
-    byte[] digest = md.digest();   
-    return
-        ( (int) digest[0] & 0xff) |
-      ( ( (int) digest[1] & 0xff) << 8) |
-      ( ( (int) digest[2] & 0xff) << 16) |
-      ( ( (int) digest[3] & 0xff) << 24);
-  }
+    public static int sha1 (String sha1) throws Exception {
+        MessageDigest md = MessageDigest.getInstance("SHA1");
+        md.update(sha1.getBytes());
+        byte[] digest = md.digest();
+        return ((int) digest[0] & 0xff) | (((int) digest[1] & 0xff) << 8) |
+                (((int) digest[2] & 0xff) << 16) |
+                (((int) digest[3] & 0xff) << 24);
+    }
 
-   
-public static String textFromFile(String fn) throws Exception {
-   //System.out.println("file: "+ fn);  
-   RandomAccessFile in = new RandomAccessFile(fn,"r");
-   String text="";
-   String line="";
-   while (line != null) {
-      text += line;
-      line = in.readLine();
-   }
-   return text;
-  }
+
+    public static String textFromFile(String fn) throws Exception {
+        //System.out.println("file: "+ fn);
+        RandomAccessFile in = new RandomAccessFile(fn, "r");
+        String text = "";
+        String line = "";
+        while (line != null) {
+            text += line;
+            line = in.readLine();
+        }
+        return text;
+    }
 }
