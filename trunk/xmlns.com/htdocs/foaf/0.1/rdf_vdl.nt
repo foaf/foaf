@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-06 09:46:44 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-09 10:26:51 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -88,16 +88,36 @@
 <http://xmlns.com/foaf/0.1/jabberID> <http://www.w3.org/2000/01/rdf-schema#comment> "A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?" .
 <http://xmlns.com/foaf/0.1/jabberID> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/jabberID> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/nick> .
+<http://xmlns.com/foaf/0.1/jabberID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/jabberID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/2000/01/rdf-schema#label> "AIM chat ID" .
 <http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/2000/01/rdf-schema#comment> "An AIM chat ID" .
 <http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/nick> .
+<http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/aimChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/2000/01/rdf-schema#label> "ICQ chat ID" .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/2000/01/rdf-schema#comment> "An ICQ chat ID" .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/nick> .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/icqChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/2000/01/rdf-schema#label> "Yahoo chat ID" .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/2000/01/rdf-schema#comment> "A Yahoo chat ID" .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/nick> .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/yahooChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/2000/01/rdf-schema#label> "MSN chat ID" .
 <http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/2000/01/rdf-schema#comment> "An MSN chat ID" .
 <http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/nick> .
+<http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/msnChatID> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#label> "name" .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#comment> "A name for some thing." .
