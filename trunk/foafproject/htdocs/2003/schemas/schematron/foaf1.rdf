@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<rdf:RDF 
+	xml:lang="en" 
+	xmlns:wot="http://xmlns.com/wot/0.1/" 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:srw="http://purl.org/net/inkel/rdf/schemas/lang/1.0#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:rss="http://purl.org/rss/1.0/" xmlns="http://xmlns.com/foaf/0.1/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:air="http://www.megginson.com/exp/ns/airports#" xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+  <FOAFWebDoc rdf:about="http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf">
+        <wot:assurance rdf:resource="http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf.asc"/>
+  </FOAFWebDoc>
+
+  <Person rdf:nodeID="dan">
+    <foaf:name>Dan Brickley</foaf:name>
+    <foaf:nick>danbri</foaf:nick>
+    <foaf:jabberID>danbri@gnu.minu.nu</foaf:jabberID>
+    <foaf:aimChatID>danbri_2002</foaf:aimChatID>
+    <mbox rdf:resource="mailto:daniel.brickley@bristol.ac.uk"/>
+    <mbox rdf:resource="mailto:danbri@rdfweb.org"/>
+    <mbox rdf:resource="mailto:danbri@w3.org"/>
+    <mbox rdf:resource="mailto:danbri@apocalypse.org"/>
+    <srw:srw>en</srw:srw>
+    <homepage rdf:resource="http://rdfweb.org/people/danbri/"/>
+    <foaf:dateOfBirth>1972-01-09</foaf:dateOfBirth>
+    <foaf:img  rdf:resource="http://rdfweb.org/people/danbri/2000/01/01/Image1.gif"/>
+    <pubkeyAddress  rdf:resource="http://rdfweb.org/people/danbri/danbri-pubkey.txt"/>
+    <!-- Note: if webwho.xrdf has been updated without being resigned in  .asc, RDFWeb won't know I wrote this.  -->
+    <!-- pointer to a whole load of other rdf files -->
+    <schoolHomepage rdf:resource="http://www.vandh.free-online.co.uk/wgate/westgate.htm"/>
+    <contact:nearestAirport>
+      <wn:Airport air:icao="EGGD" air:iata="BRS"/>
+    </contact:nearestAirport>
+    <myersBriggs>INTP</myersBriggs> <!-- not that I'm a believer, but still... -->
+    <plan>Save the world and home in time for tea.</plan>
+    <rdfs:seeAlso rdf:resource="http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf"/>
+<!-- connections to other peoples -->
+    <rdfs:seeAlso rdf:resource="http://swordfish.rdfweb.org/discovery/2001/08/codepict/scutterplan.rdf"/>
+    <rdfs:seeAlso rdf:resource="http://xmlns.com/foaf/0.1/"/>
+
+    <!-- can do brief summary here, or longer/verbose, see below -->
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:craig@coolstuffhere.co.uk"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:mags@apocalypse.org"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:libby.miller@bristol.ac.uk"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:d.m.steer@lse.ac.uk"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:ian.sealy@bristol.ac.uk"/>
+      </Person>
+    </knows>
+<!-- etc... -->
+    <knows>
+      <Person foaf:name="Jim Ley" foaf:nick="JibberJim">
+        <rdfs:seeAlso rdf:resource="http://jibbering.com/foaf.rdf"/>
+        <mbox rdf:resource="mailto:jim@jibbering.com"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person foaf:name="Edd Dumbill" foaf:nick="edd">
+        <rdfs:seeAlso rdf:resource="http://heddley.com/edd/foaf.rdf"/>
+        <mbox rdf:resource="mailto:edd@usefulinc.com"/>
+        <mbox rdf:resource="mailto:edd@xml.com"/>
+        <mbox rdf:resource="mailto:edd@xmlhack.com"/>
+        <homepage rdf:resource="http://heddley.com/edd/"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <name>Martin Poulter</name>
+        <mbox rdf:resource="mailto:m.l.poulter@bristol.ac.uk"/>
+        <rdfs:seeAlso rdf:resource="http://www.weird.co.uk/martin/webwho.xrdf"/>
+        <homepage rdf:resource="http://www.weird.co.uk/martin/"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <name>Libby Miller</name>
+        <mbox rdf:resource="mailto:libby.miller@bristol.ac.uk"/>
+        <img rdf:resource="http://swordfish.rdfweb.org/~libby/libby.jpg"/>
+        <depiction>
+          <rdf:Description rdf:about="http://rdfweb.org/people/danbri/rdfweb/libby.gif">
+            <thumbnail rdf:resource="http://rdfweb.org/people/danbri/rdfweb/libby.gif"/>
+            <dc:title>Libby Miller, Oxford (1993-ish)</dc:title>
+            <dc:description>A photo of Libby Miller, taken while at Oxford University</dc:description>
+            <dc:format>image/gif</dc:format>
+          </rdf:Description>
+        </depiction>
+      </Person>
+    </knows>
+
+   <knows>
+    <Person>
+      <name>Amy van der Hiel</name>
+      <foaf:mbox_sha1sum>1839a1cc2e719a85ea7d9007f587b2899cd94064</foaf:mbox_sha1sum>
+      <rdfs:seeAlso rdf:resource="http://people.w3.org/amy/foaf.rdf" />
+    </Person>
+   </knows>
+
+    <knows>
+      <Person>
+        <name>Joe Brickley</name>
+        <mbox rdf:resource="mailto:joe.brickley@btopenworld.com"/>
+        <rdfs:seeAlso rdf:resource="http://hippyrigs.fiendsreunited.com/people/joe/foaf.rdf"/>
+      </Person>
+    </knows>
+
+    <knows>
+      <Person>
+        <name>Eric Miller</name>
+        <mbox rdf:resource="mailto:em@w3.org"/>
+        <img rdf:resource="http://www.oclc.org/~emiller/capture.jpg"/>
+        <depiction>
+          <Image rdf:about="http://www.ilrt.bristol.ac.uk/people/cmdjb/events/dc7/orig/eric.png">
+            <dc:thumbnail rdf:resource="http://www.ilrt.bristol.ac.uk/people/cmdjb/events/dc7/orig/eric.png"/>
+            <dc:title>Eric Miller, relaxing.</dc:title>
+            <dc:description>Eric Miller, relaxing.</dc:description>
+            <dc:format>image/png</dc:format>
+          </Image>
+        </depiction>
+        <homepage rdf:resource="http://purl.org/net/eric/"/>
+        <rdfs:seeAlso rdf:resource="http://purl.org/net/eric/webwho.xrdf"/>
+        <name>Eric Miller</name>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <name>Jan Grant</name>
+        <mbox rdf:resource="mailto:jan.grant@bristol.ac.uk"/>
+        <rdfs:seeAlso rdf:resource="http://ioctl.org/jan/webwho.xrdf"/>
+        <depiction>
+          <Image rdf:about="http://ioctl.org/jan/test/wizard.jpg">
+            <dc:thumbnail rdf:resource="http://ioctl.org/jan/test/wizard.jpg"/>
+            <dc:title>Jan Grant, Queen's Silver Jubilee</dc:title>
+            <dc:description>vi user</dc:description>
+            <dc:format>image/jpeg</dc:format>
+          </Image>
+        </depiction>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:michaelm@netsol.com"/>
+        <rdfs:seeAlso rdf:resource="http://bailey.dscga.com/michaelmwho.xrdf"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <name>Aaron Swartz</name>
+        <made>
+          <rss:channel rdf:about="http://www.blogspace.com/rss/rss10">
+            <rss:title>RSS Info</rss:title>
+            <rdfs:seeAlso rdf:resource="http://www.blogspace.com/rss/rss10"/>
+          </rss:channel>
+        </made>
+        <rdfs:seeAlso rdf:resource="http://www.aaronsw.com/about.xrdf"/>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:dave.beckett@bristol.ac.uk"/>
+        <rdfs:seeAlso rdf:resource="http://purl.org/net/dajobe/webwho.xrdf"/>
+        <name>Dave Beckett</name>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <name>Art Barstow</name>
+        <mbox rdf:resource="mailto:barstow@w3.org"/>
+        <rdfs:seeAlso rdf:resource="http://www.w3.org/People/Barstow/webwho.rdf"/>
+        <name>Art Barstow</name>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <rdfs:seeAlso rdf:resource="http://www.w3.org/People/Connolly/home-smart.rdf"/>
+        <mbox rdf:resource="mailto:connolly@w3.org"/>
+        <name>Dan Connolly</name>
+        <nick>DanCon</nick>
+      </Person>
+    </knows>
+    <knows>
+      <Person>
+        <mbox rdf:resource="mailto:d.m.steer@lse.ac.uk"/>
+        <name>Damian Steer</name>
+        <nick>damey</nick>
+        <depiction rdf:resource="http://website.lineone.net/~steve_c-t/Scientology/Pickets/10-03-2001/damien.jpg"/>
+      </Person>
+    </knows>
+  </Person>
+  <Image rdf:about="http://website.lineone.net/~steve_c-t/Scientology/Pickets/10-03-2001/damien.jpg">
+    <dc:description>An anti-scientology protest</dc:description>
+    <dc:thumbnail rdf:resource="http://website.lineone.net/~steve_c-t/Scientology/Pickets/10-03-2001/damien.jpg"/>
+  </Image>
+<!-- publications, using dublin core -->
+  <wn:Document rdf:about="http://rdfweb.org/">
+    <dc:title>The RDF Web home page</dc:title>
+    <dc:description>
+   rdfweb.org is an experimental linked information system. This page
+   provides links to some early writeup and prototype work.
+   </dc:description>
+    <dc:format>text/html</dc:format>
+    <dc:creator>
+      <Person>
+        <mbox rdf:resource="mailto:daniel.brickley@bristol.ac.uk"/>
+      </Person>
+    </dc:creator>
+  </wn:Document>
+  <Person>
+    <name>Margaret Hart</name>
+    <mbox rdf:resource="mailto:mags@apocalypse.org"/>
+    <img rdf:resource="http://purl.org/net/danbri/2000/06/mh.jpg"/>
+    <rdfs:seeAlso rdf:resource="http://www.apocalypse.org/~mags/webwho.xrdf"/>
+  </Person>
+  <Person>
+    <name>Libby Miller</name>
+    <mbox rdf:resource="mailto:libby.miller@bristol.ac.uk"/>
+    <workplaceHomepage rdf:resource="http://ilrt.org/"/>
+    <rdfs:seeAlso rdf:resource="http://www.libbymiller.com/webwho.xrdf"/>
+  </Person>
+  <Person>
+    <name>Craig Dibble</name>
+    <mbox rdf:resource="mailto:craig@coolstuffhere.co.uk"/>
+    <wife>
+      <Person foaf:name="Liz Dibble"/>
+    </wife>
+    <img rdf:resource="http://www.slobsquad.co.uk/images/me-res.JPG"/>
+  </Person>
+  <Person>
+    <name>Ian Sealy</name>
+    <mbox rdf:resource="mailto:ian.sealy@bristol.ac.uk"/>
+    <rdfs:seeAlso rdf:resource="http://ilrt.org/people/bzims/webwho.xrdf"/>
+  </Person>
+
+  <Person>
+    <name>Martin L Poulter</name>
+    <mbox rdf:resource="mailto:m.l.poulter@bristol.ac.uk"/>
+    <knows>
+      <Person> 
+        <name>Pastor N Pizzor</name>
+        <made>
+          <rss:channel rdf:about="http://www.glandscape.com/cgi-bin/prnxml.rss">
+            <rss:title>Channel of Filth</rss:title>
+            <rdfs:seeAlso rdf:resource="http://www.glandscape.com/cgi-bin/prnxml.rss"/>
+          </rss:channel>
+        </made>
+      </Person>
+    </knows>
+  </Person>
+</rdf:RDF>
