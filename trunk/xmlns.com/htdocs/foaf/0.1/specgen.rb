@@ -1,9 +1,33 @@
 #!/usr/bin/env ruby
-# RDF query (in memory version), Dan Brickley <danbri@w3.org>
+#
+# Ruby code to generate a spec from namespace + per-term docs.
+# Dan Brickley <danbri@w3.org>
+
+
+# http://www.w3.org/2000/06/webdata/xslt?xslfile=http%3A%2F%2Fwww.w3.org%2F2003%2F02%2Fcolour-xml-serializer.xsl&xmlfile=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2Findex.rdf&transform=Submit
 
 require 'squish'
 require 'basicrdf'
 
+
+
+
+class Vocabulary
+
+FOAF = 'http://xmlns.com/foaf/0.1/'
+DC = 'http://purl.org/dc/elements/1.1/'
+RDF = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+RDFS = 'http://www.w3.org/2000/01/rdf-schema#'
+OWL = 'http://www.w3.org/2002/07/owl#'
+VS = 'http://www.w3.org/2003/06/sw-vocab-status/ns#'
+
+attr_accessor :spec, :termlist, :ranges, :domains
+
+def initialize 
+  STDERR.puts "Vocabulary class starting up..."
+  ranges={}
+  domains={}
+end
 
 # todo: shouldn't be foaf specific
 def termlink(text)
@@ -30,7 +54,9 @@ def owlInfo(t)
     u=d.to_s
     ifp=true if u==OWL+'InverseFunctionalProperty'
   end
-  return("an InverseFunctionalProperty (uniquely identifying property)\n<br/>") if ifp
+#  return("an InverseFunctionalProperty (uniquely identifying property)\n<br/>") if ifp
+  return("\t<tr><th>OWL Type:</th>\n\t<td>An InverseFunctionalProperty (uniquely identifying property)</td></tr>\n") if ifp
+
   return ''
 end
 
@@ -41,13 +67,17 @@ def rdfsInfo(term, doc='')
   r= term.rdfs_range.to_s
   if (d!=nil) 
     d.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
-    doc += "domain: #{d}<br />"
+#    doc += "domain: #{d}<br />"
+    doc += "\t<tr><th>Domain:</th>\n\t<td>#{d}</td></tr>\n"
+#    domains[term.to_s]=[d]   
   else
     doc += "-"
   end
   if (r!=nil) 
     r.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
-    doc += "range: #{r}<br />"
+#    doc += "range: #{r}<br />"
+    doc += "\t<tr><th>Range:</th>\n\t<td>#{r}</td></tr>\n"
+#    ranges[term.to_s]=[r]   
   else
     doc += "-"
   end
@@ -78,29 +108,32 @@ list.each do |t|
   # almost vocab neutral. todo: 'foaf' shouldn't be hardcoded.
   l= term.rdfs_label.to_s
   c= term.rdfs_comment.to_s
+
   status= term.vs_term_status.to_s
+  # MM: Listing the term name twice?
   doc += "<em>#{l}</em> - #{c} <br />"
-  doc += "status: #{status}<br />"
+  doc += "<table>\n\t<tr><th>Status:</th>\n\t<td>#{status}</td></tr>\n"
   doc += owlInfo(term)
   doc += rdfsInfo(term) if category=='Property'
+  doc += "</table>\n"
   doc += htmlDocInfo(t)
-  doc += "<br/><br/></div>\n\n"
+  doc += "</div>\n\n"
 end
 return doc
 end
 
 
-##########################################################################
 
-spec = Loader.get_rdf('index.rdf')
+## Former main method, and shows!
 
+def makeSpec 
 
-FOAF = spec.reg_xmlns 'http://xmlns.com/foaf/0.1/', 'foaf'
-DC = spec.reg_xmlns 'http://purl.org/dc/elements/1.1/', 'dc'
-RDF = spec.reg_xmlns 'http://www.w3.org/1999/02/22-rdf-syntax-ns#','rdf'
-RDFS = spec.reg_xmlns 'http://www.w3.org/2000/01/rdf-schema#','rdfs'
-OWL = spec.reg_xmlns 'http://www.w3.org/2002/07/owl#', 'owl'
-VS = spec.reg_xmlns 'http://www.w3.org/2003/06/sw-vocab-status/ns#','vs'
+spec.reg_xmlns FOAF, 'foaf'
+spec.reg_xmlns DC, 'dc'
+spec.reg_xmlns RDF,'rdf'
+spec.reg_xmlns RDFS,'rdfs'
+spec.reg_xmlns OWL, 'owl'
+spec.reg_xmlns VS,'vs'
 
 
 # Get all the URIs of properties and classes, and store in plist and clist.
@@ -161,9 +194,24 @@ termlist += docTerms('Class',clist,spec)
 template=File.new('wip.html').read
 rdfdata=File.new('index.rdf').read
 
+colour=File.new('colour.html').read
+#STDERR.puts("Colour: "+colour)
+#colour =~ /<pre>(.*)<\/pre>/i
+pretty = '<p>not available</p>'
+pretty = $1 if $1
+pretty=colour
+
+nslist=<<EOT
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/"
+EOT
+
+nslist.gsub!(/ /,"\n  ")
+pretty.gsub!(/rdf:RDF/, "rdf:RDF "+nslist)
+
 template.gsub!(/<!--AZLIST-->/,azlist)
 template.gsub!(/<!--TERMLIST-->/,termlist)
 template.gsub!(/<!--RDFDATA-->/,rdfdata)
+template.gsub!(/<!--PRETTY-->/,pretty)
 
 puts template
 
@@ -171,3 +219,16 @@ puts template
 #<!--TERMLIST-->
 
 
+end
+
+end #endVocab
+
+##########################################################################
+
+
+voc = Vocabulary.new()
+voc.spec = Loader.get_rdf('index.rdf')
+voc.makeSpec()
+
+
+#puts "Ranges: "+voc.ranges.inspect
