@@ -6,7 +6,7 @@
 # Generate HTML.
 # Assumes data has been drafragmented / smushed.
 #
-# danbri $Id: pathfinder_foaf.rb,v 1.1 2002-06-30 21:44:59 danbri Exp $
+# danbri $Id: pathfinder_foaf.rb,v 1.2 2002-07-10 21:31:12 danbri Exp $
 
 require 'squish'
 require 'dbi'

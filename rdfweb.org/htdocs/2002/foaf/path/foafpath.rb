@@ -6,7 +6,7 @@
 # originally by Damian Steer and Libby Miller.
 # see http://rdfweb.org/people/damian/2002/02/foafnation/
 #
-# $Id: foafpath.rb,v 1.1 2002-06-30 21:44:59 danbri Exp $ danbri@rdfweb.org
+# $Id: foafpath.rb,v 1.2 2002-07-10 21:31:12 danbri Exp $ danbri@rdfweb.org
 #
 # 
 # classes: TElement, TEdge, TNode, TGraph
@@ -134,7 +134,7 @@ class TNode
     @text=text
   end
 
-  def equals(obj)
+  def sameNode (obj)
     ## this was .equals() in java...
     ## todo:Should ret false unless obj is a TNode
     ## hmm, is this how we do string eq testing?
