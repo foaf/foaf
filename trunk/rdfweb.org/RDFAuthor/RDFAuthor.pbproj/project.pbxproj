@@ -187,6 +187,9 @@
 				F6E8FB720171D57401000211,
 				F6E8FB730171D57401000211,
 				F6E8FB7A0171F2E101000211,
+				F660C47701732AA701000211,
+				F660C4790173300201000211,
+				F660C47B0173870901000211,
 				02218D9AFECEFA92C02AAC07,
 				2A37F4C3FDCFA73011CA2CEA,
 				19C28FB0FE9D524F11CA2CBB,
@@ -387,6 +390,8 @@
 				F6E8FB770171D57401000211,
 				F6E8FB780171D57401000211,
 				F6E8FB7B0171F2E101000211,
+				F660C47801732AA801000211,
+				F660C47A0173300201000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -403,6 +408,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1058C7A9FEA54F5311CA2CBB,
+				F660C4800173870901000211,
+				F660C4810173870901000211,
+				F660C4820173870901000211,
+				F660C4830173870901000211,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -446,6 +455,95 @@
 //F62
 //F63
 //F64
+		F660C47701732AA701000211 = {
+			isa = PBXFileReference;
+			path = SchemaWindowController.java;
+			refType = 4;
+		};
+		F660C47801732AA801000211 = {
+			fileRef = F660C47701732AA701000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F660C4790173300201000211 = {
+			isa = PBXFileReference;
+			path = SchemaData.java;
+			refType = 4;
+		};
+		F660C47A0173300201000211 = {
+			fileRef = F660C4790173300201000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F660C47B0173870901000211 = {
+			children = (
+				F660C47C0173870901000211,
+				F660C47D0173870901000211,
+				F660C47E0173870901000211,
+				F660C47F0173870901000211,
+			);
+			isa = PBXGroup;
+			name = Jena;
+			refType = 4;
+		};
+		F660C47C0173870901000211 = {
+			isa = PBXFileReference;
+			path = rdffilter.jar;
+			refType = 4;
+		};
+		F660C47D0173870901000211 = {
+			isa = PBXFileReference;
+			path = xerces.jar;
+			refType = 4;
+		};
+		F660C47E0173870901000211 = {
+			isa = PBXFileReference;
+			path = jena.jar;
+			refType = 4;
+		};
+		F660C47F0173870901000211 = {
+			isa = PBXFileReference;
+			path = sax2.jar;
+			refType = 4;
+		};
+		F660C4800173870901000211 = {
+			fileRef = F660C47C0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Merge,
+				);
+			};
+		};
+		F660C4810173870901000211 = {
+			fileRef = F660C47D0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Merge,
+				);
+			};
+		};
+		F660C4820173870901000211 = {
+			fileRef = F660C47E0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Merge,
+				);
+			};
+		};
+		F660C4830173870901000211 = {
+			fileRef = F660C47F0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Merge,
+				);
+			};
+		};
 		F6E8FB6E0171D52E01000211 = {
 			isa = PBXFileReference;
 			path = Arc.java;
