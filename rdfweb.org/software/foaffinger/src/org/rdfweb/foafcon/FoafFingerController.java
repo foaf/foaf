@@ -17,8 +17,10 @@ public class FoafFingerController
   InetAddress inetaddr;
   ServiceInfo si;
   UI cl;
+    
+    boolean gui;
 
-  boolean shuttingDown = false;
+    //boolean shuttingDown = false;
     
   People people;
     
@@ -31,24 +33,35 @@ public class FoafFingerController
 
   public FoafFingerController(String[] args)
   {
-    if (args.length < 2)
+    if (args.length < 3)
       {
 	System.
 	  err.
-	  println("Usage: FoafFinger <name> <mailbox> " +
+	  println("Usage: FoafFinger --gui|--cl <name> <mailbox> " +
 		  "[<address>]");
 	System.exit(1);
       }
+    
+    if (args[0].equals("--gui")) gui = true;
+    else if (args[0].equals("--cl")) gui = false;
+    else
+	{
+	    System.
+		err.
+		println("Usage: FoafFinger --gui | --cl <name> <mailbox> " +
+			"[<address>]");
+	    System.exit(1);
+	}
 
-    person = new Person(args[0], args[1]);
+    person = new Person(args[1], args[2]);
 
     people = new People(this);
         
-    if (args.length > 2)
+    if (args.length > 3)
       {
 	try
 	  {
-	    inetaddr = InetAddress.getByName(args[2]);
+	    inetaddr = InetAddress.getByName(args[3]);
 	  }
 	catch (UnknownHostException e)
 	  {
@@ -88,8 +101,8 @@ public class FoafFingerController
     
     try
       {
-    	//cl = new CommandLine(this);
-	cl = new GUI(this);
+	  if (gui) cl = new GUI(this);
+	  else cl = new CommandLine(this);
 	
 	rv = new JmDNS(inetaddr);
 
