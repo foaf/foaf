@@ -1,5 +1,5 @@
 DanBri ETCON-2004 abstract
-version: $Id: abstract.txt,v 1.6 2003-09-24 18:32:52 danbri Exp $
+version: $Id: abstract.txt,v 1.7 2003-09-24 18:51:18 danbri Exp $
 45 min session at http://conferences.oreillynet.com/cs/et2004/create/e_sess#form
 
   "Fear of a FOAF Planet - Acronyms and activism on the Semantic Web"
@@ -10,16 +10,18 @@ do. This session introduces the FOAF project, giving a lightning tour of its
 origins, goals, current status and possible futures. 
 
 What would happen (to privacy, to the media, to commerce) if search engines evolved 
-into aggregating databases? What would happen if machines could exchange, 
-merge and reason about descriptions of people using standards-based, freely 
+into more structured, aggregating databases? What would happen if machines could 
+exchange, merge and reason about descriptions of people using standards-based, freely 
 available tools? What should we do as these 'ifs' become 'whens'?
 
-FOAF has many possible futures: utopian, dystopian, and the spaces in between. 
-This session will outline FOAF's approach to application development, illustrated 
-with scenarios currently under development - eg FOAFMobile tools ("show me weblogs 
-by people sitting nearby"), interactions between social networking, activism and 
-indy media ("I'd like to talk to a FOAF who has been to Iraq..."). 
+This session will outline the basics of FOAF, illustrated with discussion of ongoing 
+work including FOAFMobile ("show me weblogs and profiles for people sitting 
+nearby"), FOAFCorp ("Reveal the hidden structure of contemporary capitalism! build 
+a better corporate intranet!"), as well as the issues arising from the convergence 
+of social networking, activism and indy media concerns ("I'd like to talk to a FOAF 
+who has been to Iraq...").
 
+FOAF has many possible futures: utopian, dystopian, and the spaces in between. 
 Modest technologies can have unexpected consequences. As a simple technology 
 designed to encourage coincidences, FOAF opens up many possibilities. 
 Moving towards mainstream use, we must balance wide-eyed optimism 
