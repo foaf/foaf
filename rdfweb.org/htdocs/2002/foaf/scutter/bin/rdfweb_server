@@ -7,7 +7,7 @@ require 'webrick'
 include WEBrick
 
 # rdfweb_server, sample RDF services (RSS directory etc)
-# $Id: rdfweb_server,v 1.5 2002-07-13 16:37:02 danbri Exp $
+# $Id: rdfweb_server,v 1.6 2002-07-13 18:16:21 danbri Exp $
 #
 # Copyright 2001 Dan Brickley 
 #
@@ -159,6 +159,7 @@ end
 
 s = HTTPServer.new( :Port => 2000, 
 	:Logger => WEBrick::Log::new('logfile', WEBrick::Log::DEBUG) 
+
 	)
 #	, :BindAddress    => '0.0.0.0' 
 

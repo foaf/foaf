@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.9 2002-07-13 16:37:02 danbri Exp $
+# $Id: webutil.rb,v 1.10 2002-07-13 18:16:21 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -127,7 +127,7 @@ def scutter_local (file, base_uri, opts={})
           begin 
             print '.'
 	    sql_insert.gsub! /;\s*$/, "" # mysql barfs on ';'
-	    # print "INSERT: '#{sql_insert}' "
+	      # print "INSERT: '#{sql_insert}' "
             dbh.do sql_insert 
           rescue 
             #puts "DBI: Error in sql insert #{file} sql: #{sql_insert} msg: #{$!}"
