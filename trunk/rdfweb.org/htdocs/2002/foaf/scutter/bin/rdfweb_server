@@ -7,7 +7,7 @@ require 'webrick'
 include WEBrick
 
 # rdfweb_server, sample RDF services (RSS directory etc)
-# $Id: rdfweb_server,v 1.7 2002-07-17 11:24:20 danbri Exp $
+# $Id: rdfweb_server,v 1.8 2002-07-17 13:37:30 danbri Exp $
 #
 # Copyright 2001 Dan Brickley 
 #
@@ -50,7 +50,9 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
 	SELECT ?i, ?t, ?d,  
  	 WHERE 
 	 (rss::title ?i ?t)
+	 (rdf::type ?i rss::item)
 	USING
+	 rdf for http://www.w3.org/1999/02/22-rdf-syntax-ns#
 	 rss for http://purl.org/rss/1.0/ 
 
 EOQ
@@ -94,6 +96,11 @@ EOQ
         x += "query: #{query} q: #{q} "
         x += "<ul>\n\n"
         x += "<h1>Recent items</h1>\n"
+
+        chan_node = Node.getResource u, graph	# hook up node to its datasource
+        image = chan_node.rss_image.to_s 
+	x += "<img src=\"#{image}\" alt=\"channel logo\" />" if image != ""
+
         resultset.each do |chan|
 
           title = esc_utf8 chan.values['t']
