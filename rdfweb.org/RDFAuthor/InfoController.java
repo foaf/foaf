@@ -226,6 +226,10 @@ public class InfoController extends NSObject {
 
         changeSize();
 
+        if (currentItem == null)
+        {
+            return;
+        }
         if (!currentItem.isNode())
         {
             changeProperty();

@@ -25,6 +25,9 @@ import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.io.*;
 
 public class RDFModelView extends NSView {
 
@@ -346,22 +349,103 @@ public class RDFModelView extends NSView {
     
     public void copy(Object sender)
     {
+        ArcNodeSelection selection = rdfAuthorDocument.selection();
+
+        // No point copying if there is nothing to copy
+        if (selection.kind() == ArcNodeSelection.Empty)
+        {
+            return;
+        }
+
+        System.out.println("Copying...");
+        
+        NSPasteboard pboard = NSPasteboard.generalPasteboard();
+        ArrayList objectsToCopy = selection.copy();
+        pboard.declareTypes(new NSArray(ArcNodeSelection.GraphPboardType), null);
+
+        // Begin serialisation to clipboard
+        
+        try
+        {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream s = new ObjectOutputStream(out);
+            s.writeObject(objectsToCopy);
+            s.flush();
+            out.flush();
+
+            NSData copiedData = new NSData(out.toByteArray());
+
+            s.close();
+            out.close();
+            
+            pboard.setDataForType(copiedData, ArcNodeSelection.GraphPboardType);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Got error: "+e);
+        }
     }
-    
+
     public void cut(Object sender)
     {
+        copy(null);
+        rdfAuthorDocument.deleteSelection();
     }
     
     public void paste(Object sender)
     {
+        System.out.println("Pasting...");
+        NSPasteboard pboard = NSPasteboard.generalPasteboard();
+
+        // Can we paste this?
+        if (pboard.types().containsObject(ArcNodeSelection.GraphPboardType))
+        {
+            System.out.println("Got something to paste...");
+            NSData data = pboard.dataForType(ArcNodeSelection.GraphPboardType);
+            ArrayList graph;
+
+            // Begin deserialisation from clipboard
+            
+            try
+            {
+                ByteArrayInputStream in =
+                new ByteArrayInputStream( data.bytes(0, data.length()) );
+                ObjectInputStream s = new ObjectInputStream(in);
+
+                graph = (ArrayList) s.readObject();
+
+                s.close();
+                in.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                return;
+            }
+            
+            System.out.println("Objects: " + graph);
+
+            rdfAuthorDocument.selection().clear();
+            
+            for (Iterator iterator = graph.iterator(); iterator.hasNext();)
+            {
+                ModelItem object = (ModelItem) iterator.next();
+                rdfAuthorDocument.addObject(object);
+            }
+        }
     }
     
     public void selectAll(Object sender)
     {
+        rdfAuthorDocument.selectAll();
     }
+    
+    // This is so inefficient, but easy :-)
     
     public void clear(Object sender)
     {
+        selectAll(null);
+        rdfAuthorDocument.deleteSelection();
     }
     
     // Drag and Drop stuff begins here.

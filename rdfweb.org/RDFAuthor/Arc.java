@@ -39,9 +39,8 @@ public class Arc implements Serializable, ModelItem
     
     GraphicalArc graphicArc;
 
-    public Arc(ArcNodeList myList, Node fromNode, Node toNode, String namespace, String name)
+    public Arc(Node fromNode, Node toNode, String namespace, String name)
     {
-        this.myList = myList;
         this.fromNode = fromNode;
         this.toNode = toNode;
         fromNode.addFromArc(this);
@@ -52,9 +51,8 @@ public class Arc implements Serializable, ModelItem
     
     // Same as before - but split the property into namespace & name
     
-    public Arc(ArcNodeList myList, Node fromNode, Node toNode, String property)
+    public Arc(Node fromNode, Node toNode, String property)
     {
-        this.myList = myList;
         this.fromNode = fromNode;
         this.toNode = toNode;
         fromNode.addFromArc(this);

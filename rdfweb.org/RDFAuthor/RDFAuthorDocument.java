@@ -26,11 +26,12 @@ import com.apple.cocoa.application.*;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class RDFAuthorDocument extends NSDocument {
     
     static final String FileFormatPrefix = "RDFAuthor File Format Version ";
-    static final String FileFormatNumber = "0.2";
+    static final String FileFormatNumber = "0.3";
     
     NSTextField textDescriptionField;
 
@@ -46,14 +47,17 @@ public class RDFAuthorDocument extends NSDocument {
     NSScrollView previewView;
     
     QueryController queryController;
+
+    BookmarkController bookmarkController;
     
     ArcNodeList rdfModel;
     GraphicalModel rdfGraphicModel;
     
     HashMap exportMappings;
-    boolean needsAutoLayout; // indicate whether we've loaded something whuch needs laying out
+    boolean needsAutoLayout; // indicate whether we've loaded something which needs laying out
     float modelWidth; // for remembering sizes when loading
     float modelHeight;
+    ArrayList bookmarkedItems; // Temporary storage for loading bookmarks
     
     boolean showTypes;
     boolean showIds;
@@ -110,8 +114,15 @@ public class RDFAuthorDocument extends NSDocument {
                 s.writeFloat(rdfModelView.frame().height());
                 System.out.println("Wrote height: " + rdfModelView.frame().height());
                 s.writeObject(rdfModel);
+                s.writeObject(bookmarkController.items());
+
+                s.flush();
+                out.flush();
                 
                 NSData savedData = new NSData(out.toByteArray());
+
+                s.close();
+                out.close();
 
                 return savedData;
             }
@@ -135,29 +146,46 @@ public class RDFAuthorDocument extends NSDocument {
         }
         else if (aType.equals("SVG Document")) // SVG Export
         {
-            NSMutableStringReference svgString = new NSMutableStringReference();
-            svgString.setString(rdfGraphicModel.svgRepresentation(this, rdfModel, rdfModelView));
-            return svgString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
+            try
+            {
+                StringWriter stringOutput = new StringWriter();
+                rdfGraphicModel.svgRepresentation(stringOutput, this, rdfModel, rdfModelView);
+                stringOutput.flush();
+                NSMutableStringReference svgString = new NSMutableStringReference();
+                svgString.setString(stringOutput.toString());
+                stringOutput.close();
+                return svgString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
+            }
+            catch (Exception e)
+            {
+                RDFAuthorUtilities.ShowError(
+                    "SVG Export Failed",
+                    "Export failed, I'm afraid. Can't imagine why.",
+                    RDFAuthorUtilities.Critical, window);
+                return null;
+            }
         }
         else if (exportMappings.get(aType) != null)
         {
             String outputType = (String) exportMappings.get(aType);
-            String rdfData = rdfModel.exportAsRDF(outputType);
-            
-            if (rdfData == null)
+
+            try
+            {
+                StringWriter stringOutput = new StringWriter();
+                rdfModel.exportAsRDF(stringOutput, outputType);
+                stringOutput.flush();
+                NSMutableStringReference rdfString = new NSMutableStringReference();
+                rdfString.setString(stringOutput.toString());
+                stringOutput.close();
+                return rdfString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
+            }
+            catch (Exception e)
             {
                 RDFAuthorUtilities.ShowError(
                     "RDF Export Failed",
                     "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
                     RDFAuthorUtilities.Critical, window);
                 return null;
-            }
-            else
-            {
-                // Ugh 
-                NSMutableStringReference rdfString = new NSMutableStringReference();
-                rdfString.setString(rdfData);
-                return rdfString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
             }
         }
         else
@@ -175,7 +203,7 @@ public class RDFAuthorDocument extends NSDocument {
         
         exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
-        exportMappings.put("N3 Document", "N3");
+        //exportMappings.put("N3 Document", "N3");
         
         boolean success;
         
@@ -214,9 +242,17 @@ public class RDFAuthorDocument extends NSDocument {
 
                     rdfModel = (ArcNodeList) s.readObject();
                     rdfModel.setController(this);
-            
+
+                    if (!versionNumber.equals("0.1") && !versionNumber.equals("0.2")) // bookmarks added later
+                    {
+                        bookmarkedItems = (ArrayList) s.readObject();
+                    }
+                    
                     success = true;
                     needsAutoLayout = false;
+
+                    s.close();
+                    in.close();
                 }
             }
             catch (Exception e)
@@ -280,6 +316,10 @@ public class RDFAuthorDocument extends NSDocument {
             // This caused a nasty bug - if it reverted it loaded the doc, but lost the Graphics
             // Initialise rdfGraphicModel
             rdfGraphicModel = new GraphicalModel(rdfModel, rdfModelView);
+            if (bookmarkedItems != null) // we loaded bookmarked items
+            {
+                bookmarkController.setItems(bookmarkedItems);
+            }
         }
         
         if (!success)
@@ -336,6 +376,11 @@ public class RDFAuthorDocument extends NSDocument {
             RDFAuthorUtilities.layoutModel(rdfModel, 
             rdfModelView.frame().x(), rdfModelView.frame().y(), rdfModelView.frame().maxX(), rdfModelView.frame().maxY());
         }
+
+        if (bookmarkedItems != null) // we loaded bookmarked items
+        {
+            bookmarkController.setItems(bookmarkedItems);
+        }
         
         // There must be a way to do this in interface builder...
         
@@ -350,7 +395,7 @@ public class RDFAuthorDocument extends NSDocument {
         
         exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
-        exportMappings.put("N3 Document", "N3");
+        //exportMappings.put("N3 Document", "N3");
     }
     
     public void setPrintInfo(NSPrintInfo printInfo)
@@ -362,6 +407,14 @@ public class RDFAuthorDocument extends NSDocument {
         
         NSPrintInfo.setSharedPrintInfo(printInfo);
         super.setPrintInfo(printInfo);
+    }
+
+    public void windowDidBecomeKey(NSNotification notification)
+    {
+        if (notification.object() == window)
+        {
+            window.makeFirstResponder(rdfModelView);
+        }
     }
     
     public void setDocumentSize(NSSize size)
@@ -396,20 +449,25 @@ public class RDFAuthorDocument extends NSDocument {
     
     public boolean createPreviewText(String type)
     {
-        String rdfData = rdfModel.exportAsRDF(type);
-        if (rdfData == null)
+        try
+        {
+            StringWriter stringOutput = new StringWriter();
+            rdfModel.exportAsRDF(stringOutput, type);
+            stringOutput.flush();
+            previewTextView.setString(stringOutput.toString());
+            stringOutput.close();
+            return true;
+        }
+        catch (Exception e)
         {
             RDFAuthorUtilities.ShowError(
                 "Serialisation Failed",
                 "I couldn't convert this to '" + type + 
-                "'. Try using 'Check Model' for possible problems.\n(Note: N3 Doesn't work currently)",
+                "'. Try using 'Check Model' for possible problems.", //\n(Note: N3 Doesn't work currently)",
                 RDFAuthorUtilities.Critical, window);
             previewTextView.setString("");
             return false;
         }
-        
-        previewTextView.setString(rdfData);
-        return true;
     }
     
     public void modelChanged()
@@ -488,6 +546,29 @@ public class RDFAuthorDocument extends NSDocument {
             queryController.checkForDeletedItems(rdfModel);
         }
     }
+
+    // This is used to add a pre-existing object to the model
+    // (used by paste)
+    
+    public void addObject(ModelItem object)
+    {
+        rdfModel.add(object);
+        
+        if (object.isNode())
+        {
+            ((Node) object).setGraphicRep(new GraphicalNode((Node) object, rdfModelView));
+            ((Node) object).setShowId(showIds);
+            ((Node) object).setShowType(showTypes);
+        }
+        else
+        {
+            ((Arc) object).setGraphicRep(new GraphicalArc((Arc) object, rdfModelView));
+            ((Arc) object).setShowProperty(showProperties);
+        }
+
+        rdfModel.selection().add(object);
+    }
+        
     
     public void addNodeAtPoint(String id, String typeNamespace, String typeName, NSPoint point, boolean isLiteral)
     {
@@ -496,7 +577,7 @@ public class RDFAuthorDocument extends NSDocument {
         typeName = (typeName == null)? defaultClassName : typeName ;
         typeNamespace = (typeNamespace == null)? defaultClassNamespace : typeNamespace ;
         
-        Node newNode = new Node(rdfModel, id, typeNamespace, typeName, point.x(), point.y());
+        Node newNode = new Node(id, typeNamespace, typeName, point.x(), point.y());
         rdfModel.add(newNode);
         
         // Create the corresponding graphical object
@@ -521,7 +602,7 @@ public class RDFAuthorDocument extends NSDocument {
             && startNode.isNode() && endNode.isNode()
             && (startNode != endNode) )
         {
-            Arc newArc = new Arc(rdfModel, (Node)startNode, (Node)endNode, defaultPropertyNamespace, defaultPropertyName);
+            Arc newArc = new Arc((Node)startNode, (Node)endNode, defaultPropertyNamespace, defaultPropertyName);
             rdfModel.add(newArc);
             
             // Create the corresponding graphical object
@@ -600,7 +681,13 @@ public class RDFAuthorDocument extends NSDocument {
         NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.itemChangedNotification, this) );
     }
-    
+
+    public void selectAll()
+    {
+        rdfModel.selectAll();
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+    }
     
     public void setSelectionFromRect(NSRect rect, boolean adding)
     {

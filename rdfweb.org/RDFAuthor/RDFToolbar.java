@@ -55,7 +55,7 @@ public class RDFToolbar extends NSObject {
     
     public RDFToolbar()
     {
-        popupMappings = new String[] {"RDF/XML-ABBREV", "N-TRIPLE", "N3" };
+        popupMappings = new String[] {"RDF/XML-ABBREV", "N-TRIPLE"}; //, "N3" };
     }
     
     public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 

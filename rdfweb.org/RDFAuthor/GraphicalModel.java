@@ -34,6 +34,7 @@ import com.apple.cocoa.application.*;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.ArrayList;
+import java.io.Writer;
 
 public class GraphicalModel {
     
@@ -142,35 +143,30 @@ public class GraphicalModel {
         return boundsRect;
     }
     
-    public String svgRepresentation(RDFAuthorDocument document, ArcNodeList model, RDFModelView rdfModelView)
+    public void svgRepresentation(Writer writer, 
+            RDFAuthorDocument document, ArcNodeList model, RDFModelView rdfModelView)
+                throws java.io.IOException
     {
-        String svg = "";
-        
-        svg += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
-        svg += "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n";
-        svg += "	\"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n";
+        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
+        writer.write("<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n");
+        writer.write("	\"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n");
         
         NSSize docSize = rdfModelView.frame().size();
         
-        svg += "\n<svg width=\"" + docSize.width() + "px\" ";
-        svg += "height=\"" + docSize.height() + "px\" xmlns=\"http://www.w3.org/2000/svg\">\n\n";
+        writer.write("\n<svg width=\"" + docSize.width() + "px\" ");
+        writer.write("height=\"" + docSize.height() + "px\" xmlns=\"http://www.w3.org/2000/svg\">\n\n");
         
-        svg += "<title>" + document.displayName() + "</title>\n";
-        
-        //String dateStamp = java.util.Calendar.getInstance().toString();
+        writer.write("<title>" + document.displayName() + "</title>\n");
         
         NSGregorianDate date = new NSGregorianDate(); // Stuff java.util.Calendar!
-        String dateStamp = date.toString();
         
-        System.out.println("Date stamp: " + dateStamp);
+        writer.write("<desc>RDF model produced by RDFAuthor (http://rdfweb.org/people/damian/RDFAuthor) at " +
+            date.toString() + "</desc>\n");
         
-        svg += "<desc>RDF model produced by RDFAuthor (http://rdfweb.org/people/damian/RDFAuthor) at " +
-            dateStamp + "</desc>\n";
+        GraphicalArc.svgArrowHead(writer);
         
-        svg += GraphicalArc.svgArrowHead();
-        
-        svg += "<rect x=\"0px\" y=\"0px\" width=\"" + docSize.width() + "px\" ";
-        svg += "height=\"" + docSize.height() + "px\" fill=\"white\" />\n\n";
+        writer.write("<rect x=\"0px\" y=\"0px\" width=\"" + docSize.width() + "px\" ");
+        writer.write("height=\"" + docSize.height() + "px\" fill=\"white\" />\n\n");
         
         ArcNodeSelection selection = model.selection();
         
@@ -184,11 +180,11 @@ public class GraphicalModel {
             
             if (selection.contains(arc))
             {
-                svg += ((GraphicalArc) arc.graphicRep()).drawSvgHilight();
+                ((GraphicalArc) arc.graphicRep()).drawSvgHilight(writer);
             }
             else
             {
-                svg += ((GraphicalArc) arc.graphicRep()).drawSvgNormal();
+                ((GraphicalArc) arc.graphicRep()).drawSvgNormal(writer);
             }
         }
         
@@ -198,18 +194,15 @@ public class GraphicalModel {
             
             if (selection.contains(node))
             {
-                svg += ((GraphicalNode) node.graphicRep()).drawSvgHilight();
+                ((GraphicalNode) node.graphicRep()).drawSvgHilight(writer);
             }
             else
             {
-                svg += ((GraphicalNode) node.graphicRep()).drawSvgNormal();
+                ((GraphicalNode) node.graphicRep()).drawSvgNormal(writer);
             }
         }
         
-        svg += "\n\n</svg>";
-        
-        return svg;
+        writer.write("\n\n</svg>");
     }
-        
         
 }

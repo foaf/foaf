@@ -39,6 +39,7 @@
             CLASS = RDFAuthorDocument; 
             LANGUAGE = Java; 
             OUTLETS = {
+                bookmarkController = id; 
                 previewTextView = id; 
                 previewView = id; 
                 queryController = id; 
