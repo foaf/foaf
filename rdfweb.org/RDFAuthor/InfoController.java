@@ -1,6 +1,6 @@
 /* InfoController */
 
-/* $Id: InfoController.java,v 1.19 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: InfoController.java,v 1.20 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -53,7 +53,7 @@ public class InfoController extends NSObject {
     
     NSButton resourceChangeButton;
 
-    NSTextField literalTextField;
+    NSTextView literalTextField;
 
     NSTextField propertyTextField;
 
@@ -249,7 +249,7 @@ public class InfoController extends NSObject {
     
     private void changeLiteral() 
     {
-        String value = literalTextField.stringValue().trim();
+        String value = literalTextField.string().trim();
         
         if (literalChangeButton.state() == NSCell.OnState)
         {
@@ -415,7 +415,7 @@ public class InfoController extends NSObject {
         literalChangeButton.setState(NSCell.OffState);
         resourceChangeButton.setState(NSCell.OffState);
         
-        literalTextField.setStringValue(literal);
+        literalTextField.setString(literal);
         propertyTextField.setStringValue(property);
         resourceIdField.setStringValue(id);
         resourceTypeField.setStringValue(type);

@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.22 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: Node.java,v 1.23 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -34,6 +34,8 @@ import com.hp.hpl.mesa.rdf.jena.common.Util;
 public class Node implements Serializable, ModelItem
 {
     static final long serialVersionUID = 8496964442985450307L;
+    
+    static final int maxDisplayStringLength = 30;
     
     String id;
     String typeNamespace;
@@ -336,7 +338,17 @@ public class Node implements Serializable, ModelItem
                 idToShow = (id == null)?"-- anonymous --":id;
             }
             
-            //typeToShow = isLiteral()?"-- literal --":typeToShow;
+            // Fix idToShow to make it display nicely
+            // This involves:
+            // 1) replacing newlines with ' '
+            // 2) Trimming the length of the string (if necessary)
+            // Note: typeToShow will always be fine 
+            
+            idToShow = idToShow.replace('\n',' ');
+            if (idToShow.length() > maxDisplayStringLength)
+            {
+                idToShow = idToShow.substring(0, maxDisplayStringLength - 3) + "...";
+            }
             
             if (showType && showId)
             {

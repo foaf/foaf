@@ -5,7 +5,7 @@
 //  Created by pldms on Wed Nov 07 2001.
 //
 
-/* $Id: RDFAuthorUtilities.java,v 1.10 2002-01-17 18:37:01 pldms Exp $ */
+/* $Id: RDFAuthorUtilities.java,v 1.11 2002-02-05 16:02:57 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>

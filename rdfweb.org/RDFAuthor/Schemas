@@ -1,8 +1,8 @@
-# $Id: Schemas,v 1.1 2002-01-17 18:35:01 pldms Exp $
+# $Id: Schemas,v 1.2 2002-02-05 16:02:57 pldms Exp $
 #
 # This file has two functions:
 # 1) Populate the schema window box with schema URLs
-# 2) Map schema namespaces to prefixess (which improves serialization readability)
+# 2) Map schema namespaces to prefixes (which improves serialization readability)
 #
 # Format:
 #
