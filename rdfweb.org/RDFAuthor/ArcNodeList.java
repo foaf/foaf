@@ -47,12 +47,14 @@ public class ArcNodeList implements Serializable
     ArrayList array;
     ModelItem currentObject;
     RDFAuthorDocument controller;
+    ArcNodeSelection selection;
 
     public ArcNodeList(RDFAuthorDocument controller)
     {
         currentObject = null;
         array = new ArrayList();
         this.controller = controller;
+        selection = new ArcNodeSelection();
     }
     
     public ArcNodeList(RDFAuthorDocument controller, Reader reader, String type)
@@ -61,6 +63,7 @@ public class ArcNodeList implements Serializable
         currentObject = null;
         array = new ArrayList();
         this.controller = controller;
+        selection = new ArcNodeSelection();
         
         // Import from contents of reader
         
@@ -207,7 +210,7 @@ public class ArcNodeList implements Serializable
             selectPreviousObject();
         }
         
-        array.remove(item);
+        removeObject(item);
         item.delete();
         controller.modelChanged();
     }
@@ -216,11 +219,32 @@ public class ArcNodeList implements Serializable
     public void removeObject(ModelItem anObject)
     {
         array.remove(anObject);
+        selection.remove(anObject);
     }
     
     public boolean contains(ModelItem anObject)
     {
         return array.contains(anObject);
+    }
+    
+    public void setSelection(ModelItem object)
+    {
+        selection.set(object);
+    }
+    
+    public void addToSelection(ModelItem object)
+    {
+        selection.add(object);
+    }
+    
+    public ArcNodeSelection selection()
+    {
+        return selection;
+    }
+    
+    public void moveSelectionBy(float dx, float dy)
+    {
+        selection.moveBy(dx, dy);
     }
     
     public ListIterator getObjects()

@@ -565,6 +565,32 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModel.setCurrentObject(item);
     }
     
+    public void addObjectAtPointToSelection(NSPoint point)
+    {
+        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
+        if (item != null)
+        {
+            rdfModel.selection().add(item);
+        }
+    }
+    
+    public void setSelectionToObjectAtPoint(NSPoint point)
+    {
+        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
+        if (item != null)
+        {
+            if (!rdfModel.selection().contains(item))
+            {
+                rdfModel.selection().set(item);
+            }
+        }
+    }
+    
+    public void moveSelectionBy(float dx, float dy)
+    {
+        rdfModel.selection().moveBy(dx, dy);
+    }
+    
     public void addQueryItemAtPoint(NSPoint point)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);

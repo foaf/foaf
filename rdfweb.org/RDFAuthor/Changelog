@@ -1,4 +1,4 @@
-$Date: 2001-12-11 22:38:01 $ - pldms
+2001/12/11 22:38:01 - pldms
 
     Redrawing is much faster now. I've also extracted the graphics code from the model.
     This will make the swing port nicer. The relevant classes start are GraphicalXXX.
