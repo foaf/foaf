@@ -1,6 +1,6 @@
 /* Document */
 
-/* $Id: Document.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: Document.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
     Copyright 2002 Damian Steer <pldms@mac.com>
@@ -102,7 +102,7 @@ public class Document
 	System.out.println(e);
 	successful = false;
       }
-
+    
     if (!successful) throw (new DocumentLoadFailedException("Loading failed"));
   }
 
@@ -204,7 +204,8 @@ public class Document
     window.setTitle(title);
     //window.pack();
     window.show();
-    
+
+    System.out.println("Interface loaded...");
   }
   
   public Window window()

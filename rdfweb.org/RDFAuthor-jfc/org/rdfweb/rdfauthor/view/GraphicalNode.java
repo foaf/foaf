@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalNode.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: GraphicalNode.java,v 1.2 2002-04-11 12:32:06 pldms Exp $ */
 
 /*
     Copyright 2001, 2002 Damian Steer <dm_steer@hotmail.com>
@@ -33,10 +33,11 @@
 package org.rdfweb.rdfauthor.view;
 
 import java.awt.*;
-
+import java.awt.geom.*;
 import java.io.Writer;
 
-import org.rdfweb.rdfauthor.model.*;
+import ModelItem;
+import Node;
 import org.rdfweb.rdfauthor.gui.*;
 
 public class GraphicalNode implements GraphicalObject
@@ -46,22 +47,33 @@ public class GraphicalNode implements GraphicalObject
     
     RDFModelView rdfModelView;
     
-    Rectangle bounds = null;
+    Rectangle2D bounds = new Rectangle2D.Double();
     
     Color normalColor = new Color(0F, 1F, 0F, 0.5F);
     Color literalColor = new Color(1F, 1F, 0F, 0.5F);
     Color hilightColor = new Color(1F, 0F, 0F, 0.5F);
-    Dimension mySize;
-    Dimension defaultSize = new Dimension(20,20);
-    String displayString = null;
-    
+    Rectangle2D mySize;
+    Rectangle2D defaultSize = new Rectangle(20,20);
+
+  Font font = new Font("Helvetica", Font.PLAIN, 12);
+  
+    MultiText displayString;
+
+  boolean graphicsReady;
+  
     public GraphicalNode(Node node, RDFModelView rdfModelView)
     {
         this.node = node;
         this.rdfModelView = rdfModelView;
         node.setGraphicRep(this);
-        contentChanged();
-        rdfModelView.addObject(this);
+
+	// We need the graphics context to work out the shape
+	if (rdfModelView.getGraphics() != null)
+	  {
+	    graphicsReady = true;
+	    contentChanged();
+	  }
+	rdfModelView.addObject(this);
     }
     
     public ModelItem modelItem()
@@ -69,7 +81,7 @@ public class GraphicalNode implements GraphicalObject
         return node;
     }
     
-    public Rectangle bounds()
+    public Rectangle2D bounds()
     {
         return bounds;
     }
@@ -77,13 +89,13 @@ public class GraphicalNode implements GraphicalObject
     public void delete()
     {
         // We're going to be deleted, so redraw the space this node occupies
-        rdfModelView.repaint(bounds);
+        rdfModelView.repaint(bounds.getBounds());
         rdfModelView.removeObject(this);
     }
     
     public void changed() // something changed - needs redisplaying
     {
-        rdfModelView.repaint(bounds);
+        rdfModelView.repaint(bounds.getBounds());
     }
 
     
@@ -106,6 +118,12 @@ public class GraphicalNode implements GraphicalObject
 
     public void drawMe(Color myColor, Graphics2D g)
     {
+      if (!graphicsReady)
+	{
+	  graphicsReady = true;
+	  contentChanged();
+	}
+
       g.setPaint(myColor);
             
       if (node.isLiteral())
@@ -114,12 +132,15 @@ public class GraphicalNode implements GraphicalObject
 	}
       else
 	{
-	  g.fillOval(bounds.x, bounds.y,
-		     bounds.width, bounds.height);
+	  g.fill(new Ellipse2D.Double(bounds.getX(), bounds.getY(),
+		     bounds.getWidth(), bounds.getHeight()));
 	}
       if (displayString != null)
 	{
-	  //NSGraphics.drawAttributedString(displayString, bounds);
+	  g.setPaint(Color.black);
+	  
+	  displayString.draw(g, bounds.getX(),
+			     bounds.getY());
 	}
         
     }
@@ -131,36 +152,42 @@ public class GraphicalNode implements GraphicalObject
     
   public boolean intersects(Shape shape)
   {
+    if (!graphicsReady) return true;
+
     return shape.intersects(bounds);
   }
     
   public void contentChanged()
   {
     String stringToDraw = node.displayString();
-    //if (stringToDraw == null)
-    //{
-    mySize = defaultSize;
-    displayString = null;
-    //}
-    /*else
+    if (stringToDraw == null)
+    {
+      mySize = defaultSize;
+      displayString = null;
+    }
+    else
       {
-      displayString = new NSAttributedString( stringToDraw );
-      mySize = NSGraphics.sizeOfAttributedString(displayString);
-      }*/
-        
+	displayString = new MultiText(
+				      (Graphics2D)
+				      rdfModelView.getGraphics(),
+				      stringToDraw, font);
+	
+	mySize = displayString.getBounds();
+	
+      }        
     boundsChanged();
   }
     
   public void boundsChanged()
   {
-    rdfModelView.repaint(bounds); // mark old bounds as dirty
+    rdfModelView.repaint(bounds.getBounds()); // mark old bounds as dirty
     
-    bounds = new Rectangle((int) node.x() - mySize.width/2,
-			   (int) node.y() - mySize.height/2,
-			   mySize.width,
-			   mySize.height );
+    bounds = new Rectangle2D.Double(node.x() - mySize.getWidth()/2,
+			   node.y() - mySize.getHeight()/2,
+			   mySize.getWidth(),
+			   mySize.getHeight() );
     
-    rdfModelView.repaint(bounds); // mark new bounds as dirty
+    rdfModelView.repaint(bounds.getBounds()); // mark new bounds as dirty
   }
 /*
     public void drawSvgNormal(Writer writer) throws java.io.IOException

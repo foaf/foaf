@@ -1,6 +1,6 @@
 /* Window */
 
-/* $Id: Window.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: Window.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
     Copyright 2002 Damian Steer <pldms@mac.com>
@@ -35,6 +35,7 @@ package org.rdfweb.application;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Dimension;
+import java.util.EventObject;
 
 public class Window extends JFrame
     implements WindowListener
@@ -116,7 +117,12 @@ public class Window extends JFrame
     return windowMenu;
   }
 
-    public void close(ActionEvent e)
+  public Document document()
+  {
+    return document;
+  }
+  
+    public void close(EventObject e)
     {
     }
     

@@ -1,6 +1,6 @@
 /* RDFAuthorDocument.java */
 
-/* $Id: RDFAuthorDocument.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
     Copyright 2001, 2002 Damian Steer <dm_steer@hotmail.com>,
@@ -27,6 +27,7 @@
 package org.rdfweb.rdfauthor;
 
 import java.awt.*;
+import java.util.EventObject;
 
 import java.io.*;
 import java.util.HashMap;
@@ -34,8 +35,15 @@ import java.util.ArrayList;
 
 import org.rdfweb.application.*;
 import org.rdfweb.rdfauthor.gui.*;
-import org.rdfweb.rdfauthor.model.*;
+
+import ArcNodeList;
+import ModelItem;
+import Arc;
+import Node;
+import ArcNodeSelection;
+
 import org.rdfweb.rdfauthor.view.*;
+import org.rdfweb.rdfauthor.utilities.*;
 
 public class RDFAuthorDocument extends Document
 {
@@ -43,7 +51,7 @@ public class RDFAuthorDocument extends Document
   static final String FileFormatPrefix = "RDFAuthor File Format Version ";
   static final String FileFormatNumber = "0.3";
     
-  RDFModelView rdfModelView;
+  public RDFModelView rdfModelView;
     
   //QueryController queryController;
 
@@ -58,9 +66,9 @@ public class RDFAuthorDocument extends Document
   float modelHeight;
   ArrayList bookmarkedItems; // Temporary storage for loading bookmarks
     
-  boolean showTypes;
-  boolean showIds;
-  boolean showProperties;
+  boolean showTypes = true;
+  boolean showIds = true;
+  boolean showProperties = true;
     
   boolean showingPreview;
     
@@ -202,13 +210,15 @@ public class RDFAuthorDocument extends Document
   {
     // Insert code here to read your document from the given data.
     System.out.println("Wants to load something of type " + aType);
+    System.out.println("Stream: " + in);
+    
     
     exportMappings = new HashMap();
     
     exportMappings.put("RDF/XML Document", "RDF/XML");
     exportMappings.put("N-Triple Document", "N-TRIPLE");
     //exportMappings.put("N3 Document", "N3");
-        
+    
     boolean success;
         
     if (aType.equals("RDFAuthor Document") || aType.equals("RDFAuthor Stationery"))
@@ -243,6 +253,7 @@ public class RDFAuthorDocument extends Document
 		  }
 
 		rdfModel = (ArcNodeList) s.readObject();
+				
 		rdfModel.setController(this);
                     
 		// bookmarks added later
@@ -274,9 +285,11 @@ public class RDFAuthorDocument extends Document
             
 	try
 	  {
-	    InputStreamReader reader = new InputStreamReader(in);
+	    InputStreamReader reader = new InputStreamReader(in, "UTF-8");
+	    System.out.println("Reader: " + reader);
 	    rdfModel = new ArcNodeList(this, reader, inputType );
 	    success = true;
+	    System.out.println("Finished?");
 	    needsAutoLayout = true;
 	  }
 	catch (Exception e)
@@ -298,22 +311,22 @@ public class RDFAuthorDocument extends Document
         
     if (rdfModelView != null) // We seem to be reverting
       {
-	/*
-	rdfModelView.setNeedsDisplay(true);
+	
+	rdfModelView.repaint();
 	if (modelWidth > 0) // revert size (if needed)
 	  {
-	    rdfModelView.setFrameSize(new NSSize(modelWidth, modelHeight));
+	    rdfModelView.setSize(new Dimension((int) modelWidth,
+					       (int) modelHeight));
 	  }
 	if (needsAutoLayout) // Revert autolayout
 	  {
 	    RDFAuthorUtilities.layoutModel(rdfModel, 
-					   rdfModelView.frame().x(), 
-					   rdfModelView.frame().y(), 
-					   rdfModelView.frame().maxX(), 
-					   rdfModelView.frame().maxY());
+					   0, 0,
+					   rdfModelView.getSize().width, 
+					   rdfModelView.getSize().height);
 	  }
 	rdfModelView.addObject(rdfModel);
-	if (bookmarkedItems != null) // we loaded bookmarked items
+	/*if (bookmarkedItems != null) // we loaded bookmarked items
 	  {
 	    bookmarkController.setItems(bookmarkedItems);
 	  }
@@ -323,10 +336,30 @@ public class RDFAuthorDocument extends Document
     return success;
   }
     
-  public static String windowClass() {
-    return "org.rdfweb.rdfauthor.RDFWindow";
+  public static String windowClass()
+  {
+    return "org.rdfweb.rdfauthor.RDFAuthorWindow";
   }
-    
+
+  public static DocTypeFilter[] docTypes()
+  {
+    return new DocTypeFilter[] 
+      {
+	new DocTypeFilter ("RDFAuthor Document", "rdfa"),
+	  new DocTypeFilter ("RDF/XML Document",
+			     new String[]
+	  {
+	    "xml", "rdf", "xrdf" 
+	      }),
+	  new DocTypeFilter ("N-Triple Document",
+			     new String[] 
+	  {
+	    
+	    "nt", "ntriple"
+	      })
+	  };
+  }
+  
   // Most of the initialisation happens here
     
   public void interfaceLoaded()
@@ -655,31 +688,32 @@ public class RDFAuthorDocument extends Document
     if an action is made from the menu we need to check for it and
     sync the button states.
   */
-  /*
-  private void selectMoveMode(Object sender)
+  
+  public void selectMoveMode(EventObject e)
   {
     rdfModelView.setEditingMode( RDFModelView.MoveSelectMode );
-    if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    //if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
   }
     
-  private void selectAddNodeMode(Object sender)
+  public void selectAddNodeMode(EventObject e)
   {
     rdfModelView.setEditingMode( RDFModelView.AddNodeMode );
-    if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    //if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
   }
     
-  private void selectAddArcMode(Object sender)
+  public void selectAddArcMode(EventObject e)
   {
     rdfModelView.setEditingMode( RDFModelView.AddConnectionMode );
-    if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    //if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
   }
     
-  private void selectDeleteMode(Object sender)
+  public void selectDeleteMode(EventObject e)
   {
     rdfModelView.setEditingMode( RDFModelView.DeleteItemsMode );
-    if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    //if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
   }
-    
+  
+  /*  
   private void selectMarkQueryMode(Object sender)
   {
     rdfModelView.setEditingMode( RDFModelView.AddQueryItemMode );

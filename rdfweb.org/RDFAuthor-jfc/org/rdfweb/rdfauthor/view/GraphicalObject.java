@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalObject.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: GraphicalObject.java,v 1.2 2002-04-11 12:32:06 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -29,9 +29,10 @@
 package org.rdfweb.rdfauthor.view;
 
 import java.awt.*;
+import java.awt.geom.*;
 import java.io.Writer;
 
-import org.rdfweb.rdfauthor.model.ModelItem;
+import ModelItem;
 
 public interface GraphicalObject {
     
@@ -41,7 +42,7 @@ public interface GraphicalObject {
     
     public ModelItem modelItem();
     
-    public Rectangle bounds();
+    public Rectangle2D bounds();
     
     public void delete();
     

@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: ArcNodeListIterator.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: ArcNodeListIterator.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -26,7 +26,7 @@
 
 */
 
-package org.rdfweb.rdfauthor.model;
+//package org.rdfweb.rdfauthor.model;
 
 import java.util.Iterator;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -24,7 +24,7 @@
 
 */
 
-package org.rdfweb.rdfauthor.model;
+//package org.rdfweb.rdfauthor.model;
 
 import java.util.ListIterator;
 import java.util.ArrayList;
@@ -73,7 +73,9 @@ public class ArcNodeList implements Serializable
         Model memModel = new ModelMem();
         
         memModel.read(reader, ""); // Hmm - what's the base?
-        
+
+	System.out.println(memModel);
+	
         HashMap jenaNodeToNode = new HashMap(); 
         
         float x;
@@ -168,8 +170,8 @@ public class ArcNodeList implements Serializable
     {
         this.controller = controller;
     }
-    
-    private void writeObject(java.io.ObjectOutputStream out)
+
+  private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
     {
         out.writeObject(array);
