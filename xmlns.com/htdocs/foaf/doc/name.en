@@ -12,7 +12,9 @@ XML language tagging may be used to indicate the language of the name. For examp
 
 <p>
 FOAF provides some other naming constructs. These are under development. While foaf:name 
-does not provide for substructure (family vs given etc.) it does provide a basic level of 
-interoperability.
+does not explicitly represent name substructure (family vs given etc.) it does provide a 
+basic level of interoperability. See the <a 
+href="http://rdfweb.org/issues/show_bug.cgi?id=7">RDFWeb/FOAF issue tracker</a> for status 
+of work on this issue.
 </p>
 

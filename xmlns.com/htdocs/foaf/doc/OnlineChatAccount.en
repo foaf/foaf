@@ -32,6 +32,6 @@ network:
       &lt;foaf:accountName&gt;danbri&lt;/foaf:accountName&gt;
     &lt;/foaf:OnlineAccount&gt;
   &lt;/foaf:holdsAccount&gt;
-&lt/foaf:Person&gt;
+&lt;/foaf:Person&gt;
 </pre>
 </div>
