@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	 xmlns:fc="http://xmlns.com/foaf/corp#"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:bio="http://purl.org/vocab/bio/0.1/">
+
+    <fc:Company rdf:nodeID="jetblue">
+      <fc:name>JetBlue Airways</fc:name>
+      <fc:nasdaq>JBLU</fc:nasdaq>
+     
+
+    </fc:Company>
+
+
+<foaf:Document rdf:about="http://www.sciam.com/article.cfm?articleID=0000E915-334A-1F4E-8D6E80A84189EEDF&amp;catID=4">
+  <dc:title>Handicaps in CAPPS - Computerized passenger screening is not so easy</dc:title>
+  <dc:description>
+	Scientific American article. Brief excerpt: "Does the person in the next seat intend to blow up the plane? The Transportation Security Administration (TSA)
+	believes it can answer this question via a proposed second-generation system known as Computer-Assisted 
+	Passenger Pre-Screening, or CAPPS II. In terms of the variety of information, the system goes much further than 
+	the 1.0 version--and may be too complex to pull off without huge additional funding."
+  </dc:description>
+
+  <dc:creator>Wendy M. Grossman</dc:creator> 
+  <foaf:maker>  <!-- another way of saying the same thing, but more extensibly... 
+		     if we had more info about the author it could go here -->
+    <foaf:Person>
+      <foaf:name>Wendy M. Grossman</foaf:name>
+    </foaf:Person>
+  </foaf:maker>
+  <foaf:topic rdf:nodeID="jetblue"/>
+</foaf:Document>
+
+<foaf:Document rdf:about="http://www.jetblue.com/privacy.html">
+  <dc:title>your privacy - JetBlue</dc:title>
+  <dc:description> 
+   The privacy policy page for JetBlue's Web site. "JetBlue Airways has created this privacy statement in order to demonstrate our firm commitment to privacy."
+ </dc:description>
+  <foaf:topic rdf:nodeID="jetblue"/>
+</foaf:Document>
+
+<foaf:Document rdf:about="http://www.fool.com/news/commentary/2003/commentary030919wt.htm">
+  <dc:title>Fool.com: JetBlue's Challenges [Commentary] Sept 19, 2003</dc:title>
+  <foaf:topic rdf:nodeID="jetblue"/>
+</foaf:Document>
+
+
+
+
+<!-- http://news.google.co.uk/news?q=jetblue  -->
+
+</rdf:RDF>
