@@ -98,26 +98,23 @@ div.specterm {
 <body>
 <h1>FOAF Vocabulary Specification <br/></h1>
 
-<h2>RDFWeb Namespace Document 22 June 2003</h2>
+<h2>RDFWeb Namespace Document 16 August 2003</h2>
 
 <dl>
-<dt>Version history:</dt> 
-<dd><a 
-href="http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/index.html">http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/index.html</a></dd>
-
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
-
+<dt>Last update:</dt>
+<dd>$Date: 2003-08-14 23:54:46 $</dd>
+<dt>Revision:</dt>
+<dd>$Revision: 1.16 $</dd>
 <dt>Authors:</dt> 
-<dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>
-</dd>
-<dd><a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
+<dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
 <dt>Contributors:</dt> 
 <dd>Members of the FOAF mailing list (<a 
 href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">rdfweb-dev@vapours.rdfweb.org</a>) and the 
 wider <a href="http://www.w3.org/RDF/Interest/">RDF developer community</a>. See <a 
-href="#ack">Acknowledgements</a>. @@TODO
+href="#ack">acknowledgements</a>.
 </dd>
 </dl>
 
@@ -130,8 +127,10 @@ style="border: 0; float: right;" src="http://creativecommons.org/images/public/s
 
 This work is licensed under a <a href="http://creativecommons.org/licenses/by/1.0/">Creative 
 Commons License</a>. This copyright applies to the <em>FOAF Vocabulary Specification</em> and 
-accompanying documentation and does not extend to FOAF data formats, vocabulary terms, or 
-technology.
+accompanying documentation and does not apply to FOAF data formats,
+vocabulary terms, or technology. Regarding underlying technology, FOAF relies heavily on W3C's <a
+href="http://www.w3.org/RDF/">RDF</a> technology, an open Web standard
+that can be freely used by anyone. 
 </p>
 
  <div><a href="http://validator.w3.org/check/referer"><img
@@ -168,15 +167,34 @@ Commented out so we can XHTML validate. Very unfortunate way of doing things...
 <div class="status">
 <h2>Status of This Document</h2>
 
-<p><strong>NOTE:</strong> You are looking at a very rough draft @@TODO</p>
+<p><strong>NOTE:</strong> You are looking at a very rough cut of the 
+next-generation FOAF spec. The bulk of this document is now generated
+by combining the <a href="index.rdf">RDFS/OWL</a> machine-readable FOAF
+ontology with a set of <a href="../doc/">per-term</a> documents.  The
+remaining sections require serious attention; we are well aware that
+better examples and tighter intro text are needed. Rather than try to
+perfect things offline, we are switching over to the new spec as it
+brings a lot of new explanatory text into view. 
+</p>
+
+<p>Our editorial TODO list includes: fix table of contents, reorg intro
+text, add examples, fix CSS, find a strategy to allow XHTML validation
+while embedding RDF (currently document won't validate). The
+spec-management scripts should also be extended to generate an index of
+FOAF terms organised by status (ie. 'unstable','testing' or 'stable') as
+well as to expose OWL information about FOAF classes and properties,
+such as 'mutually disjoint' classes, 'inverse' properties, etc.
+</p>
 
 <p><em>This section describes the status of this document at the time of its publication. 
 Other documents may supersede this document. 
 </em></p>
 
 <p>
-This document is produced as part of the <a href="http://rdfweb.org/">RDFWeb project</a>, 
-to provide authoritative documentation of the contents, status and purpose of the RDF/XML 
+This document is produced as part of the <a
+href="http://rdfweb.org/">RDFWeb</a> <a
+href="http://www.foaf-project.org/">FOAF project</a>, to provide
+authoritative documentation of the contents, status and purpose of the RDF/XML 
 vocabulary and document formats known informally as 'FOAF'.
 </p>
 
@@ -186,8 +204,9 @@ Please send comments on this document to the FOAF developers list
 <a href="mailto:rdfweb-dev@vapours.rdfweb.org">rdfweb-dev@vapours.rdfweb.org</a>; 
 <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">public 
 archives</a> are available.  This document may be updated or added to based 
-on implementation experience, but no commitment is made by the authors, or the RDFWeb project, 
-regarding future updates. <!-- todo: link to stability section -->
+on implementation experience, but no commitment is made by the authors 
+regarding future updates (<em>todo: link to stability info re FOAF
+properties, also need to explain extensibility model</em>).
 </p> 
 
 </div> 
@@ -632,7 +651,7 @@ href="http://esw.w3.org/topic/InternetRelayChat">IRC</a> channels: <a
 href="irc://irc.freenode.net/#rdfig">#rdfig</a> and <a href="irc://irc.freenode.net/#foaf">#foaf</a> on <a href="http://www.freenode.net/">freenode</a>. 
 </p>
 
-<h2>Appendix A: Listing FOAF Classes and Properties</h2>
+<h2>FOAF cross-reference: Listing FOAF Classes and Properties</h2>
 
 <p>
 FOAF introduces the following classes and properties.  View this document's source markup to see 
@@ -659,8 +678,58 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a> (@@TODO).
 
 <p>
 There are far too many people who have contributed to the FOAF project to name 
-everyone. I'll make a partial list here before publishing the spec though. @@TODO. 
---danbri.
+everyone in this early-release of the new improved spec. FOAF wouldn't
+be such a fun project or be as widely known as it is today without the
+efforts, enthusiasm and intelligence of the folks who have contributed
+via
+the <a
+href="http://rdfweb.org/pipermail/rdfweb-dev/">rdfweb-dev</a> list, <a
+href="http://rdfweb.org/irc/">#foaf</a> IRC channel, and <a
+href="http://rdfweb.org/topic/FoafProject">FoafProject</a> wiki site.
+</p>
+<p>
+That said, a few milestones in FOAF's recent history should be
+mentioned... We owe particular thanks to Edd Dumbill for his  
+IBM developerWorks articles (which attracted the affections of the
+Weblogging crowd) and for his Foafbot application whose evolution those
+articles have tracked. Also Morten Frederiksen's <a
+href="http://xml.mfd-consult.dk/foaf/explorer/">FoafExplorer</a>, 
+Daniel Krech's <a href="http://eikeon.com/foaf/">Web View</a>
+aggregator, Jim Ley and Liz Turner's work on <a
+href="http://www.foafnaut.org/">FOAFNaut</a>, which alongside FOAFbot,
+have been instrumental in showing how FOAF data can be collected and
+used. Meanwhile Leigh Dodd's <a
+href="http://www.ldodds.com/foaf/foaf-a-matic.html">foaf-a-matic</a> has
+been the data creation tool that has been most people's gateway to
+FOAFdom. FOAF also owes a lot to the folks at <a
+href="http://www.ecademy.com/">Ecademy</a>, <a
+href="http://www.typepad.com/">TypePad</a> and elsewhere for showing how
+end users can share FOAF self-descriptions on the Web without ever
+seeing a line of XML syntax. Jo Walsh has <a
+href="http://oscom.org/Conferences/Cambridge/Proposals/walsh_collaborative_mapping.html">enthused</a> 
+<a
+href="http://conferences.oreillynet.com/cs/et2003/view/e_sess/3633">many</a> 
+about hooking FOAF up to Geo and mapping data, as has Matt Biddulph by
+<a href="http://hackdiary.com/">explaining</a>  the workings of his
+FOAF harvesting and image metadata tools. FOAF has also benefited
+greatly from documentation contributed in non-English languages, many
+thanks to all
+contributors of
+translations (foaf-a-matic and other docs). FOAF is now arguably better
+documented <a
+href="http://kanzaki.com/docs/sw/foaf.html">in Japanese</a> and <a
+href="http://f14web.com.ar/inkel/2003/01/27/foaf.html">Spanish</a> than
+in English, thanks to Masahide Kanzaki and Leandro Mariano López
+respectively.
+</p>
+<p>
+This brief survey only scratches the surface of a growing body of work.
+Sincere thanks to all who have contributed tools, documentation, brain
+cells and enthusiasm to this project. We should also mention that FOAF
+would not be possible without the collaborative and opensource efforts
+of the RDF/XML developer community, both in terms of idea sharing
+(#rdfig etc) and freely available tools (Jena, Redland, RDFlib, Cwm,
+Sesame, 3store etc). 
 </p>
 
 <!-- the following is the RDF version of the FOAF spec, for machines to read... -->
@@ -671,7 +740,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
 <!-- pretty printed schema -->
 <!--PRETTY-->
 
-<!--xxxx RDFDATA-->
+<!--RDFDATA-->
 
 
 </body>
