@@ -11,7 +11,7 @@
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-05-02 12:23:45 $</dc:date>
+        <dc:date>$Date: 2003-06-10 16:23:58 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -63,6 +63,14 @@
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
       </rdfs:Class>
 
+ 
+      <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Image" 
+	rdfs:label="Image"
+	rdfs:comment="An image.">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdfs:Class>
+
 
 
 
@@ -97,6 +105,15 @@
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sha1" 
+	rdfs:label="sha1sum (hex)"
+	rdfs:comment="A sha1sum hash, in hex.">
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdf:Property>
 
       <!-- FOAF naming properties -->
 

@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-05-02 12:23:45 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-06-10 16:23:58 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -40,6 +40,11 @@
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Organization> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Document> .
+<http://xmlns.com/foaf/0.1/Image> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<http://xmlns.com/foaf/0.1/Image> <http://www.w3.org/2000/01/rdf-schema#label> "Image" .
+<http://xmlns.com/foaf/0.1/Image> <http://www.w3.org/2000/01/rdf-schema#comment> "An image." .
+<http://xmlns.com/foaf/0.1/Image> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/wordnet/1.6/Document> .
+<http://xmlns.com/foaf/0.1/Image> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#label> "personal mailbox" .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#comment> "A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox." .
@@ -63,6 +68,13 @@
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/2000/01/rdf-schema#label> "sha1sum (hex)" .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/2000/01/rdf-schema#comment> "A sha1sum hash, in hex." .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Document> .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
+<http://xmlns.com/foaf/0.1/sha1> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/title> <http://www.w3.org/2000/01/rdf-schema#label> "title" .
 <http://xmlns.com/foaf/0.1/title> <http://www.w3.org/2000/01/rdf-schema#comment> "Title (Mr, Mrs, Ms, Dr. etc)" .
