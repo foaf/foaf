@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.3 2002-12-09 21:47:39 danbri Exp $
+# $Id: ayf.rb,v 1.4 2002-12-09 21:58:13 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -9,18 +9,18 @@
 # mentioned in the RDF it finds.
 #
 # some possible starting points:
-# http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
-# http://www.perceive.net/xml/googlescutter.rdf
-# http://www.perceive.net/xml/googlescutterNoChatlogs.rdf
+#   http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+#   http://www.perceive.net/xml/googlescutter.rdf
+#   http://www.perceive.net/xml/googlescutterNoChatlogs.rdf
 
-require 'RDF4R/Consumer/Standard'
-require 'RDF4R/Driver/XMLParser'
 require 'net/http'
+require 'RDF4R/Driver/XMLParser'
+require 'RDF4R/Consumer/Standard'
 require 'basicrdf'
 
 ###############################################################################
 #
-# Test script (creates, configures and starts a SimpleScutter with some URI
+# Test script that creates, configures and starts a SimpleScutter with some URI
 #
 def go(uri)
 
@@ -35,7 +35,7 @@ def go(uri)
   # a code block to output basic info about each RDF page encountered
   # 
   page_summary = Proc.new do |uri,page|  
-    puts "\n\nHandler '#{pagecount}': uri:#{uri} gave graph #{page} \
+    puts "\n\nHandler '#{pagecount}': uri:#{uri} gave RDF graph #{page} \
 	with #{page.size} triples\n\n " 
     pagecount=pagecount+1
   end
