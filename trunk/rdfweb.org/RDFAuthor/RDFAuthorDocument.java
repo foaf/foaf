@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.30 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.31 2002-01-17 18:37:01 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -244,8 +244,9 @@ public class RDFAuthorDocument extends NSDocument {
 
                     rdfModel = (ArcNodeList) s.readObject();
                     rdfModel.setController(this);
-
-                    if (!versionNumber.equals("0.1") && !versionNumber.equals("0.2")) // bookmarks added later
+                    
+                    // bookmarks added later
+                    if (!versionNumber.equals("0.1") && !versionNumber.equals("0.2"))	
                     {
                         bookmarkedItems = (ArrayList) s.readObject();
                     }
