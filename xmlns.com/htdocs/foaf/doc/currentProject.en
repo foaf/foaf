@@ -1,0 +1,33 @@
+<!-- originally contrib'd by Cardinal -->
+
+<p>A <code>foaf:currentProject</code> relates a <code>foaf:Person</code>
+to a <code>foaf:Document</code> indicating some collaborative or
+individual undertaking.  This relationship
+indicates that the <code>foaf:Person</code> has some active role in the
+project, such as development, coordination, or support.</p>
+
+<p>When a <code>foaf:Person</code> is no longer involved with a project, or
+perhaps is inactive for some time, the relationship becomes a
+<code>foaf:pastProject</code>.</p>
+
+<p>
+If the <code>foaf:Person</code> has stopped working on a project because it
+has been completed (successfully or otherwise), <code>foaf:pastProject</code> is
+applicable. In general, <code>foaf:currentProject</code> is used to indicate
+someone's current efforts (and implied interests, concerns etc.), while
+<code>foaf:pastProject</code> describes what they've previously been doing.
+</p>
+
+<!-- 
+<p>Generally speaking, anything that a <code>foaf:Person</code> has
+<code>foaf:made</code> could also qualify as a
+<code>foaf:currentProject</code> or <code>foaf:pastProject</code>.</p>
+-->
+
+<p class="editorial">
+Note that this property requires further work. There has been confusion about 
+whether it points to a thing (eg. something you've made; a homepage for a project, 
+ie. a <code>foaf:Document</code> or to instances of the class <code>foaf:Project</code>, 
+which might themselves have a <code>foaf:homepage</code>. In practice, it seems to have been 
+used in a similar way to <code>foaf:interest</code>, referencing homepages of ongoing projects.
+</p>
