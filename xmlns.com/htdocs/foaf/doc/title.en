@@ -1,5 +1,6 @@
 <p>
 The approriate values for <code>foaf:title</code> are not formally constrained, and will 
-across community and context. Values such as 'Mr', 'Mrs', 'Ms', 'Dr' etc. are expected.
+vary across community and context. Values such as 'Mr', 'Mrs', 'Ms', 'Dr' etc. are 
+expected.
 </p>
 
