@@ -267,7 +267,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                             "Id does not have a valid URI. Ids need to be either empty (anonymous), or URIs");
                     }
                     
-                    if ((node.typeNamespace() != null) && isValidUrl(node.typeNamespace() + node.typeName()))
+                    if ((node.typeNamespace() != null) && !isValidUrl(node.typeNamespace() + node.typeName()))
                     {
                         errorData.addError(item,
                             "Type does not have a valid URI. Types need to be either empty (generic resource), or URIs");

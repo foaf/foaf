@@ -7,8 +7,12 @@ public class RDFToolbar extends NSToolbar {
 
     RDFAuthorDocument rdfAuthorDocument;
     
-    NSView editView;
+    NSMatrix editView;
     NSView showView;
+    
+    NSButton showTypesButton;
+    NSButton showIdsButton;
+    NSButton showPropertiesButton;
     
     static String identifier = "rdf Toolbar";
     static String editToolsIdentifier = "edit tools identifier";
@@ -38,8 +42,7 @@ public class RDFToolbar extends NSToolbar {
 	if (itemIdent.equals(editToolsIdentifier))
         {
 	    toolbarItem.setLabel("Editing Tools");
-	    toolbarItem.setPaletteLabel("Editing Tooled");
-            
+	    toolbarItem.setPaletteLabel("Editing Tools");
             toolbarItem.setView(editView);
             toolbarItem.setMinSize(editView.frame().size());
             toolbarItem.setMaxSize(editView.frame().size());
@@ -93,12 +96,13 @@ public class RDFToolbar extends NSToolbar {
 	// The set of allowed items is used to construct the customization palette.
 	return new NSArray(new String[] 
             {   
+                editToolsIdentifier, showToolsIdentifier, checkIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
                 NSToolbarItem.NSToolbarSpaceItemIdentifier, 
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 
-                editToolsIdentifier, showToolsIdentifier, checkIdentifier} );
+            } );
     }
   
     public void toolbarWillAddItem(NSNotification notif) {
@@ -109,42 +113,54 @@ public class RDFToolbar extends NSToolbar {
 	// added is found by referencing the @"item" key in the userInfo.
 	NSToolbarItem addedItem = (NSToolbarItem) notif.userInfo().objectForKey("item");
 	
-    }  
+        if (addedItem.itemIdentifier().equals(showToolsIdentifier))
+        {
+            // Sync buttons with state of the document (edit state isn't saved btw)
+            
+            int typesState = (rdfAuthorDocument.showTypes) ? NSCell.OnState : NSCell.OffState;
+            int idsState = (rdfAuthorDocument.showIds) ? NSCell.OnState : NSCell.OffState;
+            int propertiesState = (rdfAuthorDocument.showProperties) ? NSCell.OnState : NSCell.OffState;
+            
+            showTypesButton.setState(typesState);
+            showIdsButton.setState(idsState);
+            showPropertiesButton.setState(propertiesState);
+        }
+    } 
     
-    public void toolbarDidRemoveItem(NSNotification notif) {
+    /*public void toolbarDidRemoveItem(NSNotification notif) {
 	// Optional delegate method.  After an item is removed from a toolbar the notification is sent.  This allows 
 	// the chance to tear down information related to the item that may have been cached.  The notification object
 	// is the toolbar to which the item is being added.  The item being added is found by referencing the @"item"
 	// key in the userInfo.
 	NSToolbarItem removedItem = (NSToolbarItem) notif.userInfo().objectForKey("item");
 
-    }
+    }*/
 
-    public boolean validateToolbarItem (NSToolbarItem toolbarItem) {
+    /*public boolean validateToolbarItem (NSToolbarItem toolbarItem) {
     	// Optional method.  This message is sent to us since we are the target of some toolbar item actions 
 	// (for example:  of the save items action).
 	boolean enable = true;
 		
 	return enable;
-    }
+    }*/
     
-    public void selectMoveMode(NSButton sender)
+    public void selectMoveMode(Object sender)
     {
         rdfAuthorDocument.addNodes(false);
         rdfAuthorDocument.addArcs(false);
     }
     
-    public void selectAddNodeMode(NSButton sender)
+    public void selectAddNodeMode(Object sender)
     {
         rdfAuthorDocument.addNodes(true);
     }
     
-    public void selectAddArcMode(NSButton sender)
+    public void selectAddArcMode(Object sender)
     {
         rdfAuthorDocument.addArcs(true);
     }
     
-    public void selectDeleteMode(NSButton sender)
+    public void selectDeleteMode(Object sender)
     {
         System.out.println("Delete mode selected");
         rdfAuthorDocument.addNodes(false);

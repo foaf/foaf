@@ -9,23 +9,22 @@
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {
-                literalButtonChanged = id; 
-                literalTextChanged = id; 
-                propertyTextChanged = id; 
-                resourceIdTextChanged = id; 
-                resourceTypeTextChanged = id; 
-                showInfoWindow = id; 
-            }; 
+            ACTIONS = {changeObject = id; revertObject = id; showInfoWindow = id; }; 
             CLASS = InfoController; 
             LANGUAGE = Java; 
             OUTLETS = {
+                contentView = id; 
                 infoWindow = id; 
-                literalButton = id; 
+                literalChangeButton = id; 
                 literalTextField = id; 
+                literalView = id; 
+                nothingView = id; 
                 propertyTextField = id; 
+                propertyView = id; 
+                resourceChangeButton = id; 
                 resourceIdField = id; 
                 resourceTypeField = id; 
+                resourceView = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
