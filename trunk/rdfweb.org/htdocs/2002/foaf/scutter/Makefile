@@ -31,3 +31,12 @@ redwin:
 stats:
 	bin/vocabstats.rb
 
+
+foafpathdemo:
+	bin/pathfinder --input=doc/sample_pathdata.txt 
+
+foafcorpdemo:
+	bin/pathfinder --input=doc/sample_foafcorp.txt --search=microsoft  
+
+dot:
+	dot -Tsvg seealso.dot > seealso.svg

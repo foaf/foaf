@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.6 2002-07-17 01:46:50 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder,v 1.7 2002-07-17 02:13:01 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -92,7 +92,9 @@ class TEdge
     end
 
     def to_s
-    	return @labels.to_s
+        
+    	return @labels.join(" ").to_s
+
     end
 
     def addLabel (label)
@@ -104,14 +106,11 @@ class TEdge
 		return @labels[0].to_s
 	else
 		i = 0
-		#todo: (Math.random() * (double) labels.size()).to_int
 		return  @labels[random(labels.size)].to_s
-#to_s ?
 	end
     end
 
     def getOtherNode(node)    
-#     return @node.equals(node1)?node2:node1 ## what's  Ruby idiom for this? verbosely:
       if node == @node1  # todo: is this correct? or diff notion of equality needed?
         return @node2
       else
@@ -443,7 +442,7 @@ EOQ
      danpath.each do |e|
        puts "Path:\n"
        while (e.parent != nil) 
-         puts "\tpath element: "+e.to_s
+         puts " path element: "+e.to_s
          e = e.parent
        end
      end
@@ -497,12 +496,13 @@ puts "Running pathfinder..."
 opt = GetoptLong.new(
 	['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
 	['--input', '-i', GetoptLong::REQUIRED_ARGUMENT],
+	['--search', '-s', GetoptLong::REQUIRED_ARGUMENT],
     ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
 
 opts={}
 
 opt.each_option do |name,arg|
-  puts "got: #{name} -> #{arg}"
+  #  puts "got: #{name} -> #{arg}"
   case name
 
   when '--paths-from-mbox'
@@ -513,6 +513,9 @@ opt.each_option do |name,arg|
 
   when '--input'
     opts['input'] = arg
+
+  when '--search'
+    opts['search'] = arg
 
   end
 end
@@ -532,20 +535,26 @@ else
   f.each do |line|
   line.chomp!
   p = line.split(/\s+/)
-  puts "Got: #{p.inspect} "
+  # puts "Got: #{p.inspect} "
   graph.addPath(p[0], p[1], p[2])
   end
 
-  who = 'mailto:libby.miller@bristol.ac.uk'
-  danpath = graph.findShortestPathsFromNodeNamed who
+  if opts['search']
+    target = opts['search'] 
+  else
+    target= 'mailto:libby.miller@bristol.ac.uk'
+  end
+
+  path = graph.findShortestPathsFromNodeNamed target
   puts "\n\nDanpaths: " 
-  danpath.each do |e|
-    puts "Path:\n"
+  path.each do |e|
+    puts "\n\nPath:\n"
     while (e.parent != nil) 
-      puts "\tpath element: "+e.to_s
+      puts " link: " + e.to_s + " via: "+e.edge.to_s
       e = e.parent
     end
   end
+  puts " link: "+target
   puts "\n\n\n"
 
 end
