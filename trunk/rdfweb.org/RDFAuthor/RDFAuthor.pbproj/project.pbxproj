@@ -7,6 +7,10 @@
 	objects = {
 		02218D9AFECEFA92C02AAC07 = {
 			children = (
+				F6AC16230188448F01000211,
+				F6DE46F901AEAB1701000211,
+				F6DE46FB01AEB92201000211,
+				F6DE46FD01AEB9BD01000211,
 				2A37F4B9FDCFA73011CA2CEA,
 				2A37F4B6FDCFA73011CA2CEA,
 				2A37F4B4FDCFA73011CA2CEA,
@@ -198,7 +202,6 @@
 				02218D9AFECEFA92C02AAC07,
 				2A37F4C3FDCFA73011CA2CEA,
 				19C28FB0FE9D524F11CA2CBB,
-				F6AC16230188448F01000211,
 			);
 			isa = PBXGroup;
 			name = RDFAuthor;
@@ -289,6 +292,7 @@
 				2A37F4C9FDCFA73011CA2CEA,
 				2A37F4CEFDCFA73011CA2CEA,
 				043355CEFE303625C02AAC07,
+				F67A72FA01AA9BE101000211,
 				2A37F4D1FDCFA73011CA2CEA,
 			);
 			buildSettings = {
@@ -418,6 +422,10 @@
 	<key>NSJavaPath</key>
 	<array>
 		<string>RDFAuthor.jar</string>
+		<string>axis.jar</string>
+		<string>jena.jar</string>
+		<string>xerces.jar</string>
+		<string>log4j-core.jar</string>
 	</array>
 	<key>NSJavaRoot</key>
 	<string>Contents/Resources/Java</string>
@@ -467,6 +475,9 @@
 				F629131901A475CE01000211,
 				F629131A01A475CE01000211,
 				F629131B01A475CE01000211,
+				F6DE46FA01AEAB1701000211,
+				F6DE46FC01AEB92201000211,
+				F6DE46FE01AEB9BD01000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -853,6 +864,43 @@
 			settings = {
 			};
 		};
+		F67A72FA01AA9BE101000211 = {
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 15;
+			files = (
+				F67A72FB01AA9BE101000211,
+				F67A72FC01AA9BE101000211,
+				F67A72FD01AA9BE101000211,
+				F67A72FE01AA9BE101000211,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			name = "Copy Files";
+		};
+		F67A72FB01AA9BE101000211 = {
+			fileRef = F61C69E701984DA601000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F67A72FC01AA9BE101000211 = {
+			fileRef = F61C69E801984DA601000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F67A72FD01AA9BE101000211 = {
+			fileRef = F660C47D0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F67A72FE01AA9BE101000211 = {
+			fileRef = F660C47E0173870901000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F68396750181CC1601000211 = {
 			isa = PBXFileReference;
 			path = modelView.tiff;
@@ -1035,7 +1083,6 @@
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
-					Merge,
 				);
 			};
 		};
@@ -1044,7 +1091,6 @@
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
-					Merge,
 				);
 			};
 		};
@@ -1053,7 +1099,6 @@
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
-					Merge,
 				);
 			};
 		};
@@ -1062,7 +1107,6 @@
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
-					Merge,
 				);
 			};
 		};
@@ -1128,6 +1172,39 @@
 		};
 		F6C639C90196E11A01000211 = {
 			fileRef = F6C639C80196E11A01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6DE46F901AEAB1701000211 = {
+			isa = PBXFileReference;
+			path = COPYING;
+			refType = 4;
+		};
+		F6DE46FA01AEAB1701000211 = {
+			fileRef = F6DE46F901AEAB1701000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6DE46FB01AEB92201000211 = {
+			isa = PBXFileReference;
+			path = "Jena Licence";
+			refType = 4;
+		};
+		F6DE46FC01AEB92201000211 = {
+			fileRef = F6DE46FB01AEB92201000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6DE46FD01AEB9BD01000211 = {
+			isa = PBXFileReference;
+			path = "Axis Licence";
+			refType = 4;
+		};
+		F6DE46FE01AEB9BD01000211 = {
+			fileRef = F6DE46FD01AEB9BD01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};

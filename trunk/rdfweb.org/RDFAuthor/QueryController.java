@@ -1,14 +1,30 @@
 /* QueryController */
 
+/*
+    Copyright 2001 Damian Steer <dm_steer@hotmail.com>
+
+    This file is part of RDFAuthor.
+
+    RDFAuthor is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    RDFAuthor is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with RDFAuthor; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+*/
+
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ListIterator;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.security.MessageDigest;
+import java.util.*;
 
 public class QueryController extends NSObject {
 
@@ -104,7 +120,7 @@ public class QueryController extends NSObject {
         if (sender != queryThread) return;
         
         RDFAuthorUtilities.ShowError(
-            "Error Making Query", "There was an error making the query.\nUseful error text:\n" + e, 
+            "Error Making Query", "There was an error making the query. The service might be unavailable", 
             RDFAuthorUtilities.Critical, 
             queryDrawer.parentWindow());
         infoTextField.setStringValue("Last query failed.");
@@ -116,14 +132,14 @@ public class QueryController extends NSObject {
         queryButton.setTitle("Query");
     }
         
-    public void queryCompleted(QueryThread sender)
+    public void queryCompleted(QueryThread sender, ArrayList rows, HashMap varToObject, long duration)
     {
         // Since I can't kill threads safely better make sure this is the query I want
         
         if (sender != queryThread) return;
         
-        ArrayList rows = queryThread.result();
-        HashMap varToObject = queryThread.variableToObjectMapping();
+        //ArrayList rows = queryThread.result();
+        //HashMap varToObject = queryThread.variableToObjectMapping();
         
         NSApplication.beep(); // Since these can take a while I'll beep
         
@@ -139,15 +155,23 @@ public class QueryController extends NSObject {
             return;
         }
         
+        System.out.println("Here [1]");
+        
         infoTextField.setStringValue("Query took " 
-            + queryThread.duration() + " seconds. " + rows.size() + 
+            + duration + " seconds. " + rows.size() + 
             " results returned.");
         
+        System.out.println("Here [2]");
+        
         createResultsTable(rows, varToObject);
+        
+        System.out.println("Here [3]");
         
         queryThread = null;
         
         queryButton.setTitle("Query");
+        
+        System.out.println("Here [4]");
     }
     
     public void addQueryItem(ModelItem item)
@@ -344,14 +368,21 @@ public class QueryController extends NSObject {
     
     public void createResultsTable(ArrayList rows, HashMap varToObject)
     {
-        // First - remove all columns
+        System.out.println("Here [6]");
+        ArrayList tableArray = new ArrayList();
         
-        Enumeration enumerator = resultTable.tableColumns().objectEnumerator();
-        
-        while (enumerator.hasMoreElements())
+        for (Enumeration enumerator = resultTable.tableColumns().objectEnumerator(); enumerator.hasMoreElements(); )
         {
-            resultTable.removeTableColumn((NSTableColumn) enumerator.nextElement());
+            //resultTable.removeTableColumn((NSTableColumn) enumerator.nextElement());
+            tableArray.add(enumerator.nextElement());
         }
+        
+        for (Iterator iterator = tableArray.listIterator(); iterator.hasNext(); )
+        {
+            resultTable.removeTableColumn((NSTableColumn) iterator.next());
+        }
+        
+        System.out.println("Here [7]");
         
         // Next - create new columns and add them to the table
         for (Iterator iterator = varToObject.keySet().iterator(); iterator.hasNext();)
@@ -363,11 +394,18 @@ public class QueryController extends NSObject {
             col.setWidth(400F);
         }
         
+        System.out.println("Here [8]");
+        
         // Now create the result source for the table
         
         resultSource = new QueryResultSource(rows, varToObject);
         
+        System.out.println("Here [9]");
+        
         resultTable.setDataSource(resultSource);
+        
+        System.out.println("Here [10]");
+        
         resultTable.reloadData();
     }
     
