@@ -1,0 +1,245 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>RDFWeb: xmlns.com: WOT RDF Vocabulary</title>
+</head>
+<body bgcolor="#ffffff">
+
+
+<h1>wot 0.1</h1>
+
+
+<p>
+This document contains embedded x/rdf statements defining and describing
+the wot vocabulary, a vocabulary for signing and assurance of RDF
+documents.
+This is intended for machine consumption. Humans might find the <a
+href="http://rdfweb.org/">RDFWeb.org</a> documentation more
+useful right now. All this needs rationalising. <a
+href="mailto:daniel.brickley@bristol.ac.uk">--danbri</a>
+</p>
+
+<p>The <a href="http://rdfweb.org/2000/08/why/">general
+overview</a> provides some background on the RDFWeb system. An <a
+href="http://www.rdfviz.org/">RDFViz</a>
+graphical representation of this namespace is <a
+href="http://snowball.ilrt.bris.ac.uk/cgi-bin/rdf-dot/uri2gif?URI=http%3A%2F%2Fxmlns.com%2Fwot%2F0.1%2F">also
+available</a>. An example document is at <a
+href="http://rdfweb.org/~pldab/rdfweb/danbri.wot.rdf">http://rdfweb.org/~pldab/rdfweb/danbri.wot.rdf</a>. 
+Note that the RDFWebRing system can make use of a number of
+RDF vocabularies. The <a href="http://xmlns.com/foaf/0.1/">foaf</a>
+vocabulary provides some basic
+useful concepts for use by RDFWebg. 
+</p>
+
+<p>
+Note: These URIs don't current redirect to the schema document (ie. this
+one), nor do we yet reflect into human-readable XHTML the definitions for
+the WOT properties and classes.
+</p>
+
+<h3>classes</h3>
+<ul>
+<li>
+<a href="http://xmlns.com/wot/0.1/PubKey">wot:PubKey</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/User">wot:User</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/SigEvent">wot:SigEvent</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/Endorsement">wot:Endorsement</a>
+</li>
+</ul>
+
+<h3>properties</h3>
+
+<ul>
+
+<li>
+<a href="http://xmlns.com/wot/0.1/hex_id">wot:hex_id</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/length">wot:length</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/fingerprint">wot:fingerprint</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/identity">wot:identity</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/signed">wot:signed</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/sigdate">wot:sigdate</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/signerLongHexID">wot:signerLongHexID</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/pubkeyAddress">wot:pubkeyAddress</a>
+</li>
+<li>
+<a href="http://xmlns.com/wot/0.1/assurance">wot:assurance</a>
+</li>
+
+</ul>
+
+
+<p>see also: <a href="../wotsig">schema signature</a></p>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+        xmlns:wot="http://xmlns.com/wot/0.1/"
+        xmlns:wn="http://xmlns.com/wordnet/1.6/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/" >
+
+<rdf:Description rdf:about="http://xmlns.com/wot/0.1/">
+  <wot:assurance rdf:resource="../wotsig" />
+</rdf:Description>
+
+
+<!-- 
+classes:
+
+-->
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/PubKey"
+ rdfs:label="Public Key"
+ rdfs:comment="A class to represent a person's or organization's PGP
+public key." />
+ 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/User"
+ rdfs:label="PGP Key User"
+ rdfs:comment="A wot subclass of foaf Person - the user of a PGP public
+key">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/SigEvent"
+ rdfs:label="Signing Event"
+ rdfs:comment="A PGP key signing event" >
+ 
+<rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Event"/>
+
+ </rdfs:Class> 
+
+ <!-- rdfs:Class  rdf:about="http://xmlns.com/wot/0.1/Endorsement"
+ rdfs:label="Endorsement"
+ rdfs:comment="An endorsement object, whose uri should be the location of an
+ascii signature" -->
+ 
+
+<!--properties-->
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/hex_id" 
+
+	rdfs:label="Public key hex identifier" 
+	rdfs:comment="A public key hex identifier string">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/length" 
+
+	rdfs:label="Public Key length" 
+	rdfs:comment="A string representing public key length">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/fingerprint" 
+
+	rdfs:label="Public Key Fingerprint" 
+	rdfs:comment="A public key fingerprint string">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/identity" 
+
+	rdfs:label="identity" 
+	rdfs:comment="A property linking to the User of the PGP key.">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range rdf:resource="http://xmlns.com/wot/0.1/User" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/signed" 
+
+	rdfs:label="signed" 
+	rdfs:comment="A property linking a public key to signature
+events.">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/User" />
+	<rdfs:range rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/sigdate" 
+
+	rdfs:label="signing date" 
+	rdfs:comment="The date of a sining event.">
+<!--also a time?-->
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+<!-- should be a datatype-->
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/signerLongHexID" 
+
+	rdfs:label="signer long hex id" 
+	rdfs:comment="The hex id of the signer's key">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/pubkeyAddress" 
+
+	rdfs:label="public key address" 
+	rdfs:comment="The location of the public key used to sign the present document" >
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/assurance" 
+  rdfs:label="assurance" 
+  rdfs:comment="A cryptographic assurance of the integrity of some digital content." />
+
+
+
+
+</rdf:RDF>
+</body>
+</html>
+
+

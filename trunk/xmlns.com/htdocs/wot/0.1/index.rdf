@@ -1,0 +1,162 @@
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:misc="http://xmlns.com/foaf/0.1/"
+        xmlns:wot="http://xmlns.com/wot/0.1/"
+        xmlns:wn="http://xmlns.com/wordnet/1.6/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/" >
+
+
+
+
+<!-- 
+classes:
+
+-->
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/PubKey"
+ rdfs:label="Public Key"
+ rdfs:comment="A class to represent a person's or organization's PGP
+public key." />
+ 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/User"
+ rdfs:label="PGP Key User"
+ rdfs:comment="A wot subclass of foaf Person - the user of a PGP public
+key">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/SigEvent"
+ rdfs:label="Signing Event"
+ rdfs:comment="A PGP key signing event" >
+ 
+<rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Event"/>
+
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/wot/0.1/Endorsement"
+ rdfs:label="Endorsement"
+ rdfs:comment="An endorsement object, whose uri should be the location of an
+ascii signature" >
+ 
+<rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Endorsement" />
+
+ </rdfs:Class> 
+
+<!--properties-->
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/hex_id" 
+
+	rdfs:label="Public key hex identifier" 
+	rdfs:comment="A public key hex identifier string">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/length" 
+
+	rdfs:label="Public Key length" 
+	rdfs:comment="A string representing public key length">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/fingerprint" 
+
+	rdfs:label="Public Key Fingerprint" 
+	rdfs:comment="A public key fingerprint string">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range
+rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/identity" 
+
+	rdfs:label="identity" 
+	rdfs:comment="A property linking to the User of the PGP key.">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+	<rdfs:range rdf:resource="http://xmlns.com/wot/0.1/User" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/signed" 
+
+	rdfs:label="signed" 
+	rdfs:comment="A property linking a public key to signature
+events.">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/User" />
+	<rdfs:range rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/sigdate" 
+
+	rdfs:label="signing date" 
+	rdfs:comment="The date of a sining event.">
+<!--also a time?-->
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+<!-- should be a datatype-->
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/signerLongHexID" 
+
+	rdfs:label="signer long hex id" 
+	rdfs:comment="The hex id of the signer's key">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/pubkeyAddress" 
+
+	rdfs:label="public key address" 
+	rdfs:comment="The location of the public key used to sign the present document" >
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/wot/0.1/assurance" 
+
+	rdfs:label="assurance" 
+	rdfs:comment="Property pointing to an endorsment object which in
+turn points to the location of the textual signature assuring the current
+document" >
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://xmlns.com/wot/0.1/Endorsement" />
+
+ </rdf:Property>
+
+
+
+
+</rdf:RDF>
+
+

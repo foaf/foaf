@@ -1,0 +1,279 @@
+<?xml version="1.0" ?> 
+
+<!--
+ 
+very draft schema for foaf
+
+-->
+
+
+<rdf:RDF 
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:foaf="http://xmlns.com/foaf/0.1/"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:wn="http://xmlns.com/wordnet/1.6/" 
+xmlns:rdfs="http://www.w3.org/TR/WD-rdf-schema#">
+
+
+<!-- 
+classes:
+
+wn:person
+wn:document
+wn:image?
+
+
+--all defined in the wordnet ns - http://xmlns.com/wordnet/1.6/
+
+now all subclassed into the foaf ns
+
+-->
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/person"
+ rdfs:label="person"
+ rdfs:comment="a foaf subclass of wn person">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/document"
+ rdfs:label="document"
+ rdfs:comment="a foaf subclass of wn document">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/document" />
+
+ </rdfs:Class> 
+
+
+
+<!-- properties
+  name
+ homepage (dan C uses range= a description and gives it a dc title)
+ mbox
+ seeAlso
+ assurance
+ img
+ workplaceHomepage
+ livesWith
+ knowsWell
+ knows
+ friend
+ wife
+ sister
+ worksWith
+ depiction
+ firstName
+ surname
+ interest
+ workOrgHomepage (Dan Connolly)
+ publications
+
+(depictions lead to image resources with title, description, format etc.)
+
+dc properties are in a separate namespace
+
+dc title
+dc description
+dc format
+dc contributor (a person)
+dc creator (a person)
+
+wot stuff is in a separate namespace
+
+-->
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/name"
+ rdfs:label="name"
+ rdfs:comment="the full name of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/firstName"
+ rdfs:label="firstName"
+ rdfs:comment="the first name of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/surname"
+ rdfs:label="surname"
+ rdfs:comment="the surname of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Literal" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage"
+ rdfs:label="homepage"
+ rdfs:comment="the homepage of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox"
+ rdfs:label="mbox"
+ rdfs:comment="the mailbox of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/assurance"
+ rdfs:label="assurance"
+ rdfs:comment="a link to an ascii signature of this document">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/TR/WD-rdf-schema#seeAlso" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/img"
+ rdfs:label="image"
+ rdfs:comment="a link to an image of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depiction"
+ rdfs:label="depiction"
+ rdfs:comment="a link to a depiction of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workplaceHomepage" 
+ rdfs:label="workplaceHomepage"
+ rdfs:comment="a link to workplace homepage of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workOrgHomepage" 
+ rdfs:label="workOrgHomepage"
+ rdfs:comment="a link to work organisation homepage of the person - maybe synonymous with workplaceHomepage?">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/livesWith"
+ rdfs:label="livesWith"
+ rdfs:comment="a link to people who live with this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/knowsWell"
+ rdfs:label="knowsWell"
+ rdfs:comment="a link to people who this person knows well">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/worksWith"
+ rdfs:label="worksWith"
+ rdfs:comment="a link to people who this person works with">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/knows"
+ rdfs:label="knows"
+ rdfs:comment="a link to people who this person knows">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/friend"
+ rdfs:label="friend"
+ rdfs:comment="a link to people who are a friend of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/wife"
+ rdfs:label="wife"
+ rdfs:comment="the wife of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sister"
+ rdfs:label="sister"
+ rdfs:comment="a link to this person's sister">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+
+<!-- this could run and run - but thse are actually used in current webwho
+files -->
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sigOther"
+ rdfs:label="significant other"
+ rdfs:comment="the significant other of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/interest"
+ rdfs:label="interest"
+ rdfs:comment="an interest of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/publications"
+ rdfs:label="publications"
+ rdfs:comment="a link to the publications of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/wordnet/1.6/person" />
+	<rdfs:range rdf:resource="http://www.w3.org/TR/WD-rdf-schema#Resource" />
+
+ </rdf:Property>
+
+
+</rdf:RDF>
