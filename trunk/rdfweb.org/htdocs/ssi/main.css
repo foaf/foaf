@@ -1,6 +1,6 @@
 BODY {
   margin: 2em 1em 2em 30px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;  
+ font-family: Arial, Helvetica, sans-serif;  
   color: black;
   background: white;
 }
@@ -37,7 +37,7 @@ h2.headline {
 }
 
 span.date {
-  border-style: inset;
+/*  border-style: inset; */
 }
 
 H1, H2, H3, H4, H5 {
