@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # 
 # Scutter, an RDF harvesting and indexing program.
-# $Id: scutter,v 1.5 2002-07-13 16:37:02 danbri Exp $
+# $Id: scutter,v 1.6 2002-07-14 19:23:15 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -38,8 +38,8 @@ opt = GetoptLong.new (
     ['--diskdb','-d', GetoptLong::REQUIRED_ARGUMENT],
     ['--lowercase-domains','-l', GetoptLong::NO_ARGUMENT],
     ['--use-xslt','-u', GetoptLong::NO_ARGUMENT],
+    ['--use-raptor','-r', GetoptLong::NO_ARGUMENT],
     ['--dbdriver','-b', GetoptLong::REQUIRED_ARGUMENT],
-    ['--realwhitelist','-r', GetoptLong::REQUIRED_ARGUMENT],
     ['--export', '-x', GetoptLong::OPTIONAL_ARGUMENT] )
 
 
@@ -67,6 +67,10 @@ opt.each_option do |name,arg|
 
   when '--use-xslt'
     opts['use-xslt'] = true
+
+  when '--use-raptor'
+    opts['use-raptor'] = true
+	 # this should be automted; reflect all --use-* into opts
 
   when '--dbdriver'
     opts['dbdriver'] = arg
