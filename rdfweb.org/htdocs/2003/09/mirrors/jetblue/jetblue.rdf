@@ -4,8 +4,7 @@
          xmlns:foaf="http://xmlns.com/foaf/0.1/"
          xmlns:wot="http://xmlns.com/wot/0.1/"
 	 xmlns:fc="http://xmlns.com/foaf/corp#"
-	 xmlns:dc="http://purl.org/dc/elements/1.1/"
-         xmlns:bio="http://purl.org/vocab/bio/0.1/">
+	 xmlns:dc="http://purl.org/dc/elements/1.1/" >
     
     <foaf:Document rdf:about="">
       <wot:assurance rdf:resource="jetblue.rdf.asc"/>
@@ -18,6 +17,7 @@
         <foaf:Person>
           <foaf:name>Dan Brickley</foaf:name>
           <foaf:mbox rdf:resource="mailto:danbri@rdfweb.org"/>
+          <foaf:homepage rdf:resource="http://rdfweb.org/people/danbri/"/>
           <rdfs:seeAlso rdf:resource="http://www.w3.org/2000/01/rdf-schema#"/>
         </foaf:Person>
       </foaf:maker>
@@ -25,6 +25,7 @@
     </foaf:Document>
 
     <fc:Company rdf:nodeID="jetblue">
+      <foaf:homepage rdf:resource="http://www.jetblue.com/"/>
       <fc:name>JetBlue Airways</fc:name>
       <fc:nasdaq>JBLU</fc:nasdaq>
     </fc:Company>
