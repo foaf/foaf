@@ -50,6 +50,7 @@ public class Arc extends ModelItem implements Serializable
         out.writeObject(toNode);
         out.writeObject(propertyNamespace);
         out.writeObject(propertyName);
+        out.writeBoolean(showProperty);
         out.writeObject(myList);
     }
     
@@ -60,9 +61,8 @@ public class Arc extends ModelItem implements Serializable
         toNode = (Node) in.readObject();
         propertyNamespace = (String) in.readObject();
         propertyName = (String) in.readObject();
+        showProperty = in.readBoolean();
         myList = (ArcNodeList) in.readObject();
-        
-        showProperty = false;
     
         normalColor = NSColor.colorWithCalibratedRGB(0F, 0F, 1F, 0.5F);
         hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);

@@ -7,8 +7,9 @@ import com.apple.cocoa.application.*;
 import java.util.Enumeration;
 import java.util.Vector;
 import java.io.StringWriter;
-//import java.io.PrintWriter;
 import java.io.*;
+import java.net.URL;
+import java.net.MalformedURLException;
 
 import com.hp.hpl.mesa.rdf.jena.model.*;
 import com.hp.hpl.mesa.rdf.jena.mem.*;
@@ -240,5 +241,73 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         
         return rdfReturned;
     }
-
+    
+    public void checkModel(ModelErrorData errorData)
+    {
+        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        {
+            ModelItem item = (ModelItem) enumerator.nextElement();
+            
+            if (item.isNode())
+            {
+                Node node = (Node) item;
+                
+                if (node.isLiteral())
+                {
+                    if (node.id() == null)
+                    {
+                        errorData.addWarning(item, "This literal has no content. Is this what you wanted?");
+                    }
+                }
+                else
+                {
+                    if ((node.id() != null) && !isValidUrl(node.id()))
+                    {
+                        errorData.addError(item, 
+                            "Id does not have a valid URI. Ids need to be either empty (anonymous), or URIs");
+                    }
+                    
+                    if ((node.typeNamespace() != null) && isValidUrl(node.typeNamespace() + node.typeName()))
+                    {
+                        errorData.addError(item,
+                            "Type does not have a valid URI. Types need to be either empty (generic resource), or URIs");
+                    }
+                }
+            }
+            else
+            {
+                Arc arc = (Arc) item;
+                
+                if (arc.fromNode().isLiteral())
+                {
+                    errorData.addError(item,
+                        "This connection starts from a literal. This isn't allowed.");
+                }
+                
+                if (arc.propertyNamespace() == null)
+                {
+                    errorData.addError(item,
+                        "This connection has no property. This isn't allowed. Properties must be valid URIs only.");
+                }
+                else if (!isValidUrl(arc.propertyNamespace() + arc.propertyName))
+                {
+                    errorData.addError(item,
+                        "This connection's property is not a valid URI.");
+                }
+            }
+        }
+    }
+            
+    public boolean isValidUrl(String url)
+    {
+        try
+        {
+            URL temp = new URL(url);
+            return true;
+        }
+        catch (MalformedURLException error)
+        {
+            return false;
+        }
+    }
 }
