@@ -2,7 +2,8 @@
 
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
-import java.util.Hashtable;
+
+import java.util.HashMap;
 
 public class RDFModelView extends NSView {
 
@@ -14,7 +15,9 @@ public class RDFModelView extends NSView {
     String saveDescription;
     
     NSMutableArray dragTypesArray = new NSMutableArray();
-    Hashtable dragInformation = new Hashtable();
+    HashMap dragInformation = new HashMap();
+    
+    BookmarkController bookmarkController;
     
     NSPoint startPoint;
     NSPoint endPoint;
@@ -42,7 +45,8 @@ public class RDFModelView extends NSView {
         dragInformation.put(SchemaData.ClassPboardType,
             "Drop class on node to set its type. Otherwise creates a new node of this type.");
         dragInformation.put(SchemaData.PropertyPboardType,
-            "Drop property on arc to set the arc's property"); 
+            "Drop property on arc to set the arc's property");
+        
     }
 
     public boolean isOpaque()
@@ -235,6 +239,8 @@ public class RDFModelView extends NSView {
         
         // check type to make sure it conforms with type you registered
         String type = pboard.availableTypeFromArray((NSArray) dragTypesArray);
+        
+        bookmarkController.addItem(pboard, type);
         
         if (type.equalsIgnoreCase(NSPasteboard.URLPboardType)) {
         

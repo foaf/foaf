@@ -1,3 +1,11 @@
+$Date: 2001-11-13 23:27:16 $ - pldms
+    
+    Queries classes are buggy - I'll fix 'em later. Thread.stop() is a _bad_ thing and
+    may be causing many problems. Also ResultSource needs to keep a copy of the mappings.
+    
+    Martin's bookmark idea is pretty neat - preliminary implementation done. Works, but
+    is ugly.
+
 2001/11/08 16:12:48 - pldms
     
     Queries now threaded. This is because they can take too long to hold up users. (By

@@ -184,6 +184,7 @@
 				2A37F4ACFDCFA73011CA2CEA,
 				F6E8FB7A0171F2E101000211,
 				F6BC9AD50199A28B01000211,
+				F65AF203019ED40101000211,
 				F6BC47EF0196FCA401000211,
 				F6908E650184397001000211,
 				F6908E6701843A6D01000211,
@@ -461,6 +462,7 @@
 				F6AC16240188448F01000211,
 				F6C639C90196E11A01000211,
 				F6BC47EE0196F7B601000211,
+				F67460C001A1BB7801000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -487,6 +489,8 @@
 				F6BC9AD4019990A701000211,
 				F6BC9AD60199A28B01000211,
 				F6BC9AD8019AB14801000211,
+				F65AF205019ED40101000211,
+				F63468EB01A17A5901000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -639,6 +643,7 @@
 		};
 		F6167DD9017A0A9401000211 = {
 			children = (
+				F67460BF01A1BB7701000211,
 				F6BC47ED0196F7B601000211,
 				F6C639C80196E11A01000211,
 				F68396750181CC1601000211,
@@ -701,6 +706,17 @@
 			settings = {
 			};
 		};
+		F63468EA01A17A5801000211 = {
+			isa = PBXFileReference;
+			path = BookmarkItem.java;
+			refType = 4;
+		};
+		F63468EB01A17A5901000211 = {
+			fileRef = F63468EA01A17A5801000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F64FE2E30180B79B01000211 = {
 			isa = PBXFileReference;
 			path = RDFAuthor.icns;
@@ -708,6 +724,26 @@
 		};
 		F64FE2E40180B79B01000211 = {
 			fileRef = F64FE2E30180B79B01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F65AF203019ED40101000211 = {
+			children = (
+				F65AF204019ED40101000211,
+				F63468EA01A17A5801000211,
+			);
+			isa = PBXGroup;
+			name = "Bookmark Classes";
+			refType = 4;
+		};
+		F65AF204019ED40101000211 = {
+			isa = PBXFileReference;
+			path = BookmarkController.java;
+			refType = 4;
+		};
+		F65AF205019ED40101000211 = {
+			fileRef = F65AF204019ED40101000211;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -753,6 +789,17 @@
 			isa = PBXFileReference;
 			path = jena.jar;
 			refType = 4;
+		};
+		F67460BF01A1BB7701000211 = {
+			isa = PBXFileReference;
+			path = bookmarkWindow.tiff;
+			refType = 4;
+		};
+		F67460C001A1BB7801000211 = {
+			fileRef = F67460BF01A1BB7701000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
 		};
 		F68396750181CC1601000211 = {
 			isa = PBXFileReference;
