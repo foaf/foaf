@@ -9,3 +9,13 @@ clean:
 
 dirs:
 	mkdir -p ./webcache/_nt/
+
+
+destroydata:
+	rm -f webcache/*.rdf
+	rm -f webcache/*.meta
+	rm -f webcache/_nt/*.nt
+	
+
+harvest:
+	bin/scutter --scutter
