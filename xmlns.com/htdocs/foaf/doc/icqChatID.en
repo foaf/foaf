@@ -18,7 +18,7 @@ considerations. FOAF does not currently provide a way to  represent an obfuscate
 there is no parallel to the <code>foaf:mbox</code> / <code>foaf:mbox_sha1sum</code> mapping). 
 Future extensions to FOAF may address the general  problem of representing online accounts (for 
 mail, ecommerce etc); treatment of privacy should be ddressed within such a broader framework. 
-The FOAF chat ID properties (<code>foaf:aimChatID</code>, <code>foaf:msnChatID</code>, 
-<code>foaf:yahooChatID</code>, <code>foaf:msnChatID</code>) are provided as a convenient 
+The FOAF chat ID properties (<code>foaf:jabberID</code>, <code>foaf:aimChatID</code>, 
+<code>foaf:msnChatID</code>, <code>foaf:yahooChatID</code>) are provided as a convenient 
 shorthand for some common cases; their use may not always be appropriate.
 </p>
