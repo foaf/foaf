@@ -1,0 +1,6 @@
+<p>
+The <code>foaf:holdsAccount</code> property relates a <code>foaf:Agent</code> to an 
+<code>foaf:OnlineAccount</code> for which they are the sole account holder. See 
+<code>foaf:OnlineAccount</code> for usage details.
+</p>
+

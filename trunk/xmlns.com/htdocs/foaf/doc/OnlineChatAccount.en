@@ -1,0 +1,37 @@
+<p>
+A <code>foaf:OnlineChatAccount</code> is a <code>foaf:OnlineAccount</code> devoted to 
+chat / instant messaging.
+</p>
+
+<p>
+This is a generalization of the FOAF Chat ID properties, 
+<code>foaf:jabberID</code>, <code>foaf:aimChatID</code>, 
+<code>foaf:msnChatID</code>, <code>foaf:icqChatID</code> and 
+<code>foaf:yahooChatID</code>. 
+</p>
+
+<p>
+Unlike those simple properties, <code>foaf:OnlineAccount</code> and associated FOAF terms 
+allows us to describe a great variety of online accounts, without having to anticipate 
+them in the FOAF vocabulary.
+</p>
+
+<p>
+For example, here is a description of an IRC chat account, specific to the Freenode IRC 
+network:
+</p>
+
+<div class="example">
+<pre>
+&lt;foaf:Person&gt;
+  &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
+  &lt;foaf:holdsAccount&gt;
+    &lt;foaf:OnlineAccount&gt;
+      &lt;rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/&gt;
+      &lt;foaf:accountServiceHomepage rdf:resource="http://www.freenode.net/irc_servers.shtml"/&gt;
+      &lt;foaf:accountName&gt;danbri&lt;/foaf:accountName&gt;
+    &lt;/foaf:OnlineAccount&gt;
+  &lt;/foaf:holdsAccount&gt;
+&lt/foaf:Person&gt;
+</pre>
+</div>

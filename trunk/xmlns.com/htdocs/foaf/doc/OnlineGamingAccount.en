@@ -1,0 +1,11 @@
+<p>
+A <code>foaf:OnlineGamingAccount</code> is a <code>foaf:OnlineAccount</code> devoted to 
+online gaming.
+</p>
+
+<p>
+Examples might include <a href="http://everquest.station.sony.com/">EverQuest</a>, 
+<a href="http://www.xbox.com/live/">Xbox live</a>, <a 
+href="http://nwn.bioware.com/">Neverwinter Nights</a>, etc., as well as older text-based 
+systems (MOOs, MUDs and suchlike).
+</p>
