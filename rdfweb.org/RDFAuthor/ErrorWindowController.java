@@ -3,7 +3,7 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class ErrorWindowController extends NSObject {
 
@@ -13,7 +13,7 @@ public class ErrorWindowController extends NSObject {
     
     ModelErrorData errorData;
     
-    Hashtable windowToData;
+    HashMap windowToData;
     
     NSWindow currentWindow = null;
     
@@ -21,7 +21,7 @@ public class ErrorWindowController extends NSObject {
     
     public ErrorWindowController()
     {
-        windowToData = new Hashtable();
+        windowToData = new HashMap();
         
         // Initialise notification stuff
         

@@ -9,10 +9,6 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Vector;
-import java.util.Hashtable;
-import java.util.Enumeration;
-
 import com.hp.hpl.mesa.rdf.jena.model.*;
 import com.hp.hpl.mesa.rdf.jena.mem.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
@@ -21,31 +17,18 @@ import com.hp.hpl.mesa.rdf.jena.common.*;
 
 public class SchemaData {
     
-    Vector classesList = new Vector();
-    Vector propertiesList = new Vector();
+    SchemaItem classesList;
+    SchemaItem propertiesList;
     
     static String ClassPboardType = "org.rdfweb.RDFAuthor.class";
     static String PropertyPboardType = "org.rdfweb.RDFAuthor.property";
     
     public SchemaData()
     {
-        classesList.add( headerData( "Node Types", null, null, null ) );
-        propertiesList.add( headerData( "Connection Properties", null, null, null) );
+        classesList = new SchemaItem("Node Types", null, null, null, null);
+        propertiesList = new SchemaItem( "Connection Properties", null, null, null, null);
     }
-    
-    public Hashtable headerData( String displayName, String type, String nameSpace, String name)
-    {
-        type = (type == null)?"":type;
-        nameSpace = (nameSpace == null)?"":nameSpace;
-        name = (name == null)?"":name;
-        Hashtable header = new Hashtable();
-        header.put("displayName", displayName);
-        header.put("type", type);
-        header.put("nameSpace", nameSpace);
-        header.put("name", name);
-        return header;
-    }
-    
+
     public void importSchema(String url, NSOutlineView outlineView)
     {
         try
@@ -83,7 +66,7 @@ public class SchemaData {
                 String namespace = className.substring(0, sep);
                 String name = className.substring(sep);
                 
-                addToTree(classesList, "Class", namespace, name);
+                addToTree(classesList, ClassPboardType, url, namespace, name);
             }
             while (properties.hasNext())
             {
@@ -95,7 +78,7 @@ public class SchemaData {
                 String namespace = propertyName.substring(0, sep);
                 String name = propertyName.substring(sep);
                 
-                addToTree(propertiesList, "Property", namespace, name);
+                addToTree(propertiesList, PropertyPboardType, url, namespace, name);
             }
             
             if (hasClasses)
@@ -120,38 +103,42 @@ public class SchemaData {
         }
     }
     
-    public void addToTree(Vector list, String type, String namespace, String name)
+    public void addToTree(SchemaItem list, String type, String url, String namespace, String name)
     {
-        Vector namespaceVector = null;
+        SchemaItem namespaceList = list.childWithDisplayName(url);
         
-        Enumeration enumerator = list.elements();
-        
-        enumerator.nextElement(); // Skip the first element
-        
-        while (enumerator.hasMoreElements())
+        if (namespaceList == null)
         {
-            Vector temp = (Vector) enumerator.nextElement();
-            String tempNamespace = (String) ((Hashtable) temp.firstElement()).get("displayName");
-            if (tempNamespace.equals(namespace))
-            {
-                namespaceVector = temp;
-                break;
-            }
+            namespaceList = new SchemaItem( url, null, null, null, list);
+            list.add(namespaceList);
         }
         
-        if (namespaceVector == null)
-        {
-            namespaceVector = new Vector();
-            namespaceVector.add( headerData(namespace, null, null, null) );
-            list.add(namespaceVector);
-        }
-        
-        Vector nameVector = new Vector();
-        nameVector.add( headerData(name, type, namespace, name) );
-        namespaceVector.add(nameVector);
+        SchemaItem nameItem = new SchemaItem(name, type, namespace, name, namespaceList);
+        namespaceList.add(nameItem);
     }
     
-    public Vector outlineViewChildOfItem( NSOutlineView outlineView, int index, Vector item)
+    public void removeItem(SchemaItem item, NSOutlineView outlineView)
+    {
+        SchemaItem parent = item.parent();
+        if (parent == null)
+        {
+            outlineView.setNeedsDisplay(true);
+            return;
+        }
+        
+        parent.remove(item);
+        outlineView.reloadItemAndChildren( parent, true);
+        
+        if (!parent.hasChildren()) // Parent has no children - how sad - so remove it (unless it's one of the root things)
+        {
+            removeItem(parent, outlineView);
+        }
+    }
+            
+    
+    // This is the stuff NSOutlineViews want
+    
+    public SchemaItem outlineViewChildOfItem( NSOutlineView outlineView, int index, SchemaItem item)
     {
         if (item == null)
         {
@@ -166,16 +153,16 @@ public class SchemaData {
         }
         else
         {
-            return (Vector) item.elementAt(index+1);
+            return item.get(index);
         }
     }
     
-    public boolean outlineViewIsItemExpandable( NSOutlineView outlineView, Vector item)
+    public boolean outlineViewIsItemExpandable( NSOutlineView outlineView, SchemaItem item)
     {
-        return (item.size() != 1);
+        return item.hasChildren();
     }
     
-    public int outlineViewNumberOfChildrenOfItem( NSOutlineView outlineView, Vector item)
+    public int outlineViewNumberOfChildrenOfItem( NSOutlineView outlineView, SchemaItem item)
     {
         if (item == null)
         {
@@ -183,44 +170,34 @@ public class SchemaData {
         }
         else
         {
-            return (item.size() - 1);
+            return item.numberOfChildren();
         }
     }
     
     public String outlineViewObjectValueForItem( NSOutlineView outlineView,
-            NSTableColumn tableColumn, Vector item)
+            NSTableColumn tableColumn, SchemaItem item)
     {
-        Hashtable info = (Hashtable) item.firstElement();
-        return (String) info.get("displayName");
+        return item.displayName();
     }
     
     public boolean outlineViewWriteItemsToPasteboard( NSOutlineView outlineView, 
             NSArray items, NSPasteboard pboard)
     {
-        Vector item = (Vector) items.lastObject();
-        Hashtable info = (Hashtable) item.firstElement();
+        SchemaItem item = (SchemaItem) items.lastObject();
         
-        if (((String) info.get("name")).equals(""))
+        if (!item.draggable())
         {
             return false;
         }
         else
         {
             NSMutableDictionary dataToDrag = new NSMutableDictionary();
-            dataToDrag.setObjectForKey(info.get("nameSpace") , "Namespace");
-            dataToDrag.setObjectForKey(info.get("name") , "Name");
+            dataToDrag.setObjectForKey(item.namespace() , "Namespace");
+            dataToDrag.setObjectForKey(item.name() , "Name");
             
             NSArray types;
-            String type;
             
-            if (((String) info.get("type")).equals("Class"))
-            {
-                type = ClassPboardType;
-            }
-            else
-            {
-                type = PropertyPboardType;
-            }
+            String type = item.type();
             
             types = new NSArray(type);
             
@@ -230,4 +207,5 @@ public class SchemaData {
             return true;
         }
     }
+    
 }

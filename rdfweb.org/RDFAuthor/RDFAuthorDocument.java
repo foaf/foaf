@@ -4,7 +4,7 @@ import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
 import java.io.*;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 public class RDFAuthorDocument extends NSDocument {
     
@@ -21,17 +21,24 @@ public class RDFAuthorDocument extends NSDocument {
     NSTextView previewTextView;
     NSScrollView previewView;
     
+    QueryController queryController;
     
     ArcNodeList rdfModel;
     
-    Hashtable exportMappings;
+    HashMap exportMappings;
     
     boolean addingNode;
     boolean addingConnection;
     boolean deleting;
+    boolean markQueryObjects =  false;
     boolean showTypes;
     boolean showIds;
     boolean showProperties;
+    
+    String defaultPropertyNamespace = null;
+    String defaultPropertyName = null;
+    String defaultClassNamespace = null;
+    String defaultClassName = null;
     
     public RDFAuthorDocument() {
         super();
@@ -175,7 +182,9 @@ public class RDFAuthorDocument extends NSDocument {
     public String windowNibName() {
         return "RDFAuthorDocument";
     }
-
+    
+    // Most of the initialisation happens here
+    
     public void windowControllerDidLoadNib(NSWindowController  aController) {
         super.windowControllerDidLoadNib(aController);
         // Add any code here that need to be executed once the windowController has loaded the document's window.
@@ -193,11 +202,19 @@ public class RDFAuthorDocument extends NSDocument {
         window.setToolbar(theToolbar);
         
         // This is for exporting
-        exportMappings = new Hashtable();
+        exportMappings = new HashMap();
         
         exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         exportMappings.put("N3 Document", "N3");
+        
+        // Get notifications from the Schema Window
+        
+        NSSelector schemaChanged = new NSSelector("schemaSelectionChanged", 
+                new Class[] {NSNotification.class} );
+                
+        NSNotificationCenter.defaultCenter().addObserver(
+            this, schemaChanged, SchemaWindowController.schemaItemChangedNotification , null);
     }
     
     public boolean showTextPreview(boolean showPreview, String type)
@@ -334,6 +351,23 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
+    public void markQueryItems(boolean markThem)
+    {
+        if (markThem)
+        {
+            rdfModelView.deleteMode(false);
+            rdfModelView.addConnection(false);
+            rdfModelView.addNode(false);
+            textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
+            markQueryObjects = true;
+        }
+        else
+        {
+            markQueryObjects = false;
+            textDescriptionField.setStringValue("");
+        }
+    }
+    
     public void showInfoForObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfModel.objectAtPoint(point);
@@ -363,9 +397,14 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void addNodeAtPoint(String id, String typeName, String typeNamespace, NSPoint point, boolean isLiteral)
+    public void addNodeAtPoint(String id, String typeNamespace, String typeName, NSPoint point, boolean isLiteral)
     {
-        Node newNode = new Node(rdfModel, id, typeName, typeNamespace, point);
+        // Do the 'defaults' thing
+        
+        typeName = (typeName == null)? defaultClassName : typeName ;
+        typeNamespace = (typeNamespace == null)? defaultClassNamespace : typeNamespace ;
+        
+        Node newNode = new Node(rdfModel, id, typeNamespace, typeName, point);
         rdfModel.add(newNode);
         newNode.setShowId(showIds);
         newNode.setShowType(showTypes);
@@ -381,7 +420,7 @@ public class RDFAuthorDocument extends NSDocument {
             && startNode.isNode() && endNode.isNode()
             && (startNode != endNode) )
         {
-            Arc newArc = new Arc(rdfModel, (Node)startNode, (Node)endNode, null, null);
+            Arc newArc = new Arc(rdfModel, (Node)startNode, (Node)endNode, defaultPropertyNamespace, defaultPropertyName);
             newArc.setShowProperty(showProperties);
             rdfModel.add(newArc);
             rdfModel.setCurrentObject(newArc);
@@ -400,7 +439,16 @@ public class RDFAuthorDocument extends NSDocument {
     public void setCurrentObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfModel.objectAtPoint(point);
-        rdfModel.setCurrentObject(item);
+        
+        if (markQueryObjects)
+        {
+            queryController.addQueryItem(item);
+            rdfModelView.setNeedsDisplay(true);
+        }
+        else
+        {
+            rdfModel.setCurrentObject(item);
+        }
     }
     
     public void selectNextObject()
@@ -460,6 +508,7 @@ public class RDFAuthorDocument extends NSDocument {
     public void drawModel()
     {
         rdfModel.drawModel();
+        queryController.drawQueryItems();
     }
     
     public void doCheckModel()
@@ -472,4 +521,38 @@ public class RDFAuthorDocument extends NSDocument {
     {
         rdfModel.checkModel(errorData);
     }
+    
+    // Schema window selection changed
+    
+    public void schemaSelectionChanged(NSNotification notification)
+    {
+        SchemaItem item = (SchemaItem) notification.object();
+        
+        if (item.type() == null)
+        {
+            defaultPropertyNamespace = null;
+            defaultPropertyName = null;
+            defaultClassNamespace = null;
+            defaultClassName = null;
+        }
+        else if (item.type().equals(SchemaData.ClassPboardType)) // it's a class
+        {
+            defaultPropertyNamespace = null;
+            defaultPropertyName = null;
+            defaultClassNamespace = item.namespace();
+            defaultClassName = item.name();
+        }
+        else if (item.type().equals(SchemaData.PropertyPboardType)) // it's a property
+        {
+            defaultPropertyNamespace = item.namespace();
+            defaultPropertyName = item.name();
+            defaultClassNamespace = null;
+            defaultClassName = null;
+        }
+        
+        System.out.println("We now have:");
+        System.out.println("Property: " + defaultPropertyNamespace + " " + defaultPropertyName);
+        System.out.println("Class: " + defaultClassNamespace + " " + defaultClassName);
+    }
+    
 }

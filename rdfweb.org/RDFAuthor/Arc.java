@@ -8,6 +8,8 @@ import java.io.*;
 
 public class Arc extends ModelItem implements Serializable
 {
+    static final long serialVersionUID = 2402533035356176862L;
+    
     Node fromNode;
     Node toNode;
     ArcNodeList myList;
@@ -30,7 +32,7 @@ public class Arc extends ModelItem implements Serializable
         this.toNode = toNode;
         fromNode.addFromArc(this);
         toNode.addToArc(this);
-        setProperty(name, namespace);
+        setProperty(namespace, name);
         initArrowHead();
     }
     
@@ -76,7 +78,12 @@ public class Arc extends ModelItem implements Serializable
     {
         myList = list;
     }
-
+    
+    public NSRect rect()
+    {
+        return myRect;
+    }
+    
     public void setShowProperty(boolean value)
     {
         showProperty = value;

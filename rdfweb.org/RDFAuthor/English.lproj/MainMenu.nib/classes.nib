@@ -29,7 +29,7 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {addSchema = id; showSchemaWindow = id; }; 
+            ACTIONS = {addSchema = id; deleteSelectedItem = id; showSchemaWindow = id; }; 
             CLASS = SchemaWindowController; 
             LANGUAGE = Java; 
             OUTLETS = {
