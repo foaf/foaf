@@ -11,28 +11,44 @@ import com.strangeberry.rendezvous.ServiceListener;
 
 public class RendTest
 {
-  static String type = "_foafcon._tcp.local.";
+  final static String type = "_foafcon._tcp.local.";
+  List people;
+  Person person;
+  int port = 7654;
+  TestListener listener;
+  Rendezvous rv;
+  InetAddress inetaddr;
+  ServiceInfo si;
   
   public static void main(String[] args)
   {
-    if (args.length < 3)
+    RendTest rt = new RendTest(args);
+
+    rt.start();
+
+    CommandLine cl = new CommandLine(rt);
+
+    cl.run();
+  }
+
+  public RendTest(String[] args)
+  {
+    if (args.length < 2)
       {
 	System.
 	  err.
-	  println("Usage: RendTest <name> <mailbox> <homepage> " +
-		  "[<port> [<interest> [<plan>]]]");
+	  println("Usage: RendTest <name> <mailbox> " +
+		  "[<port>]");
 	System.exit(1);
       }
 
-    Person person = new Person(args[0], args[1], args[2]);
+    person = new Person(args[0], args[1]);
 
-    int port = 7645;
-        
-    if (args.length > 3)
+    if (args.length > 2)
       {
 	try
 	  {
-	    port = Integer.parseInt(args[3]);
+	    port = Integer.parseInt(args[2]);
 	  }
 	catch (NumberFormatException e)
 	  {
@@ -41,37 +57,32 @@ public class RendTest
 	  }
       }
 
-    if (args.length > 4)
-      {
-	person.setInterest(args[4]);
-      }
+  }
 
-    if (args.length > 5)
-      {
-	person.setPlan(args[5]);
-      }
-    
+  public void start()
+  {
     Hashtable props = person.getProps();
     String hashBox = person.getMboxHash();
     
-    TestListener listener = new TestListener();
+    listener = new TestListener();
     
     try
       {
-	Rendezvous rv = new Rendezvous();
+	rv = new Rendezvous();
 
-	InetAddress inetaddr = InetAddress.getLocalHost();
+	inetaddr = InetAddress.getLocalHost();
 	
 	System.out.println("Binding to: " + inetaddr);
+
+	si = new ServiceInfo(type,
+			     hashBox + "." + type,
+			     inetaddr,
+			     port,
+			     0,
+			     0,
+			     props);
 	
-	rv.registerService(new ServiceInfo(type,
-					   hashBox + "." + type,
-					   inetaddr,
-					   port,
-					   0,
-					   0,
-					   props)
-			   );
+	rv.registerService(si);
 	
 	rv.addServiceListener(type, listener);
 	
@@ -86,134 +97,43 @@ public class RendTest
 	System.exit(1);
       }
     
-    System.out.println("You are: \n" + person + "\n");
+    //System.out.println("You are: \n" + person + "\n");
     
-    Reader reader = new InputStreamReader(System.in);
-    BufferedReader bufReader = new BufferedReader(reader);
-    String input = null;
-    List people = null;
-    
-    while (true)
-      {
-	try
-	  {
-	    System.out.print("> ");
-	    
-	    input = bufReader.readLine().trim();
-	  }
-	catch (Exception e)
-	  {
-	  }
-	
-	if (input.equals("exit"))
-	  break;
-	
-	else if (input.equals("find"))
-	  {
-	    people = listener.getPeople();
-	    
-	    int n = 1;
-	    
-	    for (Iterator i = people.iterator();
-		 i.hasNext();
-		 n++)
-	      {
-		ServiceInfo info = (ServiceInfo) i.next();
-		
-		System.out.print("[" + n + "] ");
-		
-		System.out.
-		  print(info.getPropertyString(Person.NAME) + " ");
-		System.out.
-		  print(info.getPropertyString(Person.HOMEPAGE) + " ");
-		System.out.
-		  print(info.getPropertyString(Person.INTEREST));
-		System.out.print("\n");
-	      }
-	  }
-	
-	else if (input.startsWith("show "))
-	  {
-	    if (people == null)
-	      {
-		System.out.println("Try find first.");
-	      }
-	    else
-	      {
-		String numberString = input.substring(5);
-		
-		int number = -1;
-		
-		try
-		  {
-		    number = Integer.parseInt(numberString);
-		  }
-		catch (NumberFormatException e) 
-		  {
-		    System.out.println("show <number>");
-		  }
-		
-		ServiceInfo info =
-		  (ServiceInfo) people.get(number - 1);
-
-		String content = Util.get("http",
-					  info.getAddress(),
-					  info.getPort(),
-					  "/");
-
-		System.out.println(content);
-	      }
-	  }
-
-	else if (input.startsWith("I know "))
-	  {
-	    if (people == null)
-	      {
-		System.out.println("Try find first.");
-	      }
-	    else
-	      {
-		String numberString = input.substring(7);
-		
-		int number = -1;
-		
-		try
-		  {
-		    number = Integer.parseInt(numberString);
-		  }
-		catch (NumberFormatException e) 
-		  {
-		    System.out.println("I know <number>");
-		  }
-		
-		ServiceInfo info =
-		  (ServiceInfo) people.get(number - 1);
-
-		Person knownPerson =
-		  new Person(info.getPropertyString(Person.NAME),
-			     info.getName(),
-			     info.getPropertyString(Person.HOMEPAGE),
-			     info.getPropertyString(Person.INTEREST));
-
-		person.addKnows(knownPerson);
-	      }
-	  }
-	
-	else if (input.equals("set plan"))
-	  {
-	    System.out.println("(Use <ret><ret> to finish)");
-	    
-	  }
-
-	else if (input.equals("dump"))
-	  {
-	    System.out.println(person.toRDF());
-	  }
-	
-      }
-    
-    System.exit(0);
   }
+
+  public void kickService()
+    throws Exception
+  {
+    rv.unregisterService(si);
+    Hashtable props = person.getProps();
+    String hashBox = person.getMboxHash();
+    si = new ServiceInfo(type,
+			 hashBox + "." + type,
+			 inetaddr,
+			 port,
+			 0,
+			 0,
+			 props);
+    
+    rv.registerService(si);
+  }
+  
+  public void findPeople()
+  {
+    people = listener.getPeople();
+  }
+
+  public List getPeople()
+  {
+    return people;
+  }
+
+  public Person getPerson()
+  {
+    return person;
+  }
+  
+    
 }
 
 class TestListener implements ServiceListener

@@ -62,6 +62,10 @@ public class Util
 	    sb.append("\n");
 	  }
 
+	bufReader.close();
+	reader.close();
+	conn.close();
+	
 	return sb.toString();
       }
     catch (Exception e)
@@ -69,5 +73,17 @@ public class Util
 	return (e.getMessage());
       }
   }
+
+  public static void toFile(String file, String content)
+    throws Exception
+  {
+    Writer writer = new FileWriter(file);
+
+    writer.write(content, 0, content.length());
+
+    writer.flush();
+    writer.close();
+  }
+  
   
 }
