@@ -37,8 +37,13 @@ public class FoafFingerController
       {
 	System.
 	  err.
-	  println("Usage: FoafFinger --gui|--cl <name> <mailbox> " +
-		  "[<address>]");
+	  println("Usage: FoafFinger --gui|--cl <name> <email address> " +
+		  "[<address>]\n" +
+		  "eg:\n" +
+		  "FoafFinger --gui \"Damian Steer\" pldms@mac.com\n" +
+		  "FoafFinger --cl \"Damian Steer\" pldms@mac.com (command line version)\n" +
+		  "FoafFinger --gui \"Damian Steer\" pldms@mac.com 10.0.2.6 (giving a host name)"
+		  );
 	System.exit(1);
       }
     
@@ -46,11 +51,16 @@ public class FoafFingerController
     else if (args[0].equals("--cl")) gui = false;
     else
 	{
-	    System.
-		err.
-		println("Usage: FoafFinger --gui | --cl <name> <mailbox> " +
-			"[<address>]");
-	    System.exit(1);
+    	System.
+		  err.
+		  println("Usage: FoafFinger --gui|--cl <name> <email address> " +
+			  "[<address>]\n" +
+			  "eg:\n" +
+			  "FoafFinger --gui \"Damian Steer\" pldms@mac.com\n" +
+			  "FoafFinger --cl \"Damian Steer\" pldms@mac.com (command line version)\n" +
+			  "FoafFinger --gui \"Damian Steer\" pldms@mac.com 10.0.2.6 (giving a host name)"
+			  );
+		System.exit(1);
 	}
 
     person = new Person(args[1], args[2]);
@@ -79,7 +89,9 @@ public class FoafFingerController
 	      {
 		System.err.println("I can't determine the address of this " +
 				   "host.\nHelp me out by supplying it as " +
-				   "an argument when you run me.");
+				   "an argument when you run me, eg:\n" +
+				   "FoafFinger --gui \"Damian Steer\" pldms@mac.com 10.0.2.6"
+				   );
 		System.exit(1);
 	      }
 	  }
