@@ -1,12 +1,12 @@
 DanBri ETCON-2004 abstract
-version: $Id: abstract.txt,v 1.8 2003-09-24 19:08:15 danbri Exp $
+version: $Id: abstract.txt,v 1.9 2003-09-24 19:12:12 danbri Exp $
 45 min session at http://conferences.oreillynet.com/cs/et2004/create/e_sess#form
 
   "Fear of a FOAF Planet - Acronyms and activism on the Semantic Web"
 
 The Friend of a Friend (FOAF) project is creating a Web of machine-readable 
-homepages describing people, the links between them and the things they make and  
-do. This session introduces FOAF, giving a lightning tour of its origins, goals, 
+RDF/XML homepages describing people, the links between them and the things they make 
+and do. This session introduces FOAF, giving a lightning tour of its origins, goals, 
 current status and possible futures. 
 
 What would happen (to privacy, to the media, to commerce) if search engines evolved 
