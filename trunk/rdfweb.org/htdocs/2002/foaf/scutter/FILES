@@ -3,6 +3,7 @@
 ./scutter/bin/rdfweb_server
 ./scutter/bin/vocabstats.rb
 ./scutter/bin/paths
+./scutter/bin/foafalarm
 ./scutter/lib/pathfinder.rb
 ./scutter/lib/scutter.rb
 ./scutter/doc/notes.txt
