@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: FOAF: the 'friend of a friend' project
+    </title>
+    <link rel="stylesheet" href="/ssi/main.css" type="text/css" />
+  </head>
+  <body bgcolor="#ffffff">
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="/images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">FOAF</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="/about.html">about</a>
+            | <a href="/projects.html">projects</a> | <a
+            href="/dev.html">developers</a> | <a
+            href="/sitemap.html">sitemap</a> | <a
+            href="/search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h2>
+      FOAF: the 'friend of a friend' project
+    </h2>
+    <p>
+      <a href="cola-corps-sample.png"><img border="0"
+      src="examples/unreadable-thumb.jpeg" alt="foaf sample"
+      align="right" /></a>
+    </p>
+    <p>
+      This is the home page for the FOAF, or <em>'friend of a
+      friend'</em> project.
+    </p>
+    <p>
+      It is pretty rough right now, but does at least contain the
+      following handy links...
+    </p>
+    <ul>
+      <li>
+        the FOAF <a href="http://xmlns.com/foaf/0.1/">namespace
+        document</a> (technical)
+      </li>
+      <li>
+        <a
+        href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">
+        Finding friends with XML and RDF</a>, IBM developerWorks
+        article, Edd Dumbill (good general introduction)
+      </li>
+      <li>
+        <a href="http://rdfweb.org/2000/08/why/">An Introduction to
+        RDFWeb and FOAF</a> by Dan Brickley and Libby Miller (the
+        original intro, incomplete, but has reasonable summary of
+        our goals)
+      </li>
+      <li>
+        more links here...
+      </li>
+      <li>
+        co-depiction...
+      </li>
+    </ul>
+    <h3>
+      The Basic Idea
+    </h3>
+    <p>
+      The basic idea is pretty simple. If people publish
+      information in the FOAF document format, machines will be
+      able to make use of that information. If those files contain
+      "see also" references to other such documents in the Web, we
+      will have a machine-friendly version of today's hypertext
+      Web. Computer programs will be able to scutter around a Web
+      of documents designed for machines rather than humans,
+      storing the information they find, keeping a list of "see
+      also" pointers to other documents, checking digital
+      signatures (for the security minded) and building Web pages
+      and question-answering services based on the harvested
+      documents.
+    </p>
+    <p>
+      So, what is the 'FOAF document format'? FOAF files are just
+      text documents (well, Unicode documents). They are written in
+      XML syntax, and adopt the conventions of the Resource
+      Description Framework (RDF). In addition, the FOAF vocabulary
+      defines some useful constructs that can appear in FOAF files,
+      alongside other RDF vocabularies defined elsewhere. For
+      example, FOAF defines categories such as 'Person',
+      'Document', 'Image', properties of those things, such as
+      'name', 'mbox' (ie. an internet mailbox), 'homepage' etc., as
+      well as some useful kinds of relationship that hold between
+      members of these categories. One interesting relationship
+      type is 'foaf:depiction'. This relates something (eg. a
+      Person) to an Image. The FOAF demos that feature photos and
+      listings of 'who is in which picture' are based on software
+      tools that parse RDF documents and make use of this
+      properties.
+    </p>
+    <p>
+      The specific contents of the FOAF vocabulary are detailed in
+      the <a href="http://xmlns.com/foaf/0.1/">FOAF namespace
+      document</a>. In addition to the FOAF vocabulary, one of the
+      most interesting features of a FOAF file is that it can
+      contain "see Also" pointers to other FOAF files. This
+      provides a basis for automatic harvesting tools to traverse a
+      Web of interlinked files, and learn about new people,
+      documents, services, data...
+    </p>
+<pre>
+$Id: index.html,v 1.1 2002-07-15 18:06:33 danbri Exp $
+</pre>
+  </body>
+</html>
+
