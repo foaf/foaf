@@ -82,7 +82,7 @@ public class Node extends ModelItem implements Serializable
     
 	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
 	hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
-        literalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 1F, 0.5F);
+        literalColor = NSColor.colorWithCalibratedRGB(1F, 1F, 0F, 0.5F);
 
 	defaultSize = new NSSize(20,20);
         

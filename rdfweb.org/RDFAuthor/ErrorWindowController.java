@@ -31,11 +31,17 @@ public class ErrorWindowController extends NSObject {
         NSSelector windowSelector = new NSSelector("currentWindowChanged", 
                 new Class[] {NSNotification.class} );
         
+        NSSelector windowClosedSelector = new NSSelector("windowClosed",
+                new Class[] {NSNotification.class} );
+        
         NSNotificationCenter.defaultCenter().addObserver(
             this, itemSelector, checkModelNotification, null);
         
         NSNotificationCenter.defaultCenter().addObserver(
             this, windowSelector, NSWindow.WindowDidBecomeMainNotification, null);
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            this, windowClosedSelector, NSWindow.WindowWillCloseNotification, null);
     }
     
     public void awakeFromNib()
@@ -81,6 +87,16 @@ public class ErrorWindowController extends NSObject {
         
         errorTable.setDataSource(windowToData.get(currentWindow));
         errorTable.setDelegate(windowToData.get(currentWindow));
+    }
+    
+    public void windowClosed(NSNotification notification)
+    {
+        NSWindow window = (NSWindow) notification.object();
+        if (window == currentWindow)
+        {
+            errorTable.setDataSource(null);
+            errorTable.setDelegate(null);
+        }
     }
     
     public void checkModel(NSNotification notification)

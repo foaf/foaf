@@ -13,7 +13,13 @@
             }; 
             CLASS = RDFAuthorDocument; 
             LANGUAGE = Java; 
-            OUTLETS = {rdfModelView = id; rdfToolbar = id; textDescriptionField = id; }; 
+            OUTLETS = {
+                previewTextView = id; 
+                previewView = id; 
+                rdfModelView = id; 
+                rdfToolbar = id; 
+                textDescriptionField = id; 
+            }; 
             SUPERCLASS = NSDocument; 
         }, 
         {

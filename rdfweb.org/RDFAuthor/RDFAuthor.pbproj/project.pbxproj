@@ -359,7 +359,9 @@
 	<key>CFBundleGetInfoString</key>
 	<string>RDF Author - A tool for simple drag 'n drop generation of RDF/XML</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>RDFAuthor.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.rdfweb.RDFAuthor</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -414,6 +416,10 @@
 				F51151FB017CE12B01000214,
 				F6E066E3017F83AE01000211,
 				F6E066E4017F83AF01000211,
+				F64FE2E40180B79B01000211,
+				F68396760181CC1601000211,
+				F68396780181CC3E01000211,
+				F68C94950181F1D101000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -586,6 +592,10 @@
 		};
 		F6167DD9017A0A9401000211 = {
 			children = (
+				F68C94940181F1D101000211,
+				F64FE2E30180B79B01000211,
+				F68396750181CC1601000211,
+				F68396770181CC3E01000211,
 				F6167DC70179D79C01000211,
 				F692E0EC017CC9FF01000211,
 				F692E0F0017CC9FF01000211,
@@ -609,6 +619,17 @@
 		};
 		F6167DE2017AD49E01000211 = {
 			fileRef = F6167DE1017AD49E01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F64FE2E30180B79B01000211 = {
+			isa = PBXFileReference;
+			path = RDFAuthor.icns;
+			refType = 4;
+		};
+		F64FE2E40180B79B01000211 = {
+			fileRef = F64FE2E30180B79B01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -700,6 +721,39 @@
 				ATTRIBUTES = (
 					Merge,
 				);
+			};
+		};
+		F68396750181CC1601000211 = {
+			isa = PBXFileReference;
+			path = modelView.tiff;
+			refType = 4;
+		};
+		F68396760181CC1601000211 = {
+			fileRef = F68396750181CC1601000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F68396770181CC3E01000211 = {
+			isa = PBXFileReference;
+			path = textPreview.tiff;
+			refType = 4;
+		};
+		F68396780181CC3E01000211 = {
+			fileRef = F68396770181CC3E01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F68C94940181F1D101000211 = {
+			isa = PBXFileReference;
+			path = RDFADocument.icns;
+			refType = 4;
+		};
+		F68C94950181F1D101000211 = {
+			fileRef = F68C94940181F1D101000211;
+			isa = PBXBuildFile;
+			settings = {
 			};
 		};
 		F692E0EC017CC9FF01000211 = {
