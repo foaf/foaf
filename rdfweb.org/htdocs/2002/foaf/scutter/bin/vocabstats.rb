@@ -3,8 +3,10 @@
 require 'date'
 require 'dbi'
 
+driver = 'Mysql'
+
 # Ruby script to query a (certain shape) SQL-backed RDF store, generate summary
-# $Id: vocabstats.rb,v 1.2 2002-07-16 19:38:24 danbri Exp $
+# $Id: vocabstats.rb,v 1.3 2002-12-16 20:52:18 danbri Exp $
 # author: dan brickley
 
 today = Date.today
@@ -17,7 +19,7 @@ dd = today.day
 # todo: load from elsewhere
 #
 logfilename = "log/vocabstats-#{yyyy}-#{mm}-#{dd}.log"		# where to log
-cfg = {'dbi_driver' => 'DBI:Pg:rdfweb1', 'dbi_user'=>'danbri'}  # db to analyse
+cfg = {'dbi_driver' => 'DBI:'+driver+':rdfweb1', 'dbi_user'=>'danbri'}  # db to analyse
 
 def table (q=nil, cfg={})
   hits=[]
