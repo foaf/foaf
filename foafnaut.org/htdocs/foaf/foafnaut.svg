@@ -1,0 +1,1508 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" onload="init(evt)"
+  xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+  a:scriptImplementation="Adobe" onzoom="zoom()" onscroll="zoom()">
+<title>foafnaut</title>
+<desc>
+ foafnaut is a tool for visualising foaf RDF data, allowing you to see the relationship between people, and details about them.  Authors, Dean Jackson, Jim Ley and Liz Turner. Portions of the code are Copyright W3c, and a SHA1 library is used from Paul Johnston http://pajhome.org.uk/site/legal.html the rest is copyright the authors.
+
+ Thanks also to danbri, mortenf, inkel, eikeon, libby, zool, shellac and everyone else who has given ideas!
+</desc>
+<style type="text/css">
+#aboutbox tspan { font-family:'TrebuchetMS';font-size:10; }
+</style>
+
+<script type="text/ecmascript" a:scriptImplementation="Adobe">
+<![CDATA[
+
+ _ONLINE=true
+
+// The urls, for online, and offline viewing:
+// startURL+Sha1+endURL  gives the url to retrieve
+// for info on that sha1
+
+	if (_ONLINE) {
+  startURL="person-summary.1?"
+  endURL=""
+	} else {
+  startURL="cache-new/"
+  endURL=".cz"
+	}
+
+// Lots of global variables, Namespaces etc.  Many are not
+// used, but this I keep the same everywhere.
+
+ var gdoc=document
+ var gdocDE=gdoc.documentElement
+ var svgNS="http://www.w3.org/2000/svg";
+ xlinkNS="http://www.w3.org/1999/xlink"
+ anNS="http://rdf.desire.org/vocab/recommend.rdf#"
+ rdfNS="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ imgNS="http://jibbering.com/2002/3/svg/#"
+ DCNS="http://purl.org/dc/elements/1.1/"
+ foafNS="http://xmlns.com/foaf/0.1/"
+ wordnetNS="http://xmlns.com/wordnet/1.6/"
+ svgrNS="http://www.w3.org/2001/svgRdf/axsvg-schema.rdf#"
+ jimNS="http://jibbering.com/foaf/jim.rdf#"
+
+ var globalBlubBatikId;
+ var svgelement=gdoc.rootElement;
+ var currentBlub=null
+ var gCirc=null
+ var gPanelCount=3
+ var photoCount=0
+	var searchCount=1
+
+ // The colours used for paths get shown.
+ var highlightColours=['red','blue','black','#ffff00','green','#00ffff','#ff00ff']
+ var pathCount=0
+
+ // Creates references to the svg elements used to add the
+ // blub/sproings to later
+
+ var blubsgroup=gdoc.getElementById("blubs");
+ var sproingsgroup=gdoc.getElementById("sproings");
+	var form=document.getElementById("form");
+
+ // create some SVG elements for later cloning...
+ // element creation is dead slow, avoid, either clone
+ // or use parseXML. createElement should be avoided!
+
+ var globalgEL=gdoc.createElementNS(svgNS, "g");
+ var globalLine=document.createElementNS(svgNS, "line");
+	globalLine.setAttribute("stroke-width", "3");
+ var globalCirc=parseXML('<circle stroke="#FFFFFF" stroke-width="1.8" r="4.2" fill="#33CC99"/>',gdoc).firstChild
+
+
+closebutton='<path fill="#FF0033" stroke="#000000" stroke-width="0.9246" d="M15.192,10.15 c0,2.784-2.257,5.041-5.041,5.041H5.503c-2.784,0-5.041-2.257-5.041-5.041V5.502c0-2.784,2.257-5.041,5.041-5.041h4.648 c2.784,0,5.041,2.257,5.041,5.041V10.15z" /><path d="M12.355,11.611l-1.247,1.247L2.731,4.482l1.248-1.247L12.355,11.611z" /><path d="M3.979,12.858l-1.248-1.247l8.376-8.376l1.248,1.247L3.979,12.858z" />'
+
+var FADE=true;
+var nextId=0;
+var blubs=new Array();
+var blubhash=new Array();
+var sproings=new Array();
+var currentBlubId=-1;
+var dataReady=0;
+var dirList=new Array();
+
+	function parse(str) {
+
+  // A simple query string parser, initialise the object
+  // with default values like email/sha1 here or there 
+  // will be errors.
+
+  var o=new Object()
+  o['email']=''
+  o['sha1']=''
+  o['fade']='true'
+   var arr=str.split('&')
+		for (i=0;i<arr.length;i++) {
+   try {
+    arr1=arr[i].split('=')
+    if (arr1 && arr1[1]) o[arr1[0]]=unescape(arr1[1]).replace(/\+/gim,' ').Trim()
+			} catch (E) {}
+		}
+  return o
+ }
+function init(e) {
+
+ // called onload, get the querystring, and check for
+ // email/sha1 call appropriate blubs.
+
+ try {
+  var str=decodeURIComponent(gdoc.URL+'?')
+  output=parse(str.split('?')[1])
+  FADE=output['fade']
+		if (output['email']!='') {
+ 		expandBlub(doStuff(' '+output['email']))
+		} else {
+			if (output['sha1']!='') {
+				doStuffSha1(output['sha1'])
+			} else {
+				// Random blub, only available online.
+				if (_ONLINE) doStuffSha1('')
+			}
+		}
+	} catch (e) {}
+}
+
+function Director(name, link, type,nick,img) {
+ 
+	// Something to do with Dean... but a simple object for 
+ // adding "directors" which are simply people.
+
+  this.name=name;
+  this.link=link;
+  this.type=type;
+  this.nick=String(nick);
+  this.img=img;
+}
+
+
+function Blub(x, y, startx, starty, corp, name, link,nick) {
+
+ // The main blub object ("class") each blub is one of these
+ // first check is that the blub does not already exist, to
+ // prevent duplications.
+
+ if (typeof blubhash[name]=='undefined') {
+
+  // properties, hopefully self explanatory.
+
+  this.x=x;
+  this.y=y;
+  this.corp=false;
+  this.id=nextId;
+  this.dragState=0;
+  this.operationComplete=opComplete
+  this.expanded=0;
+  this.name=name;
+  this.neighbours=[];
+  this.realName=''
+  this.link=link;
+  this.homepage='';
+  this.deleted=0;
+  this.inlines=new Array();
+  this.outlines=new Array();
+  this.startx=startx;
+  this.starty=starty;
+
+  nextId++;
+  blubs[this.id]=this;
+  blubhash[name]=this
+
+		// get a name for the person.
+  if (nick+''=='undefined' || nick=='') nick=name.substr(7,name.indexOf('@')-7)
+				if (nick.indexOf('.')>3) nick=nick.substr(0,nick.indexOf('.'))
+  str=nick.toUpperCase()
+  this.nick=nick
+
+  // Calculate the width of the apron, does not work in Batik,
+  // no getComputedTextLength()
+  try {
+   L=(Number(parseXML('<g><text style="text-anchor:middle;" transform="matrix(1 0 0 1 3.5718 36.4229)"><tspan x="25" y="0" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="12.8" letter-spacing="0.525">'+str+'</tspan></text></g>',gdoc).firstChild.firstChild.getComputedTextLength())-5)/2
+ 	} catch (a) {L=-1}
+  if (L<0) L=0
+  var L1=57+L
+  var L2=(0-L/2)
+  L3=L2+''
+  L4=L1+''
+
+
+  // Hack regexp test for linux ASV bug where String(12.83) = ":2.83"
+  regexp=/^\d+\.*\d*$/
+  if (!regexp.test(L3)) L3=-15
+  if (!regexp.test(L4)) { L4=200;L3=257/2 }
+
+  // create the svg for the blub, IDs are important.
+  this.group=parseXML('<g><g><g transform="translate(-30,-30)"><path  id="gloves-'+this.id+'" fill="#F69866" stroke="#000000" stroke-width="1.89" d="M44.294,31.584v7.413c0,3.479-2.82,6.3-6.3,6.3	H19.266c-3.479,0-6.3-2.82-6.3-6.3v-7.413"/><path fill="#F70F34" stroke="#000000" stroke-width="2.1" d="M35.092,55.844H22.366l-2.475-24.539h17.675L35.092,55.844z"/><g onclick="deleteBlub('+this.id+');"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M38.704,57.176	c0,3.027-2.055,5.482-4.589,5.482H22.644c-2.535,0-4.589-2.455-4.589-5.482c0-3.028,2.055-5.482,4.589-5.482h11.472	C36.649,51.694,38.704,54.148,38.704,57.176z"/><path d="M32.987,58.11h-8.983v-1.634h8.983V58.11z"/></g><path id="body-'+this.id+'" onclick="ShowPath(currentBlub.id,'+this.id+');" fill="#31A458" stroke="#000000" stroke-width="1.9464" d="M46.43,30.645c0,3.583-2.905,6.488-6.488,6.488H17.493c-3.583,0-6.488-2.905-6.488-6.488v-8.074c0-3.583,2.905-6.488,6.488-6.488h22.449c3.583,0,6.488,2.905,6.488,6.488V30.645z"/><g onclick="expandBlub('+this.id+');"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M37.666,11.782c0,3.866-3.134,7-7,7h-4.003c-3.866,0-7-3.134-7-7V7.778c0-3.866,3.134-7,7-7h4.003c3.866,0,7,3.134,7,7V11.782z"/><g id="plus-'+this.id+'"><path d="M33.612,10.835h-9.999V9.017h9.999V10.835z"/><path d="M29.521,14.925V4.927h-1.818v9.999H29.521z"/></g></g><g onmousedown="blubDragOn('+this.id+');" onmouseup="blubDragOff(evt)" onmousemove="dragBlub(evt)"><rect id="apron-'+this.id+'" fill="#F5F8CA" stroke="#000000" stroke-width="1.1056" x="'+L3+'" y="24.43" width="'+L4+'" height="16"/><text pointer-events="none" style="text-anchor:middle;" transform="matrix(1 0 0 1 3.5718 36.4229)"><tspan x="25" y="1" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="12.8" letter-spacing="0.425">'+str+'</tspan></text></g></g></g></g>',gdoc).firstChild
+  this.text=this.group.getElementsByTagName('tspan').item(0)
+  moveBlubTo(this, startx, starty);
+  blubsgroup.appendChild(this.group);
+  try {
+   gdoc.getElementById('apron-'+this.id).setAttribute('x',L2)
+  } catch (e) {
+			// a check on the Linux ASV blub.
+  alert(L2+' Please tell Jim this number')
+  }
+  setTimeout("moveBlub(" + this.id + ")", 10);
+	}
+ return this
+}
+
+function addLine(from, to,type,img,existing) {
+
+ // adds a line from node from, to node to, with type type, and image
+ // img (if codepicted) This is only for lines to new blubs, existing is
+ // true if the blub is expanded.
+ 
+ // type is a string looking something like "knows-codepicts-isknownby"
+ // pretty odd way of doing it, but it grew to organically, do it better
+ // next time.
+ 
+  var gel=globalgEL.cloneNode(true)
+		if (type.indexOf("knows")!=-1) {
+   var line=globalLine.cloneNode(true)
+   line.setAttribute("fill", "none");
+   line.setAttribute("x1", from.x);
+   line.setAttribute("y1", from.y);
+			if (existing) {
+    line.setAttribute("x2", to.x);
+    line.setAttribute("y2", to.y);
+			} else {
+    line.setAttribute("x2", from.x);
+    line.setAttribute("y2", from.y);
+			}
+   line.setAttribute("stroke", "#CCFFFF");
+			if (type.indexOf("isknownby")==-1) {
+				line.setAttribute("stroke-dasharray","12 4")
+			}
+   gel.appendChild(line);
+		} else {
+		 if (type.indexOf("isknownby")!=-1) {
+    var line=globalLine.cloneNode(true)
+    line.setAttribute("fill", "none");
+    line.setAttribute("x1", from.x);
+    line.setAttribute("y1", from.y);
+				if (existing) {
+					line.setAttribute("x2", to.x);
+					line.setAttribute("y2", to.y);
+				} else {
+					line.setAttribute("x2", from.x);
+					line.setAttribute("y2", from.y);
+				}
+    line.setAttribute("stroke", "#FFFFCC");
+    line.setAttribute("stroke-width", "3");
+	 		line.setAttribute("stroke-dasharray","12 4")
+    gel.appendChild(line);
+		 }
+	 }
+  if (type.indexOf("codepicts")!=-1) {
+   var line=globalLine.cloneNode(true)
+   line.setAttribute("fill", "none");
+   line.setAttribute("x1", from.x);
+   line.setAttribute("y1", from.y);
+			if (existing) {
+    line.setAttribute("x2", to.x);
+    line.setAttribute("y2", to.y);
+			} else {
+    line.setAttribute("x2", from.x);
+    line.setAttribute("y2", from.y);
+			}
+   line.setAttribute("stroke", "#FFFFFF");
+   line.setAttribute("stroke-width", "1");
+   var circ=globalCirc.cloneNode(true)
+   circ.setAttribute("onclick","getCod(evt,"+from.id+","+to.id+",'"+img+"')")
+  try {
+   // Batik will not let you add script objects to SVG objects.
+   // It does not even let you try/catch it away.
+   // force a batik error another way.
+
+   // To get the codepiction popup working, we add to the circle 
+   // element in svg a reference to the 2 blubs, and the image, 
+   // this does not work in batik!
+
+   var a=getSRC()
+   circ.from=from
+   circ.to=to
+   circ.img=img
+		} catch (e) {
+   // Batik does not let you do this. enhancement request needed in
+   // Batik bugzilla.
+  }
+			if (existing) {
+				var x1=(Number(from.x)+to.x)/2;
+				var y1=(Number(from.y)+to.y)/2;
+			} else {
+    x1=from.x;
+    y1=from.y
+			}
+   circ.setAttribute("cx", x1);
+   circ.setAttribute("cy", y1);
+   gel.appendChild(line);
+   gel.appendChild(circ);
+		} 
+
+ // each blub has an array of all the lines out, and lines in from a blub.
+  from.outlines[from.outlines.length]=line;
+  to.inlines[to.inlines.length]=line;
+  sproingsgroup.appendChild(gel);
+}
+function getCod(evt,a,b,img) {
+
+ // getCod - this displays the codepiction popup, obviously 
+ // does not work in Batik due to previous problems, could
+ // rewrite codepictions with a global var to store the images etc.
+ // but not so neat, not that any of it is exactly neat...
+
+ try {
+  gdoc.getElementById('apron-'+gCirc.from.id).setAttribute('fill','#F5F8CA')
+  gdoc.getElementById('apron-'+gCirc.to.id).setAttribute('fill','#F5F8CA')
+ } catch (e) {}
+ try {
+  gCirc=evt.getTarget()
+  gCirc.from=blubs[a]
+  gCirc.to=blubs[b]
+  gCirc.img=img
+  gCirc.setAttribute("fill", "#0099cc");
+  gCirc.setAttribute("stroke", "#0099cc");
+  gCirc.previousSibling.setAttribute("stroke", "#0099cc");
+  gdoc.getElementById('apron-'+gCirc.from.id).setAttribute('fill','#ffff66')
+  gdoc.getElementById('apron-'+gCirc.to.id).setAttribute('fill','#ffff66')
+  var panel=gdoc.getElementById('photoPanel')
+  try {
+   var trans=gdocDE.currentTranslate;
+   var scale=gdocDE.currentScale;
+		} catch (e) {
+   trans={x:0,y:0}
+   scale=1
+		}
+  x=window.innerWidth-230
+  y=50+(photoCount++)*15
+  if (y>window.innerHeight) photoCount=0
+  y=50+(photoCount++)*15
+  codX=(x-trans.x)/scale;
+  codY=(y-trans.y)/scale;
+  var nde=parseXML('<g><g id="panel'+gPanelCount+'" onmousedown="bringTop(\'panel'+gPanelCount+'\')" transform="translate('+codX+','+codY+')"><g transform="scale('+(1/scale)+')"><rect fill="#0099cc" stroke="#CCFFFF" stroke-width="1" x="0" y="0" width="210" height="190"/><g transform="translate(5,5)" onmousedown="draggingPanel=\'panel'+gPanelCount+'\';bringTop(\'panel'+gPanelCount+'\');draggingPanels=true" onmouseup="draggingPanel=null;draggingPanels=false" onmousemove="dragBlub(evt)"><rect fill="#F5F8CA" stroke="#000000" stroke-width="1" x="0" y="0" width="200" height="24"/><text x="0.2em" y="1.17em" font-weight="bold" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="14.5" letter-spacing="0.525" pointer-events="none">'+gCirc.from.nick.toUpperCase()+'/'+gCirc.to.nick.toUpperCase()+'</text></g><g transform="translate(5,35)"><rect fill="#CCCCCC" stroke="#CCCCCC" stroke-width="4" x="0" y="0" width="200" height="150"/><image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+gCirc.img+'" x="0" y="0" height="150" width="200"/></g><g onclick="closePanel(\'panel'+gPanelCount+'\')" transform="translate(185,9)">'+closebutton+'</g></g></g></g>',gdoc).firstChild
+  gPanelCount++
+  nde.firstChild.circ=gCirc
+  panel.appendChild(nde)
+	} catch (e) {}
+}
+
+function moveBlubTo(blub, x, y) {
+
+ // This moves a blub to position x,y !
+ // taking its lines with it.
+
+ blub.group.setAttribute("transform", "translate("+x+","+y+")");
+ blub.groupx=x;
+ blub.groupy=y;
+ var bi=blub.inlines
+ var bil=bi.length
+ for (var i=0; i<bil; i++) {
+  var bili=bi[i]
+  try {
+   bili.setAttribute("x2", x);
+   bili.setAttribute("y2", y);
+   if (bili.nextSibling) {
+    x1=(Number(bili.getAttribute("x1"))+x)/2
+    y1=(Number(bili.getAttribute("y1"))+y)/2
+    bili.nextSibling.setAttribute("cx", x1);
+    bili.nextSibling.setAttribute("cy", y1);
+	 	}
+   if (bili.previousSibling) {
+    bili.previousSibling.setAttribute("x2", x);
+    bili.previousSibling.setAttribute("y2", y);
+	 	}
+	 } catch (e) {}
+ }
+ var bo=blub.outlines
+ var bol=bo.length
+ for (var i=0; i<bol; i++) {
+  var boli=bo[i]
+		if (boli) {
+   boli.setAttribute("x1", x);
+   boli.setAttribute("y1", y);
+   if (boli.nextSibling) {
+    x1=(Number(boli.getAttribute("x2"))+x)/2
+    y1=(Number(boli.getAttribute("y2"))+y)/2
+    boli.nextSibling.setAttribute("cx", x1);
+    boli.nextSibling.setAttribute("cy", y1);
+ 		}
+   if (boli.previousSibling) {
+    boli.previousSibling.setAttribute("x1", x);
+    boli.previousSibling.setAttribute("y1", y);
+  	}
+		}
+ }
+}
+
+
+function blubDragOn(id) {
+
+ // Called when you start dragging a blub.
+
+ try {
+  el=gdoc.getElementById("highlightGroup")
+ 	while (el.hasChildNodes) {
+   el.removeChild(el.firstChild)
+ 	}
+ } catch (e) {}
+ draggingPanels=false
+ blubs[id].dragState=1;
+ currentBlubId=id;
+}
+
+function blubDragOff() {
+
+ // called when you finish dragging a blub.
+
+ draggingPanels=false
+ if (currentBlubId != -1) {
+  blubs[currentBlubId].dragState=0;
+  currentBlubId=-1;
+ }
+}
+
+function dragBlub(evt) {
+ 
+ // Called as you drag the blub.
+
+ if (currentBlubId != -1) {
+  var theBlub=blubs[currentBlubId];
+  if (theBlub.dragState) {
+   nowToX=evt.getClientX();
+   nowToY=evt.getClientY();
+   // handle the current zoom and pan
+  try {
+   var trans=gdocDE.currentTranslate;
+   var scale=gdocDE.currentScale;
+		} catch (e) {
+   trans={x:0,y:0}
+   scale=1
+		}
+   nowToX=(nowToX-trans.x)/scale;
+   nowToY=(nowToY-trans.y)/scale;
+   theBlub.x=nowToX;
+   theBlub.y=nowToY;
+   moveBlubTo(theBlub, nowToX, nowToY);
+   try {
+				if (currentBlub==theBlub) {
+     var focusCirc=document.getElementById('focusCirc')
+     focusCirc.firstChild.setAttribute('transform','translate('+nowToX+','+nowToY+')')
+				}
+  	} catch (e) {}
+  }
+ }
+ panelDrag(evt)
+}
+
+draggingPanels=false
+function panelDrag(evt) {
+ // called as you drag any of the panels.
+
+ if (draggingPanels) {
+  var X=evt.getClientX()-24;
+  var Y=evt.getClientY()-18;
+  // handle the current zoom and pan
+  try {
+   var trans=gdocDE.currentTranslate;
+   var scale=gdocDE.currentScale;
+		} catch (e) {
+   trans={x:0,y:0}
+   scale=1
+		}
+  X=((X-trans.x)/scale);
+  Y=((Y-trans.y)/scale);
+  var panel=gdoc.getElementById(draggingPanel)
+  panel.setAttribute("transform","translate("+X+","+Y+")");
+	}
+}
+
+function bringTop(id) {
+
+ // cannot remember what this does, brings something to the
+ // top presumably...  It appears to bring the codepiction panel 
+ // to the top, but also changes the colour of the two blubs mentioned 
+ // in that codepictions aprons.
+
+ var panelID=gdoc.getElementById(id).parentNode
+ var panel=panelID.parentNode
+ var nde=panel.removeChild(panelID)
+ panel.appendChild(nde)
+ try {
+  gdoc.getElementById('apron-'+gCirc.from.id).setAttribute('fill','#F5F8CA')
+  gdoc.getElementById('apron-'+gCirc.to.id).setAttribute('fill','#F5F8CA')
+ } catch (e) {}
+ try {
+  gCirc=nde.firstChild.circ
+  gCirc.setAttribute("fill", "#0099cc");
+  gCirc.setAttribute("stroke", "#0099cc");
+  gCirc.previousSibling.setAttribute("stroke", "#0099cc");
+  gdoc.getElementById('apron-'+gCirc.from.id).setAttribute('fill','#ffff66')
+  gdoc.getElementById('apron-'+gCirc.to.id).setAttribute('fill','#ffff66')
+	} catch (e) {}
+}
+
+
+function deleteBlub(id) {
+
+ // deletes a blub, probably want to change this to not delete the svg
+ // but simply to change the display property to none, so you can bring
+ // it back later.
+
+  var theBlub=blubs[id];
+  for (var i=0; i<theBlub.outlines.length; i++) {
+   try {
+    sproingsgroup.removeChild(theBlub.outlines[i].parentNode);
+			} catch (e) {}
+		}
+  for (var i=0; i<theBlub.inlines.length; i++) {
+   try {
+    sproingsgroup.removeChild(theBlub.inlines[i].parentNode);
+			} catch (e) {}
+ 	}
+  theBlub.group.parentNode.removeChild(theBlub.group)
+
+  theBlub.deleted=1;
+}
+
+
+function findBlub(name) {
+
+ // Silly little function which should not exist any more
+ // the function is one of the few relics from Dean, when
+ // it was more complicated.
+
+ return (blubhash[name])
+}
+
+function expandBlub(id) {
+ // Expand the blub, changes the + to o and requests the new 
+ // data from the server, does nothing if it has already been
+ // expanded. 
+ // Also changes the function on the o to updatePanel, be
+ // careful with the structure of the blub, at the moment it 
+ // is the 3rd g element if you change this, you must also 
+ // change the way you get the onclick reference here.
+
+ theBlub=blubs[id]; 
+	theBlub.group.firstChild.setAttribute("transform","");
+ theBlub.group.firstChild.getElementsByTagName('g').item(2).setAttribute('onclick','updatePanel(blubs['+id+'])')
+
+ if (!theBlub.expanded) {
+  plus=document.getElementById('plus-'+id)
+  while (plus.hasChildNodes()) plus.removeChild(plus.firstChild)
+  plus.appendChild(parseXML('<g><path fill="none" stroke="#000000" stroke-width="2" d="M32.155,9.73c0,1.899-1.539,3.438-3.438,3.438s-3.438-1.54-3.438-3.438c0-1.898,1.54-3.438,3.438-3.438S32.155,7.832,32.155,9.73z"/></g>',document).firstChild)
+  dataReady=0;
+  theBlub.getStuff(theBlub.link,theBlub)
+ }
+}
+
+Blub.prototype.getStuff= function (url,a) {
+
+ // A getStuff function added to the Blub class
+ // so we can use Blub.getStuff to get new data
+ // and keep the data with the blub.
+ // does not work in Batik, so we use global blud ID
+ // there, which obviously means you can only expand
+ // one at a time.
+
+ try {
+  getURL(url,this)
+ } catch (e) {
+  // Hack for Batik.
+  globalBlubBatikId=a.id
+  getURL(url,opComplete)
+ }
+}
+function opComplete(urlRS) {
+
+ // The callback function called when the data url is returned
+ // from the server. 
+
+  try {
+   var doc=parseXML(urlRS.content,null);
+   thisProxy=this
+		} catch (e) {
+   
+  // Batik cannot parse an XML document other than within the
+  // context of the SVG document, so the previous parseXML call
+  // errors, this may change after 1.5b4 which will probably break
+  // this unless they also fix the bug requiring batik to use a
+  // global id for the blub.
+
+
+			thisProxy=blubs[globalBlubBatikId]
+   var doc=parseXML(urlRS.content,gdoc);
+		}
+
+   // get all the foaf:knows elements, and loop over them
+   // not using RDF parser, but you could put mine in here
+   // but it would be slower!
+   // for each element create an object (a,b,c,d)
+   // (sha1,knows|isknownby|codepicts,nick,img)
+   // img is only for codepicts obviously.
+   
+   dirs=doc.getElementsByTagNameNS(foafNS,"knows");
+   dirList=new Array();
+   count=0;
+   var tmp=[]
+   for (var i=0; i < dirs.length; i++) {
+    var d=dirs.item(i)
+    tmp[count]={a:d.getAttributeNS(foafNS, "mbox_sha1sum"),b:"knows",c:d.getAttributeNS(foafNS, "nick")}
+				tmp[tmp[count].a]=tmp[count]
+    count++;
+   }
+   thisProxy.kCount=count
+
+   // same again this time with jim:isKnownBy, but this time 
+   // changing b if the person already exists.
+
+   dirs=doc.getElementsByTagNameNS(jimNS,"isKnownBy");
+   for (var i=0; i < dirs.length; i++) {
+    var d=dirs.item(i)
+    var r=d.getAttributeNS(foafNS, "mbox_sha1sum")
+				if (!tmp[r]) {
+     tmp[count]={a:r,b:"isknownby",c:d.getAttributeNS(foafNS, "nick")}
+	 			tmp[r]=tmp[count]
+     count++;
+				} else {
+     tmp[r].b='knows-isknownby'
+				}
+   }
+   thisProxy.knownCount=dirs.length
+
+   // and again with codepicts.
+
+   dirs=doc.getElementsByTagNameNS(foafNS,"codepiction");
+   for (var i=0; i < dirs.length; i++) {
+    var d=dirs.item(i)
+    var r=d.getAttributeNS(foafNS, "mbox_sha1sum")
+				if (!tmp[r]) {
+     tmp[count]={a:r,b:"codepicts",c:d.getAttributeNS(foafNS, "nick"),d:d.getAttributeNS(imgNS, "naughty")}
+	 			tmp[r]=tmp[count]
+     count++;
+				} else {
+     tmp[r].b+='-codepicts'
+				}
+   }
+   thisProxy.cCount=dirs.length
+
+   // go through all the people we just found, and create a new
+   // Director object for each.
+ 
+			for (i=0;i<tmp.length;i++) {
+    dirList[i]=new Director(tmp[i].a,startURL+tmp[i].a+endURL,tmp[i].b,tmp[i].c,tmp[i].d);
+			}
+
+	  // Get the email addresses, sha1sums, nick etc. for the 
+   // blub you expanded
+
+   dirs=doc.getElementsByTagNameNS(foafNS,"mbox");
+   thisProxy.mboxes=[]
+   for (var i=0; i < dirs.length; i++) {
+    var mbox=dirs.item(i).getAttributeNS(rdfNS, "resource")
+    blubhash[mbox]=thisProxy
+    thisProxy.mboxes[thisProxy.mboxes.length]=mbox
+   }
+   dirs=doc.getElementsByTagNameNS(foafNS,"mbox_sha1sum");
+   for (var i=0; i < dirs.length; i++) {
+    var sha=dirs.item(i).firstChild.data
+    blubhash[sha]=thisProxy
+   }
+    addDirs(thisProxy.id)
+    try {
+     thisProxy.nick=doc.getElementsByTagNameNS(foafNS,"nick").item(0).firstChild.data.toUpperCase()
+     thisProxy.text.firstChild.setData(thisProxy.nick)
+    } catch (e) {	}
+    try {
+     thisProxy.realName=doc.getElementsByTagNameNS(foafNS,"name").item(0).firstChild.data
+    } catch (e) {	}
+    try {
+     thisProxy.homepage=doc.getElementsByTagNameNS(foafNS,"homepage").item(0).firstChild.data
+    } catch (e) {	}
+
+	   // Do Image stuff
+
+   var img=doc.getElementsByTagNameNS(foafNS,"depiction");
+   if (img.item(0)) {
+    var imgurl=img.item(0).getAttributeNS(rdfNS, "resource")
+    found=false
+
+				// Is there an image with polypath etc.?
+
+    descs=doc.getElementsByTagNameNS(rdfNS,"Description");
+				for (i=0;i<descs.length;i++) {
+     var di=descs.item(i)
+					if (di.getAttributeNS(rdfNS, "about")==imgurl) {
+      var polypath=di.getElementsByTagNameNS(imgNS,"polypath").item(0).firstChild.nodeValue;
+      var height=di.getElementsByTagNameNS(imgNS,"height").item(0).firstChild.nodeValue;
+      var width=di.getElementsByTagNameNS(imgNS,"width").item(0).firstChild.nodeValue;
+      thisProxy.depiction=new Depiction(imgurl,height,width,polypath)
+      found=true
+					}
+			 }
+				if (!found) {
+     thisProxy.depiction=new Depiction(imgurl,0,0,'')
+				}
+   } else {
+    thisProxy.depiction=new Depiction('',0,0,'')
+			}
+
+	// Finally call updatePanel, which creates the control panels, and images.
+
+  updatePanel(thisProxy)
+		}
+
+
+function Depiction(img,h,w,path) {
+
+ // Simple depiction object, added as an object so could later
+ // add in the get image size ability needed to scale images
+ // correctly.
+
+ this.img=img
+ this.height=h
+ this.width=w
+ this.path=path
+ return this
+}
+
+function closePanel(id) {
+
+ // closes a panel, called onclick from the close button.
+
+ try {
+  var panel=document.getElementById(id)
+ try {
+  circ=panel.circ
+  circ.setAttribute("fill", "#33cc99");
+  circ.setAttribute("stroke", "#ffffff");
+  circ.previousSibling.setAttribute("stroke", "#ffffff");
+  gdoc.getElementById('apron-'+circ.from.id).setAttribute('fill','#F5F8CA')
+  gdoc.getElementById('apron-'+circ.to.id).setAttribute('fill','#F5F8CA')
+ } catch (e) {}
+  panel.parentNode.removeChild(panel)
+ } catch (e) {}
+}
+
+function updatePanel(theBlub) {
+
+ // changes the panels, to refer to the blub.
+
+ try {
+  try {
+   gdoc.getElementById('apron-'+currentBlub.id).setAttribute('fill','#F5F8CA')
+   gdoc.getElementById('body-'+currentBlub.id).setAttribute('fill','#31A458')
+   gdoc.getElementById('gloves-'+currentBlub.id).setAttribute('fill','#F69866')
+  } catch (E) {}
+  var panel=document.getElementById('Panel')
+  try {
+  while(panel.hasChildNodes()) {
+   panel.removeChild(panel.firstChild)
+	 } 
+ } catch (E) {}
+ theBlub.nick=String(theBlub.nick).toUpperCase()
+ var d=theBlub.depiction
+  try {
+   var trans=gdocDE.currentTranslate;
+   var scale=gdocDE.currentScale;
+		} catch (e) {
+   trans={x:0,y:0}
+   scale=1
+		}
+
+ // calculate positions of the panels
+
+	if (typeof window.innerWidth!='undefined' && window.innerWidth>400) {
+  photoX=((window.innerWidth-250)-trans.x)/scale;
+  photoY=(30-trans.y)/scale;
+  dataX=(20-trans.x)/scale;
+  dataY=((window.innerHeight-220)-trans.y)/scale;
+	} else {
+  photoX=((290)-trans.x)/scale;
+  photoY=(30-trans.y)/scale;
+  dataX=((20)-trans.x)/scale;
+  dataY=(50-trans.y)/scale;
+	}
+
+ // removes the old, then adds the focus circle around the selected blub.
+
+ focusCirc=document.getElementById('focusCirc')
+ while(focusCirc.hasChildNodes()) {
+  focusCirc.removeChild(focusCirc.firstChild)
+	} 
+ focusCirc.appendChild(parseXML('<circle transform="translate('+(theBlub.x)+','+(theBlub.y)+')" cx="-1.8" cy="2" r="29" stroke-width="0" fill="#0099cc" stroke="#CCFFFF"/>',document).firstChild)
+
+// create the image panel, if using a polygon
+
+	if (d && d.imgurl!='') {
+ 	if (d.height!=0) {
+   var nde=parseXML('<g><g id="panel1" onmousedown="bringTop(\'panel1\')" transform="translate('+photoX+','+photoY+')"><g transform="scale('+(1/scale)+')"><rect fill="#0099cc" id="rect1-'+theBlub.id+'" stroke="#CCFFFF" stroke-width="1" x="0" y="0" width="210" height="190"/><g transform="translate(5,5)" onmousedown="draggingPanel=\'panel1\';bringTop(\'panel1\');draggingPanels=true" onmouseup="draggingPanel=null;draggingPanels=false" onmousemove="dragBlub(evt)"><rect id="rect2-'+theBlub.id+'" fill="#F5F8CA" stroke="#000000" stroke-width="1" x="0" y="0" width="200" height="24"/><text x="0.2em" y="1.17em" font-weight="bold" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="14.5" letter-spacing="0.525" pointer-events="none">'+theBlub.nick+'</text></g><g transform="translate(5,34)"><rect id="rect3-'+theBlub.id+'" fill="#CCCCCC" stroke="#CCCCCC" stroke-width="1" x="0" y="0" width="200" height="150"/><image id="img'+theBlub.id+'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+d.img+'" x="0" y="0" height="'+d.height+'" width="'+d.width+'" clip-path="url(#n'+theBlub.id+')"/><clipPath id="n'+theBlub.id+'"><path d="'+d.path+'"/></clipPath></g><g id="close-'+theBlub.id+'" onclick="closePanel(\'panel1\')" transform="translate(190,5)">'+closebutton+'</g></g></g></g>',gdoc).firstChild
+   panel.appendChild(nde)
+   var bb=gdoc.getElementById('img'+theBlub.id).nextSibling.getBBox()
+   var h=bb.height
+   var w=bb.width
+   var mscale=(150/h)
+   hwidth=bb.width*mscale
+   if (hwidth<130) hwidth=130
+   if (hwidth>(150/w)*bb.width) hwidth+=30
+   gdoc.getElementById('img'+theBlub.id).setAttribute('transform','scale('+mscale+') translate(-'+(bb.x)+',-'+bb.y+')')
+   gdoc.getElementById('rect1-'+theBlub.id).setAttribute('width',hwidth)
+   gdoc.getElementById('rect2-'+theBlub.id).setAttribute('width',hwidth-10)
+   gdoc.getElementById('rect3-'+theBlub.id).setAttribute('width',hwidth-10)
+   gdoc.getElementById('close-'+theBlub.id).setAttribute('transform','translate('+(hwidth-26)+',9)')
+ 	} else {
+
+// create an image panel, if not using a polygon.
+
+   var nde=parseXML('<g><g id="panel1" onmousedown="bringTop(\'panel1\')" transform="translate('+photoX+','+photoY+')"><g transform="scale('+(1/scale)+')"><rect fill="#0099cc" id="rect1-'+theBlub.id+'" stroke="#CCFFFF" stroke-width="1" x="0" y="0" width="210" height="190"/><g transform="translate(5,5)" onmousedown="draggingPanel=\'panel1\';bringTop(\'panel1\');draggingPanels=true" onmouseup="draggingPanel=null;draggingPanels=false" onmousemove="dragBlub(evt)"><rect id="rect2-'+theBlub.id+'" fill="#F5F8CA" stroke="#000000" stroke-width="1" x="0" y="0" width="200" height="24"/><text x="0.2em" y="1.17em" font-weight="bold" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="14.5" letter-spacing="0.525" pointer-events="none">'+theBlub.nick+'</text></g><g transform="translate(5,35)"><rect id="rect3-'+theBlub.id+'" fill="#CCCCCC" stroke="#CCCCCC" stroke-width="4" x="0" y="0" width="200" height="150"/><image id="img'+theBlub.id+'" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+d.img+'" x="0" y="0" height="150" width="200"/></g><g id="close-'+theBlub.id+'" onclick="closePanel(\'panel1\')" transform="translate(185,9)">'+closebutton+'</g></g></g></g>',gdoc).firstChild
+   panel.appendChild(nde)
+	 }
+	}
+ var str=''
+
+ // add all the email addresses, and homepage.
+
+ try {
+ 	for (i=0;i<theBlub.mboxes.length;i++) {
+  str+='<tspan x="10" dy="1.3em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="11.5" letter-spacing="0.525" stroke="none" fill="#33cc99"><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+theBlub.mboxes[i]+'">'+theBlub.mboxes[i].substr(7,1000)+'</a></tspan>'
+ 	}
+ } catch (e) {}
+  if (''+theBlub.homepage!='undefined' && theBlub.homepage!='') {
+   homepage='<tspan x="10" dy="1.3em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="11.5" letter-spacing="0.525" stroke="none" fill="#33cc99"><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="'+theBlub.homepage+'" target="_blank">homepage</a></tspan>'
+  } else {
+   homepage=''
+  }
+
+ // create the svg for the main info panel.
+
+  var nde=parseXML('<g><g id="panel2" onmousedown="bringTop(\'panel2\')" transform="translate('+dataX+','+dataY+')"><g transform="scale('+(1/scale)+')"><rect fill="#0099cc" stroke="#CCFFFF" stroke-width="1" x="0" y="0" width="195" height="190"/><g transform="translate(5,5)" onmousedown="draggingPanel=\'panel2\';bringTop(\'panel2\');draggingPanels=true" onmouseup="draggingPanel=null;draggingPanels=false" onmousemove="dragBlub(evt)"><rect fill="#ffff66" stroke="#000000" stroke-width="1" x="0" y="0" width="185" height="24"/><text x="0.2em" y="1.17em" font-weight="bold" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="14.5" letter-spacing="0.525" pointer-events="none">'+theBlub.nick+'</text></g><g transform="translate(5,35)"><rect fill="white" stroke="#000000" stroke-width="1" x="0" y="0" width="185" height="150"/><text x="0" y="1.3em"><tspan x="5" dy="0em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="14.5" letter-spacing="0.525">'+theBlub.realName.toUpperCase()+'</tspan>'+str+'<tspan x="10" dy="2.0em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="10.5" letter-spacing="0.525">Knows: '+theBlub.kCount+'</tspan><tspan x="10" dy="1.6em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="10.5" letter-spacing="0.525">Codepictions: '+theBlub.cCount+'</tspan><tspan x="10" dy="1.6em" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="10.5" letter-spacing="0.525">Known by: '+theBlub.knownCount+'</tspan>'+homepage+'</text></g><g id="close2-'+theBlub.id+'" onclick="closePanel(\'panel2\')" transform="translate(170,9)">'+closebutton+'</g></g></g></g>',gdoc).firstChild
+  panel.appendChild(nde)
+  gdoc.getElementById('apron-'+theBlub.id).setAttribute('fill','#ffff66')
+  gdoc.getElementById('body-'+theBlub.id).setAttribute('fill','#CCFFFF')
+  gdoc.getElementById('gloves-'+theBlub.id).setAttribute('fill','#FFFFFF')
+  currentBlub=theBlub
+	} catch (e) {}
+
+
+		// The code that makes blubs further away dim into the background
+		// needs work, odd blubs not dimmed
+		if (FADE=='true') {
+ 		for (var i=0;i<blubs.length;i++) {
+ 			var bli=blubs[i];
+ 			if (bli!=theBlub && !theBlub.neighbours[bli.id]) {
+ 				bli.group.firstChild.setAttribute("style","opacity:0.2");
+ 				var ol=bli.outlines;
+ 				for (var j=0;j<ol.length;j++) {
+ 					ol[j].parentNode.setAttribute("style","opacity:0.2");
+ 				}
+ 				var ol=bli.inlines;
+ 				for (var j=0;j<ol.length;j++) {
+ 					ol[j].parentNode.setAttribute("style","opacity:0.2");
+ 				}
+ 			} else {
+ 				bli.group.firstChild.setAttribute("style","opacity:1");
+ 				var ol=bli.outlines;
+ 				for (var j=0;j<ol.length;j++) {
+ 					ol[j].parentNode.setAttribute("style","opacity:1");
+ 				}
+ 				var ol=bli.inlines;
+ 				for (var j=0;j<ol.length;j++) {
+ 					ol[j].parentNode.setAttribute("style","opacity:1");
+ 				}
+ 			}
+ 		}
+		}
+}
+
+
+function addDirs(id) {
+
+  // adds all the "Director" blubs to the screen, called from the 
+  // callback function
+
+  var theBlub=blubs[id];
+  var numBlubsToCreate=dirList.length;
+  var offset=Math.random() * 2 * Math.PI;
+   for (var i=0; i <dirList.length; i++) {
+    var dir=dirList[i];
+    var existing=findBlub(dir.name);
+    if (typeof existing=='undefinied' || existing == null) {
+        newX=theBlub.x + Math.round(Math.cos(2*Math.PI/numBlubsToCreate*(i%numBlubsToCreate) + offset) * (numBlubsToCreate*4+50));
+        newY=theBlub.y + 1.2*Math.round(Math.sin(2*Math.PI/numBlubsToCreate*(i%numBlubsToCreate) + offset) * (numBlubsToCreate*4+50));
+        var blub=new Blub(newX, newY, theBlub.x, theBlub.y, false, dir.name, dir.link,dir.nick);
+								theBlub.neighbours.push(blub)
+								theBlub.neighbours[blub.id]=theBlub.neighbours[theBlub.neighbours.length-1]
+								blub.neighbours.push(theBlub)
+								blub.neighbours[theBlub.id]=blub.neighbours[blub.neighbours.length-1]
+        addLine(theBlub, blub,dir.type,dir.img,false);
+
+								// How much smaller the unexpanded blubs are.
+
+								blub.group.firstChild.setAttribute("transform","scale(0.7)");
+      } else {
+							if (existing.deleted != 1) {
+
+								// Add the lines to an existing blub.
+
+										theBlub.neighbours.push(existing);
+			  					theBlub.neighbours[existing.id]=theBlub.neighbours[theBlub.neighbours.length-1];
+				  				existing.neighbours.push(theBlub);
+										existing.neighbours[theBlub.id]=existing.neighbours[existing.neighbours.length-1]
+          addLine(theBlub, existing,dir.type,dir.img,true);
+									} else {
+
+										// This is where you would bring a deleted blub back to life,
+										// then add the existing lines etc.
+
+									}
+      }
+ }
+
+
+ theBlub.expanded=1;
+}
+
+
+
+function moveBlub(id) {
+
+ // The recursively called moveBlub function 
+ // creates the explosions.
+ // explosionDelta effects the number of steps it takes.
+
+  var explosionDelta=6.0
+  var theBlub=blubs[id];
+  nowX=theBlub.groupx;
+  nowY=theBlub.groupy;
+  var toX=theBlub.x;
+  var toY=theBlub.y;
+  var dx=toX-nowX;
+  var dy=toY-nowY;
+
+  if (dx > -3 && dx < 3 && dy > -3 && dy < 3) {
+    nowToX=toX;
+    nowToY=toY;
+  } else {
+    nowToX=nowX + dx/explosionDelta;
+    nowToY=nowY + dy/explosionDelta;
+    setTimeout("moveBlub(" + id + ")", 10);
+  }
+
+  moveBlubTo(theBlub, nowToX, nowToY);
+}
+
+// Key handling code on the form...
+
+function keyPress(evt) {
+  var cc=evt.charCode;
+  if (cc < 32) {
+   if (cc == 13 || cc == 10) {
+    go();
+   } 
+   return;
+  }
+  var inp=String.fromCharCode(cc);
+  form.getFirstChild().appendData(inp);
+}
+
+function keyDown(evt) {
+ var code=evt.keyCode;
+ if (code == 8) {
+  var s=form.getFirstChild();
+  if (s.length > 1) {
+   s.deleteData(s.length-1, 1);
+  }
+ } 
+}
+
+function getFormValue() {
+  return form.getFirstChild().nodeValue;
+}
+
+function go() {
+
+ // called on "submitting" the form, does a check that there is an @
+ // in the field, this is where you could handle nick/name etc. with
+ // another callback to a suitable service such as identify.1?
+
+  var fullName=String(getFormValue());
+		if (fullName.indexOf('@')>1) {
+   doStuff(fullName)
+		}
+}
+	function doStuff(fullName) {
+
+  // creates a blub from an email address "fullname" add mailto:
+  // if necessary.  Positioning changes in a pretty crap way.
+ 
+		a={id:''}
+		fullName=fullName.Trim()
+  if (fullName.length > 0) {
+   var nick=fullName.substring(0,fullName.indexOf('@'))
+   if (fullName.indexOf('mailto:')!=0) fullName='mailto:'+fullName
+			fullName=calcSHA1(fullName)
+   var idName=startURL+fullName+endURL;
+			if (typeof findBlub(fullName)=='undefined') {
+    a=new Blub(280+((searchCount%3)*100), 200+((searchCount%3)*100), 280+((searchCount%3)*100), 200+((searchCount%3)*100), 1, fullName, idName,nick,'');
+    searchCount++
+			} else {
+
+				// update a panel if the blub was found, should probably want 
+    // to do some zoom/pan stuff here to bring it into the middle
+    // of the viewport
+
+    updatePanel(a=findBlub(fullName))
+			}
+    document.getElementById("formpanel").setAttribute('display','none')
+    form.getFirstChild().setData(' ');
+  }
+		return a.id
+	}
+
+	function doStuffSha1(sha1) {
+
+  // same as doStuff but for a sha1 - does not do updatePanel if it
+  // exists - should probably combine these two functions.
+
+  var nick='PERSON'
+  var fullName=""
+  var idName=startURL+sha1+endURL;
+  a=new Blub(280+((searchCount%3)*100), 200+((searchCount%3)*100), 280+((searchCount%3)*100), 200+((searchCount%3)*100), 1, fullName, idName,nick,'');
+		expandBlub(a.id)
+  searchCount++
+  document.getElementById("formpanel").setAttribute('display','none')
+  form.getFirstChild().setData(' ');
+	}
+
+
+	function zoom() {
+
+  // handle the fixing the viewport - called on zoom.
+  // not done on Batik 1.5b4
+
+  try {
+   var trans=gdocDE.currentTranslate;
+   var scale=gdocDE.currentScale;
+		} catch (e) {
+   trans={x:0,y:0}
+   scale=1
+		}
+  X=((0-trans.x)/scale);
+  Y=((0-trans.y)/scale);
+  var p1=document.getElementById('aboutbox')
+  var p2=document.getElementById('branding')
+  var p3=document.getElementById('formpanel')
+  p1.setAttribute("transform","translate("+X+","+Y+") scale("+(1/scale)+")");
+  p2.setAttribute("transform","translate("+X+","+Y+") scale("+(1/scale)+")");
+  p3.setAttribute("transform","translate("+X+","+Y+") scale("+(1/scale)+")");
+ }
+
+	function ShowPath(b1,b2) {
+
+		// Show a path between 2 blubs
+
+  var col=highlightColours[pathCount++%highlightColours.length]
+  var high1=blubs[b1]; 
+  var high2=blubs[b2]; 
+  makeGraph()
+  high1.tree=findShortestPathsFromNode(high1.name)
+  nde=high1.tree[high2.name]
+		while (nde) {
+			if (nde.par) {
+    highlightPath(nde,nde.par,col)
+   } 
+   nde=nde.par
+		}
+ }
+
+	function highlightPath(fromNde,toNde,col) {
+
+  // Highlights the path between two nodes.
+
+  from=blubhash[fromNde.node.id]
+  to=blubhash[toNde.node.id]
+  var gel=globalgEL.cloneNode(true)
+  var line=globalLine.cloneNode(true);
+  line.setAttribute("fill", "none");
+  line.setAttribute("x1", from.groupx);
+  line.setAttribute("y1", from.groupy);
+  line.setAttribute("x2", to.groupx);
+  line.setAttribute("y2", to.groupy);
+  line.setAttribute("stroke", col);
+  gel.appendChild(line);
+  gdoc.getElementById("highlightGroup").appendChild(gel);
+}
+
+// Path Finding Algorithm.
+
+TNodes=[]
+TEdges=[]
+function makeGraph() {
+
+ // Create a graph see 
+ // http://rdfweb.org/people/damian/2002/02/foafnation/
+ // for more info, stolen from Damian.
+
+ var bl;
+	TNodes=[];
+	TEdges=[];
+ // create the Nodes
+ for (var i=0;i<blubs.length;i++) {
+  bl=blubs[i]
+  TNodes.push({id:bl.name,edges:[],visited:false})
+  TNodes[bl.name]=TNodes[TNodes.length-1]
+	}
+ // create the edges
+ for (var i=0;i<TNodes.length;i++) {
+  Tn=TNodes[i]
+  nbs=blubhash[Tn.id].neighbours
+		for (var j=0;j<nbs.length;j++) {
+			if (nbs[j]) {
+ 			var nid=nbs[j].id
+    if (!TEdges[nid+'-'+Tn.id]) {
+     TEdges.push({n1:Tn,n2:TNodes[nid]})
+ 				TEdges[nid+'-'+Tn.id]=TEdges[TEdges.length-1]
+ 			}
+			}
+			Tn.edges.push(TEdges[nid+'-'+Tn.id])
+		}
+	}
+}
+function TElement(node,p,e) {
+ this.node=node
+ this.par=p
+ this.edge=e
+}
+function findShortestPathsFromNode(id) {
+ for (var j=0;j<TNodes.length;j++) {
+		TNodes[j].visited=false
+	}
+	TNodes[id].visited=true
+ root=new TElement(TNodes[id],null)
+ var parents=[]
+	parents.push(root)
+ var leaves=[]
+ var continuing=true
+	while (continuing) {
+  children=[]
+  continuing=false
+		for (var j=0;j<parents.length;j++) {
+   par=parents[j]
+   parentNode=par.node
+			for (var k=0;k<parentNode.edges.length;k++) {
+				edge=parentNode.edges[k]
+    if (edge.n1.id==parentNode.id) childNode=edge.n2
+					else childNode=edge.n1
+				if (!childNode.visited) {
+					childNode.visited=true
+					child=new TElement(childNode,par,edge)
+     leaves.push(child)
+					leaves[childNode.id]=child;
+					children.push(child)
+					continuing=true
+				}
+			}
+		}
+		parents=children
+	}
+ return leaves
+}
+
+// Thats all folks...
+
+]]></script><script xlink:href="sha1.js"/>
+
+<rect id="canvas" x="-1000%" y="-1000%" width="3000%" height="3000%" fill="#99CCEE" onmouseup="blubDragOff(evt)" onmousemove="dragBlub(evt)"/>
+
+<g id="sproings"/>
+<g id="highlightGroup"/>
+<g id="focusCirc"/>
+<g id="blubs"/>
+<g id="branding">
+<g id="foafnaut" transform="translate(10,10)">
+<path fill="#0099CC" stroke="#FFFFFF" d="M0.5,40.5h225v-40H0.5V40.5z"/>
+		<g onclick="document.getElementById('formpanel').setAttribute('display','block')">
+			<path fill="#FFFFFF" stroke="#000000" d="M216.938,22.717c0,4.795-3.828,8.68-8.551,8.68h-7.884c-4.723,0-8.551-3.885-8.551-8.68
+				v-8.004c0-4.792,3.828-8.679,8.551-8.679h7.884c4.723,0,8.551,3.887,8.551,8.679V22.717z"/>
+			<path d="M198.355,26.768l-1.9-1.9l5.336-5.333l1.898,1.898L198.355,26.768z"/>
+			<path fill="#38CC99" stroke="#000000" stroke-width="1.7438" d="M211.415,16.605c0,2.765-2.24,5.006-5.005,5.006
+				c-2.766,0-5.006-2.241-5.006-5.006c0-2.764,2.24-5.006,5.006-5.006C209.175,11.6,211.415,13.841,211.415,16.605z"/>
+		</g>
+		<g onclick="document.getElementById('aboutbox').setAttribute('display','block')">
+			<path fill="#FFFFFF" stroke="#000000" d="M182.605,23.087c0,4.795-3.828,8.68-8.551,8.68h-7.883c-4.723,0-8.551-3.885-8.551-8.68
+				v-8.005c0-4.792,3.828-8.679,8.551-8.679h7.883c4.723,0,8.551,3.887,8.551,8.679V23.087z"/>
+			<path d="M173.668,21.835l2.021-0.002v-4.856h-2.021V21.835z"/>
+			<path d="M177.852,22.816l2.023-0.001v-5.839h-2.021L177.852,22.816z"/>
+			<path d="M179.865,19.455v-2.594l-9.394,0.001v2.593H179.865z"/>
+			<path fill="#38CC99" stroke="#000000" stroke-width="1.7438" d="M170.904,18.312c0,2.765-2.24,5.005-5.005,5.005
+				c-2.766,0-5.007-2.24-5.007-5.005s2.241-5.006,5.007-5.006C168.664,13.306,170.904,15.548,170.904,18.312z"/>
+		</g>
+		<g>
+			<path fill="#FFFF66" d="M19.856,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22H9.409
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.754,0,1.472,0.063,2.151,0.188
+				s1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M38.185,22.973c0,2.661-0.761,4.779-2.286,6.355c-1.524,1.575-3.615,2.364-6.272,2.364
+				c-2.858,0-4.999-0.794-6.422-2.38c-1.424-1.586-2.136-3.699-2.136-6.34c0-2.399,0.767-4.452,2.3-6.159
+				c1.535-1.707,3.621-2.56,6.258-2.56c2.647,0,4.735,0.788,6.264,2.364C37.42,18.194,38.185,20.313,38.185,22.973z M33.524,22.973
+				c0-1.309-0.345-2.473-1.033-3.493c-0.689-1.02-1.641-1.529-2.857-1.529c-1.397,0-2.397,0.465-3,1.395
+				c-0.604,0.93-0.905,2.14-0.905,3.628c0,1.389,0.362,2.574,1.086,3.554c0.723,0.979,1.693,1.47,2.909,1.47
+				c1.357,0,2.33-0.398,2.917-1.192C33.23,26.01,33.524,24.732,33.524,22.973z"/>
+			<path fill="#FFFF66" d="M59.155,28.91l-3.597,2.982c-0.552-0.183-1.034-0.473-1.446-0.865c-0.412-0.396-0.683-0.848-0.814-1.354
+				l-2.835,1.612c-0.11,0.061-0.299,0.123-0.565,0.188c-0.266,0.066-0.491,0.1-0.671,0.1c-2.182,0-3.983-0.75-5.406-2.249
+				c-1.423-1.5-2.134-3.583-2.134-6.249c0-2.536,0.74-4.626,2.219-6.272c1.479-1.645,3.366-2.468,5.66-2.468
+				c0.916,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.569,0.977l2.612-0.964l0.884,0.281v10.352
+				c0,0.905,0.158,1.625,0.474,2.157C57.987,28.222,58.482,28.629,59.155,28.91z M52.816,26.66v-7.103
+				c-0.302-0.375-0.698-0.696-1.186-0.964c-0.488-0.269-1.085-0.402-1.789-0.402c-1.017,0-1.861,0.37-2.53,1.109
+				c-0.67,0.739-1.004,1.965-1.004,3.674c0,1.359,0.312,2.449,0.936,3.268c0.625,0.822,1.5,1.231,2.628,1.231
+				c0.644,0,1.249-0.097,1.812-0.292C52.248,26.988,52.625,26.814,52.816,26.66z"/>
+			<path fill="#FFFF66" d="M72.205,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22h-1.527
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.755,0,1.472,0.063,2.151,0.188
+				c0.68,0.125,1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M89.488,31.371h-4.621V21.18c0-0.596-0.209-1.12-0.631-1.578c-0.42-0.458-1.066-0.688-1.935-0.688
+				c-0.831,0-1.526,0.177-2.086,0.532c-0.56,0.354-1.005,0.686-1.334,0.995v10.929H74.26V15.178l4.621-0.321v1.567l1.914-1.108
+				c0.572-0.334,1.157-0.574,1.755-0.721s1.193-0.22,1.786-0.22c1.597,0,2.855,0.495,3.774,1.485
+				c0.919,0.991,1.379,2.295,1.379,3.914V31.371z"/>
+			<path fill="#FFFF66" d="M111.202,28.91l-3.596,2.982c-0.553-0.183-1.035-0.473-1.447-0.865c-0.412-0.396-0.683-0.848-0.813-1.354
+				l-2.836,1.612c-0.11,0.061-0.299,0.123-0.565,0.188c-0.266,0.066-0.491,0.1-0.671,0.1c-2.181,0-3.985-0.75-5.406-2.249
+				c-1.424-1.5-2.135-3.583-2.135-6.249c0-2.536,0.74-4.626,2.219-6.272c1.479-1.645,3.366-2.468,5.659-2.468
+				c0.917,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.569,0.977l2.612-0.964l0.884,0.281v10.352
+				c0,0.905,0.158,1.625,0.475,2.157C110.035,28.222,110.529,28.629,111.202,28.91z M104.863,26.66v-7.103
+				c-0.302-0.375-0.698-0.696-1.185-0.964c-0.49-0.269-1.084-0.402-1.791-0.402c-1.017,0-1.861,0.37-2.529,1.109
+				c-0.671,0.739-1.004,1.965-1.004,3.674c0,1.359,0.312,2.449,0.937,3.268c0.623,0.822,1.499,1.231,2.626,1.231
+				c0.646,0,1.25-0.097,1.813-0.292C104.295,26.988,104.673,26.814,104.863,26.66z"/>
+			<path fill="#FFFF66" d="M130.158,31.371h-4.62v-1.834l-1.911,1.086c-0.531,0.301-1.09,0.533-1.67,0.699
+				c-0.582,0.166-1.209,0.25-1.881,0.25c-1.595,0-2.852-0.495-3.769-1.484c-0.919-0.99-1.378-2.299-1.378-3.926V15.178h4.621v9.933
+				c0,0.593,0.209,1.114,0.631,1.565c0.42,0.451,1.066,0.677,1.936,0.677c0.811,0,1.506-0.173,2.086-0.518
+				c0.58-0.346,1.025-0.663,1.335-0.954V15.178h4.62V31.371z"/>
+			<path fill="#FFFF66" d="M143.043,28.559l-3.355,3.134c-1.387-0.573-2.426-1.409-3.119-2.512
+				c-0.693-1.101-1.039-2.415-1.039-3.942v-7.087h-1.527v-2.973h1.527V9.833l4.621-0.321v5.666h2.41v2.973h-2.41v5.792
+				c0,1.158,0.261,2.116,0.783,2.882C141.456,27.589,142.159,28.166,143.043,28.559z"/>
+		</g>
+		<path fill="#99CCEE" d="M171.128,37.849l-10.364-3.589h20.268L171.128,37.849z"/>
+		<path fill="#99CCEE" d="M223.438,18.813l-3.589,10.364V8.911L223.438,18.813z"/>
+ </g>
+</g>
+
+<g id="formpanel">
+<g transform="translate(10,10)">
+		<path fill="#0099CC" stroke="#FFFFFF" d="M0.5,40.5h713v-40H0.5V40.5z"/>	<text><tspan x="229" y="18" fill="#FFFFFF" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="12">Enter email address</tspan><tspan x="229" dy="1.1em" fill="#FFFFFF" font-family="TrebuchetMS,Tahoma,Lucidia,Arial,Helvetica,sans-serif" font-size="12">in the field</tspan></text>
+		<path fill="#FFFFFF" d="M344.5,30.5h338v-22h-338V32.5z" onkeydown="keyDown(evt)" onkeypress="keyPress(evt)"/>
+<text id="form" x="350" y="24" pointer-events="none" font-family="'Trebuchet MS', sans-serif" font-size="14" stroke-width="1.2" fill="black"> </text>
+		<g onclick="go()" transform="translate(3,-1)">
+			<path fill="#38CC99" stroke="#000000" stroke-width="1.5566" d="M702.229,22.877c0,3.865-3.135,7-7,7h-4.004
+				c-3.865,0-7-3.135-7-7v-4.003c0-3.867,3.135-7,7-7h4.004c3.865,0,7,3.133,7,7V22.877z"/>
+			<path d="M698.174,20.112v1.818h-9.999v-1.818"/>
+			<path d="M694.083,26.02v-9.998h-1.817v10h1.817V26.02z"/>
+		</g>
+		<g onclick="document.getElementById('formpanel').setAttribute('display','none')">
+			<path fill="#FFFFFF" stroke="#000000" d="M216.938,22.717c0,4.795-3.828,8.68-8.551,8.68h-7.883c-4.723,0-8.551-3.885-8.551-8.68
+				v-8.004c0-4.792,3.828-8.679,8.551-8.679h7.883c4.723,0,8.551,3.887,8.551,8.679V22.717z"/>
+			<path d="M198.355,26.768l-1.899-1.9l5.336-5.333l1.898,1.898L198.355,26.768z"/>
+			<path fill="#F70F34" stroke="#000000" stroke-width="1.7438" d="M211.415,16.605c0,2.765-2.24,5.006-5.005,5.006
+				c-2.766,0-5.006-2.241-5.006-5.006c0-2.764,2.241-5.006,5.006-5.006C209.175,11.6,211.415,13.841,211.415,16.605z"/>
+		</g>
+		<g onclick="document.getElementById('aboutbox').setAttribute('display','block')">
+			<path fill="#FFFFFF" stroke="#000000" d="M182.605,23.087c0,4.795-3.828,8.68-8.551,8.68h-7.883c-4.723,0-8.551-3.885-8.551-8.68
+				v-8.005c0-4.792,3.828-8.679,8.551-8.679h7.883c4.723,0,8.551,3.887,8.551,8.679V23.087z"/>
+			<path d="M173.667,21.835l2.021-0.002v-4.856h-2.021L173.667,21.835z"/>
+			<path d="M177.852,22.816l2.022-0.001v-5.839h-2.021L177.852,22.816z"/>
+			<path d="M179.865,19.455v-2.594l-9.393,0.001v2.593H179.865z"/>
+			<path fill="#38CC99" stroke="#000000" stroke-width="1.7438" d="M170.905,18.312c0,2.765-2.241,5.005-5.005,5.005
+				c-2.766,0-5.006-2.24-5.006-5.005s2.241-5.006,5.006-5.006C168.664,13.306,170.905,15.548,170.905,18.312z"/>
+		</g>
+		<g>
+			<path fill="#FFFF66" d="M19.856,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22H9.409
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.754,0,1.472,0.063,2.151,0.188
+				s1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M38.185,22.973c0,2.661-0.761,4.779-2.286,6.355c-1.524,1.575-3.615,2.364-6.272,2.364
+				c-2.858,0-4.999-0.794-6.422-2.38c-1.424-1.586-2.136-3.699-2.136-6.34c0-2.399,0.767-4.452,2.3-6.159
+				c1.535-1.707,3.621-2.56,6.258-2.56c2.647,0,4.735,0.788,6.264,2.364C37.42,18.194,38.185,20.313,38.185,22.973z M33.524,22.973
+				c0-1.309-0.345-2.473-1.033-3.493c-0.689-1.02-1.641-1.529-2.857-1.529c-1.397,0-2.397,0.465-3,1.395
+				c-0.604,0.93-0.905,2.14-0.905,3.628c0,1.389,0.362,2.574,1.086,3.554c0.723,0.979,1.693,1.47,2.909,1.47
+				c1.357,0,2.33-0.398,2.917-1.192C33.23,26.01,33.524,24.732,33.524,22.973z"/>
+			<path fill="#FFFF66" d="M59.155,28.91l-3.597,2.982c-0.552-0.183-1.034-0.473-1.446-0.865c-0.412-0.396-0.683-0.848-0.814-1.354
+				l-2.835,1.612c-0.11,0.061-0.299,0.123-0.565,0.188c-0.266,0.066-0.491,0.1-0.671,0.1c-2.182,0-3.983-0.75-5.406-2.249
+				c-1.423-1.5-2.134-3.583-2.134-6.249c0-2.536,0.74-4.626,2.219-6.272c1.479-1.645,3.366-2.468,5.66-2.468
+				c0.916,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.569,0.977l2.612-0.964l0.884,0.281v10.352
+				c0,0.905,0.158,1.625,0.474,2.157C57.987,28.222,58.482,28.629,59.155,28.91z M52.816,26.66v-7.103
+				c-0.302-0.375-0.698-0.696-1.186-0.964c-0.488-0.269-1.085-0.402-1.789-0.402c-1.017,0-1.861,0.37-2.53,1.109
+				c-0.67,0.739-1.004,1.965-1.004,3.674c0,1.359,0.312,2.449,0.936,3.268c0.625,0.822,1.5,1.231,2.628,1.231
+				c0.644,0,1.249-0.097,1.812-0.292C52.248,26.988,52.625,26.814,52.816,26.66z"/>
+			<path fill="#FFFF66" d="M72.205,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22h-1.527
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.755,0,1.472,0.063,2.151,0.188
+				c0.68,0.125,1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M89.488,31.371h-4.621V21.18c0-0.596-0.209-1.12-0.631-1.578c-0.42-0.458-1.066-0.688-1.935-0.688
+				c-0.831,0-1.526,0.177-2.086,0.532c-0.56,0.354-1.005,0.686-1.334,0.995v10.929H74.26V15.178l4.621-0.321v1.567l1.914-1.108
+				c0.572-0.334,1.157-0.574,1.755-0.721s1.193-0.22,1.786-0.22c1.597,0,2.855,0.495,3.774,1.485
+				c0.919,0.991,1.379,2.295,1.379,3.914V31.371z"/>
+			<path fill="#FFFF66" d="M111.202,28.91l-3.596,2.982c-0.553-0.183-1.035-0.473-1.447-0.865c-0.412-0.396-0.683-0.848-0.813-1.354
+				l-2.836,1.612c-0.11,0.061-0.299,0.123-0.565,0.188c-0.266,0.066-0.491,0.1-0.671,0.1c-2.181,0-3.985-0.75-5.406-2.249
+				c-1.424-1.5-2.135-3.583-2.135-6.249c0-2.536,0.74-4.626,2.219-6.272c1.479-1.645,3.366-2.468,5.659-2.468
+				c0.917,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.569,0.977l2.612-0.964l0.884,0.281v10.352
+				c0,0.905,0.158,1.625,0.475,2.157C110.035,28.222,110.529,28.629,111.202,28.91z M104.863,26.66v-7.103
+				c-0.302-0.375-0.698-0.696-1.185-0.964c-0.49-0.269-1.084-0.402-1.791-0.402c-1.017,0-1.861,0.37-2.529,1.109
+				c-0.671,0.739-1.004,1.965-1.004,3.674c0,1.359,0.312,2.449,0.937,3.268c0.623,0.822,1.499,1.231,2.626,1.231
+				c0.646,0,1.25-0.097,1.813-0.292C104.295,26.988,104.673,26.814,104.863,26.66z"/>
+			<path fill="#FFFF66" d="M130.158,31.371h-4.62v-1.834l-1.912,1.086c-0.53,0.301-1.089,0.533-1.67,0.699
+				c-0.582,0.166-1.209,0.25-1.88,0.25c-1.595,0-2.852-0.495-3.769-1.484c-0.919-0.99-1.377-2.299-1.377-3.926V15.178h4.621v9.933
+				c0,0.593,0.209,1.114,0.63,1.565c0.42,0.451,1.066,0.677,1.935,0.677c0.811,0,1.506-0.173,2.086-0.518
+				c0.581-0.346,1.025-0.663,1.335-0.954V15.178h4.62V31.371z"/>
+			<path fill="#FFFF66" d="M143.043,28.559l-3.355,3.134c-1.387-0.573-2.426-1.409-3.119-2.512c-0.694-1.101-1.04-2.415-1.04-3.942
+				v-7.087h-1.527v-2.973h1.527V9.833l4.621-0.321v5.666h2.411v2.973h-2.411v5.792c0,1.158,0.261,2.116,0.783,2.882
+				C141.456,27.589,142.159,28.166,143.043,28.559z"/>
+		</g>
+		<path fill="#99CCEE" d="M171.128,37.849l-10.365-3.589h20.268L171.128,37.849z"/>
+		<path fill="#99CCEE" d="M223.438,18.813l-3.589,10.364V8.911L223.438,18.813z"/>
+</g>
+</g>
+<g id="Panel" onmouseup=" draggingPanels=false"><g/></g>
+<g id="photoPanel" onmouseup=" draggingPanels=false"><g/></g>
+<g id="aboutbox" display="none">
+ <g  transform="translate(10,10)" >
+		<path fill="#0099CC" stroke="#FFFFFF" d="M0.5,583.5h188V0.5H0.5V583.5z"/>
+		<path fill="#99CCEE" stroke="#FFFFFF" stroke-width="1.2426" d="M179.5,40.105H7.5V570.5h172V40.105z"/>
+		<g>
+			<path fill="none" d="M173.5,568.5h-157v-41h157V568.5z"/>
+			<text transform="matrix(1 0 0 1 16.5 540.25)"><tspan x="0" y="0" fill="#009966" font-family="'TrebuchetMS'" font-size="14">For more information, </tspan><tspan x="0" y="17" fill="#009966" font-family="'TrebuchetMS'" font-size="14">see </tspan><tspan x="25.156" y="17" fill="#009966" font-family="'TrebuchetMS'" font-size="14">these </tspan><tspan x="63.513" y="17" fill="#009966" font-family="'TrebuchetMS'" font-size="14">foaf-faq</tspan></text>
+		</g>
+		<g>
+			<path fill="none" d="M174.5,304.5h-157v-44h157V304.5z"/>
+			<text transform="matrix(1 0 0 1 17.5 269.5)"><tspan x="0" y="0">A blue broken line indicates that </tspan><tspan x="0" y="12">the person at the hub knows the </tspan><tspan x="0" y="24">person at the perimeter</tspan></text>
+		</g>
+		<g>
+			<path fill="none" d="M174.5,374.5h-157v-44h157V374.5z"/>
+			<text transform="matrix(1 0 0 1 17.5 339.5)"><tspan x="0" y="0">A yellow broken line indicates that </tspan><tspan x="0" y="12">the person at the perimater knows </tspan><tspan x="0" y="24">the person at the hub</tspan></text>
+		</g>
+		<g>
+			<path fill="none" d="M173.5,517.5h-157v-54h157V517.5z"/>
+			<text transform="matrix(1 0 0 1 16.5 472.5)"><tspan x="0" y="0">Two people joined by a solid white </tspan><tspan x="0" y="12">libne are pictured together (co-</tspan><tspan x="0" y="24">depicted). Click on the green </tspan><tspan x="0" y="36">button to see the picture.</tspan></text>
+		</g>
+		<g>
+			<path fill="none" d="M172.5,431.5h-157v-27h157V431.5z"/>
+			<text transform="matrix(1 0 0 1 15.5 413.5)"><tspan x="0" y="0">Two people joined by a solid blue </tspan><tspan x="0" y="12">line know each other</tspan></text>
+		</g>
+		<g>
+			<g>
+				<path fill="#F69866" stroke="#000000" stroke-width="1.2561" d="M103.127,71.419v4.927c0,2.312-1.875,4.187-4.188,4.187H86.494
+					c-2.312,0-4.187-1.874-4.187-4.187v-4.927"/>
+				<path fill="#F70F34" stroke="#000000" stroke-width="1.3956" d="M97.011,87.541h-8.457l-1.645-16.307h11.747L97.011,87.541z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M99.412,88.426c0,2.012-1.366,3.644-3.051,3.644h-7.623
+						c-1.685,0-3.05-1.631-3.05-3.644c0-2.012,1.366-3.643,3.05-3.643h7.624C98.046,84.784,99.412,86.415,99.412,88.426z"/>
+					<path d="M95.611,89.047h-5.969v-1.086h5.969V89.047z"/>
+				</g>
+				<path fill="#38CC99" stroke="#000000" stroke-width="1.2935" d="M104.546,70.795c0,2.381-1.931,4.312-4.312,4.312H85.315
+					c-2.381,0-4.312-1.93-4.312-4.312v-5.366c0-2.381,1.931-4.312,4.312-4.312h14.919c2.381,0,4.312,1.931,4.312,4.312V70.795z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M98.722,58.259c0,2.569-2.083,4.652-4.652,4.652h-2.661
+						c-2.569,0-4.652-2.083-4.652-4.652v-2.661c0-2.569,2.083-4.652,4.652-4.652h2.661c2.569,0,4.652,2.083,4.652,4.652V58.259z"/>
+					<g id="plus-0_2_">
+						<g>
+							<path fill="none" stroke="#000000" stroke-width="1.3292" d="M95.059,56.895c0,1.262-1.022,2.285-2.285,2.285
+								c-1.262,0-2.285-1.023-2.285-2.285c0-1.261,1.023-2.285,2.285-2.285C94.036,54.61,95.059,55.634,95.059,56.895z"/>
+						</g>
+					</g>
+				</g>
+				<g>
+					<path id="apron-0_2_" fill="#F5F8CA" stroke="#000000" stroke-width="0.7348" d="M69.354,66.665h46.552v10.633H69.354V66.665z"
+						/>
+					<text transform="matrix(1 0 0 1 82.4644 75.2993)" enable-background="new    "><tspan x="0" y="0" font-family="'TrebuchetMS'" font-size="9.3041">NICK</tspan></text>
+				</g>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path fill="#F69866" stroke="#000000" stroke-width="1.2561" d="M52.139,71.304v4.926c0,2.312-1.874,4.187-4.187,4.187H35.506
+					c-2.312,0-4.187-1.874-4.187-4.187v-4.926"/>
+				<path fill="#F70F34" stroke="#000000" stroke-width="1.3956" d="M46.024,87.426h-8.458l-1.645-16.308h11.746L46.024,87.426z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M48.424,88.312c0,2.012-1.366,3.644-3.05,3.644h-7.623
+						c-1.685,0-3.05-1.632-3.05-3.644s1.365-3.643,3.05-3.643h7.624C47.059,84.669,48.424,86.3,48.424,88.312z"/>
+					<path d="M44.625,88.933h-5.97v-1.086h5.97V88.933z"/>
+				</g>
+				<path fill="#38CC99" stroke="#000000" stroke-width="1.2935" d="M53.559,70.68c0,2.381-1.931,4.312-4.312,4.312H34.328
+					c-2.381,0-4.312-1.93-4.312-4.312v-5.366c0-2.381,1.931-4.312,4.312-4.312h14.919c2.381,0,4.312,1.931,4.312,4.312V70.68z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M47.734,58.145c0,2.569-2.083,4.652-4.652,4.652h-2.66
+						c-2.569,0-4.652-2.083-4.652-4.652v-2.662c0-2.569,2.083-4.652,4.652-4.652h2.66c2.569,0,4.652,2.083,4.652,4.652V58.145z"/>
+					<g id="plus-22_1_">
+						<path d="M45.04,57.515h-6.645v-1.208h6.645V57.515z"/>
+						<path d="M42.321,60.233v-6.645h-1.208v6.645L42.321,60.233z"/>
+					</g>
+				</g>
+				<g>
+					<path id="apron-22_1_" fill="#F5F8CA" stroke="#000000" stroke-width="0.7348" d="M20.044,66.55h43.198v10.633H20.044V66.55z"
+						/>
+					<text transform="matrix(1 0 0 1 31.8271 75.1846)" enable-background="new    "><tspan x="0" y="0" enable-background="new    " font-family="'TrebuchetMS'" font-size="9.3041">NICK</tspan></text>
+				</g>
+			</g>
+		</g>
+		<g>
+			<path fill="#0099CC" d="M163.641,71.827c0,10.602-8.596,19.197-19.197,19.197s-19.197-8.595-19.197-19.197
+				c0-10.602,8.596-19.197,19.197-19.197S163.641,61.225,163.641,71.827z"/>
+			<g>
+				<path fill="#FFFFFF" stroke="#000000" stroke-width="1.2561" d="M154.785,71.729v4.927c0,2.312-1.874,4.187-4.187,4.187h-12.446
+					c-2.312,0-4.187-1.874-4.187-4.187v-4.927"/>
+				<path fill="#F70F34" stroke="#000000" stroke-width="1.3956" d="M148.67,87.851h-8.457l-1.645-16.307h11.746L148.67,87.851z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M151.07,88.736c0,2.012-1.365,3.644-3.049,3.644h-7.624
+						c-1.685,0-3.05-1.631-3.05-3.644c0-2.012,1.365-3.643,3.05-3.643h7.624C149.705,85.093,151.07,86.724,151.07,88.736z"/>
+					<path d="M147.271,89.357h-5.971v-1.086h5.971V89.357z"/>
+				</g>
+				<path fill="#CCFFFF" stroke="#000000" stroke-width="1.2935" d="M156.205,71.104c0,2.381-1.93,4.312-4.312,4.312h-14.919
+					c-2.381,0-4.312-1.93-4.312-4.312v-5.366c0-2.381,1.932-4.312,4.312-4.312h14.919c2.382,0,4.312,1.931,4.312,4.312V71.104z"/>
+				<g>
+					<path fill="#FFFFFF" stroke="#000000" stroke-width="1.0345" d="M150.381,58.569c0,2.569-2.082,4.652-4.652,4.652h-2.66
+						c-2.569,0-4.652-2.083-4.652-4.652v-2.661c0-2.569,2.083-4.652,4.652-4.652h2.66c2.57,0,4.652,2.083,4.652,4.652V58.569z"/>
+					<g id="plus-0_1_">
+						<g>
+							<path fill="none" stroke="#000000" stroke-width="1.3292" d="M146.719,57.205c0,1.262-1.023,2.285-2.285,2.285
+								s-2.285-1.023-2.285-2.285c0-1.261,1.023-2.285,2.285-2.285S146.719,55.943,146.719,57.205z"/>
+						</g>
+					</g>
+				</g>
+				<g>
+					<path id="apron-0_1_" fill="#FFFF66" stroke="#000000" stroke-width="0.6873" d="M121.014,66.974h46.552v10.633h-46.552V66.974
+						z"/>
+					<text transform="matrix(1 0 0 1 134.123 75.6089)" enable-background="new    "><tspan x="0" y="0" font-family="'TrebuchetMS'" font-size="9.3041">NICK</tspan></text>
+				</g>
+			</g>
+		</g>
+		<path fill="none" stroke="#CCFFFF" stroke-width="3" stroke-dasharray="12 4" d="M19.5,247.5h59"/>
+		<g>
+			<path fill="none" d="M172.5,236.578H17V101h155.5V236.578z"/>
+			<text transform="matrix(1 0 0 1 17 110)"><tspan x="0" y="0">To e</tspan><tspan x="18.394" y="0">xpand a node click on</tspan><tspan x="116.001" y="0"> </tspan><tspan x="119.014" y="0">+</tspan><tspan x="0" y="12">To r</tspan><tspan x="16.826" y="12">emove a node</tspan><tspan x="79.434" y="12"> </tspan><tspan x="82.446" y="12">click on</tspan><tspan x="117.036" y="12"> -</tspan><tspan x="0" y="24">To display details of an expanded </tspan><tspan x="0" y="36">node, click on o</tspan><tspan x="0" y="48">To move a node</tspan><tspan x="70.093" y="48"> </tspan><tspan x="73.105" y="48">click and drag the </tspan><tspan x="0" y="60">nametag</tspan><tspan x="38.711" y="60">.</tspan><tspan x="0" y="72">Live nodes display personal details </tspan><tspan x="0" y="84">and pictures where available.</tspan><tspan x="0" y="96">Nodes can be expanded only </tspan><tspan x="0" y="108">once, and once removed, a node </tspan><tspan x="0" y="120">cannot be replaced.</tspan></text>
+		</g>
+		<g>
+			<path fill="none" stroke="#FFFFFF" d="M17.167,450.5h61"/>
+			<path fill="#38CC99" stroke="#FFFFFF" d="M47.78,446.806c2.32-0.011,4.209,1.86,4.221,4.181c0.012,2.318-1.86,4.209-4.179,4.22
+				c-2.32,0.012-4.209-1.86-4.221-4.179C43.589,448.708,45.46,446.817,47.78,446.806"/>
+		</g>
+		<path fill="none" stroke="#F5F8CA" stroke-width="3" stroke-dasharray="12 4" d="M20.5,314.5h59"/>
+		<path fill="none" stroke="#CCFFFF" stroke-width="3" d="M17.5,387.5h59"/>
+		<g onclick="document.getElementById('aboutbox').setAttribute('display','none')">
+			<path fill="#FFFFFF" stroke="#000000" d="M182.605,23.087c0,4.795-3.828,8.68-8.551,8.68h-7.883c-4.723,0-8.551-3.885-8.551-8.68
+				v-8.005c0-4.792,3.828-8.679,8.551-8.679h7.883c4.723,0,8.551,3.887,8.551,8.679V23.087z"/>
+			<path d="M173.668,21.835l2.021-0.002v-4.856h-2.021V21.835z"/>
+			<path d="M177.852,22.816l2.023-0.001v-5.839h-2.021L177.852,22.816z"/>
+			<path d="M179.865,19.455v-2.594l-9.394,0.001v2.593H179.865z"/>
+			<path fill="#F70F34" stroke="#000000" stroke-width="1.7438" d="M170.904,18.312c0,2.765-2.24,5.005-5.005,5.005
+				c-2.766,0-5.007-2.24-5.007-5.005s2.241-5.006,5.007-5.006C168.664,13.306,170.904,15.548,170.904,18.312z"/>
+		</g>
+		<g>
+			<path fill="#FFFF66" d="M19.856,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22H9.409
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.754,0,1.472,0.063,2.151,0.188
+				s1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M38.185,22.973c0,2.661-0.761,4.779-2.286,6.355c-1.524,1.576-3.615,2.365-6.272,2.365
+				c-2.858,0-4.999-0.794-6.422-2.38c-1.424-1.585-2.136-3.699-2.136-6.34c0-2.399,0.767-4.452,2.3-6.159
+				c1.535-1.707,3.621-2.56,6.258-2.56c2.647,0,4.735,0.788,6.264,2.364C37.42,18.194,38.185,20.313,38.185,22.973z M33.524,22.973
+				c0-1.309-0.345-2.473-1.033-3.493c-0.689-1.02-1.641-1.529-2.857-1.529c-1.397,0-2.397,0.465-3,1.395
+				c-0.604,0.93-0.905,2.139-0.905,3.628c0,1.389,0.362,2.574,1.086,3.554c0.723,0.979,1.693,1.469,2.909,1.469
+				c1.357,0,2.33-0.397,2.917-1.192C33.23,26.009,33.524,24.732,33.524,22.973z"/>
+			<path fill="#FFFF66" d="M59.155,28.91l-3.597,2.983c-0.552-0.183-1.034-0.473-1.446-0.866c-0.412-0.396-0.683-0.847-0.814-1.354
+				l-2.835,1.613c-0.11,0.06-0.299,0.123-0.565,0.188c-0.266,0.066-0.491,0.099-0.671,0.099c-2.182,0-3.983-0.75-5.406-2.249
+				c-1.423-1.5-2.134-3.583-2.134-6.25c0-2.536,0.74-4.626,2.219-6.271c1.479-1.645,3.366-2.468,5.66-2.468
+				c0.916,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.569,0.977l2.612-0.964l0.884,0.281v10.352
+				c0,0.905,0.158,1.625,0.474,2.157C57.987,28.222,58.482,28.628,59.155,28.91z M52.816,26.66v-7.102
+				c-0.302-0.375-0.698-0.696-1.186-0.964c-0.488-0.269-1.085-0.402-1.789-0.402c-1.017,0-1.861,0.37-2.53,1.109
+				c-0.67,0.739-1.004,1.965-1.004,3.674c0,1.359,0.312,2.449,0.936,3.268c0.625,0.821,1.5,1.231,2.628,1.231
+				c0.644,0,1.249-0.097,1.812-0.292C52.248,26.988,52.625,26.815,52.816,26.66z"/>
+			<path fill="#FFFF66" d="M72.205,12.104c-0.292-0.101-0.687-0.175-1.185-0.226c-0.498-0.05-0.928-0.075-1.289-0.075
+				c-0.604,0-1.059,0.154-1.365,0.461c-0.307,0.308-0.46,0.783-0.46,1.428v1.486h2.853v2.973h-2.853v13.22h-4.621v-13.22h-1.527
+				v-2.973h1.527v-2.08c0-1.456,0.5-2.679,1.502-3.668c1-0.99,2.251-1.484,3.75-1.484c0.755,0,1.472,0.063,2.151,0.188
+				c0.68,0.125,1.185,0.273,1.517,0.444V12.104z"/>
+			<path fill="#FFFF66" d="M89.488,31.371h-4.621V21.18c0-0.595-0.209-1.12-0.631-1.578c-0.42-0.458-1.066-0.688-1.935-0.688
+				c-0.831,0-1.526,0.177-2.086,0.532c-0.56,0.354-1.005,0.686-1.334,0.995v10.929H74.26V15.178l4.621-0.321v1.567l1.914-1.108
+				c0.572-0.334,1.157-0.574,1.755-0.721s1.193-0.22,1.786-0.22c1.597,0,2.855,0.495,3.774,1.485
+				c0.919,0.991,1.379,2.295,1.379,3.914V31.371z"/>
+			<path fill="#FFFF66" d="M111.202,28.91l-3.596,2.983c-0.553-0.183-1.035-0.473-1.447-0.866c-0.411-0.396-0.683-0.847-0.813-1.354
+				l-2.836,1.613c-0.109,0.06-0.299,0.123-0.564,0.188c-0.266,0.066-0.49,0.099-0.671,0.099c-2.181,0-3.985-0.75-5.405-2.249
+				c-1.425-1.5-2.136-3.583-2.136-6.25c0-2.536,0.74-4.626,2.22-6.271c1.479-1.645,3.365-2.468,5.658-2.468
+				c0.917,0,1.771,0.183,2.566,0.55c0.795,0.366,1.318,0.691,1.57,0.977l2.611-0.964l0.885,0.281v10.352
+				c0,0.905,0.158,1.625,0.475,2.157C110.035,28.222,110.529,28.628,111.202,28.91z M104.863,26.66v-7.102
+				c-0.303-0.375-0.698-0.696-1.186-0.964c-0.489-0.269-1.084-0.402-1.79-0.402c-1.017,0-1.86,0.37-2.528,1.109
+				c-0.672,0.739-1.005,1.965-1.005,3.674c0,1.359,0.312,2.449,0.937,3.268c0.623,0.821,1.499,1.231,2.627,1.231
+				c0.646,0,1.25-0.097,1.813-0.292C104.295,26.988,104.674,26.815,104.863,26.66z"/>
+			<path fill="#FFFF66" d="M130.158,31.371h-4.62v-1.833l-1.911,1.085c-0.531,0.301-1.09,0.534-1.67,0.7
+				c-0.582,0.166-1.209,0.249-1.881,0.249c-1.595,0-2.852-0.495-3.769-1.484c-0.919-0.99-1.378-2.298-1.378-3.925V15.178h4.621
+				v9.933c0,0.592,0.209,1.115,0.631,1.565c0.42,0.451,1.066,0.677,1.936,0.677c0.811,0,1.506-0.173,2.086-0.518
+				c0.58-0.346,1.025-0.663,1.335-0.954V15.178h4.62V31.371z"/>
+			<path fill="#FFFF66" d="M143.043,28.558l-3.355,3.134c-1.387-0.573-2.426-1.409-3.119-2.512c-0.693-1.1-1.039-2.415-1.039-3.942
+				v-7.087h-1.527v-2.973h1.527V9.833l4.621-0.321v5.666h2.41v2.973h-2.41v5.792c0,1.158,0.261,2.117,0.783,2.882
+				C141.456,27.589,142.159,28.166,143.043,28.558z"/>
+		</g>
+		<path fill="#99CCEE" d="M171.128,37.849l-10.364-3.589h20.268L171.128,37.849z"/>
+	</g>
+</g>
+
+</svg>

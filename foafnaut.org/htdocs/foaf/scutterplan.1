@@ -1,0 +1,25 @@
+<%
+ RS = Server.CreateObject("ADODB.Recordset")
+
+ Response.ContentType="application/xml"
+ Response.Write('<rdf:RDF xmlns:scutter="http://jibbering.com/foaf/scutter/#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">\n<rdf:Description rdf:about="">\n')
+
+ sqlstr='select url,stamp,status from urlsnew order by status'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  Arr=RS.getRows().toArray()
+  FAl=Arr.length/3
+		for (i=0;i<FAl;i++) {
+			if (Arr[2]==2) {
+Arr[0]=Arr[0].replace(/&/gim,'&amp;')
+    Response.Write(' <rdfs:seeAlso rdf:resource="'+Arr[0]+'" scutter:stamp="'+Arr[1]+'" scutter:status="'+Arr[2]+'"/>\n')
+			} else {
+    Response.Write(' <scutter:inError rdf:resource="'+Arr[0]+'" scutter:stamp="'+Arr[1]+'" scutter:status="'+Arr[2]+'"/>\n')
+			}
+   Arr.splice(0,3)
+		}
+	}
+
+ Response.Write('</rdf:Description></rdf:RDF>\n')
+
+%>

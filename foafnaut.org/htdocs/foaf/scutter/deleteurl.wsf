@@ -1,0 +1,50 @@
+<job id="Robot">
+<script language=jscript>
+
+ try {
+  url=WScript.Arguments.Item(0)
+	} catch (e) {
+  WScript.Exit(1)
+	}
+
+ count=0
+ RS=new ActiveXObject("ADODB.Recordset")
+ RC=new ActiveXObject("ADODB.Command")
+
+ RC.ActiveConnection="rdf2"
+ RC.CommandType=1
+
+ sqlstr='select ref from urlsnew where url="'+url+'"'
+ RS.Open(sqlstr,"rdf2")
+	if (!RS.EOF) {
+  Ref=RS.Fields(0)+''
+  sqlstr='delete from deletetable'
+  RC.CommandText=sqlstr
+  RC.Execute()
+  sqlstr='delete from deletetable2'
+  RC.CommandText=sqlstr
+  RC.Execute()
+  sqlstr='insert into deletetable select p.id from provenance p, urlsnew u where u.url="'+url+'" and u.ref=p.txt'
+  RC.CommandText=sqlstr
+  RC.Execute()
+  sqlstr='delete from provenance where txt='+Ref
+  RC.CommandText=sqlstr
+  RC.Execute()
+  sqlstr='insert into deletetable2 select deletetable.id from deletetable left join provenance on provenance.id=deletetable.id where provenance.id is null'
+  RC.CommandText=sqlstr
+  RC.Execute()
+  sqlstr='select id from deletetable2'
+  RS.Close()
+  RS.Open(sqlstr,"rdf2")
+ 	if (!RS.EOF) {
+   var Arr=RS.GetRows().toArray()
+   sqlstr='delete from rdf3 where source in ('+Arr.join(',')+')'
+   RC.CommandText=sqlstr
+   RC.Execute()
+		}
+  sqlstr='delete from urlsnew where url="'+url+'"'
+  RC.CommandText=sqlstr
+  RC.Execute()
+	}
+</script>
+</job>

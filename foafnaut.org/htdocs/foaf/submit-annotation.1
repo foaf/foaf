@@ -1,0 +1,46 @@
+<%
+ try {
+
+  AnnoteaServer="http://iggy.w3.org/annotations"
+  AnnoteaUserName="jim@jibbering.com"
+  AnnoteaPassword="ERROR"
+  xml=Server.CreateObject("Msxml2.DOMDocument") 
+  xml.load(Request)
+  fil=new Date().valueOf()+'.rdf'
+  fname=Server.MapPath('.')+'/'+fil
+  xml.save(fname)
+
+  xml3=Server.CreateObject("Microsoft.XMLDOM")
+  xml3.loadXML(xml.xml)
+
+  xml2=Server.CreateObject("Microsoft.XMLDOM")
+  xml2.load(Server.MapPath('.')+'/combined.rdf')
+		for (i=xml3.documentElement.childNodes.length-1;i>=0;i--) {
+   xml2.documentElement.appendChild(xml3.documentElement.childNodes[0])
+		}
+  xml2.save(Server.MapPath('.')+'/combined.rdf')
+  Response.Write('saved at http://jibbering.com/rdfsvg/'+fil)
+
+  xml4=Server.CreateObject("Microsoft.XMLDOM")
+  xml4.loadXML(xml.xml)
+  imageNde=xml4.selectNodes('//rdf:Description').item(1)
+  image=imageNde.attributes.getNamedItem('rdf:about').nodeValue
+
+  var str='<?xml version="1.0"?>\n<r:RDF xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#"       xmlns:a="http://www.w3.org/2000/10/annotation-ns#"      xmlns:d="http://purl.org/dc/elements/1.1/"       xmlns:h="http://www.w3.org/1999/xx/http#">'
+  str+='<r:Description>  <r:type resource="http://www.w3.org/2000/10/annotation-ns#Annotation"/>  <r:type resource="http://jibbering.com/2002/3/svg/#Annotation"/>'
+  str+='<a:annotates r:resource="'+image+'"/>'
+  str+='<a:context r:resource="'+image+'"/>'
+  str+='<a:body r:resource="http://jibbering.com/rdfsvg/'+fil+'"></a:body>'
+  str+='</r:Description></r:RDF>'
+ xmlhttp=Server.CreateObject("MSXML2.ServerXMLHTTP")
+ xmlhttp.open("POST",AnnoteaServer,false,AnnoteaUserName,AnnoteaPassword)
+ xmlhttp.setRequestHeader("Content-Type","application/xml")
+ xmlhttp.setRequestHeader("Accept","text/xml")
+ xmlhttp.setRequestHeader("user-agent","Image+Annotation+Client");
+ xmlhttp.setRequestHeader("Content-Length",str.length);
+ xmlhttp.send(str)
+Response.Write(xmlhttp.responseText)
+	} catch (e) {
+  Response.Write("EEK! something went really wrong :-(")
+	}
+%>

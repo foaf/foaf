@@ -1,0 +1,50 @@
+foafnaut scutter installation instructions
+
+Requirements:
+ (versions in brackets are ones I use, no idea if others will work.)
+
+  Windows Script Host (2.1?)
+  mySQL (3.23?)
+  mySQL ODBC driver (3.51?)
+  
+Install:
+
+  Unzip,
+  Create a "cache" directory underneath the foaf/scripts/ directory.
+  open up foafcrawler.wsf and set the HOMEDIR variable to whereever 
+    you downloaded it to.
+  create the mySQL database, run the create.sql, it creates a database
+    called rdf etc.  You may want to modify this of course.
+  create an ODBC datasource called rdf2 which points to the database
+    you created.
+  That's hopefuly it, try it, execute:
+
+  cscript foafcrawler.wsf Reset http://jibbering.com/plan2.rdf
+
+  from the command prompt, which should download a few files, then
+  complete, check the database with a "select * from urlsnew" and
+  "select * from rdf2", hopefully you should have the urls and some
+  triples.
+
+Use:
+
+  execute the script with cscript foafcrawler.wsf Reset startURL,
+  Reset, empties the database, if you don't want to do this, use False
+  here. startURL is the location of a document to start the crawl.
+
+  To delete triples from a particular URL, you use 
+
+  cscript deleteurl.wsf http://....
+
+  You must delete a url, before recrawling it otherwise the provenance will break, and the triples will become un-attributed.
+
+
+When it doesn't work:
+
+  email me, or catch me on irc:irc.freenode.net#foaf
+
+Licensing:
+
+Licencsing is currently unresolved, presumably have to be GPL as it has GPL dependicies.
+
+Jim Ley, jim@jibbering.com

@@ -1,0 +1,30 @@
+<%
+//try {
+Response.ContentType="application/rdf+xml"
+air=Request.ServerVariables("QUERY_STRING")+''
+air=air.toUpperCase().split(';')
+RS=new ActiveXObject("ADODB.Recordset")
+Response.Write("<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'	 xmlns:airport='http://www.daml.org/2001/10/html/airport-ont#' xmlns:jim='http://jibbering.com/2002/9/time#' xmlns:pos='http://www.w3.org/2003/01/geo/wgs84_pos#' xmlns:vc='http://www.w3.org/vcard-rdf/3.0#' xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:ical='http://www.w3.org/2000/10/swap/pim/ical#'><rdf:Description rdf:about=''><dc:source rdf:resource='http://www.markokarppinen.com/airports.html'/></rdf:Description>")
+for (i=0;i<air.length;i++) {
+	try {RS.Close() } catch (e) {}
+	if (air[i]=='UK') air[i]="GB"
+ RS.Open('select * from airports where country="'+air[i]+'"','RDF2')
+	while(!RS.EOF) {
+  id=RS.Fields(0).value
+  country=RS.Fields(1).value
+  lat=RS.Fields(2).value
+  lon=RS.Fields(3).value
+  loc=RS.Fields(4).value+''
+  tz=RS.Fields(5).value
+  name=RS.Fields(6).value+''
+  if (name=='null' || name.length<2) name=loc
+  Response.Write("<airport:Airport rdf:about='http://www.daml.org/cgi-bin/airport?"+id+"'><airport:name>"+name+"</airport:name>")
+  if (tz && tz.length>2) Response.Write("<jim:timezone rdf:parseType='Resource'><ical:tzid>"+tz+"</ical:tzid></jim:timezone>")
+  Response.Write("<vc:country>"+country+"</vc:country><pos:lat>"+lat+"</pos:lat><pos:long>"+lon+"</pos:long><airport:location>"+loc+"</airport:location></airport:Airport>")
+ RS.MoveNext()
+ }
+}
+//catch (e) {}
+
+Response.Write("</rdf:RDF>")
+%>

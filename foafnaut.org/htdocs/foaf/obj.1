@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title></title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css">
+</head>
+<body>
+<h1>Object search.</h1>
+<p>
+<%
+RS=new ActiveXObject("ADODB.Recordset")
+pred=Request.QueryString('object')+''
+pred=pred.replace(/"/gim,'\\"')
+sqlstr='select distinct u.url from rdf3 r, urlsnew u, provenance p where r.obj="'+pred+'" and r.source=p.id and p.txt=u.ref limit 20'
+RS.Open(sqlstr,"rdf2")
+if (!RS.EOF) {
+ Arr=RS.getRows().toArray()
+ Response.Write('<h2>URLs containing the object: '+pred+'</h2>')
+	for (i=0;i<Arr.length;i++) {
+  Response.Write('<a href="'+Arr[i]+'">'+Arr[i]+'</a><BR>')
+	}
+} else {
+ pred=Request.QueryString('object')+''
+ Response.Write('<strong>No '+pred+' Objects found</strong>')
+}
+%>
+</p>
+
+<p class="footer">Jim Ley - <a
+href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a
+href="/">Jibbering.com</a></p>
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title>Predicates used in RDF files found by a FOAF crawler</title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css"> 
+</head>
+<body>
+<h1>Predicates used in RDF files found by a FOAF crawler</h1>
+<%
+	RS = Server.CreateObject("ADODB.Recordset")
+	sqlstr='select pred,count(pred) as b from rdf3 group by pred'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+		Response.Write('<table><thead><tr><th>Predicate</th><th>occurances</th></tr></thead><tbody>')
+  Arr=RS.getRows().toArray()
+ 	FAl=Arr.length/2
+  stuff=new Array()
+ 	for (i=0;i<FAl;i++) {
+			stuff.push({a:Arr[0],b:Arr[1]});
+   Arr.splice(0,2)
+ 	}
+stuff.sort(sortFunc)
+		for (i=0;i<stuff.length;i++) {
+   Response.Write('<tr><td>'+stuff[i].a+'</td><td>'+stuff[i].b+'</td></tr>')
+		}
+ 		Response.Write('</tbody></table>')
+	}
+function sortFunc(a,b) {
+ return (b.b-a.b)
+}
+%>
+
+
+<p class="footer">Jim Ley -  <a href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a href="/">Jibbering.com</a></p>
+</body>
+</html>

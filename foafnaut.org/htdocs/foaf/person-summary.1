@@ -1,0 +1,465 @@
+<%
+RS = Server.CreateObject("ADODB.Recordset")
+sha1=decodeURIComponent(Request.ServerVariables('Query_String'))
+
+if (sha1=='') {
+ sqlstr='SELECT distinct a.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/knows" and (a.subj=b.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum")  order by RAND() limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  sha1=RS.Fields(0).Value
+	}
+}
+
+mbox=''
+var hex_chr = "0123456789abcdef";
+fso=Server.CreateObject("Scripting.FileSystemObject")
+if (false && fso.FileExists(Server.MapPath("/foaf/cache-new/")+"\\"+sha1+'.cz')) { 
+ Response.Expires=6000
+ Response.CacheControl="Public, max-age=6000"
+ Response.AddHeader('Location','http://jibbering.com/foaf/cache-new/'+sha1+'.cz')
+ Response.Status="302 Moved Temporarily"
+} else {
+ Response.ContentType="application/rdf+xml"
+ output=[]
+ output.push('<rdf:RDF xmlns:img="http://jibbering.com/2002/3/svg/#" xmlns:jim="http://jibbering.com/foaf/jim.rdf#" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:an="http://rdf.desire.org/vocab/recommend.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">\n<foaf:Person rdf:ID="bod">\n')
+
+ try { RS.Close() } catch (e) { }
+ sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  output.push('<foaf:name>'+RS.Fields(0).Value+'</foaf:name>')
+	}
+try { RS.Close() } catch (e) { }
+sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/nick" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  output.push('<foaf:nick>'+RS.Fields(0).Value+'</foaf:nick>')
+	} else {
+		try { RS.Close() } catch (e) { }
+		sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/givenName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  output.push('<foaf:nick>'+RS.Fields(0).Value+'</foaf:nick>')
+	} 
+	}
+try { RS.Close() } catch (e) { }
+sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/homepage" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  output.push('<foaf:homepage>'+RS.Fields(0).Value+'</foaf:homepage>')
+	}
+try { RS.Close() } catch (e) { }
+emails=""
+sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" and b.obj like "%@%"'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  emails=RS.getRows().toArray()
+		for (i=0;i<emails.length;i++) {
+   output.push('<foaf:mbox rdf:resource="'+emails[i]+'"/>')
+		}
+		mbox=emails[0]
+  emails=emails.join(';')
+	}
+try { RS.Close() } catch (e) { }
+sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'"'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  sha1s=RS.getRows().toArray()
+		for (i=0;i<sha1s.length;i++) {
+   output.push('<foaf:mbox_sha1sum>'+sha1s[i]+'</foaf:mbox_sha1sum>')
+		}
+  sha1s=sha1s.join(';')
+	}
+
+// --- KNOWS ---
+try { RS.Close() } catch (e) { }
+ sqlstr='SELECT distinct c.subj FROM rdf3 b, rdf3 a, rdf3 c WHERE b.pred="http://xmlns.com/foaf/0.1/knows" and (a.subj=b.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and (c.subj=b.obj and c.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'"'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) { //knows
+  Arr=RS.getRows().toArray()
+		for (i=0;i<Arr.length;i++) {
+   try { RS.Close() } catch (e) { }
+   sqlstr='select distinct obj from rdf3 where subj="'+Arr[i]+'" and pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" order by obj limit 1'
+   RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+    em=RS.Fields(0).Value
+				codsha1=em
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" order by b.obj limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codsha1=RS.Fields(0).Value
+				em=codsha1
+			}
+			if (emails.indexOf(em)==-1) {
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/nick" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+			} else {
+    codnick=''
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/givenName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/firstName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf(' '))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf('@'))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+				codnick=' foaf:nick="???"'
+			}
+      output.push('<foaf:knows foaf:mbox_sha1sum="'+em+'" '+codnick+'/>\n')
+			
+ 			}
+			}
+ 	}
+	}
+// --- END KNOWS ---
+
+
+try { RS.Close() } catch (e) { }
+ sqlstr='SELECT distinct c.subj FROM rdf3 b, rdf3 a, rdf3 c WHERE b.pred="http://jibbering.com/foaf/jim.rdf#isKnownBy" and (a.subj=b.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and (c.subj=b.obj and c.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'"'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) { //knows
+  Arr=RS.getRows().toArray()
+		for (i=0;i<Arr.length;i++) {
+   try { RS.Close() } catch (e) { }
+   sqlstr='select distinct obj from rdf3 where subj="'+Arr[i]+'" and pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" order by obj limit 1'
+   RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+    em=RS.Fields(0).Value
+				codsha1=em
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" order by b.obj limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codsha1=RS.Fields(0).Value
+				em=codsha1
+			}
+			if (emails.indexOf(em)==-1) {
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/nick" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+			} else {
+    codnick=''
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/givenName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/firstName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf(' '))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf('@'))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+				codnick=' foaf:nick="???"'
+			}
+      output.push('<jim:isKnownBy foaf:mbox_sha1sum="'+em+'" '+codnick+'/>\n')
+			
+ 			}
+			}
+ 	}
+	}
+
+//-- END isKnownBy
+
+
+try { RS.Close() } catch (e) { }
+ sqlstr='SELECT a.obj, d.obj FROM rdf3 b, rdf3 a, rdf3 c, rdf3 d WHERE (a.pred="http://xmlns.com/foaf/0.1/depiction" and (a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and b.obj="'+sha1+'") and (c.pred="http://xmlns.com/foaf/0.1/depiction" and (c.subj=d.subj and d.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and c.obj=a.obj) and b.subj!=d.subj group by c.subj'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  Arr=RS.getRows().toArray()
+		FAl=Arr.length/2
+ 	for (i=0;i<FAl;i++) {
+   img=Arr[0]
+   codsha1=Arr[1]
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" order by b.obj limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codsha1=RS.Fields(0).Value
+			}
+   try { RS.Close() } catch (e) { }
+			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/nick" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+			RS.Open(sqlstr,"rdf")
+			if (!RS.EOF) {
+				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+			} else {
+    codnick=''
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/givenName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/firstName" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+ 				codnick=' foaf:nick="'+RS.Fields(0).Value+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf(' '))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+    try { RS.Close() } catch (e) { }
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/mbox" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			RS.Open(sqlstr,"rdf")
+ 			if (!RS.EOF) {
+					aem=RS.Fields(0).Value
+    	aem=aem.substring(0,aem.indexOf('@'))
+ 				codnick=' foaf:nick="'+aem+'"'
+ 			} else {
+	 			codnick=''
+ 			}
+			}
+			if (codnick=='') {
+				codnick=' foaf:nick="???"'
+			}
+   output.push('<foaf:codepiction foaf:mbox_sha1sum="'+codsha1+'" '+codnick+' img:naughty="'+img+'"/>\n')
+			Arr.splice(0,2)
+		}
+	}
+
+ try { RS.Close() } catch (e) { }
+ sqlstr='select distinct a.obj,b.subj,e.obj,f.obj,(1+g.obj) as c from rdf3 a,rdf3 b, rdf3 c,rdf3 d,rdf3 e,rdf3 f, rdf3 g where a.pred="http://jibbering.com/2002/3/svg/#polypath" and a.subj=b.obj and b.pred="http://jibbering.com/2002/3/svg/#hasPart" and a.subj=c.obj and c.subj=d.subj and d.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" and e.subj=b.subj and e.pred="http://jibbering.com/2002/3/svg/#width" and f.subj=b.subj and f.pred="http://jibbering.com/2002/3/svg/#height" and ((b.obj=g.subj and g.pred="http://jibbering.com/2002/3/svg/#fraction") or (g.pred="http://jibbering.com/2002/3/svg/#polypath" and g.subj=b.obj)) and d.obj="'+sha1+'" order by c desc limit 1'
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  Arr=RS.getRows().toArray()
+  path=Arr[0].substr(0,Arr[0].indexOf('L'))+Arr[0].split(/M[\d\.]* [\d\.]*/).join(' ') 
+  img=Arr[1]
+  width=Arr[2]
+  height=Arr[3]
+		output.push('<foaf:depiction rdf:resource="'+img+'"/>')
+  output.push('</foaf:Person>')
+  output.push('<rdf:Description rdf:about="'+img+'"><img:height>'+height+'</img:height><img:width>'+width+'</img:width><img:hasPart><img:Polygon><img:polypath>'+path+'</img:polypath><foaf:regionDepicts rdf:resource="#bod"/></img:Polygon></img:hasPart></rdf:Description>\n')
+	} else {
+  sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/depiction" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+  try { RS.Close() } catch (e) { }
+  RS.Open(sqlstr,"rdf")
+		if (!RS.EOF) {
+ 		output.push('<foaf:depiction rdf:resource="'+RS.Fields(0).Value+'"/>')
+   output.push('</foaf:Person>')
+		} else {
+   output.push('</foaf:Person>')
+		}
+	}
+ output.push('\n</rdf:RDF>')
+try {
+fso=Server.CreateObject("Scripting.FileSystemObject")
+f=fso.createTextFile(Server.MapPath("/foaf/cache-new/")+"\\"+sha1);
+f.WriteLine(output.join(''))
+f.close()
+str3="c:\\gzip.exe -f -9 -S .cz "+Server.MapPath("/foaf/cache-new/")+"\\"+sha1
+WSH=Server.CreateObject("WScript.Shell")
+WSH.Run(str3,0,true)
+Response.Write(output.join(''))
+} catch (e) {
+Response.Write(output.join(''))
+}
+}
+
+
+function hex(num)
+{
+  var str = "";
+  for(var j = 7; j >= 0; j--)
+    str += hex_chr.charAt((num >> (j * 4)) & 0x0F);
+  return str;
+}
+
+/*
+ * Convert a string to a sequence of 16-word blocks, stored as an array.
+ * Append padding bits and the length, as described in the SHA1 standard.
+ */
+function str2blks_SHA1(str)
+{
+  var nblk = ((str.length + 8) >> 6) + 1;
+  var blks = new Array(nblk * 16);
+  for(var i = 0; i < nblk * 16; i++) blks[i] = 0;
+  for(var i = 0; i < str.length; i++)
+    blks[i >> 2] |= str.charCodeAt(i) << (24 - (i % 4) * 8);
+  blks[i >> 2] |= 0x80 << (24 - (i % 4) * 8);
+  blks[nblk * 16 - 1] = str.length * 8;
+  return blks;
+}
+
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y)
+{
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+}
+
+/*
+ * Bitwise rotate a 32-bit number to the left
+ */
+function rol(num, cnt)
+{
+  return (num << cnt) | (num >>> (32 - cnt));
+}
+
+/*
+ * Perform the appropriate triplet combination function for the current
+ * iteration
+ */
+function ft(t, b, c, d)
+{
+  if(t < 20) return (b & c) | ((~b) & d);
+  if(t < 40) return b ^ c ^ d;
+  if(t < 60) return (b & c) | (b & d) | (c & d);
+  return b ^ c ^ d;
+}
+
+/*
+ * Determine the appropriate additive constant for the current iteration
+ */
+function kt(t)
+{
+  return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+         (t < 60) ? -1894007588 : -899497514;
+}
+
+/*
+ * Take a string and return the hex representation of its SHA-1.
+ */
+function calcSHA1(str)
+{
+  var x = str2blks_SHA1(str);
+  var w = new Array(80);
+
+  var a =  1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d =  271733878;
+  var e = -1009589776;
+
+  for(var i = 0; i < x.length; i += 16)
+  {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+    var olde = e;
+
+    for(var j = 0; j < 80; j++)
+    {
+      if(j < 16) w[j] = x[i + j];
+      else w[j] = rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
+      var t = safe_add(safe_add(rol(a, 5), ft(j, b, c, d)), safe_add(safe_add(e, w[j]), kt(j)));
+      e = d;
+      d = c;
+      c = rol(b, 30);
+      b = a;
+      a = t;
+    }
+
+    a = safe_add(a, olda);
+    b = safe_add(b, oldb);
+    c = safe_add(c, oldc);
+    d = safe_add(d, oldd);
+    e = safe_add(e, olde);
+  }
+  return hex(a) + hex(b) + hex(c) + hex(d) + hex(e);
+}
+
+%>
