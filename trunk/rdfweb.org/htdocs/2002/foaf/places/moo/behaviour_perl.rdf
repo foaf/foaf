@@ -1,0 +1,108 @@
+<web:RDF xmlns:web	 = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:dc 	 = "http://purl.org/dc/elements/1.1/"
+        xmlns:rdfs 	 = "http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:mp3	 = "http://ilrt.org/discovery/2001/04/frbr-lite#"
+	xmlns:moo	 = "http://xmlns.com/2001/04/moosw#" >
+
+
+
+<rdfs:Class web:about="http://xmlns.com/2001/04/moosw#Location">
+
+<moo:verb>
+  <moo:VerbDef web:about="http://xmlns.com/2001/04/moosw#look"
+   moo:name="look" moo:lang="perl" moo:alias="l">
+   <moo:rdfscript>
+
+    print ("[lookverb] Player ", moo_name $player , " stands at ");
+    #or:
+    # player->moo_location->say("...");
+
+    print (" ", moo_name $here , " \nLooking around, you can see:\n");
+    print ("Details: ", moo_description $here , "\n");
+
+    my @out = $here->moo__locexit;
+    foreach my $exit (@out) {
+      my $x = new RDF::API::Node($exit, $data);
+      print "\texit:  ",
+		$x->moo_name, " ".
+		$x->moo_oid." ".join(" / ",$x->moo__direction ).
+		"\n";
+    }
+    print "\n";
+
+
+    my $WN = $here->{'CONTEXT'}->ns( 'wn', 'http://xmlns.com/wordnet/1.6/');
+    my $MUSIC=0;
+    my @stuff = moo__contents $here;     
+    print "Items in this location include: \n";
+    foreach (@stuff) {
+      my $item = new RDF::API::Node( $_, $here->{'CONTEXT'}  );
+      print sprintf " %s  (#%s) \n", moo_name $item, moo_oid $item;
+      if (rdf_type $item eq $WN.'Music') { 
+        $MUSIC=1;
+        print "Some music in MP3 form is here.\n";
+      }
+    }
+
+    
+    if ($MUSIC) {
+      my @songs = $here->{'CONTEXT'}->GetSources( $FRBR.'Work', $RDF.'type');
+      print "Found ",scalar @songs, " songs, including: \n";
+      my $i=0;
+      foreach (@songs) {
+        $i++;
+        my $song = new RDF::API::Node($_,$here->{'CONTEXT'});
+        print "( $i ) title: ", dc_title $song, " ; " if ( $i &lt; 10 );
+      }
+    }
+   </moo:rdfscript>
+  </moo:VerbDef>
+ </moo:verb>
+
+</rdfs:Class>
+
+
+<!-- annotations on the class of musical works... -->
+
+<rdfs:Class web:about="http://ilrt.org/discovery/2001/04/frbr-lite#Work">
+ <moo:verb>
+  <moo:VerbDef web:about="http://xmlns.com/2001/04/moosw#play"
+   moo:name="play" moo:lang="perl">
+   <moo:rdfscript>
+
+   print "debug: I am the play verb on the class Work.\n";
+   my $file = frbr_rendered $this; # unregistered ns ? 
+   $file =~ s/file://;
+
+   if (-e $file) {
+     print "Playing $file : ". system('xaudio', $file)."\n";
+   } else {
+     print "something bad happened... no such file \n";
+   }
+
+   </moo:rdfscript>
+  </moo:VerbDef>
+ </moo:verb>
+</rdfs:Class>
+
+
+
+<!-- end behaviours -->
+
+<!-- some music to play with... -->
+ 
+<mp3:Work 
+	dc:title="(There's) always something there to remind me - Sandie Shaw" 
+	mp3:length="02:43"
+	mp3:album="Burt Bacharach &amp; Hal David Songbook"
+	mp3:artist="Various Artists" >
+<mp3:rendered web:resource="file://home/pldab/mp3/Theres-always-something-there-to-remind-me---Sandie-Shaw.mp3"/>
+</mp3:Work>
+
+<mp3:Work dc:title="This guy's in love with you - Sacha Distel" mp3:length="03:39"
+ mp3:album="Burt Bacharach &amp; Hal David Songbook" mp3:artist="Various Artists" >
+<mp3:rendered web:resource="file://home/pldab/mp3/This-guy-s-in-love-with-you---Sacha-Distel.mp3"/>
+</mp3:Work>
+
+
+</web:RDF>
