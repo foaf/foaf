@@ -2,9 +2,15 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:foaf="http://xmlns.com/wot/0.1/"
 	 xmlns:fc="http://xmlns.com/foaf/corp#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
          xmlns:bio="http://purl.org/vocab/bio/0.1/">
+    
+    <foaf:Document rdf:about="">
+      <wot:assurance rdf:resource="jetblue.rdf.asc"/>
+      <!-- this document may have a detached digital signature, using PGP -->
+    </foaf:Document>
 
     <fc:Company rdf:nodeID="jetblue">
       <fc:name>JetBlue Airways</fc:name>
@@ -50,6 +56,8 @@
 
 
 
-<!-- http://news.google.co.uk/news?q=jetblue  -->
+<!-- 	http://news.google.co.uk/news?q=jetblue 
+	http://jibbering.com/flightsearch/  has flight routes for them...
+	 -->
 
 </rdf:RDF>
