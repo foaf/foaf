@@ -8,6 +8,11 @@ GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 all: clean colour.html index.html
 clean: tidyup 
 
+
+tmpsite:
+	make; cp index.html _tmp.html; cvs commit -m 'regen' _tmp.html;ssh rdfweb.org make slaves
+
+
 tidyup:
 	rm -f $(GENFILES)
 	
