@@ -24,7 +24,7 @@
       <dt>version:</dt>
       <dd>0.1</dd>
       <dt>status:</dt>
-      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.21 2003-07-09 18:35:18 danbri Exp $</dd>
+      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.22 2003-07-13 01:28:01 danbri Exp $</dd>
       <dt>formats:</dt>
       <dd><a href="http://xmlns.com/foaf/0.1/index.html">text/html</a>, <a href="http://xmlns.com/foaf/0.1/index.rdf">application/rdf+xml</a></dd>
       <dt>history:</dt>
@@ -114,6 +114,15 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
 <table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
 <tr>
+ <td>http://xmlns.com/foaf/0.1/Agent</td> 
+ <td>An agent (eg. person, group, software or physical artifact.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Project</td> 
+ <td>A project.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Image</td> 
+ <td>An image.</td></tr> 
+<tr>
  <td>http://xmlns.com/foaf/0.1/Person</td> 
  <td>A person.</td></tr> 
 <tr>
@@ -123,141 +132,141 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
  <td>http://xmlns.com/foaf/0.1/Organization</td> 
  <td>An organization.</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/Project</td> 
- <td>A project.</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/Image</td> 
- <td>An image.</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/Group</td> 
+ <td>A group.</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
- <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/made</td> 
- <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/yahooChatID</td> 
- <td>A Yahoo chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/publications</td> 
  <td>A link to the publications of this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/img</td> 
- <td>An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/msnChatID</td> 
- <td>An MSN chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/mbox</td> 
- <td>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/currentProject</td> 
- <td>A current project this person works on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depiction</td> 
- <td>A depiction of some thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/name</td> 
- <td>A name for some thing.</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
- <td>The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/pastProject</td> 
- <td>A project this person has previously worked on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depicts</td> 
- <td>A thing depicted in this representation.</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/firstName</td> 
- <td>The first name of a person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/geekcode</td> 
- <td>A textual geekcode for this person, see http://www.geekcode.com/geek.html</td><td>http://xmlns.com/foaf/0.1/Person</td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
- <td>An organization funding a project or person.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
  <td>A derrived thumbnail image.</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/givenname</td> 
- <td>The given name of some person.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
- <td>A checksum for the DNA of some thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
- <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
- <td>A Myers Briggs (MBTI) personality classification.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/surname</td> 
- <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/sha1</td> 
- <td>A sha1sum hash, in hex.</td><td>http://xmlns.com/foaf/0.1/Document</td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/logo</td> 
- <td>A logo representing some thing.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
- <td>A workplace homepage of some person; the homepage of an organization they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/family_name</td> 
- <td>The family_name of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/title</td> 
- <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/topic</td> 
- <td>A topic of some page or document.</td><td>http://xmlns.com/foaf/0.1/Document</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
- <td>A work info homepage of some person; a page about their work for some organization.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/phone</td> 
  <td>A fully qualified international phone number, specified using the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/nick</td> 
- <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/page</td> 
- <td>A page or document about this thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
- <td>A homepage of a school attended by the person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/homepage</td> 
- <td>A homepage for some thing.</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/jabberID</td> 
- <td>A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/theme</td> 
- <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/weblog</td> 
- <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/aimChatID</td> 
  <td>An AIM chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/currentProject</td> 
+ <td>A current project this person works on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
+ <td>A Myers Briggs (MBTI) personality classification.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/homepage</td> 
+ <td>A homepage for some thing.</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/icqChatID</td> 
+ <td>An ICQ chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox</td> 
+ <td>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/pastProject</td> 
+ <td>A project this person has previously worked on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
+ <td>A workplace homepage of some person; the homepage of an organization they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/yahooChatID</td> 
+ <td>A Yahoo chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/weblog</td> 
+ <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/msnChatID</td> 
+ <td>An MSN chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
+ <td>The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
+ <td>An organization funding a project or person.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
+ <td>A work info homepage of some person; a page about their work for some organization.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/plan</td> 
  <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/icqChatID</td> 
- <td>An ICQ chat ID</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>http://xmlns.com/foaf/0.1/name</td> 
+ <td>A name for some thing.</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/geekcode</td> 
+ <td>A textual geekcode for this person, see http://www.geekcode.com/geek.html</td><td>http://xmlns.com/foaf/0.1/Person</td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
+ <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
+ <td>A homepage of a school attended by the person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
+ <td>A checksum for the DNA of some thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/logo</td> 
+ <td>A logo representing some thing.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/sha1</td> 
+ <td>A sha1sum hash, in hex.</td><td>http://xmlns.com/foaf/0.1/Document</td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>A topic of some page or document.</td><td>http://xmlns.com/foaf/0.1/Document</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/img</td> 
+ <td>An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/givenname</td> 
+ <td>The given name of some person.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/based_near</td> 
+ <td>A location that something is based near, for some broadly human notion of near.</td><td>http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing</td><td>http://www.w3.org/2003/01/geo/wgs84_pos#Point</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>A page or document about this thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depiction</td> 
+ <td>A depiction of some thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/surname</td> 
+ <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/title</td> 
+ <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depicts</td> 
+ <td>A thing depicted in this representation.</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/nick</td> 
+ <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
+ <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/family_name</td> 
+ <td>The family_name of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/jabberID</td> 
+ <td>A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 
 </table>
 
@@ -265,16 +274,18 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns"
 	xmlns:daml="http://www.daml.org/2001/03/daml+oil#" 
 	xmlns:foaf="http://xmlns.com/foaf/0.1/" 
 	xmlns:wot="http://xmlns.com/wot/0.1/" 
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 	xmlns:wn="http://xmlns.com/wordnet/1.6/" 
 	xmlns:dc="http://purl.org/dc/elements/1.1/">
 
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-07-09 18:35:18 $</dc:date>
+        <dc:date>$Date: 2003-07-13 01:28:01 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -288,7 +299,9 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Person" 
 	rdfs:label="Person"
 	rdfs:comment="A person.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Person"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
@@ -299,6 +312,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Document" 
 	rdfs:label="Document"
 	rdfs:comment="A document.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
@@ -309,9 +323,26 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Organization" 
 	rdfs:label="Organization"
 	rdfs:comment="An organization.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Organization"/>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Agent"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Project" />
+        <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
+      </rdfs:Class>
+
+      <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Group" 
+	rdfs:label="Group"
+	rdfs:comment="A group.">
+	<vs:term_status>unstable</vs:term_status>
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Agent"/>
+      </rdfs:Class>
+
+      <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Agent" 
+	rdfs:label="Agent"
+	rdfs:comment="An agent (eg. person, group, software or physical artifact.">
+	<vs:term_status>unstable</vs:term_status>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Project" />
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
       </rdfs:Class>
@@ -319,6 +350,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Project" 
 	rdfs:label="Project"
 	rdfs:comment="A project.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Project"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
@@ -330,6 +362,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Image" 
 	rdfs:label="Image"
 	rdfs:comment="An image.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdfs:Class>
@@ -372,9 +405,21 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sha1" 
 	rdfs:label="sha1sum (hex)"
 	rdfs:comment="A sha1sum hash, in hex.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/based_near" 
+	rdfs:label="based near"
+	rdfs:comment="A location that something is based near, for some broadly human notion of near.">
+	<!-- see http://esw.w3.org/topic/GeoOnion for extension  ideas -->
+	<!-- this was ranged as Agent... hmm -->
+	<vs:term_status>unstable</vs:term_status>
+        <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
@@ -383,12 +428,14 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/title" 
 	rdfs:label="title"
 	rdfs:comment="Title (Mr, Mrs, Ms, Dr. etc)">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/nick" 
 	rdfs:label="nickname"
 	rdfs:comment="A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
@@ -398,6 +445,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
         rdfs:label="jabber ID"
         rdfs:comment="A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node
 TODO: just for account IDs, or resources? chatrooms?">
+	<vs:term_status>testing</vs:term_status>
        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
@@ -408,6 +456,7 @@ TODO: just for account IDs, or resources? chatrooms?">
        <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/aimChatID"
         rdfs:label="AIM chat ID"
         rdfs:comment="An AIM chat ID">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
 />
@@ -420,6 +469,7 @@ TODO: just for account IDs, or resources? chatrooms?">
        <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/icqChatID"
         rdfs:label="ICQ chat ID"
         rdfs:comment="An ICQ chat ID">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
 />
@@ -430,6 +480,7 @@ TODO: just for account IDs, or resources? chatrooms?">
        <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/yahooChatID"
         rdfs:label="Yahoo chat ID"
         rdfs:comment="A Yahoo chat ID">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
 />
@@ -441,6 +492,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/msnChatID"
         rdfs:label="MSN chat ID"
         rdfs:comment="An MSN chat ID">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
@@ -456,6 +508,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/name" 
 	rdfs:label="name"
 	rdfs:comment="A name for some thing.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label" />
@@ -464,6 +517,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/firstName" 
 	rdfs:label="firstName"
 	rdfs:comment="The first name of a person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -473,12 +527,14 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/givenname" 
 	rdfs:label="Given name"
 	rdfs:comment="The given name of some person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/surname" 
 	rdfs:label="Surname"
 	rdfs:comment="The surname of some person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -487,6 +543,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/family_name" 
 	rdfs:label="family_name"
 	rdfs:comment="The family_name of some person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
@@ -500,12 +557,14 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/phone" 
 	rdfs:label="phone"
 	rdfs:comment="A fully qualified international phone number, specified using  the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage" 
 	rdfs:label="homepage"
 	rdfs:comment="A homepage for some thing.">
+	<vs:term_status>stable</vs:term_status>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
@@ -516,6 +575,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/weblog" 
 	rdfs:label="weblog"
 	rdfs:comment="A weblog of some thing (whether person, group, company etc.).">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
@@ -526,6 +586,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/plan" 
 	rdfs:label="plan"
 	rdfs:comment="A .plan comment, in the tradition of finger and '.plan' files.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
@@ -536,6 +597,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/made" 
 	rdfs:label="made"
 	rdfs:comment="Something that was made by this agent.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -545,6 +607,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/img" 
 	rdfs:label="image"
 	rdfs:comment="An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/depiction"/>
@@ -554,6 +617,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depiction" 
 	rdfs:label="depiction"
 	rdfs:comment="A depiction of some thing.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -563,6 +627,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depicts" 
 	rdfs:label="depicts"
 	rdfs:comment="A thing depicted in this representation.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -572,6 +637,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/thumbnail" 
 	rdfs:label="thumbnail"
 	rdfs:comment="A derrived thumbnail image.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -580,6 +646,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/myersBriggs" 
 	rdfs:label="myersBriggs"
 	rdfs:comment="A Myers Briggs (MBTI) personality classification.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -589,6 +656,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workplaceHomepage" 
 	rdfs:label="workplaceHomepage"
 	rdfs:comment="A workplace homepage of some person; the homepage of an organization they work for.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -597,6 +665,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workInfoHomepage" 
 	rdfs:label="workInfoHomepage"
 	rdfs:comment="A work info homepage of some person; a page about their work for some organization.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -605,6 +674,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/schoolHomepage" 
 	rdfs:label="schoolHomepage"
 	rdfs:comment="A homepage of a school attended by the person.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -613,6 +683,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/knows" 
 	rdfs:label="knows"
 	rdfs:comment="A person known by this person (indicating some level of reciprocated interaction between the parties).">
+	<vs:term_status>testing</vs:term_status>
          <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -621,6 +692,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/interest" 
 	rdfs:label="interest"
 	rdfs:comment="A page about a topic of interest to this person.">
+	<vs:term_status>testing</vs:term_status>
         <!-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 -->
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
@@ -630,6 +702,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/topic_interest" 
 	rdfs:label="interest_topic"
 	rdfs:comment="A thing of interest to this person.">
+	<vs:term_status>unstable</vs:term_status>
         <!-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 -->
         <!--    foaf:interest_topic(P,R) 
 		always true whenever
@@ -646,6 +719,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/publications" 
 	rdfs:label="publications"
 	rdfs:comment="A link to the publications of this person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -655,6 +729,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/currentProject" 
 	rdfs:label="current project" 
 	rdfs:comment="A current project this person works on.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -663,6 +738,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/pastProject" 
 	rdfs:label="past project" 
 	rdfs:comment="A project this person has previously worked on.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -671,6 +747,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/fundedBy" 
 	rdfs:label="funded by" 
 	rdfs:comment="An organization funding a project or person.">
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -680,6 +757,7 @@ TODO: just for account IDs, or resources? chatrooms?">
 	rdfs:label="linked with" 
 	rdfs:comment="generic link">
 <!-- todo: this is pretty weak... can we tighten it up? danbri 2002-07-08 -->
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -688,6 +766,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/logo" 
 	rdfs:label="logo" 
 	rdfs:comment="A logo representing some thing.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -696,6 +775,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/topic" 
 	rdfs:label="topic"
 	rdfs:comment="A topic of some page or document.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
@@ -705,6 +785,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/page" 
 	rdfs:label="page"
 	rdfs:comment="A page or document about this thing.">
+	<vs:term_status>testing</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -715,6 +796,7 @@ TODO: just for account IDs, or resources? chatrooms?">
 	rdfs:label="theme" 
 	rdfs:comment="A theme.">
 <!-- more info needed. what is this for? -->
+	<vs:term_status>unstable</vs:term_status>
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
