@@ -101,7 +101,7 @@ public class RDFModelView extends NSView {
         }
         else if (addingNode)
         {
-            rdfAuthorDocument.addNodeAtPoint(null, null, null, point);
+            rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false); // false - default to resource
         }
         else if (deleting)
         {
@@ -238,13 +238,13 @@ public class RDFModelView extends NSView {
 
             String id = (String) URLs.objectAtIndex(0);
             
-            rdfAuthorDocument.setIdForNodeAtPoint(id, point);
+            rdfAuthorDocument.setIdForNodeAtPoint(id, point, false); // false - if new node don't want a literal
         }
         else if (type.equalsIgnoreCase(NSPasteboard.StringPboardType)) {
             
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
-            rdfAuthorDocument.setIdForNodeAtPoint(id, point);
+            rdfAuthorDocument.setIdForNodeAtPoint(id, point, true); // true - if new node make it a literal
         }
         else if (type.equalsIgnoreCase(SchemaData.ClassPboardType))
         {
