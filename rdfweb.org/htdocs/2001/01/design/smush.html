@@ -17,10 +17,9 @@
         <tr>
           <td align="left" valign="top">
             <strong><a href="/" class="sitepart">RDFWeb</a>: <a
-            class="sitepart"
-            href="../../../dev.html">developers</a>: <span
-            class="sitepart">aggregation strategies</span></strong>
-            
+            class="sitepart" href="../../../dev.html">
+            developers</a>: <span class="sitepart">aggregation
+            strategies</span></strong> 
           </td>
           <td align="right">
             <span class="siteutil"><a href="about.html">about</a> |
@@ -36,29 +35,12 @@
       RDFWeb notebook: aggregation strategies
     </h1>
     <p>
-      This document (eventually...) outlines a strategy for
-      handling anonymous resource description with RDF datastores.
-      We introduce the problem by way of a practical example and
-      then explore the implications for deployable RDF systems. The
+      This document explores strategies for handling anonymous
+      ("blank node") resource description with RDF datastores. We
+      introduce the problem by way of a practical example and then
+      explore the implications for deployable RDF systems. The
       accompanying <a href="examples.rdf">examples.rdf</a> file
       might be useful for RDF implementors to experiment with.
-    </p>
-    <h2>
-      Implementations
-    </h2>
-    <p>
-      See the <a
-      href="http://ilrt.org/discovery/chatlogs/rdfig/2001-07-20.html#T15-26-36">
-      RDF Interest Group logs</a> for details on Dan Connolly's
-      implementation using <a
-      href="http://www.w3.org/2000/10/swap/">cwm</a> and N3 rules.
-      To run, you'll need <a href="#various">various files</a> from
-      the CWM/SWAP site, and an installation of Python. Usage:
-      <code>python cwm.py --rdf smush-examples.rdf --n3
-      smush-schema.n3 sameThing.n3 --think --apply=forgetDups.n3
-      --purge</code> The resulting <a href="cwm-output.n3">N3
-      output</a> from CWM shows a dump of everything it concludes
-      from this input.
     </p>
     <h2>
       Problem statement
@@ -614,10 +596,58 @@ foreeach $genid ( $incoming-&gt;genids ) {
     <p>
       .....
     </p>
+    <a name="impl" id="impl"></a> 
+    <h2>
+      Implementations
+    </h2>
+    <p>
+      I'll keep track of any implements I hear about.
+    </p>
+    <h3>
+      Cwm/N3 (Python)
+    </h3>
+    <p>
+      See the <a
+      href="http://ilrt.org/discovery/chatlogs/rdfig/2001-07-20.html#T15-26-36">
+      RDF Interest Group logs</a> for details on Dan Connolly's
+      implementation using <a
+      href="http://www.w3.org/2000/10/swap/">cwm</a> and N3 rules.
+      To run, you'll need <a href="#various">various files</a> from
+      the CWM/SWAP site, and an installation of Python. Usage:
+      <code>python cwm.py --rdf smush-examples.rdf --n3
+      smush-schema.n3 sameThing.n3 --think --apply=forgetDups.n3
+      --purge</code> The resulting <a href="cwm-output.n3">N3
+      output</a> from CWM shows a dump of everything it concludes
+      from this input.
+    </p>
+    <h3>
+      <a href="http://www.agfa.com/w3c/euler/">Euler</a>/N3 (Java)
+    </h3>
+    <p>
+      Jos De Roo's Java query/inference engine, <a
+      href="http://www.agfa.com/w3c/euler/">Euler</a>, also passes
+      this test. The files '<a
+      href="http://www.agfa.com/w3c/euler/danb.n3">danb.n3</a>',
+      '<a
+      href="http://www.agfa.com/w3c/euler/danb-query.n3">danb-query.n3</a>'
+      and '<a
+      href="http://www.agfa.com/w3c/euler/danb-result.n3">danb-result.n3</a>'
+      are bundled as tests with Euler itself.
+    </p>
+    <p>
+      To test, run: java Euler danb-query.n3 on commandline. The
+      output should be equivalent to <a
+      href="http://www.agfa.com/w3c/euler/danb-result.n3">
+      danb-result.n3</a>.
+    </p>
     <h3>
       appendix: cwm files needed:
     </h3>
-    <a name="various" id="various"></a> 
+    <p>
+      the following list helped me get up and running with Cwm.
+      (It's probably out of date now...) <a name="various"
+      id="various"></a>
+    </p>
 <pre>
 xml2rdf.py 
 cwm.py
