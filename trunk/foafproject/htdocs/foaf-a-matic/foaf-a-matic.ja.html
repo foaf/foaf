@@ -1,23 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
 <head>
 <title>FOAF-a-matic -- RDFを使って自己紹介してみよう</title>
-<link rel="stylesheet" href="css/foaf-a-matic.css" type="text/css"/>
-<script language="javascript" type="text/javascript" src="js/foaf-a-matic.js" xml:space="preserve">
+<link rel="stylesheet" href="css/foaf-a-matic.css" type="text/css" />
+<script language="javascript" type="text/javascript" src="js/foaf-a-matic.js">
 </script>
-<script language="javascript" type="text/javascript" src="js/foaf.js" xml:space="preserve"/>
-<script language="javascript" type="text/javascript" src="js/sha1.js" xml:space="preserve"/>
-<script language="javascript" xml:space="preserve">
+<script language="javascript" type="text/javascript" src="js/foaf.js" />
+<script language="javascript" type="text/javascript" src="js/sha1.js" />
+<script language="javascript">
 <!--
 // check for parameters in URL
 checkParameters();
 // -->
 </script>
-<link rel="stylesheet" href="../css/foaf3.css" type="text/css"/>
+<link rel="stylesheet" href="../css/foaf3.css" type="text/css" />
 </head>
 
 <body>
 <h1>
-<a href="http://www.foaf-project.org/" shape="rect">
+<a href="http://www.foaf-project.org/">
 <span class="lefthead">foaf  
 </span>
 <span class="righthead">project</span>
@@ -26,17 +27,17 @@ checkParameters();
 <div class="description-bar">friend of a friend</div>
 <div class="marginLeft">
 <div class="header">
-<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles"/>
+<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles" />
 </div>
 <div id="links">
-<a href="/foaf-a-matic/" shape="rect">foaf-a-matic</a>
-<a href="http://rdfweb.org/topic/FAQ" shape="rect">
+<a href="/foaf-a-matic/">foaf-a-matic</a>
+<a href="http://rdfweb.org/topic/FAQ">
 about</a>
-<a href="http://xmlns.com/foaf/0.1/" shape="rect">specification</a>
-<a href="http://rdfweb.org/" shape="rect">
+<a href="http://xmlns.com/foaf/0.1/">specification</a>
+<a href="http://rdfweb.org/">
 developers</a>
-<a href="http://rdfweb.org/foaf/corp/intro.html" shape="rect">foafcorp</a>
-<a href="foaf-contact@rdfweb.org" shape="rect">
+<a href="http://rdfweb.org/foaf/corp/intro.html">foafcorp</a>
+<a href="foaf-contact@rdfweb.org">
 contact</a>
 </div>
 <!-- main page content follows -->
@@ -64,7 +65,7 @@ contact</a>
         
 <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         細かいことはさておき、FOAFとはひとことで言えば、XMLとRDFを使ってあなた自身を紹介する &mdash; 名前、メールアドレス、それに友人についてなど &mdash; ための手段です。こうすることで、ソフトウェアが（たとえばサーチエンジンの一部分として）あなたの紹介データを処理し、あなた自身やあなたが所属するコミュニティの情報を見つけだすといったことが可能になります。FOAFは、オンラインコミュニティにおけるさまざまな興味深い新展開をひきだす可能性を秘めているのです。
-        Ben HammerselyがGuardian Unlimitedウェブサイトに書いた記事"<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"には、これらのアイデアについて更に掘り下げた記述があります。
+        Ben HammersleyがGuardian Unlimitedウェブサイトに書いた記事"<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"には、これらのアイデアについて更に掘り下げた記述があります。
         </p>
 
         
@@ -90,7 +91,7 @@ contact</a>
         </p>
     
 
-<form name="details" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<form name="details" onSubmit="return false;">
 
 
 <a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms"></a>
@@ -107,51 +108,51 @@ contact</a>
 
 <table>
 <tr>
-<td rowspan="1" colspan="1">敬称 (Mr, Mrs, Dr, etc)</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="title"/>
+<td>敬称 (Mr, Mrs, Dr, etc)</td>
+<td>
+<input type="text" name="title" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">名 (First Name)</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="firstName"/>
+<td>名 (First Name)</td>
+<td>
+<input type="text" name="firstName" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">姓 (Family/Given)</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="surname"/>
+<td>姓 (Family/Given)</td>
+<td>
+<input type="text" name="surname" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">ニックネーム</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="nick"/>
+<td>ニックネーム</td>
+<td>
+<input type="text" name="nick" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">メールアドレス</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="email"/>
+<td>メールアドレス</td>
+<td>
+<input type="text" name="email" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">ホームページURL</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="homepage"/>
+<td>ホームページURL</td>
+<td>
+<input type="text" name="homepage" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">あなたの写真のURL</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="depiction"/>
+<td>あなたの写真のURL</td>
+<td>
+<input type="text" name="depiction" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">電話番号</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="phone"/>
+<td>電話番号</td>
+<td>
+<input type="text" name="phone" />
 </td>
 </tr>
 </table>
@@ -167,15 +168,15 @@ contact</a>
 
 <table>
 <tr>
-<td rowspan="1" colspan="1">職場ホームページのURL</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="workplaceHomepage"/>
+<td>職場ホームページのURL</td>
+<td>
+<input type="text" name="workplaceHomepage" />
 </td>
 </tr>
 <tr>
-<td rowspan="1" colspan="1">仕事を説明しているページのURL</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="workInfoHomepage"/>
+<td>仕事を説明しているページのURL</td>
+<td>
+<input type="text" name="workInfoHomepage" />
 </td>
 </tr>
 </table>
@@ -191,9 +192,9 @@ contact</a>
 
 <table>
 <tr>
-<td rowspan="1" colspan="1">学校のホームページURL</td>
-<td rowspan="1" colspan="1">
-<input type="text" name="schoolHomepage"/>
+<td>学校のホームページURL</td>
+<td>
+<input type="text" name="schoolHomepage" />
 </td>
 </tr>
 </table>
@@ -209,17 +210,17 @@ contact</a>
         </p>
     
 
-<form name="friends" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<form name="friends" onSubmit="return false;">
 <table>
 <tbody id="friendtable">
-<script language="javascript" xml:space="preserve">
+<script language="javascript">
 //see foaf-a-matic.js
 createFriendFields();
 </script>
 </tbody>
 </table>
 
-<input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()"/>
+<input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()" />
 </form>
 
 
@@ -231,17 +232,17 @@ createFriendFields();
         </p>
     
 
-<form name="results" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<form name="results" onSubmit="return false;">
 <p>
-   <input type="checkbox" id="spamProtect" name="spamProtect" checked="checked"/> メールアドレスをSPAMから保護する 
+   <input type="checkbox" id="spamProtect" name="spamProtect" checked="checked" /> メールアドレスをSPAMから保護する 
 </p>
 <p>
-   <input type="submit" id="generate" value="FOAF me!" onClick="generate()"/>
+   <input type="submit" id="generate" value="FOAF me!" onClick="generate()" />
 </p>
-<textarea name="rdf" cols="80" rows="20"/>
+<textarea name="rdf" cols="80" rows="20" />
 
 <p align="left">
-   <input id="reset" type="reset"/>
+   <input id="reset" type="reset" />
 </p>
 
 </form>
@@ -351,8 +352,8 @@ createFriendFields();
 </p>
     
 
-<hr/>
-[<a href="index.html" shape="rect">FOAF Hackery</a>]
+<hr />
+[<a href="index.html">FOAF Hackery</a>]
 
 </body>
 </html>

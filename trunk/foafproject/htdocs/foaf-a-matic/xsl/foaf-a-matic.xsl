@@ -2,6 +2,8 @@
 
 <xsl:variable name="template" select="document('../src/foaf-a-matic.xml')"/>
 <xsl:variable name="input" select="/"/>
+<xsl:output method="html"  doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+			doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
 
 <xsl:template match="/">
     <xsl:apply-templates select="$template/*"/>
@@ -13,7 +15,7 @@
 <xsl:template match="head">
    <head>
    <script language="javascript" type="text/javascript">
-      <xsl:attribute name="src">js/<xsl:value-of select="$input/fm:translation/@lang"/>.js</xsl:attribute>
+     <xsl:attribute name="src">js/<xsl:value-of select="$input/fm:translation/@lang"/>.js</xsl:attribute>
    </script>
    <xsl:apply-templates/>
    </head>
