@@ -1,18 +1,20 @@
 #!/usr/bin/env ruby
-
-# foafpath (cargo cult edition) 
+#
+# foaf pathfinder (cargo cult edition) 
+# $Id: pathfinder,v 1.2 2002-07-14 20:00:23 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
+# Damian did the clever algorithm stuff.
+#
+# Mindlessly-transliterated Ruby version 
+# and associated bugs/glitches by Dan.
+#
 # see http://rdfweb.org/people/damian/2002/02/foafnation/
+# http://swordfish.rdfweb.org/people/libby/rdfweb/paths/
 #
-# $Id: pathfinder,v 1.1 2002-07-11 13:28:23 danbri Exp $ danbri@rdfweb.org
-
-# @@TODO: how to ack Damian and Libby? are they copyright holders in
-#     this? (fine by me...). Need confirmation that original is GPL-happy.
-
 #
-# Copyright 2002 Dan Brickley 
+# Copyright 2002 Dan Brickley, Libby Miller, Damian Steer.
 #
 # 
 #    This program is free software; you can redistribute it and/or modify
@@ -28,7 +30,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-
 
 
 
@@ -229,65 +230,6 @@ require 'basicrdf'
 class TGraph
   attr_accessor :edges, :nodes, :nodeLookup, :edgeLookup, :complex
 
-  def TGraph.main(args={})
-    @complex=true # verbose RDF output
-    all=""
-
-    graph = TGraph.new
-    graph.buildGraph(graph)
-
-     puts "# of nodes: " + graph.getNodes.size.to_s
-     puts "# of edges: " + graph.getEdges.size.to_s
-     puts "Nodelookup table: " 
-     graph.nodeLookup.each_key do |k| 
-       puts "node: #{k} "
-     end 	 
-
-     puts "\n\n\n"
-
-     danpath = graph.findShortestPathsFromNodeNamed 'mailto:danbri@w3.org'
-     puts "\n\nDanpaths: " 
-     danpath.each do |e|
-       puts "Path:\n"
-       while (e.parent != nil) 
-         puts "\tpath element: "+e.to_s
-         e = e.parent
-       end
-     end
-     puts "\n\n\n"
-
-
-     # see BuildPath for how we might store this graph in SQL
-     # for fast retrieval
-
-    topPerson = nil
-    avLen = 0
-
-    all += ("<?xml version=\"1.0\" ?>\n")
-    all += ("<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n")
-    all += (" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\">\n")
-    graph.edges.each do |edge|
-      node1 = edge.node1
-      node2 = edge.node2
-      if(!@complex)
-                  all += ("<!-- simple description of a codepiction --> \n")
- 		  all += ("<rdf:Description rdf:about=\""+node1+"\">\n")
-		  all += ("<foaf:codepiction rdf:resource=\""+node2+"\" />\n")
-		  all += ("</rdf:Description>\n")
-      else
-                  all += ("<!-- complex description of a codepiction --> \n")
-  		  all += ("<rdf:Description rdf:about=\""+node1.getText()+"\">\n")
-		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
-		  all += ("</rdf:Description>\n")
-		  all += ("<rdf:Description rdf:about=\""+node2.getText()+"\">\n")
-		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
-		  all += ("</rdf:Description>\n\n\n")
-      end
-    end
-    all += ("</rdf:RDF>")
-    puts all;
-  end
-
   def initialize 
     @edges = []
     @nodes = []
@@ -476,8 +418,69 @@ EOQ
       end 
     end
   end
-end # /class TGraph
 
+  ###########################################################
+
+  def TGraph.main(args={})
+    @complex=true # verbose RDF output
+    all=""
+
+    graph = TGraph.new
+    graph.buildGraph(graph)
+
+     puts "# of nodes: " + graph.getNodes.size.to_s
+     puts "# of edges: " + graph.getEdges.size.to_s
+     puts "Nodelookup table: " 
+     graph.nodeLookup.each_key do |k| 
+       puts "node: #{k} "
+     end 	 
+
+     puts "\n\n\n"
+
+     danpath = graph.findShortestPathsFromNodeNamed 'mailto:danbri@w3.org'
+     puts "\n\nDanpaths: " 
+     danpath.each do |e|
+       puts "Path:\n"
+       while (e.parent != nil) 
+         puts "\tpath element: "+e.to_s
+         e = e.parent
+       end
+     end
+     puts "\n\n\n"
+
+
+     # see BuildPath for how we might store this graph in SQL
+     # for fast retrieval
+
+    topPerson = nil
+    avLen = 0
+
+    all += ("<?xml version=\"1.0\" ?>\n")
+    all += ("<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n")
+    all += (" xmlns:foaf=\"http://xmlns.com/foaf/0.1/\">\n")
+    graph.edges.each do |edge|
+      node1 = edge.node1
+      node2 = edge.node2
+      if(!@complex)
+                  all += ("<!-- simple description of a codepiction --> \n")
+ 		  all += ("<rdf:Description rdf:about=\""+node1+"\">\n")
+		  all += ("<foaf:codepiction rdf:resource=\""+node2+"\" />\n")
+		  all += ("</rdf:Description>\n")
+      else
+                  all += ("<!-- complex description of a codepiction --> \n")
+  		  all += ("<rdf:Description rdf:about=\""+node1.getText()+"\">\n")
+		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
+		  all += ("</rdf:Description>\n")
+		  all += ("<rdf:Description rdf:about=\""+node2.getText()+"\">\n")
+		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
+		  all += ("</rdf:Description>\n\n\n")
+      end
+    end
+    all += ("</rdf:RDF>")
+    puts all;
+  end
+
+end # /class TGraph
 
 
 ###########################################################
