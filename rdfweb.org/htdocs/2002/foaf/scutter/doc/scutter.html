@@ -112,6 +112,9 @@
       <li>
         The SQL schema used is the one assumed by RubyRDF and the
         Java Inkling tools. It may improve in future releases.
+        There is a script in conf/ for setting up the tables needed.
+	Don't forget to create a database first. Eg: 'createdb rdfweb1';
+'psql rdfweb1 < conf/scutterdb.sql'.
       </li>
       <li>
         debian:(@@?) apt-get install postgres
