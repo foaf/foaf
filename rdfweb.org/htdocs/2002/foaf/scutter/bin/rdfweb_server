@@ -7,7 +7,7 @@ require 'webrick'
 include WEBrick
 
 # rdfweb_server, sample RDF services (RSS directory etc)
-# $Id: rdfweb_server,v 1.4 2002-07-11 13:10:46 danbri Exp $
+# $Id: rdfweb_server,v 1.5 2002-07-13 16:37:02 danbri Exp $
 #
 # Copyright 2001 Dan Brickley 
 #
@@ -130,7 +130,7 @@ class RSSDirectoryServlet < HTTPServlet::AbstractServlet
 	dc for http://purl.org/dc/elements/1.1/
 EOQ
 
-    dbi_driver = 'DBI:Pg:rdfweb1'
+    dbi_driver = 'DBI:Mysql:rdfweb1'
     dbi_user = 'danbri'
     dbi_pass =''
     q = SquishQuery.new.parseFromText (query)
@@ -158,7 +158,9 @@ end
 
 
 s = HTTPServer.new( :Port => 2000, 
-	:Logger => WEBrick::Log::new('logfile', WEBrick::Log::DEBUG) ,	:BindAddress    => '0.0.0.0' )
+	:Logger => WEBrick::Log::new('logfile', WEBrick::Log::DEBUG) 
+	)
+#	, :BindAddress    => '0.0.0.0' 
 
 s.mount  '/rss', RSSDirectoryServlet
 s.mount  '/rssview', RSSViewServlet
