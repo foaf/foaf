@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Welcome to RDFWeb - Semantic Web Vapourware for the Masses</title>
+
+<link rel="XXXXOStyleSheet" href="ssi/css" />
+</head>
+<body bgcolor="#ffffff">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="1"
+summary="main navigation bar" bgcolor="#000000">
+<tr>
+<td valign="top">
+<!-- fffacd yellow, 000000, black -->
+
+<table border="0" bgcolor="#fffacd" cellpadding="3" cellspacing="0"
+summary="a layout table" width="100%">
+<tr>
+<td align="left" valign="top">
+<a href="/">RDFWeb</a>: <a href="dev.html">semantic web vapourware</a>
+</td>
+
+<td align="right"><a href="overview.html">overview</a> | <a href="demos.html">demos</a> | <a href="mod.html">modesty</a> | <a href="hype.html">hype</a> </td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+
+
+<h2>Welcome to RDFWeb <img src="rdf.jpg" alt="RDFWeb" align="right"/></h2>
+
+
+<p><strong>RDFWeb</strong> is an experimental linked information system.</p>
+
+
+
+<table border="0" width="50%"
+bgcolor="#ffffff" summary="a layout table">
+<tr>
+<td>
+
+
+<table cellspacing="0" cellpadding="0" border="0" width="100%"
+			summary="main navigation bar" bgcolor="#000000">
+<tr>
+<td>
+<table height="100%" width="100%" border="0" bgcolor="#000000"
+				summary="layout table" cellpadding="1">
+<tr>
+<td class="sidebar-header" bgcolor="#fffacd" >RDFWeb Starter Kit</td>
+</tr>
+
+<tr>
+<td bgcolor="#ffffff" class="small">
+<ul>
+<li><a href="overview.html">overview</a> (<em>understand it</em>)</li>
+<li><a href="demos.html">demos</a> (<em>see it</em>)</li>
+<li><a href="dev.html">developers</a> (<em>build it</em>)</li>
+<li><a href="projects.html">projects</a> (<em>extend it</em>)</li>
+<li><a href="who.html">who</a> (<em>hall of shame</em>)</li>
+</ul>
+
+<ul>
+<li><a href="news">News</a>: RDFWeb site relaunch<br />
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<p>
+RDFWeb blurb goes here...</p>
+
+<div align="right"><strong><small><a
+href="http://rdfweb.org/">http://rdfweb.org/</a></small></strong></div>
+</body>
+</html>
+
