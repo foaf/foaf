@@ -1,22 +1,27 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.1 2002-12-08 22:29:21 danbri Exp $
+# $Id: ayf.rb,v 1.2 2002-12-09 17:07:35 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a crude RDF harvester that traverses rdfs:seeAlso links
 # and creates an HTML page _allyourfoaf.html that links each image 
 # mentioned in the RDF it finds.
+#
+# some possible starting points:
+# http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+# http://www.perceive.net/xml/googlescutter.rdf
+# http://www.perceive.net/xml/googlescutterNoChatlogs.rdf
 
 require 'RDF4R/Consumer/Standard'
 require 'RDF4R/Driver/XMLParser'
-require 'RDF4R/Driver/SimpleData'
+#require 'RDF4R/Driver/SimpleData'
 require 'net/http'
 require 'basicrdf'
 
 class SimpleScutter
 
-  attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, :outfile, :left
+  attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, :outfile, :left, :pagehandler
 
   def initialize
     @seen={} 
@@ -113,6 +118,11 @@ class SimpleScutter
       @seen[uri]=1 
     end
 
+
+    #############################################################
+    # Things we do with each RDF 'page' we find 
+    # (could do all this via handlers/blocks?)
+
     # look in page for foaf:img
     foaf='http://xmlns.com/foaf/0.1/'
     img = page.ask(Statement.new(nil,  foaf+'img',nil))
@@ -129,6 +139,9 @@ class SimpleScutter
       gotpic(a.to_s,uri)
     end
 
+
+    # (Re)write an HTML page 
+    #
     html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
     html += "<h1>AllYourFoaf Image Index</h1>\n"  
     html += "<p><strong>stats:</strong>: left.size=#{left.size} \
@@ -151,6 +164,11 @@ class SimpleScutter
     rescue Exception
       puts "ERROR: can't write HTML logfile #{cf} "
     end
+  
+
+  # Call the pagehandler (if there was one)
+  #
+  yield(uri,page) # pass to pagehandler callback
 
   end #/while
 
@@ -233,11 +251,23 @@ end
 ###############################################################################
 
 
-start = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
 start = ARGV.shift if ARGV.shift
+if ARGV.shift
+  start=ARGV.shift
+else
+  start = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
+end
+
 ayf = SimpleScutter.new
 ayf.left.push(start)
-ayf.run
+ayf.run {|uri,page|  
+  puts "\n\nHandler: uri:#{uri} gave graph #{page} with #{page.size} triples\n\n " 
+}
 
-
-
+# todo: 
+# can we use this form?:
+# cb = Proc.new { puts "..." } 
+# can we have two or more?
+# what's the syntax for yield-ing?
+# we probably want to pass in pairs of callbacks and properties that
+# trigger them...?
