@@ -4,7 +4,7 @@
   <head>
     <meta name="generator" content="HTML Tidy, see www.w3.org" />
     <title>
-    RDFWeb: co-depiction photo metadata
+      RDFWeb: co-depiction photo metadata
     </title>
     <link rel="stylesheet" href="ssi/main.css" type="text/css" />
   </head>
@@ -16,11 +16,12 @@
         <tr>
           <td align="left" valign="top">
             <strong><a href="/" class="sitepart">RDFWeb</a>: <span
-            class="sitepart">co-depiction photo metadata</span></strong> 
+            class="sitepart">co-depiction photo
+            metadata</span></strong> 
           </td>
           <td align="right">
-            <span class="siteutil"><a href="/about.html">about</a> |
-            <a href="/projects.html">projects</a> | <a
+            <span class="siteutil"><a href="/about.html">about</a>
+            | <a href="/projects.html">projects</a> | <a
             href="/dev.html">developers</a> | <a
             href="/sitemap.html">sitemap</a> | <a
             href="/search.html">search</a></span> 
@@ -28,112 +29,292 @@
         </tr>
       </table>
     </div>
-      <h2>
+    <h2>
       Photo metadata: the co-depiction experiment
+    </h2>
+    <dl>
+      <dt>
+        author:
+      </dt>
+      <dd>
+        Dan Brickley &lt;danbri@rdfweb.org&gt;
+      </dd>
+      <!-- ask libby too -->
+    </dl>
+    <div class="prose">
+      <h3>
+        Overview
+      </h3>
+      <p>
+        This document is intended to provide an illustrated
+        walkthrough of the RDFWeb distributed photo-metadata
+        experiment. Right now it is pretty bare, but hopefully will
+        give you an idea of what we're attempting.
+      </p>
+      <p>
+        Nearby: <a
+        href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
+        co-depiction online demo</a>
+      </p>
+      <h3>
+        Introducing RDFWeb with photo metadata
+      </h3>
+      <p>
+        RDFWeb is intended to be both fun and technically
+        challenging. We hope that at least some of the writing here
+        will be accessible for a general audience, although much of
+        it will be for the rather small community familiar with the
+        subtleties of various Semantic Web technologies. We're
+        trying to build a linked information system, RDFWeb, as a
+        way of connecting these two goals. In particular, we want
+        RDF to present practical and interesting applications for
+        the Semantic Web, and explore ways of making them real. One
+        of our favourite examples is <em>photo metadata</em>. This
+        document tries to explain why...
+      </p>
+      <h3>
+        The Semantic Web
+      </h3>
+      <p>
+        The (soon to be "Semantic") Web, if it is to reach its full
+        potential, needs to become a lot more <em>automatic</em>.
+        We hope that it will be able to do things (offer us
+        <em>services</em>) based on combining data and services
+        scattered around the Web. It might, for example, be able to
+        find the phone numbers or AOL screen names of all your
+        friends and professional collaborators. Or show you the
+        photos, names and recent publications and shared bookmarks
+        for everyone attending the next meeting in your calendar.
+      </p>
+      <p>
+        There are so many things the Web <em>might</em> usefully do
+        in the future, that it is sometimes hard to see how we
+        might get there from here. W3C's RDF has been around since
+        1997, yet while it has been adopted in a number of
+        applications (for example by Mozilla, Open Directory,
+        Adobe, RSS 1.0), people often ask why there is as yet no
+        <em>killer app</em> for RDF. While we're not sure that
+        'killer app' is the right way to think about the problem,
+        it is true that there is relatively little RDF data 'out
+        there in the public Web', in the way that HTML is 'out
+        there'.
+      </p>
+      <p>
+        The original idea behind RDFWeb was to experiment with
+        making some cheap, simple RDF-based document formats that
+        were designed for deployment in the public Web. We began by
+        asking 'What would it be like if machines could read my
+        homepage?', and by prototyping a simple vocabulary called
+        FOAF ('Friend of a Friend'). The FOAF vocabulary provided a
+        way for RDF documents to talk about people and their
+        characteristics. FOAF documents also make use of
+        <em>hypertext</em>, providing '<code>seeAlso</code>' links
+        to other FOAF documents elsewhere in the Web. This simple
+        convention makes it possible for RDF indexing tools to
+        explore an <em>(RDF)Web</em> of linked documents (hence the
+        name of the project).
+      </p>
+      <h3>
+        From foaf:knows to foaf:depection
+      </h3>
+      <p>
+        Shortly after prototyping our early RDFWeb/FOAF tools, we
+        ran into a design problem. The FOAF vocabulary initially
+        tried to define a number of basic relationships that could
+        be used to describe connections between people in the Web.
+        We experimented with variations such as
+        <code>foaf:knows</code>, <code>foaf:friend</code> and
+        <code>foaf:knowsWell</code>. Eventually we decided that
+        such a taxonomy was neither appropriate nor deployable; we
+        now simply use <code>foaf:knows</code>. Instead of trying
+        to categorise subtle relationships into broad classes, we
+        took a different approach, focussing instead on other
+        information about people. Documents they'd written (and who
+        they were written with); Photo's they'd taken (and who
+        they'd taken them of). We expanded the early FOAF support
+        for image metadata by introducing the notion of a
+        <code>foaf:depiction</code>. This relates something (eg. a
+        person) to some depiction of them (typically a digital
+        image).
+      </p>
+      <h3>
+        Co-Depiction
+      </h3>
+      <p>
+        The co-depiction experiment grew naturally out of this. If
+        we knew who was depicted in an image, we could explore a
+        Web of relationships between people that were
+        'co-depicted'. Two people are co-depicted if there exists
+        some digital image that depicts them both.
+      </p>
+      <p>
+        This turned out to be quite fun. Cataloguing digital images
+        is expensive and time consuming, but when we focus on
+        co-depiction metadata we create a family of documents that
+        become more interesting whenever a new document is added to
+        the Web. And because we're using hypertext
+        <code>seeAlso</code> links between RDF documents, the
+        co-depiction data can be scattered around the Web, and
+        harvested when required by indexing tools.
+      </p>
+      <h3>
+        Examples
+      </h3>
+      <p>
+        While we have a <a
+        href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
+        working prototype</a>, documentation is currently rather
+        scarse. But the basic idea is simple: use a certain form of
+        RDF to describe images and the people in them. And the
+        wider goal should hopefully be clear: build a distributed
+        RDF document collection that illustrates the value of
+        connectedness.
+      </p>
+      <p>
+      </p>
+      <h2>
+        Example co-depiction paths
       </h2>
-
-<dl>
-<dt>author(s):</dt>
-<dd>Dan Brickley &lt;danbri@rdfweb.org&gt; </dd>
-<!-- ask libby too ? -->
-</dl>
-
-
-
-<p>This document is intended to provide an illustrated walkthrough of the RDFWeb 
-distributed photo-metadata experiment. Right now it is pretty bare, but
-hopefully will give you an idea of what we're attempting.
-</p> 
-
-
-<p>Nearby: <a
-href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">co-depiction 
-online demo</a></p>
-
-<p>
-RDFWeb is intended to be both fun and technically challenging. We are trying to 
-make at least some of the writing here accessible for a general audience,
-although much of it will be for the rather small community familiar with the 
-subtleties of various Semantic Web technologies. So we're trying to build a
-linked information system, RDFWeb, as a way of connecting these two goals. In 
-particular, we're trying to come up with practical and interesting applications
-for the Semantic Web, and explore ways of making them real. One of our favourite 
-examples is <em>photo metadata</em>. This document tries to explain why...
-</p>
-
-<p>
-The (soon to be "Semantic") Web, if it is to reach its full
-potential, needs to become a lot more <em>automatic</em>. We hope that it will be able to do
-things (offer us <em>services</em>) based on combining data and services
-scattered around the Web. It might, for example, be able to find the phone
-numbers or AOL screen names of all your friends and professional collaborators.
-Or show you the photos, names and recent publications and shared bookmarks for 
-everyone attending the next meeting in your calendar. 
-</p>
-<p>
-There are so many things the 
-Web <em>might</em> usefully do in the future, that it is sometimes hard to see how we 
-might get there from here. W3C's RDF has been around since 1997, yet while it 
-has been adopted in a number of applications (eg. Mozilla, Open Directory, Adobe, RSS 1.0), people often ask why there is as yet no <em>killer app</em> for RDF. While 
-we're not sure that 'killer app' is the right way to think about the problem, it 
-is true that there is relatively little RDF data 'out there in the public Web',
- in the way that HTML is 'out there'.
-</p>
-
-<p>
-The original idea behind RDFWeb was to experiment with making some cheap, simple 
-RDF document formats that were designed for deployment in the public Web. We 
-began by asking 'What would it be like if machines could read my homepage?', and 
-by prototyping a simple vocabulary called FOAF ('Friend of a Friend'). 
-</p>
- 
-
-@@writeme <em>Blah blah rdfweb co-depiction blah foaf blah knows blah what
-happened... blah six degrees blah fun blah testbed blah real</em></p>
-
-<h2>Example co-depiction paths:</h2>
-
-<p>
-Here's an example path through photos from me to Frank Sinatra. Some of 
-these photos are described in RDFWeb already, others I just found using 
-<a href="http://images.google.com/">Google image search</a>. 
-</p>
-<h3 class="foafpicpath" style="background: #cccccc;">danbri to frank sinatra</h3>
-<p>
-<img src="eg1/p1-dan-jan.jpg" alt="codepiction image p1-dan-jan.jpg" height="100" />
-
-<img src="eg1/p2-jan-lib.jpg" alt="codepiction image p2-jan-lib.jpg" height="100" />
-
-<img src="eg1/p3-lib-tim.jpg" alt="codepiction image p3-lib-tim.jpg" height="100" />
-
-<img src="eg1/p4-tim-bill.jpg" alt="codepiction image p4-tim-bill.jpg" height="100" />
-
-<img src="eg1/p5-bill-jfk.jpg" alt="codepiction image p5-bill-jfk.jpg" height="100" />
-
-<img src="eg1/p6-jfk-frk.jpg" alt="codepiction image p6-jfk-frk.jpg" height="100" />
-
-</p>
-
-
-<h4>Source images</h4>
-
-<ul>
-<li><a href="http://rdfweb.org/people/danbri/2001/06/mmw/images/p5290091.jpg"> danbri and jan</a></li>
-<li><a href="http://swordfish.rdfweb.org/photos/2001/07/30/000573.JPG">jan and libby</a></li>
-<li><a href="http://rdfweb.org/people/danbri/media/2001/09/27/photos/1/images/p1010011.jpg">libby  and timbl</a></li>
-<li><a href="http://www.w3.org/2001/08/rdfweb/img/tbl-bc-ag.jpg">timbl and clinton</a></li>
-<li><a href="http://clinton1.nara.gov/White_House/EOP/OP/images/b_jfk.gif">clinton and jfk</a></li>
-<li><a href="http://www.coolstamps.com/trk98ss-sinatra-jfk.jpg">jfk and sinatra</a></li>
-</ul>
-
-
-<h3 class="foafpicpath" style="background: #cccccc;">someone to someone-else</h3>
-
-<p>..etc</p>
-
+      <p>
+        Here's an example path through photos from me to Frank
+        Sinatra. Some of these photos are described in RDFWeb
+        already, others I just found using <a
+        href="http://images.google.com/">Google image search</a>.
+        There are many other paths through the image collection
+        than the one shown here, which occured to me after I found
+        the picture of clinton and timbl
+      </p>
+      <p>
+        Note: we don't have RDF to describe all these images yet.
+        In fact, this particular example presents a challenge,
+        since the usual RDFWeb/FOAF strategy for identifying
+        individuals (indirectly, via homepage, email address etc.)
+        may not work for some of the people depicted here.
+      </p>
+      <h3 class="foafpicpath" style="background: #cccccc;">
+        danbri to frank sinatra
+      </h3>
+      <p>
+        <img src="eg1/p1-dan-jan.jpg"
+        alt="codepiction image p1-dan-jan.jpg" height="100" /> <img
+        src="eg1/p2-jan-lib.jpg"
+        alt="codepiction image p2-jan-lib.jpg" height="100" /> <img
+        src="eg1/p3-lib-tim.jpg"
+        alt="codepiction image p3-lib-tim.jpg" height="100" /> <img
+        src="eg1/p4-tim-bill.jpg"
+        alt="codepiction image p4-tim-bill.jpg" height="100" />
+        <img src="eg1/p5-bill-jfk.jpg"
+        alt="codepiction image p5-bill-jfk.jpg" height="100" />
+        <img src="eg1/p6-jfk-frk.jpg"
+        alt="codepiction image p6-jfk-frk.jpg" height="100" />
+      </p>
+      <h4>
+        Source images
+      </h4>
+      <ul>
+        <li>
+          <a
+          href="http://rdfweb.org/people/danbri/2001/06/mmw/images/p5290091.jpg">
+          danbri and jan</a>
+        </li>
+        <li>
+          <a
+          href="http://swordfish.rdfweb.org/photos/2001/07/30/000573.JPG">
+          jan and libby</a>
+        </li>
+        <li>
+          <a
+          href="http://rdfweb.org/people/danbri/media/2001/09/27/photos/1/images/p1010011.jpg">
+          libby and timbl</a>
+        </li>
+        <li>
+          <a
+          href="http://www.w3.org/2001/08/rdfweb/img/tbl-bc-ag.jpg">
+          timbl and clinton</a>
+        </li>
+        <li>
+          <a
+          href="http://clinton1.nara.gov/White_House/EOP/OP/images/b_jfk.gif">
+          clinton and jfk</a>
+        </li>
+        <li>
+          <a
+          href="http://www.coolstamps.com/trk98ss-sinatra-jfk.jpg">jfk
+          and sinatra</a>
+        </li>
+      </ul>
+      <h3 class="not-yetfoafpicpath">
+        example 2: someone to someone-else (please write me!)
+      </h3>
+      <p>
+        I want to add a second example here. Contributions welcome.
+      </p>
+      <h3>
+        Fancy stuff
+      </h3>
+      <p>
+        Just having a database of images and people built from
+        collecting diverse RDF documents is fun. But there are some
+        other distracting ideas that we hope to find time to
+        implement properly.
+      </p>
+      <h4>
+        Who's who?
+      </h4>
+      <p>
+        The basic system outlined above works by describing an
+        image. It would be good to know more. For example, which
+        part of the image depicts which person. We think we know
+        how to do this...
+      </p>
+      <p>
+        <img src="svg/charles-danbri-amaya-sm.jpg"
+        alt="charles and danbri" align="right" width="132"
+        height="102" /> <img
+        src="svg/charles-danbri-amaya-outline.jpg"
+        alt="charles and danbri, outlined" align="right"
+        width="145" height="102" />
+      </p>
+      <p>
+        We want to expand this experiment to explore the use of RDF
+        and other W3C technology for better image description. One
+        idea is to use W3C's SVG image format to pick out the
+        different regions of the image, and annotate them with RDF
+        to say what they depict. W3C's Amaya browser <a
+        href="http://www.w3.org/2001/08/rdfweb/svg-foaf.html">can
+        generate these SVG outlines</a>, which provide us the basis
+        for annotating regions of an image. We can use RDF to say
+        things like 'this bit depicts the person whose email
+        address is charles@w3.org; this bit depicts a member of the
+        class wordnet:Beer; ...'. We've not worked out the exact
+        details of the RDF vocabulary and data format yet, but it
+        looks promising. (<a
+        href="http://www.w3.org/2001/08/rdfweb/svg-foaf.html">more
+        info...</a>).
+      </p>
+      <h3>
+        Further reading
+      </h3>
+      <p>
+        Nearby in the Web...
+      </p>
+      <ul>
+        <li>
+          <a href="http://xmlns.com/2001/08/wordnet/">Wordnet for
+          the Web</a>, 50,000+ noun terms organised as a massive
+          RDF schema class hierarchy. Handy for describing all
+          sorts of things.
+        </li>
+        <li>
+          <a
+          href="http://www.w3.org/2001/08/rdfweb/svg-foaf.html">RDFWeb:
+          some puzzles</a> (technical)
+        </li>
+      </ul>
+    </div>
 <pre>
-$Id: index.html,v 1.2 2002-02-09 00:06:32 danbri Exp $
+$Id: index.html,v 1.3 2002-02-09 18:32:15 danbri Exp $
 </pre>
-</body>
+  </body>
 </html>
 
