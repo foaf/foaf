@@ -5,8 +5,8 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-import com.strangeberry.rendezvous.Rendezvous;
-import com.strangeberry.rendezvous.ServiceInfo;
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
 
 public class RendTest
 {
@@ -14,7 +14,7 @@ public class RendTest
   Person person;
   int port = 7654;
   RendListener listener;
-  Rendezvous rv;
+  JmDNS rv;
   InetAddress inetaddr;
   ServiceInfo si;
   CommandLine cl;
@@ -91,13 +91,12 @@ public class RendTest
       {
 	cl = new CommandLine(this);
 	
-	rv = new Rendezvous();
+	rv = new JmDNS(inetaddr);
 
 	showMessage("Binding to: " + inetaddr);
 
 	si = new ServiceInfo(type,
 			     hashBox + "." + type,
-			     inetaddr,
 			     port,
 			     0,
 			     0,
@@ -121,8 +120,6 @@ public class RendTest
 	System.exit(1);
       }
     
-    //System.out.println("You are: \n" + person + "\n");
-    
   }
 
   public void exit()
@@ -133,9 +130,6 @@ public class RendTest
   public void kickService()
     throws Exception
   {
-    //System.out.println("UNS: " + si);
-    
-    
     rv.unregisterService(si);
 
     Hashtable props = person.getProps();
@@ -143,14 +137,11 @@ public class RendTest
 
     si = new ServiceInfo(type,
 			 hashBox + "." + type,
-			 inetaddr,
 			 port,
 			 0,
 			 0,
 			 props);
 
-    //System.out.println("Set: " + si);
-        
     rv.registerService(si);
   }
 
@@ -189,9 +180,9 @@ public class RendTest
     people.add(info);
   }
   
-  public void removePerson(ServiceInfo info)
+  public void removePerson(String mboxHash)
   {
-    people.remove(info);
+    people.remove(mboxHash);
   }
   
   public void showMessage(String message)

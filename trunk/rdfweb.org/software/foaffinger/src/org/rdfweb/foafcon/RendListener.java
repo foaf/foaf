@@ -1,8 +1,8 @@
 package org.rdfweb.foafcon;
 
-import com.strangeberry.rendezvous.Rendezvous;
-import com.strangeberry.rendezvous.ServiceInfo;
-import com.strangeberry.rendezvous.ServiceListener;
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 
 public class RendListener implements ServiceListener
 {
@@ -13,27 +13,31 @@ public class RendListener implements ServiceListener
     this.controller = controller;
   }
   
-  public void addService(Rendezvous rendezvous, String type, String name)
+  public void addService(JmDNS rendezvous, String type, String name)
   {
     controller.addPerson(rendezvous.getServiceInfo(type,name));
   }
 
-  public void removeService(Rendezvous rendezvous, String type, String name)
+  public void removeService(JmDNS rendezvous, String type, String name)
   {
-    controller.removePerson(rendezvous.getServiceInfo(type,name));
+    int index = name.indexOf('.');
+
+    String mboxHash = name.substring(0, index);
+
+    controller.removePerson(mboxHash);
   }
 
-  public void resolveService(Rendezvous rendezvous,
+  public void resolveService(JmDNS rendezvous,
 			     java.lang.String type,
 			     java.lang.String name,
 			     ServiceInfo info)
   {
     // Uh - no idea;
 
-    System.out.println(rendezvous + "\n" +
-		       type + "\n" +
-		       name + "\n" +
-		       info + "\n");
+    System.out.println("\nResolving...");
+    System.out.println("Type: " + type);
+    System.out.println("Name: " + name);
+    System.out.println("Info: " + info);
   }
   
 }
