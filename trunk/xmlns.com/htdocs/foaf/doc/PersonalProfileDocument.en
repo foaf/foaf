@@ -34,7 +34,7 @@ helpful to include this information explicitly within the
 For example, here is a fragment of a personal profile document which
 describes its author explicitly:
 </p>
-<p class="example">
+<div class="example">
 <pre>
 &lt;foaf:Person rdf:nodeID="p1"&gt;
  &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
@@ -47,7 +47,7 @@ describes its author explicitly:
    &lt;foaf:primaryTopic rdf:nodeID="p1"/&gt;
 &lt;/foaf:PersonalProfileDocument&gt;
 </pre>
-</p>
+</div>
 
 <p>
 Note that a <code>foaf:PersonalProfileDocument</code> will have some
