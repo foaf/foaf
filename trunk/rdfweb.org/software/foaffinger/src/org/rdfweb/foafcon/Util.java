@@ -85,6 +85,26 @@ public class Util
     writer.close();
   }
 
+  public static String sha1Hash(String string)
+  {
+    try
+      {
+	MessageDigest md = MessageDigest.getInstance("SHA");
+	
+	md.update(string.getBytes());
+	
+	byte[] digest = md.digest();
+	
+	BigInteger integer = new BigInteger(1, digest);
+
+	return integer.toString(16);
+      }
+    catch (Exception e)
+      {
+	return null;
+      }
+  }
+  
   public static InetAddress getAddress()
     throws Exception
   {
