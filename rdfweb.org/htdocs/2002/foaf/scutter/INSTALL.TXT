@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Initial setup
+
+
+#### DATABASE / QUERY SERVER
+
+/usr/local/pgsql/bin/dropdb rdfweb1
+
+#/usr/local/pgsql/bin/createdb -E UNICODE
+# if your postgres supports this... <- investigate
+
+/usr/local/pgsql/bin/createdb rdfweb1
+
+psql rdfweb1 < conf/scutterdb.sql
+
+
+
+#### FILESYSTEM / DATA CACHE 
+
+mkdir -p ./webcache/_nt/
