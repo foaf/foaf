@@ -1,4 +1,5 @@
-V=../../2003/vocabtable.rb
+#V=../../2003/vocabtable.rb
+V=./specgen.rb
 GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 
 # todo: vocabtable.rb is kinda primitive, and expects different input
@@ -13,9 +14,12 @@ tidyup:
 rdf_vdl.nt:
 	rapper -o ntriples -q file:index.rdf > rdf_vdl.nt
 
-index.html: index.rdf rdf_vdl.nt table.html _top 
+index.html:
+	ruby ./specgen.rb > index.html
+
+xxxindex.html: index.rdf rdf_vdl.nt table.html wip.html 
 	rm -f index2.html
-	cat _top > index2.html
+	cat wip.html > index2.html
 	cat table.html >> index2.html
 	cat index.rdf >> index2.html
 	echo "</body></html>" >> index2.html
@@ -48,6 +52,9 @@ publish:
 
 htaccess:
 	ruby ../../2003/apacheconf.rb > .htaccess
+
+colour.html:
+	xsltproc colour-xml-serializer.xsl index.rdf > colour.html
 
 
 
