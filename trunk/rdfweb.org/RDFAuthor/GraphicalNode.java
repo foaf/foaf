@@ -112,7 +112,12 @@ public class GraphicalNode implements GraphicalObject
     {
         return bounds.containsPoint(point, true); // RDFModelView always flipped
     }
-
+    
+    public boolean intersectsRect(NSRect rect)
+    {
+        return bounds.intersectsRect(rect);
+    }
+    
     public void calculateSize()
     {
         String stringToDraw = node.displayString();
@@ -132,18 +137,12 @@ public class GraphicalNode implements GraphicalObject
     
     public void calculateRectangle()
     {
-        //NSRect changedRect = bounds;
-        
         rdfModelView.setNeedsDisplay(bounds); // mark old bounds as dirty
         
         bounds = new NSRect(node.x() - mySize.width()/2F,
                             node.y() - mySize.height()/2F,
                             mySize.width(),
                             mySize.height() );
-        
-        //changedRect = changedRect.rectByUnioningRect(bounds); // rectangle affected by changed
-        
-        //rdfModelView.setNeedsDisplay(changedRect);
         
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
     }

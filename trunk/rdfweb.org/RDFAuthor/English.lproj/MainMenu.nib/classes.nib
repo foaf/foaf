@@ -13,14 +13,14 @@
             CLASS = InfoController; 
             LANGUAGE = Java; 
             OUTLETS = {
-                contentView = id; 
                 documentHeightField = id; 
-                documentSizeView = id; 
                 documentWidthField = id; 
+                infoTabs = id; 
                 infoWindow = id; 
                 literalChangeButton = id; 
                 literalTextField = id; 
                 literalView = id; 
+                multipleView = id; 
                 nothingView = id; 
                 propertyTextField = id; 
                 propertyView = id; 

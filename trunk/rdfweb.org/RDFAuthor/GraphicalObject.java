@@ -42,6 +42,8 @@ public interface GraphicalObject {
     
     public boolean containsPoint(NSPoint point);
     
+    public boolean intersectsRect(NSRect rect);
+    
     public void calculateSize(); // Give this (and the following) a better name!!!!
     
     public void calculateRectangle();

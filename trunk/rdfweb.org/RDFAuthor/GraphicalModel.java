@@ -33,6 +33,7 @@ import com.apple.cocoa.application.*;
 
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.ArrayList;
 
 public class GraphicalModel {
     
@@ -57,8 +58,6 @@ public class GraphicalModel {
     
     public void drawModel(ArcNodeList model, NSRect rect) // draw model visible in rect
     {
-        //ModelItem currentObject = model.currentObject();
-        
         ArcNodeSelection selection = model.selection();
         
         // Draw Arcs then Nodes - looks better
@@ -109,6 +108,22 @@ public class GraphicalModel {
         return null;
     }
     
+    public ArrayList objectsInRect(ArcNodeList model, NSRect rect)
+    {
+        ArrayList hits = new ArrayList();
+        
+        for (ListIterator iterator = model.getObjects(); iterator.hasNext();)
+        {
+            ModelItem item = (ModelItem) iterator.next();
+            if (item.graphicRep().intersectsRect(rect))
+            {
+                hits.add(item);
+            }
+        }
+        
+        return hits;
+    }
+    
     // Get the smallest rectangle which contains all the items.
     
     public NSRect bounds(ArcNodeList model)
@@ -157,7 +172,7 @@ public class GraphicalModel {
         svg += "<rect x=\"0px\" y=\"0px\" width=\"" + docSize.width() + "px\" ";
         svg += "height=\"" + docSize.height() + "px\" fill=\"white\" />\n\n";
         
-        ModelItem currentObject = model.currentObject();
+        ArcNodeSelection selection = model.selection();
         
         // Draw Arcs then Nodes - looks better
         
@@ -167,7 +182,7 @@ public class GraphicalModel {
             
             // In the following not typing the GraphicalObjects makes things really slow
             
-            if (arc == currentObject)
+            if (selection.contains(arc))
             {
                 svg += ((GraphicalArc) arc.graphicRep()).drawSvgHilight();
             }
@@ -181,7 +196,7 @@ public class GraphicalModel {
         {
             Node node = (Node) iterator.next();
             
-            if (node == currentObject)
+            if (selection.contains(node))
             {
                 svg += ((GraphicalNode) node.graphicRep()).drawSvgHilight();
             }

@@ -37,7 +37,8 @@ public class RDFModelView extends NSView {
     static final int DeleteItemsMode =5;
     
     boolean draggingConnection = false;
-    boolean dragging = false;
+    boolean draggingSelection = false;
+    boolean addingRectToSelection = false;
     
     int currentEditingMode = MoveSelectMode;
     
@@ -52,6 +53,8 @@ public class RDFModelView extends NSView {
     
     NSPoint startPoint;
     NSPoint endPoint;
+    
+    NSRect selectionRect;
 
     NSTextField textDescriptionField;
 
@@ -89,7 +92,7 @@ public class RDFModelView extends NSView {
     {
         return true;
     }
-    
+
     public void drawRect(NSRect rect) {
         // Drawing code here.
         
@@ -98,8 +101,14 @@ public class RDFModelView extends NSView {
         
         if (draggingConnection)
         {
-            NSColor.blueColor().set();
+            NSColor.lightGrayColor().set();
             NSBezierPath.strokeLineFromPoint(startPoint, endPoint);
+        }
+        
+        if (selectionRect != null)
+        {
+            NSColor.lightGrayColor().set();
+            NSBezierPath.fillRect(selectionRect);
         }
         
         rdfAuthorDocument.drawModel(rect);
@@ -220,13 +229,23 @@ public class RDFModelView extends NSView {
                                         }
                                         else if (theEvent.modifierFlags() == NSEvent.ShiftKeyMask)
                                         {
-                                            dragging = 
+                                            draggingSelection = 
                                                 rdfAuthorDocument.addObjectAtPointToSelection(point);
+                                            if (!draggingSelection)
+                                            {
+                                                selectionRect = NSRect.ZeroRect;
+                                                addingRectToSelection = true;
+                                            }
                                         }
                                         else
                                         {
-                                            dragging =
+                                            draggingSelection =
                                                 rdfAuthorDocument.setSelectionToObjectAtPoint(point);
+                                            if (!draggingSelection)
+                                            {
+                                                selectionRect = NSRect.ZeroRect;
+                                                addingRectToSelection = false;
+                                            }
                                         }
         }
     }
@@ -248,7 +267,7 @@ public class RDFModelView extends NSView {
                                         draggingConnection = true;
                                         break;
             case MoveSelectMode:
-            case AddNodeMode:		if (dragging)
+            case AddNodeMode:		if (draggingSelection)
                                         {
                                             rdfAuthorDocument.moveSelectionBy(
                                                 point.x() - startPoint.x(), point.y() - startPoint.y());
@@ -258,6 +277,12 @@ public class RDFModelView extends NSView {
                                         {
                                             this.moveBy(
                                                 point.x() - startPoint.x(), point.y() - startPoint.y());
+                                        }
+                                        else if (selectionRect != null)
+                                        {
+                                            this.setNeedsDisplay(selectionRect);
+                                            selectionRect = new NSRect(startPoint, point);
+                                            this.setNeedsDisplay(selectionRect);
                                         }
         }
     }
@@ -287,8 +312,16 @@ public class RDFModelView extends NSView {
                                                 rdfAuthorDocument.showInfoForObjectAtPoint(point);
                                             }
                                         }
+                                        else if (selectionRect != null)
+                                        {
+                                            this.setNeedsDisplay(selectionRect);
+                                            rdfAuthorDocument.setSelectionFromRect(selectionRect,
+                                                addingRectToSelection);
+                                            selectionRect = null;
+                                            addingRectToSelection = false;
+                                        }
         }
-        dragging = false;
+        draggingSelection = false;
     }
     
     public void setEditingMode(int mode)
@@ -309,6 +342,26 @@ public class RDFModelView extends NSView {
                     textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
                     break;
         }
+    }
+    
+    public void copy(Object sender)
+    {
+    }
+    
+    public void cut(Object sender)
+    {
+    }
+    
+    public void paste(Object sender)
+    {
+    }
+    
+    public void selectAll(Object sender)
+    {
+    }
+    
+    public void clear(Object sender)
+    {
     }
     
     // Drag and Drop stuff begins here.
