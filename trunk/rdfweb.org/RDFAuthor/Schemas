@@ -1,0 +1,18 @@
+# $Id: Schemas,v 1.1 2002-01-17 18:35:01 pldms Exp $
+#
+# This file has two functions:
+# 1) Populate the schema window box with schema URLs
+# 2) Map schema namespaces to prefixess (which improves serialization readability)
+#
+# Format:
+#
+# Line beginning # - comment (like wot you are reading now)
+# URI <whitespace> prefix - namespace / prefix pairs
+# 
+# IMPORTANT - put all entries in quotes, since java's tokeniser caused me problems
+
+"http://xmlns.com/wordnet/1.6/"		"wn"
+"http://xmlns.com/foaf/0.1/"		"foaf"
+"http://xmlns.com/wot/0.1/"		"wot"
+"http://purl.org/rss/1.0/"		"rss"
+"http://purl.org/dc/elements/1.1/"	"dc"
