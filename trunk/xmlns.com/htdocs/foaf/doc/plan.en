@@ -1,0 +1,19 @@
+<!-- orig contrib'd by Cardinal -->
+
+<p>The <code>foaf:plan</code> property provides a space for a
+<code>foaf:Person</code> to hold some arbitrary content that would appear in
+a traditional '.plan' file.  The plan file was stored in a user's home
+directory on a UNIX machine, and displayed to people when the user was
+queried with the finger utility.</p>
+
+<p>A plan file could contain anything.  Typical uses included brief
+comments, thoughts, or remarks on what a person had been doing lately.  Plan
+files were also prone to being witty or simply osbscure.  Others may be more
+creative, writing any number of seemingly random compositions in their plan
+file for people to stumble upon.</p>
+
+<p>
+See <a href="http://www.rajivshah.com/Case_Studies/Finger/Finger.htm">History of the 
+Finger Protocol</a> by Rajiv Shah for more on this piece of Internet history. The 
+<code>foaf:geekCode</code> property may also be of interest.
+</p>

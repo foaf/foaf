@@ -1,0 +1,13 @@
+<p>
+The <code>foaf:sha1</code> property relates a <code>foaf:Document</code> to the textual form of 
+a SHA1 hash of (some representation of) its contents.
+</p>
+
+<p class="editorial">
+The design for this property is neither complete nor coherent. The <code>foaf:Document</code> 
+class is currently used in a way that allows multiple instances at different URIs to have the 
+'same' contents (and hence hash). If <code>foaf:sha1</code> is an owl:InverseFunctionalProperty, 
+we could deduce that several such documents were the self-same thing. A more careful design is 
+needed, which distinguishes documents in a broad sense from byte sequences.
+</p>
+

@@ -1,0 +1,13 @@
+<p>
+The <code>foaf:workInfoHomepage</code> of a <code>foaf:Person</code> is a 
+<code>foaf:Document</code> that describes their work. It is generally (but not necessarily) a 
+different document from their <code>foaf:homepage</a>, and from any 
+<code>foaf:workplaceHomepage</code>(s) they may have. 
+</p>
+
+<p>
+The purpose of this property is to distinguish those pages you often see, which describe 
+someone's professional role within an organisation or project. These aren't really homepages, 
+although they share some characterstics.
+</p>
+

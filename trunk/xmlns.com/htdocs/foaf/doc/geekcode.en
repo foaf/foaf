@@ -1,0 +1,49 @@
+<p>
+The <code>foaf:geekCode</code> property is used to represent a 'Geek Code' for some 
+<code>foaf:Person</code>. 
+</p>
+
+<p>
+See the <a href="http://www.geekcode.com/geek.html">Code of the Geeks</a> specification for 
+details of the code, which provides a somewhat frivolous and willfully obscure mechanism for 
+characterising technical expertise, interests and habits. The <code>foaf:geekCode</code> 
+property is not bound to any particular version of the code. The last published version 
+of the code was v3.12 in March 1996.
+</p>
+
+<p>
+As the <a href="http://www.geekcode.com/">Geek Code</a> website notes, the code played a small 
+(but amusing) part in the history of the Internet. The <code>foaf:geekCode</code> property 
+exists in acknowledgement of this history and a lost way of life.
+</p>
+
+<p>
+Note that the Geek Code is a densely packed collections of claims about the person it applies 
+to; to express these claims explicitly in RDF/XML would be incredibly verbose. The syntax of the 
+Geek Code allows for '&lt;' and '&gt;' characters, which have special meaning in RDF/XML. 
+Consequently these should be carefully escaped in markup.
+</p>
+
+<p>
+An example Geek Code:
+</p>
+<p class="example">
+    GED/J d-- s:++>:  a-- C++(++++) ULU++ P+ L++ E---- W+(-) N+++ o+ K+++ w--- O- M+ V-- PS++>$ 
+PE++>$ Y++ PGP++ t- 5+++ X++ R+++>$ tv+ b+ DI+++ D+++ G++++ e++ h r-- y++** 
+</p>
+
+<p>
+...would be written in FOAF RDF/XML as follows:
+</p>
+
+<p class="example">
+<pre>
+&lt;foaf:geekCode&gt;
+    GED/J d-- s:++&amp;gt;:  a-- C++(++++) ULU++ P+ L++ E---- W+(-) N+++ o+ K+++ 
+    w--- O- M+ V-- PS++&amp;gt;$ PE++&amp;gt;$ Y++ PGP++ t- 5+++ X++ R+++&amp;gt;$ 
+    tv+ b+ DI+++ D+++ G++++ e++ h r-- y++** 
+&lt;/foaf:geekCode&gt;
+</pre>
+</p>
+
+

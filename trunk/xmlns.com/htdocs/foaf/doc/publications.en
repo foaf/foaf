@@ -1,0 +1,8 @@
+<p>
+The <code>foaf:publications</code> property indicates some publications associated with a 
+<code>foaf:Person</code>
+</p>
+
+<p class="editorial">
+This property is under-specified, experimental, and should be considered liable to change.
+</p>

@@ -1,0 +1,17 @@
+<p>
+The <code>foaf:Document</code> class represents those things which are, broadly conceived, 
+'documents'.
+</p>
+
+<p>
+The <code>foaf:Image</code> class is a sub-class of <code>foaf:Document</code>, since all images 
+are documents.
+</p>
+
+<p class="editorial">
+We do not (currently) distinguish precisely between physical and electronic documents, or 
+between copies of a work and the abstraction those copies embody. The relationship between 
+documents and their byte-stream representation needs clarification (see <code>foaf:sha1</code> 
+for related issues).
+</p>
+

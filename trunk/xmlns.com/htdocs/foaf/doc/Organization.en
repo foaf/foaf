@@ -1,0 +1,10 @@
+<p>
+The <code>foaf:Organization</code> class represents a kind of <code>foaf:Agent</code> 
+corresponding to social instititutions such as companies, societies etc.
+</p>
+
+<p class="editorial">
+This is a more 'solid' class than <code>foaf:Group</code>, which allows for more ad-hoc 
+collections of individuals. These terms are rather roughly defined, and further work is needed 
+to clearly specify their inter-relationships.
+</p>
