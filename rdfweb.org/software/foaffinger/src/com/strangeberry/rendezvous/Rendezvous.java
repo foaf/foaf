@@ -1,5 +1,5 @@
 // Copyright (C) 2002  Strangeberry Inc.
-// @(#)Rendezvous.java, 1.32, 02/05/2003
+// @(#)Rendezvous.java, 1.45, 03/05/2003
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ import java.util.*;
  * Rendezvous implementation in Java.
  *
  * @author	Arthur van Hoff
- * @version 	1.32, 02/05/2003
+ * @version 	1.45, 03/05/2003
  */
 public class Rendezvous extends DNSConstants
 {
@@ -41,18 +41,16 @@ public class Rendezvous extends DNSConstants
     Hashtable services;
     Thread shutdown;
     boolean done;
+    boolean linklocal;
+    boolean loopback;
 
     /**
      * Create an instance of Rendezvous.
      */
     public Rendezvous() throws IOException
     {
-	try {
-	    InetAddress addr = InetAddress.getLocalHost();
-	    init(addr.getHostAddress().equals("127.0.0.1") ? null : addr);
-	} catch (IOException e) {
-	    init(null);
-	}
+	InetAddress addr = InetAddress.getLocalHost();
+	init(isLoopback(addr) ? null : addr);
     }
 
     /**
@@ -76,6 +74,8 @@ public class Rendezvous extends DNSConstants
 	}
 	socket.setTimeToLive(255);
 	socket.joinGroup(group);
+	loopback = isLoopback(intf);
+	linklocal = isLinkLocal(intf);
 
 	cache = new DNSCache(100);
 	listeners = new Vector();
@@ -86,6 +86,30 @@ public class Rendezvous extends DNSConstants
 	new Thread(new RecordReaper(), "Rendezvous.RecordReaper").start();
 	shutdown = new Thread(new Shutdown(), "Rendezvous.Shutdown");
 	Runtime.getRuntime().addShutdownHook(shutdown);
+    }
+
+    /**
+     * Check if an address is the loopback address
+     */
+    static boolean isLoopback(InetAddress addr)
+    {
+	return (addr != null) && addr.getHostAddress().startsWith("127.0.0.1");
+    }
+
+    /**
+     * Check if an address is linklocal.
+     */
+    static boolean isLinkLocal(InetAddress addr)
+    {
+	return (addr != null) && addr.getHostAddress().startsWith("169.254.");
+    }
+
+    /**
+     * Return the address of the interface to which this instance of Rendezvous is bound.
+     */
+    public InetAddress getInterface() throws IOException
+    {
+	return socket.getInterface();
     }
 
     /**
@@ -114,6 +138,25 @@ public class Rendezvous extends DNSConstants
     {
 	ServiceInfo info = new ServiceInfo(type, name);
 	return info.request(this, timeout) ? info : null;
+    }
+
+    /**
+     * Request service information. The information about the service is requested
+     * and the ServiceListener.resolveService method is called as soon as it is available.
+     */
+    public void requestServiceInfo(String type, String name)
+    {
+	requestServiceInfo(type, name, 3*1000);
+    }
+
+    /**
+     * Request service information. The information about the service is requested
+     * and the ServiceListener.resolveService method is called as soon as it is available.
+     */
+    public void requestServiceInfo(String type, String name, int timeout)
+    {
+	new Thread(new ServiceResolver(new ServiceInfo(type, name), timeout),
+		   "Rendezvous.ServiceResolver").start();
     }
 
     /**
@@ -148,21 +191,23 @@ public class Rendezvous extends DNSConstants
      * Register a service. The service is registered for access by other rendezvous clients.
      * The name of the service may be changed to make it unique.
      */
-    public synchronized void registerService(ServiceInfo info) throws IOException
+    public void registerService(ServiceInfo info) throws IOException
     {
 	try {
-	    // check for a unqiue name
-	    checkService(info);
-
-	    // add the service
-	    services.put(info.name.toLowerCase(), info);
+	    synchronized (this) {
+		// check for a unqiue name
+		checkService(info);
+		
+		// add the service
+		services.put(info.name.toLowerCase(), info);
+	    }
 
 	    // announce the service
 	    long now = System.currentTimeMillis();
 	    long nextTime = now;
 	    for (int i = 0 ; i < 3 ;) {
 		if (now < nextTime) {
-		    wait(nextTime - now);
+		    Thread.sleep(nextTime - now);
 		    now = System.currentTimeMillis();
 		    continue;
 		}
@@ -183,22 +228,25 @@ public class Rendezvous extends DNSConstants
     /**
      * Unregister a service. The service should have been registered.
      */
-    public synchronized void unregisterService(ServiceInfo info)
+    public void unregisterService(ServiceInfo info)
     {
 	try {
-	    services.remove(info.name);
+	    services.remove(info.name.toLowerCase());
 
 	    // unregister the service
 	    long now = System.currentTimeMillis();
 	    long nextTime = now;
 	    for (int i = 0 ; i < 3 ; ) {
 		if (now < nextTime) {
-		    wait(nextTime - now);
+		    Thread.sleep(nextTime - now);
 		    now = System.currentTimeMillis();
 		    continue;
 		}
 		DNSOutgoing out = new DNSOutgoing(FLAGS_QR_RESPONSE | FLAGS_AA);
 		out.addAnswer(new DNSRecord.Pointer(info.type, TYPE_PTR, CLASS_IN, 0, info.name), 0);
+		out.addAnswer(new DNSRecord.Service(info.name, TYPE_SRV, CLASS_IN, 0, info.priority, info.weight, info.port, info.name), 0);
+		out.addAnswer(new DNSRecord.Text(info.name, TYPE_TXT, CLASS_IN, 0, info.text), 0);
+		out.addAnswer(new DNSRecord.Address(info.name, TYPE_A, CLASS_IN, 0, info.getIPAddress()), 0);
 		send(out);
 		i++;
 		nextTime += 125;
@@ -225,7 +273,7 @@ public class Rendezvous extends DNSConstants
 	    long nextTime = now;
 	    for (int i = 0 ; i < 3 ; ) {
 		if (now < nextTime) {
-		    wait(nextTime - now);
+		    Thread.sleep(nextTime - now);
 		    now = System.currentTimeMillis();
 		    continue;
 		}
@@ -233,6 +281,9 @@ public class Rendezvous extends DNSConstants
 		for (Enumeration e = services.elements() ; e.hasMoreElements() ;) {
 		    ServiceInfo info = (ServiceInfo)e.nextElement();
 		    out.addAnswer(new DNSRecord.Pointer(info.type, TYPE_PTR, CLASS_IN, 0, info.name), 0);
+		    out.addAnswer(new DNSRecord.Service(info.name, TYPE_SRV, CLASS_IN, 0, info.priority, info.weight, info.port, info.name), 0);
+		    out.addAnswer(new DNSRecord.Text(info.name, TYPE_TXT, CLASS_IN, 0, info.text), 0);
+		    out.addAnswer(new DNSRecord.Address(info.name, TYPE_A, CLASS_IN, 0, info.getIPAddress()), 0);
 		}
 		send(out);
 		i++;
@@ -256,13 +307,21 @@ public class Rendezvous extends DNSConstants
 	    for (Iterator j = cache.find(info.type) ; j.hasNext() ;) {
 		DNSRecord a = (DNSRecord)j.next();
 		if ((a.type == TYPE_PTR) && !a.isExpired(now) && info.name.equals(((DNSRecord.Pointer)a).alias)) {
-		    // collision, uniquify using the IP address
-		    if (info.getName().indexOf('.') < 0) {
-			info.name = info.getName() + ".[" + Integer.toHexString(info.getIPAddress()) + ":" + info.port + "]." + info.type;
-			checkService(info);
-			return;
+		    String name = info.getName();
+		    try {
+			int l = name.lastIndexOf('[');
+			int r = name.lastIndexOf(']');
+			if ((l >= 0) && (l < r)) {
+			    name = name.substring(0, l) + "[" + (Integer.parseInt(name.substring(l+1, r)) + 1) + "]";
+			} else {
+			    name += " [1]";
+			}
+		    } catch (NumberFormatException e) {
+			name += " [1]";
 		    }
-		    throw new IOException("failed to pick unique service name");
+		    info.name = name + "." + info.type;
+		    checkService(info);
+		    return;
 		}
 	    }
 	    if (now < nextTime) {
@@ -449,6 +508,19 @@ public class Rendezvous extends DNSConstants
 			break;
 		    }
 		    try {
+			InetAddress from = packet.getAddress();
+			if (linklocal != isLinkLocal(from)) {
+			    // Ignore linklocal packets on regular interfaces, unless this is
+			    // also a linklocal interface. This is to avoid duplicates. This is
+			    // a terrible hack caused by the lack of an API to get the address
+			    // of the interface on which the packet was received.
+			    continue;
+			}
+			if (loopback != isLoopback(from)) {
+			    // Ignore loopback packets on a regular interface unless this is
+			    // also a loopback interface.
+			    continue;
+			}
 			DNSIncoming msg = new DNSIncoming(packet);
 			if (debug > 0) {
 			    msg.print(debug > 1);
@@ -571,7 +643,7 @@ public class Rendezvous extends DNSConstants
 		    old.resetTTL(rec);
 		} else if ((old != null) && expired) {
 		    // expire record
-		    services.remove(name);
+		    services.remove(name.toLowerCase());
 		    list.addLast(new Event(name) {
 			    void send() {listener.removeService(Rendezvous.this, type, this.name);}
 			});
@@ -644,6 +716,35 @@ public class Rendezvous extends DNSConstants
 		if (!done) {
 		    done = true;
 		    removeListener(this);
+		}
+	    }
+	}
+    }
+
+    /**
+     * Helper class to resolve services.
+     */
+    class ServiceResolver implements Runnable
+    {
+	ServiceInfo info;
+	int timeout;
+	
+	ServiceResolver(ServiceInfo info, int timeout)
+	{
+	    this.info = info;
+	    this.timeout = timeout;
+	}
+	public void run()
+	{
+	    ServiceInfo result = info;
+	    if (!info.request(Rendezvous.this, timeout)) {
+		result = null;
+	    }
+	    // notify the listeners of the appropriate service browsers
+	    for (Enumeration e = browsers.elements() ; e.hasMoreElements() ;) {
+		ServiceBrowser browser = (ServiceBrowser)e.nextElement();
+		if (browser.type.equalsIgnoreCase(info.type)) {
+		    browser.listener.resolveService(Rendezvous.this, info.type, info.name, result);
 		}
 	    }
 	}

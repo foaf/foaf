@@ -1,5 +1,5 @@
 // Copyright (C) 2002  Strangeberry Inc.
-// @(#)DNSIncoming.java, 1.23, 01/13/2003
+// @(#)DNSIncoming.java, 1.24, 03/05/2003
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -187,6 +187,7 @@ final class DNSIncoming extends DNSConstants
 	StringBuffer buf = new StringBuffer();
 	int off = this.off;
 	int next = -1;
+	int first = off;
 
 	while (true) {
 	    int len = get(off++);
@@ -206,6 +207,10 @@ final class DNSIncoming extends DNSConstants
 		    next = off + 1;
 		}
 		off = ((len & 0x3F) << 8) | get(off++);
+		if (off >= first) {
+		    throw new IOException("bad domain name: possible circular name detected");
+		}
+		first = off;
 		break;
 	      default:
 		throw new IOException("bad domain name: '" + buf + "' at " + off);
