@@ -1,0 +1,467 @@
+
+#
+this is a mix of notes and old code.
+
+includes the SOAP server (which uses soap4r).
+
+
+
+#!/usr/bin/env ruby
+
+require 'bin/scutter'
+
+base = './'
+u = 'http://www.ilrt.bristol.ac.uk/discovery/rdf/resources/rss.rdf'
+
+srcid = scutter_remote(u) 
+
+graph = Loader.ntfile2graph(base + "webcache/_nt/rdf-" + srcid + ".nt" )
+
+puts graph.toNtriples
+
+
+#!/usr/bin/env ruby
+#
+# scutter: an RDF harvesting, indexing and query answering gadget
+# author: danbri@w3.org
+#
+# Usage: 
+#	./scutter --scutter
+#	./scutter --server
+# ...to harvest, index data, and then run an rdf query server for it.
+
+# needs ./webcache/_nt and ./webcache sub-directories, for now
+
+# eg see http://starway.heddley.com/~edmundd/plan.rdf
+
+# GPG/PGP integration:
+# in webcache/ try:  grep WOT *meta | sort | uniq
+# tood: feed these uris to GPG
+# example...
+#
+# given an assurance and local copy of the RDF it allegedly signs:
+#
+# GET http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf.asc > _tmpsig; gpg --verify _tmpsig  rdf-1679583185.rdf
+# gpg: Warning: using insecure memory!
+# gpg: Signature made Sat 06 Jul 2002 02:37:02 PM GMT using DSA key ID 73228FE4
+
+
+## Notes
+
+## re-org needed: parsing local should be distinct from storing. Example:
+#u = 'http://www.ilrt.bristol.ac.uk/discovery/rdf/resources/rss.rdf'
+#nt_cache = "#{base}webcache/_nt/rdf-#{ scutter_remote(u) }.nt"
+#graph = Loader.ntfile2graph( nt_cache )
+#puts graph.toNtriples
+
+
+## HTTP Proxy:
+## - scutter is now proxy-aware
+##
+## HTTP_PROXY=http://cache-edi.cableinet.co.uk:8080 GET http://rdfweb.org/people/danbri/rdfweb/danbri-biblio.rdf
+## ...tests timeliness of proxy.
+##
+## Data QA:
+##
+## Here's a *nasty* hack:
+##	grep genid webcache/*rdf | awk -F: '{ printf "%s\n",$1 }' | sort | uniq |  \
+##		perl -e 'while (<>) { $_ =~ s/\.rdf\s*//g; print `cat "$_.meta" | grep baseuri` };'
+##
+## ...quick report on source URIs that contain the string 'genid' (ie. likely out of date)
+##
+## I18N:
+##
+## These tools _should_ be i18n friendly. 
+## For testing, try http://www.kanzaki.com/info/rss.rdf 
+
+##
+## TODO:
+##
+## - Needs to know about disk/directories etc., complain or create dirs instead of fail.
+## - todo: investigate non-SOAP server options (webrick?)
+
+
+require '/home/danbri/s-rubyrdf/basicrdf'
+require '/home/danbri/s-rubyrdf/squish/squish' 			
+require 'dbi'
+require 'net/http'
+require 'sha1'
+require 'getoptlong'
+require 'soap/standaloneServer'	
+	
+
+## CONFIG
+##
+## -- find a better home! see also Proxy settings
+##
+
+
+  
+###########################################################################################	
+
+
+class App < SOAP::StandaloneServer
+  def initialize( *arg )
+    super( *arg )
+  end
+
+  def methodDef
+    addMethod(self, 'squish', 'querystring', 'querylanguage' ,'datasrc')
+  end
+
+  def methodDef
+    addMethod(self, 'squish', 'querystring', 'querylanguage' )
+  end
+
+   def squish ( querystring, querylanguage )
+    self.squish(quertstring, querylanguage, 'default')
+  end
+
+  def squish ( querystring, querylanguage, datasrc='default' )
+
+    ## CONFIG INFO (TODO: move this elsewhere)
+    ##
+    dbname='rdfweb1'                # database name
+    dbi_driver = 'DBI:Pg:'+dbname   # DBI driver 
+    dbi_user = 'danbri'		    # user
+    dbi_pass=''	                    # autho
+
+
+     # next bit should be conditional on rdfauthor  as client
+    querystring.gsub!(/\s+WHERE/,", WHERE ") #baaad! fix the damn parser!
+    querystring = querystring + "  USING dc for http://purl.org/dc/elements/1.1/ "
+
+    total = ResultSet.new
+    query = SquishQuery.new.parseFromText querystring
+    service = DBIDataService.new(dbi_driver,dbi_user,'')
+    service.defrag 
+    service.addAllSuperProperties
+    results=ResultSet.new
+
+#    puts "Query: squish: #{querystring} sql: #{query.toSQLQuery} "
+
+    DBI.connect( dbi_driver , dbi_user , dbi_pass ) do | dbh |
+      # puts "Connected!..."
+      dbh.select_all( query.toSQLQuery  ) do | row |
+        # puts "Doing storing query..."
+        total.push ResultRow.new(row.to_h.clone)
+      end
+    end
+    ret=[]
+    total.each do |row|
+      ret.push row.values
+      row.values.each_key do |field| puts "\t#{field}: #{row.values[field]} \n" end
+      puts "\n\n"
+    end
+    puts "results are: #{ret.inspect} \n\n\n"
+    return ret
+  end
+end
+
+def getWireDumpLogFile
+  logFilename = File.basename( $0 ) + '.log'
+   f = File.open( logFilename, 'w' )
+   f << "File: #{ logFilename } - rdf query server logs.\n"
+   f << "Date: #{ Time.now }\n\n"
+end
+ 
+    
+
+
+
+###########################################################################################	
+
+# given a local RDF file (cached, in effect, parse and load)
+# todo: * pass in datasource info
+def scutter_local (file, base_uri='', cache_dir='./' )
+
+
+
+  ## CONFIG INFO (TODO: move this elsewhere)
+  ##
+  dbname='rdfweb1'                # database name
+  dbi_driver = 'DBI:Pg:'+dbname   # DBI driver 
+  dbi_user = 'danbri'		    # user
+  dbi_pass=''	                    # autho
+
+  puts "scutter_local: file=#{file} with base=#{base_uri} :"
+  pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
+  puts pmsg
+  #
+#  puts "\n\nPARSER_#5:\n\n"
+#  p5_msg_c = `xsltproc ../../xsltrdf/rdfc14n.xsl '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}_5/rdf-#{file}.c14.rdf'`
+#  p5_msg = `xsltproc  --stringparam base '#{base_uri}' ../../xsltrdf/rdfc2nt.xsl   '#{cache_dir}_5/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt' `
+#  puts "\n==#5\n\n"
+
+#../../xsltrdf/rdfc14n.xsl
+#../../xsltrdf/rdfc2nt.xsl
+
+  nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"
+  puts "N-Triples cache: #{nt_cache}"
+  parsed_ok = (pmsg=='')
+  graph = nil
+  sql_script = nil
+  if  parsed_ok   
+    graph = Loader.ntfile2graph( nt_cache )
+    sql_inserts = graph.toSQLInserts ("uri=#{file}")
+ 
+    # puts "GOT SQL: #{sql_inserts} \n\n====\n\n"
+    if !sql_inserts.empty?
+      puts "updating query server."
+      DBI.connect ( dbi_driver, dbi_user, dbi_pass ) do |dbh|
+
+        # clean out last triples from this src
+        # TODO: this risky? make sure won't accidentially zap the db.
+        #
+        puts "-  #dbi.do delete from triples where assertid = 'uri=#{file}';"
+        begin 
+          dbh.do "delete from triples where assertid = 'uri=#{file}';"
+        rescue 
+          puts "DBI: Error in sql delete, msg: #{$!}"
+        end
+        puts "+"
+
+        sql_inserts.each do |sql_insert|
+          begin 
+            print '.'
+            dbh.do sql_insert 
+          rescue 
+            # puts "DBI: Error in sql insert #{file} sql: #{sql_insert} msg: #{$!}"
+            # this will be really verbose (lots of inserts into fields where dups not allowed)
+          end
+        end
+        puts
+      end
+    else 
+      puts "skipping reload (no triples)."
+    end
+  else 
+    puts "Error parsing: #{pmsg}"
+  end
+
+   ### stopgap
+
+#    sql_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.sql"
+#    if File::exists? sql_cache 
+#      File::delete sql_cache
+#    end
+#    mf = File::new(sql_cache, File::CREAT|File::RDWR, 0644)
+#    mf.puts sql_script
+#    mf.close
+#    `cat #{sql_cache} | psql rdfweb1`
+   ### end stopgap
+
+  return graph
+end
+
+def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
+  puts "Scuttering remote: #{uri}"
+
+  #### PROXY SETTINGS
+  proxy_addr = 'cache-edi.cableinet.co.uk'
+  proxy_port = 8080
+
+  #######################################
+
+  uri_hash = hashcodeIntFromString(uri)
+  uri =~ /:\/\/([^\/]+)(\/.*)$/
+  puts "Host: #{$1} Resource: #{$2} "
+  h = Net::HTTP::new $1 
+
+  begin 
+    puts "Getting: #{$2}"
+
+
+    # TODO: Make this configurable elsewhere. 
+
+
+    data=''
+    resp=''
+    gzipped=false
+    if proxy
+      Net::HTTP::Proxy(proxy_addr, proxy_port).start( $1 ) do |http|
+        resp, data = http.get $2 , {'Accept' => 'application/rdf+xml' } 
+        puts "Proxied GET."
+      end
+      if resp['Content-encoding'] =~ /gzip/
+        gzipped = true 
+      end
+
+    else
+        puts "Un-Proxied GET."
+      resp, data = h.get ($2, {'Accept' => 'application/rdf+xml'} )
+    end
+
+    # puts "Response: "+data.to_s
+    puts "Storing in webcache URI: #{uri} as #{uri_hash} .rdf / .meta"
+    # delete (todo: rcs/cvs archive) previous cached data
+    rdf_fn =  "#{cache_dir}webcache/rdf-#{uri_hash}.rdf" 
+    if File::exists? rdf_fn 
+      File::delete rdf_fn
+    end
+    # store current data
+ 
+    if !gzipped
+      cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
+      cf.write data  
+      cf.close
+    else
+
+      require 'zlib'  # special handling of gzipped content
+
+      cf = File::new( rdf_fn + ".gz", File::CREAT|File::RDWR, 0644)
+      cf.write data  
+      cf.close
+
+      f = open( rdf_fn + ".gz" )
+
+      gz = GzipReader.new(f)
+      unzipped=gz.read
+      gz.close
+
+      cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
+      cf.write unzipped 
+      cf.close
+
+    end
+
+    puts "Stored RDF"
+
+    mf = File::new("#{cache_dir}webcache/rdf-#{uri_hash}.meta", File::CREAT|File::RDWR, 0644)
+
+    puts "Opened RDF .meta file"
+
+    mf.puts "#baseuri: #{base} "
+    mf.puts "#uri: #{uri}"
+    mf.puts "#Last-Visit: <notrecorded>" #+Date::today::to_s
+    # todo: use .nt or .rdf for this. Investigate soap/date clash.
+    mf.close
+    return uri_hash
+   rescue
+     puts "Scutter: #Error with URI #{uri} msg: #{$!}"
+   end
+
+   return uri_hash   
+end
+
+
+def raa_load
+  ### RAA example.
+  ###
+  Dir['raa-dump/*.xml'].each do |file| 
+    file.gsub!("^raa-dump/","")
+    sb= `sabcmd soap2rdf.xsl 'raa-dump/#{file}' > 'web_cache/#{file}.rdf' 2>&1`
+    # todo: add .meta files
+    
+
+    if ! (sb =~ /\w/)  
+    scutter_local(file, 'http://www.ruby-lang.org/xmlns/raa/test1-ns#', './')
+    else
+      puts "Skipping #{file} due to XSLT / filename error"
+    end
+  end
+end
+
+####
+
+
+def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cache_dir= './', crawl=true, proxy=true)
+  rdfs = 'http://www.w3.org/2000/01/rdf-schema#'	
+  wot = 'http://xmlns.com/wot/0.1/'	
+  done = {}
+  todo.each do |uri|
+    uri_hash = hashcodeIntFromString(uri)
+    if crawl
+      fetched = scutter_remote (uri, proxy)
+    else
+      fetched = RDFGraph.new # todo: load from webcache/.nt
+    end
+
+    if (fetched != nil)
+      loaded = scutter_local(fetched, uri)
+      seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil) ).objects
+      puts "SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
+      seeAlso.each do |doc|
+        puts "Scutter: adding to TODO list: #{doc} "
+        if (!done[doc.to_s])
+          todo.push doc.to_s 
+          done[doc.to_s]=1
+        end
+      end
+
+      # look for signatures  
+      puts "WOT: looking for <#{uri}> <#{wot+'assurance'}> <?>"
+      # puts "IN: "+loaded.toNtriples
+      assurances = loaded.ask(Statement.new(uri,wot+'assurance',nil)).objects
+      if !assurances.empty?
+        puts "WOT assurances: #{assurances.inspect} "
+        mf = File::new("#{cache_dir}webcache/rdf-#{uri_hash}.meta", File::WRONLY|File::APPEND|File::CREAT, 0644)
+        #puts "Re-Opened RDF .meta file to store assurance ptr."
+        assurances.each do |sig|
+          puts "Scutter: invoking GPG : #{sig} "
+          mf.puts "WOT-Assurance: #{sig.inspect} "
+	  # gpg --quiet --verify sigfile contentfile # do here or elsewhere?
+        end
+        mf.close
+      end
+    end
+  end
+end
+
+opt = GetoptLong.new (
+    ['--import','-i', GetoptLong::NO_ARGUMENT],
+    ['--check', '-c', GetoptLong::REQUIRED_ARGUMENT],
+    ['--test','-t', GetoptLong::NO_ARGUMENT],
+    ['--verbose','-v', GetoptLong::NO_ARGUMENT],
+    ['--collect','-f', GetoptLong::OPTIONAL_ARGUMENT],
+    ['--scutter','-h', GetoptLong::OPTIONAL_ARGUMENT],
+    ['--nocache','-n', GetoptLong::OPTIONAL_ARGUMENT],
+    ['--nocrawl','-1', GetoptLong::OPTIONAL_ARGUMENT],
+    ['--server','-s', GetoptLong::OPTIONAL_ARGUMENT],
+    ['--diskdb','-d', GetoptLong::REQUIRED_ARGUMENT],
+    ['--lowercase-domains','-l', GetoptLong::NO_ARGUMENT],
+    ['--realwhitelist','-r', GetoptLong::REQUIRED_ARGUMENT],
+    ['--export', '-x', GetoptLong::OPTIONAL_ARGUMENT] )
+
+
+proxy=true
+crawl=true
+
+opt.each_option do |name,arg|
+case name
+
+when '--noproxy'
+  proxy=false
+
+when '--nocrawl'
+  crawl=false
+
+when '--scutter'
+
+  todolist = []
+  if arg =~ /\w/
+     puts "...."
+     puts "scuttering: #{arg}"
+     todolist.push arg
+  else 
+    todolist.push 'http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'
+  end
+
+  scutter (todolist, './', crawl, proxy)
+
+
+  #  scutter [ ' http://jibbering.com/rdfsvg/1025083477768.rdf' ]
+
+when '--raa'
+  puts raa_load
+
+when '--server'
+  SquishProtocolNS="http://rdfweb.org/RDF/RDFWeb/SOAPDemo"
+  rdfq_port=8082
+  server = App.new( 'SOAPDemo', SquishProtocolNS, '0.0.0.0', rdfq_port )
+  server.setLog( '_rdfq.log', 0,0 )
+  puts "Running RDF Query SOAP Service on port: #{server} "
+  server.start
+end
+
+end
