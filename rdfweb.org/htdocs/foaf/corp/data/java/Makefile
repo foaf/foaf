@@ -1,11 +1,14 @@
 
 
 compile:
-	javac foaftest.java
+	cd src/ ; make compile
 
 run:	
-	java foaftest
+	java -jar foafpath.jar
 
+
+# this gets co-depiction data from remote service
+# (which isn't always available...)
 
 fetch:
 	./getrawinfo.pl > linkdata.dat
