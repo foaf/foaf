@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.17 2002-12-11 22:12:01 danbri Exp $
+# $Id: ayf.rb,v 1.18 2002-12-11 22:59:36 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -57,13 +57,15 @@ def go(uri)
   # a code block to see if some page provides nearestAirport information:  
   #
   #  <contact:nearestAirport><wn:Airport air:icao="EGGD" air:iata="BRS"/>...
-  #    page.reg_xmlns 'http://www.megginson.com/exp/ns/airports#', 'air'
   #
   airports = Proc.new do |crawler,page| 
+
+    #page.reg_xmlns 'http://www.megginson.com/exp/ns/airports#', 'air'
+   
     rs = page.ask Statement.new(nil, air+"iata", nil)
     rs.objects.each do |a|
       a.graph=page
-      puts "AIRPORT: #{a} -got airport code in #{crawler.uri})" if (a.to_s =~ /\S/) 
+      puts "AIRPORT: #{a} got airport code in #{crawler.uri})" if (a.to_s =~ /\S/) 
     end					# the 'if' is fix for parser bug
   end
 
@@ -242,10 +244,11 @@ def rdfget(uri)
     return rdfdata if models==nil 
     return rdfdata if models==0
 
+    bnode_cache={}
     model = models.shift
     model.statements.each_value do |s|
       begin  
-        Loader.parseline s.to_ntriple.to_s, rdfdata, {} # fixme!
+        Loader.parseline s.to_ntriple.to_s, rdfdata, bnode_cache # fixme!
       rescue
         puts "rdfget: error w/ parseline. #{$!} "
       end
