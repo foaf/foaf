@@ -110,7 +110,7 @@ public class GUI extends ApplicationWindow
 	    
 	    label.setFont(bigFont);
 	    label.setText("FoafFinger");
-	    bigFont.dispose();
+	    //bigFont.dispose();
 	    
 	    label = new Label(composite, SWT.NONE);
 	    
@@ -390,12 +390,10 @@ public class GUI extends ApplicationWindow
 		}
 		else if (widget == moreInfoButton)
 		    {
-			MessageBox message = 
-			    new MessageBox(getShell(),
-					   SWT.OK | SWT.ICON_INFORMATION);
+			InfoDialog dialog = new InfoDialog(getShell());
 			
-			message.setMessage("This is some\ninformation");
-			message.open();
+			dialog.setInfoText("This is some\ninformation");
+			dialog.open();
 		    }
 		else
 		{
