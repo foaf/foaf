@@ -204,7 +204,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         controller.modelChanged();
     }
     
-    public String exportAsRDF()
+    public String exportAsRDF(String outputType)
     {
         Model memModel=new ModelMem();
         String rdfReturned = null;
@@ -267,7 +267,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
             
             StringWriter stringOutput = new StringWriter();
             
-            memModel.write(stringOutput, "RDF/XML-ABBREV");
+            memModel.write(stringOutput, outputType); //"RDF/XML-ABBREV");
             
             rdfReturned = stringOutput.toString();
         }
