@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.32 2002-02-06 17:29:53 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.33 2002-02-19 14:10:04 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -179,10 +179,17 @@ public class ArcNodeList implements Serializable
         AbstractList arrayTemp = (AbstractList) in.readObject();
         array = new ArrayList(arrayTemp);
 
-        // I moved from a single selection (ModelItem) to using multiple selections (ArcNodeSelection)
+        // I moved from a single selection (ModelItem) to using multiple selections
+        // (ArcNodeSelection)
         // This keeps things backwards compatible
         Object selectionObject = in.readObject();
-        if (selectionObject instanceof ModelItem) // this is the old way
+        // FIX: old docs can have 'null' - there was no selection -
+        // which was a 'ModelItem' but we get it back untyped.
+        if (selectionObject == null)
+        {
+            selection = new ArcNodeSelection();
+        }
+        else if (selectionObject instanceof ModelItem) // this is the old way
         {
             selection = new ArcNodeSelection();
             selection.add((ModelItem) selectionObject);
