@@ -1,5 +1,26 @@
 /* RDFAuthorDocument */
 
+/*
+    Copyright 2001 Damian Steer <dm_steer@hotmail.com>
+
+    This file is part of RDFAuthor.
+
+    RDFAuthor is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    RDFAuthor is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with RDFAuthor; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+*/
+
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
@@ -8,7 +29,7 @@ import java.util.HashMap;
 
 public class RDFAuthorDocument extends NSDocument {
     
-    String FileFormatVersion = "RDFAuthor File Format Version 0.1";
+    static final String FileFormatVersion = "RDFAuthor File Format Version 0.1";
     
     NSTextField textDescriptionField;
 
@@ -331,6 +352,33 @@ public class RDFAuthorDocument extends NSDocument {
             setCurrentObject(item);
             NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.showInfoNotification, null) );
+        }
+    }
+    
+    public void openUrlForObjectAtPoint(NSPoint point)
+    {
+        ModelItem item = rdfModel.objectAtPoint(point);
+        if (item != null)
+        {
+            if (item.isNode() && !((Node) item).isLiteral())
+            {
+                String urlString = ((Node) item).id();
+                if (urlString != null)
+                {
+                    try
+                    {
+                        java.net.URL url = new java.net.URL( urlString );
+                        NSWorkspace.sharedWorkspace().openURL( url );
+                    }
+                    catch (Exception e)
+                    {
+                        RDFAuthorUtilities.ShowError("Cannot Open URL",
+                            "I cannot open <" + urlString +
+                            ">. Perhaps it isn't a URL?",
+                            RDFAuthorUtilities.Normal, window);
+                    }
+                }
+            }
         }
     }
     
