@@ -1,0 +1,28 @@
+<p>
+The <code>foaf:maker</code> property relates something to a  
+<code>foaf:Agent</code> that <code>foaf:made</code> it. As such it is an 
+inverse of the <code>foaf:made</code> property.
+</p>
+
+<p>
+The <code>foaf:name</code> (or other <code>rdfs:label</code>) of the 
+<code>foaf:maker</code> of something can be described as the 
+<code>dc:creator</code> of that thing.</p>
+
+<p>
+For example, if the thing named by the URI 
+http://rdfweb.org/people/danbri/ has a 
+<code>foaf:maker</code> that is a <code>foaf:Person</code> whose 
+<code>foaf:name</code> is 'Dan Brickley', we can conclude that 
+http://rdfweb.org/people/danbri/ has a <code>dc:creator</code> of 'Dan 
+Brickley'. 
+</p>
+
+<p>
+FOAF descriptions are encouraged to use <code>dc:creator</code> only for 
+simple textual names, and to use <code>foaf:maker</code> to indicate 
+creators, rather than risk confusing creators with their names. This 
+follows most Dublin Core usage. See <a 
+href="http://rdfweb.org/topic/UsingDublinCoreCreator">UsingDublinCoreCreator</a> 
+for details.
+</p>
