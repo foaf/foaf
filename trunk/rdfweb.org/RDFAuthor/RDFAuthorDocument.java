@@ -115,6 +115,8 @@ public class RDFAuthorDocument extends NSDocument {
         // Insert code here to read your document from the given data.
         System.out.println("Wants to load something of type " + aType);
         
+        boolean success;
+        
         if (aType.equals("RDFAuthor Document"))
         {
             try
@@ -130,28 +132,44 @@ public class RDFAuthorDocument extends NSDocument {
                         "This version requires " + FileFormatVersion + ", but this file is in " + formatVersion
                         + ".\nBlame the author." ,
                         null, null, null);
-                    return false;
+                    success = false;
                 }
-                showTypes = s.readBoolean();
-                showIds = s.readBoolean();
-                showProperties = s.readBoolean();                
-                rdfModel = (ArcNodeList) s.readObject();
+                else
+                {
+                    showTypes = s.readBoolean();
+                    showIds = s.readBoolean();
+                    showProperties = s.readBoolean();                
+                    rdfModel = (ArcNodeList) s.readObject();
 
-                rdfModel.setController(this);
+                    rdfModel.setController(this);
             
-                return true;
+                    success = true;
+                }
             }
             catch (Exception e)
             {
                 System.out.println("Input died with: " +e);
-                return false;
+                e.printStackTrace(System.out);
+                success = false;
             }
         }
         else
         {
             System.out.println("Don't know this type");
-            return false;
+            success = false;
         }
+        
+        if (rdfModelView != null) // This is needed for 'revert' - doesn't display otherwise
+        {
+            rdfModelView.setNeedsDisplay(true);
+        }
+        
+        if (!success)
+        {
+            System.out.println("Loading failed :-(");
+        }
+        
+        return success;
     }
     
     public String windowNibName() {
