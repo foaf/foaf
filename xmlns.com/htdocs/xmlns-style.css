@@ -1,3 +1,20 @@
+/* from leigh's foaf2doc thing */
+
+                dt {
+                    font-weight: bold;
+                }
+
+                .class-table {
+                    margin: 1px;
+                    padding: 3px;
+                }
+
+                .tableheading     { background: #CCCCFF; font-weight:  bold; font-size: 120%;} /*$
+
+                .float-right {
+                  float:right;
+                }
+
 .code {
     margin-top: 8pt;
     margin-bottom: 8pt;
@@ -120,6 +137,6 @@ ul.toc {
 
 
 
-body {
+ .vocablogo {
   background-image: url(http://xmlns.com/images/foafvocab-logo.jpg);
 }
