@@ -7,6 +7,16 @@ require 'net/http'
 require 'sha1'
 require 'getoptlong'
 
+
+# assumes \uNNNN escape codes
+# convert into XML entity escape codes
+#
+def esc_utf8 (unicode_string)
+  escaped_utf8 = unicode_string.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};" } != nil
+  return unicode_string
+end
+
+
 # given a local RDF file (cached, in effect, parse and load)
 # todo: * pass in datasource info
 def scutter_local (file, base_uri='', cache_dir='./' )
