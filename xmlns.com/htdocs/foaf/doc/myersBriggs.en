@@ -2,9 +2,9 @@
 
 <p>
 The <code>foaf:myersBriggs</code> property represents the Myers Briggs (MBTI) approach to 
-personality taxonomy. It is included in FOAF as an example of a property whose values take 
-certain constrained values, and to give some additional detail to the FOAF files of those 
-who choose to include it. The <code>foaf:myersBriggs</code> property applies only to the 
+personality taxonomy. It is included in FOAF as an example of a property 
+that takes certain constrained values, and to give some additional detail to the FOAF 
+files of those who choose to include it. The <code>foaf:myersBriggs</code> property applies only to the 
 <code>foaf:Person</code> class; wherever you see it, you can infer it is being applied to 
 a person.
 </p>
