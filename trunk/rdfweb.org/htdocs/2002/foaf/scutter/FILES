@@ -1,4 +1,3 @@
-./scutter/webutil.rb
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
 ./scutter/bin/vocabstats.rb
@@ -13,8 +12,10 @@
 ./scutter/doc/sample_pathdata.txt
 ./scutter/conf/scutterdb.sql
 ./scutter/conf/scutterdb-mysql.sql
-./scutter/conf/rdfc14n.xsl
-./scutter/conf/rdfc2nt.xsl
+./scutter/redist/rdfc14n.xsl
+./scutter/redist/rdfc2nt.xsl
+./scutter/redist/basicrdf.rb
+./scutter/redist/squish.rb
 ./scutter/install.rb
 ./scutter/README.TXT
 ./scutter/LICENSE.TXT
