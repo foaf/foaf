@@ -35,3 +35,24 @@ There may be some RDF files that, for example, generate N-Triples that
 the RubyRDF N-Triples parser can't deal with. Multi-line output etc.
 -- work in progress.
 
+
+
+
+
+INTERESTING DATA
+
+These might be useful...
+
+ http://www.kanzaki.com/info/rss.rdf     
+  - RSS feed. mix of Japanese and English.
+
+ http://jibbering.com/rdf/highlight-3.svg?url=http://jibbering.com/rdfweb/1020892863024.rdf
+  - SVG image annotations, see RDF URL too.
+
+
+
+
+
+--
+Dan Brickley
+July 2002
