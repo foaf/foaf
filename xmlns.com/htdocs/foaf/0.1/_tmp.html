@@ -511,7 +511,7 @@ stabilise in usage and documentation, they progress through the categories
 
 <h4>stable terms</h4>
 
-<p>At the present time ($Date: 2003-07-26 20:44:43 $), the following FOAF terms are
+<p>At the present time ($Date: 2003-07-26 21:05:28 $), the following FOAF terms are
 considered <strong>stable</strong>.  This means that their names and definitions (in prose
 and in machine form) are unlikely to change dramatically. Clarifications and refinements
 may be made, but major changes are not expected. </p> 
@@ -541,7 +541,7 @@ schema</p>
 </ul>
 
 <h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 20:44:43 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 21:05:28 $), the following FOAF terms are considered 
 <strong>unstable</strong>. 
 This means that their names and definitions (in prose and in machine form) could still change 
 dramatically. Clarifications and refinements still need to be made, and major changes are quite 
@@ -556,7 +556,7 @@ possible.
 </ul>
  
 <h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 20:44:43 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 21:05:28 $), the following FOAF terms are considered 
 to be of '<strong>testing</strong>' status. 
 This means that their names and definitions (in prose and in machine form) could still change, 
 although dramatic changes are (we hope) unlikely.
@@ -880,6 +880,11 @@ shorthand for some common cases; their use may not always be appropriate.
 	<tr><th>Range:</th>
 	<td>http://www.w3.org/2000/01/rdf-schema#Literal</td></tr>
 </table>
+<p>
+The <code><a href="#term_accountName">foaf:accountName</a></code> property of a <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> is a 
+textual representation of the account name (unique ID) associated with that account.
+</p>
+
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -893,6 +898,12 @@ shorthand for some common cases; their use may not always be appropriate.
 	<tr><th>Range:</th>
 	<td><a href="#term_OnlineAccount">foaf:OnlineAccount</a></td></tr>
 </table>
+<p>
+The <code><a href="#term_holdsAccount">foaf:holdsAccount</a></code> property relates a <code><a href="#term_Agent">foaf:Agent</a></code> to an 
+<code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> for which they are the sole account holder. See 
+<code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> for usage details.
+</p>
+
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -1591,6 +1602,10 @@ version. They are often used in online photo gallery applications.
 	<tr><th>Range:</th>
 	<td><a href="#term_Document">foaf:Document</a></td></tr>
 </table>
+<p>
+The <code><a href="#term_accountServiceHomepage">foaf:accountServiceHomepage</a></code> property indicates a relationship between a 
+<code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> and the homepage of the supporting service provider.
+</p>
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -2159,6 +2174,20 @@ online (eg. buddylists, mailing list membership lists etc).
 	<tr><th>Status:</th>
 	<td>unstable</td></tr>
 </table>
+<p>
+An <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> represents the provision of some form of online 
+service, by some party (indicated indirectly via a 
+<code><a href="#term_accountServiceHomepage">foaf:accountServiceHomepage</a></code>) to some <code><a href="#term_Agent">foaf:Agent</a></code>. The 
+<code><a href="#term_holdsAccount">foaf:holdsAccount</a></code> property of the agent is used to indicate accounts that are 
+associated with the agent.
+</p>
+
+<p>
+See <code><a href="#term_OnlineChatAccount">foaf:OnlineChatAccount</a></code> for an example. Other sub-classes include 
+<code><a href="#term_OnlineEcommerceAccount">foaf:OnlineEcommerceAccount</a></code> and <code><a href="#term_OnlineGamingAccount">foaf:OnlineGamingAccount</a></code>.
+</p>
+
+
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -2168,6 +2197,10 @@ online (eg. buddylists, mailing list membership lists etc).
 	<tr><th>Status:</th>
 	<td>unstable</td></tr>
 </table>
+<p>
+A <code><a href="#term_OnlineGamingAccount">foaf:OnlineGamingAccount</a></code> is a <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> devoted to 
+online gaming.
+</p>
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -2193,6 +2226,13 @@ alive, dead, real, or imaginary. The <code><a href="#term_Person">foaf:Person</a
 	<tr><th>Status:</th>
 	<td>unstable</td></tr>
 </table>
+<p>
+A <code><a href="#term_OnlineEcommerceAccount">foaf:OnlineEcommerceAccount</a></code> is a <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> devoted to 
+buying and/or selling of goods, services etc. Examples include <a 
+href="http://www.amazon.com/">Amazon</a>, <a href="http://www.ebay.com/">eBay</a>, <a 
+href="http://www.thinkgeek.com/">thinkgeek</a>, etc.
+</p>
+
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -2244,6 +2284,43 @@ Further work is needed to specify the connections between this class and the FOA
 	<tr><th>Status:</th>
 	<td>unstable</td></tr>
 </table>
+<p>
+A <code><a href="#term_OnlineChatAccount">foaf:OnlineChatAccount</a></code> is a <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> devoted to 
+chat / instant messaging.
+</p>
+
+<p>
+This is a generalization of the FOAF Chat ID properties, 
+<code><a href="#term_jabberID">foaf:jabberID</a></code>, <code><a href="#term_aimChatID">foaf:aimChatID</a></code>, 
+<code><a href="#term_msnChatID">foaf:msnChatID</a></code>, <code><a href="#term_icqChatID">foaf:icqChatID</a></code> and 
+<code><a href="#term_yahooChatID">foaf:yahooChatID</a></code>. 
+</p>
+
+<p>
+Unlike those simple properties, <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> and associated FOAF terms 
+allows us to describe a great variety of online accounts, without having to anticipate 
+them in the FOAF vocabulary.
+</p>
+
+<p>
+For example, here is a description of an IRC chat account, specific to the Freenode IRC 
+network:
+</p>
+
+<div class="example">
+<code>
+&lt;foaf:Person&gt;
+  &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
+  &lt;foaf:holdsAccount&gt;
+    &lt;foaf:OnlineAccount&gt;
+      &lt;rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/&gt;
+      &lt;foaf:accountServiceHomepage rdf:resource="http://www.freenode.net/irc_servers.shtml"/&gt;
+      &lt;foaf:accountName&gt;danbri&lt;/foaf:accountName&gt;
+    &lt;/foaf:OnlineAccount&gt;
+  &lt;/foaf:holdsAccount&gt;
+&lt/foaf:Person&gt;
+</code>
+</div>
 <p>[<a style="float: right; font-size: small;" href="#glance">back to top</a>]</p>
 </div>
 
@@ -2348,7 +2425,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-26 20:44:43 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-26 21:05:28 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
