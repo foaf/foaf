@@ -1,0 +1,13 @@
+
+
+<p>A number of naming constructs are under development to provide
+naming substructure; draft properties include <code>foaf:firstName</code>,
+<code>foaf:givenname</code>, and <code>foaf:surname</code>. These are not currently 
+stable or consistent; see the <a href="http://rdfweb.org/issues/show_bug.cgi?id=7">issue 
+tracker</a> for design discussions, status and ongoing work on rationalising the FOAF 
+naming machinery.
+</p>
+
+<p>
+There is also a simple <code>foaf:name</code> property.
+</p>

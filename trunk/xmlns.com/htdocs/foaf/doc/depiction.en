@@ -1,7 +1,7 @@
 <p>
 The <code>foaf:depiction</code> property is a relationship between a thing and an 
 <code>foaf:Image</code> that depicts it. As such it is an inverse of the
-<code>foaf:depiction</code> relationship. 
+<code>foaf:depicts</code> relationship. 
 </p>
 
 <p>
