@@ -509,6 +509,8 @@ public class RDFAuthorDocument extends NSDocument {
         newNode.setShowId(showIds);
         newNode.setShowType(showTypes);
         newNode.setIsLiteral(isLiteral);
+        NSNotificationCenter.defaultCenter().postNotification(
+            new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
     public void addConnectionFromPoint(NSPoint fromPoint, NSPoint toPoint)
@@ -530,16 +532,34 @@ public class RDFAuthorDocument extends NSDocument {
             
             rdfModel.selection().set(newArc);
             newArc.setShowProperty(showProperties);
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
         }
     }
- 
+    
+    public ArcNodeSelection selection()
+    {
+        return rdfModel.selection();
+    }
+    
     public boolean addObjectAtPointToSelection(NSPoint point)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
         {
-            rdfModel.selection().add(item);
-            return true;
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+                
+            if (rdfModel.selection().contains(item))
+            {
+                rdfModel.selection().remove(item);
+                return false;
+            }
+            else
+            {
+                rdfModel.selection().add(item);
+                return true;
+            }
         }
         
         return false;
@@ -553,16 +573,47 @@ public class RDFAuthorDocument extends NSDocument {
             if (!rdfModel.selection().contains(item))
             {
                 rdfModel.selection().set(item);
+                NSNotificationCenter.defaultCenter().postNotification(
+                    new NSNotification(InfoController.itemChangedNotification, this) );
             }
             return true;
         }
         else
         {
             rdfModel.selection().set(null);
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
         }
         return false;
     }
     
+    public void setSelectionToObject(ModelItem object)
+    {
+        rdfModel.selection().set(object);
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+    }
+    
+    public void deleteSelection()
+    {
+        rdfModel.deleteSelection();
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+    }
+    
+    
+    public void setSelectionFromRect(NSRect rect, boolean adding)
+    {
+        if (!adding)
+        {
+            rdfModel.selection().clear();
+        }
+        
+        rdfModel.selection().add( rdfGraphicModel.objectsInRect(rdfModel, rect) );
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+    }
+        
     public void moveSelectionBy(float dx, float dy)
     {
         rdfModel.selection().moveBy(dx, dy);
@@ -578,11 +629,15 @@ public class RDFAuthorDocument extends NSDocument {
     public void selectNextObject()
     {
         rdfModel.selectNextObject();
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
     public void selectPreviousObject()
     {
         rdfModel.selectPreviousObject();
+        NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
     }
 
     public void setIdForNodeAtPoint(String id, NSPoint point, boolean isLiteral)

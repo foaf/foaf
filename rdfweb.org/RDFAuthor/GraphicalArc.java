@@ -92,7 +92,12 @@ public class GraphicalArc implements GraphicalObject
     {
         return handleRect.containsPoint(point, true); // always flipped
     }
-
+    
+    public boolean intersectsRect(NSRect rect)
+    {
+        return handleRect.intersectsRect(rect);
+    }
+    
     public void drawNormal(NSRect rect)
     {
         drawMe(normalColor, rect);

@@ -45,13 +45,11 @@ public class ArcNodeList implements Serializable
     static final long serialVersionUID = -830262328941904810L;
     
     ArrayList array;
-    ModelItem currentObject;
     RDFAuthorDocument controller;
     ArcNodeSelection selection;
 
     public ArcNodeList(RDFAuthorDocument controller)
     {
-        currentObject = null;
         array = new ArrayList();
         this.controller = controller;
         selection = new ArcNodeSelection();
@@ -60,7 +58,6 @@ public class ArcNodeList implements Serializable
     public ArcNodeList(RDFAuthorDocument controller, Reader reader, String type)
                 throws RDFException
     {
-        currentObject = null;
         array = new ArrayList();
         this.controller = controller;
         selection = new ArcNodeSelection();
@@ -166,7 +163,6 @@ public class ArcNodeList implements Serializable
      throws IOException
     {
         out.writeObject(array);
-        out.writeObject(currentObject);
     }
     
     private void readObject(java.io.ObjectInputStream in)
@@ -175,7 +171,7 @@ public class ArcNodeList implements Serializable
         // Like node - I changed to ArrayLists from vectors. This gets round an annoying problem
         AbstractList arrayTemp = (AbstractList) in.readObject();
         array = new ArrayList(arrayTemp);
-        currentObject = (ModelItem) in.readObject();
+        //currentObject = in.readObject();
     }
 
     public int size()
@@ -205,7 +201,7 @@ public class ArcNodeList implements Serializable
 
     public void deleteObject(ModelItem item)
     {
-        if (item == currentObject)
+        if (item == selection.selectedObject())
         {
             selectPreviousObject();
         }
@@ -240,6 +236,27 @@ public class ArcNodeList implements Serializable
     public ArcNodeSelection selection()
     {
         return selection;
+    }
+    
+    // Called when user hits backspace
+    public void deleteSelection()
+    {
+        if (selection.kind() == ArcNodeSelection.Empty)
+        {
+            return;
+        }
+        
+        ModelItem currentObject = selection.selectedObject(); // this might be null, meaning multiple selections
+        
+        selection.delete();
+        
+        // if the selection (just deleted) was single then now select the previous object,
+        // unless the model is now empty.
+        if ((currentObject != null) && !array.isEmpty())
+        {
+            selection.set(currentObject);
+            selectPreviousObject();
+        }
     }
     
     public void moveSelectionBy(float dx, float dy)
@@ -278,50 +295,40 @@ public class ArcNodeList implements Serializable
     {
         ModelItem nextItem;
         
-        if (array.size() == 0)
-        {
-            return;
-        }
-        else if (currentObject == null)
-        {
-            nextItem = (ModelItem) array.get(0);
-        }
+        if (array.size() == 0) return;
         else
         {
-            int indexNext = (array.indexOf(currentObject) + 1) % array.size();
-            nextItem = (ModelItem) array.get( indexNext );
+            // This only really makes sense for single selections really
+            if (selection.kind() == ArcNodeSelection.Single)
+            {
+                int indexNext = (array.indexOf(selection.selectedObject()) + 1) % array.size();
+                nextItem = (ModelItem) array.get( indexNext );
+            }
+            else nextItem = (ModelItem) array.get(0);
+            
+            selection.set(nextItem);
         }
-        
-        setCurrentObject(nextItem);
     }
     
     public void selectPreviousObject()
     {
         ModelItem nextItem;
         
-        if (array.size() == 0)
-        {
-            return;
-        }
-        else if (currentObject == null)
-        {
-            nextItem = (ModelItem) array.get(array.size() - 1);
-        }
+        if (array.size() == 0) return;
         else
         {
-            // Hmm - the '+ array.size()' counters the posibility that the numerator is negative
-            int indexPrevious = (array.indexOf(currentObject) + array.size() - 1) % array.size();
-            nextItem = (ModelItem) array.get( indexPrevious );
+            if (selection.kind() == ArcNodeSelection.Single)
+            {
+                // The '+ array.size()' counters the posibility that the numerator is negative
+                int indexPrevious = (array.indexOf(selection.selectedObject()) + array.size() - 1) % array.size();
+                nextItem = (ModelItem) array.get( indexPrevious );
+            }
+            else nextItem = (ModelItem) array.get(array.size() - 1);
+            
+            selection.set(nextItem);
         }
-        
-        setCurrentObject(nextItem);
     }
-    
-    public ModelItem currentObject()
-    {
-        return currentObject;
-    }
-    
+
     public void itemChanged(ModelItem item)
     {
         controller.modelChanged();

@@ -24,18 +24,15 @@
 
 */
 
-
-import com.apple.cocoa.foundation.*;
-import com.apple.cocoa.application.*;
-
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Collection;
 
 public class ArcNodeSelection {
     
-    static final int IsEmpty = 0;
-    static final int IsSingle = 1;
-    static final int IsMultiple = 2;
+    static final int Empty = 0;
+    static final int Single = 1;
+    static final int Multiple = 2;
     
     HashSet selection;
     HashSet nodes; // this is useful since I often want complete graphs
@@ -44,6 +41,25 @@ public class ArcNodeSelection {
     {
         selection = new HashSet();
         nodes = new HashSet();
+    }
+    
+    public int kind()
+    {
+        if (selection.isEmpty()) return Empty;
+        else if (selection.size() == 1) return Single;
+        else return Multiple;
+    }
+    
+    // This is for the useful case where only one thing is selected
+    
+    public ModelItem selectedObject()
+    {
+        if (selection.size() == 1) // nuts - why did I use a set!!!
+        {
+            Iterator iterator = selection.iterator();
+            return (ModelItem) iterator.next();
+        }
+        else return null;
     }
     
     public boolean contains(ModelItem object)
@@ -58,20 +74,27 @@ public class ArcNodeSelection {
         findNodes();
     }
     
-    public void set(ModelItem object)
+    public void add(Collection objects)
     {
-        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        for (Iterator iterator = objects.iterator(); iterator.hasNext();)
         {
-            ModelItem objectGone = (ModelItem) iterator.next();
-            objectGone.graphicRep().changed();
-        }
-        selection.clear();
-        if (object != null)
-        {
+            ModelItem object = (ModelItem) iterator.next();
             selection.add(object);
             object.graphicRep().changed();
         }
         findNodes();
+    }
+    
+    public void set(ModelItem object)
+    {
+        clear();
+        
+        if (object != null) // not setting to nothing then...
+        {
+            selection.add(object);
+            object.graphicRep().changed();
+            findNodes();
+        }
     }
     
     public void remove(ModelItem object)
@@ -81,7 +104,28 @@ public class ArcNodeSelection {
         findNodes();
     }
     
-    // Find nodes is very useful - it contains all nodes
+    public void clear()
+    {
+        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        {
+            ModelItem objectGone = (ModelItem) iterator.next();
+            objectGone.graphicRep().changed();
+        }
+        selection.clear();
+    }
+    
+    public void delete()
+    {
+        // ModelItem.delete()s modify selection (which iterators hate), so copy it first
+        HashSet itemsToGo = new HashSet(selection);
+        for (Iterator iterator = itemsToGo.iterator(); iterator.hasNext();)
+        {
+            ModelItem objectGone = (ModelItem) iterator.next();
+            objectGone.delete();
+        }
+    }
+    
+    // nodes is very useful - it contains all nodes
     // necessary for the selection to be a complete subgraph
     
     public void findNodes()
@@ -113,4 +157,32 @@ public class ArcNodeSelection {
             object.moveBy(dx, dy);
         }
     }
+    
+    // This is hard :-(
+    // return an array of copies of all the items. The positions are relativised
+    /*
+    public Object[] copy()
+    {
+        HashMap nodeToNewNode = new HashMap();
+        
+        float minX = 1000000;
+        float minY = 1000000;
+        
+        // first find the minimum x and y values
+        
+        for (Iterator iterator = nodes.iterator(); iterator.hasNext();)
+        {
+            Node object = (Node) iterator.next();
+            if (minX > object.x()) minX = object.x();
+            if (minY > object.y()) minY = object.y();
+        }
+        
+        // Next create copies of the nodes
+        
+        for (Iterator iterator = nodes.iterator(); iterator.hasNext();)
+        {
+            Node oldNode = (Node) iterator.next();
+            Node newNode = new Node( null, oldNode.id(), oldNode.typeNamespace(),
+                    oldNode.typeName, 
+                    */
 }

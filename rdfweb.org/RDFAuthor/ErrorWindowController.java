@@ -159,7 +159,7 @@ public class ErrorWindowController extends NSObject {
         if (row != -1)
         {
             ModelItem item = ((ModelErrorData) windowToData.get(currentWindow)).getObjectAtRow(row);
-            ((RDFAuthorDocument) currentWindow.delegate()).setCurrentObject(item);
+            ((RDFAuthorDocument) currentWindow.delegate()).setSelectionToObject(item);
             NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.showInfoNotification, null) );
         }

@@ -30,22 +30,22 @@ import java.net.MalformedURLException;
 import com.hp.hpl.mesa.rdf.jena.common.*;
 
 public class InfoController extends NSObject {
-
+    
+    NSTabView infoTabs;
+    
+    NSTabViewItem objectTabItem;
+    
     NSPanel infoWindow;
     
-    NSView currentView;
-    
-    NSView contentView;
-    
     NSView nothingView;
+    
+    NSView multipleView;
     
     NSView literalView;
     
     NSView resourceView;
     
     NSView propertyView;
-    
-    NSView documentSizeView;
 
     NSButton literalChangeButton;
     
@@ -102,25 +102,21 @@ public class InfoController extends NSObject {
     
     public void awakeFromNib()
     {
-        // Initialise frames from the original view (which is then removed)
-        NSRect rect = contentView.frame();
+        // This is useful, but I couldn't get it in IB
+        objectTabItem = infoTabs.tabViewItemAtIndex(0);
+        
+        // Initialise sizes
+        NSRect rect = infoTabs.contentRect();
         nothingView.setFrame(rect);
         literalView.setFrame(rect);
         resourceView.setFrame(rect);
         propertyView.setFrame(rect);
-        documentSizeView.setFrame(rect);
+        multipleView.setFrame(rect);
         
-        // Initialise the panel with the 'nothing' view
-        infoWindow.contentView().replaceSubview(contentView, nothingView);
-        currentView = nothingView;
-    }
-    
-    public void setInfoView(NSView view)
-    {
-        if (currentView == view) return;
+        // Set object tab to 'nothingView' initially
         
-        infoWindow.contentView().replaceSubview(currentView, view);
-        currentView = view;
+        objectTabItem.setView(nothingView);
+        
     }
     
     public void currentWindowChanged(NSNotification notification)
@@ -130,8 +126,8 @@ public class InfoController extends NSObject {
         {
             currentWindow = window;
             RDFAuthorDocument currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
-            ModelItem item = currentDocument.currentObject();
-            setCurrentItem(item);
+            ArcNodeSelection selection = currentDocument.selection();
+            setInfoFromSelection(selection);
         }
     }
     
@@ -141,7 +137,7 @@ public class InfoController extends NSObject {
         if (currentWindow == window)
         {
             currentWindow = null;
-            setCurrentItem(null);
+            setInfoFromSelection(null);
         }
     }
     
@@ -156,8 +152,43 @@ public class InfoController extends NSObject {
         
         if (document == currentWindow.delegate())
         {
-            ModelItem item = document.currentObject();
-            setCurrentItem(item); // cheap way to update
+            ArcNodeSelection selection = document.selection();
+            setInfoFromSelection(selection); // cheap way to update
+        }
+    }
+    
+    public void setInfoFromSelection(ArcNodeSelection selection)
+    {
+        if (selection == null) // no document is current
+        {
+            showNothing();
+            documentWidthField.setStringValue("");
+            documentHeightField.setStringValue("");
+            documentWidthField.setEnabled(false);
+            documentHeightField.setEnabled(false);
+            return;
+        }
+        
+        documentWidthField.setEnabled(true);
+        documentHeightField.setEnabled(true);
+        
+        NSSize size = ((RDFAuthorDocument) currentWindow.delegate()).rdfModelView.frame().size();
+        documentWidthField.setStringValue("");
+        documentHeightField.setStringValue("");
+        documentWidthField.setFloatValue(size.width());
+        documentHeightField.setFloatValue(size.height());
+        
+        if (selection.kind() == ArcNodeSelection.Empty)
+        {
+            showNothing();
+        }
+        else if (selection.kind() == ArcNodeSelection.Multiple)
+        {
+            showMultiple();
+        }
+        else // must be single
+        {
+            setCurrentItem( selection.selectedObject() );
         }
     }
     
@@ -165,15 +196,7 @@ public class InfoController extends NSObject {
     {
         currentItem = item;
         
-        if (currentWindow == null)
-        {
-            showNothing();
-        }
-        else if (currentItem == null)
-        {
-            showDocumentSize();
-        }
-        else if (!currentItem.isNode())
+        if (!currentItem.isNode())
         {
             showArc((Arc) currentItem);
         }
@@ -189,7 +212,9 @@ public class InfoController extends NSObject {
     
     public void revertObject(Object sender)
     {
-        setCurrentItem(currentItem); // reinitialises the fields
+        if (currentWindow == null) return;
+
+        setInfoFromSelection(((RDFAuthorDocument) currentWindow.delegate()).selection()); // reinitialises the fields
     }
     
     public void changeObject(Object sender)
@@ -198,11 +223,10 @@ public class InfoController extends NSObject {
         {
             return;
         }
-        else if (currentItem == null) // size change
-        {
-            changeSize();
-        }
-        else if (!currentItem.isNode())
+
+        changeSize();
+
+        if (!currentItem.isNode())
         {
             changeProperty();
         }
@@ -296,6 +320,10 @@ public class InfoController extends NSObject {
         float width = documentWidthField.floatValue();
         float height = documentHeightField.floatValue();
         
+        NSSize size = ((RDFAuthorDocument) currentWindow.delegate()).rdfModelView.frame().size();
+        
+        if ((size.width() == width) && (size.height() == height)) return; // no change
+        
         if ((width > 40) && (height > 40))
         {
             ((RDFAuthorDocument) currentWindow.delegate()).setDocumentSize(new NSSize(width, height));
@@ -348,8 +376,14 @@ public class InfoController extends NSObject {
     
     public void showNothing()
     {
-        setInfoView(nothingView);
-        setFields("", "", "", "", 0, 0);
+        objectTabItem.setView(nothingView);
+        setFields("", "", "", "");
+    }
+    
+    public void showMultiple()
+    {
+        objectTabItem.setView(multipleView);
+        setFields("", "", "", "");
     }
     
     public void showArc(Arc arc)
@@ -358,41 +392,32 @@ public class InfoController extends NSObject {
         String propertyNS = (arc.propertyNamespace() == null)?"":arc.propertyNamespace();
         String propertyN = (arc.propertyName() == null)?"":arc.propertyName();
         
-        setInfoView(propertyView);
-        setFields("", "", "", propertyNS + propertyN, 0, 0);
+        objectTabItem.setView(propertyView);
+        setFields("", "", "", propertyNS + propertyN);
     }
     
     public void showLiteral(Node literal)
     {
-        setInfoView(literalView);
+        objectTabItem.setView(literalView);
         
         String literalVal = (literal.id() == null)?"":literal.id();
         
-        setFields(literalVal, "", "", "", 0, 0);
+        setFields(literalVal, "", "", "");
     }
     
     public void showNode(Node node)
     {
-        setInfoView(resourceView);
+        objectTabItem.setView(resourceView);
         
         String typeNS = (node.typeNamespace() == null)?"":node.typeNamespace();
         String typeN = (node.typeName() == null)?"":node.typeName();
         
         String id = (node.id() == null)?"":node.id();
         
-        setFields("", typeNS + typeN, id, "", 0, 0);
+        setFields("", typeNS + typeN, id, "");
     }
-    
-    public void showDocumentSize()
-    {
-        setInfoView(documentSizeView);
-        
-        NSSize size = ((RDFAuthorDocument) currentWindow.delegate()).rdfModelView.frame().size();
-        
-        setFields("", "", "", "", size.width(), size.height());
-    }
-    
-    public void setFields( String literal, String type, String id, String property, float width, float height)
+  
+    public void setFields( String literal, String type, String id, String property)
     {
         literalChangeButton.setState(NSCell.OffState);
         resourceChangeButton.setState(NSCell.OffState);
@@ -401,10 +426,5 @@ public class InfoController extends NSObject {
         propertyTextField.setStringValue(property);
         resourceIdField.setStringValue(id);
         resourceTypeField.setStringValue(type);
-        
-        documentWidthField.setStringValue("");
-        documentHeightField.setStringValue("");
-        documentWidthField.setFloatValue(width);
-        documentHeightField.setFloatValue(height);
     }
 }
