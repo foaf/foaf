@@ -112,22 +112,29 @@ public class Util
   public static List tokenise(StreamTokenizer in)
   {
     ArrayList toReturn = new ArrayList();
-
-    for (int i = in.nextToken();
-	 (i != StreamTokenizer.TT_EOL) &&
-	   (i != StreamTokenizer.TT_EOF);
-	 i = in.nextToken())
+    try
       {
-	if ((i == StreamTokenizer.TT_WORD) ||
-	    (i == '\"') ||
-	    (i == '\''))
-	  toReturn.add(in.sval);
-	else if (i == StreamTokenizer.TT_NUMBER)
-	  toReturn.add(new Double(in.nval));
-	else
-	  System.err.println("Unknown token?");
+	for (int i = in.nextToken();
+	     (i != StreamTokenizer.TT_EOL) &&
+	       (i != StreamTokenizer.TT_EOF);
+	     i = in.nextToken())
+	  {
+	    if ((i == StreamTokenizer.TT_WORD) ||
+		(i == '\"') ||
+		(i == '\''))
+	      toReturn.add(in.sval);
+	    else if (i == StreamTokenizer.TT_NUMBER)
+	      toReturn.add(new Double(in.nval));
+	    else
+	      System.err.println("Unknown token?");
+	  }
       }
-
+    catch (IOException e)
+      {
+	System.err.println("IO Exception while tokenising: " +
+			   e.getMessage());
+      }
+    
     return toReturn;
   }
     
