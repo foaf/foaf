@@ -21,9 +21,13 @@ destroydata:
 harvest:
 	bin/scutter --scutter
 
-xsltharvest:
-	bin/scutter --use-xslt --scutter
+winharvest:
+	bin/scutter --dbdriver=Mysql --use-xslt --scutter
 
+redwin:
+	ruby bin/scutter --use-raptor=./redparse/rdfdump --dbdriver=Mysql --scutter
+
+ 
 stats:
 	bin/vocabstats.rb
 

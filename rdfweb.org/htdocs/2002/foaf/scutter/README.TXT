@@ -54,6 +54,14 @@ Known problems:
   * The (pragmatic programmers') Win32 Ruby I'm using is core dumping 
     periodically. Investigating.
 
+Win32 Redland usage:
+
+ ruby bin/scutter --use-raptor=./redparse/rdfdump --dbdriver=Mysql --scutter
+ ...also works.
+
+ (assuming you have a binary of the 'rdfdump' utility in the 
+  redparse directory. this isn't provided (ahem, though for temp convenience
+  look http://tux.w3.org/~danbri/redland/ here, and rename the .exe).
 
 
 

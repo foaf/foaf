@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.15 2002-07-16 21:03:25 danbri Exp $
+# $Id: webutil.rb,v 1.16 2002-07-16 23:43:42 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -141,11 +141,28 @@ end
 
 ##########################################################################
 #
-# given a local RDF file (cached, in effect, parse and load)
+# given a local RDF/XML file (cached, in effect, parse and load)
 # todo: * pass in datasource info
-def load_graph_from_cache (file, base_uri='lookup:', opts={})
-  #todo: get base uri from cache meta in .meta 
-  
+
+def load_graph_from_cache (file, opts={})
+
+  parsed_ok = false
+
+  # config info
+  cache_dir = opts['cache-dir']
+  use_xslt= opts['use-xslt'] 
+  redparse = opts['use-raptor'] 
+  redparse=false if use_xslt
+
+  #  rdfdump_bin='redparse/rdfdump'
+  rdfdump_bin='rdfdump'		 # path to rdfdump (redland/raptor parser)
+
+  if opts['use-raptor'] 
+    rdfdump_bin = opts['use-raptor'] if opts['use_raptor'] != true
+    puts "opts: using raptor: #{rdfdump_bin}"
+    redparse=true
+  end
+
   meta={}
   meta_fn = "#{cache_dir}webcache/rdf-#{file}.meta"
   if File::exists? meta_fn
@@ -161,37 +178,36 @@ def load_graph_from_cache (file, base_uri='lookup:', opts={})
     raise "No meta entry in cache for #{file}" 
   end
 
-  base_uri = meta['baseuri'].chomp if base_uri == 'lookup:'
+  base_uri = meta['baseuri'].chomp 
   raise "No base URI found for #{file}" if !base_uri
   puts "baseuri: #{base_uri}"
-
-  # config info
-  cache_dir = opts['cache-dir']
-  use_xslt= opts['use-xslt'] 
-  redparse = opts['use-raptor'] 
-  redparse=false if use_xslt
 
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
   puts "Parsing cached RDF file: #{cache_dir} file: #{file} xslt: #{use_xslt} base: #{base_uri}"
  
-  parsed_ok = false
   puts "Scutter: parsing."
 
 
   # Run Redland/Repat parser
   #
   if redparse
-    pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' `
-    # puts "Got N-Triples: #{pmsg} "
+    puts "Scutter: parsing with redland: #{rdfdump_bin}"
+
+    begin
+      pmsg=`#{rdfdump_bin} -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' `
+    rescue
+      puts "error running rdfdump binary. redland parsing failed: #{$!}"
+    end
+
+    puts "Got N-Triples: #{pmsg} "
     nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.red.nt"
     red_nt = File::new( nt_cache, File::CREAT|File::RDWR, 0644 )
     red_nt.puts pmsg
     red_nt.close
-    # puts "Scutter: just parsed w/ redland: #{pmsg}"
     if pmsg =~ /\w/
       parsed_ok = true 
     else
-      puts "scutter: redparse error: no triples! " # todo: raise exception
+      raise "scutter: redparse error: no triples! " 
     end
   end
 
@@ -232,6 +248,8 @@ def load_graph_from_cache (file, base_uri='lookup:', opts={})
     parsed_ok = true
     puts "\n==#5 done.\n\n"
   end 
+
+  raise "Parser(s) failed" if !parsed_ok
 
   return Loader.ntfile2graph nt_cache
 end
@@ -320,6 +338,8 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
   #
   todo.each do |uri|
 
+  puts "==================================================\n\n"
+
     count = count+1
    if count > opts['max'].to_i
       puts "Max retrieval count reached. Exiting harvester."
@@ -330,10 +350,17 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
     begin 
       cache_id = fetch_and_cache (uri, cache_dir, proxy)
     rescue
-      puts "Exception: harvesting problem in fetch_and_cache: $!"
+      puts "Exception: harvesting problem in fetch_and_cache: #{$!}"
+      puts "skipping."
       next
     end
-    loaded = load_graph_from_cache cache_id
+
+    begin
+      loaded = load_graph_from_cache cache_id, opts
+    rescue
+      puts "load_graph_from_cache failed. skipping."
+      next #
+    end
     
     begin 
       store_graph loaded, cache_id, opts
@@ -456,7 +483,8 @@ def raa_load
     sb= `sabcmd soap2rdf.xsl 'raa-dump/#{file}' > 'web_cache/#{file}.rdf' 2>&1`
     # todo: add .meta files
     if ! (sb =~ /\w/)  
-    load_graph_from_cache(file, 'http://www.ruby-lang.org/xmlns/raa/test1-ns#', './')
+    #load_graph_from_cache(file,
+	# 'http://www.ruby-lang.org/xmlns/raa/test1-ns#', './')
     else
       # puts "Skipping #{file} due to XSLT / filename error"
     end
