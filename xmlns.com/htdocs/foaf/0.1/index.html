@@ -24,7 +24,7 @@
       <dt>version:</dt>
       <dd>0.1</dd>
       <dt>status:</dt>
-      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.12 2003-02-23 22:02:56 danbri Exp $</dd>
+      <dd>deployed but changing, use with care. last edit: $Id: index.html,v 1.13 2003-02-23 22:25:05 danbri Exp $</dd>
       <dt>formats:</dt>
       <dd><a href="http://xmlns.com/foaf/0.1/index.html">text/html</a>, <a href="http://xmlns.com/foaf/0.1/index.rdf">application/rdf+xml</a></dd>
       <dt>history:</dt>
@@ -118,125 +118,125 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
  <td>A person.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Document</td> 
- <td>A document</td></tr> 
+ <td>A document.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Organization</td> 
- <td>An organisation</td></tr> 
+ <td>An organization.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Project</td> 
- <td>A project</td></tr> 
+ <td>A project.</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/topic</td> 
- <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/firstName</td> 
- <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/page</td> 
- <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depicts</td> 
- <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/givenname</td> 
- <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/id</td> 
- <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
- <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/surname</td> 
- <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/theme</td> 
- <td>theme</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
- <td>a thing of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+ <td>A thing of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
- <td>a Myers Briggs (MBTI) personality classification</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/img</td> 
+ <td>An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/family_name</td> 
- <td>The family_name of some Person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/name</td> 
+ <td>A name for some thing.</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/mbox</td> 
- <td>A personal mailbox, ie. a web-identifiable Internet mailbox associated with exactly one owner, the first owner of this mailbox. This property is a 'static inverse functional property', in that there is (across time and change) at most one individual that has any particular personal mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/publications</td> 
- <td>a link to the publications of this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+ <td>A link to the publications of this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
- <td>a workplace homepage of some person; the homepage of an organisation they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/depiction</td> 
+ <td>A depiction of some thing.</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/phone</td> 
- <td>A fully qualified international phone number, specified using the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
- <td>The sha1sum of the URI of a web-identifiable Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/currentProject</td> 
- <td>a current project this person works on</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+ <td>A current project this person works on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/homepage</td> 
- <td>A homepage for some thing</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/depicts</td> 
+ <td>A thing depicted in this representation.</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/givenname</td> 
+ <td>The given name of some person.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/geekcode</td> 
  <td>A textual geekcode for this person, see http://www.geekcode.com/geek.html</td><td>http://xmlns.com/foaf/0.1/Person</td><td><em>not specified</em></td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/pastProject</td> 
- <td>a project this person has previously worked on</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+ <td>A project this person has previously worked on.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
+ <td>A derrived thumbnail image.</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/surname</td> 
+ <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
+ <td>An organization funding a project or person.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
+ <td>A Myers Briggs (MBTI) personality classification.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/family_name</td> 
+ <td>The family_name of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
+ <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
+ <td>A workplace homepage of some person; the homepage of an organization they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/phone</td> 
+ <td>A fully qualified international phone number, specified using the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/logo</td> 
+ <td>A logo representing some thing.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
+ <td>A work info homepage of some person; a page about their work for some organization.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/homepage</td> 
+ <td>A homepage for some thing.</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>A topic of some page or document.</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/weblog</td> 
  <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
- <td>A checksum for the DNA of some (presumably living) thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+ <td>A checksum for the DNA of some thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
- <td>an organisation funding a project or person</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>A page or document about this thing.</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/made</td> 
- <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
+ <td>A homepage of a school attended by the person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/title</td> 
  <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
- <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>A person known by this person (indicating some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
 <tr>
- <td>http://xmlns.com/foaf/0.1/img</td> 
- <td>an image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+ <td>http://xmlns.com/foaf/0.1/plan</td> 
+ <td>A .plan comment, in the tradition of finger and '.plan' files.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>A theme.</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>A page about a topic of interest to this person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/nick</td> 
  <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/logo</td> 
- <td>a logo representing some thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
- <td>a work info homepage of some person; a page about their work for some organisation.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/name</td> 
- <td>A name for some thing</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
- <td>a homepage of a school attended by the person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depiction</td> 
- <td>a depiction of some thing</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
 
 </table>
 
@@ -251,9 +251,9 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 	xmlns:dc="http://purl.org/dc/elements/1.1/">
 
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
-	<dc:title>The Friend of a Friend (FOAF) vocabulary</dc:title>
-        <dc:description>Classes and Properties comprising the FOAF RDF/XML vocabulary</dc:description>
-        <dc:date>$Date: 2003-02-23 22:02:56 $</dc:date>
+	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
+        <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
+        <dc:date>$Date: 2003-02-23 22:25:05 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -276,7 +276,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Document" 
 	rdfs:label="Document"
-	rdfs:comment="A document">
+	rdfs:comment="A document.">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
@@ -286,7 +286,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Organization" 
 	rdfs:label="Organization"
-	rdfs:comment="An organisation">
+	rdfs:comment="An organization.">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Organization"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person" />
@@ -296,7 +296,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Project" 
 	rdfs:label="Project"
-	rdfs:comment="A project">
+	rdfs:comment="A project.">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Project"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
@@ -309,15 +309,15 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox" 
 	rdfs:label="personal mailbox"
-	rdfs:comment="A personal mailbox, ie. a web-identifiable Internet mailbox associated with exactly one owner, the first  owner of this mailbox. This property is a 'static inverse functional property', in that  there is (across time and change) at most one individual that has any particular personal  mailbox.">
+	rdfs:comment="A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.">
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox_sha1sum" 
-	rdfs:label="sha1 of personal mailbox URI"
-	rdfs:comment="The sha1sum of the URI of a web-identifiable Internet mailbox associated with exactly one owner, the  first owner of the mailbox.">
+	rdfs:label="sha1sum of a personal mailbox URI name"
+	rdfs:comment="The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the  first owner of the mailbox.">
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -332,18 +332,14 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/dnaChecksum" 
 	rdfs:label="DNA checksum"
-	rdfs:comment="A checksum for the DNA of some (presumably living) thing. Joke.">
+	rdfs:comment="A checksum for the DNA of some thing. Joke.">
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
 
-
-
-
       <!-- FOAF naming properties -->
-
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/title" 
 	rdfs:label="title"
@@ -352,14 +348,14 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/nick" 
-	rdfs:label="Nickname"
-	rdfs:comment="A short informal nickname characterising an agent (includes login identifiers, IRC and other chat   nicknames).">
+	rdfs:label="nickname"
+	rdfs:comment="A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/name" 
 	rdfs:label="name"
-	rdfs:comment="A name for some thing">
+	rdfs:comment="A name for some thing.">
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#label" />
@@ -367,7 +363,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/firstName" 
 	rdfs:label="firstName"
-	rdfs:comment="The first name of a person">
+	rdfs:comment="The first name of a person.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -376,7 +372,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/givenname" 
 	rdfs:label="Given name"
-	rdfs:comment="The given name of some agent.">
+	rdfs:comment="The given name of some person.">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
@@ -390,7 +386,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/family_name" 
 	rdfs:label="family_name"
-	rdfs:comment="The family_name of some Person.">
+	rdfs:comment="The family_name of some person.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
@@ -403,13 +399,13 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/phone" 
 	rdfs:label="phone"
-	rdfs:comment="A fully qualified international phone number, specified using    the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)">
+	rdfs:comment="A fully qualified international phone number, specified using  the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage" 
 	rdfs:label="homepage"
-	rdfs:comment="A homepage for some thing">
+	rdfs:comment="A homepage for some thing.">
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
@@ -429,7 +425,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/plan" 
 	rdfs:label="plan"
-	rdfs:comment="A .plan comment, in the tradition of finger and '.plan' files">
+	rdfs:comment="A .plan comment, in the tradition of finger and '.plan' files.">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
@@ -448,7 +444,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/img" 
 	rdfs:label="image"
-	rdfs:comment="an image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).">
+	rdfs:comment="An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/depiction"/>
@@ -457,7 +453,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depiction" 
 	rdfs:label="depiction"
-	rdfs:comment="a depiction of some thing">
+	rdfs:comment="A depiction of some thing.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -466,7 +462,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depicts" 
 	rdfs:label="depicts"
-	rdfs:comment="a thing depicted in this representation">
+	rdfs:comment="A thing depicted in this representation.">
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -475,7 +471,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/thumbnail" 
 	rdfs:label="thumbnail"
-	rdfs:comment="a derrived thumbnail image">
+	rdfs:comment="A derrived thumbnail image.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Image"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -483,7 +479,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/myersBriggs" 
 	rdfs:label="myersBriggs"
-	rdfs:comment="a Myers Briggs (MBTI) personality classification">
+	rdfs:comment="A Myers Briggs (MBTI) personality classification.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -492,7 +488,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workplaceHomepage" 
 	rdfs:label="workplaceHomepage"
-	rdfs:comment="a workplace homepage of some person; the homepage of an organisation they work for.">
+	rdfs:comment="A workplace homepage of some person; the homepage of an organization they work for.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -500,7 +496,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workInfoHomepage" 
 	rdfs:label="workInfoHomepage"
-	rdfs:comment="a work info homepage of some person; a page about their work for some organisation.">
+	rdfs:comment="A work info homepage of some person; a page about their work for some organization.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -508,7 +504,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/schoolHomepage" 
 	rdfs:label="schoolHomepage"
-	rdfs:comment="a homepage of a school attended by the person">
+	rdfs:comment="A homepage of a school attended by the person.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -516,7 +512,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/knows" 
 	rdfs:label="knows"
-	rdfs:comment="a person known by this person (requires some level of reciprocated interaction between the parties).">
+	rdfs:comment="A person known by this person (indicating some level of reciprocated interaction between the parties).">
          <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -524,7 +520,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/interest" 
 	rdfs:label="interest"
-	rdfs:comment="a page about a topic of interest to this person">
+	rdfs:comment="A page about a topic of interest to this person.">
         <!-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 -->
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
@@ -533,7 +529,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/topic_interest" 
 	rdfs:label="interest_topic"
-	rdfs:comment="a thing of interest to this person">
+	rdfs:comment="A thing of interest to this person.">
         <!-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 -->
         <!--    foaf:interest_topic(P,R) 
 		always true whenever
@@ -549,14 +545,16 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/publications" 
 	rdfs:label="publications"
-	rdfs:comment="a link to the publications of this person">
+	rdfs:comment="A link to the publications of this person.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
 
 <!-- by libby for ILRT mappings 2001-10-31 -->
-      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/currentProject" rdfs:label="current project" rdfs:comment="a current project this person works on">
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/currentProject" 
+	rdfs:label="current project" 
+	rdfs:comment="A current project this person works on.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -564,14 +562,15 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/pastProject" 
 	rdfs:label="past project" 
-	rdfs:comment="a project this person has previously worked on">
+	rdfs:comment="A project this person has previously worked on.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
+
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/fundedBy" 
 	rdfs:label="funded by" 
-	rdfs:comment="an organisation funding a project or person">
+	rdfs:comment="An organization funding a project or person.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -588,7 +587,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/logo" 
 	rdfs:label="logo" 
-	rdfs:comment="a logo representing some thing">
+	rdfs:comment="A logo representing some thing.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -596,7 +595,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/topic" 
 	rdfs:label="topic"
-	rdfs:comment="a topic of some page or document">
+	rdfs:comment="A topic of some page or document.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Document"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
@@ -605,7 +604,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/page" 
 	rdfs:label="page"
-	rdfs:comment="a page or document about this thing">
+	rdfs:comment="A page or document about this thing.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -614,7 +613,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a>.
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/theme" 
 	rdfs:label="theme" 
-	rdfs:comment="theme">
+	rdfs:comment="A theme.">
 <!-- more info needed. what is this for? -->
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>

@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "The Friend of a Friend (FOAF) vocabulary" .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "Classes and Properties comprising the FOAF RDF/XML vocabulary" .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-02-23 21:57:59 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-02-23 22:25:05 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -17,7 +17,7 @@
 <http://xmlns.com/foaf/0.1/Person> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Project> .
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2000/01/rdf-schema#label> "Document" .
-<http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2000/01/rdf-schema#comment> "A document" .
+<http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2000/01/rdf-schema#comment> "A document." .
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/wordnet/1.6/Document> .
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Organization> .
@@ -25,7 +25,7 @@
 <http://xmlns.com/foaf/0.1/Document> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Project> .
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#label> "Organization" .
-<http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#comment> "An organisation" .
+<http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#comment> "An organization." .
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/wordnet/1.6/Organization> .
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Person> .
@@ -33,7 +33,7 @@
 <http://xmlns.com/foaf/0.1/Organization> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2000/01/rdf-schema#label> "Project" .
-<http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2000/01/rdf-schema#comment> "A project" .
+<http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2000/01/rdf-schema#comment> "A project." .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/wordnet/1.6/Project> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Organization> .
@@ -41,13 +41,13 @@
 <http://xmlns.com/foaf/0.1/Project> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#label> "personal mailbox" .
-<http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#comment> "A personal mailbox, ie. a web-identifiable Internet mailbox associated with exactly one owner, the first  owner of this mailbox. This property is a 'static inverse functional property', in that  there is (across time and change) at most one individual that has any particular personal  mailbox." .
+<http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#comment> "A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox." .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/2000/01/rdf-schema#label> "sha1 of personal mailbox URI" .
-<http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/2000/01/rdf-schema#comment> "The sha1sum of the URI of a web-identifiable Internet mailbox associated with exactly one owner, the  first owner of the mailbox." .
+<http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/2000/01/rdf-schema#label> "sha1sum of a personal mailbox URI name" .
+<http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/2000/01/rdf-schema#comment> "The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the  first owner of the mailbox." .
 <http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
 <http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/mbox_sha1sum> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
@@ -58,7 +58,7 @@
 <http://xmlns.com/foaf/0.1/geekcode> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/2000/01/rdf-schema#label> "DNA checksum" .
-<http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/2000/01/rdf-schema#comment> "A checksum for the DNA of some (presumably living) thing. Joke." .
+<http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/2000/01/rdf-schema#comment> "A checksum for the DNA of some thing. Joke." .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/dnaChecksum> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
@@ -67,24 +67,24 @@
 <http://xmlns.com/foaf/0.1/title> <http://www.w3.org/2000/01/rdf-schema#comment> "Title (Mr, Mrs, Ms, Dr. etc)" .
 <http://xmlns.com/foaf/0.1/title> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/2000/01/rdf-schema#label> "Nickname" .
-<http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/2000/01/rdf-schema#comment> "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat   nicknames)." .
+<http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/2000/01/rdf-schema#label> "nickname" .
+<http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/2000/01/rdf-schema#comment> "A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames)." .
 <http://xmlns.com/foaf/0.1/nick> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#label> "name" .
-<http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#comment> "A name for some thing" .
+<http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#comment> "A name for some thing." .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/name> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/2000/01/rdf-schema#label> .
 <http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#label> "firstName" .
-<http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#comment> "The first name of a person" .
+<http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#comment> "The first name of a person." .
 <http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
 <http://xmlns.com/foaf/0.1/firstName> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/givenname> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/givenname> <http://www.w3.org/2000/01/rdf-schema#label> "Given name" .
-<http://xmlns.com/foaf/0.1/givenname> <http://www.w3.org/2000/01/rdf-schema#comment> "The given name of some agent." .
+<http://xmlns.com/foaf/0.1/givenname> <http://www.w3.org/2000/01/rdf-schema#comment> "The given name of some person." .
 <http://xmlns.com/foaf/0.1/givenname> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/surname> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/surname> <http://www.w3.org/2000/01/rdf-schema#label> "Surname" .
@@ -94,18 +94,18 @@
 <http://xmlns.com/foaf/0.1/surname> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#label> "family_name" .
+<http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#comment> "The family_name of some person." .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
-<http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#comment> "The family_name of some Person." .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
 <http://xmlns.com/foaf/0.1/family_name> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/phone> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/phone> <http://www.w3.org/2000/01/rdf-schema#label> "phone" .
-<http://xmlns.com/foaf/0.1/phone> <http://www.w3.org/2000/01/rdf-schema#comment> "A fully qualified international phone number, specified using    the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)" .
+<http://xmlns.com/foaf/0.1/phone> <http://www.w3.org/2000/01/rdf-schema#comment> "A fully qualified international phone number, specified using  the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)." .
 <http://xmlns.com/foaf/0.1/phone> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/2000/01/rdf-schema#label> "homepage" .
-<http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/2000/01/rdf-schema#comment> "A homepage for some thing" .
+<http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/2000/01/rdf-schema#comment> "A homepage for some thing." .
 <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/page> .
 <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.daml.org/2001/03/daml+oil#UnambiguousProperty> .
 <http://xmlns.com/foaf/0.1/homepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
@@ -119,6 +119,12 @@
 <http://xmlns.com/foaf/0.1/weblog> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#InverseFunctionalProperty> .
 <http://xmlns.com/foaf/0.1/weblog> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/weblog> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/2000/01/rdf-schema#label> "plan" .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/2000/01/rdf-schema#comment> "A .plan comment, in the tradition of finger and '.plan' files." .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
+<http://xmlns.com/foaf/0.1/plan> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#label> "made" .
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#comment> "Something that was made by this agent." .
@@ -127,94 +133,94 @@
 <http://xmlns.com/foaf/0.1/made> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#label> "image" .
-<http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#comment> "an image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage)." .
+<http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#comment> "An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage)." .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Image> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://xmlns.com/foaf/0.1/depiction> .
 <http://xmlns.com/foaf/0.1/img> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#label> "depiction" .
-<http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#comment> "a depiction of some thing" .
+<http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#comment> "A depiction of some thing." .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Image> .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/depiction> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/depicts> .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#label> "depicts" .
-<http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#comment> "a thing depicted in this representation" .
+<http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#comment> "A thing depicted in this representation." .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Image> .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/depicts> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/depiction> .
 <http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#label> "thumbnail" .
-<http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#comment> "a derrived thumbnail image" .
+<http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#comment> "A derrived thumbnail image." .
 <http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Image> .
 <http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Image> .
 <http://xmlns.com/foaf/0.1/thumbnail> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#label> "myersBriggs" .
-<http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#comment> "a Myers Briggs (MBTI) personality classification" .
+<http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#comment> "A Myers Briggs (MBTI) personality classification." .
 <http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Literal> .
 <http://xmlns.com/foaf/0.1/myersBriggs> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#label> "workplaceHomepage" .
-<http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "a workplace homepage of some person; the homepage of an organisation they work for." .
+<http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "A workplace homepage of some person; the homepage of an organization they work for." .
 <http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/workplaceHomepage> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#label> "workInfoHomepage" .
-<http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "a work info homepage of some person; a page about their work for some organisation." .
+<http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "A work info homepage of some person; a page about their work for some organization." .
 <http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/workInfoHomepage> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#label> "schoolHomepage" .
-<http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "a homepage of a school attended by the person" .
+<http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#comment> "A homepage of a school attended by the person." .
 <http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/schoolHomepage> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#label> "knows" .
-<http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#comment> "a person known by this person (requires some level of reciprocated interaction between the parties)." .
+<http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#comment> "A person known by this person (indicating some level of reciprocated interaction between the parties)." .
 <http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/knows> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#label> "interest" .
-<http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#comment> "a page about a topic of interest to this person" .
+<http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#comment> "A page about a topic of interest to this person." .
 <http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#range> <http://xmlns.com/foaf/0.1/Document> .
 <http://xmlns.com/foaf/0.1/interest> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#label> "interest_topic" .
-<http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#comment> "a thing of interest to this person" .
+<http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#comment> "A thing of interest to this person." .
 <http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/topic_interest> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#label> "publications" .
-<http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#comment> "a link to the publications of this person" .
+<http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#comment> "A link to the publications of this person." .
 <http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/publications> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#label> "current project" .
-<http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#comment> "a current project this person works on" .
+<http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#comment> "A current project this person works on." .
 <http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/currentProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#label> "past project" .
-<http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#comment> "a project this person has previously worked on" .
+<http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#comment> "A project this person has previously worked on." .
 <http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Person> .
 <http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/pastProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#label> "funded by" .
-<http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "an organisation funding a project or person" .
+<http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "An organization funding a project or person." .
 <http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/fundedBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
@@ -226,33 +232,27 @@
 <http://xmlns.com/foaf/0.1/linkedWith> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#label> "logo" .
-<http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#comment> "a logo representing some thing" .
+<http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#comment> "A logo representing some thing." .
 <http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/logo> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#label> "topic" .
-<http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#comment> "a topic of some page or document" .
+<http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#comment> "A topic of some page or document." .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Document> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/page> .
 <http://xmlns.com/foaf/0.1/topic> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#label> "page" .
-<http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#comment> "a page or document about this thing" .
+<http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#comment> "A page or document about this thing." .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Document> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/page> <http://www.w3.org/2002/07/owl#inverseOf> <http://xmlns.com/foaf/0.1/topic> .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/2000/01/rdf-schema#label> "id" .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/2000/01/rdf-schema#comment> "an identifier for this thing" .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
-<http://xmlns.com/foaf/0.1/id> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#label> "theme" .
-<http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#comment> "theme" .
+<http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#comment> "A theme." .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#domain> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2000/01/rdf-schema#Resource> .
 <http://xmlns.com/foaf/0.1/theme> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <http://xmlns.com/foaf/0.1/> .
