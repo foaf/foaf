@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.4 2002-12-09 21:58:13 danbri Exp $
+# $Id: ayf.rb,v 1.5 2002-12-10 01:26:52 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -35,8 +35,8 @@ def go(uri)
   # a code block to output basic info about each RDF page encountered
   # 
   page_summary = Proc.new do |uri,page|  
-    puts "\n\nHandler '#{pagecount}': uri:#{uri} gave RDF graph #{page} \
-	with #{page.size} triples\n\n " 
+    puts "RDF doc count='#{pagecount}': uri:#{uri} gave RDF graph #{page} \
+	with #{page.size} triples\n" 
     pagecount=pagecount+1
   end
 
@@ -50,117 +50,115 @@ def go(uri)
     end					# the 'if' is fix for parser bug
   end
 
+
+      
+  loopstats = Proc.new do |uri,s|
+    puts "init: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{uri}"
+  end
+
   # register some handlers:
-  ayf.pagehandler.push page_summary, airports
+  ayf.pagehandlers.push page_summary, airports
+  ayf.inithandlers.push loopstats
 
   ayf.run  # set it going! our handlers will get called for each RDF doc
 
 end 
 
+#############################################################################
+#############################################################################
 
 
 class SimpleScutter
 
-  attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, :outfile, :left, :pagehandler
+  attr_accessor :start, :seen, :seealso, :out, :seenpic, :debug, \
+	:outfile, :left, :pagehandlers, :inithandlers, :errorhandlers
 
+
+  # Set up state needed for each crawler
+  # 
   def initialize
-    @seen={} 
-    @seealso={}
-    @out=""
-    @seenpic=Hash.new(0)
-    @left=[]
+
     @debug=true
-    @outfile="_allyourfoaf.html"
-    @pagehandler=[]
-  end
 
-  def SimpleScutter.parse(filename, base_uri)
-    consumer = RDF4R::Consumer::Standard.new
-    File.open(filename) do |file|
-      begin
-        return RDF4R::Driver::XMLParser.process(file, base_uri, consumer)
-      rescue Exception 
-        puts "Expat setup error. error: #{$!}"
-      end
-    end
-  end
+    @pagehandlers=[]
+    @inithandlers=[]
+    @errorhandlers=[]
 
-  def gotlink(more,p=nil)
-    #puts "Seealso: #{more} FROM #{p}\n" if @debug
-    if (!@seen[more]) 
-      @seealso[more]=@seealso[more]+1  if @seealso[more]
-      left.push more
-    end
-    return ''
-  end
+    @seen=Hash.new(0) 		# counter for whether a rdf uri has been seen
+    @seealso=Hash.new(0) # counter
+    @left=[]
 
-  def gotpic(pic,u="")
-    #    return '' if $pic =~ m/mpg/i; 
-    #    return '' if $pic =~ m/svg/i; # nasty; but inline SVG doesn't work 
-    pic=pic.to_s # warn if a non-string object, or just deal?
-    return if (pic=="\n") #bug in Liber RDF parser.
-    if (@seenpic[pic]==0) # here we're using a counter for times seen
-		# fixme: make this consistent w/ @seen  
-      @out += "<img src='#{pic}'   width='128' height='128' /> \n" 
-      @out += "<!-- #{pic} from #{u} -->\n\n"
-    else
-      puts "gotpic: already seen #{pic} "
-    end
-    @seenpic[pic]=@seenpic[pic]+1
-    return ""
+    @seenpic=Hash.new(0)	# counter for whether a pic been seen
+
+    # state relating to output; really belongs elsewhere
+    @outfile="_allyourfoaf.html" # output filename
+    @out=""                      # output content
+
   end
 
 
 
-
-  
-
-#########################################################################
+#################################################################
 
   def run
-  while (1) 
-    @seealso.each_key do |k|
-      puts "Starting with: #{k}\n"
-      left.push(k) if (!@seen[k]) 
-    end
-    if (left.size==0) 
-      if (@debug)
-        puts "FOAF harvester complete: no more links to explore. exiting...\n" 
+
+    rdfs='http://www.w3.org/2000/01/rdf-schema#'
+
+    while left.size>0
+
+      uri = @left.pop.to_s
+      page = nil
+      if uri == nil
+        puts "Nothing left todo. Exiting... (???fixme)"
+        exit 0
       end
-      exit 0
-    end
-    uri = @left.pop
-    uri = uri.to_s
-    print "rdfget-ing uri: '#{uri}'\n" if @debug
-    page = nil
-    if (uri != nil) 
-      puts "Beginning loop. left.size=#{left.size} seen.size=#{seen.size}  current: #{uri} "
+
+      # call initialization handlers 
+      #
+      @inithandlers.each do |handler|
+        handler.call(uri,self) 
+      end
+
+     
+      ################################################################
+      # Try fetching some RDF
       begin 
        page = rdfget(uri)
       rescue
        puts "RDFGET/parse failed. skipping. error: #{$!}"
        next
       end
-      next if page==nil
-      next if page.size==0 # skip if empty graph
-      puts "rdfget got triples: count=#{page.size} \n\n" 
 
-      # look in page for seeAlso
-      rdfs='http://www.w3.org/2000/01/rdf-schema#'
-      also = page.ask(Statement.new(nil,  rdfs+'seeAlso',nil))
+      next if page==nil    # fixme: use errorhandlers and exceptions
+      next if page.size==0 # skip if empty graph
+      #
+      ################################################################
+
+
+      
+
+      # look in page for seeAlso and store details
+      #
+      also = page.ask Statement.new(nil,  rdfs+'seeAlso',nil)
       also.objects.each do |a|
-        puts "seealso: #{a}\n"
-        gotlink(a.to_s)
+        a=a.to_s
+        if seen[a]==0
+          seealso[a]=seealso[a]+1
+          left.push a 			# stash this unseen link
+        else
+          # skipping; we've already seen this
+        end
       end
-    else
-      puts "Nothing left todo. Exiting..."
-      exit 0
-    end
-    if @seen[uri] 
-      @seen[uri]=@seen[uri]+1 
-    else
-      @seen[uri]=1 
-    end
+
+      # rebuild todo list ('unseen links left...')
+      self.left=[] # reset and rebuild
+      seealso.each_key do |k|
+        left.push(k) if seen[k]==0 
+      end
+
+      seen[uri]=seen[uri]+1  # increment per-uri encounter
+
+
 
 
     #############################################################
@@ -169,21 +167,22 @@ class SimpleScutter
 
     # look in page for foaf:img
     foaf='http://xmlns.com/foaf/0.1/'
-    img = page.ask(Statement.new(nil,  foaf+'img',nil))
+    img = page.ask Statement.new(nil,  foaf+'img', nil)
     img.objects.each do |a|
-      puts "img: #{a}\n"
-      gotlink(a.to_s,uri)
+      gotpic(a.to_s,uri)
     end
 
     # look in page for foaf:depiction
     foaf='http://xmlns.com/foaf/0.1/'
-    img = page.ask(Statement.new(nil,  foaf+'depiction',nil))
+    img = page.ask Statement.new(nil,  foaf+'depiction',nil)
     img.objects.each do |a|
-      puts "depiction: #{a}\n"
       gotpic(a.to_s,uri)
     end
 
 
+
+    #################################################################
+    #
     # (Re)write an HTML page 
     #
     html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
@@ -210,34 +209,69 @@ class SimpleScutter
     end
   
 
-  # Call the pagehandler (if there was one)
-  #
 
-  #yield(uri,page) # pass to pagehandler callback
 
-  @pagehandler.each do |handler|
-    handler.call(uri,page)
-  end
+    # Call the pagehandlers (if there was one)
 
-  end #/while
+    @pagehandlers.each do |handler|
+      handler.call(uri,page)
+    end
+ 
+  end # big loop
+
+  puts "RDF crawl complete. Exiting!" if @debug
 
 end
 
 
 #########################################################################
+
+
+
+  def SimpleScutter.parse(filename, base_uri)
+    consumer = RDF4R::Consumer::Standard.new
+    File.open(filename) do |file|
+      begin
+        return RDF4R::Driver::XMLParser.process(file, base_uri, consumer)
+      rescue Exception 
+        puts "Expat setup error. error: #{$!}"
+      end
+    end
+  end
+
+
+  def gotpic(pic,u="")
+    #    return '' if $pic =~ m/mpg/i; 
+    #    return '' if $pic =~ m/svg/i; # nasty; but inline SVG doesn't work 
+    pic=pic.to_s # warn if a non-string object, or just deal?
+    return if (!pic =~ /\S/) #bug in Liber RDF parser.
+    if (@seenpic[pic]==0) # here we're using a counter for times seen
+
+      @out += "<img src='#{pic}'   width='128' height='128' />" 
+      @out += "<!-- from #{u} -->\n\n"
+
+    else
+      # puts "gotpic: already seen #{pic} "
+    end
+    @seenpic[pic]=@seenpic[pic]+1
+    return ""
+  end
+
+
+
+
+  
+##################################################################
 #
 # temporary stuff that should be in a library...
 #
   def rdfget(uri)
-    puts "RDFGET called with URI='#{uri}' uritype=#{uri.class}"
     uri=uri.to_s
     fn="_local.rdf"
     uri.chomp!
     uri =~ /:\/\/([^\/]+)(\/*.*)$/
-    # puts "GETTING: h=#{$1} r=#{$2} uri=#{uri}"
     host = $1
     res = $2
- 
     h = Net::HTTP::new host
     user_agent = 'RDFWeb-Scutter-200207;http://rdfweb.org/foaf/'
     rdfdata=Graph.new([])
@@ -249,7 +283,8 @@ end
     begin 
     resp, data = h.get(res, my_headers)
     rescue
-      puts "GET failed. Returning empty graph. error:#{$!} "
+      # puts "GET failed. Returning empty graph. error:#{$!} "
+      # fixme: should raise an error?
       return data
     end
 
@@ -268,12 +303,14 @@ end
 
     return(rdfdata) if models==nil 
 
+    # cruft: fixme / delete?:
+    #
     if models.size == 0
-      puts "no models found"
-      exit 0
+      # puts "no models found"
+      # exit 0
     elsif models.size > 1
-      puts "i got multiple models, you probably didn't want that"
-      exit 0
+      # puts "i got multiple models, you probably didn't want that"
+      # exit 0
     else
       model = models.shift
       model.statements.each do |s|
@@ -281,9 +318,11 @@ end
         if bit.type.to_s =~ /RDF4R/
           nt = bit.to_ntriple
           begin
+            # this is nasty way to hook apis together.
             Loader.parseline nt.to_s, rdfdata, {}
+ 
           rescue
-            puts "Error w/ parseline. #{$!} "
+            puts "rdfget: error w/ parseline. #{$!} "
           end
         end
       end
