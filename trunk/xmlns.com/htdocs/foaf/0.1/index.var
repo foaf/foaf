@@ -2,10 +2,10 @@
 #see http://httpd.apache.org/docs-2.0/content-negotiation.html
  
 URI: index.html
-Content-type: text/html
+Content-type: text/html; qs=0.8
  
 URI: index.rdf
-Content-type: application/rdf+xml
+Content-type: application/rdf+xml; qs=0.5
 
 # is this working or is it working via Multiviews ?
 # todo!
