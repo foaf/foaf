@@ -4,7 +4,7 @@
 XML language tagging may be used to indicate the language of the name. For example:
 </p>
 
-<div>
+<div class="example">
 <code>
 &lt;foaf:name xml:lang="en"&gt;Dan Brickley&lt;/foaf:name&gt;
 </code>
