@@ -89,7 +89,7 @@ public class FoafFingerController
     try
       {
     	//cl = new CommandLine(this);
-	cl = new GUI();
+	cl = new GUI(this);
 	
 	rv = new JmDNS(inetaddr);
 
