@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 #
+
+# HEALTH WARNING: This version I'm checking in is BROKEN. 
+# -- the loop/control/seen stuff is hosed. sorry.
+
+
 # ayf.rb 
-# $Id: ayf.rb,v 1.5 2002-12-10 01:26:52 danbri Exp $
+# $Id: ayf.rb,v 1.6 2002-12-10 01:59:03 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -56,9 +61,12 @@ def go(uri)
     puts "init: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{uri}"
   end
 
+  error_logger = Proc.new {|e| puts "ERROR: #{e}" }
+
   # register some handlers:
   ayf.pagehandlers.push page_summary, airports
   ayf.inithandlers.push loopstats
+  ayf.errorhandlers.push error_logger 
 
   ayf.run  # set it going! our handlers will get called for each RDF doc
 
@@ -124,17 +132,21 @@ class SimpleScutter
       # Try fetching some RDF
       begin 
        page = rdfget(uri)
-      rescue
-       puts "RDFGET/parse failed. skipping. error: #{$!}"
+       raise "#{$!} (rdfget returned nil)" if page==nil
+     rescue
+       errorhandlers.each do |handler|
+         handler.call( "FAILED URI: '#{uri}' MSG: #{$!}" )
+       end
        next
       end
 
-      next if page==nil    # fixme: use errorhandlers and exceptions
-      next if page.size==0 # skip if empty graph
-      #
+      next if page.size==0 # skip to next URI if empty graph
+
+
       ################################################################
-
-
+      #
+      # From here on in, we have an rdf graph
+  
       
 
       # look in page for seeAlso and store details
@@ -145,12 +157,9 @@ class SimpleScutter
         if seen[a]==0
           seealso[a]=seealso[a]+1
           left.push a 			# stash this unseen link
-        else
-          # skipping; we've already seen this
         end
       end
 
-      # rebuild todo list ('unseen links left...')
       self.left=[] # reset and rebuild
       seealso.each_key do |k|
         left.push(k) if seen[k]==0 
@@ -163,6 +172,7 @@ class SimpleScutter
 
     #############################################################
     # Things we do with each RDF 'page' we find 
+    #
     # (could do all this via handlers/blocks?)
 
     # look in page for foaf:img
@@ -213,7 +223,7 @@ class SimpleScutter
 
     # Call the pagehandlers (if there was one)
 
-    @pagehandlers.each do |handler|
+    pagehandlers.each do |handler|
       handler.call(uri,page)
     end
  
