@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.4 2002-07-15 00:09:18 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder,v 1.5 2002-07-15 00:24:25 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -105,7 +105,8 @@ class TEdge
 	else
 		i = 0
 		#todo: (Math.random() * (double) labels.size()).to_int
-		return  @labels[i]
+		return  @labels[random(labels.size)].to_s
+#to_s ?
 	end
     end
 
@@ -149,17 +150,9 @@ class TNode
     return @edges # []
   end
 
-  def getText 
-    return @text
-  end
-    
   def to_s
     return @text
   end    
-
-  def setText(text)
-    @text=text
-  end
 
   def sameNode (obj)
     ## this was .equals() in java...
@@ -477,10 +470,10 @@ EOQ
 		  all += ("</rdf:Description>\n")
         else
                   all += ("<!-- complex description of a codepiction --> \n")
-  		  all += ("<rdf:Description rdf:about=\""+node1.getText()+"\">\n")
+  		  all += ("<rdf:Description rdf:about=\""+node1.text+"\">\n")
 		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
 		  all += ("</rdf:Description>\n")
-		  all += ("<rdf:Description rdf:about=\""+node2.getText()+"\">\n")
+		  all += ("<rdf:Description rdf:about=\""+node2.text+"\">\n")
 		  all += ("<foaf:depiction rdf:resource=\""+edge.getLabel()+"\" />\n")
 		  all += ("</rdf:Description>\n\n\n")
         end
