@@ -1,0 +1,26 @@
+<!-- originally contrib'd by Cardinal; rejiggged a bit by danbri -->
+
+<p>
+The <code>foaf:thumbnail</code> property is a relationship between a 
+full-size <code>foaf:Image</code> and a smaller, representative <code>foaf:Image</code> 
+that has been derrived from it. 
+</p>
+
+<p>
+It is typical in FOAF to express <code>foaf:img</code> and <code>foaf:depiction</code> 
+relationships in terms of the larger, 'main' (in some sense) image, rather than its thumbnail(s). 
+A <code>foaf:thumbnail</code> might be clipped or otherwise reduced such that it does not 
+depict everything that the full image depicts. Therefore FOAF does not specify that a 
+thumbnail <code>foaf:depicts</code> everything that the image it is derrived from depicts.
+However, FOAF does expect that anything depicted in the thumbnail will also be depicted in 
+the source image.
+</p>
+
+<!-- todo: add RDF rules here showing this -->
+
+<p>
+A <code>foaf:thumbnail</code> is typically small enough that it can be
+loaded and viewed quickly before a viewer decides to download the larger
+version. They are often used in online photo gallery applications.
+</p>
+
