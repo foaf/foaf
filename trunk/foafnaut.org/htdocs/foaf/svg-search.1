@@ -1,0 +1,255 @@
+<%
+
+
+
+xmlhttp=new ActiveXObject("MSXML2.ServerXMLHTTP")
+
+RDF_NS="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+rdfNS=""
+GlobalID=0
+inTriples=new Array()
+Namespaces=new Array()
+xml=null
+
+function GetTriples(url) {
+ inTriples=new Array()
+ xml=Server.CreateObject("Microsoft.XMLDOM")
+
+ f=Request.QueryString('f')+''
+ if (f=='undefined') f='combined'
+ xml.load(Server.MapPath('/')+'/rdfsvg/'+f+'.rdf')
+ try {
+  getNamespaces(xml.documentElement)
+  createPredicates(xml.documentElement.childNodes)
+ } catch (e) {
+  try {
+   var xml = new ActiveXObject ("Microsoft.XMLDOM");
+   xml.async=false
+   xml.validateOnParse=false
+   xml.resolveExternals=false
+   xmltxt=xmlhttp.responseText
+   xml.loadXML(xmltxt)
+		} catch (e) {
+   Response.Write("Sorry, I can't parse that as XML")
+		}
+//  try {
+   getNamespaces(xml.selectSingleNode('//rdf:RDF'))
+   getNamespaces(xml.selectSingleNode('//rdf:RDF').firstChild)
+   createPredicates(xml.selectSingleNode('//rdf:RDF').childNodes)
+//		} catch (E) {
+//   Response.Write("Sorry, I can't parse that as XML+RDF - probably my fault I'm pretty dumb.")
+//		}
+	}
+ return inTriples
+}
+
+function outputNTriples() {
+ str=''
+ for (i=0;i<inTriples.length;i++) {
+   if (inTriples[i].subject.indexOf('genid')==0) str+='_:n'+inTriples[i].subject.substr(6)+' '
+    else str+='<'+inTriples[i].subject+'> '
+   str+='<'+inTriples[i].predicate+'> '
+   if (inTriples[i].type=='literal') str+='"'+inTriples[i].object+'"'
+   else  if (inTriples[i].object && inTriples[i].object.indexOf('genid')==0) str+='_:n'+inTriples[i].object.substr(6)+''
+    else str+='<'+inTriples[i].object+'>'
+   str+='.\n'
+		}
+ return str
+}
+
+function createPredicates(els) {
+ var el,i,j,attr,nn,nv,attr,ns
+ for (i=0;i<els.length;i++) {
+  subject=GenID()
+  el=els[i]
+  getNamespaces(el)
+  while (el && el.nodeType!=1) el=els[++i]
+		if (el) {
+   attrs=el.attributes
+ 		for (j=0;j<attrs.length;j++) {
+    attr=attrs.item(j)
+    nn=String(':'+attr.nodeName+'::').split(':')
+    ns=nn[1]
+    nn=nn[2]
+    nv=attr.nodeValue
+    if (ns==rdfNS && nn=='about') {
+     subject=nv
+     if (!(Namespaces['_'+rdfNS]+"type"=="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" && Namespaces['_'+ns]+el.nodeName=="http://www.w3.org/1999/02/22-rdf-syntax-ns#rdf:Description")) {
+     inTriples.push(new Triple(subject,Namespaces['_'+rdfNS]+"type",Namespaces['_'+ns]+el.nodeName))
+				}
+ 			}
+			}
+  }
+  if (el) AnalyseChildren(subject,el.childNodes)
+ }
+}
+function AnalyseChildren(subject,els) {
+ var el,i,n,attr,nn,nv,attr,ns
+	if (els) {
+  for (i=0;i<els.length;i++) {
+  el=els[i]
+  getNamespaces(el)
+  while (el && el.nodeType!=1) el=els[++i]
+		if (el) {
+   nn=el.nodeName
+   attrs=el.attributes
+ 		for (j=0;j<attrs.length;j++) {
+    attr=attrs.item(j)
+    nna=String(':'+attr.nodeName+'::').split(':')
+    nsa=nna[1]
+    nna=nna[2]
+    nva=attr.nodeValue
+    if (nsa==rdfNS && nna=='about') {
+     mysubject=nva
+     if (!(Namespaces['_'+rdfNS]+"type"=="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" && Namespaces['_'+ns]+el.nodeName=="http://www.w3.org/1999/02/22-rdf-syntax-ns#rdf:Description")) {
+     inTriples.push(new Triple(subject,Namespaces['_'+rdfNS]+"about",mysubject))
+				}
+ 			}
+			}
+   if (nn.indexOf(':')==-1) ns=''
+    else {
+     ns=nn.split(':')[0]
+     nn=nn.split(':')[1]
+    }
+   nvobj=getNodeValue(el)
+   nv=nvobj.val;typ=nvobj.type
+  if ( typeof(nv)=='undefined') {
+    inTriples.push(new Triple(subject,"http://www.w3.org/1999/02/22-rdf-syntax-ns#type",Namespaces['_'+ns]+nn,'resource'))
+   } else
+ inTriples.push(new Triple(subject,Namespaces['_'+ns]+nn,nv,typ))
+		}
+  } 
+	}
+}
+
+function getNodeValue(el) {
+ getNamespaces(el)
+ var i,attr,els,subj
+ attrs=el.attributes
+ predicate=""
+	for (j=0;j<attrs.length;j++) {
+  attr=attrs.item(j)
+  nn=String(':'+attr.nodeName+'::').split(':')
+  ns=nn[1]
+  nn=nn[2]
+  nv=attr.nodeValue
+  if (ns==rdfNS && nn=='resource') return {val:nv,type:'resource'}
+ }
+ els=el.childNodes
+ if (els.length==0) return ""
+ if (els.length==1 && els[0].nodeType==3) return {val:els[0].nodeValue,type:'literal'}
+ oldsubj=subj
+ subj=GenID()
+// if (ns==rdfNS && nn=='parseType' && nv=='Resource') {
+//  nn=el.parentNode.nodeName
+//  if (nn.indexOf(':')==-1) ns=''
+//   else {
+//    ns=nn.split(':')[0]
+//    nn=nn.split(':')[1]
+//   }
+//  oldsubj=Namespaces['_'+ns]+'#'+nn
+//  inTriples.push(new Triple(subj,RDF_NS+"type",oldsubj,'resource'))
+// }
+ AnalyseChildren(subj,els)
+ return {val:subj,type:'resource'}
+}
+
+function GenID() {
+ return "genid:"+(++GlobalID)
+}
+
+function getNamespaces(el) {
+ if (el) {
+  var nn,ns
+  var attr=el.attributes
+ 	for (var i=0;i<attr.length;i++) {
+   nn=':'+el.attributes.item(i).nodeName+"::"
+   nn=nn.split(':')[2]
+   ns=el.attributes.item(i).nodeValue
+   Namespaces[Namespaces.length]=ns
+   Namespaces['_'+nn]=Namespaces[Namespaces.length-1]
+   if (ns==RDF_NS) rdfNS=nn
+		}
+ }
+}
+
+
+
+function Triple(subject,predicate,object,type) {
+ this.subject=subject
+ this.predicate=predicate
+ this.object=object
+ this.type=type
+ return this
+}
+
+
+ foafNS="http://xmlns.com/foaf/0.1/"
+ url="http://jibbering.com/rdfsvg/combined.rdf"
+ person=Request.QueryString('noun')+''
+
+ opacity=1
+
+if (''+person=='undefined' || person=='') { person=null; opacity=0.5 }
+ else { if (person.indexOf('http://')!=0) person='http://xmlns.com/wordnet/1.6/'+person }
+
+
+ output=new Array()
+ Triples=GetTriples(url)
+ persons=Match(Triples,null,'http://xmlns.com/foaf/0.1/regionDepicts',null)
+ for (var i=0;i<persons.length;i++) {
+  Polygon=Match(Triples,null,'http://jibbering.com/2002/3/svg/#Polygon',persons[i].subject)
+  img=Match(Triples,null,'http://jibbering.com/2002/3/svg/#hasPart',Polygon[0].subject)[0].subject
+
+  height=Match(Triples,img,'http://jibbering.com/2002/3/svg/#height',null)[0].object
+  width=Match(Triples,img,'http://jibbering.com/2002/3/svg/#width',null)[0].object
+try {
+  title=Match(Triples,img,'http://purl.org/dc/elements/1.1/title',null)[0].object
+	} catch (e) { title="" }
+try {
+  PolyPath=Match(Triples,persons[i].subject,'http://jibbering.com/2002/3/svg/#polypath',null)[0].object
+	} catch (e) { PolyPath="" }
+try {
+  wn=Match(Triples,persons[i].object,'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',null)[0].object
+	} catch (e) { wn="" }
+
+ if (wn==person || person==null)  output.push({title:title,wn:wn,image:img,path:PolyPath,height:height, width:width})
+
+	}
+
+function outputTriple(triple) {
+ return triple.subject+' - '+triple.predicate+' - '+triple.object+'\n'
+}
+Response.ContentType='image/svg+xml'
+Response.Write('<svg width="100%" height="100%">\n\n')
+
+
+
+for (n=0;n<output.length;n++) {
+ path=output[n].path.substr(0,output[n].path.indexOf('L'))+output[n].path.split(/M[\d\.]* [\d\.]*/).join(' ')
+ output[n].path.match(/M([^\s]* )?([^\s]* )?/)
+ X=parseInt(RegExp.$1)
+ Y=parseInt(RegExp.$2)
+ Response.Write('<image clip-path="url(#ref'+n+')" opacity="'+opacity+'" width="'+output[n].width+'" height="'+output[n].height+'" x="0" y="0" xmlns:xlink="http://www.w3.org/1999/xlink"       xlink:href="'+output[n].image+'"><title>'+output[n].title+'</title> </image><text stroke-width="0" x="'+X+'"  y="'+Y+'">'+output[n].wn.replace('http://xmlns.com/wordnet/1.6/','')+'</text><g clip-rule="evenodd" >  <clipPath id="ref'+n+'"> <path id="pathref'+n+'" d="'+path+'" fill="red" /></clipPath></g>\n\n')
+}
+
+Response.Write('</svg>')
+
+
+
+
+//document.write(outputNTriples())
+
+function Match(triples,s,p,o) {
+ outTriples=new Array()
+ for (var i=0;i<triples.length;i++) {
+  match=true
+  if (!(s==null || triples[i].subject==s)) match=false
+  if (!(p==null || triples[i].predicate==p)) match=false
+  if (!(o==null || triples[i].object==o)) match=false
+  if (match) outTriples.push(triples[i])
+ }
+ return outTriples
+}
+
+%>

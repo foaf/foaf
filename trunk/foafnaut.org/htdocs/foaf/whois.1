@@ -1,0 +1,54 @@
+<%
+
+RS=new ActiveXObject("ADODB.Recordset")
+name=Request.QueryString('name')+''
+nick=Request.QueryString('nick')+''
+fuzzy=Request.QueryString('fuzzy')+''
+if (fuzzy!='undefined') {
+ if (nick.length<3) nick="XXX"
+ if (name.length<3) name="XXX"
+ if (name!='undefined') sqlstr='SELECT b.obj,u.url,u.assurance FROM rdf3 a, rdf3 b,urlsnew u, provenance p, provenance p1 where a.pred="http://xmlns.com/foaf/0.1/name" and a.obj like "%'+name+'%" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox" and p.txt=u.ref and a.source=p.id and p1.txt=u.ref and b.source=p1.id order by assurance desc'
+  else  sqlstr='SELECT b.obj,u.url,u.assurance FROM rdf3 a, rdf3 b,urlsnew u, provenance p, provenance p1 where a.pred="http://xmlns.com/foaf/0.1/nick" and a.obj like "%'+nick+'%" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox" and p.txt=u.ref and a.source=p.id and p1.txt=u.ref and b.source=p1.id order by assurance desc'
+	} else {
+ if (nick=='undefined') {
+  sqlstr='SELECT b.obj,u.url,u.assurance FROM rdf3 a, rdf3 b,urlsnew u, provenance p, provenance p1 where a.pred="http://xmlns.com/foaf/0.1/name" and a.obj="'+name+'" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox" and p.txt=u.ref and a.source=p.id and p1.txt=u.ref and b.source=p1.id order by assurance desc'
+	} else  { sqlstr='SELECT b.obj,u.url,u.assurance FROM rdf3 a, rdf3 b,urlsnew u, provenance p, provenance p1 where a.pred="http://xmlns.com/foaf/0.1/nick" and a.obj="'+nick+'" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox" and p.txt=u.ref and a.source=p.id and p1.txt=u.ref and b.source=p1.id order by assurance desc'
+ name=nick
+										}
+
+	}
+str=''
+RS.Open(sqlstr,"rdf2")
+if (!RS.EOF) {
+ Arr=RS.getRows().toArray()
+ FAl=Arr.length/3
+	for (i=0;i<FAl;i++) {
+  if (Arr[2]=='') Arr[2]='anonymous'
+Arr[2]=Arr[2].replace(/"/gim,'').replace(/<.*>/gim,'')
+
+  str+='<a href="'+Arr[1]+'">'+Arr[2]+'</a> says the email address is '+Arr[0]+'<br>'
+		Arr.splice(0,3)
+	}
+} else {
+  str+='I know no-one of that name.'
+	}
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title>Who is <%=name%></title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css">
+</head>
+<body>
+<h1>Who is <%=name%></h1>
+<p>
+<%=str%>
+</p>
+
+<p class="footer">Jim Ley - <a
+href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a
+href="/">Jibbering.com</a></p>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<%
+ People=[]
+ RS=new ActiveXObject("ADODB.Recordset")
+ sqlstr='select distinct d.obj,a.obj, c.obj from rdf3 a, rdf3 b, rdf3 c, rdf3 d where b.pred like "%nearestAirport" and b.obj=a.subj and (a.pred="http://www.megginson.com/exp/ns/airports#iata" or a.pred="http://www.daml.org/2001/10/html/airport-ont#iataCode") and b.subj=c.subj and c.pred like "http://xmlns.com/foaf/0.1/name" and (b.subj=d.subj and d.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") group by d.obj order by b.subj'
+ RS.Open(sqlstr,'rdf2')
+	if (!RS.EOF) {
+  Arr=RS.GetRows().toArray()
+  Arrl=Arr.length
+ 	for (i=0;i<Arrl;i+=3) {
+			if (People[Arr[i+2]]==null) {
+     People.push({mbox:Arr[i+2],airp:Arr[i+1],sha1:Arr[i]})
+  			People[Arr[i+2]]=People[People.length-1]
+			}
+  }
+ }
+ Response.ContentType="application/xml"
+ Response.Write('<rdf:RDF xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:contact="http://www.w3.org/2000/10/swap/pim/contact#" xmlns:airport="http://www.daml.org/2001/10/html/airport-ont#">')
+ for (i=0;i<People.length;i++) {
+  Response.Write('<foaf:Person><foaf:name>'+People[i].mbox+'</foaf:name><foaf:mbox_sha1sum>'+People[i].sha1+'</foaf:mbox_sha1sum><contact:nearestAirport><airport:Airport rdf:about="http://www.daml.org/cgi-bin/airport?'+People[i].airp+'"/></contact:nearestAirport></foaf:Person>')
+ }
+ Response.Write('</rdf:RDF>')
+%>

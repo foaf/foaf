@@ -1,0 +1,74 @@
+<svg onload="init(evt)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Image Annotation Tool</title>
+  <filter id="ResFilt">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+			<feOffset in="blur" dx="2" dy="2" result="offsetBlur"/>
+			<feSpecularLighting in="blur" surfaceScale="2" specularConstant="1" 
+                          specularExponent="4" lighting-color="#00ff"  
+                          result="specOut">
+				<fePointLight x="-5000" y="-10000" z="20000"/>
+			</feSpecularLighting>
+			<feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+			<feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" 
+                   k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+			<feMerge>
+				<feMergeNode in="offsetBlur"/>
+				<feMergeNode in="litPaint"/>
+			</feMerge>
+		</filter>
+
+
+<filter id="LitFilt">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
+			<feOffset in="blur" dx="2" dy="2" result="offsetBlur"/>
+			<feSpecularLighting in="blur" surfaceScale="2" specularConstant="1" 
+                          specularExponent="4" lighting-color="#ff0000"  
+                          result="specOut">
+				<fePointLight x="-5000" y="-10000" z="20000"/>
+			</feSpecularLighting>
+			<feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut"/>
+			<feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" 
+                   k1="0" k2="1" k3="1" k4="0" result="litPaint"/>
+			<feMerge>
+				<feMergeNode in="offsetBlur"/>
+				<feMergeNode in="litPaint"/>
+			</feMerge>
+		</filter>
+  <filter id="PredFilt">
+			<feOffset in="SourceAlpha" dx="1" dy="1" result="offsetBlur"/>
+			<feMerge>
+				<feMergeNode in="offsetBlur"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+  <style type="text/css">
+   ellipse { fill:#ccccff;stroke:#ccccff;filter:url(#ResFilt) }
+   rect.fancy { fill:#ffcccc;stroke:#ffcccc;filter:url(#LitFilt) }
+   .button rect { filter:url(#LitFilt) }
+  </style>
+
+<script type="text/ecmascript" xlink:href="Node_Builder.js"/>
+<script type="text/ecmascript" xlink:href="_jl_utils.js" />
+<script type="text/ecmascript" xlink:href="annotateimage.js" />
+<script type="text/ecmascript" xlink:href="textbox.1.js" />
+<script type="text/ecmascript" xlink:href="sha1.js" />
+<script type="text/ecmascript"><![CDATA[
+
+]]></script>
+<g id="instuctions" transform="translate(100,220)">
+<text>
+ <tspan font-size="1.5em">Instructions:</tspan>
+ <tspan dy="1.5em" x="0">To outline objects in the picture you click a path around them</tspan>
+ <tspan dy="1em" x="0">and shift and click when you have completed the outline.</tspan>
+ <tspan dy="1.5em" x="0">After completing the outline textboxes will appear below</tspan>
+ <tspan dy="1em" x="0">the image filled with data from the querystring, or you can enter</tspan>
+ <tspan dy="1em" x="0">new information, however entering of people is not supported unless it</tspan>
+ <tspan dy="1em" x="0">is set in the querystring.</tspan>
+ <tspan dy="1.5em" x="0">When you have outlined everything you want to, you can view the RDF</tspan>
+ <tspan dy="1em" x="0">description of the image and submit it as an Annotea Annotation, and</tspan>
+ <tspan dy="1em" x="0">the codepiction database if a person is depicted.</tspan>
+</text>
+</g>
+
+<g id="moo" />
+</svg>

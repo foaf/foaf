@@ -1,0 +1,43 @@
+<%
+RS=new ActiveXObject("ADODB.Recordset")
+sqlstr='SELECT distinct a.subj,b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/interest" and (a.subj=b.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") order by b.obj'
+str=''
+RS.Open(sqlstr,"rdf2")
+if (!RS.EOF) {
+ Arr=RS.getRows().toArray()
+ FAl=Arr.length/2
+str='<table><tr><th>name</th><th>interest</th></tr>'
+	for (i=0;i<FAl;i++) {
+  sha1=Arr[0]
+  sqlstr='SELECT distinct a.obj FROM rdf3 a WHERE a.pred="http://xmlns.com/foaf/0.1/name" and a.subj="'+sha1+'" limit 1'
+		try { RS.Close() } catch (e) {}
+		RS.Open(sqlstr,"rdf2")
+		if (!RS.EOF) {
+   name=RS.Fields(0).Value
+		} else {
+			name=sha1
+		}
+		str+='<tr><td>'+name+'</td><td>'+Arr[1]+'</td></tr>'
+  Arr.splice(0,2)
+ }
+}
+str+='</table>'
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title>Interests in the foaf world</title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css">
+</head>
+<body>
+<h1>Interests</h1>
+
+<%=str%>
+
+<p class="footer">Jim Ley - <a
+href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a
+href="/">Jibbering.com</a></p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+<title></title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css">
+</head>
+<body>
+<h1>foafnaut database:</h1>
+<%
+try {
+Server.ScriptTimeout=36000
+RS=new ActiveXObject("ADODB.Recordset")
+RC=new ActiveXObject("ADODB.Command")
+RC.ActiveConnection="rdf2"
+RC.CommandType=1
+url=Request.QueryString('url')+''
+if (url.indexOf('http://')!=0 || url=='' || url=='undefined' || url=='null') {
+ Response.Write('<p><em>'+url+'</em> does not look much like a url I can deal with.</p>')
+} else {
+ sqlstr="select * from meta"
+ RS.Open(sqlstr,"rdf2")
+ if (!RS.EOF) {
+  if ((RS.Fields(0).Value+'')=='0') {
+   sqlstr="update meta set status=1"
+   RC.CommandText=sqlstr
+ 		RC.Execute()
+   wush=new ActiveXObject("WScript.Shell")
+   Response.Write("<p>Removing Triples from Database.</p>")
+   wush.Run("c:\\winnt\\system32\\cscript "+Server.MapPath('.')+"\\scripts\\deleteurl.wsf "+url,0,true)
+   Response.Write("<p><STRONG>Triples removed from database, the foafnaut data is cached though, data will still be visible.</STRONG></p>")
+   Response.Write("<p>Reloading and merging, this will take a long time!</p>")
+   wush.Run("c:\\winnt\\system32\\cscript "+Server.MapPath('.')+"\\scripts\\foafcrawler.wsf false "+url,0,true);
+   Response.Write("<p><STRONG>Update completed.</STRONG></p>")
+   sqlstr="update meta set status=0"
+   RC.CommandText=sqlstr
+ 		RC.Execute()
+/*
+   Response.Write("<p>Clearing foafnaut cache.</p>")
+ try {
+   wush.Run(Server.MapPath('.')+"\\scripts\\rm -f -R "+Server.MapPath('.')+"\\cache-sha1",0,true)
+   FSO=Server.CreateObject("Scripting.FileSystemObject")
+   FSO.CreateFolder(Server.MapPath('.')+"\\cache-sha1")
+		} catch (e) {
+  Response.Write("<p><STRONG style='color:red'>ERROR:</STRONG>Problem clearing FOAFNaut cache.</p>")
+}
+*/
+			try {RS.Close() } catch (e) {}
+   sqlstr='select error from urlsnew where url="'+url+'"'
+   RS.Open(sqlstr,"rdf2")
+			if (!RS.EOF) {
+				a=RS.Fields(0).Value+''
+				if (a!='null') {
+					Response.Write("<p><STRONG style='color:red'>ERROR:</STRONG><BR>"+a.replace(/\n/gim,'<BR>')+"</p>")
+				}
+			}
+ 	} else {
+ 		Response.Write("<p><STRONG>The database was locked for an update on "+RS.Fields(1).Value+", please try later.</STRONG></p>")
+ 	}
+ } else {
+ 	Response.Write("<p><STRONG>Something is wrong with the database, pester Jim, or try again later!</STRONG></p>")
+ }
+}
+} catch (e) {
+ 	Response.Write("<p><STRONG>Something is wrong with the database, please email jim@jibbering.com, or try again later!</STRONG></p>")
+}
+%>
+<p class="footer">Jim Ley - <a
+href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a
+href="/">Jibbering.com</a></p>
+</body>
+</html>
