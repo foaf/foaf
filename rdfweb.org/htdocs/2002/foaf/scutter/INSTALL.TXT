@@ -19,3 +19,17 @@ psql rdfweb1 < conf/scutterdb.sql
 #### FILESYSTEM / DATA CACHE 
 
 mkdir -p ./webcache/_nt/
+
+
+TODO:
+ Hook up alternate backend stores, eg 3store offers a similar interface
+ to the rubyrdf store:
+
+	Usage: tstore_import [-h] [-f] [-m model-uri] <rdf-file>...
+	       -h  show help
+	       -f  flush model before asserting
+	       -l  write lock tables when inserting (faster)
+	       -m  set RDF model
+
+...we should be able to wire this into the scutter, and/or other 
+commandline interfaces.
