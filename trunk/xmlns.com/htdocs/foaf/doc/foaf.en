@@ -1,0 +1,48 @@
+<p>
+The <code>foaf:gender</code> property relates a <code>foaf:Agent</code> (typically a 
+<code>foaf:Person</code>) to a string representing its gender. In most cases the value 
+will be the string 'female' or 'male' (in lowercase without surrounding quotes or spaces. 
+Like all FOAF properties, there is in general no requirement to use  
+<code>foaf:gender</code> in any particular document or description. Values other than 
+'male' and 'female' may be used, but are not enumerated here. The <code>foaf:gender</code> 
+mechanism is not intended to capture the full variety of biological, social and sexual 
+concepts associated with the word 'gender'. 
+</p>
+
+<p>
+Anything that has a <code>foaf:gender</code> property will be some kind of 
+<code>foaf:Agent</code>. However there are kinds of <code>foaf:Agent</code> to 
+which the concept of gender isn't applicable (eg. a <code>foaf:Group</code>. FOAF does not 
+currently include a class corresponding directly to "the type of thing that has a gender".
+</p>
+
+<p>
+Note that FOAF's notion of gender isn't defined biologically or anatomically - this would 
+be tricky since we have a broad notion that applies to all <code>foaf:Agent</code>s 
+(including robots etc.; Bender from Futurama is 'male', for example). As stressed above, 
+FOAF's notion of gender doesn't attempt to encompass the full range of concepts associated 
+with the human gender, biology and sexuality. As such it is a (perhaps awkward) compromise 
+between the clinical and the social/psychological. In general, a person will be the best 
+authority on their <code>foaf:gender</code>. Feedback on this design is 
+particularly welcome (via the FOAF mailing list, 
+<a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">rdfweb-dev</a>). We have tried to 
+be respectful of diversity without attempting to catalogue or enumerate that diversity. 
+</p>
+
+<p>
+This may also be a good point for a periodic reminder: as with all FOAF properties, 
+documents that use it will on occassion be innacurate, misleading or outright false. FOAF, 
+like all open means of communication, supports <em>lying</em>. Application authors using 
+FOAF data should be cautious in their presentation of all unverified information, but be 
+particularly sensitive to issues and risks surrounding sex and gender. Designers of 
+FOAF-based user interfaces should be careful to allow users to omit 
+<code>foaf:gender</code> when describing themselves and others, and to allow at least for 
+values other than 'male' and 'female' as options. Users of information 
+conveyed via FOAF (as via information conveyed through mobile phone text messages, email, 
+Internet chat, HTML pages etc.) should be skeptical of unverified information.
+</p>
+ 
+<!--
+b/g article currently offline.
+http://216.239.37.104/search?q=cache:Q_P_fH8M0swJ:archives.thedaily.washington.edu/1997/042997/sex.042997.html+%22Lois+McDermott%22&hl=en&start=7&ie=UTF-8
+-->
