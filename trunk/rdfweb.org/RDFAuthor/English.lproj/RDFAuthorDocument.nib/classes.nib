@@ -29,6 +29,7 @@
         }, 
         {
             ACTIONS = {
+                findText = id; 
                 previewModeChanged = id; 
                 selectAddArcMode = id; 
                 selectAddNodeMode = id; 
@@ -54,32 +55,6 @@
             SUPERCLASS = NSDocument; 
         }, 
         {
-            ACTIONS = {
-                previewModeChanged = id; 
-                selectAddArcMode = id; 
-                selectAddNodeMode = id; 
-                selectDeleteMode = id; 
-                selectMarkQueryMode = id; 
-                selectMoveMode = id; 
-                showIds = id; 
-                showProperties = id; 
-                showTypes = id; 
-            }; 
-            CLASS = RDFAuthorDocument1; 
-            LANGUAGE = Java; 
-            OUTLETS = {
-                bookmarkController = id; 
-                previewTextView = id; 
-                previewView = id; 
-                queryController = id; 
-                rdfModelScrollView = id; 
-                rdfModelView = id; 
-                rdfToolbar = id; 
-                textDescriptionField = id; 
-            }; 
-            SUPERCLASS = RDFAuthorDocument; 
-        }, 
-        {
             ACTIONS = {sliderChanged = id; }; 
             CLASS = RDFModelView; 
             LANGUAGE = Java; 
@@ -92,6 +67,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 editView = id; 
+                findBox = id; 
                 previewModePopup = id; 
                 rdfAuthorDocument = id; 
                 rdfModelView = id; 

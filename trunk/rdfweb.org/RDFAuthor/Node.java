@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.27 2002-03-27 10:22:36 pldms Exp $ */
+/* $Id: Node.java,v 1.28 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -223,6 +223,21 @@ public class Node implements Serializable, ModelItem
     public String type()
     {
         return typeNamespace + typeName;
+    }
+    
+    public boolean matches(String text)
+    {
+        if (!literal && (typeNamespace != null))
+        {
+            if (type().indexOf(text) > -1) return true;
+        }
+        
+        if (id != null)
+        {
+            return (id().indexOf(text) > -1);
+        }
+        
+        return false;
     }
     
     public boolean isLiteral()

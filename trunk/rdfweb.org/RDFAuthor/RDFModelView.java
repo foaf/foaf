@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.26 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.27 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -658,7 +658,7 @@ public class RDFModelView extends NSView {
         while (index-- > 0)
         {
             GraphicalObject item = (GraphicalObject) graphicObjects.get(index);
-            if (item.intersectsRect(rect))
+            if (item.intersects(rect))
             {
                 hits.add(item.modelItem());
             }

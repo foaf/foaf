@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Arc.class */
 /* Originally compiled from Arc.java */
 
-/* $Id: Arc.java,v 1.18 2002-03-27 10:22:36 pldms Exp $ */
+/* $Id: Arc.java,v 1.19 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -153,6 +153,16 @@ public class Arc implements Serializable, ModelItem
     public String property()
     {
         return propertyNamespace + propertyName;
+    }
+    
+    public boolean matches(String text)
+    {
+        if (propertyNamespace != null)
+        {
+            return (property().indexOf(text) > -1);
+        }
+        
+        return false;
     }
     
     public Node fromNode()

@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.35 2002-03-27 10:22:36 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.36 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -95,42 +95,26 @@ public class RDFAuthorDocument extends NSDocument {
     public RDFAuthorDocument( java.net.URL anURL, String docType) 
     {
         super(anURL, docType);
-        System.out.println("Loading url: " + anURL + " (" + docType + ")");
     }
     
     public boolean readFromURL( java.net.URL anURL, String docType)
     {
-        System.out.println("Hehe, we are in! " + anURL + " " + docType);
-        try{
-            java.net.URLConnection conn = anURL.openConnection();
-            int length = conn.getContentLength();
-            byte[] content = new byte[length];
-            InputStream stream = conn.getInputStream();
-            
-            /**
-             * Warning
-             * This doesn't do timing out etc
-             */
-             
-            int read = 0;
-            while (read != length)
-            {
-                read += stream.read(content, read, stream.available());
-            }
-            
-            System.out.println("Read: " + read + " bytes of " + length);
-            
-            stream.close();
-            
+        System.out.println("Loading url: " + anURL + " (" + docType + ")");
+        
+        byte[] content = RDFAuthorUtilities.contentOfUrl(anURL, 100000l);
+        
+        if (content != null)
+        {
             NSData data = new NSData(content);
             
             boolean success = loadDataRepresentation(data, docType);
             
-            setFileName(anURL.toString());
+            if (success) setFileName(anURL.toString());
             
-            return success;            
+            return success;
         }
-        catch (Exception e) {System.err.println("Error: e"); return false;}
+        
+        return false;
     }
     
     public NSData dataRepresentationOfType(String aType) {
@@ -517,25 +501,28 @@ public class RDFAuthorDocument extends NSDocument {
             String urlString = ((Node) item).id();
             if (urlString != null)
             {
+                java.net.URL url;
+                
                 try
                 {
-                    java.net.URL url = new java.net.URL( urlString );
-                    
-                    if (((Node) item).isObjectOfSeeAlso())
-                    {
-                        NSDocumentController.sharedDocumentController().openDocumentWithContentsOfURL(url, true);
-                    }
-                    else
-                    {
-                        NSWorkspace.sharedWorkspace().openURL( url );
-                    }
+                    url = new java.net.URL( urlString );
                 }
                 catch (Exception e)
                 {
                     RDFAuthorUtilities.ShowError("Cannot Open URL",
-                        "I cannot open <" + urlString +
-                        ">. Perhaps it isn't a URL?",
+                        "I cannot open:\n<" + urlString +
+                        ">\nPerhaps it isn't a URL?",
                         RDFAuthorUtilities.Normal, window);
+                    return;
+                }
+                
+                if (((Node) item).isObjectOfSeeAlso())
+                {
+                    NSDocumentController.sharedDocumentController().							openDocumentWithContentsOfURL(url, true);
+                }
+                else
+                {
+                    NSWorkspace.sharedWorkspace().openURL( url );
                 }
             }
         }
@@ -832,6 +819,15 @@ public class RDFAuthorDocument extends NSDocument {
     {
         NSNotificationCenter.defaultCenter().postNotification(
             new NSNotification(ErrorWindowController.checkModelNotification, window) );
+    }
+    
+    public void findText(Object sender)
+    {
+        String text = ((NSTextField) sender).stringValue().trim();
+        if (!text.equals(""))
+        {
+            rdfModel.setSelectionFromText(text);
+        }
     }
     
     public void showTextPreview(Object sender)
