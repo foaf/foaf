@@ -63,11 +63,11 @@ public class ModelItem extends java.lang.Object
         return null;
     }
 
-    public void drawNormal()
+    public void drawNormal(NSRect rect)
     {
     }
 
-    public void drawHilight()
+    public void drawHilight(NSRect rect)
     {
     }
 
@@ -75,10 +75,6 @@ public class ModelItem extends java.lang.Object
     {
         return false;
     }
-
-//    public void setPosition(NSPoint point)
-//    {
-//    }
 
     public NSRect rect()
     {

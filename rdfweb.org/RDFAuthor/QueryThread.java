@@ -72,7 +72,7 @@ public class QueryThread extends Thread {
             owner.queryDied(this, e);
         }
         
-        owner.queryCompleted(this, returned, varToObject, duration);
+        owner.queryCompleted(this, returned, varToObject, (double) duration/ 1000d);
     }
 
     public ArrayList result()

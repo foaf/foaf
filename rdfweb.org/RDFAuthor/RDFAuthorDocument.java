@@ -108,6 +108,18 @@ public class RDFAuthorDocument extends NSDocument {
                 return null;
             }
         }
+        else if (aType.equals("PDF Document")) // PDF Export
+        {
+            return rdfModelView.dataWithPDFInsideRect(rdfModelView.frame());
+        }
+        else if (aType.equals("EPS Document")) // EPS Export
+        {
+            return rdfModelView.dataWithEPSInsideRect(rdfModelView.frame());
+        }
+        else if (aType.equals("TIFF Image")) // TIFF export
+        {
+            return rdfModelView.TIFFRepresentation();
+        }
         else if (exportMappings.get(aType) != null)
         {
             String outputType = (String) exportMappings.get(aType);
@@ -183,6 +195,7 @@ public class RDFAuthorDocument extends NSDocument {
                     "File Loading Failed", 
                     "Loading failed. Is this really an RDFAuthor file?\nError:\n"+e,
                     RDFAuthorUtilities.Critical, null);
+                e.printStackTrace();
                 success = false;
             }
         }
@@ -343,6 +356,18 @@ public class RDFAuthorDocument extends NSDocument {
         if (rdfModelView != null) // I need to check for this since the model changed message can occur when loading
         {
             rdfModelView.setNeedsDisplay(true);
+            // Tell info window that something changed
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+        }
+    }
+
+    public void modelChanged(NSRect rect)
+    {
+        updateChangeCount(1);
+        if (rdfModelView != null) // I need to check for this since the model changed message can occur when loading
+        {
+            rdfModelView.setNeedsDisplay(rect);
             // Tell info window that something changed
             NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.itemChangedNotification, this) );
@@ -542,9 +567,9 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void drawModel()
+    public void drawModel(NSRect rect)
     {
-        rdfModel.drawModel();
+        rdfModel.drawModel(rect);
         queryController.drawQueryItems();
     }
     

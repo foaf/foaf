@@ -52,7 +52,7 @@ public class Node extends ModelItem implements Serializable
     NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
     NSSize mySize;
     NSSize defaultSize = new NSSize(20,20);
-    NSRect myRect;
+    NSRect myRect = NSRect.ZeroRect;
     NSAttributedString displayString = null;
 
     public Node(ArcNodeList myList, String id, String typeNamespace, String typeName, NSPoint position)
@@ -111,6 +111,10 @@ public class Node extends ModelItem implements Serializable
         id = (String) in.readObject();
         typeNamespace = (String) in.readObject();
         typeName = (String) in.readObject();
+
+        myRect = NSRect.ZeroRect; // need to put these in here due to deserialisation of arcs
+	defaultSize = new NSSize(20,20);
+
         // The following spares some pain when I changed from Vectors to Array Lists
         AbstractList arcsFromTemp = (AbstractList) in.readObject();
         AbstractList arcsToTemp = (AbstractList) in.readObject();
@@ -122,10 +126,8 @@ public class Node extends ModelItem implements Serializable
         myList = (ArcNodeList) in.readObject();
     
 	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
-	hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
+        hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
         literalColor = NSColor.colorWithCalibratedRGB(1F, 1F, 0F, 0.5F);
-
-	defaultSize = new NSSize(20,20);
         
         calculateSize();
     }
@@ -143,8 +145,8 @@ public class Node extends ModelItem implements Serializable
     public void setId(String theString)
     {
         id = theString;
-        calculateSize();
-        myList.itemChanged(this);
+        //calculateSize();
+        myList.itemChanged(this, calculateSize());
     }
 
     public String id()
@@ -156,8 +158,8 @@ public class Node extends ModelItem implements Serializable
     {
         typeNamespace = namespace;
         typeName = name;
-        calculateSize();
-        myList.itemChanged(this);
+        //calculateSize();
+        myList.itemChanged(this, calculateSize());
     }
     
     // Version of above for unsplit types
@@ -237,18 +239,26 @@ public class Node extends ModelItem implements Serializable
     public void setPosition(NSPoint position)
     {
         this.position = position;
+        // Ok - I'll try to work out the screen rectangle that has changed
+        //NSRect changedRect = new NSRect(myRect);
         for (ListIterator enumerator = arcsFrom.listIterator(); enumerator.hasNext(); )
         {
             Arc arc = (Arc)enumerator.next();
+            //changedRect = changedRect.rectByUnioningRect(arc.toNode().rect());
             arc.nodeMoved();
+            //changedRect = changedRect.rectByUnioningRect(arc.toNode().rect());
         }
         for (ListIterator enumerator = arcsTo.listIterator(); enumerator.hasNext(); )
         {
             Arc arc = (Arc)enumerator.next();
+            //changedRect = changedRect.rectByUnioningRect(arc.fromNode().rect());
             arc.nodeMoved();
+            //changedRect = changedRect.rectByUnioningRect(arc.fromNode().rect());
         }
-        calculateRectangle();
-        myList.itemChanged(this);
+        //calculateRectangle();
+        //changedRect = changedRect.rectByUnioningRect(myRect);
+        //myList.itemChanged(this, changedRect);
+        myList.itemChanged(this, calculateSize());
     }
 
     public boolean isNode()
@@ -268,31 +278,34 @@ public class Node extends ModelItem implements Serializable
         calculateSize();
     }
     
-    public void drawNormal()
+    public void drawNormal(NSRect rect)
     {
         if (this.isLiteral())
         {
-            drawMe(literalColor);
+            drawMe(literalColor, rect);
         }
         else
         {
-            drawMe(normalColor);
+            drawMe(normalColor, rect);
         }
     }
 
-    public void drawHilight()
+    public void drawHilight(NSRect rect)
     {
-        drawMe(hilightColor);
+        drawMe(hilightColor, rect);
     }
 
-    public void drawMe(NSColor myColor)
+    public void drawMe(NSColor myColor, NSRect rect)
     {
-        myColor.set();
-        
-        NSBezierPath.bezierPathWithOvalInRect(myRect).fill();
-        if (displayString != null)
+        if (myRect.intersectsRect(rect))
         {
-            NSGraphics.drawAttributedString(displayString, myRect);
+            myColor.set();
+            
+            NSBezierPath.bezierPathWithOvalInRect(myRect).fill();
+            if (displayString != null)
+            {
+                NSGraphics.drawAttributedString(displayString, myRect);
+            }
         }
     }
 
@@ -306,7 +319,7 @@ public class Node extends ModelItem implements Serializable
         return position;
     }
     
-    public void calculateSize()
+    public NSRect calculateSize()
     {
         if (!showType && !showId)
         {
@@ -347,14 +360,16 @@ public class Node extends ModelItem implements Serializable
             mySize = NSGraphics.sizeOfAttributedString(displayString);
         }
         
-        calculateRectangle();
+        return calculateRectangle();
     }
     
-    public void calculateRectangle()
+    public NSRect calculateRectangle() // returns affected area
     {
+        NSRect changedRect = myRect;
         myRect = new NSRect(position.x() - mySize.width()/2F,
                             position.y() - mySize.height()/2F,
                             mySize.width(),
                             mySize.height() );
+        return changedRect.rectByUnioningRect(myRect);
     }
 }
