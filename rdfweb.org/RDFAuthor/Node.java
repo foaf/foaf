@@ -141,7 +141,7 @@ public class Node implements Serializable, ModelItem
     {
         id = theString;
         myList.itemChanged(this);
-        graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.calculateSize();
     }
 
     public String id()
@@ -154,7 +154,7 @@ public class Node implements Serializable, ModelItem
         typeNamespace = namespace;
         typeName = name;
         myList.itemChanged(this);
-        graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.calculateSize();
     }
     
     // Version of above for unsplit types
@@ -188,7 +188,7 @@ public class Node implements Serializable, ModelItem
     {
         literal = literalValue;
         myList.itemChanged(this);
-        graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.calculateSize();
     }
 
     public void setMyList(ArcNodeList list)
@@ -208,7 +208,7 @@ public class Node implements Serializable, ModelItem
             Arc arc = (Arc)enumerator.next();
             arc.deleteFromNode(this);
         }
-        graphicNode.delete(); // Inform graphic node that we're going away
+        if (graphicNode != null) graphicNode.delete(); // Inform graphic node that we're going away
         myList.removeObject(this);
     }
 
@@ -259,7 +259,7 @@ public class Node implements Serializable, ModelItem
         }
         
         myList.itemChanged(this);
-        graphicNode.calculateRectangle();
+        if (graphicNode != null) graphicNode.calculateRectangle();
     }
 
     public boolean isNode()
@@ -270,13 +270,13 @@ public class Node implements Serializable, ModelItem
     public void setShowType(boolean value)
     {
         showType = value;
-        graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.calculateSize();
     }
     
     public void setShowId(boolean value)
     {
         showId = value;
-        graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.calculateSize();
     }
     
     public String displayString() // string to display

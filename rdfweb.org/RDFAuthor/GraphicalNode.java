@@ -147,5 +147,66 @@ public class GraphicalNode implements GraphicalObject
         
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
     }
+    
+    public String drawSvgNormal()
+    {
+        if (node.isLiteral())
+        {
+            return drawSvg(literalColor);
+        }
+        else
+        {
+            return drawSvg(normalColor);
+        }
+    }
+    
+    public String drawSvgHilight()
+    {
+        return drawSvg(hilightColor);
+    }
+    
+    public String drawSvg(NSColor colour)
+    {
+        String svgColour = "rgb(" + colour.redComponent() * 100 + "%," +
+            colour.greenComponent() * 100 + "%," + colour.blueComponent() * 100 + "%)";
+        
+        String svg = "";
+        
+        String fontSpec = "font-family=\"Helvetica\" font-size=\"12\"";
+        svg += "<g " + fontSpec + ">\n";
+        
+        svg += "<ellipse cx=\"" + node.x() + "px\" cy=\"" + node.y() + "px\" rx=\"" + mySize.width() / 2F +
+            "px\" ry=\"" + mySize.height() / 2F + "px\" fill=\"" + svgColour +
+            "\" fill-opacity=\"" + colour.alphaComponent() + "\" />\n";
+        
+        String stringToDraw = node.displayString();
+        if (stringToDraw != null)
+        {
+            if (stringToDraw.indexOf("\n") > -1)
+            {
+                // This will break for some literals with many line breaks
+                String top = stringToDraw.substring(0,stringToDraw.indexOf("\n"));
+                String bottom = stringToDraw.substring(stringToDraw.indexOf("\n") + 1);
+                
+                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" 
+                    + (bounds.y()+mySize.height()/2 - 4) +"px\" fill=\"black\">";
+                svg += top + "</text>\n";
+                
+                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" + 
+                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">";
+                svg += bottom + "</text>\n";
+            }
+            else
+            {
+                svg += "<text x=\"" + (bounds.x()) +"px\" y=\"" +
+                    (bounds.y()+mySize.height() - 4) +"px\" fill=\"black\">";
+                svg += stringToDraw + "</text>\n";
+            }
+        }
+        
+        svg += "</g>\n\n";
+        
+        return svg;
+    }
 
 }

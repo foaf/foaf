@@ -83,8 +83,8 @@ public class GraphicalArc implements GraphicalObject
     {
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
-        arrowHead.lineToPoint(new NSPoint(3.0F, -20.0F));
-        arrowHead.lineToPoint(new NSPoint(-3.0F, -20.0F));
+        arrowHead.lineToPoint(new NSPoint(-20.0F, 3.0F));
+        arrowHead.lineToPoint(new NSPoint(-20.0F, -3.0F));
         arrowHead.closePath();
     }
 
@@ -112,7 +112,7 @@ public class GraphicalArc implements GraphicalObject
             
             double dx = toNodePos.x() - fromNodePos.x();
             double dy = toNodePos.y() - fromNodePos.y();
-            float angle = (float)Math.atan2(dx, dy);
+            float angle = (float)Math.atan2(dy, dx);
             
             myColor.set();
             
@@ -127,7 +127,7 @@ public class GraphicalArc implements GraphicalObject
             
             NSAffineTransform rotateTransform = NSAffineTransform.transform();
         
-            rotateTransform.rotateByRadians(-angle);
+            rotateTransform.rotateByRadians(angle);
             transformArrow.appendTransform(rotateTransform);
             transformArrow.appendTransform(translateArrow);
             
@@ -186,5 +186,72 @@ public class GraphicalArc implements GraphicalObject
         
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
     }
-
+    
+    public String drawSvgNormal()
+    {
+        return drawSvg(normalColor);
+    }
+    
+    public String drawSvgHilight()
+    {
+        return drawSvg(hilightColor);
+    }
+    
+    public String drawSvg(NSColor colour)
+    {
+        String svgColour = "rgb(" + colour.redComponent() * 100 + "%," +
+            colour.greenComponent() * 100 + "%," + colour.blueComponent() * 100 + "%)";
+        
+        String svg = "";
+        
+        String fontSpec = "font-family=\"Helvetica\" font-size=\"12\"";
+        svg += "<g " + fontSpec + " fill=\"" + svgColour +"\" fill-opacity=\"" + colour.alphaComponent() +
+            "\">\n";
+        
+        svg += "<rect x=\"" + handleRect.x() + "px\" y=\"" + handleRect.y() + "px\" width=\"" + mySize.width() +
+            "px\" height=\"" + mySize.height() + "px\"/>\n"; 
+        
+        svg += "<line x1=\"" + arc.fromNode().x() + "px\" y1=\"" + arc.fromNode().y() +
+            "px\" x2=\"" + arc.toNode().x() + "px\" y2=\"" + arc.toNode().y() + "px\" stroke=\""
+            + svgColour + "\" stroke-opacity=\"" + colour.alphaComponent() + "\"/>\n";
+        
+        double dx = arc.toNode().x() - arc.fromNode().x();
+        double dy = arc.toNode().y() - arc.fromNode().y();
+        double angle = Math.toDegrees(Math.atan2(dy,dx));
+        
+        svg += "<g transform=\"translate(" + arc.toNode().x() + "," + arc.toNode().y() + ")\">\n";
+        svg += "<g transform=\"rotate(" + angle + ")\">\n";
+        
+        svg += "<use xlink:href=\"#ArrowHead\"/>\n";
+        
+        svg += "</g>\n";
+        
+        svg += "</g>\n";
+        
+        String stringToDraw = arc.displayString();
+        if (stringToDraw != null)
+        {
+            // This will never contain a line break (well, here's hoping :-)
+            svg += "<text x=\"" + (handleRect.x()) +"px\" y=\"" + 
+                (handleRect.y()+mySize.height()-4) +"px\" fill=\"black\" fill-opacity=\"1.0\">";
+            svg += stringToDraw + "</text>\n";
+        }
+        
+        svg += "</g>\n\n";
+        
+        return svg;
+    }
+    
+    public static String svgArrowHead()
+    {
+        String svg = "";
+        
+        svg += "<defs>\n";
+        
+        svg += "<path id=\"ArrowHead\" d=\"M 0 0 L -20 3 L -20 -3 Z\"/>\n";
+        
+        svg += "</defs>\n";
+        
+        return svg;
+    }
 }

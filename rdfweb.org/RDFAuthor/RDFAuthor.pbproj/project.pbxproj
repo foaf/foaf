@@ -350,6 +350,7 @@
 				<string>PDF Document</string>
 				<string>EPS Document</string>
 				<string>TIFF Image</string>
+				<string>SVG Document</string>
 			</array>
 		</dict>
 		<dict>
@@ -357,10 +358,9 @@
 			<array>
 				<string>rdf</string>
 				<string>xml</string>
-				<string>txt</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>XML/RDF Document</string>
+			<string>RDF/XML Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>text</string>
@@ -373,9 +373,8 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>nt</string>
 				<string>ntriple</string>
-				<string>txt</string>
-				<string>rdf</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>N-Triple Document</string>
@@ -390,8 +389,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>n3</string>
-				<string>txt</string>
-				<string>rdf</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>N3 Document</string>
@@ -440,6 +437,20 @@
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>tiff</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>svg</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>SVG Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>svg </string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
@@ -526,6 +537,7 @@
 				F6DE46FA01AEAB1701000211,
 				F6DE46FC01AEB92201000211,
 				F6DE46FE01AEB9BD01000211,
+				F604532901C5062001000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -686,6 +698,17 @@
 //F62
 //F63
 //F64
+		F604532801C5062001000211 = {
+			isa = PBXFileReference;
+			path = layout.tiff;
+			refType = 4;
+		};
+		F604532901C5062001000211 = {
+			fileRef = F604532801C5062001000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		F6167DC70179D79C01000211 = {
 			isa = PBXFileReference;
 			path = Arrow.tiff;
@@ -710,6 +733,7 @@
 		};
 		F6167DD9017A0A9401000211 = {
 			children = (
+				F604532801C5062001000211,
 				F629131401A475A501000211,
 				F629131601A475CE01000211,
 				F629131701A475CE01000211,

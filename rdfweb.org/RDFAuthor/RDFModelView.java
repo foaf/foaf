@@ -42,7 +42,7 @@ public class RDFModelView extends NSView {
     
     String saveDescription;
     
-    float currentScale = 1F;
+    float currentScale = 1;
     
     NSMutableArray dragTypesArray = new NSMutableArray();
     HashMap dragInformation = new HashMap();
@@ -145,7 +145,7 @@ public class RDFModelView extends NSView {
         
         NSClipView clipView = this.enclosingScrollView().contentView();
         
-        float newScale = slider.floatValue() / 100F;
+        float newScale = slider.floatValue() / 100f;
         
         // Scaling is cumulative for NSViews, so this sets the absolute scale
         
@@ -201,7 +201,7 @@ public class RDFModelView extends NSView {
                 
         switch (currentEditingMode)
         {
-            case AddConnectionMode:	startPoint = point; break;
+            case AddConnectionMode:	startPoint = point; endPoint = point; break;
             case DeleteItemsMode:	rdfAuthorDocument.deleteObjectAtPoint(point); break;
             case AddNodeMode:		rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false);
                                         break; // false above - default to resource
@@ -216,9 +216,15 @@ public class RDFModelView extends NSView {
         
         switch (currentEditingMode)
         {
-            case AddConnectionMode:	endPoint = point;
+            // The following mess is due to a problem with anti-aliasing.
+            // The anti-aliasing can affect points just outside the line, so I need to counter this.
+            // This effect is much less visible for other graphical items.
+            case AddConnectionMode:	NSRect changedRect = new NSRect(startPoint, endPoint);
+                                        changedRect = changedRect.rectByUnioningRect(new NSRect(startPoint, point));
+                                        changedRect = changedRect.rectByInsettingRect(-1.0f, -1.0f);
+                                        setNeedsDisplay(changedRect);
+                                        endPoint = point;
                                         draggingConnection = true;
-                                        setNeedsDisplay(true);
                                         break;
             case MoveSelectMode:
             case AddNodeMode:		rdfAuthorDocument.moveCurrentObjectToPoint(point);
@@ -234,6 +240,10 @@ public class RDFModelView extends NSView {
         {
             case AddConnectionMode:	draggingConnection = false;
                                         rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
+                                        // See above for explanation of this nonsense
+                                        NSRect changedRect = new NSRect(startPoint, point);
+                                        changedRect = changedRect.rectByInsettingRect(-1.0f, -1.0f);
+                                        setNeedsDisplay(changedRect); // clean up drag line
                                         break;
             case MoveSelectMode:	if (theEvent.clickCount() == 2) // double click
                                         {
