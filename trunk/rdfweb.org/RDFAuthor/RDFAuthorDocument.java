@@ -13,7 +13,7 @@ public class RDFAuthorDocument extends NSDocument {
 
     RDFModelView rdfModelView;
     
-    //RDFToolbar rdfToolbar;
+    RDFToolbar rdfToolbar;
     
     NSWindow window;
     
@@ -152,21 +152,11 @@ public class RDFAuthorDocument extends NSDocument {
     public void windowControllerDidLoadNib(NSWindowController  aController) {
         super.windowControllerDidLoadNib(aController);
         // Add any code here that need to be executed once the windowController has loaded the document's window.
-        //NSToolbar toolbar = new NSToolbar(RDFToolbar.identifier);
 	
-	// Set up toolbar properties: Allow customization, give a default display mode, and remember state in user defaults.
-	//toolbar.setAllowsUserCustomization(true);
-	//toolbar.setAutosavesConfiguration(true);
-	//toolbar.setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
-	
-        //rdfToolbar = new RDFToolbar(this);
-        
-	//toolbar.setDelegate(rdfToolbar);
-	
-        //window = aController.window();
+        window = aController.window();
         
 	// Attach the toolbar to the document window.
-	//window.setToolbar(toolbar);
+	window.setToolbar(rdfToolbar);
     }
     
     public void modelChanged()
@@ -190,22 +180,22 @@ public class RDFAuthorDocument extends NSDocument {
             new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    public void showTypes()
+    public void showTypes(boolean value)
     {
-        showTypes = !showTypes;
-        rdfModel.showTypes(showTypes);
+        showTypes = value;
+        rdfModel.showTypes(value);
     }
 
-    public void showIds() 
+    public void showIds(boolean value) 
     {
-        showIds = !showIds;
-        rdfModel.showIds(showIds);
+        showIds = value;
+        rdfModel.showIds(value);
     }
 
-    public void showProperties() 
+    public void showProperties(boolean value) 
     {
-        showProperties = !showProperties;
-        rdfModel.showProperties(showProperties);
+        showProperties = value;
+        rdfModel.showProperties(value);
     }
 
     public void addNodes(boolean addThem) 
