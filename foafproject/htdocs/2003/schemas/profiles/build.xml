@@ -1,0 +1,162 @@
+<project name="FOAF Profiles" default="build" basedir=".">
+   <description>Build file for FOAF Profiles Validator</description>
+   
+   <!-- Allow property overriding -->
+   <property file=".ant.properties"/>
+   <property file="${user.home}/.ant.properties"/>
+   <property name="app.name"  value="FOAF Profile Validator"/>
+
+   <property name="xsl.dir"          value="xsl"/>
+   <property name="tmp.dir"          value="tmp"/>   
+   <property name="sch.dir"          value="schema"/>   
+   <property name="out.dir"          value="out"/>
+
+   <property name="schema"          value="..\foaf2doc\foaf-spec.html"/>
+   
+   <target name="init">
+      <tstamp/>
+      <echo message="Building FOAF Profile Validator"/>
+      <echo message="${ant.version}"/>
+      <echo message="Using build file ${ant.file}"/>
+      <echo message="Java ${java.specification.version}"/>
+      <mkdir dir="${tmp.dir}"/>
+      <mkdir dir="${out.dir}"/>
+      <echo message="================================================"/>
+      <echo message="Generating Schema. Results in ${sch.dir}        "/>
+      <echo message="================================================"/>
+
+   </target>
+   
+   <target name="extractSchema" description="Extract RDF Schema from FOAF Spec">
+      <xslt in="${schema}"
+            out="schema.rdf"
+            style="${xsl.dir}/spec2rdf.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+   </target>
+
+   <target name="schematron-compile">
+      <echo message="Compiling Schematron Validators using Schematron Report"/>
+      <xslt basedir="${out.dir}"
+            destdir="${out.dir}"
+            extension=".validator.xsl"
+            style="${xsl.dir}/sch-report.xsl"
+            >
+         <include name="**/*.sch"/>
+      </xslt>    
+   </target>
+   
+   <target name="foaf-image">
+      <echo message="Generating foaf-image Schema.."/>   
+      <xslt in="${sch.dir}/foaf-image.sch"
+            out="${out.dir}/foaf-image.sch"
+            style="${xsl.dir}/insert-inv-func-patterns.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+   </target>
+   
+   <target name="foaf-basic">
+      <echo message="Generating foaf-basic Schema.."/>      
+      <xslt in="${sch.dir}/foaf-basic.sch"
+            out="${tmp.dir}/foaf-basic.1"
+            style="${xsl.dir}/insert-literal-patterns.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+      <xslt in="${tmp.dir}/foaf-basic.1"
+            out="${tmp.dir}/foaf-basic.2"
+            style="${xsl.dir}/insert-inv-func-patterns.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+      <xslt in="${tmp.dir}/foaf-basic.2"
+            out="${out.dir}/foaf-basic.sch"
+            style="${xsl.dir}/insert-minimal-legal-elements.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+   </target>
+   
+   <target name="foaf-minimal">
+      <echo message="Generating foaf-minimal Schema.."/>      
+      <xslt in="${sch.dir}/foaf-minimal.sch"
+            out="${tmp.dir}/foaf-minimal.1"
+            style="${xsl.dir}/insert-literal-patterns.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+      <xslt in="${tmp.dir}/foaf-minimal.1"
+            out="${tmp.dir}/foaf-minimal.2"
+            style="${xsl.dir}/insert-inv-func-patterns.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+      <xslt in="${tmp.dir}/foaf-minimal.2"
+            out="${out.dir}/foaf-minimal.sch"
+            style="${xsl.dir}/insert-minimal-legal-elements.xsl"
+            >
+         <outputproperty name="method" value="xml"/>
+         <outputproperty name="indent" value="yes"/>          
+         <outputproperty name="omit-xml-declaration" value="yes"/>
+      </xslt>         
+   </target>
+   
+   <target name="tests">
+      <echo message="================================================"/>
+      <echo message="Running tests. Results generated into ${tmp.dir}"/>
+      <echo message="================================================"/>
+      <antcall target="get-test-results">
+         <param name="ver" value="minimal"/>
+      </antcall>
+      <antcall target="get-test-results">
+         <param name="ver" value="basic"/>
+      </antcall>
+      <antcall target="get-test-results">
+         <param name="ver" value="image"/>
+      </antcall>
+   </target>
+
+   <target name="get-test-results">
+      <xslt in="foaf-${ver}.rdf"
+            out="${tmp.dir}/foaf-${ver}.html"
+            style="${out.dir}/foaf-${ver}.validator.xsl"
+            >
+         <outputproperty name="method" value="html"/>
+      </xslt>         
+      <echo message="Generated ${tmp.dir}/foaf-${ver}.html (should be valid)"/>         
+      <xslt in="foaf-${ver}-broken.rdf"
+            out="${tmp.dir}/foaf-${ver}-broken.html"
+            style="${out.dir}/foaf-${ver}.validator.xsl"
+            >
+         <outputproperty name="method" value="html"/>
+      </xslt>         
+      <echo message="Generated ${tmp.dir}/foaf-${ver}-broken.html (should be invalid)"/>            
+   </target>
+   
+   <target name="build" depends="init, foaf-basic, foaf-minimal, foaf-image, schematron-compile">
+   </target>
+   
+   <target name="clean" description="Clean">
+      <delete>
+         <fileset dir="${out.dir}" />
+         <fileset dir="${tmp.dir}" />
+      </delete>
+   </target>
+   
+</project>
