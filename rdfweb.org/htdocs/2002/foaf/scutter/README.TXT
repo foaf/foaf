@@ -36,6 +36,25 @@ the RubyRDF N-Triples parser can't deal with. Multi-line output etc.
 -- work in progress.
 
 
+Win32 Usage
+===========
+
+bin/scutter --dbdriver=Mysql --use-xslt
+
+...should work, given various as-yet undocumented constraints (cygwin?
+xsltproc...). A schema for MySQL is in conf/ subdirectory. PostgreSQL
+isn't available for Windows, so use Win32 MySQL.
+
+Known problems:
+
+  * the field in table 'resources' called 'key' is now 'hashkey', since
+    'key' was a controlled name. TODO: push this change back into PG version.
+  * SQL variants. Use query.toSQLQuery({'quotevars'=>1}) to generate 
+    MySQL-happy queries.
+  * The (pragmatic programmers') Win32 Ruby I'm using is core dumping 
+    periodically. Investigating.
+
+
 
 
 
