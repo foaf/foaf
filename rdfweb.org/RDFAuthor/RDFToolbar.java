@@ -7,16 +7,12 @@ public class RDFToolbar extends NSToolbar {
 
     RDFAuthorDocument rdfAuthorDocument;
     
-    NSView editModeView;
+    NSView editView;
+    NSView showView;
     
     static String identifier = "rdf Toolbar";
-    static String pointerIdentifier = "pointer item";
-    static String addNodeIdentifier = "add node item";
-    static String addArcIdentifier = "add arc item";
-    static String deleteIdentifier = "delete identifier";
-    static String showTypesIdentifier = "show types identifier";
-    static String showIdsIdentifier = "show ids identifier";
-    static String showPropertiesIdentifier = "show properties identifier";
+    static String editToolsIdentifier = "edit tools identifier";
+    static String showToolsIdentifier = "show tools identifier";
     static String checkIdentifier = "check model identifier";
     
     public RDFToolbar()
@@ -25,92 +21,40 @@ public class RDFToolbar extends NSToolbar {
         setAllowsUserCustomization(true);
 	setAutosavesConfiguration(true);
 	setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
+        //setDelegate(this);
+    }
+    
+    public void awakeFromNib()
+    {
         setDelegate(this);
     }
     
-     public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 
-     {
+    public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 
+    {
 	// Required delegate method.  Given an item identifier, this method returns an item.
 	// The toolbar will use this method to obtain toolbar items that can be displayed in the customization sheet, or in the toolbar itself.
 	NSToolbarItem toolbarItem = new NSToolbarItem(itemIdent);
 	
-	if (itemIdent.equals(pointerIdentifier)) {
-	    toolbarItem.setLabel("Select and Move");
-	    toolbarItem.setPaletteLabel("Select and Move");
+	if (itemIdent.equals(editToolsIdentifier))
+        {
+	    toolbarItem.setLabel("Editing Tools");
+	    toolbarItem.setPaletteLabel("Editing Tooled");
+            
+            toolbarItem.setView(editView);
+            toolbarItem.setMinSize(editView.frame().size());
+            toolbarItem.setMaxSize(editView.frame().size());
+	}
+        else if(itemIdent.equals(showToolsIdentifier))
+        {
+	    toolbarItem.setLabel("Display Options");
+	    toolbarItem.setPaletteLabel("Display Options");
 	    
-	    toolbarItem.setToolTip("Select and move items");
-	    //toolbarItem.setImage(NSImage.imageNamed("Arrow"));
-	    
-            toolbarItem.setView(editModeView);
-            toolbarItem.setMinSize(editModeView.frame().size());
-            toolbarItem.setMaxSize(editModeView.frame().size());
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("pointerSelect", new Class[] { NSToolbarItem.class }) );
-	} else if(itemIdent.equals(addNodeIdentifier)) {
-	    toolbarItem.setLabel("Add Node");
-	    toolbarItem.setPaletteLabel("Add Node");
-	    
-	    toolbarItem.setToolTip("Add nodes to the model");
-	    toolbarItem.setImage(NSImage.imageNamed("addNode"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("addNodeSelect", new Class[] { NSToolbarItem.class }) );
+            System.out.println("Currently showView is "+showView);
+            
+	    toolbarItem.setView(showView);
+            toolbarItem.setMinSize(showView.frame().size());
+            toolbarItem.setMaxSize(showView.frame().size());
 	} 
-        else if (itemIdent.equals(addArcIdentifier))
-        {
-	    toolbarItem.setLabel("Add Connection");
-	    toolbarItem.setPaletteLabel("Add Connection");
-	    
-	    toolbarItem.setToolTip("Connect nodes together");
-	    toolbarItem.setImage(NSImage.imageNamed("addArc"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("addArcSelect", new Class[] { NSToolbarItem.class }) );
-        }
-        else if (itemIdent.equals(showTypesIdentifier))
-        {
-	    toolbarItem.setLabel("Show Types");
-	    toolbarItem.setPaletteLabel("Show Types");
-	    
-	    toolbarItem.setToolTip("Show node types");
-	    toolbarItem.setImage(NSImage.imageNamed("showTypes"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("showTypes", new Class[] { NSToolbarItem.class }) );
-        }
-        else if (itemIdent.equals(showIdsIdentifier))
-        {
-	    toolbarItem.setLabel("Show Names");
-	    toolbarItem.setPaletteLabel("Show Names");
-	    
-	    toolbarItem.setToolTip("Show node names");
-	    toolbarItem.setImage(NSImage.imageNamed("showIds"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("showIds", new Class[] { NSToolbarItem.class }) );
-        }
-        else if (itemIdent.equals(showPropertiesIdentifier))
-        {
-	    toolbarItem.setLabel("Show Properties");
-	    toolbarItem.setPaletteLabel("Show Properties");
-	    
-	    toolbarItem.setToolTip("Show properties");
-	    toolbarItem.setImage(NSImage.imageNamed("showProperties"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("showProperties", new Class[] { NSToolbarItem.class }) );
-        }
-        else if (itemIdent.equals(deleteIdentifier))
-        {
-	    toolbarItem.setLabel("Delete Object");
-	    toolbarItem.setPaletteLabel("Delete Object");
-	    
-	    toolbarItem.setToolTip("Delete the currently selected object");
-	    toolbarItem.setImage(NSImage.imageNamed("delete"));
-	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("deleteCurrent", new Class[] { NSToolbarItem.class }) );
-        }
         else if (itemIdent.equals(checkIdentifier))
         {
 	    toolbarItem.setLabel("Check Model");
@@ -136,9 +80,9 @@ public class RDFToolbar extends NSToolbar {
 	// user chooses to revert to the default items this set will be used.
 	return new NSArray(new String[] 
             { 
-                pointerIdentifier, addNodeIdentifier, addArcIdentifier, deleteIdentifier,
+                editToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
-                showTypesIdentifier, showIdsIdentifier, showPropertiesIdentifier,
+                showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
                 checkIdentifier } );
     }
@@ -154,8 +98,7 @@ public class RDFToolbar extends NSToolbar {
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
                 NSToolbarItem.NSToolbarSpaceItemIdentifier, 
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 
-                pointerIdentifier, addNodeIdentifier, addArcIdentifier, showTypesIdentifier, 
-                showIdsIdentifier, showPropertiesIdentifier, deleteIdentifier, checkIdentifier} );
+                editToolsIdentifier, showToolsIdentifier, checkIdentifier} );
     }
   
     public void toolbarWillAddItem(NSNotification notif) {
@@ -185,40 +128,42 @@ public class RDFToolbar extends NSToolbar {
 	return enable;
     }
     
-    public void pointerSelect(NSToolbarItem sender)
+    public void selectMoveMode(NSButton sender)
     {
         rdfAuthorDocument.addNodes(false);
         rdfAuthorDocument.addArcs(false);
     }
     
-    public void addNodeSelect(NSToolbarItem sender)
+    public void selectAddNodeMode(NSButton sender)
     {
         rdfAuthorDocument.addNodes(true);
     }
     
-    public void addArcSelect(NSToolbarItem sender)
+    public void selectAddArcMode(NSButton sender)
     {
         rdfAuthorDocument.addArcs(true);
     }
     
-    public void showTypes(NSToolbarItem sender)
+    public void selectDeleteMode(NSButton sender)
     {
-        rdfAuthorDocument.showTypes();
+        System.out.println("Delete mode selected");
+        rdfAuthorDocument.addNodes(false);
+        rdfAuthorDocument.addArcs(false);
     }
     
-    public void showProperties(NSToolbarItem sender)
+    public void showTypes(NSButton sender)
     {
-        rdfAuthorDocument.showProperties();
+        rdfAuthorDocument.showTypes(sender.state() == NSCell.OnState);
     }
     
-    public void showIds(NSToolbarItem sender)
+    public void showProperties(NSButton sender)
     {
-        rdfAuthorDocument.showIds();
+        rdfAuthorDocument.showProperties(sender.state() == NSCell.OnState);
     }
     
-    public void deleteCurrent(NSToolbarItem sender)
+    public void showIds(NSButton sender)
     {
-        rdfAuthorDocument.deleteCurrentItem();
+        rdfAuthorDocument.showIds(sender.state() == NSCell.OnState);
     }
     
     public void doCheck(NSToolbarItem sender)

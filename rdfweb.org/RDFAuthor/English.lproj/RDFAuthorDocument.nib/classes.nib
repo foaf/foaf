@@ -13,12 +13,7 @@
             }; 
             CLASS = RDFAuthorDocument; 
             LANGUAGE = Java; 
-            OUTLETS = {
-                addArcButton = id; 
-                addNodeButton = id; 
-                rdfModelView = id; 
-                textDescriptionField = id; 
-            }; 
+            OUTLETS = {rdfModelView = id; rdfToolbar = id; textDescriptionField = id; }; 
             SUPERCLASS = NSDocument; 
         }, 
         {
@@ -28,9 +23,18 @@
             SUPERCLASS = NSView; 
         }, 
         {
+            ACTIONS = {
+                selectAddArcMode = id; 
+                selectAddNodeMode = id; 
+                selectDeleteMode = id; 
+                selectMoveMode = id; 
+                showIds = id; 
+                showProperties = id; 
+                showTypes = id; 
+            }; 
             CLASS = RDFToolbar; 
             LANGUAGE = Java; 
-            OUTLETS = {editModeView = id; rdfAuthorDocument = id; }; 
+            OUTLETS = {editView = id; rdfAuthorDocument = id; showView = id; }; 
             SUPERCLASS = NSObject; 
         }
     ); 
