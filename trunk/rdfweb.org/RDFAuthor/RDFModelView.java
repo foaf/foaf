@@ -204,9 +204,18 @@ public class RDFModelView extends NSView {
             case AddConnectionMode:	startPoint = point; endPoint = point; break;
             case DeleteItemsMode:	rdfAuthorDocument.deleteObjectAtPoint(point); break;
             case AddNodeMode:		rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false);
+                                        startPoint = point;
                                         break; // false above - default to resource
             case AddQueryItemMode:	rdfAuthorDocument.addQueryItemAtPoint(point); break;
-            case MoveSelectMode:	rdfAuthorDocument.setCurrentObjectAtPoint(point);
+            case MoveSelectMode:	startPoint = point;
+                                        if (theEvent.modifierFlags() == NSEvent.ShiftKeyMask)
+                                        {
+                                            rdfAuthorDocument.addObjectAtPointToSelection(point);
+                                        }
+                                        else
+                                        {
+                                            rdfAuthorDocument.setSelectionToObjectAtPoint(point);
+                                        }
         }
     }
     
@@ -227,7 +236,9 @@ public class RDFModelView extends NSView {
                                         draggingConnection = true;
                                         break;
             case MoveSelectMode:
-            case AddNodeMode:		rdfAuthorDocument.moveCurrentObjectToPoint(point);
+            case AddNodeMode:		rdfAuthorDocument.moveSelectionBy(
+                                            point.x() - startPoint.x(), point.y() - startPoint.y());
+                                        startPoint = point;
                                         break;
         }
     }

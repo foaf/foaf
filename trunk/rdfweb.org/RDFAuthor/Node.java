@@ -261,7 +261,12 @@ public class Node implements Serializable, ModelItem
         myList.itemChanged(this);
         if (graphicNode != null) graphicNode.calculateRectangle();
     }
-
+    
+    public void moveBy(float dx, float dy)
+    {
+        setPosition(x + dx, y + dy);
+    }
+    
     public boolean isNode()
     {
         return true;

@@ -82,7 +82,7 @@ public class RDFAuthorUtilities {
     
     public static void layoutModel(ArcNodeList model, float minX, float minY, float maxX, float maxY)
     {
-        float margin = 100;
+        float margin = 50;
         float springConstant = 0.01f;
         float springExtension = 150;
         int numberOfNodes = model.size(true); // 'true' means get number of nodes, 'false' for arcs
@@ -93,6 +93,10 @@ public class RDFAuthorUtilities {
         maxX -= margin;
         minY += margin;
         maxY -= margin;
+        
+        float edgeResistance = 9; // This is for the edge resistance stuff which (hopefully) keeps the model in the frame
+        float xCentreConstant = 2 * edgeResistance / (minX + maxX);
+        float yCentreConstant = 2 * edgeResistance / (minY + maxY);
         
         Node[] nodes = new Node[numberOfNodes];
         float[] x = new float[numberOfNodes];
@@ -182,17 +186,17 @@ public class RDFAuthorUtilities {
                 // and a weaker force which tends to centre the model.
                 
                 if (x[i] < minX) 
-                xVel[i] += 0.001 * (minX - x[i])*(minX - x[i]);
-                else xVel[i] += springConstant * 2.5 * (minX - x[i]);
+                xVel[i] += 0.001 * (minX - x[i])*(minX - x[i]) + edgeResistance;
+                else xVel[i] += xCentreConstant * (minX - x[i]);
                 if (x[i] > maxX)
-                xVel[i] -= 0.001 * (x[i] - maxX) * (x[i] - maxX);
-                else xVel[i] += - springConstant * 2.5 * (x[i] - maxX);
+                xVel[i] -= 0.001 * (x[i] - maxX) * (x[i] - maxX) + edgeResistance;
+                else xVel[i] += - xCentreConstant * (x[i] - maxX);
                 if (y[i] < minY)
-                yVel[i] += 0.001 * (minY - y[i]) * (minY - y[i]);
-                else yVel[i] += springConstant * 2.5 * (minY - y[i]);
+                yVel[i] += 0.001 * (minY - y[i]) * (minY - y[i]) + edgeResistance;
+                else yVel[i] += yCentreConstant * (minY - y[i]);
                 if (y[i] > maxY) 
-                yVel[i] -= 0.001 * (y[i] - maxY) * (y[i] - maxY);
-                else yVel[i] += - springConstant * 2.5 * (y[i] - maxY);
+                yVel[i] -= 0.001 * (y[i] - maxY) * (y[i] - maxY) + edgeResistance;
+                else yVel[i] += - yCentreConstant * (y[i] - maxY);
                 
                 xVel[i] *= 0.9; // these 'damp' the motions
                 yVel[i] *= 0.9;

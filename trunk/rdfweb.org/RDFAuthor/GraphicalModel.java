@@ -57,7 +57,9 @@ public class GraphicalModel {
     
     public void drawModel(ArcNodeList model, NSRect rect) // draw model visible in rect
     {
-        ModelItem currentObject = model.currentObject();
+        //ModelItem currentObject = model.currentObject();
+        
+        ArcNodeSelection selection = model.selection();
         
         // Draw Arcs then Nodes - looks better
         
@@ -67,7 +69,7 @@ public class GraphicalModel {
             
             // In the following not typing the GraphicalObjects makes things really slow
             
-            if (arc == currentObject)
+            if (selection.contains(arc))
             {
                 ((GraphicalArc) arc.graphicRep()).drawHilight(rect);
             }
@@ -81,7 +83,7 @@ public class GraphicalModel {
         {
             Node node = (Node) iterator.next();
             
-            if (node == currentObject)
+            if (selection.contains(node))
             {
                 ((GraphicalNode) node.graphicRep()).drawHilight(rect);
             }
@@ -130,7 +132,7 @@ public class GraphicalModel {
         String svg = "";
         
         svg += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
-        svg += "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 20010904//EN\"\n";
+        svg += "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n";
         svg += "	\"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n";
         
         NSSize docSize = rdfModelView.frame().size();
@@ -142,7 +144,7 @@ public class GraphicalModel {
         
         //String dateStamp = java.util.Calendar.getInstance().toString();
         
-        NSGregorianDate date = new NSGregorianDate(); // Stuff java.util.Calendar
+        NSGregorianDate date = new NSGregorianDate(); // Stuff java.util.Calendar!
         String dateStamp = date.toString();
         
         System.out.println("Date stamp: " + dateStamp);

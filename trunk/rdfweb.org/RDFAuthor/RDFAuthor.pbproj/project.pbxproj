@@ -570,6 +570,7 @@
 				F6CC177A01BED3F701000211,
 				F6CC177B01BED3F701000211,
 				F6CC177E01BEFB2E01000211,
+				F69BA66401C7F6BB01000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -1017,6 +1018,7 @@
 				F6E8FB720171D57401000211,
 				F6E8FB730171D57401000211,
 				F6BC9AD3019990A701000211,
+				F69BA66301C7F6BB01000211,
 			);
 			isa = PBXGroup;
 			name = "Model Classes";
@@ -1106,6 +1108,17 @@
 		};
 		F692E0F9017CC9FF01000211 = {
 			fileRef = F692E0F2017CC9FF01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F69BA66301C7F6BB01000211 = {
+			isa = PBXFileReference;
+			path = ArcNodeSelection.java;
+			refType = 4;
+		};
+		F69BA66401C7F6BB01000211 = {
+			fileRef = F69BA66301C7F6BB01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};
