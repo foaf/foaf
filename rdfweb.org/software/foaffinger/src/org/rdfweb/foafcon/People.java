@@ -50,8 +50,7 @@ public class People
 
     person.setHostPort(info.getAddress(), info.getPort());
 
-    controller.showMessage(System.currentTimeMillis() +
-			   "[" +
+    controller.showMessage("[" +
 			   index +
 			   "] " +
 			   person.getName() +
@@ -60,6 +59,8 @@ public class People
 
   public synchronized void remove(ServiceInfo info)
   {
+    System.out.println("r: " + info);
+    
     Person person =
       new Person(info.getPropertyString(Person.NAME),
 		 info.getName(),
@@ -78,8 +79,7 @@ public class People
 
     online.set(index, Boolean.FALSE);
 
-    controller.showMessage(System.currentTimeMillis() +
-			   "[" +
+    controller.showMessage("[" +
 			   index +
 			   "] " +
 			   person.getName() +
