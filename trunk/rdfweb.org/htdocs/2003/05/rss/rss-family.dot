@@ -17,6 +17,7 @@ digraph rss  {
 	rss090 -> rss100;
 	msxmldata -> rdf [style=dashed, color=blue];
 	rss090 -> rss091;
+	sn -> rss091;
 	rss091 -> rss092;
 	rss092 -> urss;
 	rdf -> rss100 [style=dashed, color=blue];	
