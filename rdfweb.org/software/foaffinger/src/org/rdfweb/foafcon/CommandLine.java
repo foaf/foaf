@@ -3,15 +3,13 @@ package org.rdfweb.foafcon;
 import java.io.*;
 import java.util.*;
 
-import com.strangeberry.rendezvous.*;
-
 public class CommandLine
 {
-  RendTest controller;
+  FoafFingerController controller;
   List messageQueue;
   boolean showMessages;
     
-  public CommandLine(RendTest controller)
+  public CommandLine(FoafFingerController controller)
   {
     this.controller = controller;
     this.messageQueue =

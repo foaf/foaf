@@ -31,7 +31,7 @@
   <jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}">
     <manifest>
       <attribute name="Built-by" value="${user.name}"/>
-      <attribute name="Main-Class" value="org.rdfweb.foafcon.RendTest"/>
+      <attribute name="Main-Class" value="org.rdfweb.foafcon.FoafFingerController"/>
       <attribute name="Class-Path" value="jmdns.jar"/>
     </manifest>
   </jar>
