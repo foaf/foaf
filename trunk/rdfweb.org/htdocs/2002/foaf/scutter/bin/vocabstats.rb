@@ -4,7 +4,7 @@ require 'date'
 require 'dbi'
 
 # Ruby script to query a (certain shape) SQL-backed RDF store, generate summary
-# $Id: vocabstats.rb,v 1.1 2002-07-15 21:03:00 danbri Exp $
+# $Id: vocabstats.rb,v 1.2 2002-07-16 19:38:24 danbri Exp $
 # author: dan brickley
 
 today = Date.today
@@ -64,8 +64,8 @@ log += "\n</rdf:RDF>\n\n"
 
 begin
 
- if File::exists? logfile
-    File::delete logfile # one log per day 
+ if File::exists? logfilename
+    File::delete logfilename # one log per day 
  end
 
   logfile = File::new( logfilename, File::CREAT|File::RDWR, 0644)   
