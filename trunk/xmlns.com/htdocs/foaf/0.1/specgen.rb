@@ -247,7 +247,7 @@ def docStatus
     unstable[t]=1 if term.vs_term_status.to_s=='unstable'
     stable[t]=1 if term.vs_term_status.to_s=='stable'
   end
-  s += "<a name=\"ch_status\" id=\"ch_status\"></a><h3>Term Status</h3> <p>\n"
+  s += "<h3>Term Status</h3><a name=\"ch_status\" id=\"ch_status\"></a><p>\n"
   s += "Stable terms: #{linkTerms(stable.keys)} <br/>\n\n"
   s += "Testing terms: #{linkTerms(testing.keys)}<br/>\n"
   s += "Unstable terms: #{linkTerms(unstable.keys)}</p>\n\n"
