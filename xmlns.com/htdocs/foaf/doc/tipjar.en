@@ -1,0 +1,30 @@
+<p>
+The <code>foaf:tipjar</code> property relates an <code>foaf:Agent</code>
+to a <code>foaf:Document</code> that describes some mechanisms for
+paying or otherwise rewarding that agent.
+</p>
+
+<p>
+The <code>foaf:tipjar</code> property was created following <a
+href="http://rdfweb.org/mt/foaflog/archives/2004/02/12/20.07.32/">discussions</a> 
+about simple, lightweight mechanisms that could be used to encourage 
+rewards and payment for content exchanged online. An agents
+<code>foaf:tipjar</code> page(s) could describe informal ("Send me a
+postcard!", "here's my book and movie wishlist") or formal
+(machine-readable micropayment information) information about how that
+agent can be paid or rewarded. The reward is not associated with any
+particular action or content from the agent concerned. A link to 
+a service such as <a href="http://www.paypal.com/">PayPal</a> is the
+sort of thing we might expect to find in a tipjar document.
+</p>
+
+<p>
+Note that the value of a <code>foaf:tipjar</code> property is just a
+document (which can include anchors into HTML pages). We expect, but 
+do not currently specify, that this will evolve into a hook
+for finding more machine-readable information to support payments,
+rewards. The <code>foaf:OnlineAccount</code> machinery is also relevant,
+although the information requirements for automating payments are not 
+currently clear.
+</p>
+
