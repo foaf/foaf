@@ -235,7 +235,7 @@ public class GUI extends ApplicationWindow
 		
 		tabItem = new TabItem(tabFolder, SWT.NONE);
 		
-		tabItem.setText("Local Network");
+		tabItem.setText("Local People");
 		
 		container = new Composite(tabFolder, SWT.NONE);
 		

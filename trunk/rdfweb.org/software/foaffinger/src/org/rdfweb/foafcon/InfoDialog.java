@@ -52,7 +52,7 @@ public class InfoDialog extends Dialog
 		GridLayout layout = new GridLayout();
 		content.setLayout(layout);
 		
-		textField = new Text(content, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL);
+		textField = new Text(content, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
 		if (infoText == null)
 			textField.setText("NOWT");
 		else
