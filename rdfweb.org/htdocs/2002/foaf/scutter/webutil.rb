@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.10 2002-07-13 18:16:21 danbri Exp $
+# $Id: webutil.rb,v 1.11 2002-07-14 13:15:57 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -58,7 +58,7 @@ def scutter_local (file, base_uri, opts={})
  
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
 
-  puts "Local: #{cache_dir} file: #{file} xslt: #{use_xslt} "
+  puts "Parsing cached RDF file: #{cache_dir} file: #{file} xslt: #{use_xslt} "
  
   ## CONFIG INFO (TODO: move this into options {}
   ##
@@ -89,15 +89,27 @@ def scutter_local (file, base_uri, opts={})
     c14n_fn = "#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf"
     nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"    
     ctext= `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' `
-    c14n = File::new( c14n_fn, File::CREAT|File::RDWR, 0644 )
-    c14n.puts ctext
-    c14n.close
+
+    begin 
+      c14n = File::new( c14n_fn, File::CREAT|File::RDWR, 0644 )
+      c14n.puts ctext
+      c14n.close
+    rescue
+      puts "Problem storing canonicalised RDF data in cache. $!"
+    end
+
     puts "Stored canonicalised RDF."
     nt_text = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl' '#{c14n_fn}'`
     puts "N-Triples: #{nt}"
-    nt = File::new( nt_cache, File::CREAT|File::RDWR, 0644 )
-    nt.puts nt_text
-    nt.close
+
+    begin
+      nt = File::new( nt_cache, File::CREAT|File::RDWR, 0644 )
+      nt.puts nt_text
+      nt.close
+    rescue
+      puts "Problem storing N-Triples data in cache. $!"
+    end
+
     parsed_ok = true
     puts "\n==#5 done.\n\n"
   end 
@@ -148,7 +160,7 @@ end
 
 def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
 
-  proxy_addr = 'cache-edi.cableinet.co.uk'
+  proxy_addr = 'cache-edi.cableinet.co.uk' # add to config
   proxy_port = 8080
 
   if uri =~ /^\[/
@@ -187,37 +199,45 @@ def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
     # puts "Response: "+data.to_s
     # puts "Storing in webcache URI: #{uri} as #{uri_hash} .rdf / .meta"
     # delete (todo: rcs/cvs archive) previous cached data
-    rdf_fn =  "#{cache_dir}webcache/rdf-#{uri_hash}.rdf" 
-    if File::exists? rdf_fn 
-      File::delete rdf_fn
-    end
-    # store current data
+
+
+    # wrap risky stuff for subsequent rescue
+    #
+#    begin 
+      rdf_fn =  "#{cache_dir}webcache/rdf-#{uri_hash}.rdf" 
+      if File::exists? rdf_fn 
+        File::delete rdf_fn
+      end
+      # store current data
  
-    if !gzipped
-      cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
-      cf.write data  
-      cf.close
-    else
+      if !gzipped
+        cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
+        cf.write data  
+        cf.close
+      else
 
-      require 'zlib'  # special handling of gzipped content
+        require 'zlib'  # special handling of gzipped content
 
-      cf = File::new( rdf_fn + ".gz", File::CREAT|File::RDWR, 0644)
-      cf.write data  
-      cf.close
+        cf = File::new( rdf_fn + ".gz", File::CREAT|File::RDWR, 0644)
+        cf.write data  
+        cf.close
 
-      f = open( rdf_fn + ".gz" )
+        f = open( rdf_fn + ".gz" )
+ 
+        gz = GzipReader.new(f)
+        unzipped=gz.read
+        gz.close
 
-      gz = GzipReader.new(f)
-      unzipped=gz.read
-      gz.close
+        cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
+        cf.write unzipped 
+        cf.close
+#    rescue
+#      puts "Problem storing retrieved RDF/XML data in cache. $!"
+#    end
 
-      cf = File::new( rdf_fn, File::CREAT|File::RDWR, 0644)
-      cf.write unzipped 
-      cf.close
+  end
 
-    end
-
-    # puts "Stored RDF"
+  # puts "Stored RDF"
 
     mf = File::new("#{cache_dir}webcache/rdf-#{uri_hash}.meta", File::CREAT|File::RDWR, 0644)
 
@@ -229,11 +249,10 @@ def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
     # todo: use .nt or .rdf for this. Investigate soap/date clash.
     mf.close
     return uri_hash
-   rescue
-     # puts "Scutter: #Error with URI #{uri} msg: #{$!}"
-   end
-
-   return uri_hash   
+  rescue
+    # puts "Scutter: #Error with URI #{uri} msg: #{$!}"
+  end
+  return uri_hash   
 end
 
 
