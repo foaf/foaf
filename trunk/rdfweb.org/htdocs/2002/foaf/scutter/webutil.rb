@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.4 2002-07-11 16:25:02 danbri Exp $
+# $Id: webutil.rb,v 1.5 2002-07-11 17:25:56 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -64,8 +64,8 @@ def scutter_local (file, base_uri='', cache_dir='./' )
 # this is wrong, especially for a library.
 # quick hack for debugging the xslt parser.
 
-  p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}_nt/rdf-#{file}.c14.rdf'`
-  p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt'`
+  p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf'`
+  p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt'`
   puts "\n==#5\n\n"
   
   #../../xsltrdf/rdfc14n.xsl
