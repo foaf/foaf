@@ -23,7 +23,7 @@ destroydata:
 	
 
 harvest:
-	bin/scutter --scutter
+	bin/scutter --use-raptor=rdfdump --scutter
 
 winharvest:
 	bin/scutter --dbdriver=Mysql --use-xslt --scutter
