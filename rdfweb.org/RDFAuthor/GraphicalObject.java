@@ -1,6 +1,7 @@
-/* Decompiled by Mocha from ModelItem.class */
-/* Originally compiled from ModelItem.java */
-
+//
+//  GraphicalObject.java
+//  RDFAuthor
+//
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -22,16 +23,26 @@
 
 */
 
-import com.apple.cocoa.foundation.NSPoint;
-import com.apple.cocoa.foundation.NSRect;
+import com.apple.cocoa.foundation.*;
+import com.apple.cocoa.application.*;
 
-public interface ModelItem
-{
-    public boolean isNode();
-
-    public void setMyList(ArcNodeList list);
-
+public interface GraphicalObject {
+    
+    public void drawHilight(NSRect rect);
+    
+    public void drawNormal(NSRect rect);
+    
+    public ModelItem modelItem();
+    
+    public NSRect bounds();
+    
     public void delete();
     
-    public GraphicalObject graphicRep();
+    public void changed();
+    
+    public boolean containsPoint(NSPoint point);
+    
+    public void calculateSize(); // Give this (and the following) a better name!!!!
+    
+    public void calculateRectangle();
 }

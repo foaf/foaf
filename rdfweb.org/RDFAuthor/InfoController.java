@@ -223,7 +223,7 @@ public class InfoController extends NSObject {
         
         if (literalChangeButton.state() == NSCell.OnState)
         {
-            currentItem.setIsLiteral(false);
+            ((Node) currentItem).setIsLiteral(false);
             return; // Don't need subsequent checks in this case
         }
         
@@ -259,7 +259,7 @@ public class InfoController extends NSObject {
         
         if (resourceChangeButton.state() == NSCell.OnState)
         {
-            currentItem.setIsLiteral(true);
+            ((Node) currentItem).setIsLiteral(true);
             return; // Don't need subsequent checks in this case
         }
         

@@ -22,9 +22,6 @@
 
 */
 
-import com.apple.cocoa.foundation.*;
-import com.apple.cocoa.application.*;
-
 import java.util.ListIterator;
 import java.util.ArrayList;
 import java.util.AbstractList;
@@ -32,55 +29,59 @@ import java.io.*;
 
 import com.hp.hpl.mesa.rdf.jena.common.Util;
 
-public class Node extends ModelItem implements Serializable
+public class Node implements Serializable, ModelItem
 {
     static final long serialVersionUID = 8496964442985450307L;
     
     String id;
     String typeNamespace;
     String typeName;
+    
     ArrayList arcsFrom;
     ArrayList arcsTo;
+    
     ArcNodeList myList;
+    
     boolean literal;
+    
     boolean showType = false;
     boolean showId = false;
     
-    NSPoint position;
-    NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
-    NSColor literalColor = NSColor.colorWithCalibratedRGB(1F, 1F, 0F, 0.5F);
-    NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
-    NSSize mySize;
-    NSSize defaultSize = new NSSize(20,20);
-    NSRect myRect = NSRect.ZeroRect;
-    NSAttributedString displayString = null;
+    float x;
+    float y;
+    
+    GraphicalNode graphicNode;
 
-    public Node(ArcNodeList myList, String id, String typeNamespace, String typeName, NSPoint position)
+    public Node(ArcNodeList myList, String id, String typeNamespace, String typeName, float x, float y)
     {
         this.myList = myList;
         literal = false;
         this.id = id;
-        this.position = position;
-        setType(typeNamespace,typeName);
+        this.x = x;
+        this.y = y;
+        this.typeNamespace = typeNamespace;
+        this.typeName = typeName;
         arcsFrom = new ArrayList();
         arcsTo = new ArrayList();
     }
    
     // Same as before - but split the type into namespace & name
     
-    public Node(ArcNodeList myList, String id, String type, NSPoint position)
+    public Node(ArcNodeList myList, String id, String type, float x, float y)
     {
         this.myList = myList;
         literal = false;
         this.id = id;
-        this.position = position;
+        this.x = x;
+        this.y = y;
         
         int sep = Util.splitNamespace(type);
                 
         String namespace = type.substring(0, sep);
         String name = type.substring(sep);
         
-        setType(namespace, name);
+        typeNamespace = namespace;
+        typeName = name;
         
         arcsFrom = new ArrayList();
         arcsTo = new ArrayList();
@@ -89,8 +90,8 @@ public class Node extends ModelItem implements Serializable
     private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
     {
-        out.writeFloat(position.x());
-        out.writeFloat(position.y());
+        out.writeFloat(x);
+        out.writeFloat(y);
         out.writeObject(id);
         out.writeObject(typeNamespace);
         out.writeObject(typeName);
@@ -105,16 +106,11 @@ public class Node extends ModelItem implements Serializable
     private void readObject(java.io.ObjectInputStream in)
      throws IOException, ClassNotFoundException
     {
-        float x = in.readFloat();
-        float y = in.readFloat();
-        position = new NSPoint(x, y);
+        x = in.readFloat();
+        y = in.readFloat();
         id = (String) in.readObject();
         typeNamespace = (String) in.readObject();
         typeName = (String) in.readObject();
-
-        myRect = NSRect.ZeroRect; // need to put these in here due to deserialisation of arcs
-	defaultSize = new NSSize(20,20);
-
         // The following spares some pain when I changed from Vectors to Array Lists
         AbstractList arcsFromTemp = (AbstractList) in.readObject();
         AbstractList arcsToTemp = (AbstractList) in.readObject();
@@ -124,17 +120,16 @@ public class Node extends ModelItem implements Serializable
         showType = in.readBoolean();
         showId = in.readBoolean();
         myList = (ArcNodeList) in.readObject();
-    
-	normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
-        hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
-        literalColor = NSColor.colorWithCalibratedRGB(1F, 1F, 0F, 0.5F);
-        
-        calculateSize();
     }
     
-    public NSRect rect()
+    public void setGraphicRep(GraphicalNode graphicNode)
     {
-        return myRect;
+        this.graphicNode = graphicNode;
+    }
+    
+    public GraphicalObject graphicRep()
+    {
+        return graphicNode;
     }
     
     public boolean isConnected()
@@ -145,8 +140,8 @@ public class Node extends ModelItem implements Serializable
     public void setId(String theString)
     {
         id = theString;
-        //calculateSize();
-        myList.itemChanged(this, calculateSize());
+        myList.itemChanged(this);
+        graphicNode.calculateSize();
     }
 
     public String id()
@@ -158,8 +153,8 @@ public class Node extends ModelItem implements Serializable
     {
         typeNamespace = namespace;
         typeName = name;
-        //calculateSize();
-        myList.itemChanged(this, calculateSize());
+        myList.itemChanged(this);
+        graphicNode.calculateSize();
     }
     
     // Version of above for unsplit types
@@ -192,8 +187,8 @@ public class Node extends ModelItem implements Serializable
     public void setIsLiteral(boolean literalValue)
     {
         literal = literalValue;
-        calculateSize();
         myList.itemChanged(this);
+        graphicNode.calculateSize();
     }
 
     public void setMyList(ArcNodeList list)
@@ -213,6 +208,7 @@ public class Node extends ModelItem implements Serializable
             Arc arc = (Arc)enumerator.next();
             arc.deleteFromNode(this);
         }
+        graphicNode.delete(); // Inform graphic node that we're going away
         myList.removeObject(this);
     }
 
@@ -235,30 +231,35 @@ public class Node extends ModelItem implements Serializable
     {
         arcsFrom.remove(arc);
     }
-
-    public void setPosition(NSPoint position)
+    
+    public float x()
     {
-        this.position = position;
-        // Ok - I'll try to work out the screen rectangle that has changed
-        //NSRect changedRect = new NSRect(myRect);
+        return x;
+    }
+    
+    public float y()
+    {
+        return y;
+    }
+
+    public void setPosition(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+        
         for (ListIterator enumerator = arcsFrom.listIterator(); enumerator.hasNext(); )
         {
             Arc arc = (Arc)enumerator.next();
-            //changedRect = changedRect.rectByUnioningRect(arc.toNode().rect());
             arc.nodeMoved();
-            //changedRect = changedRect.rectByUnioningRect(arc.toNode().rect());
         }
         for (ListIterator enumerator = arcsTo.listIterator(); enumerator.hasNext(); )
         {
             Arc arc = (Arc)enumerator.next();
-            //changedRect = changedRect.rectByUnioningRect(arc.fromNode().rect());
             arc.nodeMoved();
-            //changedRect = changedRect.rectByUnioningRect(arc.fromNode().rect());
         }
-        //calculateRectangle();
-        //changedRect = changedRect.rectByUnioningRect(myRect);
-        //myList.itemChanged(this, changedRect);
-        myList.itemChanged(this, calculateSize());
+        
+        myList.itemChanged(this);
+        graphicNode.calculateRectangle();
     }
 
     public boolean isNode()
@@ -269,62 +270,20 @@ public class Node extends ModelItem implements Serializable
     public void setShowType(boolean value)
     {
         showType = value;
-        calculateSize();
+        graphicNode.calculateSize();
     }
     
     public void setShowId(boolean value)
     {
         showId = value;
-        calculateSize();
+        graphicNode.calculateSize();
     }
     
-    public void drawNormal(NSRect rect)
-    {
-        if (this.isLiteral())
-        {
-            drawMe(literalColor, rect);
-        }
-        else
-        {
-            drawMe(normalColor, rect);
-        }
-    }
-
-    public void drawHilight(NSRect rect)
-    {
-        drawMe(hilightColor, rect);
-    }
-
-    public void drawMe(NSColor myColor, NSRect rect)
-    {
-        if (myRect.intersectsRect(rect))
-        {
-            myColor.set();
-            
-            NSBezierPath.bezierPathWithOvalInRect(myRect).fill();
-            if (displayString != null)
-            {
-                NSGraphics.drawAttributedString(displayString, myRect);
-            }
-        }
-    }
-
-    public boolean containsPoint(NSPoint point)
-    {
-        return myRect.containsPoint(point, true); // RDFModelView always flipped
-    }
-
-    public NSPoint position()
-    {
-        return position;
-    }
-    
-    public NSRect calculateSize()
+    public String displayString() // string to display
     {
         if (!showType && !showId)
         {
-            mySize = defaultSize;
-            displayString = null;
+            return null;
         }
         else
         {
@@ -342,34 +301,21 @@ public class Node extends ModelItem implements Serializable
                 idToShow = (id == null)?"-- anonymous --":id;
             }
             
-            typeToShow = isLiteral()?"-- literal --":typeToShow;
+            //typeToShow = isLiteral()?"-- literal --":typeToShow;
             
             if (showType && showId)
             {
-                displayString = new NSAttributedString(typeToShow + "\n" + idToShow);
+                return typeToShow + "\n" + idToShow;
             }
             else if (showType)
             {
-                displayString = new NSAttributedString(typeToShow);
+                return typeToShow;
             }
             else
             {
-                displayString = new NSAttributedString(idToShow);
+                return idToShow;
             }
-            
-            mySize = NSGraphics.sizeOfAttributedString(displayString);
         }
-        
-        return calculateRectangle();
     }
     
-    public NSRect calculateRectangle() // returns affected area
-    {
-        NSRect changedRect = myRect;
-        myRect = new NSRect(position.x() - mySize.width()/2F,
-                            position.y() - mySize.height()/2F,
-                            mySize.width(),
-                            mySize.height() );
-        return changedRect.rectByUnioningRect(myRect);
-    }
 }
