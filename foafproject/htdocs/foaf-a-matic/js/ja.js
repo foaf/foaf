@@ -1,0 +1,19 @@
+
+var field_friend='友人';
+var field_title='敬称 (Mr, Mrs, Dr, etc)';
+var field_firstName='名 (First Name)';
+var field_surname='姓 (Family/Given)';
+var field_nick='ニックネーム';
+var field_email='メールアドレス';
+var field_homepage='ホームページURL';
+var field_depiction='あなたの写真のURL';
+var field_phone='電話番号';
+var field_workplaceHomepage='職場ホームページのURL';
+var field_workInfoHomepage='仕事を説明しているページのURL';
+var field_schoolHomepage='学校のホームページURL';
+var field_spamProtect='メールアドレスをSPAMから保護する';
+var field_friendEmail='メールアドレス';
+var field_friendName='氏名';
+var field_friendSeeAlso='See Also';
+var msg_missingRequired='次の項目は必須です:';
+var msg_missingFriendEmail='? さんのメールアドレスがありません:';

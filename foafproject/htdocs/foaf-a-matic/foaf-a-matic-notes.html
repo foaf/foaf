@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>FOAF-a-Matic -- Notes, Change Log</title>
+<link rel="stylesheet" href="foaf-a-matic.css" type="text/css">
+</head>
+<body>
+
+<h1>FOAF-a-Matic Notes</h1>
+
+<p>
+Change history and TODO list for the <a href="foaf-a-matic.html">FOAF-a-Matic</a> application.
+</p>
+
+<h3>Changes</h3>
+
+<ul>
+   <li>23rd July 2002 -- 0.6. Added ability to include seeAlso FOAF descriptions. Added refer a friend capability. If the following URL parameters are given, then they are
+   used to automatically populate the details of the first friend: <code>name</code>, <code>email</code>, <code>seealso</code></li>
+   <li>19th July 2002 -- 0.5. mbox_sha1sum calculation was using raw email address without adding 'mailto:' prefix. Thanks to Sampo Syreeni. Corrected
+   serialization of friend data -- People elements weren't being wrapped in a 'knows' element. Thanks to Edd Dumbill. Added ability to switch
+   spam protection on and off. Added a 'What Next?' section.</li>
+   <li>12th July 2002 -- 0.4. Fixed bug that was incorrectly producing mbox_sha1sum as an RDF resource. Thanks to Jim Ley and Dan Brickley.
+   <li>11th July 2002 -- 0.3. Reworked all Javascript, separating out helper objects and functions (foaf.js) and form processing (foaf-a-matic.js). Added more FOAF properties,
+   including schoolHomepage, workInfoHomepage, phone, firstName, surname, title. Also added mbox_sha1sum as suggested by danbri, using Paul
+   Johnston's <a href="http://pajhome.org.uk/crypt/md5/">SHA1 implementation for Javascript</a>. Multiple friends can now be added. Added an introduction.</li>
+   <li>10th July 2002 -- 0.2. Fixed missing 'mailto:' prefix on friends mbox and typo (workhomepage => workplaceHomepage); gained a <a href="http://jibbering.com/2002/7/foaf.html">mirror</a>(! :) which demonstrates some improvements.</li>
+</ul>
+
+<h3>TODO</h3>
+
+<ul>
+   <li>Signing?</li>
+   <li>Improve UI and docs</li>
+   <li>Improve form validation</li>
+   <li>Add ability to enter Documents and Projects</li>
+   <li>Create page on <a href="http://rdfweb.org/rweb/wiki/wiki.pl?HomePage">the Wiki</a> for ongoing notes and feedback</li>
+</ul>
+
+<hr />
+[<a href="index.html">FOAF Hackery</a>]
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>FOAF Bulletin Board</title>
+</head>
+<body>
+<h1>FOAF Bulletin Board</h1>
+
+<p>
+<a href="mailto:leigh@ldodds.com">Leigh Dodds</a>
+</p>
+
+<p>
+There's a need for a simple way to link together FOAF descriptions. One way is to simply link to other
+FOAF documents using the <code>rdfs:seeAlso</code> element. However for this to work at least
+one document in that graph must be being harvested by a spider, e.g. the <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>.
+Which is not ideal.
+</p>
+
+<p>
+Here's a quick and dirty proposal for how to allow the community to bootstrap itself into a network of FOAF descriptions
+by allowing the collaborative editing of a FOAF document index:
+</p>
+
+<ol>
+
+<li>
+I've created a <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a> page on the RDFWeb Wiki. Anyone can go to that page and add their name and a link to
+their FOAF description. Easy.
+</li>
+
+<li>
+This page can then be run through the <a href="http://cgi.w3.org/cgi-bin/tidy">W3C HTML Tidy service</a> to create a well-formed XHTML page. Here's <a href="http://cgi.w3.org/cgi-bin/tidy?docAddr=http%3A%2F%2Frdfweb.org%2Frweb%2Fwiki%2Fwiki.pl%3FFOAFBulletinBoard">a link that
+does that</a>.
+</li>
+
+<li>
+This document can then be transformed with <a href="http://www.ldodds.com/foaf/bulletin.xsl">a simple XSLT stylesheet</a> to produce an RDF document containing a <code>rdfs:seeAlso</code>
+element for each FOAF description linked from the original page. The <a href="http://www.w3.org/2001/05/xslt">W3C XSLT service</a> can do this for us.
+</li>
+
+<li>
+The results of this transformation can then be used as an entry point for FOAF indexing engines. Here's <a href="http://www.w3.org/2000/06/webdata/xslt?xslfile=http://www.ldodds.com/foaf/bulletin.xsl&xmlfile=http://cgi.w3.org/cgi-bin/tidy?docAddr=http%3A%2F%2Frdfweb.org%2Frweb%2Fwiki%2Fwiki.pl%3FFOAFBulletinBoard">the final URL</a> that combines
+both the Tidy and XSLT transformations.
+</li>
+
+</ol>
+
+<p>
+The beauty of this is that anyone can add to the list, and additional Bulletin Boards can be linked from other Wiki pages around
+the web.
+</p>
+
+<p>
+<b>Update:</b> thanks to Aaron Swartz for pointing out the problems with bulletin.xsl (rdf:seeAlsos not being attached to anything,
+and providing a corrected stylesheet.
+</p>
+
+<hr />
+
+[<a href="index.html">FOAF Hackery</a>]
+
+</body>
+</html>

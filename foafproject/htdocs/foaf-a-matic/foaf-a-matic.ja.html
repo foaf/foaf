@@ -1,0 +1,358 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
+<head>
+<title>FOAF-a-matic -- RDFを使って自己紹介してみよう</title>
+<link rel="stylesheet" href="css/foaf-a-matic.css" type="text/css"/>
+<script language="javascript" type="text/javascript" src="js/foaf-a-matic.js" xml:space="preserve">
+</script>
+<script language="javascript" type="text/javascript" src="js/foaf.js" xml:space="preserve"/>
+<script language="javascript" type="text/javascript" src="js/sha1.js" xml:space="preserve"/>
+<script language="javascript" xml:space="preserve">
+<!--
+// check for parameters in URL
+checkParameters();
+// -->
+</script>
+<link rel="stylesheet" href="../css/foaf3.css" type="text/css"/>
+</head>
+
+<body>
+<h1>
+<a href="http://www.foaf-project.org/" shape="rect">
+<span class="lefthead">foaf  
+</span>
+<span class="righthead">project</span>
+</a>
+</h1>
+<div class="description-bar">friend of a friend</div>
+<div class="marginLeft">
+<div class="header">
+<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles"/>
+</div>
+<div id="links">
+<a href="/foaf-a-matic/" shape="rect">foaf-a-matic</a>
+<a href="http://rdfweb.org/topic/FAQ" shape="rect">
+about</a>
+<a href="http://xmlns.com/foaf/0.1/" shape="rect">specification</a>
+<a href="http://rdfweb.org/" shape="rect">
+developers</a>
+<a href="http://rdfweb.org/foaf/corp/intro.html" shape="rect">foafcorp</a>
+<a href="foaf-contact@rdfweb.org" shape="rect">
+contact</a>
+</div>
+<!-- main page content follows -->
+</div>
+<h2>FOAF-a-Matic</h2>
+
+
+
+
+
+<p>
+原作者<a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. 翻訳者<a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="http://www.kanzaki.com/">神崎正英</a>.
+</p>
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">はじめに</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-maticは、FOAF ("Friend-of-A-Friend")によるあなたの紹介を作成するシンプルなJavascriptアプリケーションです。FOAFの詳細については、Edd Dumbillによる"<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
+        Watch: Finding friends with XML and RDF</a>"（<a href="http://www.ibm.com/jp/developerworks/xml/020906/j_x-foaf.html">日本語訳</a>）、"<a href="http://www.kanzaki.com/docs/sw/foaf.html">メタデータによる知人ネットワークの表現</a>"、
+        <a href="http://rdfweb.org/foaf/">RDFWebのFOAFホームページ</a>、および
+        <a href="http://xmlns.com/foaf/0.1/">FOAFの語彙定義</a>を参照してください。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        細かいことはさておき、FOAFとはひとことで言えば、XMLとRDFを使ってあなた自身を紹介する &mdash; 名前、メールアドレス、それに友人についてなど &mdash; ための手段です。こうすることで、ソフトウェアが（たとえばサーチエンジンの一部分として）あなたの紹介データを処理し、あなた自身やあなたが所属するコミュニティの情報を見つけだすといったことが可能になります。FOAFは、オンラインコミュニティにおけるさまざまな興味深い新展開をひきだす可能性を秘めているのです。
+        Ben HammerselyがGuardian Unlimitedウェブサイトに書いた記事"<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"には、これらのアイデアについて更に掘り下げた記述があります。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-Maticは、あなたのFOAFによる自己紹介を素早く簡単に作成するために用意されています。このページのフォームを使って、あなたが自己紹介に加えようと思う項目を記入してください。少なくとも、名前とメールアドレスだけは記入する必要があります。友人の場合も同様です。
+        自己紹介に友人情報があれば、FOAF収集システムがあなたのFOAF自己紹介をインデックスに登録する際、みんなを人間のネットワークとしてつなぐことができるので、よかったら何名か加えてみてください（何人加えるかは、自由です）。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        （注）あなたがこのページで入力した情報は、いかなる形でもほかで利用したり保存したりすることはありません。FOAFの生成はすべてクライアント側の処理で行われますから、あなたのプライバシーは安全です。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        このアプリケーションについて意見がある場合、あるいはもっとFOAFについて知りたい場合は、<a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-devメーリングリスト</a>に参加しましょう。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<b>更新情報</b>: 現在、あなたのFOAFデータを作成・管理できるデスクトップ・アプリケーション <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>を作成中です。
+        </p>
+    
+
+<form name="details" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">入力フォーム</h2>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">自分自身の情報</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        あなた自身についての情報と、コンタクトのための情報を入力します。
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">敬称 (Mr, Mrs, Dr, etc)</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="title"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">名 (First Name)</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="firstName"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">姓 (Family/Given)</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="surname"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">ニックネーム</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="nick"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">メールアドレス</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="email"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">ホームページURL</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="homepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">あなたの写真のURL</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="depiction"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">電話番号</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="phone"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">仕事</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        あなたが働いているところについての情報です。
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">職場ホームページのURL</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workplaceHomepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">仕事を説明しているページのURL</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workInfoHomepage"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">学校</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        あなたの卒業した（通っている）学校は？
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">学校のホームページURL</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="schoolHomepage"/>
+</td>
+</tr>
+</table>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">あなたの知人</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        あなたの知っている人について記述してください。知人をもっと追加したい場合は、"Add Friend" ボタンをクリックしてください。もしあなたの知人が自分のFOAFを持っていたら、そこへのリンク(URL)を 'seeAlso' に記入してください。
+        </p>
+    
+
+<form name="friends" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<table>
+<tbody id="friendtable">
+<script language="javascript" xml:space="preserve">
+//see foaf-a-matic.js
+createFriendFields();
+</script>
+</tbody>
+</table>
+
+<input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()"/>
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">FOAFデータの生成</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        データを入力できたら、FOAF生成の準備完了です...
+        </p>
+    
+
+<form name="results" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<p>
+   <input type="checkbox" id="spamProtect" name="spamProtect" checked="checked"/> メールアドレスをSPAMから保護する 
+</p>
+<p>
+   <input type="submit" id="generate" value="FOAF me!" onClick="generate()"/>
+</p>
+<textarea name="rdf" cols="80" rows="20"/>
+
+<p align="left">
+   <input id="reset" type="reset"/>
+</p>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">その次には？</h2>
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">あなたのFOAF自己紹介を公開しましょう</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        これは簡単です。上のテキストボックスに生成されているFOAFデータをコピーし、ファイルに貼り付けてください。そのファイルを、あなたのウェブサイト上で、外部からアクセスできる場所にアップロードします。ファイル名は"foaf.rdf"としておくと、Googleの検索であなたのFOAFを見つけることができるので具合がいいでしょう。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        さあ、FOAFの自己紹介は用意できたので、あとは他の人にアクセスしてもらって読んでもらうばかりです...
+        </p>
+
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">FOAFコミュニティに参加しよう</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAFを「発見」する方法（つまり、FOAFを扱うアプリケーションが、あなたのFOAF自己紹介を見つけだすこと）については、まだ議論の最中です。もしよい方法や提案があれば、<a href="http://groups.yahoo.com/group/rdfweb-dev/">RDFWeb-devメーリングリスト</a>に投稿してください。それはともかく、現状では3つの方法が考えられます。そのうちのどれか、あるいは全部を試してみるのもいいでしょう。
+        </p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">link要素を使う</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Aaron Swartzは、FOAFファイルの存在を示すために<a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">link要素を用いる方法を提案</a>しました。ちょうどブログ作者がRSSファイルの存在を示すのと同じ方法です。つぎのような具合になります：
+        </p>
+
+        
+<code xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" /&gt;
+        </code>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">知人から参照してもらう</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAFファイルをインデックスに登録させるもうひとつの方法は、だれか他の人（つまり友人）にそれを参照してもらうというものです。FOAF収集ロボットは、その参照を辿ってあらゆるFOAFファイルを見つけだすことができます。このためには、あなたの〔訳注：参照してもらうには、友人の〕FOAFファイルを次のように修正します：
+        </p>
+
+        
+<ol xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<li>
+<code>rdf:RDF</code>要素に、次のようにRDFスキーマの名前空間を追加します：
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
+        </code>
+        
+</li>
+        
+<li>次に、他の人のFOAFへのリンクを、それぞれ<code>rdfs:seeAlso</code>要素に記述します：</li>
+        
+<code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/&gt;
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/&gt;
+        </code>
+        
+</ol>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<i>更新情報</i>: もしあなたの知人がすでにFOAF自己紹介を持っているのならば、上のフォームの 'seeAlso' 欄に記述するだけでこれらを含むFOAFデータを生成します。関連情報は<a href="http://www.ldodds.com/blog/archives/000033.html">Refer a Friend to the FOAF-a-matic</a>も参照してください。
+        </p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">FOAF Bulletin Boardを利用する</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        アプリケーションにFOAFファイルを発見してもらう分かりやすい方法は、人々のレジストリに登録することです。そのために、簡単な方法として <a href="bulletin-board.html">FOAF Bulletin Board</a>を用意しました。FOAFWikiの<a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a>を編集して、あなたの名前とFOAFファイルへのリンクを加えてください。例として、私のFOAFをそこに加えてあります。
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        HTML TidyとXSLTの力を利用すると、Edd Dumbillの <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>のようなアプリケーションがこのインデックスを処理できます。どんな風に行われるのかについてはFOAFBotのホームページを参照してください。
+        </p>
+    
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">License</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        このページおよびスクリプトは<a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons License</a>のライセンスに従って利用できます。
+        </p>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <!-- Creative Commons License -->
+        
+<a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif"></a>
+<br>
+        <!-- /Creative Commons License -->
+        
+</p>
+    
+
+<hr/>
+[<a href="index.html" shape="rect">FOAF Hackery</a>]
+
+</body>
+</html>

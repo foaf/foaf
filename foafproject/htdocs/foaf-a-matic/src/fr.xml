@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+         The main elements in this document correspond to sections of text in the
+         FOAF-a-Matic, e.g. the introduction. These sections can include any HTML
+         markup.
+
+         For the field, button, and message elements, please just translate the
+         provided text: no markup is allowed in these elements.
+
+         Note: for the missingFriendEmail message the ? symbol will be replaced by
+         the name of the friend. Please incorporate that into the translated version as
+         appropriate.
+
+         Thanks!
+
+         leigh@ldodds.com
+
+    -->
+<fm:translation lang="fr" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+
+    <fm:by-line>Décrivez-vous en RDF</fm:by-line>
+
+    <fm:author>Written by <a href="mailto:leigh@ldodds.com">Leigh Dodds</a>.</fm:author>
+
+    <!-- Add your name here, e.g. "Translated By <a href="">Your Name</a>." -->
+    <fm:translator>Traduit par <a href="mailto:foaf@fgranger.com">François Granger</a></fm:translator>
+
+    <fm:introduction title="Introduction">
+        <p>
+        FOAF-a-matic est un simple logiciel (en JavaScript) qui vous permet de créer une description FOAF ("Friend-of-A-Friend", "Amis d'un ami") de vous même. Pour en savoir plus sur FOAF vous pouvez lire l'article de Edd Dumbill, "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
+        Watch: Finding friends with XML and RDF</a>", la page d'accueil de
+        <a href="http://rdfweb.org/foaf/"> FOAF sur RDFWeb</a>, et aussi
+        <a href="http://xmlns.com/foaf/0.1/">the FOAF vocabulary description</a> ("Description du vocabulaire FOAF").
+        </p>
+
+        <p>
+        En résumé, FOAF vous permet de vous décrire -- votre nom, votre adresse de courrier, et les gens avec qui vous êtes ami -- de manière simple en utilisant XML et RDF. Cela permet de traiter ces descriptions avec des logiciels comme un moteur de recherche pour découvrir des informations sur vous et les communautés dont vous êtes membre. FOAF peut permettre des développements intéressants dans les communautés en lignes. L'article de Ben Hammersely "<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>" paru sur le site Guardian Unlimited développe ces idées.
+        </p>
+
+        <p>
+        FOAF-a-Matic vous permet de créer rapidement et facilement votre propre description FOAF. Fournissez simplement les informations que vous voulez voir apparaître dans votre description. Au minimum, fournissez votre nom et votre adresse de courrier. Ajoutez les noms et adresses de courrier des amis que vous voulez ajouter. Il est intéressant d'ajouter des amis (vous pouvez en ajouter autant que vous voulez) car cela permettra aux outils qui indexeront votre description de trouver les liens de réseaux d'individus.
+        </p>
+
+        <p>
+        Note: l'information que vous entrez dans cette page n'est ni utilisé, ni enregistré. Le travail est entièrement effectué coté client. Votre vie privé est préservé.
+        </p>
+
+        <p>
+        Si vous avez des commentaires sur cette application, ou des questions à propos de FOAF, vous pouvez souscrire à <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">la liste de discussion RDFWeb-dev</a>.
+        </p>
+
+        <p>
+        <b>Mise à jour</b>: Je suis en train de développer le logiciel <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a> une application pour créer et gérer vos données FOAF sur votre station.
+        </p>
+    </fm:introduction>
+
+    <fm:forms title="Formulaire"/>
+
+    <fm:personal title="Informations personelles">
+        <p>
+        Quelques informations à propos de vous, et comment vous pouvez être contacté.
+        </p>
+    </fm:personal>
+
+    <fm:work title="Travail">
+        <p>
+        Information sur votre lieu de travail.
+        </p>
+    </fm:work>
+
+    <fm:school title="Ecole">
+        <p>
+        Ou êtes vous allé à l'école?
+        </p>
+    </fm:school>
+
+    <fm:friends title="Les gens que vous connaissez">
+        <p>
+        Indiquez à FOAF-a-matic des gens que vous connaissez. Cliquez "Ajoutez un ami" pour avoir plus d'espace pour ajouter des amis. Si une relation a déjà une description FOAF, mettez son lien dans le champ "Voir aussi".
+        </p>
+    </fm:friends>
+
+    <fm:results title="Créer le document">
+        <p>
+        Maintenant que vous avez donné les détails, vous être prêt à être transformé en FOAF...
+        </p>
+    </fm:results>
+
+    <fm:what-next title="Et après?">
+        <h3>Publiez votre description FOAF</h3>
+
+        <p>
+        C'est la partie la plus facile. Sélectionnez la description FOAF généré dans le champ texte ci-dessus. Copiez-la et collez-la dans un fichier sur votre site à un endroit ou elle sera disponible à tous. Il est préférable de nommer le fichier "foaf.rdf". Une recherche Google permettra de découvrire les fichiers FOAF disponibles sur le web.
+        </p>
+
+        <p>
+        Votre description FOAF est prête. Il suffit que des gens la découvrent et la lisent...
+        </p>
+
+        <h3>Rejoindre la communauté FOAF</h3>
+
+        <p>
+        L'aspect "découverte" de FOAF (comment une application compatible FOAF trouve votre description) est un sujet en cour de discussion. Si vous avez des suggestions, envoyez-les à <a href="http://groups.yahoo.com/group/rdfweb-dev/">la liste de discussion RDFWeb-dev</a>. Il y a trois méthodes. Vous pouvez les tester.
+        </p>
+
+        <h4>Utiliser la balise Link</h4>
+
+        <p>
+        Aaron Swartz a <a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">suggéré</a> d'utiliser la balise HTML Link pour donner le lien de la description FOAF, de la même manière que pour le fils RSS. Voici comment faire:
+        </p>
+
+        <code>
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" />
+        </code>
+
+        <h4>Référence par un ami</h4>
+
+        <p>
+        Une bonne manière de faire indexer votre fichier FOAF, c'est que quelqu'un d'autre (un ami) pointe vers lui. Un robot FOAF peut alors traverser les fichiers FOAF. Vous pouvez le faire en apportant les changement qui suivent à vôtre fichier:
+        </p>
+
+        <ol>
+        <li>Modifiez l'élément <code>rdf:RDF</code> pour ajouter l'espace de noms RDF Schema comme ci-dessous:
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+        </code>
+        </li>
+        <li>Vous pouvez ajouter des liens vers d'autres descriptions FOAF en ajoutant un élément <code>rdfs:seeAlso</code> pour chaque fichier comme ci-dessous:</li>
+        <code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/>
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/>
+        </code>
+        </ol>
+
+        <p>
+        <i>Mise à jours</i>: si un ami a déjà une description FOAF, ajoutez-la dans le champ "Voir aussi" (seeAlso) de ce formulaire. Vous pouvez aussi indiquer <a href="http://www.ldodds.com/blog/archives/000033.html">FOAF-a-matic</a> à vos amis.
+        </p>
+
+        <h4>Utiliser le forum FOAF</h4>
+
+        <p>
+        Pour simplifier la découverte de descriptions FOAF, le plus simple c'est d'avoir un "annuaire" des gens. J'ai créé une manière simple de faire ça, appelé <a href="bulletin-board.html">FOAF Bulletin Board</a>. Visitez le Wiki FOAFWiki,
+        et modifiez la page <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a>. Ajoutez votre nom et un lien vers votre description FOAF. J'ai ajouté la mienne, vous pouvez l'utiliser comme exemple.
+        </p>
+
+        <p>
+        Des applications comme celle de Edd Dumbill, <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>
+        peuvent traiter ces données en utilisant la magie de HTML Tidy et de XSLT. Allez voir le FOAFBot en action sur sa page.
+        </p>
+    </fm:what-next>
+
+    <fm:license title="License">
+        <p>
+        Ce travail est sous licence
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons</a>.
+        </p>
+        <p>
+        <!-- Creative Commons License -->
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif" /></a><br />
+        <!-- /Creative Commons License -->
+        </p>
+    </fm:license>
+
+    <fm:fields>
+        <fm:field id="friend" name="Ami"/>
+        <fm:field id="title" name="Salutation (M., Mme, Dr, etc)"/>
+        <fm:field id="firstName" name="Prénom"/>
+        <fm:field id="surname" name="Nom"/>
+        <fm:field id="nick" name="Surnom ou pseudo"/>
+        <fm:field id="email" name="Votre adresse de courrier"/>
+        <fm:field id="homepage" name="Page web"/>
+        <fm:field id="depiction" name="Votre photo"/>
+        <fm:field id="phone" name="Téléphone"/>
+        <fm:field id="workplaceHomepage" name="Page web au travail"/>
+        <fm:field id="workInfoHomepage" name="Page décrivant votre travail"/>
+        <fm:field id="schoolHomepage" name="Page web de votre école"/>
+        <fm:field id="spamProtect" name="Adresse de courrier protégé des spammeurs"/>
+        <fm:field id="friendEmail" name="Adresse de courrier"/>
+        <fm:field id="friendName" name="Non"/>
+        <fm:field id="friendSeeAlso" name="Voir aussi"/>
+    </fm:fields>
+
+    <fm:buttons>
+        <fm:button id="addFriend" title="Ajoutez un ami"/>
+        <fm:button id="generate" title="Créer FOAF!"/>
+        <fm:button id="reset" title="Annuler"/>
+    </fm:buttons>
+
+    <fm:messages>
+        <fm:message id="missingRequired">Vous devez compléter ces champs:</fm:message>
+        <fm:message id="missingFriendEmail">Une adresse de courrier pour ?</fm:message>
+    </fm:messages>
+</fm:translation>

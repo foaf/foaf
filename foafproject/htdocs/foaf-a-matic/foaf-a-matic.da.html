@@ -1,0 +1,394 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
+<head>
+<title>FOAF-a-matic -- Beskriv dig selv med RDF</title>
+<link rel="stylesheet" href="css/foaf-a-matic.css" type="text/css"/>
+<script language="javascript" type="text/javascript" src="js/foaf-a-matic.js" xml:space="preserve">
+</script>
+<script language="javascript" type="text/javascript" src="js/foaf.js" xml:space="preserve"/>
+<script language="javascript" type="text/javascript" src="js/sha1.js" xml:space="preserve"/>
+<script language="javascript" xml:space="preserve">
+<!--
+// check for parameters in URL
+checkParameters();
+// -->
+</script>
+<link rel="stylesheet" href="../css/foaf3.css" type="text/css"/>
+</head>
+
+<body>
+<h1>
+<a href="http://www.foaf-project.org/" shape="rect">
+<span class="lefthead">foaf  
+</span>
+<span class="righthead">project</span>
+</a>
+</h1>
+<div class="description-bar">friend of a friend</div>
+<div class="marginLeft">
+<div class="header">
+<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles"/>
+</div>
+<div id="links">
+<a href="/foaf-a-matic/" shape="rect">foaf-a-matic</a>
+<a href="http://rdfweb.org/topic/FAQ" shape="rect">
+about</a>
+<a href="http://xmlns.com/foaf/0.1/" shape="rect">specification</a>
+<a href="http://rdfweb.org/" shape="rect">
+developers</a>
+<a href="http://rdfweb.org/foaf/corp/intro.html" shape="rect">foafcorp</a>
+<a href="foaf-contact@rdfweb.org" shape="rect">
+contact</a>
+</div>
+<!-- main page content follows -->
+</div>
+<h2>FOAF-a-Matic</h2>
+
+
+
+
+
+<p>
+Skrevet af <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. Oversat af <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:morten@wasab.dk">Morten Frederiksen</a>.
+</p>
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introduktion</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-Matic er en simpel Javascript applikation der kan hj&aelig;lpe med at lave
+        en FOAF-beskrivelse ("Friend-of-A-Friend", "Ven-af-en-Ven") af dig selv.
+        Du kan l&aelig;se mere om
+        FOAF i Edd Dumbills artikel "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
+        Watch: Finding friends with XML and RDF</a>" ("Find venner med XML og RDF"), p&aring;
+        <a href="http://rdfweb.org/foaf/">FOAF-hjemmesiden p&aring; RDFWeb</a> samt i
+        <a href="http://xmlns.com/foaf/0.1/">FOAF's tekniske beskrivelse</a>.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Kort fortalt: FOAF er en m&aring;de at beskrive dig selv p&aring; -- dit navn, e-mail adresse
+        og de mennesker du er venner med -- ved hj&aelig;lp af XML og RDF. Det g&oslash;r det muligt
+        for software at "forst&aring;" disse beskrivelser, m&aring;ske som en del af en automatiseret
+        s&oslash;gemaskine, og dermed opdage information om dig og de sociale grupper du er medlem af.
+        FOAF har potentiale til at fremme mange interessante udviklinger indenfor online-grupper,
+        Ben Hammersleys artikel "<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"
+        ("Klik til kliken") p&aring; The Guardian Unlimited ser n&aelig;rmere p&aring; disse muligheder.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        FOAF-a-Matic stilles til r&aring;dighed som en hurtig og nem m&aring;de at danne din egen FOAF-beskrivelse.
+        Det er nemt, benyt blot de forskellige felter p&aring; denne side, og udfyld de detaljer du
+        finder passende at beskrive dig selv med. Som minimum skal du dog udfylde dit navn og e-mail
+        adresse, og tilsvarende for de af dine venner du angiver. Det er en god id&eacute; at angive et
+        par venner i din beskrivelse (tilf&oslash;j endelig s&aring; mange du har lyst til), for s&aring; vil
+        det v&aelig;re muligt for de forskellige FOAF-robotter at forbinde dig og dine venner som et
+        virtuelt netv&aelig;rk n&aring;r din beskrivelse bliver indekseret.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        NB: De oplysninger du indtaster p&aring; denne side bliver IKKE brugt eller gemt p&aring; nogen m&aring;de.
+        Behandlingen foreg&aring;r udelukkende i din browser, s&aring; din sikkerhed og dit privatliv er sikret.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Skulle du have sp&oslash;rgsm&aring;l om denne applikation, eller andre sp&oslash;rgsm&aring;l om FOAF, er du velkommen
+        til at tilmelde dig <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-dev mailing-listen</a>.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<b>Seneste nyt</b>: Jeg er i &oslash;jeblikket i gang med at skrive <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>,
+        et program til oprettelse og vedligeholdelse af FOAF-beskrivelser.
+        </p>
+    
+
+<form name="details" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Formularerne</h2>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personligt</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Hvem er du, og hvordan kan folk f&aring; fat p&aring; dig?
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">Titel (Hr, Fr, Frk osv.)</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="title"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Fornavn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="firstName"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Efternavn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="surname"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">K&aelig;lenavn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="nick"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">E-mail-adresse</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="email"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Hjemmeside</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="homepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">URL for fotografi</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="depiction"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Telefonnummer</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="phone"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Arbejde</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Hvor arbejder du?
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">URL for dit arbejdes hjemmeside</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workplaceHomepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">URL med beskrivelse af hvad du laver p&aring; arbejdet</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workInfoHomepage"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Skole</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Hvor har du senest g&aring;et i skole?
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">URL for skolens hjemmeside</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="schoolHomepage"/>
+</td>
+</tr>
+</table>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Venner</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Fort&aelig;l FOAF-a-matic om nogle af de venner du har. Klik p&aring; "Tilf&oslash;j ven" for at f&aring; plads
+        til at angive flere venner. Hvis din ven allerede har en FOAF-beskrivelse, s&aring; skriv
+        URL p&aring; filen i "Se ogs&aring;"-feltet.
+        </p>
+    
+
+<form name="friends" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<table>
+<tbody id="friendtable">
+<script language="javascript" xml:space="preserve">
+//see foaf-a-matic.js
+createFriendFields();
+</script>
+</tbody>
+</table>
+
+<input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()"/>
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Dan Beskrivelse</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Nu da detaljerne er p&aring; plads, er du klar til at blive beskrevet i FOAF...
+        </p>
+    
+
+<form name="results" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<p>
+   <input type="checkbox" id="spamProtect" name="spamProtect" checked="checked"/> Beskyt e-mail-adresser fra spammere 
+</p>
+<p>
+   <input type="submit" id="generate" value="FOAF me!" onClick="generate()"/>
+</p>
+<textarea name="rdf" cols="80" rows="20"/>
+
+<p align="left">
+   <input id="reset" type="reset"/>
+</p>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Hvad nu?</h2>
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Offentligg&oslash;r din FOAF-beskrivelse</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Dette er den nemmeste del. Tag en kopi af den genererede FOAF-beskrivelse fra boksen ovenfor
+        og inds&aelig;t den i en fil. L&aelig;g denne fil p&aring; din hjemmeside hvor der er offentlig adgang til den --
+        det er en god id&eacute; at kalde den "foaf.rdf", for s&aring; kan en s&oslash;gning p&aring; Google hj&aelig;lpe med at
+        finde FOAF-beskrivelser.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Din FOAF-beskrivelse er nu klar, nu mangler det bare at folk kommer forbi og l&aelig;ser den...
+        </p>
+
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Bliv en del af FOAF-f&aelig;llesskabet</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Det bliver stadig diskuteret hvordan FOAF-beskrivelser skal blive 'opdaget' (dvs. hvordan f.eks.
+        FOAF-robotter finder din beskrivelse). Har du forslag eller gode id&eacute;er s&aring; send dem endelig
+        til <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-dev mailing-listen</a>.
+        Der er dog tre muligheder, du kan benytte dig af.
+        </p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Brug af HTML's <em>link</em> element</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Aaron Swartz har <a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">foresl&aring;et</a> at bruge
+        HTML's <em>link</em> element til at pege p&aring; FOAF-beskrivelse, efter samme princip som mange
+        bloggere bruger til at pege p&aring; deres RSS-filer. Det skal se ud som s&aring;dan:
+        </p>
+
+        
+<code xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" /&gt;
+        </code>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Henvisninger fra en ven</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Den anden anbefalede metode til at f&aring; din FOAF-beskrivelse indekseret er at have en anden (typisk en ven) til at
+        pege p&aring; den. En FOAF-robot kan s&aring;ledes finde nye FOAF-beskrivelser ved at genneml&oslash;be
+        beskrivelser den allerede kender. Du kan s&oslash;rge for dette ved at f&#134; foretaget de f&oslash;lgende
+        &aelig;ndringer i en vens FOAF-beskrivelse:
+        </p>
+
+        
+<ol xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<li>S&oslash;rg for at <code>rdf:RDF</code>-elementet indeholder definitionen for RDF Schema, f.eks. som f&oslash;lger:
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
+        </code>
+        
+</li>
+        
+<li>Du kan nu tilf&oslash;je links til andre FOAF-beskrivelser ved at inds&aelig;tte et <code>rdfs:seeAlso</code>-element
+        for hver beskrivelse, som f&oslash;lger:
+        <code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/&gt;
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/&gt;
+        </code>
+        
+</li>
+        
+</ol>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<i>Seneste nyt</i>: Hvis din ven allerede har en FOAF-beskrivelse b&oslash;r du angive den i "See ogs&aring;"-feltet ovenfor.
+        Du kan ogs&aring; <a href="http://www.ldodds.com/blog/archives/000033.html">henvise en ven til FOAF-a-Matic</a>.
+        </p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Brug af FOAF-opslagstavlen</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        En indlysende m&aring;de for FOAF-robotter at finde FOAF-beskrivelser p&aring; er et centralt katalog af venner.
+        Jeg har flikket en simpel metode sammen kaldet <a href="bulletin-board.html">FOAF-opslagstavlen</a>.
+        Kig forbi FOAF-Wikien, redig&eacute;r <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a>-siden
+        og tilf&oslash;j dit navn og et link til din FOAF-beskrivelse.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Ved hj&aelig;lp af magien fra HTML Tidy og XSLT kan FOAF-robotter som f.eks. Edd Dumbills <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>
+        forst&aring; dette indeks. Bes&oslash;g FOAFBots hjemmeside hvor der er information om hvordan du kan se den i aktion.
+        </p>
+    
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Licensbetingelser</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Dette stykke arbejde stilles til r&aring;dighed under en
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons Licens</a>.
+        </p>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <!-- Creative Commons License -->
+        
+<a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif"></a>
+<br>
+        <!-- /Creative Commons License -->
+        
+</p>
+    
+
+<hr/>
+[<a href="index.html" shape="rect">FOAF Hackery</a>]
+
+</body>
+</html>
