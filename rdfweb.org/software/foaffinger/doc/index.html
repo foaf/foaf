@@ -1,0 +1,100 @@
+
+pldms@evila > java -jar FoafFinger-20030521.jar "Damian Steer" pldms@mac.com
+Binding to: evila.danbri.org/10.0.2.17
+HttpServer running on port 7654
+> 
+[0] Joe Bloggs is online.
+[1] Gretchen Franklin is online.
+> 
+> set interest http://rdfweb.org/foaf/
+> set homepage http://rdfweb.org/people/damian/
+> find rdf
+	Name		Homepage		Interest
+[0]	Joe Bloggs	http://example.com/joe/	http://w3.org/rdf
+> find
+	Name		Homepage		Interest
+[0]	Joe Bloggs	http://example.com/joe/	http://w3.org/rdf
+[1]	Gretchen Franklin	http://www.freeserve.net/people/gf/	http://www.bbc.co.uk/eastenders/
+> show 0
+Name: Joe Bloggs
+Hash Mbox: 4445904ac65039ef7a91506207f19162ac4dea73
+Homepage: http://example.com/joe/
+Interest: http://w3.org/rdf
+Plan: 
+I'm bumming around on irc://irc.freenode.net/%23rdfig, drinking cider.
+
+Currently working on a P2P XP B2B dev system, using YAML, UDL, XHHML and TINAML.
+
+
+> show 1
+Name: Gretchen Franklin
+Hash Mbox: 317e4d5ff06431b79cd070fa841758b0ac56ccc7
+Mbox: gf@freeserve.net
+Homepage: http://www.freeserve.net/people/gf/
+Interest: http://www.bbc.co.uk/eastenders/
+Plan: 
+Working on a pilot for "Monkey Tennis"
+
+Destroy all humans
+
+
+> set showmbox true
+> ikn   dump
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+
+<Person>
+    <name>Damian Steer</name>
+    <mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76</mbox_sha1sum>
+    <mbox rdf:resource="mailto:pldms@mac.com"/>
+    <interest rdf:resource="http://rdfweb.org/foaf/"/>
+    <homepage rdf:resource="http://rdfweb.org/people/damian/"/>
+</Person>
+</rdf:RDF>
+> iknow 0
+> dump
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://xmlns.com/foaf/0.1/"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+
+<Person>
+    <name>Damian Steer</name>
+    <mbox_sha1sum>f30065df6b58584bd16373eee43c9f8e2ffb9a76</mbox_sha1sum>
+    <mbox rdf:resource="mailto:pldms@mac.com"/>
+    <interest rdf:resource="http://rdfweb.org/foaf/"/>
+    <homepage rdf:resource="http://rdfweb.org/people/damian/"/>
+    <knows>
+    <Person>
+        <name>Joe Bloggs</name>
+        <mbox_sha1sum>4445904ac65039ef7a91506207f19162ac4dea73</mbox_sha1sum>
+        <interest rdf:resource="http://w3.org/rdf"/>
+        <homepage rdf:resource="http://example.com/joe/"/>
+    </Person>
+    </knows>
+</Person>
+</rdf:RDF>
+> 
+> 
+[0] Joe Bloggs is offline.
+[0] Joe Bloggs is online.
+> messages off
+> dump webwho.rdf
+Information saved to webwho.rdf
+> set seealso http://rdfweb.org/people/damian/webwho.rdf
+> set plan
+(Enter text, and finish with two blank lines)
+This is my first pa lan.
+I have no plan, but you've got to have a plan.
+I plan to get a plan.
+
+
+> quit
+pldms@evila > exit
+exit
+
+Script done on Wed May 21 11:44:23 2003
