@@ -17,18 +17,16 @@ so we need a tiny wrapper script, <code>./fssh</code> to deal with
 this.</p>
 
 <pre>
-[foafnaut]$ cat ./fssh
-#!/bin/bash
-/usr/bin/ssh -p 2223 $*
-
-[foafnaut]$ export CVS_RSH='./fssh'
+[foafnaut]$ export CVS_RSH='ssh'
 [foafnaut]$ export CVSROOT=:ext:jibberjim@foafnaut.org:/var/lib/cvs
 [foafnaut]$ cvs co foafnaut.org/
-
 </pre>
+<p>The same should work for xmlns.com, foafnaut.org, rdfweb.org CVS trees.</p>
 
 <h2>Further Reading</h2>
 <ul>
+<li><a href="http://rdfweb.org/viewcvs/viewcvs.cgi">RDFWeb ViewCVS 
+(readonly) Web interface</a> (browse the CVS repository)</li>
 <li><a 
 href="http://www.barebones.com/support/faq/faq.php?action=question&minor_id=3&question_id=33">How 
 do I use CVS over SSH?</a> (BBEdit FAQ, also see other <a 
@@ -39,7 +37,7 @@ FAQs</a>), for MacOS X users.</li>
 <hr />
 Author: <a href="mailto:danbri-sysadmin@rdfweb.org">Dan
 Brickley</a> <br />
-$Id: 01-server-access.html,v 1.2 2003-01-29 22:17:34 danbri Exp $
+$Id: 01-server-access.html,v 1.3 2003-01-31 13:35:33 danbri Exp $
 </body>
 </html>
 
