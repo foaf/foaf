@@ -1,3 +1,19 @@
+$Date: 2001-11-07 19:55:41 $ - pldms
+
+    Bunch of new things. Some classes have been updated to remove old java stuff (Vector,
+    Hashtable) with their spiffy new counterparts.
+    
+    Schema related classes have been overhauled to be - hey! - almost readable.
+    
+    Schema now allows deleting of elements (though there is an odd bug when Classes or Properties
+    becomes empty, then new stuff is added).
+    
+    When adding nodes or arcs (whichever is relevant) the currently selected schema type is used.
+    Eg if 'foaf::person' is selected then new nodes are of type 'foaf::person'. This was Libby's
+    idea - makes adding arcs more convienient.
+    
+    Preliminary work on query added.
+
 2001/11/02 18:18:04 - pldms
     
     Fixed revert non-displaying.

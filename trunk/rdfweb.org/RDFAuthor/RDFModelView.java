@@ -269,9 +269,7 @@ public class RDFModelView extends NSView {
             rdfAuthorDocument.setTypeForArcAtPoint(namespace, name, point);
         }
         else {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runAlert("Incorrect Type",
-                "The view has not registered for this drag type", null, null, null);
+            System.err.println("The view has not registered for drag type: " + type);
         }
         
         // Restore description to previous value, and redraw

@@ -28,7 +28,14 @@ public class SchemaWindowController extends NSObject {
     public void addSchema(Object sender) 
     {
         String url = schemaUrlField.stringValue();
-        schemaData.importSchema(url, schemaOutlineView);
+        if (url.trim().equals(""))
+        {
+            RDFAuthorUtilities.ShowError(
+                "No URL Entered", "You need to specify a schema URL.",
+                RDFAuthorUtilities.Normal, (NSWindow) schemaWindow);
+            return;
+        }
+        schemaData.importSchema(url, schemaOutlineView, schemaWindow);
     }
     
     public void deleteSelectedItem(Object sender)
