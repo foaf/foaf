@@ -1,0 +1,128 @@
+<table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Organization</td> 
+ <td>An organisation</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Project</td> 
+ <td>A project</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Person</td> 
+ <td>A person.</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Document</td> 
+ <td>A document</td></tr> 
+
+</table>
+
+<table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/theme</td> 
+ <td>theme</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic_interest</td> 
+ <td>a thing of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/myersBriggs</td> 
+ <td>a Myers Briggs (MBTI) personality classification</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/family_name</td> 
+ <td>The family_name of some Person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox</td> 
+ <td>A personal mailbox, ie. a web-identifiable Internet mailbox associated with exactly one owner, the first owner of this mailbox. This property is a 'static inverse functional property', in that there is (across time and change) at most one individual that has any particular personal mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/publications</td> 
+ <td>a link to the publications of this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workplaceHomepage</td> 
+ <td>a workplace homepage of some person; the homepage of an organisation they work for.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/phone</td> 
+ <td>A fully qualified international phone number, specified using the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/mbox_sha1sum</td> 
+ <td>The sha1sum of the URI of a web-identifiable Internet mailbox associated with exactly one owner, the first owner of the mailbox.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/currentProject</td> 
+ <td>a current project this person works on</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/homepage</td> 
+ <td>A homepage for some thing</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/geekcode</td> 
+ <td>A textual geekcode for this person, see http://www.geekcode.com/geek.html</td><td>http://xmlns.com/foaf/0.1/Person</td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/pastProject</td> 
+ <td>a project this person has previously worked on</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/weblog</td> 
+ <td>A weblog of some thing (whether person, group, company etc.).</td><td><em>not specified</em></td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/dnaChecksum</td> 
+ <td>A checksum for the DNA of some (presumably living) thing. Joke.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/fundedBy</td> 
+ <td>an organisation funding a project or person</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/made</td> 
+ <td>Something that was made by this agent.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/title</td> 
+ <td>Title (Mr, Mrs, Ms, Dr. etc)</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/linkedWith</td> 
+ <td>generic link</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/img</td> 
+ <td>an image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/nick</td> 
+ <td>A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/logo</td> 
+ <td>a logo representing some thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/workInfoHomepage</td> 
+ <td>a work info homepage of some person; a page about their work for some organisation.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/name</td> 
+ <td>A name for some thing</td><td><em>not specified</em></td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/schoolHomepage</td> 
+ <td>a homepage of a school attended by the person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depiction</td> 
+ <td>a depiction of some thing</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depicts</td> 
+ <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/givenname</td> 
+ <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/id</td> 
+ <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
+ <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/surname</td> 
+ <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+
+</table>
+
