@@ -1,5 +1,5 @@
 // Copyright (C) 2002  Strangeberry Inc.
-// @(#)ServiceInfo.java, 1.24, 03/05/2003
+// @(#)ServiceInfo.java, 1.21, 11/29/2002
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -25,7 +25,7 @@ import java.util.*;
  * Rendezvous service information.
  *
  * @author	Arthur van Hoff
- * @version 	1.24, 03/05/2003
+ * @version 	1.21, 11/29/2002
  */
 public class ServiceInfo extends Rendezvous.Listener
 {
@@ -47,19 +47,6 @@ public class ServiceInfo extends Rendezvous.Listener
      * @param name fully qualified service name
      * @param addr the address to which the service is bound
      * @param port the local port on which the service runs
-     * @param text string describing the service
-     */
-    public ServiceInfo(String type, String name, InetAddress addr, int port, String text)
-    {
-	this(type, name, addr, port, 0, 0, text);
-    }
-
-    /**
-     * Construct a service description for registrating with Rendezvous.
-     * @param type fully qualified service type name
-     * @param name fully qualified service name
-     * @param addr the address to which the service is bound
-     * @param port the local port on which the service runs
      * @param weight weight of the service
      * @param priority priority of the service
      * @param text string describing the service
@@ -74,20 +61,6 @@ public class ServiceInfo extends Rendezvous.Listener
 	} catch (IOException e) {
 	    throw new RuntimeException("unexpected exception: " + e);
 	}
-    }
-
-    /**
-     * Construct a service description for registrating with Rendezvous. The properties hashtable must
-     * map property names to either Strings or byte arrays describing the property values.
-     * @param type fully qualified service type name
-     * @param name fully qualified service name
-     * @param addr the address to which the service is bound
-     * @param port the local port on which the service runs
-     * @param props properties describing the service
-     */
-    public ServiceInfo(String type, String name, InetAddress addr, int port, Hashtable props)
-    {
-	this(type, name, addr, port, 0, 0, props);
     }
 
     /**
@@ -143,7 +116,8 @@ public class ServiceInfo extends Rendezvous.Listener
      */
     public ServiceInfo(String type, String name, InetAddress addr, int port, int weight, int priority, byte text[])
     {
-	this(type, name);
+	this.type = type;
+	this.name = name;
 	this.port = port;
 	this.weight = weight;
 	this.priority = priority;
@@ -157,17 +131,6 @@ public class ServiceInfo extends Rendezvous.Listener
      */
     ServiceInfo(String type, String name)
     {
-	if (!type.endsWith(".")) {
-	    throw new IllegalArgumentException("type must be fully qualified DNS name ending in '.': " + type);
-	}
-	if (name.endsWith(".")) {
-	    if (!name.endsWith("." + type)) {
-		throw new IllegalArgumentException("service name has the wrong type: name=" + name + ", type=" + type);
-	    }
-	} else {
-	    name = name + "." + type;
-	}
-
 	this.type = type;
 	this.name = name;
     }
@@ -238,29 +201,6 @@ public class ServiceInfo extends Rendezvous.Listener
 	    return null;
 	}
 	return readUTF(text, 0, text.length);
-    }
-
-    /**
-     * Get the URL for this service. An http URL is created by
-     * combining the addres, port, and path properties.
-     */
-    public String getURL()
-    {
-	return getURL("http");
-    }
-
-    /**
-     * Get the URL for this service. An URL is created by
-     * combining the protocol, addres, port, and path properties.
-     */
-    public String getURL(String protocol)
-    {
-	String url = protocol + "://" + getAddress() + ":" + getPort();
-	String path = getPropertyString("path");
-	if (path != null) {
-	    url += path.startsWith("/") ? path : "/" + path;
-	}
-	return url;
     }
 
     /**
@@ -362,8 +302,7 @@ public class ServiceInfo extends Rendezvous.Listener
     synchronized Hashtable getProperties()
     {
 	if ((props == null) && (text != null)) {
-	    Hashtable props = new Hashtable();
-	    this.props = props;
+	    props = new Hashtable();
 	    int off = 0;
 	    while (off < text.length) {
 		// length of the next key value pair
@@ -382,11 +321,11 @@ public class ServiceInfo extends Rendezvous.Listener
 		    props.clear();
 		    break;
 		}
-		if (i++ >= len) {
+		if (i == len) {
 		    props.put(name, NO_VALUE);
 		} else {
 		    byte value[] = new byte[len - i];
-		    System.arraycopy(text, off + i, value, 0, len - i);
+		    System.arraycopy(text, off + i + 1, value, 0, len - i -1);
 		    props.put(name, value);
 		    off += len;
 		}
@@ -498,25 +437,6 @@ public class ServiceInfo extends Rendezvous.Listener
 	return (obj instanceof ServiceInfo) && name.equals(((ServiceInfo)obj).name);
     }
 
-    public String getNiceTextString()
-    {
-	StringBuffer buf = new StringBuffer();
-	for (int i = 0, len = text.length ; i < len ; i++) {
-	    if (i >= 20) {
-		buf.append("...");
-		break;
-	    }
-	    int ch = text[i] & 0xFF;
-	    if ((ch < ' ') || (ch > 127)) {
-		buf.append("\\0");
-		buf.append(Integer.toString(ch, 8));
-	    } else {
-		buf.append((char)ch);
-	    }
-	}
-	return buf.toString();
-    }
-
     public String toString()
     {
 	StringBuffer buf = new StringBuffer();
@@ -527,7 +447,7 @@ public class ServiceInfo extends Rendezvous.Listener
 	buf.append(':');
 	buf.append(port);
 	buf.append(',');
-	buf.append(getNiceTextString());
+	buf.append((text.length < 20) ? new String(text) : new String(text, 0, 17) + "...");
 	buf.append(']');
 	return buf.toString();
     }
