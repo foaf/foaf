@@ -8,7 +8,8 @@ GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 all: clean colour.html index.html
 clean: tidyup 
 
-site:	all sigfiles
+#site:	all sigfiles
+site:	all
 	cd ../; cvs commit -m 'regenerated foaf spec docs';ssh rdfweb.org make slaves
 
 tmpsite:
