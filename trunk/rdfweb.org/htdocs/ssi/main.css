@@ -1,5 +1,6 @@
 BODY {
-  margin: 2em 1em 2em 30px;
+/*  margin: 2em 1em 2em 30px; */
+ margin: 0em 2em 2em 30px;
  font-family: Arial, Helvetica, sans-serif;  
   color: black;
   background: white;
@@ -19,7 +20,7 @@ DIV.navbar {
 }
 
 SPAN.sitepart {
- letter-spacing: 2px;
+ letter-spacing: 2px; 
 }
 
 A:hover.sitepart {
