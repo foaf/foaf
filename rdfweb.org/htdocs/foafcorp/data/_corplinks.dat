@@ -1,0 +1,565 @@
+personid	firstname	lastname	id	id	companyname	companyname
+1	Lee R.	Raymond	12	1	J.P. Morgan Chase	Exxon-Mobil
+3	William T.	Esrey	17	1	Duke Energy	Exxon-Mobil
+3	William T.	Esrey	75	1	Sprint	Exxon-Mobil
+4	Donald V.	Fites	9	1	AT*T	Exxon-Mobil
+4	Donald V.	Fites	84	1	Georgia-Pacific	Exxon-Mobil
+4	Donald V.	Fites	99	1	Caterpillar	Exxon-Mobil
+5	Jess	Hay	14	1	SBC Communications	Exxon-Mobil
+6	Charles A.	Heimbold Jr.	88	1	Bristol-Myers Squibb	Exxon-Mobil
+7	James R.	Houghton	47	1	MetLife	Exxon-Mobil
+9	Helene L.	Kaplan	10	1	Verizon Communications	Exxon-Mobil
+9	Helene L.	Kaplan	12	1	J.P. Morgan Chase	Exxon-Mobil
+9	Helene L.	Kaplan	47	1	MetLife	Exxon-Mobil
+10	Reatha	Clark King	62	1	Wells Fargo	Exxon-Mobil
+16	Walter V.	Shipley	10	1	Verizon Communications	Exxon-Mobil
+18	Stephen	Friedman	26	2	Fannie Mae	Wal-Mart Stores
+33	John H.	Bryan	42	3	Goldman Sachs Group	General Motors
+33	John H.	Bryan	70	3	Bank One Corp.	General Motors
+35	George M.C.	Fisher	9	3	AT*T	General Motors
+41	John F.	Smith, Jr.	31	3	Procter and Gamble	General Motors
+43	Lloyd D.	Ward	12	3	J.P. Morgan Chase	General Motors
+49	Irvine O.	Hockaday, Jr.	60	4	Utilicorp	Ford Motor
+49	Irvine O.	Hockaday, Jr.	75	4	Sprint	Ford Motor
+55	Carl E.	Reichardt	35	4	McKesson HBOC	Ford Motor
+55	Carl E.	Reichardt	68	4	ConAgra	Ford Motor
+55	Carl E.	Reichardt	82	4	PG*E Corp.	Ford Motor
+56	Robert E.	Rubin	6	4	Citigroup	Ford Motor
+57	John L.	Thornton	42	4	Goldman Sachs Group	Ford Motor
+62	Ann M.	Fudge	71	5	Honeywell International	General Electric
+66	 Kenneth G.	Langone	23	5	Home Depot	General Electric
+70	Sam	Nunn	16	5	Texaco	General Electric
+70	Sam	Nunn	48	5	Dell Computer	General Electric
+70	Sam	Nunn	93	5	Coca-Cola	General Electric
+71	Roger S.	Penske	57	5	Delphi Automotive Systems	General Electric
+73	Andrew C.	Sigler	71	5	Honeywell International	General Electric
+74	Douglas A.	Warner III	12	5	J.P. Morgan Chase	General Electric
+77	C. Michael	Armstrong	9	6	AT*T	Citigroup
+78	Alain J.P.	Belda	56	6	E.I. du Pont de Nemours	Citigroup
+78	Alain J.P.	Belda	77	6	Alcoa	Citigroup
+79	Kenneth J.	Bialkin	79	6	Microsoft	Citigroup
+80	Kenneth T.	Derr	9	6	AT*T	Citigroup
+91	Franklin A.	Thomas	28	6	Lucent Technologies	Citigroup
+91	Franklin A.	Thomas	44	6	Conoco	Citigroup
+91	Franklin A.	Thomas	77	6	Alcoa	Citigroup
+91	Franklin A.	Thomas	94	6	PepsiCo	Citigroup
+92	Sanford I.	Weill	9	6	AT*T	Citigroup
+56	Robert E.	Rubin	4	6	Ford Motor	Citigroup
+94	Kenneth L.	Lay	27	7	Compaq Computer	Enron
+98	Ronnie C.	Chan	34	7	Motorola	Enron
+100	Wendy L.	Gramm	21	7	State Farm Insurance Cos.	Enron
+108	Frank	Savage	69	7	Lockheed Martin	Enron
+112	Louis V.	Gerstner, Jr.	88	8	Bristol-Myers Squibb	Intl. Business Machines
+115	Cathleen	Black	93	8	Coca-Cola	Intl. Business Machines
+116	Kenneth I.	Chenault	74	8	American Express	Intl. Business Machines
+119	Charles F.	Knight	14	8	SBC Communications	Intl. Business Machines
+119	Charles F.	Knight	24	8	Morgan Stanley Dean Witter	Intl. Business Machines
+121	Lucio A.	Noto	11	8	Philip Morris	Intl. Business Machines
+126	Charles M.	Vest	56	8	E.I. du Pont de Nemours	Intl. Business Machines
+129	John D.	Zeglis	84	9	Georgia-Pacific	AT*T
+129	John D.	Zeglis	96	9	Sara Lee	AT*T
+137	Donald F.	McHenry	61	9	International Paper	AT*T
+137	Donald F.	McHenry	81	9	FleetBoston Financial	AT*T
+137	Donald F.	McHenry	93	9	Coca-Cola	AT*T
+92	Sanford I.	Weill	6	9	Citigroup	AT*T
+77	C. Michael	Armstrong	6	9	Citigroup	AT*T
+80	Kenneth T.	Derr	6	9	Citigroup	AT*T
+35	George M.C.	Fisher	3	9	General Motors	AT*T
+4	Donald V.	Fites	1	9	Exxon-Mobil	AT*T
+4	Donald V.	Fites	84	9	Georgia-Pacific	AT*T
+4	Donald V.	Fites	99	9	Caterpillar	AT*T
+150	Joseph	Neubauer	73	10	First Union Corp.	Verizon Communications
+152	Russell E.	Palmer	50	10	Freddie Mac	Verizon Communications
+152	Russell E.	Palmer	71	10	Honeywell International	Verizon Communications
+153	Hugh B.	Price	29	10	Sears Roebuck	Verizon Communications
+153	Hugh B.	Price	47	10	MetLife	Verizon Communications
+155	John W.	Snow	39	10	USX	Verizon Communications
+156	John R.	Stafford	12	10	J.P. Morgan Chase	Verizon Communications
+156	John R.	Stafford	71	10	Honeywell International	Verizon Communications
+157	Robert D.	Storey	31	10	Procter and Gamble	Verizon Communications
+9	Helene L.	Kaplan	1	10	Exxon-Mobil	Verizon Communications
+9	Helene L.	Kaplan	12	10	J.P. Morgan Chase	Verizon Communications
+9	Helene L.	Kaplan	47	10	MetLife	Verizon Communications
+16	Walter V.	Shipley	1	10	Exxon-Mobil	Verizon Communications
+161	Jane	Evans	84	11	Georgia-Pacific	Philip Morris
+169	Carlos Slim	Helu	14	11	SBC Communications	Philip Morris
+121	Lucio A.	Noto	8	11	Intl. Business Machines	Philip Morris
+172	William B.	Harrison, Jr.	30	12	Merck	J.P. Morgan Chase
+173	Hans W.	Becherer	71	12	Honeywell International	J.P. Morgan Chase
+176	Lawrence A.	Bossidy	30	12	Merck	J.P. Morgan Chase
+178	H. Laurance	Fuller	34	12	Motorola	J.P. Morgan Chase
+179	Ellen V.	Futter	22	12	American International Group	J.P. Morgan Chase
+179	Ellen V.	Futter	88	12	Bristol-Myers Squibb	J.P. Morgan Chase
+180	William H.	Gray III	48	12	Dell Computer	J.P. Morgan Chase
+180	William H.	Gray III	80	12	Prudential Ins. Co. of America	J.P. Morgan Chase
+185	Marina V.	Whitman	31	12	Procter and Gamble	J.P. Morgan Chase
+185	Marina V.	Whitman	77	12	Alcoa	J.P. Morgan Chase
+9	Helene L.	Kaplan	1	12	Exxon-Mobil	J.P. Morgan Chase
+9	Helene L.	Kaplan	10	12	Verizon Communications	J.P. Morgan Chase
+9	Helene L.	Kaplan	47	12	MetLife	J.P. Morgan Chase
+1	Lee R.	Raymond	1	12	Exxon-Mobil	J.P. Morgan Chase
+156	John R.	Stafford	10	12	Verizon Communications	J.P. Morgan Chase
+156	John R.	Stafford	71	12	Honeywell International	J.P. Morgan Chase
+43	Lloyd D.	Ward	3	12	General Motors	J.P. Morgan Chase
+74	Douglas A.	Warner III	5	12	General Electric	J.P. Morgan Chase
+188	Charles W.	Coker	96	13	Sara Lee	Bank of America Corp.
+190	Kathleen F.	Feldstein, Ph.D.	66	13	BellSouth	Bank of America Corp.
+195	Walter E.	Massey, Ph.D.	34	13	Motorola	Bank of America Corp.
+199	Solomon D.	Trujillo	37	13	Target	Bank of America Corp.
+199	Solomon D.	Trujillo	94	13	PepsiCo	Bank of America Corp.
+212	James A.	Henderson	61	14	International Paper	SBC Communications
+215	Lynn M.	Martin	31	14	Procter and Gamble	SBC Communications
+216	John B.	McCoy	50	14	Freddie Mac	SBC Communications
+216	John B.	McCoy	51	14	Cardinal Health	SBC Communications
+217	Mary S.	Metz	82	14	PG*E Corp.	SBC Communications
+221	Laura D.	Tyson	24	14	Morgan Stanley Dean Witter	SBC Communications
+5	Jess	Hay	1	14	Exxon-Mobil	SBC Communications
+169	Carlos Slim	Helu	11	14	Philip Morris	SBC Communications
+119	Charles F.	Knight	8	14	Intl. Business Machines	SBC Communications
+119	Charles F.	Knight	24	14	Morgan Stanley Dean Witter	SBC Communications
+223	Philip M.	Condit	19	15	Hewlett-Packard	The Boeing Company
+226	Kenneth M.	Duberstein	26	15	Fannie Mae	The Boeing Company
+226	Kenneth M.	Duberstein	44	15	Conoco	The Boeing Company
+227	John B.	Fery	38	15	Albertsons	The Boeing Company
+231	Rozanne L.	Ridgway	96	15	Sara Lee	The Boeing Company
+237	Robert J.	Eaton	61	16	International Paper	Texaco
+242	Charles R.	Shoemate	61	16	International Paper	Texaco
+243	Robin B.	Smith	36	16	Kmart	Texaco
+243	Robin B.	Smith	66	16	BellSouth	Texaco
+244	William C.	Steere, Jr.	47	16	MetLife	Texaco
+70	Sam	Nunn	5	16	General Electric	Texaco
+70	Sam	Nunn	48	16	Dell Computer	Texaco
+70	Sam	Nunn	93	16	Coca-Cola	Texaco
+247	G. Alex	Bernhardt, Sr.	73	17	First Union Corp.	Duke Energy
+248	Robert J.	Brown	73	17	First Union Corp.	Duke Energy
+248	Robert J.	Brown	83	17	AutoNation	Duke Energy
+253	George D.	Johnson, Jr.	83	17	AutoNation	Duke Energy
+3	William T.	Esrey	1	17	Exxon-Mobil	Duke Energy
+3	William T.	Esrey	75	17	Sprint	Duke Energy
+261	Reuben V.	Anderson	66	18	BellSouth	Kroger Company
+263	John L.	Clendenin	23	18	Home Depot	Kroger Company
+265	Bruce	Karatz	71	18	Honeywell International	Kroger Company
+267	Edward M.	Liddy	59	18	Allstate	Kroger Company
+276	Carleton S.	Fiorina	30	19	Merck	Hewlett-Packard
+280	Sam	Ginn	20	19	Chevron	Hewlett-Packard
+223	Philip M.	Condit	15	19	The Boeing Company	Hewlett-Packard
+286	Richard H.	Matzke	54	20	Dynegy	Chevron
+288	Carla A.	Hills	22	20	American International Group	Chevron
+288	Carla A.	Hills	28	20	Lucent Technologies	Chevron
+292	Chang-Lin	Tien	62	20	Wells Fargo	Chevron
+294	John A.	Young	28	20	Lucent Technologies	Chevron
+280	Sam	Ginn	19	20	Hewlett-Packard	Chevron
+100	Wendy L.	Gramm	7	21	Enron	State Farm Insurance Cos.
+179	Ellen V.	Futter	12	22	J.P. Morgan Chase	American International Group
+179	Ellen V.	Futter	88	22	Bristol-Myers Squibb	American International Group
+288	Carla A.	Hills	20	22	Chevron	American International Group
+288	Carla A.	Hills	28	22	Lucent Technologies	American International Group
+263	John L.	Clendenin	18	23	Kroger Company	Home Depot
+335	William S.	Davila	82	23	PG*E Corp.	Home Depot
+66	 Kenneth G.	Langone	5	23	General Electric	Home Depot
+1242	Philip J.	Purcell	98	24	AMR	Morgan Stanley Dean Witter
+342	Edward A.	Brennan	59	24	Allstate	Morgan Stanley Dean Witter
+342	Edward A.	Brennan	98	24	AMR	Morgan Stanley Dean Witter
+119	Charles F.	Knight	8	24	Intl. Business Machines	Morgan Stanley Dean Witter
+119	Charles F.	Knight	14	24	SBC Communications	Morgan Stanley Dean Witter
+347	Michael A.	Miles	29	24	Sears Roebuck	Morgan Stanley Dean Witter
+347	Michael A.	Miles	48	24	Dell Computer	Morgan Stanley Dean Witter
+347	Michael A.	Miles	59	24	Allstate	Morgan Stanley Dean Witter
+347	Michael A.	Miles	98	24	AMR	Morgan Stanley Dean Witter
+221	Laura D.	Tyson	14	24	SBC Communications	Morgan Stanley Dean Witter
+353	George B.	Harvey	53	25	Pfizer	Merrill Lynch
+355	Robert P.	Luciano	71	25	Honeywell International	Merrill Lynch
+358	John J.	Phelan, Jr.	47	25	MetLife	Merrill Lynch
+360	Franklin D.	Raines	53	26	Pfizer	Fannie Mae
+360	Franklin D.	Raines	94	26	PepsiCo	Fannie Mae
+226	Kenneth M.	Duberstein	15	26	The Boeing Company	Fannie Mae
+226	Kenneth M.	Duberstein	44	26	Conoco	Fannie Mae
+18	Stephen	Friedman	2	26	Wal-Mart Stores	Fannie Mae
+366	Thomas P.	Gerrity	100	26	CVS	Fannie Mae
+371	Ann	McLaughlin	98	26	AMR	Fannie Mae
+376	Michael D.	Capellas	54	27	Dynegy	Compaq Computer
+94	Kenneth L.	Lay	7	27	Enron	Compaq Computer
+384	Henry B.	Schacht	77	28	Alcoa	Lucent Technologies
+386	Paul A.	Allaire	96	28	Sara Lee	Lucent Technologies
+288	Carla A.	Hills	20	28	Chevron	Lucent Technologies
+288	Carla A.	Hills	22	28	American International Group	Lucent Technologies
+91	Franklin A.	Thomas	6	28	Citigroup	Lucent Technologies
+91	Franklin A.	Thomas	44	28	Conoco	Lucent Technologies
+91	Franklin A.	Thomas	77	28	Alcoa	Lucent Technologies
+91	Franklin A.	Thomas	94	28	PepsiCo	Lucent Technologies
+294	John A.	Young	20	28	Chevron	Lucent Technologies
+394	Warren L.	Batts	59	29	Allstate	Sears Roebuck
+394	Warren L.	Batts	75	29	Sprint	Sears Roebuck
+396	Donald J.	Carty	48	29	Dell Computer	Sears Roebuck
+396	Donald J.	Carty	98	29	AMR	Sears Roebuck
+397	W. James	Farrell	59	29	Allstate	Sears Roebuck
+347	Michael A.	Miles	24	29	Morgan Stanley Dean Witter	Sears Roebuck
+347	Michael A.	Miles	48	29	Dell Computer	Sears Roebuck
+347	Michael A.	Miles	59	29	Allstate	Sears Roebuck
+347	Michael A.	Miles	98	29	AMR	Sears Roebuck
+153	Hugh B.	Price	10	29	Verizon Communications	Sears Roebuck
+153	Hugh B.	Price	47	29	MetLife	Sears Roebuck
+401	Raymond V.	Gilmartin	79	30	Microsoft	Merck
+176	Lawrence A.	Bossidy	12	30	J.P. Morgan Chase	Merck
+1287	William G.	Bowen	33	30	TIAA-CREF	Merck
+1287	William G.	Bowen	74	30	American Express	Merck
+405	Erskine B.	Bowles	73	30	First Union Corp.	Merck
+276	Carleton S.	Fiorina	19	30	Hewlett-Packard	Merck
+172	William B.	Harrison, Jr.	12	30	J.P. Morgan Chase	Merck
+412	Heidi	Miller, Ph.D.	70	30	Bank One Corp.	Merck
+417	John E.	Pepper	34	31	Motorola	Procter and Gamble
+419	Norman R.	Augustine	69	31	Lockheed Martin	Procter and Gamble
+419	Norman R.	Augustine	89	31	Phillips Petroleum	Procter and Gamble
+425	Joesph T.	Gorman	77	31	Alcoa	Procter and Gamble
+142	Charles R.	Lee	39	31	USX	Procter and Gamble
+215	Lynn M.	Martin	14	31	SBC Communications	Procter and Gamble
+41	John F.	Smith, Jr.	3	31	General Motors	Procter and Gamble
+157	Robert D.	Storey	10	31	Verizon Communications	Procter and Gamble
+185	Marina V.	Whitman	12	31	J.P. Morgan Chase	Procter and Gamble
+185	Marina V.	Whitman	77	31	Alcoa	Procter and Gamble
+1287	William G.	Bowen	30	33	Merck	TIAA-CREF
+1287	William G.	Bowen	74	33	American Express	TIAA-CREF
+674	Stanley O.	Ikenberry, Ph.D.	53	33	Pfizer	TIAA-CREF
+674	Stanley O.	Ikenberry, Ph.D.	60	33	Utilicorp	TIAA-CREF
+1290	Paul A.	Volcker	80	33	Prudential Ins. Co. of America	TIAA-CREF
+98	Ronnie C.	Chan	7	34	Enron	Motorola
+178	H. Laurance	Fuller	12	34	J.P. Morgan Chase	Motorola
+451	Judy C.	Lewent	48	34	Dell Computer	Motorola
+195	Walter E.	Massey, Ph.D.	13	34	Bank of America Corp.	Motorola
+417	John E.	Pepper	31	34	Procter and Gamble	Motorola
+467	David S.	Pottruck	41	35	Intel	McKesson HBOC
+55	Carl E.	Reichardt	4	35	Ford Motor	McKesson HBOC
+55	Carl E.	Reichardt	68	35	ConAgra	McKesson HBOC
+55	Carl E.	Reichardt	82	35	PG*E Corp.	McKesson HBOC
+469	Jane E.	Shaw	41	35	Intel	McKesson HBOC
+472	Lilyan H.	Affinito	99	36	Caterpillar	Kmart
+474	Willie D.	Davis	78	36	Dow Chemical	Kmart
+474	Willie D.	Davis	96	36	Sara Lee	Kmart
+476	Robert D.	Kennedy	61	36	International Paper	Kmart
+243	Robin B.	Smith	16	36	Texaco	Kmart
+243	Robin B.	Smith	66	36	BellSouth	Kmart
+483	Roger A.	Enrico	94	37	PepsiCo	Target
+486	James A.	Johnson	42	37	Goldman Sachs Group	Target
+486	James A.	Johnson	91	37	UnitedHealth Group	Target
+487	Richard M.	Kovacevich	62	37	Wells Fargo	Target
+199	Solomon D.	Trujillo	13	37	Bank of America Corp.	Target
+199	Solomon D.	Trujillo	94	37	PepsiCo	Target
+227	John B.	Fery	15	38	The Boeing Company	Albertsons
+142	Charles R.	Lee	31	39	Procter and Gamble	USX
+155	John W.	Snow	10	39	Verizon Communications	USX
+523	Douglas C.	Yearley	69	39	Lockheed Martin	USX
+524	Warren E.	Buffett	93	40	Coca-Cola	Berkshire Hathaway
+525	Charles T.	Munger	45	40	Costco Wholesale	Berkshire Hathaway
+533	John P.	Browne	42	41	Goldman Sachs Group	Intel
+467	David S.	Pottruck	35	41	McKesson HBOC	Intel
+469	Jane E.	Shaw	35	41	McKesson HBOC	Intel
+57	John L.	Thornton	4	42	Ford Motor	Goldman Sachs Group
+533	John P.	Browne	41	42	Intel	Goldman Sachs Group
+33	John H.	Bryan	3	42	General Motors	Goldman Sachs Group
+33	John H.	Bryan	70	42	Bank One Corp.	Goldman Sachs Group
+486	James A.	Johnson	37	42	Target	Goldman Sachs Group
+486	James A.	Johnson	91	42	UnitedHealth Group	Goldman Sachs Group
+549	Ruth J.	Simmons, Ph.D.	47	42	MetLife	Goldman Sachs Group
+549	Ruth J.	Simmons, Ph.D.	53	42	Pfizer	Goldman Sachs Group
+551	M. Anthony	Burns	53	43	Pfizer	J.C. Penney
+553	Kent B.	Foster	49	43	Ingram Micro	J.C. Penney
+553	Kent B.	Foster	87	43	New York Life Insurance	J.C. Penney
+554	Vernon E.	Jordan, Jr.	74	43	American Express	J.C. Penney
+554	Vernon E.	Jordan, Jr.	96	43	Sara Lee	J.C. Penney
+555	Jane C.	Pfeiffer	61	43	International Paper	J.C. Penney
+226	Kenneth M.	Duberstein	15	44	The Boeing Company	Conoco
+226	Kenneth M.	Duberstein	26	44	Fannie Mae	Conoco
+564	William K.	Reilly	56	44	E.I. du Pont de Nemours	Conoco
+91	Franklin A.	Thomas	6	44	Citigroup	Conoco
+91	Franklin A.	Thomas	28	44	Lucent Technologies	Conoco
+91	Franklin A.	Thomas	77	44	Alcoa	Conoco
+91	Franklin A.	Thomas	94	44	PepsiCo	Conoco
+525	Charles T.	Munger	40	45	Berkshire Hathaway	Costco Wholesale
+583	Peter A.	Magowan	99	46	Caterpillar	Safeway
+592	John C.	Danforth	78	47	Dow Chemical	MetLife
+7	James R.	Houghton	1	47	Exxon-Mobil	MetLife
+595	Harry P.	Kamen	53	47	Pfizer	MetLife
+9	Helene L.	Kaplan	1	47	Exxon-Mobil	MetLife
+9	Helene L.	Kaplan	10	47	Verizon Communications	MetLife
+9	Helene L.	Kaplan	12	47	J.P. Morgan Chase	MetLife
+358	John J.	Phelan, Jr.	25	47	Merrill Lynch	MetLife
+153	Hugh B.	Price	10	47	Verizon Communications	MetLife
+153	Hugh B.	Price	29	47	Sears Roebuck	MetLife
+549	Ruth J.	Simmons, Ph.D.	42	47	Goldman Sachs Group	MetLife
+549	Ruth J.	Simmons, Ph.D.	53	47	Pfizer	MetLife
+244	William C.	Steere, Jr.	16	47	Texaco	MetLife
+396	Donald J.	Carty	29	48	Sears Roebuck	Dell Computer
+396	Donald J.	Carty	98	48	AMR	Dell Computer
+180	William H.	Gray III	12	48	J.P. Morgan Chase	Dell Computer
+180	William H.	Gray III	80	48	Prudential Ins. Co. of America	Dell Computer
+608	Michael H.	Jordan	63	48	Aetna	Dell Computer
+451	Judy C.	Lewent	34	48	Motorola	Dell Computer
+347	Michael A.	Miles	24	48	Morgan Stanley Dean Witter	Dell Computer
+347	Michael A.	Miles	29	48	Sears Roebuck	Dell Computer
+347	Michael A.	Miles	59	48	Allstate	Dell Computer
+347	Michael A.	Miles	98	48	AMR	Dell Computer
+70	Sam	Nunn	5	48	General Electric	Dell Computer
+70	Sam	Nunn	16	48	Texaco	Dell Computer
+70	Sam	Nunn	93	48	Coca-Cola	Dell Computer
+615	Mary A.	Taylor	59	48	Allstate	Dell Computer
+553	Kent B.	Foster	43	49	J.C. Penney	Ingram Micro
+553	Kent B.	Foster	87	49	New York Life Insurance	Ingram Micro
+624	Joe B.	Wyatt	86	49	El Paso Corp.	Ingram Micro
+814	Henry	Kaufman	65	50	Lehman Brothers Holdings	Freddie Mac
+216	John B.	McCoy	14	50	SBC Communications	Freddie Mac
+216	John B.	McCoy	51	50	Cardinal Health	Freddie Mac
+152	Russell E.	Palmer	10	50	Verizon Communications	Freddie Mac
+152	Russell E.	Palmer	71	50	Honeywell International	Freddie Mac
+641	Robert D.	Walter	70	51	Bank One Corp.	Cardinal Health
+216	John B.	McCoy	14	51	SBC Communications	Cardinal Health
+216	John B.	McCoy	50	51	Freddie Mac	Cardinal Health
+654	James P.	Kelly	66	52	BellSouth	United Parcel Service
+654	James P.	Kelly	84	52	Georgia-Pacific	United Parcel Service
+551	M. Anthony	Burns	43	53	J.C. Penney	Pfizer
+671	W. Don	Cornwell	100	53	CVS	Pfizer
+353	George B.	Harvey	25	53	Merrill Lynch	Pfizer
+673	Constance J.	Horner	80	53	Prudential Ins. Co. of America	Pfizer
+674	Stanley O.	Ikenberry, Ph.D.	33	53	TIAA-CREF	Pfizer
+674	Stanley O.	Ikenberry, Ph.D.	60	53	Utilicorp	Pfizer
+595	Harry P.	Kamen	47	53	MetLife	Pfizer
+676	Thomas G.	Labrecque	57	53	Delphi Automotive Systems	Pfizer
+360	Franklin D.	Raines	26	53	Fannie Mae	Pfizer
+360	Franklin D.	Raines	94	53	PepsiCo	Pfizer
+549	Ruth J.	Simmons, Ph.D.	42	53	Goldman Sachs Group	Pfizer
+549	Ruth J.	Simmons, Ph.D.	47	53	MetLife	Pfizer
+376	Michael D.	Capellas	27	54	Compaq Computer	Dynegy
+286	Richard H.	Matzke	20	54	Chevron	Dynegy
+691	C. Steven	McMillan	96	54	Sara Lee	Dynegy
+693	H. John	Riley, Jr.	59	54	Allstate	Dynegy
+694	Sheli Z.	Rosenberg	100	54	CVS	Dynegy
+78	Alain J.P.	Belda	6	56	Citigroup	E.I. du Pont de Nemours
+78	Alain J.P.	Belda	77	56	Alcoa	E.I. du Pont de Nemours
+564	William K.	Reilly	44	56	Conoco	E.I. du Pont de Nemours
+126	Charles M.	Vest	8	56	Intl. Business Machines	E.I. du Pont de Nemours
+676	Thomas G.	Labrecque	53	57	Pfizer	Delphi Automotive Systems
+71	Roger S.	Penske	5	57	General Electric	Delphi Automotive Systems
+267	Edward M.	Liddy	18	59	Kroger Company	Allstate
+742	F. Duane	Ackerman	66	59	BellSouth	Allstate
+394	Warren L.	Batts	29	59	Sears Roebuck	Allstate
+394	Warren L.	Batts	75	59	Sprint	Allstate
+342	Edward A.	Brennan	24	59	Morgan Stanley Dean Witter	Allstate
+342	Edward A.	Brennan	98	59	AMR	Allstate
+397	W. James	Farrell	29	59	Sears Roebuck	Allstate
+748	Ronald T.	LeMay	75	59	Sprint	Allstate
+347	Michael A.	Miles	24	59	Morgan Stanley Dean Witter	Allstate
+347	Michael A.	Miles	29	59	Sears Roebuck	Allstate
+347	Michael A.	Miles	48	59	Dell Computer	Allstate
+347	Michael A.	Miles	98	59	AMR	Allstate
+693	H. John	Riley, Jr.	54	59	Dynegy	Allstate
+615	Mary A.	Taylor	48	59	Dell Computer	Allstate
+49	Irvine O.	Hockaday, Jr.	4	60	Ford Motor	Utilicorp
+49	Irvine O.	Hockaday, Jr.	75	60	Sprint	Utilicorp
+674	Stanley O.	Ikenberry, Ph.D.	33	60	TIAA-CREF	Utilicorp
+674	Stanley O.	Ikenberry, Ph.D.	53	60	Pfizer	Utilicorp
+762	John T.	Dillon	99	61	Caterpillar	International Paper
+237	Robert J.	Eaton	16	61	Texaco	International Paper
+212	James A.	Henderson	14	61	SBC Communications	International Paper
+476	Robert D.	Kennedy	36	61	Kmart	International Paper
+137	Donald F.	McHenry	9	61	AT*T	International Paper
+137	Donald F.	McHenry	81	61	FleetBoston Financial	International Paper
+137	Donald F.	McHenry	93	61	Coca-Cola	International Paper
+555	Jane C.	Pfeiffer	43	61	J.C. Penney	International Paper
+242	Charles R.	Shoemate	16	61	Texaco	International Paper
+487	Richard M.	Kovacevich	37	62	Target	Wells Fargo
+781	Susan E.	Engel	97	62	Supervalu	Wells Fargo
+10	Reatha	Clark King	1	62	Exxon-Mobil	Wells Fargo
+292	Chang-Lin	Tien	20	62	Chevron	Wells Fargo
+792	Michael W.	Wright	71	62	Honeywell International	Wells Fargo
+792	Michael W.	Wright	97	62	Supervalu	Wells Fargo
+1034	John W.	Rowe	81	63	FleetBoston Financial	Aetna
+796	Barbara H.	Franklin	78	63	Dow Chemical	Aetna
+799	Earl G.	Graves	98	63	AMR	Aetna
+608	Michael H.	Jordan	48	63	Dell Computer	Aetna
+804	Judith	Rodin	98	63	AMR	Aetna
+811	John F.	Akers	94	65	PepsiCo	Lehman Brothers Holdings
+814	Henry	Kaufman	50	65	Freddie Mac	Lehman Brothers Holdings
+261	Reuben V.	Anderson	18	66	Kroger Company	BellSouth
+190	Kathleen F.	Feldstein, Ph.D.	13	66	Bank of America Corp.	BellSouth
+654	James P.	Kelly	52	66	United Parcel Service	BellSouth
+654	James P.	Kelly	84	66	Georgia-Pacific	BellSouth
+828	Eugene F.	Murphy	69	66	Lockheed Martin	BellSouth
+243	Robin B.	Smith	16	66	Texaco	BellSouth
+243	Robin B.	Smith	36	66	Kmart	BellSouth
+830	William S.	Stavropoulos	78	66	Dow Chemical	BellSouth
+742	F. Duane	Ackerman	59	66	Allstate	BellSouth
+55	Carl E.	Reichardt	4	68	Ford Motor	ConAgra
+55	Carl E.	Reichardt	35	68	McKesson HBOC	ConAgra
+55	Carl E.	Reichardt	82	68	PG*E Corp.	ConAgra
+857	Clayton K.	Yeutter	99	68	Caterpillar	ConAgra
+858	Vance D.	Coffman	88	69	Bristol-Myers Squibb	Lockheed Martin
+419	Norman R.	Augustine	31	69	Procter and Gamble	Lockheed Martin
+419	Norman R.	Augustine	89	69	Phillips Petroleum	Lockheed Martin
+862	James F.	Gibbons, Ph.D.	86	69	El Paso Corp.	Lockheed Martin
+828	Eugene F.	Murphy	66	69	BellSouth	Lockheed Martin
+108	Frank	Savage	7	69	Enron	Lockheed Martin
+523	Douglas C.	Yearley	39	69	USX	Lockheed Martin
+33	John H.	Bryan	3	70	General Motors	Bank One Corp.
+33	John H.	Bryan	42	70	Goldman Sachs Group	Bank One Corp.
+873	James S.	Crown	96	70	Sara Lee	Bank One Corp.
+412	Heidi	Miller, Ph.D.	30	70	Merck	Bank One Corp.
+641	Robert D.	Walter	51	70	Cardinal Health	Bank One Corp.
+173	Hans W.	Becherer	12	71	J.P. Morgan Chase	Honeywell International
+62	Ann M.	Fudge	5	71	General Electric	Honeywell International
+890	James J.	Howard	90	71	Walgreen	Honeywell International
+265	Bruce	Karatz	18	71	Kroger Company	Honeywell International
+355	Robert P.	Luciano	25	71	Merrill Lynch	Honeywell International
+152	Russell E.	Palmer	10	71	Verizon Communications	Honeywell International
+152	Russell E.	Palmer	50	71	Freddie Mac	Honeywell International
+895	Ivan G.	Seidenberg	100	71	CVS	Honeywell International
+73	Andrew C.	Sigler	5	71	General Electric	Honeywell International
+156	John R.	Stafford	10	71	Verizon Communications	Honeywell International
+156	John R.	Stafford	12	71	J.P. Morgan Chase	Honeywell International
+792	Michael W.	Wright	62	71	Wells Fargo	Honeywell International
+792	Michael W.	Wright	97	71	Supervalu	Honeywell International
+899	Thomas D.	O'Malley	89	72	Phillips Petroleum	Tosco
+247	G. Alex	Bernhardt, Sr.	17	73	Duke Energy	First Union Corp.
+405	Erskine B.	Bowles	30	73	Merck	First Union Corp.
+248	Robert J.	Brown	17	73	Duke Energy	First Union Corp.
+248	Robert J.	Brown	83	73	AutoNation	First Union Corp.
+150	Joseph	Neubauer	10	73	Verizon Communications	First Union Corp.
+116	Kenneth I.	Chenault	8	74	Intl. Business Machines	American Express
+1287	William G.	Bowen	30	74	Merck	American Express
+1287	William G.	Bowen	33	74	TIAA-CREF	American Express
+554	Vernon E.	Jordan, Jr.	43	74	J.C. Penney	American Express
+554	Vernon E.	Jordan, Jr.	96	74	Sara Lee	American Express
+3	William T.	Esrey	1	75	Exxon-Mobil	Sprint
+3	William T.	Esrey	17	75	Duke Energy	Sprint
+748	Ronald T.	LeMay	59	75	Allstate	Sprint
+394	Warren L.	Batts	29	75	Sears Roebuck	Sprint
+394	Warren L.	Batts	59	75	Allstate	Sprint
+49	Irvine O.	Hockaday, Jr.	4	75	Ford Motor	Sprint
+49	Irvine O.	Hockaday, Jr.	60	75	Utilicorp	Sprint
+78	Alain J.P.	Belda	6	77	Citigroup	Alcoa
+78	Alain J.P.	Belda	56	77	E.I. du Pont de Nemours	Alcoa
+425	Joesph T.	Gorman	31	77	Procter and Gamble	Alcoa
+384	Henry B.	Schacht	28	77	Lucent Technologies	Alcoa
+91	Franklin A.	Thomas	6	77	Citigroup	Alcoa
+91	Franklin A.	Thomas	28	77	Lucent Technologies	Alcoa
+91	Franklin A.	Thomas	44	77	Conoco	Alcoa
+91	Franklin A.	Thomas	94	77	PepsiCo	Alcoa
+185	Marina V.	Whitman	12	77	J.P. Morgan Chase	Alcoa
+185	Marina V.	Whitman	31	77	Procter and Gamble	Alcoa
+830	William S.	Stavropoulos	66	78	BellSouth	Dow Chemical
+592	John C.	Danforth	47	78	MetLife	Dow Chemical
+474	Willie D.	Davis	36	78	Kmart	Dow Chemical
+474	Willie D.	Davis	96	78	Sara Lee	Dow Chemical
+796	Barbara H.	Franklin	63	78	Aetna	Dow Chemical
+975	Allan D.	Gilmour	80	78	Prudential Ins. Co. of America	Dow Chemical
+401	Raymond V.	Gilmartin	30	79	Merck	Microsoft
+79	Kenneth J.	Bialkin	6	79	Citigroup	Microsoft
+975	Allan D.	Gilmour	78	80	Dow Chemical	Prudential Ins. Co. of America
+180	William H.	Gray III	12	80	J.P. Morgan Chase	Prudential Ins. Co. of America
+180	William H.	Gray III	48	80	Dell Computer	Prudential Ins. Co. of America
+673	Constance J.	Horner	53	80	Pfizer	Prudential Ins. Co. of America
+1290	Paul A.	Volcker	33	80	TIAA-CREF	Prudential Ins. Co. of America
+1008	Terrence	Murray	100	81	CVS	FleetBoston Financial
+1028	Marian L.	Heard	100	81	CVS	FleetBoston Financial
+137	Donald F.	McHenry	9	81	AT*T	FleetBoston Financial
+137	Donald F.	McHenry	61	81	International Paper	FleetBoston Financial
+137	Donald F.	McHenry	93	81	Coca-Cola	FleetBoston Financial
+1034	John W.	Rowe	63	81	Aetna	FleetBoston Financial
+1035	Thomas M.	Ryan	100	81	CVS	FleetBoston Financial
+335	William S.	Davila	23	82	Home Depot	PG*E Corp.
+217	Mary S.	Metz	14	82	SBC Communications	PG*E Corp.
+55	Carl E.	Reichardt	4	82	Ford Motor	PG*E Corp.
+55	Carl E.	Reichardt	35	82	McKesson HBOC	PG*E Corp.
+55	Carl E.	Reichardt	68	82	ConAgra	PG*E Corp.
+248	Robert J.	Brown	17	83	Duke Energy	AutoNation
+248	Robert J.	Brown	73	83	First Union Corp.	AutoNation
+253	George D.	Johnson, Jr.	17	83	Duke Energy	AutoNation
+161	Jane	Evans	11	84	Philip Morris	Georgia-Pacific
+4	Donald V.	Fites	1	84	Exxon-Mobil	Georgia-Pacific
+4	Donald V.	Fites	9	84	AT*T	Georgia-Pacific
+4	Donald V.	Fites	99	84	Caterpillar	Georgia-Pacific
+1066	David R.	Goode	99	84	Caterpillar	Georgia-Pacific
+654	James P.	Kelly	52	84	United Parcel Service	Georgia-Pacific
+654	James P.	Kelly	66	84	BellSouth	Georgia-Pacific
+1069	Louis W.	Sullivan	88	84	Bristol-Myers Squibb	Georgia-Pacific
+129	John D.	Zeglis	9	84	AT*T	Georgia-Pacific
+129	John D.	Zeglis	96	84	Sara Lee	Georgia-Pacific
+862	James F.	Gibbons, Ph.D.	69	86	Lockheed Martin	El Paso Corp.
+624	Joe B.	Wyatt	49	86	Ingram Micro	El Paso Corp.
+553	Kent B.	Foster	43	87	J.C. Penney	New York Life Insurance
+553	Kent B.	Foster	49	87	Ingram Micro	New York Life Insurance
+6	Charles A.	Heimbold Jr.	1	88	Exxon-Mobil	Bristol-Myers Squibb
+1114	Robert E.	Allen	94	88	PepsiCo	Bristol-Myers Squibb
+858	Vance D.	Coffman	69	88	Lockheed Martin	Bristol-Myers Squibb
+179	Ellen V.	Futter	12	88	J.P. Morgan Chase	Bristol-Myers Squibb
+179	Ellen V.	Futter	22	88	American International Group	Bristol-Myers Squibb
+112	Louis V.	Gerstner, Jr.	8	88	Intl. Business Machines	Bristol-Myers Squibb
+1121	James D.	Robinson III	93	88	Coca-Cola	Bristol-Myers Squibb
+1069	Louis W.	Sullivan	84	88	Georgia-Pacific	Bristol-Myers Squibb
+899	Thomas D.	O'Malley	72	89	Tosco	Phillips Petroleum
+419	Norman R.	Augustine	31	89	Procter and Gamble	Phillips Petroleum
+419	Norman R.	Augustine	69	89	Lockheed Martin	Phillips Petroleum
+1126	David L.	Boren	98	89	AMR	Phillips Petroleum
+890	James J.	Howard	71	90	Honeywell International	Walgreen
+486	James A.	Johnson	37	91	Target	UnitedHealth Group
+486	James A.	Johnson	42	91	Goldman Sachs Group	UnitedHealth Group
+115	Cathleen	Black	8	93	Intl. Business Machines	Coca-Cola
+524	Warren E.	Buffett	40	93	Berkshire Hathaway	Coca-Cola
+137	Donald F.	McHenry	9	93	AT*T	Coca-Cola
+137	Donald F.	McHenry	61	93	International Paper	Coca-Cola
+137	Donald F.	McHenry	81	93	FleetBoston Financial	Coca-Cola
+70	Sam	Nunn	5	93	General Electric	Coca-Cola
+70	Sam	Nunn	16	93	Texaco	Coca-Cola
+70	Sam	Nunn	48	93	Dell Computer	Coca-Cola
+1121	James D.	Robinson III	88	93	Bristol-Myers Squibb	Coca-Cola
+811	John F.	Akers	65	94	Lehman Brothers Holdings	PepsiCo
+483	Roger A.	Enrico	37	94	Target	PepsiCo
+1114	Robert E.	Allen	88	94	Bristol-Myers Squibb	PepsiCo
+360	Franklin D.	Raines	26	94	Fannie Mae	PepsiCo
+360	Franklin D.	Raines	53	94	Pfizer	PepsiCo
+91	Franklin A.	Thomas	6	94	Citigroup	PepsiCo
+91	Franklin A.	Thomas	28	94	Lucent Technologies	PepsiCo
+91	Franklin A.	Thomas	44	94	Conoco	PepsiCo
+91	Franklin A.	Thomas	77	94	Alcoa	PepsiCo
+199	Solomon D.	Trujillo	13	94	Bank of America Corp.	PepsiCo
+199	Solomon D.	Trujillo	37	94	Target	PepsiCo
+691	C. Steven	McMillan	54	96	Dynegy	Sara Lee
+386	Paul A.	Allaire	28	96	Lucent Technologies	Sara Lee
+188	Charles W.	Coker	13	96	Bank of America Corp.	Sara Lee
+873	James S.	Crown	70	96	Bank One Corp.	Sara Lee
+474	Willie D.	Davis	36	96	Kmart	Sara Lee
+474	Willie D.	Davis	78	96	Dow Chemical	Sara Lee
+554	Vernon E.	Jordan, Jr.	43	96	J.C. Penney	Sara Lee
+554	Vernon E.	Jordan, Jr.	74	96	American Express	Sara Lee
+231	Rozanne L.	Ridgway	15	96	The Boeing Company	Sara Lee
+129	John D.	Zeglis	9	96	AT*T	Sara Lee
+129	John D.	Zeglis	84	96	Georgia-Pacific	Sara Lee
+792	Michael W.	Wright	62	97	Wells Fargo	Supervalu
+792	Michael W.	Wright	71	97	Honeywell International	Supervalu
+781	Susan E.	Engel	62	97	Wells Fargo	Supervalu
+396	Donald J.	Carty	29	98	Sears Roebuck	AMR
+396	Donald J.	Carty	48	98	Dell Computer	AMR
+1126	David L.	Boren	89	98	Phillips Petroleum	AMR
+342	Edward A.	Brennan	24	98	Morgan Stanley Dean Witter	AMR
+342	Edward A.	Brennan	59	98	Allstate	AMR
+799	Earl G.	Graves	63	98	Aetna	AMR
+371	Ann	McLaughlin	26	98	Fannie Mae	AMR
+347	Michael A.	Miles	24	98	Morgan Stanley Dean Witter	AMR
+347	Michael A.	Miles	29	98	Sears Roebuck	AMR
+347	Michael A.	Miles	48	98	Dell Computer	AMR
+347	Michael A.	Miles	59	98	Allstate	AMR
+1242	Philip J.	Purcell	24	98	Morgan Stanley Dean Witter	AMR
+804	Judith	Rodin	63	98	Aetna	AMR
+472	Lilyan H.	Affinito	36	99	Kmart	Caterpillar
+762	John T.	Dillon	61	99	International Paper	Caterpillar
+4	Donald V.	Fites	1	99	Exxon-Mobil	Caterpillar
+4	Donald V.	Fites	9	99	AT*T	Caterpillar
+4	Donald V.	Fites	84	99	Georgia-Pacific	Caterpillar
+1066	David R.	Goode	84	99	Georgia-Pacific	Caterpillar
+583	Peter A.	Magowan	46	99	Safeway	Caterpillar
+857	Clayton K.	Yeutter	68	99	ConAgra	Caterpillar
+1035	Thomas M.	Ryan	81	100	FleetBoston Financial	CVS
+671	W. Don	Cornwell	53	100	Pfizer	CVS
+366	Thomas P.	Gerrity	26	100	Fannie Mae	CVS
+1028	Marian L.	Heard	81	100	FleetBoston Financial	CVS
+1008	Terrence	Murray	81	100	FleetBoston Financial	CVS
+694	Sheli Z.	Rosenberg	54	100	Dynegy	CVS
+895	Ivan G.	Seidenberg	71	100	Honeywell International	CVS

@@ -1,0 +1,4 @@
+
+This is GPL'd software. See COPYING.TXT for terms.
+
+

@@ -1,0 +1,12 @@
+
+This archive built using:
+
+	jar -cvfm ../foafpath.jar  META-INF/MANIFEST.MF  . 
+
+Run using:
+
+	java -jar ./foafpath.jar
+
+
+
+

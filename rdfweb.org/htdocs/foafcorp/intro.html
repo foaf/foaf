@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for Cygwin (vers 1st August 2002), see www.w3.org" />
+
+    <title>RDFWeb: FOAFCorp: Corporate Friends of Friends</title>
+    <link rel="stylesheet" href="/ssi/main.css" type="text/css" />
+    <style type="text/css">
+    /*<![CDATA[*/
+
+     body
+        {
+        background: url(../images/faded-flag.jpg) #ffffff;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-position: top;
+        background-attachment: fixed;
+        background-color: none;
+        }
+
+    /*]]>*/
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="/images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top"><strong><a href="/"
+          class="sitepart">RDFWeb</a>: <span
+          class="sitepart">foafcorp</span></strong></td>
+
+          <td align="right"><span class="siteutil"><a
+          href="/about.html">about</a> | <a
+          href="/projects.html">projects</a> | <a
+          href="/dev.html">developers</a> | <a
+          href="/sitemap.html">sitemap</a> | <a
+          href="/search.html">search</a></span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>FOAFCorp: Corporate Friends of Friends</h2>
+
+    <h3>What is this?</h3>
+
+    <p>RDF is a great data format for describing interconnected
+    entities. With <a href="http://xmlns.com/foaf/0.1/">FOAF</a>,
+    we have a simple fun vocabulary for describing social networks,
+    people, organisations etc. The <em>FOAFCorp</em> experiment
+    extends this to describe in more detail the structure and
+    interconnections of corporate entities. The sample data here
+    draws on the excellent <a href="http://www.theyrule.net/">They
+    Rule</a> approach, listing the board membership for three
+    companies.</p>
+
+    <h3>Resources</h3>
+
+    <p>A little more information is available...</p>
+
+    <ul>
+
+      <li><a href="http://www.grorg.org/2002/10/foafcorp/">Dean Jackson's SVG 
+	foafCORP viewer</a> (<a href="http://www.foafnaut.org/">FOAFNaut</a> began from 
+	same codebase)</li>
+      <li><a href="cola-corps-sample.xml">Sample RDF/XML FOAFCorp
+      file</a> (hand-transcribed from www.theyrule.net)</li>
+
+      <li>TODO: write the <a href="http://xmlns.com/foaf/corp#">rdf
+      schema</a> that defines the classes and relations
+      ('properties', in RDF terminology) used in this data. To
+      summarise, we define two classes: <code>fc:Company</code>,
+      <code>fc:Committee</code>, and three properties:
+      <code>fc:name</code>, <code>fc:stock</code> and
+      <code>fc:member</code>. They are used alongside the base <a
+      href="http://xmlns.com/foaf/0.1/">FOAF vocabulary</a>.</li>
+
+      <li><a href="cola-corps-sample.png">Graphical
+      visualisation</a> of the RDF (produced with <a
+      href="/people/damian/2001/10/RDFAuthor/">RDFAuthor</a>)</li>
+
+      <li><a href="http://www.theyrule.net/">They Rule</a> (<a
+      href="http://www.yahoogroups.com/group/theyrule/">discussion
+      list</a>)</li>
+
+      <li>Aaron Swartz prototyped a <a
+      href="http://logicerror.com/theyRuleRDFTrial">CWM/N3 tool</a>
+      for querying and reasoning about this data. The prototype
+      uses Tim Berners-Lee's RDF inference engine 'cwm' to identify
+      companies that are connected by common board members. These
+      <a
+      href="http://logicerror.com/theyrulerdftrialrules">somewhat
+      cryptic rules</a> explain to machines what 'connectedTo'
+      means in terms of having common board members.</li>
+
+      <li>More data! I found some photos of the <a
+      href="http://www2.coca-cola.com/about/whatwedo/bios/bio_28.html">
+      Coca Cola board</a> that it would be fun to markup, based on
+      the <a
+      href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
+      RDFWeb codepiction service</a> (missing 404! doh. need to
+      track this down. hmm: <a
+      href="http://www2.coca-cola.com/ourcompany/board.html">board
+      mugshots via scrolly javascript thing</a>; eg <a
+      href="http://www2.coca-cola.com/ourcompany/img/circ_pic_robinson.gif">
+      robinson</a>)</li>
+
+      <li>Damian Steer's <a
+      href="http://rdfweb.org/people/damian/2001/10/RDFAuthor/">RDFAuthor</a>
+      (macosx version) can also support <a
+      href="http://rdfweb.org/people/damian/2001/10/RDFAuthor/Tutorial/Tutorial2/">
+      graphical queries</a>, which are answered by an RDF query web
+      service.</li>
+
+      <li>see also: <a href="http://www.w3.org/RDF/">W3C RDF</a>
+      and <a href="http://www.w3.org/2001/sw/">Semantic Web</a>
+      pages for technology background</li>
+
+      <li>UI folk might be interested in using W3C's <a
+      href="http://www.w3.org/Graphics/SVG/Overview.htm8">Scalable
+      Vector Graphics (SVG)</a> format as an alternative
+      presentation mechanism. The <a
+      href="http://www.adobe.com/svg/">Adobe</a> plugin is pretty
+      good. Note that the RDF file above can't be directly consumed
+      by most web browsers (although see <a
+      href="http://www.jibbering.com/">jibbering.com</a> for some
+      clientside RDF tools), and that an SVG visualisation of the
+      data is different to the raw RDF, even though both formats
+      are written in XML syntax. The <a
+      href="http://www.w3.org/TR/SVG-access/">Accessibility
+      Features of SVG</a> note outlines some techniques for
+      producing SVG that can also be consumed by RDF query
+      applications (ie. look pretty <em>and</em> include
+      machine-friendly data).</li>
+
+      <li><a href="cola-corps-sample.svg">SVG visualization of
+      foaf-corp data</a> (generated by RDFAuthor)</li>
+
+      <li><a href="theyrule.png">screenshot of theyrule with RDF
+      stuff in background</a></li>
+
+      <li>FOAFCorp is <em><a href="http://rdfweb.org/">semantic web
+      vapourware for the masses</a></em></li>
+
+      <li><a href="http://bulk.resource.org/">US Govt data (see
+      EDGAR especially)</a> (thanks to mnott for the <a
+      href="http://rdfig.xmlhack.com/2002/02/26/2002-02-26.html#1014707276.891215">
+      link</a>)</li>
+
+     <li>Of related interest: <a href="http://www.theyesmen.org/dow/">DOW ethics debate</a></li>
+
+    </ul>
+    <hr />
+
+    <p><a href="cola-corps-sample.png"><img border="0"
+    src="cola-corps-sample-small.png" alt="visualisation"
+    align="right" /></a></p>
+
+    <p>author: <a href="http://rdfweb.org/people/danbri/">Dan
+    Brickley</a> &lt;danbri@rdfweb.org&gt;</p>
+<pre>
+$Id: intro.html,v 1.1 2003-07-28 11:57:42 danbri Exp $
+</pre>
+  </body>
+</html>
+
