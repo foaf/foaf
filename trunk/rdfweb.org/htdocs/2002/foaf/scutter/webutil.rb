@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.8 2002-07-13 12:49:57 danbri Exp $
+# $Id: webutil.rb,v 1.9 2002-07-13 16:37:02 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -50,9 +50,11 @@ def scutter_local (file, base_uri, opts={})
   # config info
   cache_dir = opts['cache-dir']
   use_xslt= opts['use-xslt'] 
-  redparse = false
+  # redparse = false
+  redparse = opts['use-raptor'] 
 	# use redland parser 'rdfdump' ?
-
+  dbdriver = opts['dbdriver'] 
+  dbdriver = 'Pg' if !dbdriver # default to PostgreSQL
  
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
 
@@ -61,7 +63,7 @@ def scutter_local (file, base_uri, opts={})
   ## CONFIG INFO (TODO: move this into options {}
   ##
   dbname='rdfweb1'                # database name
-  dbi_driver = 'DBI:Pg:'+dbname   # DBI driver 
+  dbi_driver = 'DBI:'+dbdriver+':'+dbname   # DBI driver 
   dbi_user = 'danbri'		    # user
   dbi_pass=''	                    # autho
 
@@ -116,7 +118,7 @@ def scutter_local (file, base_uri, opts={})
         # TODO: this risky? make sure won't accidentially zap the db.
         puts "-  #dbi.do delete from triples where assertid = 'uri=#{file}';"
         begin 
-          dbh.do "delete from triples where assertid = 'uri=#{file}';"
+          dbh.do "delete from triples where assertid = 'uri=#{file}'"
         rescue 
           puts "DBI: Error in sql delete, msg: #{$!}"
         end
@@ -124,9 +126,12 @@ def scutter_local (file, base_uri, opts={})
         sql_inserts.each do |sql_insert|
           begin 
             print '.'
+	    sql_insert.gsub! /;\s*$/, "" # mysql barfs on ';'
+	    # print "INSERT: '#{sql_insert}' "
             dbh.do sql_insert 
           rescue 
-            # puts "DBI: Error in sql insert #{file} sql: #{sql_insert} msg: #{$!}"
+            #puts "DBI: Error in sql insert #{file} sql: #{sql_insert} msg: #{$!}"
+	    # we need an --debug= verbosity level here. @@todo
             # this will be really verbose (lots of inserts into fields where dups not allowed)
           end
         end
