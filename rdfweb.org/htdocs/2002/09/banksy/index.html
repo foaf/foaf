@@ -10,8 +10,26 @@ type="text/css" />
 </head>
 <body>
 
-<h2><a href="http://rdfweb.org/foaf/">FOAF</a> <a
-href="http://www.banksy.co.uk/">Banksy</a></h2>
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="http://rdfweb.org/images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">foaf Banksy</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="http://rdfweb.org/about.html">about</a>
+            | <a href="http://rdfweb.org/projects.html">projects</a> | <a
+            href="http://rdfweb.org/dev.html">developers</a> | <a
+            href="http://rdfweb.org/sitemap.html">sitemap</a> | <a
+            href="http://rdfweb.org/search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+
 
 <p>Nearby: <a
 href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/artist.jsp?mbox=http%3A%2F%2Fwww.banksy.co.uk%2F">
@@ -25,24 +43,57 @@ href="http://rdfweb.org/2002/01/photo/">codepiction writeup</a> |
 <a
 href="http://rdfweb.org/people/danbri/2001/09/foafcorp/intro.html">foafcorp</a>
 | <a href="http://memepool.com">memepool</a> | <a
-href="http://www.banksy.co.uk">Banksy</a></p>
+href="http://www.banksy.co.uk">Banksy</a> | <a href="http://swordfish.rdfweb.org/rdfquery/">Java code for RDF quering</a></p>
 
 <p>Banksy is a graffiti artist based in Bristol. <a
 href="http://memepool.com">Memepool</a> had a bunch of links to
-webpages about him, so I figured I'd collect together all the
+webpages about him, so I figured I'd do somethign I've been meaning to do for ages and collect together all the
 photos I've taken of his pictures over several years of living in
-Bristol.</p>
+Bristol. <a href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/artist.jsp?mbox=http%3A%2F%2Fwww.banksy.co.uk%2F">Here they are</a>.</p>
 
-<p>Because I've been working with RDF, FOAF and codepiction, I used
-RDF FOAF and a model similar to that used in the codepiction
+<p>If you want to know why I didn't just put them in an html page, read on...</p>
+
+<hr noshade="noshade"/>
+
+<h3>RDF, depiction and FOAF</h3>
+
+<p>FOAF is 'friend of a friend' - a project I've been working on with some ... er ...  friends. 
+Basically it's a vocabulary for describing people, their relationships and the things they create. 
+You can create lots of little pieces of information about, say, a person called Dan Brickley 
+and then combine them to get a composite view. So one person might say that Dan has a friend called Damian.
+ Another might say that Dan works for W3C, or has written a paper with Libby Miller. 
+<a href="http://rdfweb.org/foaf/">Here's some more foaf information</a>.
+</p>
+
+<p>
+You can create browsers, which let you explore the mesh of relationships and factoids in  
+this aggregate source of information. 
+<a href="http://swordfish.rdfweb.org/rweb/who">I started to do one of these</a>. 
+There are <a href="http://rdfweb.org">many more</a>. Then Dan Brickley the originator of 
+FOAF had the idea that you could create links between people by finding photos in which more 
+than one person appears. For example <a href="http://swordfish.rdfweb.org/photos/2001/04/23/000068.JPG">in this photo</a> Sean Palmer is 'codepicted' with 
+William Loughborough. I created a little database of these sorts of images. Damian Steer 
+<a href="http://rdfweb.org/people/damian/2002/02/foafnation/">implemented 
+an algorithm</a> which found the shortest paths between any two people in the database, and we 
+created <a href="http://swordfish.rdfweb.org/discovery/2002/02/paths/ allabout.jsp">a demo</a>. He and 
+Dan also implemented a version using data about companies connected by their board members '<a href="http://rdfweb.org/people/danbri/2001/09/foafcorp/intro.html">foafcorp</a>'.
+</p>
+
+<p>Because I've been working with RDF, FOAF and codepiction, for the Banksy pictures I used
+ a model similar to that used in the codepiction
 database to make a searchable database of creations created by
-people with homepages.</p>
+people with homepages. So the difference is that instead of looking for images which depict 
+two or more people identified by their email addresses, you look for images depicting 
+creations by a person identifed by their homepage (or email address).</p>
 
-<p>Here's an example:</p>
+<p>For those who care, here's an example of the sort of file I wrote for a 
+<a href="http://swordfish.rdfweb.org/photos/2000/00/Image022B33.jpg">Banksy picture</a>
+<img src="http://swordfish.rdfweb.org/photos/2000/00/thumb-Image022B33.jpg">:</p>
 
 <table>
 <tr>
-<td>
+<td bgcolor="#dddddd">
+<small>
 <pre>
 &lt;?xml version="1.0" ?&gt;
 &lt;rdf:RDF 
@@ -77,6 +128,7 @@ An early Banksy - on a garage in Redland, Bristol.
 
 &lt;/rdf:RDF&gt;
 </pre>
+</small>
 </td>
 </tr>
 </table>
@@ -88,16 +140,19 @@ used to identify that person. At the moment all the pictures in the
 database are by Banksy, who has a homepage <a
 href="http://www.banksy.co.uk/">http://www.banksy.co.uk/</a>.</p>
 
-<p>Compare the RDF with that for a 'codepiction' - a photos with
+<p>Compare the RDF with that for a 'codepiction' - a photo with
 more than one Person or thing in it. In the example below the
 description of the picture is very similar, but the description of
 what the picture depicts talks about people with names and email
 addresses rather than creations created by people who have email
-addresses or homepages.</p>
+addresses or homepages.
+<br />
+<img src="http://swordfish.rdfweb.org/photos/2001/04/23/thumb-000068.JPG"/></p>
 
 <table>
 <tr>
-<td>
+<td bgcolor="#dddddd">
+<small>
 <pre>
 &lt;?xml version="1.0" ?&gt;
 &lt;rdf:RDF 
@@ -133,9 +188,14 @@ addresses or homepages.</p>
 
 &lt;/rdf:RDF&gt;
 </pre>
+</small>
 </td>
 </tr>
 </table>
+
+<hr noshade="noshade" />
+
+<p><a href="mailto:libby.miller@bristol.ac.uk">libby.miller@bristol.ac.uk</a></p>
 </body>
 </html>
 
