@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalObject.java,v 1.4 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: GraphicalObject.java,v 1.5 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -46,7 +46,7 @@ public interface GraphicalObject {
     
     public boolean containsPoint(NSPoint point);
     
-    public boolean intersectsRect(NSRect rect);
+    public boolean intersects(NSRect rect);
     
     public void contentChanged();
     

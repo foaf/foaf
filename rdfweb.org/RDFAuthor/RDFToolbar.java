@@ -1,6 +1,6 @@
 /* RDFToolbar */
 
-/* $Id: RDFToolbar.java,v 1.18 2002-02-07 16:09:56 pldms Exp $ */
+/* $Id: RDFToolbar.java,v 1.19 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -34,6 +34,7 @@ public class RDFToolbar extends NSObject {
     
     NSMatrix editView;
     NSView showView;
+    NSTextField findBox;
     
     NSButton showTypesButton;
     NSButton showIdsButton;
@@ -51,6 +52,7 @@ public class RDFToolbar extends NSObject {
     static final String queryPanelIdentifier = "query panel identifier";
     static final String bookmarkPanelIdentifier = "bookmark panel identifier";
     static final String autoLayoutIdentifier = "autolayout identifier";
+    static final String findBoxIdentifier = "find box identifier";
     
     boolean textPreview = false;
     String[] popupMappings;
@@ -146,6 +148,14 @@ public class RDFToolbar extends NSObject {
             toolbarItem.setTarget(rdfAuthorDocument);
             toolbarItem.setAction(new NSSelector("autoLayout", new Class[] { Object.class }));
         }
+        else if (itemIdent.equals(findBoxIdentifier))
+        {
+            toolbarItem.setLabel("Find Text");
+            toolbarItem.setPaletteLabel("Find Text");
+            toolbarItem.setView(findBox);
+            toolbarItem.setMinSize(findBox.frame().size());
+            toolbarItem.setMaxSize(findBox.frame().size());
+        }
         else
         {
 	    // itemIdent refered to a toolbar item that is not provide or supported by us or cocoa.
@@ -167,7 +177,7 @@ public class RDFToolbar extends NSObject {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
                 checkIdentifier, autoLayoutIdentifier, toggleViewsIdentifier, previewPopupIdentifier, 
                 queryPanelIdentifier,
-                bookmarkPanelIdentifier } );
+                bookmarkPanelIdentifier, findBoxIdentifier } );
     }
     
     public NSArray toolbarAllowedItemIdentifiers(NSToolbar toolbar) {
@@ -179,6 +189,7 @@ public class RDFToolbar extends NSObject {
                 editToolsIdentifier, showToolsIdentifier, checkIdentifier, autoLayoutIdentifier,
                 toggleViewsIdentifier,
                 previewPopupIdentifier, queryPanelIdentifier, bookmarkPanelIdentifier,
+                findBoxIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 

@@ -5,7 +5,7 @@
 //  Created by pldms on Wed Nov 07 2001.
 //
 
-/* $Id: RDFAuthorUtilities.java,v 1.13 2002-03-27 10:22:36 pldms Exp $ */
+/* $Id: RDFAuthorUtilities.java,v 1.14 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -35,6 +35,7 @@ import com.apple.cocoa.application.*;
 
 import java.lang.Math;
 import java.util.HashMap;
+import java.io.*;
 
 import org.apache.xerces.utils.URI;
 
@@ -105,7 +106,7 @@ public final class RDFAuthorUtilities {
     
     public static void layoutModel(ArcNodeList model, float minX, float minY, float maxX, float maxY)
     {
-        long startTime = java.util.Calendar.getInstance().getTime().getTime();
+        long startTime = System.currentTimeMillis();
         float margin = 50;
         float springConstant = 0.01f;
         float springExtension = 150;
@@ -243,7 +244,57 @@ public final class RDFAuthorUtilities {
             }
         }
         
-        System.out.println("Took: " + (java.util.Calendar.getInstance().getTime().getTime() - startTime)
+        System.out.println("Took: " + (System.currentTimeMillis() - startTime)
             + " milliseconds");
-    }    
+    }
+    
+    public static byte[] contentOfUrl(java.net.URL anURL, long timeOut)
+    {
+        try
+        {
+            java.net.URLConnection conn = anURL.openConnection();
+            int length = conn.getContentLength();
+            byte[] content = new byte[length];
+            InputStream stream = conn.getInputStream();
+             
+            int read = 0;
+            long startTime = System.currentTimeMillis();
+            long duration = 0;
+            
+            while ((read != length) && (duration < timeOut))
+            {
+                read += stream.read(content, read, stream.available());
+                duration = System.currentTimeMillis() - startTime;
+            }
+            
+            System.out.println("Read: " + read + " bytes of " + length);
+             
+            stream.close();
+            
+            if (duration >= timeOut)
+            {
+                ShowError(
+                    "Connection Timed Out",
+                    "Loading failed because the download took too long.\n" +
+                    "I'm sorry.",
+                    Critical, null);
+                
+                return null;
+            }
+            
+            return content;
+        }
+        catch (Exception e)
+        {
+            ShowError(
+                "Connection Failed",
+                "The connection failed, alas.\n" +
+                "Informative error message:\n" +
+                e,
+                Critical, null);
+            
+            return null;
+        }
+    }
+
 }

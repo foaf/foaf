@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.33 2002-02-19 14:10:04 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.34 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -293,6 +293,20 @@ public class ArcNodeList implements Serializable
     public void moveSelectionBy(float dx, float dy)
     {
         selection.moveBy(dx, dy);
+    }
+    
+    public void setSelectionFromText(String text)
+    {
+        ArrayList hits = new ArrayList();
+        
+        for (ListIterator iterator = array.listIterator(); iterator.hasNext();)
+        {
+            ModelItem item = (ModelItem) iterator.next();
+            
+            if (item.matches(text)) hits.add(item);
+        }
+        
+        controller.setSelection(hits, false); // false - not adding
     }
     
     public ListIterator getObjects()

@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalNode.java,v 1.7 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: GraphicalNode.java,v 1.8 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -126,7 +126,7 @@ public class GraphicalNode implements GraphicalObject
         return bounds.containsPoint(point, true); // RDFModelView always flipped
     }
     
-    public boolean intersectsRect(NSRect rect)
+    public boolean intersects(NSRect rect)
     {
         return bounds.intersectsRect(rect);
     }

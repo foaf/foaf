@@ -4,7 +4,7 @@
 //
 //  Created by pldms on Thu Nov 08 2001.
 
-/* $Id: QueryThread.java,v 1.6 2002-03-27 13:05:04 pldms Exp $ */
+/* $Id: QueryThread.java,v 1.7 2002-04-10 15:22:20 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -61,7 +61,7 @@ public class QueryThread extends Thread {
         try
         {
             // I'll time this (which is probably useful)
-            long startTime = java.util.Calendar.getInstance().getTime().getTime();
+            long startTime = System.currentTimeMillis();
             
             ServiceClient client = new ServiceClient(endpoint);
             
@@ -69,7 +69,7 @@ public class QueryThread extends Thread {
                                             "http://rdfweb.org/RDF/RDFWeb/SOAPDemo",
                                             "squish",
                                             new Object [] { query,database,"" });
-            duration = java.util.Calendar.getInstance().getTime().getTime() - startTime;
+            duration = System.currentTimeMillis() - startTime;
         }
         catch (Exception e)
         {
