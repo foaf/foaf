@@ -1,6 +1,6 @@
 /* QueryController */
 
-/* $Id: QueryController.java,v 1.10 2002-03-27 10:22:36 pldms Exp $ */
+/* $Id: QueryController.java,v 1.11 2002-03-27 13:05:04 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -49,6 +49,8 @@ public class QueryController extends NSObject {
     QueryResultSource resultSource;
     QueryThread queryThread = null;
     
+    NSTimer queryTimer = null;
+    
     public void performQuery(NSButton sender) 
     {
         if (queryThread != null) // Query already running
@@ -96,8 +98,13 @@ public class QueryController extends NSObject {
         queryThread.start();
         
         queryButton.setTitle("Kill");
+        
+        // Timer to check whether the thread has finished
+        // It fires every 2 seconds
+        
+        queryTimer = new NSTimer(2, this, new NSSelector("checkQueryProgress", new Class[]{}), null, true);
+        NSRunLoop.currentRunLoop().addTimerForMode(queryTimer, NSRunLoop.DefaultRunLoopMode);
     }
-    
     
     private void killQuery(Object context, int returnCode)
     {
@@ -112,40 +119,50 @@ public class QueryController extends NSObject {
                 queryThread = null;
                 infoTextField.setStringValue("");
                 queryButton.setTitle("Query");
+                queryTimer.invalidate();
             }
         }
     }
     
-    public void queryDied(QueryThread sender, Exception e)
+    /*
+     * During a query a 'checkQueryProgress' message is sent periodically
+     * (using an NSTimer). The method checks whether the query has finished,
+     * and if so how (died or completed). Once finished appropriate action
+     * is taken. We use NSTimer since (I suspect) the interface isn't
+     * thread-safe (which caused odd crashes).
+     */
+    
+    public void checkQueryProgress()
     {
-        // Since I can't kill threads safely better make sure this is the query I want
+        System.out.println("Checking progress...");
         
-        if (sender != queryThread) return;
+        if (!queryThread.finished()) return;
         
-        RDFAuthorUtilities.ShowError(
+        queryTimer.invalidate();
+        
+        NSApplication.beep(); // Since these can take a while I'll beep
+        
+        if (queryThread.died())
+        {
+           RDFAuthorUtilities.ShowError(
             "Error Making Query", "There was an error making the query. The service might be unavailable", 
             RDFAuthorUtilities.Critical, 
             queryDrawer.parentWindow());
-        infoTextField.setStringValue("Last query failed.");
+            infoTextField.setStringValue("Last query failed."); 
+        }
         
-        NSApplication.beep(); // Since these can take a while I'll beep
+        else
+        {
+            queryCompleted(queryThread.result(), queryThread.variableToObjectMapping(),
+                queryThread.duration() );
+        }
         
         queryThread = null;
-        
         queryButton.setTitle("Query");
     }
         
-    public void queryCompleted(QueryThread sender, ArrayList rows, HashMap varToObject, double duration)
+    public void queryCompleted(ArrayList rows, HashMap varToObject, double duration)
     {
-        // Since I can't kill threads safely better make sure this is the query I want
-        
-        if (sender != queryThread) return;
-        
-        //ArrayList rows = queryThread.result();
-        //HashMap varToObject = queryThread.variableToObjectMapping();
-        
-        NSApplication.beep(); // Since these can take a while I'll beep
-        
         if (rows.isEmpty())
         {
             RDFAuthorUtilities.ShowError(
@@ -171,8 +188,6 @@ public class QueryController extends NSObject {
         System.out.println("Here [3]");
         
         queryThread = null;
-        
-        queryButton.setTitle("Query");
         
         System.out.println("Here [4]");
     }

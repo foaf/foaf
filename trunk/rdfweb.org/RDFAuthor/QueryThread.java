@@ -4,7 +4,7 @@
 //
 //  Created by pldms on Thu Nov 08 2001.
 
-/* $Id: QueryThread.java,v 1.5 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: QueryThread.java,v 1.6 2002-03-27 13:05:04 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -37,13 +37,14 @@ import java.util.HashMap;
 
 public class QueryThread extends Thread {
     
-    QueryController owner;
     ArrayList returned = null;
     String endpoint="http://swordfish.rdfweb.org:8080/axis/servlet/AxisServlet";
     String query = null;
     String database = null;
     HashMap varToObject;
     long duration;
+    boolean finished;
+    boolean died;
     
     public QueryThread(String query, String database, HashMap varToObject, 
             QueryController owner)
@@ -51,7 +52,8 @@ public class QueryThread extends Thread {
         this.query = query;
         this.database = database;
         this.varToObject = varToObject;
-        this.owner = owner;
+        this.finished = false;
+        this.died = false;
     }
     
     public void run()
@@ -71,12 +73,23 @@ public class QueryThread extends Thread {
         }
         catch (Exception e)
         {
-            owner.queryDied(this, e);
+            died = true;
+            System.out.println("QueryThread died: " + e);
         }
         
-        owner.queryCompleted(this, returned, varToObject, (double) duration/ 1000d);
+        finished = true;
     }
-
+    
+    public boolean finished()
+    {
+        return finished;
+    }
+    
+    public boolean died()
+    {
+        return died;
+    }
+    
     public ArrayList result()
     {
         return returned;
