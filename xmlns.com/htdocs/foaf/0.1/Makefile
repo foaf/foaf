@@ -57,7 +57,7 @@ getrdf:
 
 
 publish:
-	ssh xmlns.com make slaves
+	ssh xmlns.com "cd /var/web/sites/slave/xmlns.com/; cvs update -d"
 
 
 htaccess:
