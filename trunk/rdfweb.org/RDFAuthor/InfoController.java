@@ -217,7 +217,7 @@ public class InfoController extends NSObject {
         literalButton.setState(NSCell.OnState);
         literalButton.setEnabled(true);
         literalTextField.setEnabled(true);
-        propertyTextField.setEnabled(true);
+        propertyTextField.setEnabled(false);
         resourceIdField.setEnabled(false);
         resourceTypeField.setEnabled(false);
         

@@ -3,6 +3,8 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.io.*;
+
 public class RDFAuthorDocument extends NSDocument {
     
     NSButton addArcButton;
@@ -35,7 +37,26 @@ public class RDFAuthorDocument extends NSDocument {
         
         if (aType.equals("RDFAuthor Document"))
         {
-            return NSArchiver.archivedDataWithRootObject(rdfModel);
+            try
+            {
+            //NSData savedData = NSArchiver.archivedDataWithRootObject(rdfModel);
+            
+            // Hmm - I had problems with NSArchiver and java serialization
+            // So I just used java serialisation
+            
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream s = new ObjectOutputStream(out);
+            s.writeObject(rdfModel);
+
+            NSData savedData = new NSData(out.toByteArray());
+
+            return savedData;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Got error: "+e);
+                return null;
+            }
         }
         else if (aType.equals("RDF Document"))
         {
@@ -48,7 +69,6 @@ public class RDFAuthorDocument extends NSDocument {
             else
             {
                 // Ugh 
-                System.out.println(rdfData);
                 NSMutableStringReference rdfString = new NSMutableStringReference();
                 rdfString.setString(rdfData);
                 return rdfString.dataUsingEncoding(
@@ -68,10 +88,22 @@ public class RDFAuthorDocument extends NSDocument {
         
         if (aType.equals("RDFAuthor Document"))
         {
-            Object got = NSUnarchiver.unarchiveObjectWithData(data);
-            System.out.println("Got: " + got);
-            //rdfModelView.setNeedsDisplay(true);
-            return true;
+            try
+            {
+                ByteArrayInputStream in = 
+                    new ByteArrayInputStream( data.bytes(0, data.length()) );
+                ObjectInputStream s = new ObjectInputStream(in);
+                rdfModel = (ArcNodeList) s.readObject();
+            
+                rdfModel.setController(this);
+            
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Input died with: " +e);
+                return false;
+            }
         }
         else
         {
@@ -191,12 +223,18 @@ public class RDFAuthorDocument extends NSDocument {
     {
         ModelItem startNode = rdfModel.objectAtPoint(fromPoint);
         ModelItem endNode = rdfModel.objectAtPoint(toPoint);
-        if (startNode != null && endNode != null && startNode.isNode() && endNode.isNode())
+        if (startNode != null && endNode != null
+            && startNode.isNode() && endNode.isNode()
+            && (startNode != endNode) )
         {
             Arc newArc = new Arc(rdfModel, (Node)startNode, (Node)endNode, null, null);
             newArc.setShowProperty(showProperties);
             rdfModel.add(newArc);
             rdfModel.setCurrentObject(newArc);
+        }
+        else
+        {
+            rdfModelView.setNeedsDisplay(true); // need this to get rid of drag line
         }
     }
     

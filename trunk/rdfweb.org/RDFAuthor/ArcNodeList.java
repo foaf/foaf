@@ -16,7 +16,7 @@ import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
-public class ArcNodeList implements Serializable
+public class ArcNodeList extends java.lang.Object implements Serializable
 {
     Vector array;
     ModelItem currentObject;
@@ -29,14 +29,16 @@ public class ArcNodeList implements Serializable
         this.controller = controller;
     }
     
+    public void setController(RDFAuthorDocument controller)
+    {
+        this.controller = controller;
+    }
+    
     private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
     {
-        System.out.println("Serialising " + this);
         out.writeObject(array);
-        System.out.println("Wrote ArcNodeList array");
         out.writeObject(currentObject);
-        System.out.println("Wrote currentObject");
     }
     
     private void readObject(java.io.ObjectInputStream in)
