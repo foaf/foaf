@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # A basic annotation server
-# $Id: annotea_server,v 1.1 2002-08-05 06:08:34 danbri Exp $
+# $Id: annotea_server,v 1.2 2002-08-05 06:10:53 danbri Exp $
 #
 # author: dan brickley <danbri@w3.org>
 #
@@ -28,6 +28,8 @@
 # License: we need Webrick. Webrick is GPL.
 # ...so this should presumably be GPL. 
 # ...and packaged separately from rubyrdf?
+# ...so I'm chucking it into Scutter filetree for now.
+# ...will look into constraints re making it w3c software.
 
 
 require 'squish'
