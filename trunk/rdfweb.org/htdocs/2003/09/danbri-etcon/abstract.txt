@@ -1,8 +1,8 @@
 DanBri ETCON-2004 abstract
-version: $Id: abstract.txt,v 1.3 2003-09-24 18:09:55 danbri Exp $
+version: $Id: abstract.txt,v 1.4 2003-09-24 18:21:22 danbri Exp $
 45 min session at http://conferences.oreillynet.com/cs/et2004/create/e_sess#form
 
-  "Fear of a FOAF Planet - Acronyms and Antics on the Semantic Web"
+  "Fear of a FOAF Planet - Acronyms and activism on the Semantic Web"
 
 The Friend of a Friend (FOAF) project is creating a Web of machine-readable 
 homepages describing people, the links between them and the things they create and  
@@ -16,7 +16,7 @@ available tools? What should we do as these 'ifs' become 'whens'?
 
 FOAF has many possible futures: utopian, dystopian, and the spaces in between. 
 The overview will focus on real world FOAF applications currently in development,  
-including FOAFMobile tools ("show me weblogs by people sat nearby") 
+including FOAFMobile tools ("show me weblogs by people sitting nearby") 
 and interactions between social networking, activism and indy media ("I'd like to 
 talk to a FOAF who has been to Iraq..."). FOAF's use of RDF technology guarantees a 
 certain freedom of expression - FOAF documents can contain additional markup 
@@ -28,6 +28,7 @@ Moving towards mainstream use, we must balance wide-eyed optimism
 with sober assessments of possible unwelcome futures. FOAF is both as a driver for 
 change, and a readily accessible tool for understanding, adapting to and 
 participating in this changed world. While FOAF is in essence a tool 
-for describing and modeling the world, it is often hard to describe something 
-without changing it.
+for describing and modeling our world, the Semantic Web be be a tool for changing it.
+
+
 
