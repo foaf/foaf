@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #
-# $Id: myScutter.rb,v 1.1 2002-12-12 11:46:49 danbri Exp $
+# $Id: myScutter.rb,v 1.2 2002-12-12 17:10:11 danbri Exp $
 # A sample scutter implementation, using the framework defined in ayf.rb
 # (ayf.rb is still usable as a script, and includes a few default handlers)
 #
@@ -46,6 +46,18 @@ def go(uri)
   end
 
   error_logger = Proc.new {|e| puts "ERROR: #{e}" }
+
+
+#trying to find src of memory bloat:
+#objstats=nil
+#ayf.pagehandlers.push Proc.new {|c,page| 
+#  objstats=Hash.new(0) # empty and recount each loop
+#  ObjectSpace.each_object{|x| 
+#    objstats[x.class.name]=objstats[x.class.name]+1
+#  }
+#  puts "ObjectStats: #{objstats.inspect}\n"
+#}
+
 
   # register some handlers:
   ayf.pagehandlers.push page_summary, airports
