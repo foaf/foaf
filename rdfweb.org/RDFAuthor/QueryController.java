@@ -3,8 +3,6 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import org.apache.axis.client.ServiceClient;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
@@ -21,6 +19,8 @@ public class QueryController extends NSObject {
 
     RDFAuthorDocument rdfAuthorDocument;
     
+    NSTextField infoTextField;
+    
     NSSize size = new NSSize(10,10);
 
     ArrayList queryObjects = new ArrayList();
@@ -30,8 +30,10 @@ public class QueryController extends NSObject {
     ArrayList variableList;
     
     QueryResultSource resultSource;
+    QueryThread queryThread = null;
     
-    public void performQuery(Object sender) {
+    public void performQuery(Object sender) 
+    {
         if (queryObjects.isEmpty())
         {
             RDFAuthorUtilities.ShowError(
@@ -43,9 +45,6 @@ public class QueryController extends NSObject {
         }
         
         String query = constructQuery(rdfAuthorDocument.rdfModel);
-        System.out.println("Query to perform is:");
-        System.out.println(query);
-        
         String database = serviceComboButton.stringValue().trim();
         
         if (database.equals(""))
@@ -57,34 +56,71 @@ public class QueryController extends NSObject {
             return;
         }
         
-        String endpoint="http://swordfish.rdfweb.org:8080/axis/servlet/AxisServlet";
-        ArrayList rows;
-        try
+        if (queryThread != null) // Query already running
         {
-            ServiceClient client = new ServiceClient(endpoint);
-        
-            rows = (ArrayList) client.invoke(
-                                            "http://rdfweb.org/RDF/RDFWeb/SOAPDemo",
-                                            "squish",
-                                            new Object [] { query,database,"" });
-        }
-        catch (Exception e)
-        {
-            RDFAuthorUtilities.ShowError(
-                "Error Making Query", "There was an error making the query.\nUseful error text:\n" + e, 
-                RDFAuthorUtilities.Critical, 
-                queryDrawer.parentWindow());
+            NSSelector killSelector = new NSSelector("killQuery", 
+                new Class[] {Object.class, int.class} );
+            NSAlertPanel.beginAlertSheet(
+                "Kill Current Query?", "OK", "Cancel", null,
+                queryDrawer.parentWindow(), this, killSelector, null, queryDrawer.parentWindow(), 
+                "Performing this query will kill the current query. Is what you want to do?");
             return;
         }
+        
+        System.out.println("Query to perform is:");
+        System.out.println(query);
+        
+        infoTextField.setStringValue("Performing query...");
+        
+        queryThread = new QueryThread(query, database, this);
+        
+        queryThread.start();
+    }
+    
+    public void killQuery(Object context, int returnCode)
+    {
+        if (returnCode == NSAlertPanel.DefaultReturn)
+        {
+            if (queryThread != null) // check that it didn't finish before response
+            {
+                System.out.println("Killing current thread...");
+                queryThread.stop(); // Very bad - but I can't do anything about it currently
+                queryThread = null;
+            }
+            performQuery(null); // Try again
+        }
+    }
+    
+    public void queryDied(Exception e)
+    {
+        RDFAuthorUtilities.ShowError(
+            "Error Making Query", "There was an error making the query.\nUseful error text:\n" + e, 
+            RDFAuthorUtilities.Critical, 
+            queryDrawer.parentWindow());
+        infoTextField.setStringValue("Last query failed.");
+        
+        queryThread = null;
+    }
+        
+    public void queryCompleted()
+    {
+        ArrayList rows = queryThread.result();
+        
         if (rows.isEmpty())
         {
             RDFAuthorUtilities.ShowError(
                 "Nothing Found", "No results found for this query", RDFAuthorUtilities.Informational, 
                 queryDrawer.parentWindow());
+            infoTextField.setStringValue("Last query returned nothing.");
             return;
         }
         
+        infoTextField.setStringValue("Query took " + queryThread.duration() + " seconds. " + rows.size() + 
+            " results returned.");
+        
         createResultsTable(rows);
+        
+        queryThread = null;
     }
     
     public void addQueryItem(ModelItem item)
@@ -211,9 +247,8 @@ public class QueryController extends NSObject {
                 {
                     if (theNode.id() == null)  // anonymous
                     {
-                        String var = "var_" + varNum;
+                        nodeToString.put(theNode, "?var_" + varNum);
                         varNum++;
-                        nodeToString.put(theNode, "?" + var);
                     }
                     else
                     {
@@ -239,10 +274,20 @@ public class QueryController extends NSObject {
             Node startNode = theArc.fromNode();
             Node endNode = theArc.toNode();
             
-            // Uh-oh - check for existence of arc property here
+            String property;
+            
+            if (theArc.propertyNamespace() == null) // An 'anonymous' property
+            {
+                property = "?var_" + varNum;
+                varNum ++;
+            }
+            else
+            {
+                property = theArc.propertyNamespace() + theArc.propertyName();
+            }
             
             triples.add( "(" + 
-                theArc.propertyNamespace + theArc.propertyName + " " +
+                property + " " +
                 (String) nodeToString.get(startNode) + " " +
                 (String) nodeToString.get(endNode) + ")" );
         }
