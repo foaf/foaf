@@ -6,7 +6,7 @@
 
 
 # ayf.rb 
-# $Id: ayf.rb,v 1.6 2002-12-10 01:59:03 danbri Exp $
+# $Id: ayf.rb,v 1.7 2002-12-10 02:30:40 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -130,6 +130,8 @@ class SimpleScutter
      
       ################################################################
       # Try fetching some RDF
+
+      seen[uri]=seen[uri]+1  # increment per-uri encounter
       begin 
        page = rdfget(uri)
        raise "#{$!} (rdfget returned nil)" if page==nil
@@ -165,7 +167,6 @@ class SimpleScutter
         left.push(k) if seen[k]==0 
       end
 
-      seen[uri]=seen[uri]+1  # increment per-uri encounter
 
 
 
@@ -293,9 +294,9 @@ end
     begin 
     resp, data = h.get(res, my_headers)
     rescue
-      # puts "GET failed. Returning empty graph. error:#{$!} "
+      puts "rdfget: HTTP GET failed. Returning empty graph. error:#{$!} "
       # fixme: should raise an error?
-      return data
+      return rdfdata
     end
 
     # puts "Got data: #{data.inspect} from host:#{host} res:#{res} uri:#{uri}\n\n"
