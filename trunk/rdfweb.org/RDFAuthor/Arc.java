@@ -109,7 +109,7 @@ public class Arc implements Serializable, ModelItem
     public void setShowProperty(boolean value)
     {
         showProperty = value;
-        graphicArc.calculateSize();
+        if (graphicArc != null) graphicArc.calculateSize();
     }
 
     public void setProperty(String namespace, String name)
@@ -118,7 +118,7 @@ public class Arc implements Serializable, ModelItem
         propertyNamespace = namespace;
         myList.itemChanged(this);
         
-        graphicArc.calculateSize();
+        if (graphicArc != null) graphicArc.calculateSize();
     }
     
     // Version of above but property not split
@@ -157,7 +157,7 @@ public class Arc implements Serializable, ModelItem
     {
         toNode.removeToArc(this);
         fromNode.removeFromArc(this);
-        graphicArc.delete(); // tell graphical rep that we're dying :-(
+        if (graphicArc != null) graphicArc.delete(); // tell graphical rep that we're dying :-(
         myList.removeObject(this);
     }
     
@@ -171,14 +171,14 @@ public class Arc implements Serializable, ModelItem
         {
             toNode.removeToArc(this);
         }
-        graphicArc.delete(); // tell graphical rep that we're dying :-(
+        if (graphicArc != null) graphicArc.delete(); // tell graphical rep that we're dying :-(
         myList.removeObject(this);
     }
     
     public void nodeMoved()
     {
         myList.itemChanged(this);
-        graphicArc.calculateRectangle();
+        if (graphicArc != null) graphicArc.calculateRectangle();
     }
     
     public boolean isNode()

@@ -66,19 +66,12 @@ public class ArcNodeList implements Serializable
         
         Model memModel = new ModelMem();
         
-        memModel.read(reader, ""); // Hmm - what's base?
+        memModel.read(reader, ""); // Hmm - what's the base?
         
         HashMap jenaNodeToNode = new HashMap(); 
-        HashMap nodeToX = new HashMap();
-        HashMap nodeToY = new HashMap();
         
-        float x = 70; // nasty out layout. Improve me!
-        float y = 70;
-        
-        float minX = 100000; // these are for calculating the extent of the nodes
-        float minY = 100000;
-        float maxX = -100000;
-        float maxY = -100000;
+        float x;
+        float y;
         
         for (StmtIterator iterator = memModel.listStatements(); iterator.hasNext(); )
         {
@@ -99,10 +92,10 @@ public class ArcNodeList implements Serializable
                 {
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
+                    x = (float) java.lang.Math.random() * 100 + 100;
+                    y = (float) java.lang.Math.random() * 100 + 100;
                     // This is dodgy - object might be a literal (I guess)
                     subjectNode = new Node(this, id, object.toString(), x, y);
-                    x += 70; y += 10;
-                    if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
                     array.add(subjectNode);
                 }
@@ -112,67 +105,6 @@ public class ArcNodeList implements Serializable
                     subjectNode.setType(object.toString());
                 }
             }
-            // Ok - this is a special hack for embedded positioning info
-            else if (property.toString().equals("http://rdfweb.org/people/damian/2001/10/RDFAuthor/schema/x")) // x coord
-            {
-                if (subjectNode == null) // not added yet
-                {
-                    String id = subject.getURI();
-                    if (id != null) id = (id.equals(""))?null:id;
-                    subjectNode = new Node(this, id, object.toString(), x, y);
-                    x += 70; y += 10;
-                    if (x > 400F) x = 70;
-                    jenaNodeToNode.put(subject, subjectNode);
-                    array.add(subjectNode);
-                }
-                
-                Float xVal = new Float(object.toString());
-                
-                nodeToX.put(subjectNode, xVal);
-                
-                float xpos = xVal.floatValue();
-                
-                if ((maxX == -100000) && (minX == 100000)) // neither set yet
-                {
-                    maxX = xpos;
-                    minX = xpos;
-                }
-                else
-                {
-                    if (xpos > maxX) maxX = xpos;
-                    if (xpos < minX) minX = xpos;
-                }
-            }
-            else if (property.toString().equals("http://rdfweb.org/people/damian/2001/10/RDFAuthor/schema/y")) // y coord
-            {
-                if (subjectNode == null) // not added yet
-                {
-                    String id = subject.getURI();
-                    if (id != null) id = (id.equals(""))?null:id;
-                    subjectNode = new Node(this, id, object.toString(), x, y);
-                    x += 70; y += 10;
-                    if (x > 400F) x = 70;
-                    jenaNodeToNode.put(subject, subjectNode);
-                    array.add(subjectNode);
-                }
-                
-                Float yVal = new Float(object.toString());
-                
-                nodeToY.put(subjectNode, yVal);
-                
-                float ypos = yVal.floatValue();
-                
-                if ((maxY == -100000) && (minY == 100000)) // neither set yet
-                {
-                    maxY = ypos;
-                    minY = ypos;
-                }
-                else
-                {
-                    if (ypos > maxY) maxY = ypos;
-                    if (ypos < minY) minY = ypos;
-                }
-            }
             else
             {
                 // First create nodes (if needed)
@@ -180,9 +112,9 @@ public class ArcNodeList implements Serializable
                 {
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
+                    x = (float) java.lang.Math.random() * 100 + 100;
+                    y = (float) java.lang.Math.random() * 100 + 100;
                     subjectNode = new Node(this, id, null, null, x, y);
-                    x += 70; y += 10;
-                    if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
                     array.add(subjectNode);
                 }
@@ -193,9 +125,9 @@ public class ArcNodeList implements Serializable
                     {
                         String id = ((Resource) object).getURI();
                         if (id != null) id = (id.equals(""))?null:id;
+                        x = (float) java.lang.Math.random() * 100 + 100;
+                        y = (float) java.lang.Math.random() * 100 + 100;
                         objectNode = new Node(this, id, null, null, x, y);
-                        x += 70; y += 10;
-                        if (x > 400F) x = 70;
                         jenaNodeToNode.put(object, objectNode);
                         array.add(objectNode);
                     }
@@ -203,10 +135,11 @@ public class ArcNodeList implements Serializable
                     {
                         String content = ((Literal) object).getString();
                         content = (content.equals(""))?null:content;
+                        x = (float) java.lang.Math.random() * 100 + 100;
+                        y = (float) java.lang.Math.random() * 100 + 100;
                         objectNode = new Node(this, content, null, null, x, y);
-                        x += 70; y += 10;
-                        if (x > 400F) x = 70;
                         objectNode.setIsLiteral(true);
+                        objectNode.literal = true;
                         jenaNodeToNode.put(object, objectNode);
                         array.add(objectNode);
                     }
@@ -219,25 +152,6 @@ public class ArcNodeList implements Serializable
             }
         }
         
-        // Deal with the extent
-        
-        System.out.println("Extent is: (" + minX + "," + minY + "," + maxX + "," + maxY +")");
-        
-        
-        
-        // Ok - now look at coord info (if any)
-        
-        for (Iterator iterator = this.getNodes(); iterator.hasNext();)
-        {
-            Node node = (Node) iterator.next();
-            if ((nodeToX.get(node) != null) && (nodeToY.get(node) != node)) // if we have both coords
-            {
-                float xval = ((Float) nodeToX.get(node)).floatValue() - minX + 20;
-                float yval = ((Float) nodeToY.get(node)).floatValue() - minY + 20;
-                
-                node.setPosition(xval, yval);
-            }
-        }
     }
     
     public void setController(RDFAuthorDocument controller)
@@ -259,6 +173,25 @@ public class ArcNodeList implements Serializable
         AbstractList arrayTemp = (AbstractList) in.readObject();
         array = new ArrayList(arrayTemp);
         currentObject = (ModelItem) in.readObject();
+    }
+
+    public int size()
+    {
+        return array.size();
+    }
+    
+    // get number of nodes (if true) of arcs (if false)
+    
+    public int size(boolean getNodes)
+    {
+        int number = 0;
+        for (ListIterator iterator = this.getObjects(); iterator.hasNext(); )
+        {
+            ModelItem object = (ModelItem) iterator.next();
+            if (object.isNode() == getNodes) number++;
+        }
+        
+        return number;
     }
     
     public void add(ModelItem anObject)
@@ -293,6 +226,18 @@ public class ArcNodeList implements Serializable
     public ListIterator getObjects()
     {
         return array.listIterator();
+    }
+    
+    public ListIterator getObjects(boolean reverse) // version of above, but indicate order
+    {
+        if (reverse)
+        {
+            return array.listIterator(array.size()); // start at end (if that makes sense ;-)
+        }
+        else
+        {
+            return array.listIterator();
+        }
     }
     
     public ArcNodeListIterator getNodes()

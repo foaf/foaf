@@ -1,3 +1,15 @@
+$Date: 2001-12-11 22:38:01 $ - pldms
+
+    Redrawing is much faster now. I've also extracted the graphics code from the model.
+    This will make the swing port nicer. The relevant classes start are GraphicalXXX.
+    
+    Importing of rdf/xml implemented. This was pretty easy, but the autolayout was a bit
+    harder (actually it only took an couple of hours, but I dragged my heels ;-).
+    
+    Saves image size - but can open v0.1 files.
+    
+    SVG export done. Looks pretty good. TIFF export also available.
+
 2001/11/23 19:10:23 - pldms
 
     Ok - finally GPLd it. Hurrah. Also included Jena and Axis licences.

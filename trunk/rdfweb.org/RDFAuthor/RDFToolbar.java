@@ -48,6 +48,7 @@ public class RDFToolbar extends NSObject {
     static final String previewPopupIdentifier = "preview popup identifier";
     static final String queryPanelIdentifier = "query panel identifier";
     static final String bookmarkPanelIdentifier = "bookmark panel identifier";
+    static final String autoLayoutIdentifier = "autolayout identifier";
     
     boolean textPreview = false;
     String[] popupMappings;
@@ -131,6 +132,16 @@ public class RDFToolbar extends NSObject {
             toolbarItem.setTarget(this);
             toolbarItem.setAction(new NSSelector("showBookmarkWindow", new Class[] { NSToolbarItem.class }));
         }
+        else if (itemIdent.equals(autoLayoutIdentifier))
+        {
+            toolbarItem.setLabel("Layout");
+            toolbarItem.setPaletteLabel("Layout");
+            
+            toolbarItem.setToolTip("Automatically layout the graph");
+            toolbarItem.setImage(NSImage.imageNamed("layout.tiff"));
+            toolbarItem.setTarget(this);
+            toolbarItem.setAction(new NSSelector("autoLayout", new Class[] { NSToolbarItem.class }));
+        }
         else
         {
 	    // itemIdent refered to a toolbar item that is not provide or supported by us or cocoa.
@@ -150,7 +161,8 @@ public class RDFToolbar extends NSObject {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
                 showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
-                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier, queryPanelIdentifier,
+                checkIdentifier, autoLayoutIdentifier, toggleViewsIdentifier, previewPopupIdentifier, 
+                queryPanelIdentifier,
                 bookmarkPanelIdentifier } );
     }
     
@@ -160,7 +172,8 @@ public class RDFToolbar extends NSObject {
 	// The set of allowed items is used to construct the customization palette.
 	return new NSArray(new String[] 
             {   
-                editToolsIdentifier, showToolsIdentifier, checkIdentifier, toggleViewsIdentifier,
+                editToolsIdentifier, showToolsIdentifier, checkIdentifier, autoLayoutIdentifier,
+                toggleViewsIdentifier,
                 previewPopupIdentifier, queryPanelIdentifier, bookmarkPanelIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
@@ -254,6 +267,11 @@ public class RDFToolbar extends NSObject {
         rdfAuthorDocument.doCheckModel();
     }
     
+    public void autoLayout(NSToolbarItem sender)
+    {
+        rdfAuthorDocument.autoLayout();
+    }
+    
     public void toggleView(NSToolbarItem sender)
     {
         if (textPreview)
@@ -285,6 +303,8 @@ public class RDFToolbar extends NSObject {
     {
         bookmarkController.toggleShow();
     }
+    
+    
     
     public void previewModeChanged(Object sender)
     {

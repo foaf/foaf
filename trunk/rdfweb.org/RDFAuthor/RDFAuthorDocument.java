@@ -29,7 +29,8 @@ import java.util.HashMap;
 
 public class RDFAuthorDocument extends NSDocument {
     
-    static final String FileFormatVersion = "RDFAuthor File Format Version 0.1";
+    static final String FileFormatPrefix = "RDFAuthor File Format Version ";
+    static final String FileFormatNumber = "0.2";
     
     NSTextField textDescriptionField;
 
@@ -50,6 +51,9 @@ public class RDFAuthorDocument extends NSDocument {
     GraphicalModel rdfGraphicModel;
     
     HashMap exportMappings;
+    boolean needsAutoLayout; // indicate whether we've loaded something whuch needs laying out
+    float modelWidth; // for remembering sizes when loading
+    float modelHeight;
     
     boolean showTypes;
     boolean showIds;
@@ -70,6 +74,10 @@ public class RDFAuthorDocument extends NSDocument {
     
     public RDFAuthorDocument(String fileName, String fileType) {
         super(fileName, fileType);
+    }
+    
+    public RDFAuthorDocument( java.net.URL anURL, String docType) {
+        super(anURL, docType);
     }
     
     public void printDocumentUsingPrintPanel(boolean flag)
@@ -93,10 +101,14 @@ public class RDFAuthorDocument extends NSDocument {
             {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 ObjectOutputStream s = new ObjectOutputStream(out);
-                s.writeObject(FileFormatVersion);
+                s.writeObject(FileFormatPrefix + FileFormatNumber);
                 s.writeBoolean(showTypes);
                 s.writeBoolean(showIds);
                 s.writeBoolean(showProperties);
+                s.writeFloat(rdfModelView.frame().width());
+                System.out.println("Wrote width: " + rdfModelView.frame().width());
+                s.writeFloat(rdfModelView.frame().height());
+                System.out.println("Wrote height: " + rdfModelView.frame().height());
                 s.writeObject(rdfModel);
                 
                 NSData savedData = new NSData(out.toByteArray());
@@ -120,6 +132,12 @@ public class RDFAuthorDocument extends NSDocument {
         else if (aType.equals("TIFF Image")) // TIFF export
         {
             return rdfModelView.TIFFRepresentation();
+        }
+        else if (aType.equals("SVG Document")) // SVG Export
+        {
+            NSMutableStringReference svgString = new NSMutableStringReference();
+            svgString.setString(rdfGraphicModel.svgRepresentation(this, rdfModel, rdfModelView));
+            return svgString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
         }
         else if (exportMappings.get(aType) != null)
         {
@@ -155,7 +173,7 @@ public class RDFAuthorDocument extends NSDocument {
         
         exportMappings = new HashMap();
         
-        exportMappings.put("XML/RDF Document", "RDF/XML-ABBREV");
+        exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         exportMappings.put("N3 Document", "N3");
         
@@ -169,25 +187,36 @@ public class RDFAuthorDocument extends NSDocument {
                     new ByteArrayInputStream( data.bytes(0, data.length()) );
                 ObjectInputStream s = new ObjectInputStream(in);
                 String formatVersion = (String) s.readObject();
-                if (!formatVersion.equals(FileFormatVersion))
+                if (!formatVersion.startsWith(FileFormatPrefix))
                 {
                     RDFAuthorUtilities.ShowError(
                         "Incompatible File Format",
-                        "This version requires " + FileFormatVersion + ", but this file is in " + formatVersion
+                        "This version requires " + FileFormatPrefix + "0.1 (or above), but this file is in "
+                        + formatVersion
                         + ".\nBlame the author." ,
                         RDFAuthorUtilities.Critical, null);
                     success = false;
                 }
                 else
                 {
+                    String versionNumber = formatVersion.substring(FileFormatPrefix.length());
+                    System.out.println("Version: " + versionNumber);
                     showTypes = s.readBoolean();
                     showIds = s.readBoolean();
-                    showProperties = s.readBoolean();                
-                    rdfModel = (ArcNodeList) s.readObject();
+                    showProperties = s.readBoolean();
+                    if (!versionNumber.equals("0.1")) // I've added doc size info since 0.1
+                    {
+                        modelWidth = s.readFloat();
+                        System.out.println("Width: " + modelWidth);
+                        modelHeight = s.readFloat();
+                        System.out.println("Height: " + modelHeight);
+                    }
 
+                    rdfModel = (ArcNodeList) s.readObject();
                     rdfModel.setController(this);
             
                     success = true;
+                    needsAutoLayout = false;
                 }
             }
             catch (Exception e)
@@ -214,6 +243,7 @@ public class RDFAuthorDocument extends NSDocument {
                 StringReader reader = new StringReader(rdf);
                 rdfModel = new ArcNodeList(this, reader, inputType );
                 success = true;
+                needsAutoLayout = true;
             }
             catch (Exception e)
             {
@@ -232,9 +262,24 @@ public class RDFAuthorDocument extends NSDocument {
             success = false;
         }
         
-        if (rdfModelView != null) // This is needed for 'revert' - doesn't display otherwise
+        if (rdfModelView != null) // We seem to be reverting - nib won't be loaded
         {
             rdfModelView.setNeedsDisplay(true);
+            if (modelWidth > 0) // revert size (if needed)
+            {
+                rdfModelView.setFrameSize(new NSSize(modelWidth, modelHeight));
+            }
+            if (needsAutoLayout) // Revert autolayout
+            {
+                RDFAuthorUtilities.layoutModel(rdfModel, 
+                    rdfModelView.frame().x(), 
+                    rdfModelView.frame().y(), 
+                    rdfModelView.frame().maxX(), 
+                    rdfModelView.frame().maxY());
+            }
+            // This caused a nasty bug - if it reverted it loaded the doc, but lost the Graphics
+            // Initialise rdfGraphicModel
+            rdfGraphicModel = new GraphicalModel(rdfModel, rdfModelView);
         }
         
         if (!success)
@@ -276,9 +321,21 @@ public class RDFAuthorDocument extends NSDocument {
         
         rdfGraphicModel = new GraphicalModel(rdfModel, rdfModelView);
         
-        // Set rdfModelView's size to current paper size
-        
-        rdfModelView.setSizeFromPrintInfo( NSPrintInfo.sharedPrintInfo() );
+        if (modelWidth > 0) // file had size info
+        {
+            rdfModelView.setFrameSize(new NSSize(modelWidth, modelHeight));
+        }
+        else
+        {
+            // Set rdfModelView's size to current paper size
+            
+            rdfModelView.setSizeFromPrintInfo( NSPrintInfo.sharedPrintInfo() );
+        }
+        if (needsAutoLayout)
+        {
+            RDFAuthorUtilities.layoutModel(rdfModel, 
+            rdfModelView.frame().x(), rdfModelView.frame().y(), rdfModelView.frame().maxX(), rdfModelView.frame().maxY());
+        }
         
         // There must be a way to do this in interface builder...
         
@@ -331,7 +388,7 @@ public class RDFAuthorDocument extends NSDocument {
         else
         {
             NSRect rect = previewView.frame();
-            rdfModelView.setFrame(rect);
+            rdfModelScrollView.setFrame(rect);
             window.contentView().replaceSubview(previewView, rdfModelScrollView);
             return true;
         }
@@ -495,10 +552,6 @@ public class RDFAuthorDocument extends NSDocument {
             rdfModel.setCurrentObject(newArc);
             newArc.setShowProperty(showProperties);
         }
-        else
-        {
-            rdfModelView.setNeedsDisplay(true); // need this to get rid of drag line
-        }
     }
     
     public void setCurrentObject(ModelItem item)
@@ -577,6 +630,15 @@ public class RDFAuthorDocument extends NSDocument {
     {
         rdfGraphicModel.drawModel(rdfModel, rect);
         queryController.drawQueryItems();
+    }
+    
+    public void autoLayout()
+    {
+        RDFAuthorUtilities.layoutModel(rdfModel,
+            rdfModelView.frame().x(),
+            rdfModelView.frame().y(),
+            rdfModelView.frame().maxX(),
+            rdfModelView.frame().maxY());
     }
     
     public void doCheckModel()

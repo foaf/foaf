@@ -31,6 +31,7 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
+import java.lang.Math;
 
 public class RDFAuthorUtilities {
     
@@ -75,5 +76,143 @@ public class RDFAuthorUtilities {
         }
     }
     
+    /*
+        this is a first stab at auto-layout. it isn't very good :-(
+    */
     
+    public static void layoutModel(ArcNodeList model, float minX, float minY, float maxX, float maxY)
+    {
+        float margin = 100;
+        float springConstant = 0.01f;
+        float springExtension = 150;
+        int numberOfNodes = model.size(true); // 'true' means get number of nodes, 'false' for arcs
+        
+        // Adjust for margins
+        
+        minX += margin;
+        maxX -= margin;
+        minY += margin;
+        maxY -= margin;
+        
+        Node[] nodes = new Node[numberOfNodes];
+        float[] x = new float[numberOfNodes];
+        float[] y = new float[numberOfNodes];
+        float[] xVel = new float[numberOfNodes];
+        float[] yVel = new float[numberOfNodes];
+        boolean[][] connected = new boolean[numberOfNodes][numberOfNodes];
+        
+        // Set nodes
+        int i = 0;
+        
+        for (ArcNodeListIterator iterator = model.getNodes(); iterator.hasNext();)
+        {
+            Node node = (Node) iterator.next();
+            nodes[i] = node;
+            x[i] = node.x();
+            y[i] = node.y();
+            xVel[i] = 0;
+            yVel[i] = 0;
+            i++;
+        }
+        
+        for (i = 0; i < numberOfNodes - 1; i++)
+        {
+            for (int j = i + 1; j < numberOfNodes; j++)
+            {
+                // This is silly - improve me
+                
+                connected[i][j] = false;
+                
+                for (ArcNodeListIterator iterator = model.getArcs(); iterator.hasNext();)
+                {
+                    Arc arc = (Arc) iterator.next();
+                    if ((arc.toNode() == nodes[i]) && (arc.fromNode() == nodes[j]))
+                    {
+                        connected[i][j] = true;
+                        break;
+                    }
+                    else if ((arc.toNode() == nodes[j]) && (arc.fromNode() == nodes[i]))
+                    {
+                        connected[i][j] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        // let's try this a few times
+        
+        for (int repeating = 0; repeating < 100; repeating++)
+        {
+        
+            for (i = 0; i < numberOfNodes - 1; i++)
+            {
+                for (int j = i + 1; j < numberOfNodes; j++)
+                {
+                    // this is for calculating interactions between nodes
+                    float dx = x[i] - x[j];
+                    float dy = y[i] - y[j];
+                    
+                    float dist = (float) Math.sqrt(dx*dx + dy*dy);
+                    
+                    float force;
+                    if (connected[i][j]) // if connected then work out springy force
+                    {
+                        force = - springConstant * (dist - springExtension);
+                    }
+                    else force = 100/dist; // else purely repulsive (but falls off with distance)
+                    
+                    float xForce = force * dx / dist; // x (y) components of the force
+                    float yForce = force * dy / dist;
+                    
+                    xVel[i] += xForce;
+                    xVel[j] -= xForce;
+                    
+                    yVel[i] += yForce;
+                    yVel[j] -= yForce;
+                }
+            }
+            
+            //float totalVel = 0;
+            
+            for (i = 0; i < numberOfNodes; i++)
+            {
+                // edge adjustment
+                // Roughly this uses a very strong repulsive force in the margins
+                // and a weaker force which tends to centre the model.
+                
+                if (x[i] < minX) 
+                xVel[i] += 0.001 * (minX - x[i])*(minX - x[i]);
+                else xVel[i] += springConstant * 2.5 * (minX - x[i]);
+                if (x[i] > maxX)
+                xVel[i] -= 0.001 * (x[i] - maxX) * (x[i] - maxX);
+                else xVel[i] += - springConstant * 2.5 * (x[i] - maxX);
+                if (y[i] < minY)
+                yVel[i] += 0.001 * (minY - y[i]) * (minY - y[i]);
+                else yVel[i] += springConstant * 2.5 * (minY - y[i]);
+                if (y[i] > maxY) 
+                yVel[i] -= 0.001 * (y[i] - maxY) * (y[i] - maxY);
+                else yVel[i] += - springConstant * 2.5 * (y[i] - maxY);
+                
+                xVel[i] *= 0.9; // these 'damp' the motions
+                yVel[i] *= 0.9;
+                
+                x[i] += xVel[i];
+                y[i] += yVel[i];
+                
+                //totalVel += Math.abs(xVel[i]);
+                //totalVel += Math.abs(yVel[i]);
+            }
+            //System.out.println("Total velocities: " + totalVel);
+        }
+        
+        // finished - so set postitions
+        
+        for (i = 0; i < numberOfNodes; i++)
+        {
+            nodes[i].setPosition( x[i], y[i] );
+        }
+    }
+
+
 }
