@@ -1,0 +1,34 @@
+On a good day (and a Unix-like system) this should get you up and
+running.
+
+
+1. install Ruby, http://www.ruby-lang.org/
+
+2. install RubyRDF, ie. squish.rb and basicrdf.rb from
+	http://www.w3.org/2001/12/rubyrdf/
+    - these will live somewhere like /usr/lib/ruby/1.6/
+
+3. install Redland's Raptor parser (and rdfdump utility)
+    - you should be able to run 'rdfdump' on the command line
+
+4. install PostgreSQL (and set up user permissions etc).
+
+5. create a database: createdb rdfweb1 			(*a)
+
+6. create tables for storing RDF: psql rdfweb1 < conf/scutterdb.sql
+
+7. create 'webcache/' and 'webcache/_nt' sub directories if needed (*b)
+
+8. Try running Scutter from top level directory: bin/scutter --scutter
+
+9. If it seems to work (and your postgres table fills up) try
+   running a server, bin/rdfweb_server and visit 
+   http://localhost:2000/rss/ to see if it found any RSS newsfeeds.
+
+10. see doc/scutter.html for more details.
+
+notes:
+*a todo: investigate default encoding at this stage
+
+--
+danbri
