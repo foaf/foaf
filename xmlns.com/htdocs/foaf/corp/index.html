@@ -1,0 +1,55 @@
+<?xml version='1.0'?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>FOAFCorp RDF Vocabulary</title>
+</head>
+<body bgcolor="#ffffff">
+
+<h1>FOAFCorp RDF Vocabulary</h1>
+<p>
+This document defines an RDF vocabulary for FOAFCorp. See <a
+href="http://rdfweb.org/people/danbri/2001/09/foafcorp/intro.html">FOAFCorp
+page</a> for more details, or view the source to read the embedded RDF
+schema.
+</p>
+<p>contact: <a href="mailto:danbri@rdfweb.org">dan brickley</a></p>
+
+<p>Authored in <a
+href="http://rdfweb.org/people/damian/RDFAuthor">RDFAuthor</a>.</p>
+
+<h3>Schema</h3>
+<p>Note; this isn't very legible; we need to generate an HTML version.</p>
+
+<pre>
+
+<rdf:RDF
+    xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+    xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'>
+    <rdf:Property rdf:about='http://xmlns.com/foaf/corp#board'
+         rdfs:label='board'>
+        <rdfs:comment>A board of a Company</rdfs:comment>
+    </rdf:Property>
+    <rdfs:Class rdf:about='http://xmlns.com/foaf/corp#Company'>
+        <rdfs:label>Company</rdfs:label>
+        <rdfs:comment>A Company</rdfs:comment>
+    </rdfs:Class>
+    <rdfs:Class rdf:about='http://xmlns.com/foaf/corp#Committee'
+         rdfs:label='Committee'>
+        <rdfs:comment>A Committee</rdfs:comment>
+    </rdfs:Class>
+    <rdf:Property rdf:about='http://xmlns.com/foaf/corp#stock'
+         rdfs:label='stock'>
+        <rdfs:comment>a stock code for a Company</rdfs:comment>
+    </rdf:Property>
+    <rdf:Property rdf:about='http://xmlns.com/foaf/corp#filings'
+         rdfs:label='filings'>
+        <rdfs:comment>a filing for a company</rdfs:comment>
+    </rdf:Property>
+    <rdf:Property rdf:about='http://xmlns.com/foaf/corp#member'
+         rdfs:label='member'>
+        <rdfs:comment>a member of a Committee</rdfs:comment>
+    </rdf:Property>
+</rdf:RDF>
+</pre>
+</body>
+</html>

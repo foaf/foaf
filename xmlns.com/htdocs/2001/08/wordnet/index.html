@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: xmlns.com Wordnet Vocabulary
+    </title>
+  </head>
+  <body bgcolor="#ffffff">
+    <h1>
+      Wordnet for the Web
+    </h1>
+    <p>
+      This page documents the <a href="/">xmlns.com</a> Wordnet
+      vocabulary service, an RDF schema based on version 1.6 of the
+      Wordnet lexical database.
+    </p>
+    <h2>
+      Status
+    </h2>
+    <p>
+      Our Wordnet service is experimental: please do not rely on
+      what we have here for production grade work. We are serious
+      about developing a mature version of xmlns Wordnet to
+      underpin RDF vocabulary deployment, and caution that flaws in
+      the current design may need fixing.
+    </p>
+    <p>
+      Note that other RDF representations of Wordnet now exist; a
+      comparison would be useful.
+    </p>
+    <h2>
+      Details
+    </h2>
+    <p>
+      The current service is based solely on the noun term
+      hierarchy from Wordnet. The hypernym hierarchy (a ___ is a
+      kind of ___) is projected into an RDF Schema 1.0 class
+      hierarchy (the ___ class is an <code>rdfs:subClassOf</code>
+      the class ___). This creates a rather large class hierarchy.
+    </p>
+    <p>
+      You can address each noun from Wordnet using Web identifiers
+      (URIs) of the form: <code>
+      http://xmlns.com/wordnet/1.6/xxx</code> where 'xxx' is a word
+      such as 'Cat', 'Tree', 'Person'. If you de-reference these
+      URIs, the xmlns.com service provides an RDF description of
+      that RDF class, plus detailed descriptions of immediate
+      sub-classes and a list of the super-classes above it in the
+      hierarchy.
+    </p>
+    <p>
+      The word you use can optionally be qualified with a numeric
+      suffix (eg '<a
+      href="http://xmlns.com/wordnet/1.6/Dog">Dog</a>' vs ' <a
+      href="http://xmlns.com/wordnet/1.6/Dog-2">Dog-2</a>')
+      corresponding to the wordnet sense numbers associated with
+      that word.
+    </p>
+    <h3>
+      Deployment
+    </h3>
+    <p>
+      You can import this vocabulary into RDF instance data, for
+      example by writing <code>
+      xmlns:wordnet="http://xmlns.com/wordnet/1.6/"</code>
+    </p>
+    <p>
+      Having done this, you can use any noun from Wordnet as an RDF
+      class (ie. type). Since RDF syntax provides a special
+      convention for writing class names as XML elements, this can
+      be rather useful.
+    </p>
+    <h3>
+      Issues
+    </h3>
+    <p>
+      In Wordnet, hypernym relations are between word-clusters
+      ("synonym sets") not between the terms themselves. Typically
+      a group of related words are organised together in wordnet as
+      a synonym set (which will have some obscure numerical
+      identifier, but does not correspond to any particular
+      "dominant" or "representative" term from the synset, ie each
+      term in a synset is equal). Consequently, when we create
+      sub-class relations between RDF classes based on words in
+      Wordnet, we ignore some of this structure. Our current
+      implementation is based on real-time queries to the Wordnet
+      tools, and will need re-engineering at the software and
+      schema level to better improve this situation. For RDFWeb and
+      xmlns.com, it is important to use real words ('Cat','Person'
+      etc) as the class identifiers, so that RDF/XML written using
+      this schema is readable and intuitive. We don't want numeric
+      IDs instead, since this will create usability issues for
+      deployment. A possible workaround is to have RDF classes both
+      for each word in Wordnet (one per each member of the synset)
+      and another RDF class for the synset itself. <em>More work
+      needed...</em>
+    </p>
+    <h3>
+      Next steps...
+    </h3>
+    <p>
+      Discussion is welcomed. Send mail to the <a
+      href="http://rdfweb.org/">RDFWeb</a> rdfweb-dev list, or join
+      the <a href="http://www.w3.org/RDF/Interest/#irc">#rdfig IRC
+      channel</a> if you're interested.
+    </p>
+
+    <p>
+      One useful thing to do would be to make an <a
+      href="http://www.rddl.org/">RDDL</a> description of the <a
+      href="http://xmlns.com/wordnet/1.6/">Wordnet</a> namespace
+      available.
+    </p>
+    <p>
+      <a href="mailto:danbri@rdfweb.org">Dan Brickley</a>
+    </p>
+  </body>
+</html>
+

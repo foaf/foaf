@@ -1,0 +1,15 @@
+check:
+	gpg --quiet --verify ../foafsig index.html
+
+
+sign:
+	@echo "Sign your Schema!"
+	gpg -sab index.html 
+	mv index.html.asc ../foafsig
+
+
+PARSER=/home/pldab/working/w3c/perl/modules/W3C/Rdf/bin/xrdfparser
+
+test:
+	$(PARSER) index.html
+

@@ -1,0 +1,222 @@
+#!/bin/perl
+
+#
+# Simple Perl hack to present RDF view of WordNet 
+
+
+
+my $n= 1; # Default to Sense 1.
+my $id = $ENV{'PATH_INFO'} || shift; # Get query (ie. a word sense ID)
+$id =~ s/ /_/; # whitespace to underscore
+$id =~ s/^\///;  # trim leading slash
+$id =~ s/[~\-](\d+)//; $n=$1 if $1; # get sense number
+
+if (!$id) {
+  print "Content-type: text/html\n\n";
+  print "<html><head><title>Wordnet for the Web: xmlns.com wordnet vocabulary</title></head>";
+  print "<body><p>See the <a href=\"http://xmlns.com/2001/08/wordnet/\">xmlns.com Wordnet writeup</a>
+    for details of this XML namespace. </p></body></html>";
+  exit;
+}
+
+#print "Content-type: text/plain\n\n"; # hmmm
+print "Content-type: application/rdf+xml\n\n"; # :)
+
+my $wnns = 'http://xmlns.com/wordnet/1.6/'; # Base URI for this vocabulary
+$wnbin = '/usr/local/bin/wn';  ## Configure this to point to wordnet binary
+
+
+print getXML();
+
+
+
+## SUBS
+
+sub getXML {
+
+my $xml = '<?xml version="1.0"?>'."\n\n";
+$xml .= "<web:RDF xmlns:web=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
+ xmlns=\"http://www.w3.org/2000/01/rdf-schema#\">\n\n"; # TBD
+  
+
+
+## CLEAN INPUT HERE!
+
+
+	$id =~ s/\b(\w)/\U$1/; ## Init Upper Case name
+
+$xml .= "\n<!-- WordNet concept:  $id -->\n ";
+
+$xml .= "\n<!-- Note: this prototype service is not officially sanctioned by
+the WordNet team; see http://xmlns.com/2001/08/wordnet/ or
+http://lists.w3.org/Archives/Public/www-rdf-interest/1999Dec/0002.html 
+for background info and status warnings. Note that the class hierarchy
+presented here may not be the best representation of Wordnet noun synsets.
+Queries etc to danbri\@rdfweb.org -->\n ";
+
+
+### Talk to WordNet code for this wordsense
+### TODO: replace with a sensible backend API
+###
+my $sub = hypen($id,$n); ## Get output of commandline wn binary
+
+
+foreach (split(/\n/,$sub)){
+	next unless (m/\s/);
+	next if (m/Sense /);
+	next if (m/Hypernym/);
+	next if (m/Hyponym/);
+	my $c = $_; $c =~ s/ /_/g;
+
+	unless(m/=>/) { 
+	
+	my $a,$b;
+	($a,$b)=split('_--_',$c);
+	$a =~ s/(.*),+//;
+
+	$a =~ s/#/-/;
+if ($n > 1) {
+	# if sense is > 1, use -n suffix to name concept
+	$xml .= "\n\n<Class web:about=\"$wnns$id-$n\">\n";
+	}
+	else{
+	$xml .= "\n\n<Class web:about=\"$wnns$id\">\n";
+	}
+
+	my @allsupers;
+	$b =~ s/_/ /g;
+	$b =~ s/^\(//;
+	$b =~ s/\)$//;
+	$xml .= " <label>$id [ $n ]</label>\n";
+	$xml .= " <description>$b</description>\n";
+	}
+	else{
+	$c =~ s/\s*=>\s*//g;
+	my $a,$b;
+	($a,$b)=split('_--_',$c);
+	$b =~ s/_/ /g;
+	$b =~ s/^\(//;
+	$b =~ s/\)$//;
+
+
+	my @supers = split(',',$a);
+	push (@allsupers,@supers);
+
+#print "\n\nAdding supers: \n ".join(/\n\n/,@allsupers);
+
+	}
+      }
+
+        my $inset=' ';
+	foreach $s (@allsupers){
+	$s =~ s/(_+)([^_])/$2/;
+	$s =~ s/#(\d+)/-/;
+	$s =~ s/-$//; # trim trailing '-' for sense=1 cases
+	$s =~ s/\b(\w)/\U$1/; ## Init Upper Case name
+
+
+	$xml .= "$inset   <subClassOf>\n$inset    <Class web:about=\"$wnns$s\">\n";
+
+ 	$i++;	
+
+	$inset .= ' ';
+		}
+while($i){
+	$xml .= "$inset  </Class>\n$inset  </subClassOf>\n";
+	$inset =~ s/ $//;
+	$i -= 1;
+	}
+
+$xml .= "</Class>";
+
+#### Explore down the tree from here too
+
+
+$xml .= "\n\n\n<!-- Hyponnyms, ie. subordinate classes, follow... -->\n";
+
+my $sub = hypon($id, $n);
+foreach (split(/\n/,$sub)){
+next unless (m/\s/);
+next if (m/Sense /);
+next if (m/Hypernym/);
+next if (m/Hyponym/);
+my $c = $_; $c =~ s/ /_/g;
+unless(m/=>/) { 
+	my $a,$b;
+	($a,$b)=split('_--_',$c);
+#	print "\n\n<Class web:about=\"$wnns$a\">;\n";
+	$b =~ s/_/ /g;
+	$b =~ s/^\(//;
+	$b =~ s/\)$//;
+	}
+	else{
+	$c =~ s/\s*=>\s*//g;
+	my $a,$b;
+	($a,$b)=split('_--_',$c);
+	$b =~ s/_/ /g;
+	$b =~ s/^\(//;
+	$b =~ s/\)$//;
+
+	@supers = split(',',$a);
+	foreach $s (@supers){
+
+	$s = cleanTerm ($s);
+
+	my $pad = $1;  $pad =~ s/_/ /g;
+		
+#		print "\n <Class xml:lang=\"en\" web:resource=\"$wnns$s\">\n";
+		$xml .= "\n <Class web:about=\"$wnns$s\">\n";
+
+		if ($n>1) {
+		$xml .= "  <subClassOf web:resource=\"$wnns$id-$n\"/>\n";
+		}
+		else {
+		$xml .= "  <subClassOf web:resource=\"$wnns$id\"/>\n";
+		}
+
+	 	$s =~ s/~(.+)/ [ $1 ]/;
+		$xml .= "    <label>$s</label>\n";
+		$xml .= "    <description>$b</description>\n";
+		$xml .= "  </Class>\n";
+		}
+
+	}
+}
+#print "\n</Class>";
+
+
+
+$xml .= "\n\n</web:RDF>\n";
+
+
+return ($xml);
+}
+
+
+########
+
+
+sub hypon {
+my $term = shift;
+my $n = shift || 1;
+my $data;
+$data = `$wnbin $term -g -s -n$n -hypon`;
+}
+
+sub hypen {
+my $term = shift;
+my $n = shift || 1;
+my $data;
+$term =~ s/;//g; # TODO: clean up data here...
+$data = `$wnbin $term -g -s -n$n -hypen`;
+}
+
+
+sub cleanTerm {
+my $s = shift;
+	$s =~ s/(_+)([^_])/$2/;
+	$s =~ s/#(\d+)/-/;
+	$s =~ s/-$//; # trim trailing '-' for sense=1 cases
+	$s =~ s/\b(\w)/\U$1/; ## Init Upper Case name
+return $s;
+}

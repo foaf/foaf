@@ -1,0 +1,487 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!-- hmph... Eric, comment out your half finished DTD implementation in the RDF perl parser please...
+     DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+
+<head>
+<title>FOAF RDF Vocabulary: Schema version 0.1</title>
+</head>
+<body bgcolor="#ffffff">
+
+
+<h1>foaf 0.1</h1>
+
+
+<p>
+This document contains embedded x/rdf statements defining and describing the foaf vocabulary.
+This is intended for machine consumption. Humans might find the <a
+href="http://rdfweb.org/">RDFWeb.org</a> documentation more
+useful right now. All this needs rationalising. <a
+href="mailto:danbri@rdfweb.org">--danbri</a>
+</p>
+
+<p>See <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFVocab">FOAF Wiki
+page</a> for information on proposed additions to this namespace. Note
+that the FOAF namespace is a changing thing; we are not creating new
+namespace URIs with each addition and edit.
+</p>
+
+<p>The <a href="http://rdfweb.org/2000/08/why/">general
+overview</a> provides some background on the RDFWeb system. An <a
+href="http://www.rdfviz.org/">RDFViz</a>
+graphical representation of this namespace is <a
+href="http://snowball.ilrt.bris.ac.uk/cgi-bin/rdf-dot/uri2gif?URI=http%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F">also
+available</a>. Note that the RDFWeb system can make use of a number of
+RDF vocabularies. The properties and types defined here provide some basic
+useful concepts for use in the RDFWeb. Other vocabulary (eg. the <a
+href="http://dublincore.org/">Dublin Core</a> metadata elements for simple
+bibliographic description) can also be mixed in with FOAF terms.
+</p>
+
+<p>FOAF is expressed as an RDF Schema, annotated with <a
+href="http://www.daml.org/">DAML</a> to express
+the fact that a foaf:mbox uniquely picks out an individual.
+</p>
+
+<p>
+FOAF:mbox is an <a
+href="http://www.daml.org/2001/03/reference.html#UnambigousProperty-def">UnambiguousProperty</a>,
+in the DAML+OIL sense:
+</p>
+
+<ul>
+<li>daml:UnambigousProperty element, which is a subclass of ObjectProperty.
+ This asserts that an instance y can only be the value of P for a single
+instance x, i.e: there cannot be two distinct instances x1 and x2 such that
+both (x1,y) and (x2,y) are both instances of P. Notice that the inverse
+property of a UniqueProperty is always an UnambigousProperty and vice versa.
+</li>
+</ul>
+
+<h3>classes</h3>
+<ul>
+<li>
+<a href="#Person">foaf:Person</a>
+</li>
+<li>
+<a href="#Document">foaf:Document</a>
+</li>
+<li>
+<a href="#Organization">foaf:Organization</a>
+</li>
+<li>
+<a href="#Project">foaf:Project</a>
+</li>
+<li>
+
+foaf:image?
+</li>
+</ul>
+
+<h3>properties</h3>
+<ul>
+<li>
+<a href="#mbox">foaf:mbox</a>
+
+</li>
+<li>
+<a href="#givenName">foaf:givenName</a>
+</li>
+<li>
+<a href="#surname">foaf:surname</a>
+</li>
+<li>
+<a href="#title">foaf:title</a>
+</li>
+<li>
+<a href="#phone">foaf:phone</a>
+</li>
+<li>
+<a href="#nick">foaf:nick</a>
+</li>
+<li>
+<a href="#name">foaf:name</a>
+</li>
+<li>
+<a href="#firstName">foaf:firstName</a>
+</li>
+<li>
+<a href="#homepage">foaf:homepage</a>
+</li>
+<li>
+<a href="#image">foaf:image</a>
+</li>
+<li>
+<a href="#depiction">foaf:depiction</a>
+</li>
+<li>
+<a href="#workplaceHomepage">foaf:workplaceHomepage</a>
+</li>
+<li>
+<a href="#workOrgHomepage">foaf:workOrgHomepage</a>
+</li>
+<li>
+<a href="#knows">foaf:knows</a>
+</li>
+<li>
+<a href="#interest">foaf:interest</a>
+</li>
+<li>
+<a href="#publications">foaf:publications</a>
+</li>
+
+<li>
+<a href="#currentProject">foaf:currentProject</a>
+</li>
+
+<li>
+<a href="#pastProject">foaf:pastProject</a>
+</li>
+<li>
+<a href="#fundedBy">foaf:fundedBy</a>
+</li>
+<li>
+<a href="#linkedWith">foaf:linkedWith</a>
+</li>
+<li>
+<a href="#logo">foaf:logo</a>
+</li>
+</ul>
+
+
+<p>see also: <a href="../foafsig">schema signature</a></p>
+
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:daml="http://www.daml.org/2001/03/daml+oil#"
+        xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:wot="http://xmlns.com/wot/0.1/" 
+        xmlns:wn="http://xmlns.com/wordnet/1.6/"
+        xmlns:dc="http://purl.org/dc/elements/1.1/" >
+         
+<rdf:Description rdf:about="http://xmlns.com/foaf/0.1/">
+  <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf" />
+  <wot:assurance rdf:resource="../foafsig" />
+</rdf:Description>
+
+<!-- 
+classes:
+
+-->
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/Person"
+ rdfs:label="person"
+ rdfs:comment="a foaf subclass of wordnet person">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Person" />
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/Document"
+ rdfs:label="document"
+ rdfs:comment="a foaf subclass of wordnet document">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document" />
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/Organization"
+ rdfs:label="organization"
+ rdfs:comment="a foaf subclass of wordnet organization">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Organization" />
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdfs:Class> 
+
+ <rdfs:Class
+ rdf:about="http://xmlns.com/foaf/0.1/Project"
+ rdfs:label="project"
+ rdfs:comment="a foaf subclass of wordnet project">
+ 
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Project" />
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdfs:Class> 
+
+
+<!--properties-->
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox" 
+
+	rdfs:label="Personal Mailbox" 
+	rdfs:comment="A web-identifiable Internet mailbox associated with exactly one owner.
+	This property is a 'unambiguous property' in the DAML+OIL sense, in
+that
+	there is at most one individual that has any particular personal
+	mailbox."> 
+
+	<!-- rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"  -->
+  	<!-- commented out 20020704 danbri, too restrictive to say Person -->
+
+	<!-- rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" -->
+	<!-- uninformative -->
+
+	<rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+
+ </rdf:Property>
+
+
+
+ 
+<rdf:Property rdf:about="http://xmlns.com/foaf/0.1/givenname"
+		rdfs:label="Given name"
+		rdfs:comment="The given name of some agent."
+		>
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+</rdf:Property>
+
+<rdf:Property rdf:about="http://xmlns.com/foaf/0.1/surname"
+		rdfs:label="Surname"
+		rdfs:comment="The surname of some agent."
+		>
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+
+ </rdf:Property>
+
+
+<rdf:Property rdf:about="http://xmlns.com/foaf/0.1/title"
+		rdfs:label="Title"
+		rdfs:comment="Title (Mr, Mrs, Ms, Dr. etc)"
+		>
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+</rdf:Property>
+<rdf:Property rdf:about="http://xmlns.com/foaf/0.1/phone"
+		rdfs:label="Phone number"
+		rdfs:comment="A fully qualified international phone number, specified using
+			the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel)"
+		>
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+</rdf:Property>
+
+
+<rdf:Property rdf:about="http://xmlns.com/foaf/0.1/nick"
+		rdfs:label="Nickname"
+		rdfs:comment="A short informal nickname characterising an 
+		agent (includes login identifiers, IRC and other chat
+		nicknames)."
+		>
+  <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+</rdf:Property>
+
+
+
+<!--
+ 
+additions by libby.miller@bristol.ac.uk 2001-03-24
+
+
+dc properties are in a separate namespace
+
+dc title
+dc description
+dc format
+dc contributor (a person)
+dc creator (a person)
+
+wot stuff is in a separate namespace
+
+
+additions by libby.miller@bristol.ac.uk 2001-10-31
+
+Organization
+project
+pastProject
+fundedBy
+
+-->
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/name"
+ rdfs:label="name"
+ rdfs:comment="A name for a resource">
+
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/firstName"
+ rdfs:label="firstName"
+ rdfs:comment="the first name of a person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage"
+ rdfs:label="homepage"
+ rdfs:comment="A homepage of the resource">
+
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+
+ </rdf:Property>
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/img"
+ rdfs:label="image"
+ rdfs:comment="a link to an image of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/depiction"
+ rdfs:label="depiction"
+ rdfs:comment="a link to a depiction of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workplaceHomepage" 
+ rdfs:label="workplaceHomepage"
+ rdfs:comment="a link to workplace homepage of the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/workOrgHomepage" 
+ rdfs:label="workOrgHomepage"
+ rdfs:comment="a link to work organisation homepage of the person - maybe synonymous with workplaceHomepage?">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/schoolHomepage" 
+ rdfs:label="schoolHomepage"
+ rdfs:comment="a homepage of a school attended by the person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/knows"
+ rdfs:label="knows"
+ rdfs:comment="a link to people who this person knows">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/interest"
+ rdfs:label="interest"
+ rdfs:comment="an interest of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/publications"
+ rdfs:label="publications"
+ rdfs:comment="a link to the publications of this person">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+<!-- by libby for ILRT mappings 2001-10-31 -->
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/currentProject"
+ rdfs:label="current project"
+ rdfs:comment="a current project a person works on">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/pastProject"
+ rdfs:label="past project"
+ rdfs:comment="a project a person has previously worked on">
+
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/fundedBy"
+ rdfs:label="funded by"
+ rdfs:comment="an organisation funding a project or person">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/linkedWith"
+ rdfs:label="linked with"
+ rdfs:comment="generic link">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/logo"
+ rdfs:label="logo"
+ rdfs:comment="a logo url">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/id"
+ rdfs:label="id"
+ rdfs:comment="idenitifer">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+
+ <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/theme"
+ rdfs:label="theme"
+ rdfs:comment="theme">
+
+	<rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" />
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/" />
+ </rdf:Property>
+
+</rdf:RDF>
+
+</body>
+</html>
+

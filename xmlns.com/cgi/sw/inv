@@ -1,0 +1,32 @@
+#!/bin/perl
+
+use CGI;
+
+my $cgi=new CGI;
+$cgi->import_names("WEB");
+
+print "Content-type: text/plain\n\n";
+
+print'<web:RDF
+  xmlns:web ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:daml="http://www.daml.org/2001/03/daml+oil#">';
+
+my $prop = $ENV{'QUERY_STRING'}; # todo: clean this 
+
+$prop =~ s/\n//g;
+$prop =~ s/\s//g;
+
+my $me= 'http://xmlns.com/sw/prop?';
+
+print "\n\n";
+print "<daml:AbstractProperty web:about=\"$me$prop\">\n";
+print "  <daml:inverseProperty>\n";
+print "    <daml:AbstractProperty web:about=\"$prop\"/>\n";
+print "  </daml:inverseProperty>\n"; 
+print "  </rdfs:seeAlso web:resource=\"$prop\"/>\n"; 
+print "</daml:AbstractProperty>\n";
+print "</web:RDF>\n\n\n";
+
+print "<!-- experimental RDF property inversion service,
+	  from a bad dream by danbri\@w3.org -->\n\n";
