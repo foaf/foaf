@@ -1,7 +1,7 @@
 VERSION=pre-alpha
 
 dist:	dirs
-	cd ../; tar -zcvf software/scutter_$(VERSION).tar.gz `xargs<FILES`
+	cd ../; tar -zcvf software/scutter_$(VERSION).tar.gz `xargs<scutter/FILES`
 
 clean:
 	rm *.bak
