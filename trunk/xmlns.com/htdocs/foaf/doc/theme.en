@@ -1,0 +1,5 @@
+<p>
+The <code>foaf:theme</code> property is rarely used and under-specified. The intention was 
+to use it to characterise interest / themes associated with projects and groups. Further 
+work is needed to meet these goals. 
+</p>

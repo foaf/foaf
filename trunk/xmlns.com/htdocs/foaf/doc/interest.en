@@ -1,0 +1,36 @@
+<p>
+The <code>foaf:interest</code> property represents an interest of a 
+<code>foaf:Agent</code>, through 
+indicating a <code>foaf:Document</code> whose <code>foaf:topic</code>(s) broadly 
+characterises that interest.</p>
+
+<p class="example">
+For example, we might claim that a person or group has an interest in RDF by saying they
+stand in a <code>foaf:interest</code> relationship to the <a 
+href="http://www.w3.org/RDF/">RDF</a> home page. Loosly, such RDF would be saying 
+<em>"this agent is interested in the topic of this page"</em>.
+</p>
+
+<p class="example">
+Uses of <code>foaf:interest</code> include a variety of filtering and resource discovery 
+applications. It could be used, for example, to help find answers to questions such as 
+"Find me members of this organisation with an interest in XML who have also contributed to 
+<a href="http://www.cpan.org/">CPAN</a>)". 
+</p>
+
+<p>
+This approach to characterising interests is intended to compliment other mechanisms (such 
+as the use of controlled vocabulary). It allows us to use a widely known set of unique 
+identifiers (Web page URIs) with minimal pre-coordination. Since URIs have a controlled 
+syntax, this makes data merging much easier than the use of free-text characterisations of 
+interest.
+</p>
+
+
+<p>
+Note that interest does not imply expertise, and that this FOAF term provides no support 
+for characterising levels of interest: passing fads and lifelong quests are both examples 
+of someone's <code>foaf:interest</code>. Describing interests in full is a complex 
+undertaking; <code>foaf:interest</code> provides one basic component of FOAF's approach to 
+these problems.
+</p>
