@@ -1,49 +1,79 @@
-<html>
-<head>
-<title>RDFWeb design notes: aggregation strategies</title>
-</head>
-<body bgcolor="#ffffff">
-
-<h1>RDFWeb notebook: aggregation strategies</h1>
-
-<p>
-This document (eventually...) outlines a strategy for handling anonymous
-resource description with RDF datastores. We introduce the problem by way of
-a practical example and then explore the implications for deployable RDF
-systems. The accompanying <a href="examples.rdf">examples.rdf</a> file
-might be useful for RDF implementors to experiment with.
-
-</p>
-
-<h2>Problem statement</h2>
-
-<p>
-RDF descriptions typically mention a number of resources without
-providing their URI names. Representations of these "mentioned but not
-named" resources are sometimes called "anonymous nodes" or "anonymous
-resources". This can be somewhat misleading, in that the resource
-identified by such a node in an RDF graph is not in itself anonymous;
-rather it is the mention of that resource in some chunk of data that is
-nameless. An RDF description that anonymously mentions a resource, such as
-some Person, Organisation, Document etc., presents a challenge for RDF
-database systems. 
-</p>
-<p>
-RDF uses Web identifiers (URI names) to facilitate data
-aggregation, ie. merging RDF graphs from multiple sources by joining on
-common URIs. When URIs are scarse, other strategies are needed. This
-document describes some approaches that might be used, and their
-relationship to RDF storage and query APIs.
-</p>
-
-<h2>Example Scenario</h2>
-
-<p>(<a href="examples.rdf">examples.rdf</a>)</p>
-
-<h3>
-a.rdf 
-</h3>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb design notes: aggregation strategies
+    </title>
+    <link rel="stylesheet" href="ssi/main.css" type="text/css" />
+  </head>
+  <body bgcolor="#ffffff">
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="../../../images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <a
+            class="sitepart"
+            href="../../../dev.html">developers</a>: <span
+            class="sitepart">research notebook: aggregation
+            strategies</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="about.html">about</a> |
+            <a href="projects.html">projects</a> | <a
+            href="dev.html">developers</a> | <a
+            href="sitemap.html">sitemap</a> | <a
+            href="search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h1>
+      RDFWeb notebook: aggregation strategies
+    </h1>
+    <p>
+      This document (eventually...) outlines a strategy for
+      handling anonymous resource description with RDF datastores.
+      We introduce the problem by way of a practical example and
+      then explore the implications for deployable RDF systems. The
+      accompanying <a href="examples.rdf">examples.rdf</a> file
+      might be useful for RDF implementors to experiment with.
+    </p>
+    <h2>
+      Problem statement
+    </h2>
+    <p>
+      RDF descriptions typically mention a number of resources
+      without providing their URI names. Representations of these
+      "mentioned but not named" resources are sometimes called
+      "anonymous nodes" or "anonymous resources". This can be
+      somewhat misleading, in that the resource identified by such
+      a node in an RDF graph is not in itself anonymous; rather it
+      is the mention of that resource in some chunk of data that is
+      nameless. An RDF description that anonymously mentions a
+      resource, such as some Person, Organisation, Document etc.,
+      presents a challenge for RDF database systems.
+    </p>
+    <p>
+      RDF uses Web identifiers (URI names) to facilitate data
+      aggregation, ie. merging RDF graphs from multiple sources by
+      joining on common URIs. When URIs are scarse, other
+      strategies are needed. This document describes some
+      approaches that might be used, and their relationship to RDF
+      storage and query APIs.
+    </p>
+    <h2>
+      Example Scenario
+    </h2>
+    <p>
+      (<a href="examples.rdf">examples.rdf</a>)
+    </p>
+    <h3>
+      a.rdf
+    </h3>
 <pre>
 &lt;Company&gt;
 &lt;corporateHomepage web:resource="http://megacorp.example.com/"/&gt;
@@ -59,10 +89,9 @@ a.rdf
 &lt;/owner&gt;
 &lt;/Company&gt;
 </pre>
-
-<h3>
-b.rdf
-</h3>
+    <h3>
+      b.rdf
+    </h3>
 <pre>
 &lt;User&gt;
  &lt;personalMailbox web:resource="mailto:mega@megacorp.example.com"/&gt;
@@ -71,10 +100,9 @@ b.rdf
  &lt;technologyInterest web:resource="http://www.mozilla.org/"&gt;
 &lt;/User&gt;
 </pre>
-
-<h3>
-c.rdf
-</h3>
+    <h3>
+      c.rdf
+    </h3>
 <pre>
 &lt;Organisation&gt;
 &lt;corporateHomepage web:resource="http://megacorp.example.com/"/&gt;
@@ -85,137 +113,146 @@ c.rdf
  &lt;/ethicalPolicy&gt;
 &lt;/Organisation&gt;
 </pre>
-
-<p>
-These three example pieces of RDF tell us a little about some fictional
-company, its owner, and an ethical policy that companies such as this can
-claim to abide to. It should be noted that statements such as those made
-in these examples could be made by various agents in various contexts, and
-that many RDF database systems will need to track such information. For
-example, the claim in c.rdf that the company whose corporateHomepage is
-http://megacorp.example.com/ abides by the ethical policy at 
-http://dotherightthing.example.org/policy.xhtml could be made by some
-trusted third party, or else by the person whose personal mailbox is
-mailto:mega@megacorp.example.com. 
-</p>
-
-<p>
-Having noted the importance of storing context and provenance information
-when aggregating heterogeneous RDF data, the remainder of this note will 
-(for simplicity sake) avoid such complications. We assume that our
-database will have some characterisation of the source of each
-RDF message or datasource that we are concerned with. [ more needed here ]
-</p>
-
-<p>
-Our example scenario, setting aside provenance and trust issues, is pretty
-simple. We have three chunks of RDF/XML data, each providing fragments of
-information that can usefully be combined. Our goal is to combine this
-information successfully despite the lack of common URIs for the key
-entities described in the three RDF files. Whether we do this at storage
-time, at query time, or some combination of both remains to be discussed.
-</p>
-
-
-<p>
-In an ideal (or perhaps rather Orwellian) world, Persons would have URI
-names (eg: person:nx:930366b), as would Organisations, intellectual works
-and the countless other types of thing that RDF treats as 'resources'. In
-the real world, by contrast, People aren't considered to have URI names in
-the same way that Web pages, mailboxes etc have. Even if they did, we still
-have the problem that any given piece of RDF might mention a resource "in
-passing" without bothering to mention the URI name for that resource.  
-Since URIs aren't always available or supplied, we need to explore
-alternative strategies for identifying resources.  
-</p>
-
-<p>
-Only through accurate identification, ie. knowing when two descriptions
-refer to the self-same thing) can we successfully aggregate RDF/XML data.
-There are many ways in which a processor (RDF database, query engine etc)
-might determine resource identity. In the simplest case, having the same
-URI name is all we need to know. In complex cases, sophisticated rules,
-heuristics and other policies (eg. relating to trust, and information
-quality or timeliness) come into play. This document attempts to
-characterise some simple strategies. There is (and can be) no general
-purpose algorithm for the "complete" merging of disparate data; instead,
-we explore a sliding scale which begins with common URIs and shades off
-into the blueskies complexity of AI research. 
-</p>
-
-<p>
-RDF datastores need some common baseline techniques that can deployed with
-moderate effort; these need not attempt a perfect solution to the data
-aggregation problem, but they will need to go some way towards usefully
-handing data that (a) describes things without naming them and (b)
-describes things that lack URI names.
-</p>
-
-<h3>Example queries:</h3>
-
-<p>
-To recap, our three RDF files describe a company 'megacorp', its owner,
-some person called 'mr mega', and its corporate ethical policy. 
-</p>
-
-<p>
-Let's assume we have an interest in aggregating the statements
-encoded in these three pieces of RDF/XML, so that we can answer questions
-such as the following:
-</p>
-
-<blockquote>
-(Q1) What are the technology interests of persons who own companies that
-     have an ethical policy committment to the policy stated in the document
-     http://dotherightthing.example.org/policy.xhtml
-</blockquote>
-
-<p>
-To answer such a question in the absence of URI names for the company and 
-person, we need to identify them using other information that we have
-about those entities. In this scenario, we exploit additional
-meta-information about some of the properties used in our descriptions.
-Specifically, we make assume that... personalMailbox, personalHomepage
-and corporateHomepage are uniquely identifying properties. By this we mean
-that, for any given value of one of these properties, there exists 'at
-most one' resource with that characteristic. 
-</p>
-
-<p>
-We do not concern ourselves here with &lt;em&gt;how&lt;/em&gt; we know this, except to
-note that augmented RDF schemas might be used to represent such
-interesting properties-of-properties. A similar principle might extend to
-clusters of properties (eg. nationalInsuranceNumber plus countryCode),
-just as relational database systems allow combinations of fields to serve
-as a unique key. For now, we explore only the simplest case of single
-uniquely identifying properties.
-</p>
-
-<p>
-Addressing our query (Q1), we can focus on the subset of the three data
-files that provide relevant information. At this stage we need to go
-beyond the XML encoding of the RDF. RDF parsers typically generate
-random pseudo URI identifiers (genid:42423432 etc) as stand-in identifiers
-for anonymously mentioned resources. As we translate our XML examples into the
-triples of the RDF data model, we will need a similar convention for
-representing resources whose URI we don't know. Any convention will do so
-long as there is no risk of name clash, and no risk of confusing
-these generated stand-in identifiers for 'real' URIs extracted from the
-RDF/XML markup. The convention we use here is to use strings of the form
-'var:&lt;some-unique-number&gt;' as placeholder identifiers, eg.
-var:452373522380604496. 
-</p>
-
-<h3>Example continued...</h3>
-<p>
-A subset of triples from a.rdf, represented in (predicate, subject,
-object) form. In presenting these examples we'll omit full URIs in some
-cases and use smaller var: numbers for readability; in real life these
-would of course need to be unique.
-</p>
-
-<h4>T1 - selected triples extracted from a.rdf</h4>
-
+    <p>
+      These three example pieces of RDF tell us a little about some
+      fictional company, its owner, and an ethical policy that
+      companies such as this can claim to abide to. It should be
+      noted that statements such as those made in these examples
+      could be made by various agents in various contexts, and that
+      many RDF database systems will need to track such
+      information. For example, the claim in c.rdf that the company
+      whose corporateHomepage is http://megacorp.example.com/
+      abides by the ethical policy at
+      http://dotherightthing.example.org/policy.xhtml could be made
+      by some trusted third party, or else by the person whose
+      personal mailbox is mailto:mega@megacorp.example.com.
+    </p>
+    <p>
+      Having noted the importance of storing context and provenance
+      information when aggregating heterogeneous RDF data, the
+      remainder of this note will (for simplicity sake) avoid such
+      complications. We assume that our database will have some
+      characterisation of the source of each RDF message or
+      datasource that we are concerned with. [ more needed here ]
+    </p>
+    <p>
+      Our example scenario, setting aside provenance and trust
+      issues, is pretty simple. We have three chunks of RDF/XML
+      data, each providing fragments of information that can
+      usefully be combined. Our goal is to combine this information
+      successfully despite the lack of common URIs for the key
+      entities described in the three RDF files. Whether we do this
+      at storage time, at query time, or some combination of both
+      remains to be discussed.
+    </p>
+    <p>
+      In an ideal (or perhaps rather Orwellian) world, Persons
+      would have URI names (eg: person:nx:930366b), as would
+      Organisations, intellectual works and the countless other
+      types of thing that RDF treats as 'resources'. In the real
+      world, by contrast, People aren't considered to have URI
+      names in the same way that Web pages, mailboxes etc have.
+      Even if they did, we still have the problem that any given
+      piece of RDF might mention a resource "in passing" without
+      bothering to mention the URI name for that resource. Since
+      URIs aren't always available or supplied, we need to explore
+      alternative strategies for identifying resources.
+    </p>
+    <p>
+      Only through accurate identification, ie. knowing when two
+      descriptions refer to the self-same thing) can we
+      successfully aggregate RDF/XML data. There are many ways in
+      which a processor (RDF database, query engine etc) might
+      determine resource identity. In the simplest case, having the
+      same URI name is all we need to know. In complex cases,
+      sophisticated rules, heuristics and other policies (eg.
+      relating to trust, and information quality or timeliness)
+      come into play. This document attempts to characterise some
+      simple strategies. There is (and can be) no general purpose
+      algorithm for the "complete" merging of disparate data;
+      instead, we explore a sliding scale which begins with common
+      URIs and shades off into the blueskies complexity of AI
+      research.
+    </p>
+    <p>
+      RDF datastores need some common baseline techniques that can
+      deployed with moderate effort; these need not attempt a
+      perfect solution to the data aggregation problem, but they
+      will need to go some way towards usefully handing data that
+      (a) describes things without naming them and (b) describes
+      things that lack URI names.
+    </p>
+    <h3>
+      Example queries:
+    </h3>
+    <p>
+      To recap, our three RDF files describe a company 'megacorp',
+      its owner, some person called 'mr mega', and its corporate
+      ethical policy.
+    </p>
+    <p>
+      Let's assume we have an interest in aggregating the
+      statements encoded in these three pieces of RDF/XML, so that
+      we can answer questions such as the following:
+    </p>
+    <blockquote>
+      (Q1) What are the technology interests of persons who own
+      companies that have an ethical policy committment to the
+      policy stated in the document
+      http://dotherightthing.example.org/policy.xhtml
+    </blockquote>
+    <p>
+      To answer such a question in the absence of URI names for the
+      company and person, we need to identify them using other
+      information that we have about those entities. In this
+      scenario, we exploit additional meta-information about some
+      of the properties used in our descriptions. Specifically, we
+      make assume that... personalMailbox, personalHomepage and
+      corporateHomepage are uniquely identifying properties. By
+      this we mean that, for any given value of one of these
+      properties, there exists 'at most one' resource with that
+      characteristic.
+    </p>
+    <p>
+      We do not concern ourselves here with
+      &lt;em&gt;how&lt;/em&gt; we know this, except to note that
+      augmented RDF schemas might be used to represent such
+      interesting properties-of-properties. A similar principle
+      might extend to clusters of properties (eg.
+      nationalInsuranceNumber plus countryCode), just as relational
+      database systems allow combinations of fields to serve as a
+      unique key. For now, we explore only the simplest case of
+      single uniquely identifying properties.
+    </p>
+    <p>
+      Addressing our query (Q1), we can focus on the subset of the
+      three data files that provide relevant information. At this
+      stage we need to go beyond the XML encoding of the RDF. RDF
+      parsers typically generate random pseudo URI identifiers
+      (genid:42423432 etc) as stand-in identifiers for anonymously
+      mentioned resources. As we translate our XML examples into
+      the triples of the RDF data model, we will need a similar
+      convention for representing resources whose URI we don't
+      know. Any convention will do so long as there is no risk of
+      name clash, and no risk of confusing these generated stand-in
+      identifiers for 'real' URIs extracted from the RDF/XML
+      markup. The convention we use here is to use strings of the
+      form 'var:&lt;some-unique-number&gt;' as placeholder
+      identifiers, eg. var:452373522380604496.
+    </p>
+    <h3>
+      Example continued...
+    </h3>
+    <p>
+      A subset of triples from a.rdf, represented in (predicate,
+      subject, object) form. In presenting these examples we'll
+      omit full URIs in some cases and use smaller var: numbers for
+      readability; in real life these would of course need to be
+      unique.
+    </p>
+    <h4>
+      T1 - selected triples extracted from a.rdf
+    </h4>
 <pre>
 ( rdf:type, var:001, Company )
 ( corporateHomePage, var:001, http://megacorp.example.com/ )
@@ -223,100 +260,107 @@ would of course need to be unique.
 ( rdf:type var:002, Person )
 ( personalMailbox, var:002, mailto:mega@megacorp.example.com )
 </pre>
-
-<h4>T2 - selected triples extracted from b.rdf</h4>
+    <h4>
+      T2 - selected triples extracted from b.rdf
+    </h4>
 <pre>
 ( personalMailbox, var:100, mailto:mega@megacorp.example.com )
 ( technologyInterest, var:100, http://www.w3.org/XML/ )
 ( technologyInterest, var:100, http://www.w3.org/RDF/ )
 ( technologyInterest, var:100, http://www.mozilla.org/ )
 </pre>
-
-<h4>T3 - selected triples extracted from c.rdf </h4.
-
-<pre>
-( rdf:type, var:101, Organisation )
-( corporateHomepage, var:101, http://megacorp.example.com/ )
-( ethicalPolicy, var:101, http://dotherightthing.example.org/policy.xhtml )
-( rdf:type, http://dotherightthing.example.org/policy.xhtml, PolicyStatement )
-</pre>
-
-<h3>Interpretation</h3>
-
-<p>
-Without knowing about the uniquely identifying nature of the
-personalMailbox, personalHomepage and corporateHomepage properties, we can
-interpret T1-T3 as follows:
-</p>
-
-<p>
-[T1] There exists a company that has a corporate homepage is
-http://megacorp.example.com/ ; it has an owner is a Person that has
-a personal mailbox at mailto:mega@megacorp.example.com
-</p>
-
-<p> 
-[T2] There exists a resource that has a personal mailbox
-mailto:mega@megacorp.example.com and that has technology interests
-characterised by three URIs (http://www.w3.org/XML/,
-http://www.w3.org/RDF/, http://www.mozilla.org/).
-</p>
-
-<p>
-[T3] There exists an organisation with a corporate home page of
-http://megacorp.example.com/ and that has an ethicalPolicy that is a
-PolicyStatement, http://dotherightthing.example.org/policy.xhtml.
-</p>
-
-<h3>Revised Interpretation</h3>
-
-<p>
-Once we take into account meta-information to the effect that there can be
-at most one...
-</p>
-
-<ul>
-<li>...resource with any particular corporateHomepage</li>
-<li>...resource with any particular personalHomepage</li>
-<li>...resource with any particular personalMailbox</li>
-</ul>
-
-<p>
-Our natural language interpretation of these RDF triples can be made
-richer. Instead of saying "a Person with a personal mailbox of ..." we can
-say " *the* Person with a personal mailbox of ...", since we know that
-only one such resource should exist, by virtue of the meaning of
-'personalMailbox'. Similarly for corporateHomepage. 
-</p>
-
-<p>
-If this were not the case, two companies might have the same corporate
-homepage, or two persons the same personal mailbox. In which case we would
-need to find other strategies for aggregating our 3 data fragments.
-</p>
-
-<p>
-Exploiting this knowledge, we can be sure that the resource we called
-var:001 in a.rdf ("the company whose corporateHomepage is 
-http://megacorp.example.com/ ") is one and the same thing as the resource
-we called var:101 in b.rdf. Similarly, our representation of a.rdf labels
-the person whose personal mailbox is mailto:mega@megacorp.example.com as 
-var:002. We labelled the selfsame resource in b.rdf as var:100. 
-</p>
-
-<p>
-Having realised this, we have enough information to answer Q1. In our
-imagined database, we might go through and replace every occurance of
-var:001 with var:101, so that we have a common (private) identifier for
-the company. Similarly, we could ensure that the person whose mailbox is 
-mailto:mega@megacorp.example.com has a single identifier. Once this is
-done, the database would be in a state that would allow it to service
-queries such as Q1 without the query-processing engine, or the query
-itself, having to deal with these unique identification issues.
-</p>
-
-<p>A Squish [ref] RDF query for Q1 would be:</p>
-
+    <h4>
+      T3 - selected triples extracted from c.rdf ( rdf:type,
+      var:101, Organisation ) ( corporateHomepage, var:101,
+      http://megacorp.example.com/ ) ( ethicalPolicy, var:101,
+      http://dotherightthing.example.org/policy.xhtml ) ( rdf:type,
+      http://dotherightthing.example.org/policy.xhtml,
+      PolicyStatement )
+    </h4>
+    <h3>
+      Interpretation
+    </h3>
+    <p>
+      Without knowing about the uniquely identifying nature of the
+      personalMailbox, personalHomepage and corporateHomepage
+      properties, we can interpret T1-T3 as follows:
+    </p>
+    <p>
+      [T1] There exists a company that has a corporate homepage is
+      http://megacorp.example.com/ ; it has an owner is a Person
+      that has a personal mailbox at
+      mailto:mega@megacorp.example.com
+    </p>
+    <p>
+      [T2] There exists a resource that has a personal mailbox
+      mailto:mega@megacorp.example.com and that has technology
+      interests characterised by three URIs
+      (http://www.w3.org/XML/, http://www.w3.org/RDF/,
+      http://www.mozilla.org/).
+    </p>
+    <p>
+      [T3] There exists an organisation with a corporate home page
+      of http://megacorp.example.com/ and that has an ethicalPolicy
+      that is a PolicyStatement,
+      http://dotherightthing.example.org/policy.xhtml.
+    </p>
+    <h3>
+      Revised Interpretation
+    </h3>
+    <p>
+      Once we take into account meta-information to the effect that
+      there can be at most one...
+    </p>
+    <ul>
+      <li>
+        ...resource with any particular corporateHomepage
+      </li>
+      <li>
+        ...resource with any particular personalHomepage
+      </li>
+      <li>
+        ...resource with any particular personalMailbox
+      </li>
+    </ul>
+    <p>
+      Our natural language interpretation of these RDF triples can
+      be made richer. Instead of saying "a Person with a personal
+      mailbox of ..." we can say " *the* Person with a personal
+      mailbox of ...", since we know that only one such resource
+      should exist, by virtue of the meaning of 'personalMailbox'.
+      Similarly for corporateHomepage.
+    </p>
+    <p>
+      If this were not the case, two companies might have the same
+      corporate homepage, or two persons the same personal mailbox.
+      In which case we would need to find other strategies for
+      aggregating our 3 data fragments.
+    </p>
+    <p>
+      Exploiting this knowledge, we can be sure that the resource
+      we called var:001 in a.rdf ("the company whose
+      corporateHomepage is http://megacorp.example.com/ ") is one
+      and the same thing as the resource we called var:101 in
+      b.rdf. Similarly, our representation of a.rdf labels the
+      person whose personal mailbox is
+      mailto:mega@megacorp.example.com as var:002. We labelled the
+      selfsame resource in b.rdf as var:100.
+    </p>
+    <p>
+      Having realised this, we have enough information to answer
+      Q1. In our imagined database, we might go through and replace
+      every occurance of var:001 with var:101, so that we have a
+      common (private) identifier for the company. Similarly, we
+      could ensure that the person whose mailbox is
+      mailto:mega@megacorp.example.com has a single identifier.
+      Once this is done, the database would be in a state that
+      would allow it to service queries such as Q1 without the
+      query-processing engine, or the query itself, having to deal
+      with these unique identification issues.
+    </p>
+    <p>
+      A Squish [ref] RDF query for Q1 would be:
+    </p>
 <pre>
 (SQ1)
 
@@ -329,187 +373,195 @@ itself, having to deal with these unique identification issues.
  USING rdf for http://www.w3.org/.../rdf-syntax#
        default namespace http://example.rdfweb.org/smushtest.rdf#
 </pre>
-
-<p> 
-in english:
-</p>
-
-<blockquote>
-     What are the technology interests of persons who own companies that
-     have an ethical policy committment to the policy stated in the document
-     http://dotherightthing.example.org/policy.xhtml
-</blockquote>
-
-<p>
-Note that the above query assumes the database somehow takes care of the
-node convergence problems associated with anonymous resource mentions (ie.
-mapping var:002 and var:100 to the same entity). Whether the database does
-this at query time or in advance is an implementation issue. 
-</p>
-
-<p>Our problem now becomes one of putting all this into practice.</p>
-
-<h2>Section 2: Precomputing resource identity</h2>
-
-<p>
-Here we describe a strategy for precomputing identifiers for anonymously
-mentioned resources.
-</p>
-
-<h3>Overview</h3>
-
-<p>
-Assume an RDF database system that can store triples and present them for
-query via a simple API. Many RDF API proposals offer a facility such as
-'triplesMatching' that is passed a partial representation of an RDF
-triple, and returns matching triples from the database. A 'rename'
-operation is not common, however, so we will deal with renaming externally
-to the database, by maintaining a table that maps private (generated
-IDs) to public URIs, where these are known, as well as equivalencies
-amongst our private identifiers. Our database will be managed through a
-bottleneck that attempts to minimise needless fragmentation of the
-aggregate data graph.  To achieve this, whenever we set about adding a
-set of RDF assertions to our store, we will rewrite any generated IDs
-supplied by the RDF parser to take account of our existing (private)
-identifiers for those entities (if any). Similarly, if the local database
-already knows the public URI for that resource, we'll use that instead when
-adding the new triples. 
-</p>
-
-<p>
-For example, we may have already parsed and stored triples from a.rdf.
-When we later acquire b.rdf and want to add additional triples describing
-the person whose mailbox is mailto:mega@megacorp.example.com, we should
-take account of our existing private identifier for that person. We know
-that there can be at most one person with that identifier, so we may as
-well pick a common generated identifier for him/her to save on subsequent
-processing load. That person might also be identified through other
-strategies (the person whose aolScreenName is..., the person whose
-humanGenomeChecksum is ... etc). Sometimes we will add information to the
-database without, at that point in time, adequate information (in the
-database or in the incoming rdf file) to be sure we're talking about a
-common entity [ref hofstadter paper - Shakespeare etc]. This is where
-simple RDF graph merging shades into more complex areas of research facing
-the AI community, i.e. the 'belief update' problem faced by symbolic
-representational systems. When we acquire a new belief, which of our prior
-beliefs need updating, what new inferences can we draw?
-</p>
-
-<p>
-Back in perlhacker land, here's the problem...
-</p>
-
-<p>
-We're loading RDF files into a database, and want to know what to do, if
-anything, between getting triples from a parser and stashing them
-(somehow) on disk.
-</p>
-
-<p>
-We could acquire and store a.rdf, b.rdf and c.rdf in any order, ie:
-</p>
-
-<pre>	a b c (a.rdf then b.rdf then c.rdf...)
-	a c b
-	b a c
-	b c a 
-	c a b
-	c b a
+    <p>
+      in english:
+    </p>
+    <blockquote>
+      What are the technology interests of persons who own
+      companies that have an ethical policy committment to the
+      policy stated in the document
+      http://dotherightthing.example.org/policy.xhtml
+    </blockquote>
+    <p>
+      Note that the above query assumes the database somehow takes
+      care of the node convergence problems associated with
+      anonymous resource mentions (ie. mapping var:002 and var:100
+      to the same entity). Whether the database does this at query
+      time or in advance is an implementation issue.
+    </p>
+    <p>
+      Our problem now becomes one of putting all this into
+      practice.
+    </p>
+    <h2>
+      Section 2: Precomputing resource identity
+    </h2>
+    <p>
+      Here we describe a strategy for precomputing identifiers for
+      anonymously mentioned resources.
+    </p>
+    <h3>
+      Overview
+    </h3>
+    <p>
+      Assume an RDF database system that can store triples and
+      present them for query via a simple API. Many RDF API
+      proposals offer a facility such as 'triplesMatching' that is
+      passed a partial representation of an RDF triple, and returns
+      matching triples from the database. A 'rename' operation is
+      not common, however, so we will deal with renaming externally
+      to the database, by maintaining a table that maps private
+      (generated IDs) to public URIs, where these are known, as
+      well as equivalencies amongst our private identifiers. Our
+      database will be managed through a bottleneck that attempts
+      to minimise needless fragmentation of the aggregate data
+      graph. To achieve this, whenever we set about adding a set of
+      RDF assertions to our store, we will rewrite any generated
+      IDs supplied by the RDF parser to take account of our
+      existing (private) identifiers for those entities (if any).
+      Similarly, if the local database already knows the public URI
+      for that resource, we'll use that instead when adding the new
+      triples.
+    </p>
+    <p>
+      For example, we may have already parsed and stored triples
+      from a.rdf. When we later acquire b.rdf and want to add
+      additional triples describing the person whose mailbox is
+      mailto:mega@megacorp.example.com, we should take account of
+      our existing private identifier for that person. We know that
+      there can be at most one person with that identifier, so we
+      may as well pick a common generated identifier for him/her to
+      save on subsequent processing load. That person might also be
+      identified through other strategies (the person whose
+      aolScreenName is..., the person whose humanGenomeChecksum is
+      ... etc). Sometimes we will add information to the database
+      without, at that point in time, adequate information (in the
+      database or in the incoming rdf file) to be sure we're
+      talking about a common entity [ref hofstadter paper -
+      Shakespeare etc]. This is where simple RDF graph merging
+      shades into more complex areas of research facing the AI
+      community, i.e. the 'belief update' problem faced by symbolic
+      representational systems. When we acquire a new belief, which
+      of our prior beliefs need updating, what new inferences can
+      we draw?
+    </p>
+    <p>
+      Back in perlhacker land, here's the problem...
+    </p>
+    <p>
+      We're loading RDF files into a database, and want to know
+      what to do, if anything, between getting triples from a
+      parser and stashing them (somehow) on disk.
+    </p>
+    <p>
+      We could acquire and store a.rdf, b.rdf and c.rdf in any
+      order, ie:
+    </p>
+<pre>
+   a b c (a.rdf then b.rdf then c.rdf...)
+    a c b
+    b a c
+    b c a 
+    c a b
+    c b a
 </pre>
-
-<p>
-Each of these scenarios puts our RDF data management policy to a different
-test. A more realistic scenario, with 1000s of transactions concerning
-1000s of inter-related entities, sometimes URI named, sometimes not, is
-our real goal and will be our real test.
-</p>
-
-<p>
-Assume we meet our example files in the order 'a b c', and add them to the
-database in that order. We assume a parser supplies representations such
-as T1, T2, T3, ie. generates private identifiers that we may or may not
-decide to carry over into our actual database. After 'a', we have in our
-hands an intermediate representation of the triples of a, in which var:001
-is a stand-in for the URI of the company and var:002 for the Person that
-owns it. Generally, we would use various heuristics (sketched below) cbefore
-adding the data to our store; since examples have to start somewhere we'll
-assume the triples from a.rdf get added as-is, ie. we're starting with a blank
-database.
-</p>
-
-<p>
-Now we meet b.rdf, and generate (using some RDF parser) an intermediate
-representation which employs a new stand-in identifier for that person.
-Recall that our database now contains the triples [T1], alongside
-knowledge (hardcoded or acquired in RDF) about various uniquely
-identifying properties. a.rdf introduced us to both the person and the
-company, and gave us uniquely identifying information about them (the
-corporate home page of the former; the personal mailbox of the latter). So
-now we examine our representation of b.rdf, which happens to tell us some
-more (non uniquely identifying) properties of the person resource. We need
-to consider, for each incoming generated identifier (in this case just
-"var:100") whether we might already have a better name for the resource it
-names. Maybe we know its URI. Maybe we've already adopted a private
-generated ID for it. We consequently need to work out what queries to ask our
-existing database concerning the entities mentioned (but not named) in the
-incoming datafile. 
-</p>
-
-<p>
-In this case, we're wondering about the resource temporarily referred to
-as 'var:100'. We look to the incoming data for uniquely identifying
-information. The following triple is relavent (since personalMailbox is
-uniquely identifying):
-</p>
-
-<p>	( personalMailbox, var:100, mailto:mega@megacorp.example.com )
-</p>
-
-<p>
-So we know have a non-URI way of picking out the entity we're concerned
-with. In a more complex example, the incoming data might offer two or more
-strategies for identifying an individual. In a very complex example, the
-incoming data combined with our existing local database might offer several
-identifying descriptions. With this (the simple case) in mind we consult our
-database, asking (in Perl RDF...):
-</p>
-
-<p>@triples = $mydb-&gt;find(personalMailbox, undef, mailto:mega@megacorp.example.com )
-</p>
-
-<p>
-This would do the trick. We'd get back any statements in our database where
-the predicate was 'personalMailbox', the subject was left unconstrained,
-and the object was that mailbox. If we assume for now that the database
-contains only trusted and accurate data, we should find only a single
-value that plays the subject role in this template statement. 
-</p>
-
-<p>
-If we get no value back from the query, we've got no name yet for the
-resource with that mailbox, so we may as well use var:100. If we get an
-answer (which in our current scenario will be var:002) then we'll use
-var:002 in preference for var:100 when we get around to asserting the new
-(rewritten) triples into the store. We should also remember than b.rdf
-might well have made multiple separate mentions of that resource. 
-</p>
-
-<p>
-[TODO: we have a problem here if b.rdf were to have mentioned that
-resource and supplied its URI; for such scenarios, it might work to
-do our lookup against the hypothetical aggregate of b.rdf and the main
-database].
-</p>
-
-<p>
-Note: We shouldn't add any triples to the database until we've
-investigated all the generated identifiers associated with our
-representation of b.rdf, (partly) since the triples we get back from a
-parser will be in no particular order.
-</p>
-
-<p>Pseudo code:</p>
-
+    <p>
+      Each of these scenarios puts our RDF data management policy
+      to a different test. A more realistic scenario, with 1000s of
+      transactions concerning 1000s of inter-related entities,
+      sometimes URI named, sometimes not, is our real goal and will
+      be our real test.
+    </p>
+    <p>
+      Assume we meet our example files in the order 'a b c', and
+      add them to the database in that order. We assume a parser
+      supplies representations such as T1, T2, T3, ie. generates
+      private identifiers that we may or may not decide to carry
+      over into our actual database. After 'a', we have in our
+      hands an intermediate representation of the triples of a, in
+      which var:001 is a stand-in for the URI of the company and
+      var:002 for the Person that owns it. Generally, we would use
+      various heuristics (sketched below) cbefore adding the data
+      to our store; since examples have to start somewhere we'll
+      assume the triples from a.rdf get added as-is, ie. we're
+      starting with a blank database.
+    </p>
+    <p>
+      Now we meet b.rdf, and generate (using some RDF parser) an
+      intermediate representation which employs a new stand-in
+      identifier for that person. Recall that our database now
+      contains the triples [T1], alongside knowledge (hardcoded or
+      acquired in RDF) about various uniquely identifying
+      properties. a.rdf introduced us to both the person and the
+      company, and gave us uniquely identifying information about
+      them (the corporate home page of the former; the personal
+      mailbox of the latter). So now we examine our representation
+      of b.rdf, which happens to tell us some more (non uniquely
+      identifying) properties of the person resource. We need to
+      consider, for each incoming generated identifier (in this
+      case just "var:100") whether we might already have a better
+      name for the resource it names. Maybe we know its URI. Maybe
+      we've already adopted a private generated ID for it. We
+      consequently need to work out what queries to ask our
+      existing database concerning the entities mentioned (but not
+      named) in the incoming datafile.
+    </p>
+    <p>
+      In this case, we're wondering about the resource temporarily
+      referred to as 'var:100'. We look to the incoming data for
+      uniquely identifying information. The following triple is
+      relavent (since personalMailbox is uniquely identifying):
+    </p>
+    <p>
+      ( personalMailbox, var:100, mailto:mega@megacorp.example.com
+      )
+    </p>
+    <p>
+      So we know have a non-URI way of picking out the entity we're
+      concerned with. In a more complex example, the incoming data
+      might offer two or more strategies for identifying an
+      individual. In a very complex example, the incoming data
+      combined with our existing local database might offer several
+      identifying descriptions. With this (the simple case) in mind
+      we consult our database, asking (in Perl RDF...):
+    </p>
+    <p>
+      @triples = $mydb-&gt;find(personalMailbox, undef,
+      mailto:mega@megacorp.example.com )
+    </p>
+    <p>
+      This would do the trick. We'd get back any statements in our
+      database where the predicate was 'personalMailbox', the
+      subject was left unconstrained, and the object was that
+      mailbox. If we assume for now that the database contains only
+      trusted and accurate data, we should find only a single value
+      that plays the subject role in this template statement.
+    </p>
+    <p>
+      If we get no value back from the query, we've got no name yet
+      for the resource with that mailbox, so we may as well use
+      var:100. If we get an answer (which in our current scenario
+      will be var:002) then we'll use var:002 in preference for
+      var:100 when we get around to asserting the new (rewritten)
+      triples into the store. We should also remember than b.rdf
+      might well have made multiple separate mentions of that
+      resource.
+    </p>
+    <p>
+      [TODO: we have a problem here if b.rdf were to have mentioned
+      that resource and supplied its URI; for such scenarios, it
+      might work to do our lookup against the hypothetical
+      aggregate of b.rdf and the main database].
+    </p>
+    <p>
+      Note: We shouldn't add any triples to the database until
+      we've investigated all the generated identifiers associated
+      with our representation of b.rdf, (partly) since the triples
+      we get back from a parser will be in no particular order.
+    </p>
+    <p>
+      Pseudo code:
+    </p>
 <pre>
 my $tmp = new AggregateDS();
 $tmp.addDS($incoming);
@@ -519,34 +571,31 @@ foreeach $genid ( $incoming-&gt;genids ) {
    push ( $tmpmap{$genid} , betternames($tmp,$genid) );
 }
 </pre>
-
-<p>
-We now have a table of better names for each generated ID in the incoming
-data. Having this, we can loop through the triples in b.rdf, and if we
-find a generated resource identifier (whether in predicate, subject or
-object roles) replace it with our better identifier. It might be another
-generated ID, or it might be a real URI.
-</p>
-
-<p>
-Learning a URI later
-</p>
-
-<p>
-What happens if we subsequently find out the 'real' URI for a resource we
-initially identify with a generated ID?  Maybe our database has an
-operation allowing us to for example switch 'var:100' wherever it to
-occurs to (say) 'person:us:ni-3422000023'. That would be OK. If not, we
-could use some wrapper for the database that knew how to answer queries as
-if we'd make such a replacement.
-</p>
-
-<p>
-.....
-</p>
-
-
-<hr />
-dan brickley, 2001-01-01
-</body>
+    <p>
+      We now have a table of better names for each generated ID in
+      the incoming data. Having this, we can loop through the
+      triples in b.rdf, and if we find a generated resource
+      identifier (whether in predicate, subject or object roles)
+      replace it with our better identifier. It might be another
+      generated ID, or it might be a real URI.
+    </p>
+    <p>
+      Learning a URI later
+    </p>
+    <p>
+      What happens if we subsequently find out the 'real' URI for a
+      resource we initially identify with a generated ID? Maybe our
+      database has an operation allowing us to for example switch
+      'var:100' wherever it to occurs to (say)
+      'person:us:ni-3422000023'. That would be OK. If not, we could
+      use some wrapper for the database that knew how to answer
+      queries as if we'd make such a replacement.
+    </p>
+    <p>
+      .....
+    </p>
+    <hr />
+    dan brickley, 2001-01-01
+  </body>
 </html>
+
