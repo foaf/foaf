@@ -24,6 +24,9 @@ public class SchemaData {
     Vector classesList = new Vector();
     Vector propertiesList = new Vector();
     
+    static String ClassPboardType = "org.rdfweb.RDFAuthor.class";
+    static String PropertyPboardType = "org.rdfweb.RDFAuthor.property";
+    
     public SchemaData()
     {
         classesList.add( headerData( "Classes", null, null, null ) );
@@ -179,6 +182,37 @@ public class SchemaData {
     public boolean outlineViewWriteItemsToPasteboard( NSOutlineView outlineView, 
             NSArray items, NSPasteboard pboard)
     {
+        Vector item = (Vector) items.lastObject();
+        Hashtable info = (Hashtable) item.firstElement();
         
-
+        if (((String) info.get("name")).equals(""))
+        {
+            return false;
+        }
+        else
+        {
+            NSMutableDictionary dataToDrag = new NSMutableDictionary();
+            dataToDrag.setObjectForKey(info.get("nameSpace") , "Namespace");
+            dataToDrag.setObjectForKey(info.get("name") , "Name");
+            
+            NSArray types;
+            String type;
+            
+            if (((String) info.get("type")).equals("Class"))
+            {
+                type = ClassPboardType;
+            }
+            else
+            {
+                type = PropertyPboardType;
+            }
+            
+            types = new NSArray(type);
+            
+            pboard.declareTypes(types, null);
+            pboard.setPropertyListForType(dataToDrag, type);
+            
+            return true;
+        }
+    }
 }
