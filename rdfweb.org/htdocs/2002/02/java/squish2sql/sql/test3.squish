@@ -1,0 +1,1 @@
+SELECT ?corp1, ?corp2, ?person WHERE (fc::name ?cp1 ?corp1) (fc::name ?cp2 ?corp2) (fc::board ?cp1 ?board1) (fc::board ?cp2 ?board2) (fc::member ?board1 ?member) (fc::member ?board2 ?member) (fc::name ?member ?person) USING fc for http://xmlns.com/foaf/corp#

@@ -1,0 +1,163 @@
+dbname: test1 serverhost: localhost
+
+Squish: 
+	
+	SELECT 	?x, ?n 
+	WHERE 	(fc::name ?x ?n) 
+	USING 	fc for http://xmlns.com/foaf/corp#  
+		dc for http://purl.org/dc/elements/1.1/
+
+SQL: 
+	SELECT 
+		distinct b1.value as n, b2.value as x  
+	FROM   
+		triples a1,  resources b1,  resources b2  
+	WHERE 
+		a1.predicate = '-1296757095'  and 
+		b1.key=a1.object  and b2.key=a1.subject ; 
+
+
+
+
+##########################################################################
+
+Squish:
+
+	SELECT 	?thumb, ?name, ?mbox 
+	WHERE 	(foaf::depiction ?x ?uri) 
+		(foaf::depiction ?z ?uri) 
+		(foaf::mbox ?x mailto:libby.miller@bristol.ac.uk) 
+		(foaf::mbox ?z ?mbox) 
+		(foaf::name ?z ?name) 
+		(foaf::thumbnail ?uri ?thumb) 
+		(dc::description ?uri ?dd)  
+	USING 
+		foaf for http://xmlns.com/foaf/0.1/  
+		dc for http://purl.org/dc/elements/1.1/ 
+
+SQL: 
+	select distinct 
+		b2.value as mbox, b5.value as thumb, b7.value as name  
+	from   
+		triples a1,  triples a2,  triples a3,  triples a4,  triples a5,  triples a6,  triples a7,  
+		resources b2,  resources b5,  resources b7  
+	where 
+		a1.predicate = '116868652'  and 
+		a2.predicate = '116868652'  and 
+		a3.predicate = '1547507681'  and 
+		a3.object = '1145937192'  and 
+		a4.predicate = '1547507681'  and 
+		a5.predicate = '1577895888'  and 
+		a6.predicate = '-1848367484' and 
+		a7.predicate = '-221079518'  and 
+		a1.subject=a3.subject  and 
+		a1.object=a2.object  and 
+		a2.object=a6.subject  and 
+		a6.subject=a7.subject  and 
+		a2.subject=a4.subject  and 
+		a4.subject=a5.subject  and 
+		b2.key=a4.object  and b5.key=a6.object  
+		and b7.key=a5.object ; 
+
+
+
+##########################################################################
+
+dbname: codepict serverhost: localhost
+
+
+ mbox: mailto:GK@NineByNine.org
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1521-042.jpg
+ name: Graham Klyne
+
+
+ mbox: mailto:azaroth@liverpool.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/09/08/thumb-000791.JPG
+ name: Rob Sanderson
+
+
+ mbox: mailto:dingbat@codesmiths.com
+ thumb: http://rdfweb.org/people/danbri/media/2001/09/27/photos/1/images/thumbs/p1010052.jpg
+ name: Andy Dingley
+
+
+ mbox: mailto:greg.fitzpatrick@metamatrix.se
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1521-041.jpg
+ name: Greg Fitzpatrick
+
+
+ mbox: mailto:greg.fitzpatrick@metamatrix.se
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1526-043.jpg
+ name: Greg fitzpatrick
+
+
+ mbox: mailto:jan.grant@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/07/30/thumb-000573.JPG
+ name: Jan Grant
+
+
+ mbox: mailto:jhendler@darpa.mil
+ thumb: http://swordfish.rdfweb.org/photos/2001/07/30/thumb-000572.JPG
+ name: Jim Hendler
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://rdfweb.org/people/danbri/media/2001/09/27/photos/1/images/thumbs/p1010052.jpg
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/07/30/thumb-000572.JPG
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/07/30/thumb-000573.JPG
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/01/thumb-000586.JPG
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1521-041.jpg
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1521-042.jpg
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/08/thumb-010808-1526-043.jpg
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/24/thumb-000743.JPG
+ name: Libby Miller
+
+
+ mbox: mailto:libby.miller@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/09/08/thumb-000791.JPG
+ name: Libby Miller
+
+
+ mbox: mailto:michael.khoo@ucsu.colorado.edu
+ thumb: http://swordfish.rdfweb.org/photos/2001/09/08/thumb-000791.JPG
+ name: Michael Khoo
+
+
+ mbox: mailto:p.a.grout@bristol.ac.uk
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/24/thumb-000743.JPG
+ name: Paul Grout
+
+
+ mbox: mailto:terryp@cs.cmu.edu
+ thumb: http://swordfish.rdfweb.org/photos/2001/08/01/thumb-000586.JPG
+ name: Terry Payne
+
+

@@ -1,0 +1,1 @@
+SELECT ?thumb, ?name, ?mbox WHERE (foaf::depiction ?x ?uri) (foaf::depiction ?z ?uri) (foaf::mbox ?x mailto:libby.miller@bristol.ac.uk) (foaf::mbox ?z ?mbox) (foaf::name ?z ?name) (foaf::thumbnail ?uri ?thumb) (dc::description ?uri ?dd)  USING foaf for http://xmlns.com/foaf/0.1/  dc for http://purl.org/dc/elements/1.1/

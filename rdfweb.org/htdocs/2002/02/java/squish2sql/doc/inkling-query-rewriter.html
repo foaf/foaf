@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      Inkling: Squish-to-SQL rewriter
+    </title>
+  </head>
+  <body>
+    <h1>
+      Inkling Squish-to-SQL query rewriter
+    </h1>
+    <p>
+      This tool takes a Squish query and transforms it into an SQL
+      query targeted at a certain style of RDF database implemented
+      in SQL. It was written by Libby Miller
+      &lt;libby.miller@bristol.ac.uk&gt; based on a PHP version by
+      Matt Biddulph &lt;matt@picdiary.com&gt;. See the <a
+      href="rewriter-details.html">how it works</a> document for
+      internal details.
+    </p>
+    <h2>
+      Nearby in the Web
+    </h2>
+    <p>
+      Some other RDF query tools, either systems that can consume
+      Squish or Squish-ish syntax, or that help with building
+      Squish2SQL-based applications.
+    </p>
+    <ul>
+      <li>
+        <a href="http://swordfish.rdfweb.org/rdfquery/">Inkling</a>
+      </li>
+      <li>
+        <a href="http://www.guha.com/rdfdb/">RDFdb</a>
+      </li>
+      <li>
+        <a href="http://www.hpl.hp.com/semweb/rdql.html">Jena
+        RDQL</a>
+      </li>
+      <li>
+        <a href="http://www.w3.org/2001/12/rubyrdf/">Ruby-RDF</a>
+        (for RDF-&gt;toSQL() utility that creates suitable
+        PostgreSQL databases)
+      </li>
+    </ul>
+    <h2>
+      Quick Start
+    </h2>
+    <p>
+      To get started really fast on machine with Java installed:
+    </p>
+    <ul>
+      <li>
+        Know about RDF and Squish-ish query languages.
+      </li>
+      <li>
+        Download the <a href="../jars/rewrite-helpers.jar">minimal
+        install JAR file</a> from the <a href="../">web site</a>.
+      </li>
+      <li>
+        Make sure Java can find it! Add the JAR to your classpath
+        (or use -cp as below)
+      </li>
+      <li>
+        Use it to transform Squish to SQL by typing 'java
+        Squish2SQL' followed by the name of a text file containing
+        a Squish query.
+      </li>
+    </ul>
+    <p>
+      <strong>Troubleshooting</strong>: there is no good formal
+      spec for Squish yet, and the Java parser has some issues. Try
+      tweaking your query slightly.
+    </p>
+    <h2>
+      Java class dependencies
+    </h2>
+    <p>
+      The rewriter is implemented in Squish2SQL.java and uses
+      org.desire.rudolf.query.ParsedQuery to represent the Squish
+      query, along with some helper classes. Squish2SQL was part of
+      the Inkling class hierarchy but is currently given an
+      unqualified name. See the <a href="../Makefile">Makefile</a>
+      for commandline example usage.
+    </p>
+    <p>
+      It should have pretty minimalistic dependencies, since it
+      basically performs a text format conversion. The current
+      version depends on PostgreSQL's JDBC libraries (pgjdbc2.jar)
+      since it can perform search, in addition to converting
+      between query syntaxes. The remaining dependencies are
+      documented below.
+    </p>
+    <h3>
+      Required Inkling classes
+    </h3>
+    <ul>
+      <li>
+        org.desire.rudolf.query.ParsedQuery (slight change from CVS
+        version, slimmed the imports)
+      </li>
+      <li>
+        org.desire.rudolf.util.ErrorLog
+      </li>
+      <li>
+        org.desire.rudolf.util.SearchReplace
+      </li>
+      <li>
+        org.desire.rudolf.rdf.Triple
+      </li>
+    </ul>
+    <h3>
+      Classpath and JARs
+    </h3>
+    <p>
+      So basically you need Inkling on your classpath, plus the
+      PostgreSQL JDBC classes. For a minimalist install, especially
+      if you don't intend to do any actual database querying, ie.
+      just run this as a text file, you don't need anything except
+      the <a
+      href="../jars/rewrite-helpers.jar">rewrite-helpers.jar</a>
+      JAR file. This includes only the 4 Inkling classes needed
+      (plus their .java src).
+    </p>
+    <p>
+    </p>
+    <p>
+      Standalone jar usage: java -cp jars/rewrite-helpers.jar
+      Squish2SQL squish-filename
+    </p>
+    <h3>
+      Example Usage
+    </h3>
+<pre>
+cat sql/test1.squish
+
+   SELECT  ?thumb, ?name, ?mbox 
+   WHERE 
+     (foaf::depiction ?x ?uri) 
+     (foaf::depiction ?z ?uri) 
+     (foaf::mbox ?x mailto:libby.miller@bristol.ac.uk) 
+     (foaf::mbox ?z ?mbox) 
+     (foaf::name ?z ?name) 
+     (foaf::thumbnail ?uri ?thumb) 
+     (dc::description ?uri ?dd)  
+   USING 
+     foaf for http://xmlns.com/foaf/0.1/  
+     dc for http://purl.org/dc/elements/1.1/
+
+
+java -cp jars/rewrite-helpers.jar Squish2SQL sql/test1.squish
+ 
+   SELECT DISTINCT 
+    b2.value AS mbox, b5.value AS thumb, b7.value AS name  
+   FROM   
+    triples a1,  triples a2,  triples a3,  triples a4,
+    triples a5,  triples a6,  triples a7,  
+    resources b2,  resources b5,  resources b7  
+   WHERE a1.predicate = '116868652'  
+   AND   a2.predicate = '116868652'  
+   AND a3.predicate = '1547507681'  
+   AND    a3.object = '1145937192'  
+   AND a4.predicate = '1547507681'  
+   AND    a5.predicate = '1577895888'  
+   AND a6.predicate = '-1848367484' 
+   AND a7.predicate = '-221079518'  
+   AND a1.subject=a3.subject   
+   AND a1.object=a2.object  
+   AND a2.object=a6.subject  
+   AND a6.subject=a7.subject  
+   AND a2.subject=a4.subject  
+   AND a4.subject=a5.subject  
+   AND b2.key=a4.object  
+   AND b5.key=a6.object  
+   AND b7.key=a5.object ;
+
+</pre>
+    <p>
+      Appending 'search dbname' will result in it attempting to
+      actually do the query against a localhost PostgreSQL database
+      called 'dbname'. Piping the output into 'psql dbname' can be
+      used to similar effect, if you have the PostgreSQL client
+      tool installed.
+    </p>
+    <h3>
+      Availability
+    </h3>
+    <p>
+      The required class libraries from Inkling have been packaged
+      as .jar files: <a
+      href="../jars/rdfquery.jar">jars/rdfquery.jar</a> (the normal
+      Inkling distribution) or just the three classes we need: <a
+      href="../jars/rewrite-helpers.jar">jars/rewrite-helpers.jar</a>.
+    </p>
+    <p>
+      Hmm, should probably bundle the revised rewriter (Squish2SQL,
+      previously PQ2SQL.java) in there too.
+    </p>
+    <h3>
+      Notes
+    </h3>
+    <p>
+      These rough notes made by Dan in advance of attempting a Ruby
+      port.
+    </p>
+    <address>
+      danbri@rdfweb.org
+    </address>
+  </body>
+</html>
+

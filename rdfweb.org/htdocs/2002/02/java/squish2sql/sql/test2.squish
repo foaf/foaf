@@ -1,0 +1,1 @@
+SELECT ?x, ?n WHERE (fc::name ?x ?n) USING fc for http://xmlns.com/foaf/corp#  dc for http://purl.org/dc/elements/1.1/

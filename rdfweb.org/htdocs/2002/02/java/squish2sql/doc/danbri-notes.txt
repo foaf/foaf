@@ -1,0 +1,20 @@
+	
+I trimmed down the dependencies a bit. Used Damian's sha1 replacement 
+for stanford sha code, and picked out the bits of rdfquery.jar that
+are actually needed (see doc/ notes).
+
+
+Can now use Squish2SQL as a commandline filter. 
+
+Querying via PostgreSQL client tool:
+
+	make query1 | psql codepict
+	make query2 | psql test1
+	make query3 | psql test2
+
+
+Querying via JDBC (pass in 'search' as 3rd argument to java Squish2SQL)
+
+	make search1
+	make search2 
+	make search3

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      Inkling Squish to SQL Rewriter
+    </title>
+  </head>
+  <body>
+    <h1>
+      Squish/SQL Rewriter
+    </h1>
+    <p>
+      Libby's original documentation, copied from the Java code
+      comments for now; goalis for this document to describe the
+      approach independent of implementation language.
+    </p>
+    <h2>
+      How the rewriter works
+    </h2>
+<pre>
+2002-02-21
+
+trying to clean it up so clearer what is going on.
+
+NB this version uses 2 tables:
+
+
+              Table "triples"
+ Attribute  | Type               | Modifier
+------------+-------------------+----------
+ subject    | integer           |
+ predicate  | integer           |
+ object     | integer           |
+ assertid   | character varying |
+ personid   | character varying |
+ isresource | boolean           |
+
+Indices: obj_index,
+         pred_index,
+         sub_index
+
+
+            Table "resources"
+ Attribute | Type              | Modifier
+-----------+-------------------+----------
+ key       | integer           |
+ value     | character varying |
+
+Indices: res_key_index,
+         res_val_index,
+         resources_key_key
+
+
+this is how it works (-ish)
+
+The triples table is like a triples buvcket. for an sql query to work we have to somhow
+join up the variables in one row with those in another, which are in face the same
+variable from our query.
+
+e.g. suppose we are looking for
+
+(?x title ?y)
+(?x description ?z)
+
+the answers to these will be different rows in the database
+
+row 1: #document title "doc 1"
+row 2: #document description "what a fantastic document!"
+
+but document is the same thing in each case, and we need to impose that as a constraint
+in our SQL query.
+We also need to be able to distinguish row 1 from row 2 in our query because the value
+for the predicate in each row is different in each case, but the name of the column is
+the same in each case ('predicate').
+
+so we treat each separate subclause of the query as a separate virtual table of the
+database, and give it a name, a1, a2 etc.
+
+because of this we also need to craete a mapping form the real variable names we want
+returned and the names we've given them in the virtual tables
+
+select a1.subject as x, a1.object as y, a2.object as z
+from
+a1 triples, a2 triples
+where
+a1.predicate='title'
+and
+a2.predicate='description'
+
+
+we need to tell it that a1.subject and a2.subject have to be the same thing, like this:
+
+and
+a1.subject=a2.subject
+
+This would give us the results we wanted if the triples table was just a bucket of
+strings, but hee we are using sh1 ints in the triples table, mapped to their real string
+values in the resources table.
+
+So we need to get their string values form the resources table, using similar techniques.
+The full query is then
+
+select b1.value as x, b2.value as y, b3.value as z
+from
+b1 resources, b2 resources, b3 resources,
+a1 triples, a2 triples
+where
+a1.predicate='title'
+and
+a2.predicate='description'
+and
+a1.subject=a2.subject
+and
+b1.key=a1.subject
+and
+b2.key=a1.object
+and
+b3.key=a2.oject;
+
+so we need to do a bunch of stuff in this method:
+
+* map resource values to triple values in terms of the sql valuable names a1, b2 etc
+* map real variable names (things we want back) to the sql variable names
+* keep a list of which values within the virtual tables must be equal, including triple
+to triple and resource to resource.
+* keep a list fo the viirtual tables we want to return things from
+
+so moving from triples-bucket'o'strings to sha1 technique complexifies things, but doesnt
+really change the technique.
+
+
+2001-11-22
+--
+trying to make it use Sha1...
+i.e. one table of triples containing only ints, another table of int-resource
+or literal mapping
+
+this means that the select variable has to come from this second table
+(resources). not sure how to handle string matching.
+--
+
+an attempt at a copy of triple.inc in java - i.e. a function that
+translates squish queries to SQL simple triple format
+
+thanks to Matt Biddulph &lt;matt@picdiary.com&gt; who did the orginal
+php version
+
+This is arather cruddy copy, although it seems to work.
+
+</pre>
+  </body>
+</html>
+
