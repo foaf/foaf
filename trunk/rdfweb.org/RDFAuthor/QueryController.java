@@ -217,11 +217,11 @@ public class QueryController extends NSObject {
             return;
         }
         
-        for (ListIterator iterator = queryObjects.listIterator(); iterator.hasNext();)
+        for (Iterator iterator = queryObjects.listIterator(); iterator.hasNext();)
         {
             ModelItem item = (ModelItem) iterator.next();
             
-            NSPoint point = item.rect().origin();
+            NSPoint point = item.graphicRep().bounds().origin();
             
             NSRect rect = new NSRect( point, size );
             

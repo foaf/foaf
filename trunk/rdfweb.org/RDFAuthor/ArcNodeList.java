@@ -22,9 +22,6 @@
 
 */
 
-import com.apple.cocoa.foundation.*;
-import com.apple.cocoa.application.*;
-
 import java.util.ListIterator;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -41,7 +38,7 @@ import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
-public class ArcNodeList extends java.lang.Object implements Serializable
+public class ArcNodeList implements Serializable
 {
     // End problems with serialisation - yes!
     
@@ -103,8 +100,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
                     // This is dodgy - object might be a literal (I guess)
-                    subjectNode = new Node(this, id, object.toString(),
-                        new NSPoint( x, y));
+                    subjectNode = new Node(this, id, object.toString(), x, y);
                     x += 70; y += 10;
                     if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
@@ -123,8 +119,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 {
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
-                    subjectNode = new Node(this, id, object.toString(),
-                        new NSPoint( x, y));
+                    subjectNode = new Node(this, id, object.toString(), x, y);
                     x += 70; y += 10;
                     if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
@@ -154,8 +149,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 {
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
-                    subjectNode = new Node(this, id, object.toString(),
-                        new NSPoint( x, y));
+                    subjectNode = new Node(this, id, object.toString(), x, y);
                     x += 70; y += 10;
                     if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
@@ -186,7 +180,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 {
                     String id = subject.getURI();
                     if (id != null) id = (id.equals(""))?null:id;
-                    subjectNode = new Node(this, id, null, null, new NSPoint( x, y));
+                    subjectNode = new Node(this, id, null, null, x, y);
                     x += 70; y += 10;
                     if (x > 400F) x = 70;
                     jenaNodeToNode.put(subject, subjectNode);
@@ -199,7 +193,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                     {
                         String id = ((Resource) object).getURI();
                         if (id != null) id = (id.equals(""))?null:id;
-                        objectNode = new Node(this, id, null, null, new NSPoint( x, y));
+                        objectNode = new Node(this, id, null, null, x, y);
                         x += 70; y += 10;
                         if (x > 400F) x = 70;
                         jenaNodeToNode.put(object, objectNode);
@@ -209,7 +203,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                     {
                         String content = ((Literal) object).getString();
                         content = (content.equals(""))?null:content;
-                        objectNode = new Node(this, content, null, null, new NSPoint( x, y));
+                        objectNode = new Node(this, content, null, null, x, y);
                         x += 70; y += 10;
                         if (x > 400F) x = 70;
                         objectNode.setIsLiteral(true);
@@ -241,7 +235,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 float xval = ((Float) nodeToX.get(node)).floatValue() - minX + 20;
                 float yval = ((Float) nodeToY.get(node)).floatValue() - minY + 20;
                 
-                node.setPosition(new NSPoint(xval, yval));
+                node.setPosition(xval, yval);
             }
         }
     }
@@ -284,7 +278,8 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         item.delete();
         controller.modelChanged();
     }
-
+    
+    // modelitems call this themselves - above is for actual deleting
     public void removeObject(ModelItem anObject)
     {
         array.remove(anObject);
@@ -309,57 +304,19 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     {
         return new ArcNodeListIterator(array, false);
     }
-        
-    public void drawModel(NSRect rect)
-    {
-        /*
-        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
-        {
-            ModelItem anObject = (ModelItem)enumerator.next();
-            if (anObject == currentObject)
-                anObject.drawHilight();
-            else
-                anObject.drawNormal();
-        }
-        */
-        for (Iterator iterator = this.getArcs(); iterator.hasNext();)
-        {
-            ModelItem anObject = (ModelItem) iterator.next();
-            if (anObject == currentObject)
-                anObject.drawHilight(rect);
-            else
-                anObject.drawNormal(rect);
-        }
-        for (Iterator iterator = this.getNodes(); iterator.hasNext();)
-        {
-            ModelItem anObject = (ModelItem) iterator.next();
-            if (anObject == currentObject)
-                anObject.drawHilight(rect);
-            else
-                anObject.drawNormal(rect);
-        }
-    }
-
-    public ModelItem objectAtPoint(NSPoint point)
-    {
-        // This has to go backwards, since they are displayed in the opposite way
-        for (int index = array.size() - 1; index >= 0; index --)
-        {
-            ModelItem item = (ModelItem) array.get(index);
-            if (item.containsPoint(point))
-            {
-                return item;
-            }
-        }
-
-        return null;
-    }
 
     public void setCurrentObject(ModelItem anObject)
     {
-        currentObject = anObject;
-        controller.modelChanged();
-        controller.currentObjectChanged();
+        if (anObject != currentObject) // did it really change?
+        {
+            // indicate to old and new current (graphic) objects that something changed
+            if (currentObject != null) currentObject.graphicRep().changed();
+            if (anObject != null) anObject.graphicRep().changed();
+            
+            currentObject = anObject;
+            controller.modelChanged();
+            controller.currentObjectChanged();
+        }
     }
     
     public void selectNextObject()
@@ -413,15 +370,6 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     public void itemChanged(ModelItem item)
     {
         controller.modelChanged();
-        if (item == currentObject)
-        {
-            controller.currentObjectChanged(); // for the info wndow
-        }
-    }
-    
-    public void itemChanged(ModelItem item, NSRect rect) // variation of above where a rect needs redrawing
-    {
-        controller.modelChanged(rect);
         if (item == currentObject)
         {
             controller.currentObjectChanged(); // for the info wndow
