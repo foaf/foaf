@@ -1,0 +1,16 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+<foaf:Person>
+  <rdfs:seeAlso rdf:resource="a-foaf.rdf"/>
+</foaf:Person>
+<foaf:Person>
+  <rdfs:seeAlso rdf:resource="b-foaf.rdf"/>
+</foaf:Person>
+<foaf:Person>
+  <rdfs:seeAlso rdf:resource="c-foaf.rdf"/>
+</foaf:Person>
+
+
+</rdf:RDF>
