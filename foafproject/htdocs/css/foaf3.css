@@ -33,11 +33,10 @@
 			}	
 			
 
-		h1 {
+		h1 	{
 			position: absolute; 
-			left: 120px;
+			left: 98px;
 			top: 15px;
-			
 			letter-spacing: 5px;  
 			color: white; 
 			background: transparent; 
@@ -46,13 +45,15 @@
 			font-weight: 100;
 			margin: 0px;
 			padding: 0px;
+			text-decoration: none;
 			}
-		h1 span {
+		.righthead {
 			color: black;
 			background-color: transparent;
 			}
-		a h1 	{
+		.lefthead {
 			text-decoration: none;
+			color: white;
 			}
 
 		#circleLogo {
