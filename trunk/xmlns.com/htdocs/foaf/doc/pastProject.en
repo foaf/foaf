@@ -1,0 +1,15 @@
+<p>After a <code>foaf:Person</code> is no longer involved with a
+<code>foaf:currentProject</code>, or has been inactive for some time, a
+<code>foaf:pastProject</code> relationship can be used. This indicates that
+the <code>foaf:Person</code> was involved with the described project at one
+point. 
+</p>
+
+<p>
+If the <code>foaf:Person</code> has stopped working on a project because it 
+has been completed (successfully or otherwise), <code>foaf:pastProject</code> is 
+applicable. In general, <code>foaf:currentProject</code> is used to indicate 
+someone's current efforts (and implied interests, concerns etc.), while 
+<code>foaf:pastProject</code> describes what they've previously been doing.
+</p>
+

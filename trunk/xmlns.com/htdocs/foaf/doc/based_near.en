@@ -1,0 +1,24 @@
+<!-- note: is this mis-specified? perhaps range ought to also be SpatialThing, so we
+     can have multiple labels on the same point? -->
+
+<p>The <code>foaf:based_near</code> relationship relates a "spatial thing"
+(anything that can <em>be somewhere</em>) to a point in space, typically
+specified using the geo:lat / geo:long
+<a href="http://www.w3.org/2003/01/geo/wgs84_84#">geo-positioning vocabulary</a>
+(See <a href="http://esw.w3.org/topic/GeoInfo">GeoInfo</a> in the W3C semweb
+wiki for details).</p>
+
+<p>We do not say much about what 'near' means in this context; it is a
+'rough and ready' concept. For a more precise treatment, see
+<a href="http://esw.w3.org/topic/GeoOnion">GeoOnion vocab</a> design
+discussions, which are aiming to produce a more sophisticated vocabulary for 
+such purposes.
+</p>
+
+<p> FOAF files often make use of the <code>contact:nearestAirport</code> property. This
+illustrates the distinction between FOAF documents (which may make claims using <em>any</em> RDF
+vocabulary) and the core FOAF vocabulary defined by this specification. For further reading on
+the use of <code>nearestAirport</code> see <a 
+href="http://rdfweb.org/topic/UsingContactNearestAirport">UsingContactNearestAirport</a> in the 
+FOAF wiki.
+</p>
