@@ -40,7 +40,7 @@ public class InfoController extends NSObject {
     
     ModelItem currentItem = null;
     
-    RDFAuthorDocument currentDocument = null;
+    NSWindow currentWindow = null;
 
     public InfoController()
     {
@@ -93,8 +93,8 @@ public class InfoController extends NSObject {
     
     public void currentWindowChanged(NSNotification notification)
     {
-        NSWindow currentWindow = (NSWindow) notification.object();
-        currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
+        currentWindow = (NSWindow) notification.object();
+        RDFAuthorDocument currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
         ModelItem item = currentDocument.currentObject();
         setCurrentItem(item);
     }
@@ -102,10 +102,10 @@ public class InfoController extends NSObject {
     public void windowClosed(NSNotification notification)
     {
         NSWindow window = (NSWindow) notification.object();
-        RDFAuthorDocument document = (RDFAuthorDocument) window.delegate();
-        if (document == currentDocument)
+        if (currentWindow == window)
         {
             setCurrentItem(null);
+            currentWindow = null;
         }
     }
     
@@ -113,7 +113,12 @@ public class InfoController extends NSObject {
     {
         RDFAuthorDocument document = (RDFAuthorDocument) notification.object();
         
-        if (document == currentDocument)
+        if (currentWindow == null)
+        {
+            return;
+        }
+        
+        if (document == currentWindow.delegate())
         {
             ModelItem item = document.currentObject();
             setCurrentItem(item); // cheap way to update

@@ -84,6 +84,10 @@ public class RDFAuthorDocument extends NSDocument {
             
             if (rdfData == null)
             {
+                NSAlertPanel alert = new NSAlertPanel();
+                alert.runCriticalAlert("RDF/XML Export Failed",
+                    "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
+                    null, null, null);
                 return null;
             }
             else
@@ -159,27 +163,33 @@ public class RDFAuthorDocument extends NSDocument {
 	window.setToolbar(rdfToolbar);
     }
     
-    public void showTextPreview(boolean showPreview)
+    public boolean showTextPreview(boolean showPreview)
     {
         if (showPreview)
         {
             String rdfData = rdfModel.exportAsRDF();
             if (rdfData == null)
             {
-                return;
+                NSAlertPanel alert = new NSAlertPanel();
+                alert.runCriticalAlert("RDF/XML Serialisation Failed",
+                    "I couldn't convert this to RDF/XML. Try using 'Check Model' for possible problems.",
+                    null, null, null);
+                return false;
             }
             
             NSRect rect = rdfModelView.frame();
             previewView.setFrame(rect);
-            
             previewTextView.setString(rdfData);
+
             window.contentView().replaceSubview(rdfModelView, previewView);
+            return true;
         }
         else
         {
             NSRect rect = previewView.frame();
             rdfModelView.setFrame(rect);
             window.contentView().replaceSubview(previewView, rdfModelView);
+            return true;
         }
     }
             

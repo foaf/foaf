@@ -273,10 +273,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         }
         catch (Exception error)
         {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runCriticalAlert("RDF/XML Export Failed",
-                "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
-                null, null, null);
+            return null;
         }
         
         return rdfReturned;
