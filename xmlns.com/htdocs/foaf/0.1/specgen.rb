@@ -4,110 +4,6 @@
 require 'squish'
 require 'basicrdf'
 
-termdir='../doc/'
-
-
-style=<<EOT;
-     <style type="text/css" media="screen">
-                dt {
-                    font-weight: bold;
-                }
-
-                .class-table {
-                    margin: 1px;
-                    padding: 3px;
-                }
-
-                .tableheading     { background: #CCCCFF; font-weight:  bold; font-size: 120%;} /* Dark mauve */
-
-                .float-right {
-                  float:right;
-                }
-            </style>
-EOT
-
-
-def shortname (uri)
-  uri = uri.to_s
-  uri.gsub!('http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'rdf:')
-  uri.gsub!(/http:\/\/www.w3.org\/2000\/01\/rdf-schema#/, 'rdfs:')
-  return uri
-end
-
-spec = Loader.get_rdf('index.rdf')
-
-FOAF = spec.reg_xmlns 'http://xmlns.com/foaf/0.1/', 'foaf'
-DC = spec.reg_xmlns 'http://purl.org/dc/elements/1.1/', 'dc'
-RDF = spec.reg_xmlns 'http://www.w3.org/1999/02/22-rdf-syntax-ns#','rdf'
-RDFS = spec.reg_xmlns 'http://www.w3.org/2000/01/rdf-schema#','rdfs'
-
-#VDL = spec.reg_xmlns 'http://www.w3.org/2000/01/rdf-schema#','vdl'
-
-
-s1=Statement.new (nil, RDF+'type', RDFS+'Class')
-s2=Statement.new (nil, RDF+'type', RDF+'Property')
-classes = spec.ask s1
-props = spec.ask s2
-
-clist=[]
-plist=[]
-
-puts '<?xml version="1.0" encoding="utf-8"?>
-<html xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
-xmlns:ver="http://www.ldodds.com/ns/ver/" 
-xmlns:owl="http://www.w3.org/2002/07/owl#" 
-xmlns:dc="http://purl.org/dc/elements/1.1/">
-   <head>
-      <title>FOAF Vocabulary Reference</title>'
-
-
-puts style
-
-puts "</head><body>"
-
-puts "<table class=\"class-table\" border=\"1\" summary=\"RDF classes\" 
-><tr><th>Class name</th><th>comment</th></tr>\n"
-
-classes.subjects.each do |classuri|
-  c = Node.getResource classuri, spec
-  clist.push c.to_s
-  # puts "C is #{c.inspect} \n"
-  name = shortname(classuri)		#+" label="+c.rdfs_label.to_s 
-  puts "<tr>\n <td>#{name}</td> \n"
-  puts " <td>#{c.rdfs_comment}</td></tr> \n"  
-end
-puts "\n</table>\n\n"
-
-puts "<table border=\"1\" summary=\"RDF properties\" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>\n"
-
-# todo: are there any multi-valued domain or range declarations?
-
-props.subjects.each do |propuri|
-  p = Node.getResource propuri, spec
-  plist.push p.to_s
-  r = p.rdfs_range
-  rt = r.to_s
-  if (r.to_s == "") 
-    rt = '<em>not specified</em>'
-  end
-  d= p.rdfs_domain
-  dt = d.to_s
-  if (d.to_s == "")
-    dt = '<em>not specified</em>'
-  end
-  rt = shortname rt
-  dt = shortname dt
-
-  name = shortname (propuri) # + " label="+p.rdfs_label.to_s
-  puts "<tr>\n <td>#{name}</td> \n"
-    puts " <td>#{p.rdfs_comment.to_s}</td><td>#{dt}</td><td>#{rt}</td></tr> \n"  
-end
-
-puts "\n</table>\n\n"
-
-clist.each { |c| c.gsub!(FOAF,'') }
-plist.each { |c| c.gsub!(FOAF,'') }
 
 # todo: shouldn't be foaf specific
 def termlink(text)
@@ -116,32 +12,162 @@ end
 
 # todo: shouldn't be foaf specific
 def defurl(term)
-  STDERR.puts "defurl Term was: '#{term}' \n"
+  #STDERR.puts "defurl Term was: '#{term}' \n"
   return "<code><a href=\"#term_#{term}\">foaf:#{term}</a></code>"
 end
 
-
-puts "Classes:\n"+clist.join("\n")+"\n"
-puts "Properties:\n"+plist.join("\n")+"\n"
- 
-plist.each do |p|
-
-  puts "<h3><a name=\"term_#{p}\">#{p}</h3>\n"
-  prop = Node.getResource(FOAF+p, spec)
-  d= prop.rdfs_domain.to_s
-
-  if (d!=nil) 
-    puts "<dl><dt>Domain:</dt><dd>#{d}</dd></dl>"
-    #puts "Got d: #{d.inspect}"
-  end
-
-  if (File.exists?(termdir+p))
-    termdoc=File.new(termdir+p).read
-    puts termlink(termdoc) 
-  else
-    puts "No documentation for term '#{p}'"
-  end
-
+def shortname (uri)
+  uri = uri.to_s
+  uri.gsub!('http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'rdf:')
+  uri.gsub!(/http:\/\/www.w3.org\/2000\/01\/rdf-schema#/, 'rdfs:')
+  return uri
 end
 
-puts "</body></html>"
+def owlInfo(t)
+  types=t.rdf_type
+  ifp=false
+  types.each do |d|
+    u=d.to_s
+    ifp=true if u==OWL+'InverseFunctionalProperty'
+  end
+  return("an InverseFunctionalProperty (uniquely identifying property)\n<br/>") if ifp
+  return ''
+end
+
+
+def rdfsInfo(term, doc='')
+  # domain and range stuff (properties only)
+  d= term.rdfs_domain.to_s
+  r= term.rdfs_range.to_s
+  if (d!=nil) 
+    d.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
+    doc += "domain: #{d}<br />"
+  else
+    doc += "-"
+  end
+  if (r!=nil) 
+    r.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
+    doc += "range: #{r}<br />"
+  else
+    doc += "-"
+  end
+  return doc
+end 
+
+
+# todo: keep config state somewhere?
+#
+def htmlDocInfo(t, termdir='../doc/', doc='')
+  fn=termdir+t+".en"
+  if (File.exists?(fn))
+    termdoc=File.new(fn).read
+    doc += termlink(termdoc) 
+  else
+    STDERR.puts "No detailed documentation for term '#{t}'"
+  end
+  return doc
+end
+
+# document a list of terms (where category is 'Class' or 'Property')
+# spec is an RDF graph, and doc is string we're appending to.
+#
+def docTerms(category, list, spec, doc='')
+list.each do |t|
+  term = Node.getResource(FOAF+t, spec)
+  doc += "<div class=\"specterm\">\n<h3>#{category}: <a  name=\"term_#{t}\">foaf:#{t}</h3>\n"
+  # almost vocab neutral. todo: 'foaf' shouldn't be hardcoded.
+  l= term.rdfs_label.to_s
+  c= term.rdfs_comment.to_s
+  status= term.vs_term_status.to_s
+  doc += "<em>#{l}</em> - #{c} <br />"
+  doc += "status: #{status}<br />"
+  doc += owlInfo(term)
+  doc += rdfsInfo(term) if category=='Property'
+  doc += htmlDocInfo(t)
+  doc += "<br/><br/></div>\n\n"
+end
+return doc
+end
+
+
+##########################################################################
+
+spec = Loader.get_rdf('index.rdf')
+
+
+FOAF = spec.reg_xmlns 'http://xmlns.com/foaf/0.1/', 'foaf'
+DC = spec.reg_xmlns 'http://purl.org/dc/elements/1.1/', 'dc'
+RDF = spec.reg_xmlns 'http://www.w3.org/1999/02/22-rdf-syntax-ns#','rdf'
+RDFS = spec.reg_xmlns 'http://www.w3.org/2000/01/rdf-schema#','rdfs'
+OWL = spec.reg_xmlns 'http://www.w3.org/2002/07/owl#', 'owl'
+VS = spec.reg_xmlns 'http://www.w3.org/2003/06/sw-vocab-status/ns#','vs'
+
+
+# Get all the URIs of properties and classes, and store in plist and clist.
+# (must be a more concise way of doing this...)
+classes = spec.ask(Statement.new (nil, RDF+'type', RDFS+'Class'))
+props = spec.ask(Statement.new (nil, RDF+'type', RDF+'Property'))
+
+clist=[]
+classes.subjects.each do |classuri|
+  c = Node.getResource classuri, spec
+  clist.push c.to_s
+end
+
+plist=[]
+props.subjects.each do |propuri|
+  p = Node.getResource propuri, spec
+  plist.push p.to_s
+end
+
+
+
+
+### OK a basic a-z table of contents
+
+azlist = "<h4>Classes and Properties (A-Z index)</h4>"
+azlist += "<div style=\"padding: 5px; border: dotted; background-color: #ddd;\">\n"
+azlist += "\n<p>Classes: |"
+clist.sort.each do |t| 
+  t.gsub!(FOAF,'') 
+  azlist += " <a href=\"#term_#{t}\">#{t}</a> | "
+end
+azlist += "</p>\n"
+
+azlist += "\n<p>Properties: |"
+plist.sort.each do |t|
+  t.gsub!(FOAF,'') 
+  azlist += "<a href=\"#term_#{t}\">#{t}</a> | "
+end
+azlist += "</p>\n"
+azlist += "</div>\n"
+
+
+
+
+# fix ordering
+
+
+
+## Full details in HTML
+
+termlist = "<h4>Classes and Properties (full detail)</h4>"
+termlist += docTerms('Property',plist,spec)
+termlist += docTerms('Class',clist,spec)
+
+
+# Output 
+
+template=File.new('wip.html').read
+rdfdata=File.new('index.rdf').read
+
+template.gsub!(/<!--AZLIST-->/,azlist)
+template.gsub!(/<!--TERMLIST-->/,termlist)
+template.gsub!(/<!--RDFDATA-->/,rdfdata)
+
+puts template
+
+#<!--ATOZ-->
+#<!--TERMLIST-->
+
+
