@@ -45,10 +45,11 @@ this.viz=viz;
 
 	viz.setEditState(viz.NODE_FOCUS);
 
-                DrawableLiteral n = new DrawableLiteral(100, 100);
+                DrawableNode n = new DrawableNode(100, 100);
+		n.setAsLiteral();
 		n.updateType(action);
                 viz.setFocussedItem( n );
-                viz.getLiterals().addElement(n);
+                viz.getNodes().addElement(n);
             viz.repaint();
 
         } 
