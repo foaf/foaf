@@ -3,7 +3,7 @@
 <!-- first we introduce a number of RDF namespaces we will be using -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-07-26 12:21:55 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-07-26 18:06:07 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -96,7 +96,7 @@
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
 <!-- ......................... chat IDs ........................... -->
-  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/jabberID" vs:term_status="testing" rdfs:label="jabber ID" rdfs:comment="A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?">
+  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/jabberID" vs:term_status="testing" rdfs:label="jabber ID" rdfs:comment="A jabber ID for something.">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick"/>
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
@@ -160,7 +160,7 @@
 <!-- end of naming properties. See http://rdfweb.org/issues/show_bug.cgi?id=7
 	   for open issue / re-design discussions.
 	-->
-  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/phone" vs:term_status="testing" rdfs:label="phone" rdfs:comment="A fully qualified international phone number, specified using  the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).">
+  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/phone" vs:term_status="testing" rdfs:label="phone" rdfs:comment="A phone,  specified using fully qualified tel: URI scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage" vs:term_status="stable" rdfs:label="homepage" rdfs:comment="A homepage for some thing.">
