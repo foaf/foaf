@@ -12,8 +12,8 @@ a person.
 <p>
 The <code>foaf:myersBriggs</code> property is interesting in that it illustrates how 
 FOAF can serve as a carrier for various kinds of information, without necessarily being 
-commited to the associated worldviews. Not everyone will find myersBriggs (or star signs, 
-or blood types, or the four humours) a useful perspective on human behavious and 
+commited to any associated worldview. Not everyone will find myersBriggs (or star signs, 
+or blood types, or the four humours) a useful perspective on human behaviour and 
 personality. The inclusion of a Myers Briggs property doesn't indicate that FOAF endorses 
 the underlying theory, any more than the existence of <code>foaf:weblog</code> is an 
 endorsement of soapboxes.
