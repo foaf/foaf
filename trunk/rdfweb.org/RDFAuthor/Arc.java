@@ -63,6 +63,16 @@ public class Arc extends ModelItem
         return propertyNamespace;
     }
     
+    public Node fromNode()
+    {
+        return fromNode;
+    }
+    
+    public Node toNode()
+    {
+        return toNode;
+    }
+    
     public void delete()
     {
         toNode.removeToArc(this);
