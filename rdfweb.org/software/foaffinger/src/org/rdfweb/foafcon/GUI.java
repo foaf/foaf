@@ -145,6 +145,7 @@ public class GUI extends ApplicationWindow
 	    tabItem.setControl(sash);
 	    
 		table = new Table(sash, SWT.CHECK);
+		table.addSelectionListener(this);
 		
 		try
 		{
