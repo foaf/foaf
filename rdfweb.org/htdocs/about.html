@@ -1,68 +1,135 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta name="generator" content="HTML Tidy, see www.w3.org" />
-
-    <title>RDFWeb: general overview</title>
+    <title>
+      RDFWeb: general overview
+    </title>
     <link rel="stylesheet" href="ssi/main.css" type="text/css" />
   </head>
-
   <body bgcolor="#ffffff">
     <div class="navbar">
       <table border="0" cellpadding="15"
       background="/images/glib5-pale.jpg" cellspacing="0"
       summary="rdfweb site navigation links" width="100%">
         <tr>
-          <td align="left" valign="top"><strong><a href="/"
-          class="sitepart">RDFWeb</a>: <span
-class="sitepart">general overview</span></strong> </td>
-
-          <td align="right"><span class="siteutil"><a
-          href="/about.html">about</a> | <a
-          href="/projects.html">projects</a> | <a
-          href="/dev.html">developers</a> | <a
-          href="/sitemap.html">sitemap</a> | <a
-          href="/search.html">search</a></span> </td>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">general overview</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="/about.html">about</a>
+            | <a href="/projects.html">projects</a> | <a
+            href="/dev.html">developers</a> | <a
+            href="/sitemap.html">sitemap</a> | <a
+            href="/search.html">search</a></span> 
+          </td>
         </tr>
       </table>
     </div>
-
-
-<h2>RDFWeb Overview</h2>
-
-<p>
-RDFWeb is a toolset and site which enable you to link pieces of 
-information together and discover connections between them. The
-implementations on this site focus on people, their creations, 
-their collaborators and the people they know. 
-<br />
-<br />
-The <a href="2000/08/why/">general overview</a> provides more
-detailed explanation, and includes a <a 
-href="2000/08/why/index.html#lForDevelopers">technical overview
-</a>
-</p>
-<h3>Nutshell description</h3>
-
-<p>
-RDFWeb is an experimental linked information system, where the linked
-items are machine-understandable documents in the World Wide Web. These
-documents, written in the XML, RDF and XHTML languages, are harvested by
-our 'scutter' indexers, which then merge the resulting information to form
-one big database. By exploiting various features of the RDF technology
-alongside related tools such as digital signature, we can
-use the Web to retrieve structured information that machines can process
-and act upon. RDFWeb is best understood as
-an exploration of the question: "<em>what would it be like if machines
-could read what we say in our Web homepages</em>".
- </p>
-
-<!-- ............................................  -->
-
-
-</body>
+    <h2>
+      RDFWeb Overview
+    </h2>
+    <p>
+      RDFWeb is a toolset and site which enable you to link pieces
+      of information together and discover connections between
+      them. The implementations on this site focus on people, their
+      creations, their collaborators and the people they
+      know.<br />
+      <br />
+       The (woefully incomplete) <a href="2000/08/why/">general
+      overview</a> provides more detailed explanation of what we're
+      trying to do.
+    </p>
+    <h3>
+      Nutshell description
+    </h3>
+    <blockquote>
+      RDFWeb is an experimental linked information system, where
+      the linked items are machine-understandable documents in the
+      World Wide Web. These documents, written in the XML, RDF and
+      XHTML languages, are harvested by our 'scutter' indexers,
+      which then merge the resulting information to form one big
+      database. By exploiting various features of the RDF
+      technology alongside related tools such as digital signature,
+      we can use the Web to retrieve structured information that
+      machines can process and act upon. RDFWeb is best understood
+      as an exploration of the question: "<em>what would it be like
+      if machines could read what we say in our Web
+      homepages</em>".
+    </blockquote>
+    <p>
+      See the <a href="sitemap.html">sitemap</a> for links to
+      experimental implementations, research notes etc.
+    </p>
+    <!-- ............................................  -->
+    <hr />
+    <em>The rest of this page is even rougher and draftier than
+    usual...</em> 
+    <h3>
+      RDFWeb Vocabulary
+    </h3>
+    <p>
+      The initial RDF/XML vocabulary that underpins RDFWeb is
+      called FOAF ("Friend of a Friend"). It is used alongside
+      other vocabularies (RDFCore, Dublin Core, Wordnet, RSS 1.0)
+      to provide mixed-vocabulary descriptions of people,
+      organisations, web services and other information resources.
+    </p>
+    <ul>
+      <li>
+        <a href="http://xmlns.com/foaf/0.1/">FOAF 0.1 draft</a>
+      </li>
+    </ul>
+    <h3>
+      RDFWeb Services
+    </h3>
+    <p>
+      RDFWeb is constructed from a number of services. The basic
+      building blocks are RDF and XML parsers, and XSLT
+      transformations: this technology is available "off the
+      shelf". RDFWeb provides authors of such software with a
+      large, distributed and heterogeneous collection of test files
+      to help them refine their software. In addition to parsers,
+      RDFWeb agggregation points require some sort of RDF database
+      support. Again, these aren't a core part of RDFWeb itself,
+      the idea is to use RDFWeb to help us develop and test such
+      tools. The most visible component of RDFWeb is the Web-based
+      user interface that presents the aggregated data back to
+      users. We have had a Perl and a Java implementation,
+      currently only the latter is maintained.
+    </p>
+    <ul>
+      <li>
+        @@links needed
+      </li>
+    </ul>
+    <h3>
+      Security, trust...
+    </h3>
+    <p>
+      RDFWeb raises some interesting issues relating to trust and
+      provenance. We have created a simple RDF vocabulary, <a
+      href="http://xmlns.com/wot/0.1/">WOT</a> ("web-o-trust") to
+      test some ideas about the combination of digital signatures
+      with RDF content. Currently, some RDF files in the RDFWeb
+      have been signed using GPG or PGP; those files typically
+      contain a pointer to the result of that signing, and may also
+      contain or point to information about the signer, and claims
+      about reciprocal key-signing events. The intent here is to
+      provide enough meta-information to support a variety of trust
+      and provenance strategies.
+    </p>
+    <ul>
+      <li>
+        see the rdfweb-dev archives for more detail
+      </li>
+      <li>
+        @@links...
+      </li>
+    </ul>
+    <!-- ............................................  -->
+  </body>
 </html>
-
 
