@@ -341,8 +341,8 @@ messageQueue.clear();
   {
     System.out.println("Commands:\n\n" +
 
-		       "help -- well, you found it :-)\n" +
-		       "find -- show people on the local network.\n" +
+		       "help -- well, you found it.\n" +
+		       "find [<term>] -- show people on the local network whose\n\tname, interest, or homepage contains <term>.\n\tJust 'find' will show everyone.\n" +
 "show <number> [<number>...] -- show detailed information on person (people).\n" +
 		       "iknow <number> [<number>...] -- indicate that you know person (people)\n" +
 		       "set <var> <val> -- set information. If <val> is \"\" unsets <var>.\n" +
@@ -356,7 +356,7 @@ messageQueue.clear();
 		       "\tplan -- No value needed as you'll enter a simple editor.\n" +
 		       "\t\tPlan is like the old unix .plan file. Let people know what you're\n" +
 		       "\t\tup to, and maybe where you are (eg on IRC). Dumping ground :-)\n" +
-		       "dump <filename> -- produces RDF/XML serialised form of information about you,\n" +
+		       "dump [<filename>] -- produces RDF/XML serialised form of information about you,\n" +
 		       "\tsaving it to <filename>. Without a filename shows you RDF/XML.\n" +
 		       "exit -- exit\n");
     

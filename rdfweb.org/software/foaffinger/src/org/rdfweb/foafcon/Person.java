@@ -44,6 +44,7 @@ public class Person
   {
     setName(name);
     setMboxHash(mboxHash);
+	
     setHomepage(homepage);
     setInterest(interest);
     setSeeAlso(seeAlso);
@@ -53,6 +54,8 @@ public class Person
 
   public void setFromPerson(Person person)
   {
+    System.out.println(person);
+    
     setName(person.getName());
     setMboxHash(person.getMboxHash());
     setHomepage(person.getHomepage());
@@ -168,7 +171,7 @@ public class Person
       toReturn.put(INTEREST, this.getInterest());
     if (this.getSeeAlso() != null)
       toReturn.put(SEEALSO, this.getSeeAlso());
-    
+
     return toReturn;
   }
 
@@ -192,7 +195,7 @@ public class Person
     if (seeAlso != null)
       toReturn += indent + "See Also: " + seeAlso + "\n";
     if (plan != null)
-      toReturn += indent + "Plan: " + plan + "\n";
+      toReturn += indent + "Plan: " + "\n" + plan + "\n";
     
     for (Iterator i = knows.iterator(); i.hasNext();)
       {
