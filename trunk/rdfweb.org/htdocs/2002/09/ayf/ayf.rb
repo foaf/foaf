@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.2 2002-12-09 17:07:35 danbri Exp $
+# $Id: ayf.rb,v 1.3 2002-12-09 21:47:39 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
-# This is a crude RDF harvester that traverses rdfs:seeAlso links
+# This is a basic RDF harvester that traverses rdfs:seeAlso links
 # and creates an HTML page _allyourfoaf.html that links each image 
 # mentioned in the RDF it finds.
 #
@@ -15,9 +15,49 @@
 
 require 'RDF4R/Consumer/Standard'
 require 'RDF4R/Driver/XMLParser'
-#require 'RDF4R/Driver/SimpleData'
 require 'net/http'
 require 'basicrdf'
+
+###############################################################################
+#
+# Test script (creates, configures and starts a SimpleScutter with some URI
+#
+def go(uri)
+
+  foaf='http://xmlns.com/foaf/0.1/' 
+  contact="http://www.w3.org/2000/10/swap/pim/contact#" 
+  air= 'http://www.megginson.com/exp/ns/airports#'
+
+  ayf = SimpleScutter.new  
+  ayf.left.push uri
+  pagecount=0
+
+  # a code block to output basic info about each RDF page encountered
+  # 
+  page_summary = Proc.new do |uri,page|  
+    puts "\n\nHandler '#{pagecount}': uri:#{uri} gave graph #{page} \
+	with #{page.size} triples\n\n " 
+    pagecount=pagecount+1
+  end
+
+  # a code block to see if some page provides nearestAirport information:  
+  #
+  airports = Proc.new do |uri,page|  
+    rs = page.ask Statement.new(nil, air+"iata", nil)
+    rs.objects.each do |a|
+      a.graph=page
+      puts "Found airport code: #{a}" if (a.to_s =~ /\S/) 
+    end					# the 'if' is fix for parser bug
+  end
+
+  # register some handlers:
+  ayf.pagehandler.push page_summary, airports
+
+  ayf.run  # set it going! our handlers will get called for each RDF doc
+
+end 
+
+
 
 class SimpleScutter
 
@@ -31,6 +71,7 @@ class SimpleScutter
     @left=[]
     @debug=true
     @outfile="_allyourfoaf.html"
+    @pagehandler=[]
   end
 
   def SimpleScutter.parse(filename, base_uri)
@@ -68,6 +109,9 @@ class SimpleScutter
     @seenpic[pic]=@seenpic[pic]+1
     return ""
   end
+
+
+
 
   
 
@@ -168,7 +212,12 @@ class SimpleScutter
 
   # Call the pagehandler (if there was one)
   #
-  yield(uri,page) # pass to pagehandler callback
+
+  #yield(uri,page) # pass to pagehandler callback
+
+  @pagehandler.each do |handler|
+    handler.call(uri,page)
+  end
 
   end #/while
 
@@ -243,31 +292,30 @@ end
   return rdfdata
 end	
 
-
-
-
 end
 
-###############################################################################
 
 
-start = ARGV.shift if ARGV.shift
+################################################################# 
+
+
+start_uri = ARGV.shift if ARGV.shift
 if ARGV.shift
-  start=ARGV.shift
+  start_uri=ARGV.shift
 else
-  start = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
+  start_uri = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
 end
 
-ayf = SimpleScutter.new
-ayf.left.push(start)
-ayf.run {|uri,page|  
-  puts "\n\nHandler: uri:#{uri} gave graph #{page} with #{page.size} triples\n\n " 
-}
+go start_uri
 
-# todo: 
-# can we use this form?:
-# cb = Proc.new { puts "..." } 
-# can we have two or more?
-# what's the syntax for yield-ing?
-# we probably want to pass in pairs of callbacks and properties that
-# trigger them...?
+
+
+
+
+#<contact:nearestAirport><wn:Airport air:icao="EGGD" air:iata="BRS" />...
+#    page.reg_xmlns 'http://www.megginson.com/exp/ns/airports#', 'air'
+#
+# TODO
+# PARSER may have a fixme re genid generation from ntriples
+# bug is probably in the parser wrapping code I wrote.
+# a good point at which to write syntax tests?
