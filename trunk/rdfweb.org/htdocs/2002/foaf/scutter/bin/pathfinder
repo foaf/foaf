@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.5 2002-07-15 00:24:25 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder,v 1.6 2002-07-17 01:46:50 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -494,25 +494,58 @@ end # /class TGraph
 puts "Running pathfinder..."
 
 
-opt = GetoptLong.new(['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
+opt = GetoptLong.new(
+	['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
+	['--input', '-i', GetoptLong::REQUIRED_ARGUMENT],
     ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
 
-cfg={}
+opts={}
 
 opt.each_option do |name,arg|
-
   puts "got: #{name} -> #{arg}"
-
   case name
 
   when '--paths-from-mbox'
-    cfg['who'] = arg 
+    opts['who'] = arg 
  
   when '--generate-rdf'
     opts['genrdf'] = true
+
+  when '--input'
+    opts['input'] = arg
 
   end
 end
 
 
-TGraph.main(cfg)
+puts "Running main loop. opts: #{opts.inspect}"
+
+if !opts['input'] 
+  TGraph.main(opts) 
+else
+  puts "Loading from file..."
+
+  graph = TGraph.new       
+
+  f = File::new opts['input']
+  #data = f.read
+  f.each do |line|
+  line.chomp!
+  p = line.split(/\s+/)
+  puts "Got: #{p.inspect} "
+  graph.addPath(p[0], p[1], p[2])
+  end
+
+  who = 'mailto:libby.miller@bristol.ac.uk'
+  danpath = graph.findShortestPathsFromNodeNamed who
+  puts "\n\nDanpaths: " 
+  danpath.each do |e|
+    puts "Path:\n"
+    while (e.parent != nil) 
+      puts "\tpath element: "+e.to_s
+      e = e.parent
+    end
+  end
+  puts "\n\n\n"
+
+end
