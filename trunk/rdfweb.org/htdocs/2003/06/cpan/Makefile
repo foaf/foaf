@@ -1,9 +1,13 @@
 RDF=01mailrc.foaf.rdf
 
-clean: zap 01mailrc.foaf.rdf
+clean: zap 01mailrc.foaf.rdf weblogs.txt
+
+weblogs.txt:
+	ruby lookups.rb > weblogs.txt
 
 zap:
 	rm -f $(RDF)
+	rm -f weblogs.txt
 
 01mailrc.foaf.rdf:
 	perl cpan2foaf.pl > $(RDF)
