@@ -1,0 +1,871 @@
+package org.desire.rudolf.query;
+
+import java.util.*;
+import org.desire.rudolf.util.ErrorLog;
+import org.desire.rudolf.rdf.*;
+
+import org.w3c.rdf.digest.*;
+
+/**
+
+
+2002-02-21
+
+trying to clean it up so clearer what is going on.
+
+NB this version uses 2 tables:
+
+
+              Table "triples"
+ Attribute  | Type               | Modifier
+------------+-------------------+----------
+ subject    | integer           |
+ predicate  | integer           |
+ object     | integer           |
+ assertid   | character varying |
+ personid   | character varying |
+ isresource | boolean           |
+
+Indices: obj_index,
+         pred_index,
+         sub_index
+
+
+            Table "resources"
+ Attribute | Type              | Modifier
+-----------+-------------------+----------
+ key       | integer           |
+ value     | character varying |
+
+Indices: res_key_index,
+         res_val_index,
+         resources_key_key
+
+
+this is how it works (-ish)
+
+The triples table is like a triples buvcket. for an sql query to work we have to somhow
+join up the variables in one row with those in another, which are in face the same
+variable from our query.
+
+e.g. suppose we are looking for
+
+(?x title ?y)
+(?x description ?z)
+
+the answers to these will be different rows in the database
+
+row 1: #document title "doc 1"
+row 2: #document description "what a fantastic document!"
+
+but document is the same thing in each case, and we need to impose that as a constraint
+in our SQL query.
+We also need to be able to distinguish row 1 from row 2 in our query because the value
+for the predicate in each row is different in each case, but the name of the column is
+the same in each case ('predicate').
+
+so we treat each separate subclause of the query as a separate virtual table of the
+database, and give it a name, a1, a2 etc.
+
+because of this we also need to craete a mapping form the real variable names we want
+returned and the names we've given them in the virtual tables
+
+select a1.subject as x, a1.object as y, a2.object as z
+from
+a1 triples, a2 triples
+where
+a1.predicate='title'
+and
+a2.predicate='description'
+
+
+we need to tell it that a1.subject and a2.subject have to be the same thing, like this:
+
+and
+a1.subject=a2.subject
+
+This would give us the results we wanted if the triples table was just a bucket of
+strings, but hee we are using sh1 ints in the triples table, mapped to their real string
+values in the resources table.
+
+So we need to get their string values form the resources table, using similar techniques.
+The full query is then
+
+select b1.value as x, b2.value as y, b3.value as z
+from
+b1 resources, b2 resources, b3 resources,
+a1 triples, a2 triples
+where
+a1.predicate='title'
+and
+a2.predicate='description'
+and
+a1.subject=a2.subject
+and
+b1.key=a1.subject
+and
+b2.key=a1.object
+and
+b3.key=a2.oject;
+
+so we need to do a bunch of stuff in this method:
+
+* map resource values to triple values in terms of the sql valuable names a1, b2 etc
+* map real variable names (things we want back) to the sql variable names
+* keep a list of which values within the virtual tables must be equal, including triple
+to triple and resource to resource.
+* keep a list fo the viirtual tables we want to return things from
+
+so moving from triples-bucket'o'strings to sha1 technique complexifies things, but doesnt
+really change the technique.
+
+
+2001-11-22
+--
+trying to make it use Sha1...
+i.e. one table of triples containing only ints, another table of int-resource
+or literal mapping
+
+this means that the select variable has to come from this second table
+(resources). not sure how to handle string matching.
+--
+
+an attempt at a copy of triple.inc in java - i.e. a function that
+translates squish queries to SQL simple triple format
+
+thanks to Matt Biddulph <matt@picdiary.com> who did the orginal php
+version
+
+This is arather cruddy copy, although it seems to work.
+
+
+
+*/
+
+
+public class PQ2SQL {
+
+
+
+    //bcount is the part which accesses the 'resources' table
+    //this list is the list of SQL variable names to access for the resources table
+    Vector sqlVariableNamesB = new Vector();
+
+    //index of clauses: number used to name the clauses in sql for triples table
+    int clause_idxA = 1;
+
+    //index of clauses: number used to name the clauses in sql for triples table
+    int clause_idxB = 1;
+
+
+    //this is just for the a* variables
+    Hashtable realToSqlVariableNameMapA = new Hashtable();
+
+
+    //table names
+    String main_table = "triples";
+    String res_table = "resources";
+
+    //strings for building teh query
+    String sss = "subject";
+    String ppp = "predicate";
+    String ooo = "object";
+
+    //trying to make both versions work, but only the SHA1 one does
+    //simple would be just a strings bucket
+    boolean SHA1 = true;
+    boolean SIMPLE = false;
+
+    //this is for matching the numbers to the clauses between
+    //the triples and resources table,
+    //there will be an SQL name for the triples table and
+    //another for the resource table - we need to keep track
+    //of these and force them to refer to the same thing
+    //when we build the SQL query.
+    //we need a1.subject=b1.subject - that's what this hash does.
+    Hashtable sqlVariableMatchAB;
+
+
+    public PQ2SQL() {
+        clause_idxA = 1;
+        clause_idxB = 1;
+        sqlVariableNamesB = new Vector();
+        realToSqlVariableNameMapA = new Hashtable();
+        sqlVariableMatchAB = new Hashtable();
+    }
+
+
+    /**
+
+      This method produces a string SQL query from a minimum  of
+
+       * a (full) list of variables  (i.e. not just the ones you want returned (actually
+      this could be a problem));
+
+       * the variables you actually want
+
+       * a vector of arrays of clauses: each array: (pred, sub, obj).
+
+       * a vector of arrays of constraints (as pseudo triples at the moment (e.g. array
+      is (~ ?y bla)).
+
+      */
+
+
+    public String triple_sql(Vector allQueryVariables,
+            Vector variablesWeWant, Vector clauses, Vector constraints) {
+
+
+
+        //allQueryVariables are all the variables in this query.
+        //variableswewant are the variable names that we want to return the value of
+
+
+        //the string to return
+        StringBuffer sql = new StringBuffer("select distinct ");
+
+        try {
+
+
+            //used for creating 'virtual' SQL tables: e.g. triples as a1, resources as b2
+            clause_idxA = 1;
+
+            //we need to keep track fo the real variable names and what we call them
+            //in the sql query.
+            realToSqlVariableNameMapA = new Hashtable();
+
+            int clause_count = clauses.size();
+
+            //for storing the 'where' parts of the SQL query
+            //for the triples and resources tables respectively
+            Vector whereA = new Vector();
+            Vector whereB = new Vector();
+
+            Enumeration clauseIterator = clauses.elements();
+
+
+
+            //---------------------
+            //
+            // creates a mapping between real and SQl varibales names for A (triples)
+            // fills realToSqlVariableNameMapA with these
+            //
+            //---------------------
+
+
+
+            //for each clause
+            while (clauseIterator.hasMoreElements()) {
+
+
+                String[] clause = (String[]) clauseIterator.nextElement();
+
+                //here's our first triple from the list of clauses
+                String pred = clause[0];
+                String subject = clause[1];
+                String object = clause[2];
+
+
+                int pred_bound = 0;
+                int subject_bound = 0;
+                int object_bound = 0;
+
+
+
+                //this section creates a mapping between the real
+                //variables names and their equivalents in the SQL query for the triples table.
+
+
+                Enumeration queryVariablesIterator =
+                        allQueryVariables.elements();
+
+                while (queryVariablesIterator.hasMoreElements()) {
+
+                    String variableNameToMatch =
+                            (String) queryVariablesIterator.nextElement();
+
+
+                    try {
+
+                        //i.e. if variable names are the same in each case
+                        if (subject.equals(variableNameToMatch)) {
+
+
+                            //this adds a mapping from the real name of the variable to its sql name
+                            realToSqlVariableNameMapA.put(
+                                    variableNameToMatch,
+                                    "a"+clause_idxA + "."+sss + "");
+                            subject_bound = 1;
+
+
+                        }
+
+                        if (pred.equals(variableNameToMatch)) {
+                            pred_bound = 1;
+
+                            realToSqlVariableNameMapA.put(
+                                    variableNameToMatch,
+                                    "a"+clause_idxA + "."+ppp + "");
+
+
+
+                        }
+
+                        if (object.equals(variableNameToMatch)) {
+                            object_bound = 1;
+
+                            realToSqlVariableNameMapA.put(
+                                    variableNameToMatch,
+                                    "a"+clause_idxA + "."+ooo + "");
+
+
+                        }
+
+
+
+
+                    } catch (Exception pp) {
+                        System.err.println("ERROR "+pp);
+                        pp.printStackTrace();
+                    }
+
+                }
+
+
+                //---------------------
+
+                //adding actual clauses to the 'where' part of the query
+                //for the triples table e.g. a1.subject='426897987'
+
+                //---------------------
+
+                //sha1 stuff: creating sha1s of s, p, o
+
+
+                String sh1Sub = "";
+                String sh1Pred = "";
+                String sh1Obj = "";
+
+                try {
+                    sh1Sub = sh1Sub + DigestUtil.getHashCode(
+                            DigestUtil.computeDigest("Sha-1",subject));
+                    sh1Pred = sh1Pred + DigestUtil.getHashCode(
+                            DigestUtil.computeDigest("Sha-1",pred));
+                    sh1Obj = sh1Obj + DigestUtil.getHashCode(
+                            DigestUtil.computeDigest("Sha-1",object));
+                } catch (Exception es) {
+                    System.err.println("could not hash "+es);
+                }
+
+
+                if (subject_bound == 0) {
+                    whereA.addElement("a"+clause_idxA + "."+sss + " = '"+
+                            sh1Sub + "'");
+                }
+
+                if (pred_bound == 0) {
+                    whereA.addElement("a"+clause_idxA + "."+ppp + " = '"+
+                            sh1Pred + "'");
+                }
+
+                if (object_bound == 0) {
+                    whereA.addElement("a"+clause_idxA + "."+ooo + " = '"+
+                            sh1Obj + "'");
+                }
+
+                clause_idxA++;
+
+            }
+
+            //---------------------
+            //
+            // creates a vector of SQL variables names for A (triples)
+            // fills sqlVariableNamesList with these
+            // later we generate paths from this list
+            // e.g. a1.subject=a4.object etc
+            //
+            //---------------------
+
+
+            Vector sqlVariableNamesList = new Vector();
+
+            int cl_idx = 1;
+
+
+            //looping through the allQueryVariables again, this time to get the
+            //links _between_ the triples variables in the sql query
+            //e.g. a1.object=a2.subject and a2.subject=a3.subject
+            Enumeration variables = allQueryVariables.elements();
+            while (variables.hasMoreElements()) {
+                String variableNameToMatch =
+                        (String) variables.nextElement();
+                Vector sqlVariablesNamesA = new Vector();
+
+                //this is going to be a list of matches from clauses of one variable, and
+                //will eventualy be added to bindings
+
+                Enumeration eq = clauses.elements();
+
+                while (eq.hasMoreElements()) {
+
+                    String[] clause = (String[]) eq.nextElement();
+
+                    String pred = clause[0];
+                    String subject = clause[1];
+                    String object = clause[2];
+
+
+                    int pred_bound = 0;
+                    int subject_bound = 0;
+                    int object_bound = 0;
+
+                    if (subject.equals(variableNameToMatch)) {
+                        sqlVariablesNamesA.addElement("a"+cl_idx + "."+
+                                sss + "");
+                    }
+
+                    if (pred.equals(variableNameToMatch)) {
+                        sqlVariablesNamesA.addElement("a"+cl_idx + "."+
+                                ppp + "");
+                    }
+
+                    if (object.equals(variableNameToMatch)) {
+                        sqlVariablesNamesA.addElement("a"+cl_idx + "."+
+                                ooo + "");
+                    }
+
+                    cl_idx++;
+
+                }//end of loop through clauses - still in var loop
+
+                cl_idx = 1;
+
+                if (sqlVariablesNamesA.size() > 1) {
+                    sqlVariableNamesList.addElement(sqlVariablesNamesA);
+                }
+
+
+            }//end of loop through var loop
+
+
+
+            // adding some more stuff to whereA - these are
+            // the sqlVariableNamesList - used to generate links between A-variable names
+
+            for (int i = 0; i < sqlVariableNamesList.size(); i++) {
+
+                Vector bindings =
+                        (Vector) sqlVariableNamesList.elementAt(i);
+
+                for (int j = 0; j < bindings.size() - 1; j++) {
+
+                    whereA.addElement((String) bindings.elementAt(j) +
+                            "="+(String) bindings.elementAt(j + 1));
+                }
+
+            }
+
+
+
+
+            //------------------
+            //
+            // this part sorts out the mappings from values
+            // to the resources table
+            // puts these in sqlVariableMatchAB; also adds stuff to the whereB part
+            //
+            //------------------
+
+
+            //selectvars is the list of b variables and the actual variables that match them:
+            //e.g b1.value as ?x
+
+            Vector selectvars = new Vector();
+
+            //realToSqlVariableNameMapA is a mapping from the real names of the
+            //variables: ?x, ?sal etc to the SQL names of the
+            //variables: a1.subject, a2.object etc - just the a* (i.e. just the triples table)
+
+
+            Enumeration qq = realToSqlVariableNameMapA.keys();
+
+            while (qq.hasMoreElements()) {
+
+                String key = (String) qq.nextElement();
+                String val = (String) realToSqlVariableNameMapA.get(key);
+                String kk = key;
+
+                //the keys should not start with "?" any more
+                if (key.startsWith("?")) {
+                    kk = key.substring(1);
+                }
+
+
+                //the key stays the same but
+                //kk should be equal to something in a later clause, and
+                //val should be the resource.value, i.e. the value of the key
+                //val in the resources table.
+
+                if (variablesWeWant.contains(key)) {
+
+                    //		   String num=(String)numbersHash.get("?"+kk);
+
+                    selectvars.addElement("b"+ clause_idxB + ".value as "+kk);
+                    sqlVariableNamesB.addElement("b"+ clause_idxB);
+
+                    whereB.addElement("b"+ clause_idxB + ".key="+val);
+
+                    //need to add in the constraints stuff here
+                    //hash of vectors?
+
+                    Vector ttemp;
+                    if (!sqlVariableMatchAB.containsKey(val)) {
+                        ttemp = new Vector();
+                        ttemp.addElement("b"+ clause_idxB + ".value");
+                        sqlVariableMatchAB.put(val, ttemp);
+                    } else {
+                        ttemp = (Vector) sqlVariableMatchAB.get(val);
+                        ttemp.addElement("b"+ clause_idxB + ".value");
+                    }
+                }
+                clause_idxB++;
+            }
+
+
+
+
+
+            //------------------
+            //
+            // building the actual query.
+            //
+            //
+            //------------------
+
+
+
+            //real variable names 'x, y' etc
+
+
+            for (int q = 0; q < selectvars.size(); q++) {
+
+                if (q == selectvars.size() - 1) {
+                    sql.append(selectvars.elementAt(q).toString() + " ");
+                } else {
+                    sql.append(selectvars.elementAt(q).toString() + ", ");
+                }
+
+            }
+
+
+            //SQL from clause
+            sql.append(" from  ");
+
+            //from
+
+            for (int z = 1; z < clause_idxA; z++) {
+                sql.append(" "+main_table + " a"+z + ", ");
+            }
+
+
+            //variables to get from the resources table
+
+            Enumeration zq = sqlVariableNamesB.elements();
+
+            for (int z = 0; z < sqlVariableNamesB.size(); z++) {
+
+                if (z == (sqlVariableNamesB.size() - 1)) {
+
+                    sql.append(" "+res_table + " "+
+                            zq.nextElement().toString() + " ");
+                } else {
+
+                    sql.append(" "+res_table + " "+
+                            zq.nextElement().toString() + ", ");
+                }
+
+
+            }
+
+
+            //where for the triples table
+            sql.append(" where ");
+
+            for (int r = 0; r < whereA.size(); r++) {
+
+                sql.append(whereA.elementAt(r).toString() + " ");
+                sql.append(" and ");
+            }//end for loop
+
+            //where for the resources table
+
+            for (int r = 0; r < whereB.size(); r++) {
+
+                sql.append(whereB.elementAt(r).toString() + " ");
+
+                //constraints
+
+                if (constraints == null || constraints.size() == 0) {
+
+                    if (r == whereB.size() - 1) {
+                        sql.append(";");
+                    } else {
+                        sql.append(" and ");
+                    }
+                } else {
+                    sql.append(" and ");
+                }
+            }//end for loop
+
+
+            if (constraints != null) {
+
+                for (int zz = 0; zz < constraints.size(); zz++) {
+
+                    String[] tr = (String[]) constraints.elementAt(zz);
+                    String key = tr[1].trim();
+                    String s = (String) realToSqlVariableNameMapA.get(key);
+
+                    String ss = tr[0];
+
+                    if (SHA1) {
+
+                        //hack. what about multiple values?
+
+                        Vector oo = (Vector) sqlVariableMatchAB.get(s);
+
+                        if (oo != null) {
+                            s = oo.elements().nextElement().toString();
+                        }
+                    }
+
+
+                    //we need to try to cast this to the right sort of object for the database
+                    //(Postgres - don't know about other systems yet)
+                    //INT, timestamp, float, date, time
+                    //all except numbers must be surrounded by single quotes
+                    //should do something clever here with xml datatypes....
+
+                    //** dates not workig yet - needs further thought
+
+                    //ordering? int, float, datetime, date, time?
+
+                    String tocast = tr[2];
+
+                    if (ss.trim().equals("~")) {
+                        //assume a string
+                        sql.append("lower("+s + ") like '%"+tocast + "%'");
+                    } else {
+
+                        try {
+                            Integer test = new Integer(tocast);
+                            sql.append("CAST ("+s + " as INTEGER) "+
+                                    ss + " "+tocast);
+                        } catch (Exception e1) {
+                            ErrorLog.write("Not an Integer");
+
+                            try {
+                                Float test = new Float(tocast);
+                                sql.append("CAST ("+s + " as FLOAT) "+
+                                        ss + " "+tocast);
+                            } catch (Exception e2) {
+                                ErrorLog.write("Not a Float");
+
+                                //java doesn't like the RFC 2445 date format :(
+                                //how can we tell if it's a date?
+                                //it will look something like this: 20011028T010000Z
+                                //not sure what formats postgres will accept
+
+
+                                //also need to test for the sql format, in which case requires
+                                //inverted commas arounf literl
+
+                                /*
+                                						Date test = DateUtil.iCal2Date(tocast);
+
+                                						   if(test!=null)
+                                						   {
+                                //casting to the spostgres sql format
+
+                                							sql.append("CAST("+s+" as INT8) "+ss+" '"+DateUtil.longDatestamp(tocast)+"'");
+                                						   }
+                                						   else
+                                						   {
+
+                                							ErrorLog.write("Defaulting to string");
+
+                                //may fail...last resort
+                                							sql.append(s+" "+ss+" '"+tocast+"'");
+                                						   }
+                                */
+
+
+                            }//end catch
+
+                        }//end catch
+
+
+                    }//end else
+
+
+                    if (zz == constraints.size() - 1) {
+                        sql.append(";");
+                    } else {
+                        sql.append(" and ");
+                    }
+
+
+                }//end for
+
+
+            }//end if
+        }
+        catch (Exception yt) {
+            yt.printStackTrace();
+        }
+
+
+        return sql.toString();
+
+    }
+
+
+
+    public Vector processQueryVariables(Vector r) {
+
+        Vector v = new Vector();
+
+        for (int y = 0; y < r.size(); y++) {
+
+            String s = ((String) r.elementAt(y)).trim();
+            if (s.startsWith("?")) {
+                s = s.substring(1);
+                v.addElement(s);
+            }
+        }
+
+        return v;
+
+    }
+
+
+
+
+    /**
+      basically the main method: takes a parsed query and returns a
+      converted SQL query as a string
+      */
+
+
+
+    public static String convert(ParsedQuery p) {
+
+
+        //all the variables
+        Vector allQueryVariables = new Vector();
+
+        //just the ones we want
+        Vector variablesWeWant = new Vector();
+
+        //clauses of the query (as arrays)
+        Vector clauses = new Vector();
+
+        //constraints of the query (as arrays)
+        Vector constraints = new Vector();
+
+        String query = null;
+        String query1 = null;
+
+        Enumeration e = p.triples.elements();
+
+
+        //we get the clauses as triples - here we convert to arrays
+        while (e.hasMoreElements()) {
+            Triple tt = (Triple) e.nextElement();
+            String pp = tt.getPredicate();
+            String ss = tt.getSubject();
+            String oo = tt.getObject();
+
+            if (tt.getPredicate() == null) {
+                pp = tt.getPredicateBinding();
+            }
+            if (tt.getSubject() == null) {
+                ss = tt.getSubjectBinding();
+            }
+            if (tt.getObject() == null) {
+                oo = tt.getObjectBinding();
+            }
+
+            String[] clause = {pp, ss, oo};
+            clauses.addElement(clause);
+        }
+
+        constraints = new Vector();
+
+        variablesWeWant = p.variables;
+        allQueryVariables = p.listVariablesRaw();
+
+        PQ2SQL t = new PQ2SQL();
+
+        //we get the constraints as triples - here we convert to arrays
+        Enumeration e1 = p.constraints.elements();
+        while (e1.hasMoreElements()) {
+            Triple tt = (Triple) e1.nextElement();
+            String[] clause = {tt.getPredicate(), tt.getSubject(),
+            tt.getObject()};
+            constraints.addElement(clause);
+        }
+
+
+        String sqlQuery = t.triple_sql(allQueryVariables, variablesWeWant,
+                clauses, constraints);
+
+
+        return sqlQuery;
+
+
+    }
+
+
+
+    public static void main(String args[]) {
+
+
+
+        /*
+         SELECT ?sal, ?t, ?x
+         FROM http://ilrt.org/discovery/2000/11/rss-query/jobs-rss.rdf,
+               http://ilrt.org/discovery/2000/11/rss-query/jobs.rss
+         WHERE
+           (job::advertises ?x ?y)
+           (job::salary ?y ?sal)
+           (job::title ?y ?t)
+         AND ?sal > 55000
+         USING job for
+         http://ilrt.org/discovery/2000/11/rss-query/jobvocab.rdf#
+        */
+
+
+
+        String query =
+                " SELECT ?sal, ?t, ?x " +" FROM http://ilrt.org/discovery/2000/11/rss-query/jobs-rss.rdf, " +
+                "       http://ilrt.org/discovery/2000/11/rss-query/jobs.rss " +
+                "  WHERE " +"   (job::advertises ?x ?y) " +
+                "   (job::salary ?y ?sal) " +
+                "    (job::title ?y ?t) " +"  AND ?sal > 56000 " +
+                "  AND ?sal < 90000 " +"  USING job for " +"  http://ilrt.org/discovery/2000/11/rss-query/jobvocab.rdf#";
+
+
+        ParsedQuery p = ParsedQuery.parse(query);
+        System.out.println(PQ2SQL.convert(p));
+
+        //log
+        //System.err.println("\nReporting: "+ErrorLog.getReport());
+
+    }
+
+
+
+
+}
+
