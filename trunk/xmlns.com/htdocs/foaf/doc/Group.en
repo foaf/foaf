@@ -11,7 +11,7 @@ such groups may have associated characteristics which could be captured in RDF (
 
 <p>
 While a <code>foaf:Group</code> has the characteristics of a <code>foaf:Agent</code>, it 
-is also associated with a number of other <code>foaf:Agents</code> (typically people) who 
+is also associated with a number of other <code>foaf:Agent</code>s (typically people) who 
 constitute the <code>foaf:Group</code>. FOAF provides a mechanism, the 
 <code>foaf:membershipClass</code> property, which relates a <code>foaf:Group</code> to a 
 sub-class of the class <code>foaf:Agent</code> who are members of the group. This is a 
@@ -62,10 +62,16 @@ member of this group. End-users of FOAF need not pay attention to these details.
 Here is an example. We define a <code>foaf:Group</code> representing those people who 
 are ILRT staff members. The <code>foaf:membershipClass</code> property connects the group (conceived of as a social 
 entity and agent in its own right) with the class definition for those people who 
-constitute it. In this case, the OWL rule is that all group members are in the 
+constitute it. In this case, the rule is that all group members are in the 
 ILRTStaffPerson class, which is in turn populated by all those things that are a 
 <code>foaf:Person</code> and which have a <code>foaf:workplaceHomepage</code> of 
-http://www.ilrt.bris.ac.uk/.
+http://www.ilrt.bris.ac.uk/. This is typical: FOAF groups are created by 
+specifying a sub-class of <code>foaf:Agent</code> (in fact usually this 
+will be a sub-class of <code>foaf:Person</code>), and giving criteria 
+for which things fall in or out of the sub-class. For this, we use the 
+<code>owl:onProperty</code> and <code>owl:hasValue</code> properties, 
+indicating the property/value pairs which must be true of matching 
+agents.
 </p>
 
 <div class="example">
