@@ -21,8 +21,9 @@ public class Arc extends ModelItem
     NSRect myRect;
     NSAttributedString displayString = null;
 
-    public Arc(Node fromNode, Node toNode, String namespace, String name)
+    public Arc(ArcNodeList myList, Node fromNode, Node toNode, String namespace, String name)
     {
+        this.myList = myList;
         this.fromNode = fromNode;
         this.toNode = toNode;
         fromNode.addFromArc(this);
@@ -51,6 +52,7 @@ public class Arc extends ModelItem
         propertyName = name;
         propertyNamespace = namespace;
         calculateSize();
+        myList.itemChanged(this);
     }
 
     public String propertyName()

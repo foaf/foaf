@@ -19,11 +19,13 @@ public class ArcNodeList
 {
     Vector array;
     ModelItem currentObject;
+    MyDocument controller;
 
-    public ArcNodeList()
+    public ArcNodeList(MyDocument controller)
     {
         currentObject = null;
         array = new Vector();
+        this.controller = controller;
     }
 
     public void add(ModelItem anObject)
@@ -39,6 +41,7 @@ public class ArcNodeList
             array.removeElement(currentObject);
             currentObject.delete();
             setCurrentObject(null);
+            controller.modelChanged();
         }
     }
 
@@ -73,11 +76,22 @@ public class ArcNodeList
     public void setCurrentObject(ModelItem anObject)
     {
         currentObject = anObject;
+        controller.modelChanged();
+        controller.currentObjectChanged();
     }
 
     public ModelItem currentObject()
     {
         return currentObject;
+    }
+    
+    public void itemChanged(ModelItem item)
+    {
+        controller.modelChanged();
+        if (item == currentObject)
+        {
+            controller.currentObjectChanged();
+        }
     }
     
     public void showTypes(boolean value)
@@ -90,6 +104,8 @@ public class ArcNodeList
                 ((Node) anObject).setShowType(value);
             }
         }
+        
+        controller.modelChanged();
     }
     
     public void showIds(boolean value)
@@ -102,6 +118,8 @@ public class ArcNodeList
                 ((Node) anObject).setShowId(value);
             }
         }
+        
+        controller.modelChanged();
     }
     
     public void showProperties(boolean value)
@@ -114,6 +132,8 @@ public class ArcNodeList
                 ((Arc) anObject).setShowProperty(value);
             }
         }
+        
+        controller.modelChanged();
     }
     
     public String exportAsRDF()
@@ -194,7 +214,8 @@ public class ArcNodeList
         {
             NSAlertPanel alert = new NSAlertPanel();
             alert.runAlert("RDF/XML Export Failed",
-                "Export failed, I'm afraid. Try using 'Check Model' for possible problems.", null, null, null);
+                "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
+                null, null, null);
         }
         
         return rdfReturned;

@@ -35,8 +35,9 @@ public class Node extends ModelItem
     NSRect myRect;
     NSAttributedString displayString = null;
 
-    public Node(String id, String typeNamespace, String typeName, NSPoint position)
+    public Node(ArcNodeList myList, String id, String typeNamespace, String typeName, NSPoint position)
     {
+        this.myList = myList;
         literal = false;
         this.id = id;
         this.position = position;
@@ -59,6 +60,7 @@ public class Node extends ModelItem
     {
         id = theString;
         calculateSize();
+        myList.itemChanged(this);
     }
 
     public String id()
@@ -71,6 +73,7 @@ public class Node extends ModelItem
         typeNamespace = namespace;
         typeName = name;
         calculateSize();
+        myList.itemChanged(this);
     }
 
     public String typeNamespace()
@@ -91,6 +94,7 @@ public class Node extends ModelItem
     public void setIsLiteral(boolean literalValue)
     {
         literal = literalValue;
+        myList.itemChanged(this);
     }
 
     public void setMyList(ArcNodeList list)
@@ -147,6 +151,7 @@ public class Node extends ModelItem
             arc.nodeMoved();
         }
         calculateRectangle();
+        myList.itemChanged(this);
     }
 
     public boolean isNode()
