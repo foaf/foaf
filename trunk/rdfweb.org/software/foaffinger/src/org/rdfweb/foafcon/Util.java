@@ -1,11 +1,19 @@
 package org.rdfweb.foafcon;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StreamTokenizer;
+import java.io.Writer;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util
 {

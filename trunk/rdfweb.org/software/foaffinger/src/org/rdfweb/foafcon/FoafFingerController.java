@@ -1,9 +1,8 @@
 package org.rdfweb.foafcon;
 
 import java.net.InetAddress;
-import java.util.*;
-import java.io.*;
-import java.net.*;
+import java.net.UnknownHostException;
+import java.util.Hashtable;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -17,7 +16,7 @@ public class FoafFingerController
   JmDNS rv;
   InetAddress inetaddr;
   ServiceInfo si;
-  CommandLine cl;
+  UI cl;
 
   boolean shuttingDown = false;
     
@@ -89,11 +88,12 @@ public class FoafFingerController
     
     try
       {
-	cl = new CommandLine(this);
+    	//cl = new CommandLine(this);
+	cl = new GUI();
 	
 	rv = new JmDNS(inetaddr);
 
-	showMessage("Binding to: " + inetaddr);
+	showMessage(new Message("Binding to: " + inetaddr));
 
 	si = new ServiceInfo(type,
 			     hashBox + "." + type,
@@ -112,6 +112,8 @@ public class FoafFingerController
 	httpServer.start();
 
 	cl.run();
+	
+	System.exit(0);
       }
     catch (Exception e)
       {
@@ -190,7 +192,7 @@ public class FoafFingerController
     people.remove(mboxHash);
   }
   
-  public void showMessage(String message)
+  public void showMessage(Message message)
   {
     cl.addMessage(message);
   }

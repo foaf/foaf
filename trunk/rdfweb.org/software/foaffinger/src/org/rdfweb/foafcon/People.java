@@ -1,6 +1,7 @@
 package org.rdfweb.foafcon;
 
-import java.util.*;
+import java.util.ArrayList;
+
 import javax.jmdns.ServiceInfo;
 
 public class People
@@ -33,15 +34,11 @@ public class People
 
 	Person existing = (Person) people.get(index);
 
-	controller.showMessage("[" +
-			       index +
-			       "] " +
-			       existing.getName() +
-			       " is online.");
+	controller.showMessage(new Message.PersonOnline(person, index));
       }
     else
       {
-	controller.showMessage("Someone came online, but I have no information about them. (?)");
+	controller.showMessage(new Message("Someone came online, but I have no information about them. (?)"));
       }
   }
     
@@ -80,11 +77,7 @@ public class People
 
     person.setHostPort(info.getAddress(), info.getPort());
 
-    controller.showMessage("[" +
-			   index +
-			   "] " +
-			   person.getName() +
-			   " is online.");
+    controller.showMessage(new Message.PersonOnline(person, index));
   }
 
   public synchronized void remove(String mboxHash)
@@ -110,11 +103,7 @@ public class People
     
     person = this.get(index);
         
-    controller.showMessage("[" +
-			   index +
-			   "] " +
-			   person.getName() +
-			   " is offline.");
+    controller.showMessage(new Message.PersonOffline(person, index));
   }
 
   public int size()

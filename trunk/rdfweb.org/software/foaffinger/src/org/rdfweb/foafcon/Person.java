@@ -1,9 +1,9 @@
 package org.rdfweb.foafcon;
 
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.ArrayList;
-import java.io.PrintStream;
 
 public class Person
 {
