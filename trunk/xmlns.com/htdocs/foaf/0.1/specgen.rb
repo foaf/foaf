@@ -21,7 +21,7 @@ RDFS = 'http://www.w3.org/2000/01/rdf-schema#'
 OWL = 'http://www.w3.org/2002/07/owl#'
 VS = 'http://www.w3.org/2003/06/sw-vocab-status/ns#'
 
-attr_accessor :spec, :termlist, :ranges, :domains, :clist, :plist
+attr_accessor :spec, :termlist, :ranges, :domains, :clist, :plist, :stable, :testing, :unstable
 
 def initialize(specname)
 
@@ -36,7 +36,10 @@ def initialize(specname)
 
   @ranges={} # class name -> array of property names
   @domains={} # ditto
-
+  @unstable={}
+  @testing={}
+  @stable={}
+  
   classes = spec.ask(Statement.new(nil, RDF+'type', RDFS+'Class'))
   props = spec.ask(Statement.new(nil, RDF+'type', RDF+'Property'))
 
@@ -219,6 +222,38 @@ return doc
 end
 
 
+def linkTerms(terms=[])
+  html=''
+  terms.each do |t|
+    html += "<a href=\"#term_#{t}\">#{t}</a> "
+  end
+  return html
+end
+
+
+def docStatus
+  s=''
+  clist.each do |t|
+    term = Node.getResource(FOAF+t, self)
+#    s += "Term #{t} status is: #{term.vs_term_status}\n"
+    testing[t]=1 if term.vs_term_status.to_s=='testing'
+    unstable[t]=1 if term.vs_term_status.to_s=='unstable'
+    stable[t]=1 if term.vs_term_status.to_s=='stable'
+  end
+  plist.each do |t|
+    term = Node.getResource(FOAF+t, self)
+#    s += "Term #{t} status is: #{term.vs_term_status}\n"
+    testing[t]=1 if term.vs_term_status.to_s=='testing'
+    unstable[t]=1 if term.vs_term_status.to_s=='unstable'
+    stable[t]=1 if term.vs_term_status.to_s=='stable'
+  end
+  s += "<a name=\"ch_status\" id=\"ch_status\"></a><h3>Term Status</h3> <p>\n"
+  s += "Stable terms: #{linkTerms(stable.keys)} <br/>\n\n"
+  s += "Testing terms: #{linkTerms(testing.keys)}<br/>\n"
+  s += "Unstable terms: #{linkTerms(unstable.keys)}</p>\n\n"
+  return s
+end
+
 
 def makeSpec 
 
@@ -244,6 +279,10 @@ azlist += "</div>\n"
   termlist += docTerms('Class',clist.sort,spec)
   termlist += docTerms('Property',plist.sort,spec)
 
+  # Status
+  statusinfo = docStatus()
+#  STDERR.puts statusinfo
+
   # Output 
   template=File.new('wip.html').read
   rdfdata=File.new('index.rdf').read
@@ -264,6 +303,7 @@ EOT
   template.gsub!(/<!--TERMLIST-->/,termlist)
   template.gsub!(/<!--RDFDATA-->/,rdfdata)
   template.gsub!(/<!--PRETTY-->/,pretty)
+  template.gsub!(/<!--STATUSINFO-->/,statusinfo)
   return template
 end
 
