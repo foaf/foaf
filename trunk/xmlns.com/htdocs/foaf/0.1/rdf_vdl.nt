@@ -1,7 +1,7 @@
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/title> "Friend of a Friend (FOAF) vocabulary" .
 <http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/description> "The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." .
-<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-13 01:28:01 $" .
+<http://xmlns.com/foaf/0.1/> <http://purl.org/dc/elements/1.1/date> "$Date: 2003-07-13 01:41:31 $" .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.w3.org/2001/08/rdfweb/foaf> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2000/01/rdf-schema> .
 <http://xmlns.com/foaf/0.1/> <http://www.w3.org/2002/07/owl#imports> <http://www.w3.org/2002/07/owl> .
@@ -44,7 +44,7 @@
 <http://xmlns.com/foaf/0.1/Group> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://xmlns.com/wordnet/1.6/Agent> .
 <http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
 <http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2000/01/rdf-schema#label> "Agent" .
-<http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2000/01/rdf-schema#comment> "An agent (eg. person, group, software or physical artifact." .
+<http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2000/01/rdf-schema#comment> "An agent (eg. person, group, software or physical artifact)." .
 <http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2003/06/sw-vocab-status/nsterm_status> "unstable" .
 <http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Project> .
 <http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Document> .
