@@ -1,0 +1,1562 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="2000.0px" height="2000.0px" xmlns="http://www.w3.org/2000/svg">
+
+<title>foaf</title>
+<desc>RDF model produced by RDFAuthor (http://rdfweb.org/people/damian/RDFAuthor) at 2002-07-15 09:44:20 +0100</desc>
+<defs>
+<path id="ArrowHead" d="M 0 0 L -20 4 L -20 -4 Z"/>
+</defs>
+<rect x="0px" y="0px" width="2000.0px" height="2000.0px" fill="white" />
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1256.7482px" cy="963.4904px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1213.7482px" y="959.4904px" fill="black">Person</text>
+<text x="1213.7482px" y="974.4904px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1475.3712px" cy="913.74304px" rx="69.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1406.3712px" y="909.74304px" fill="black">-- resource --</text>
+<text x="1406.3712px" y="924.74304px" fill="black">mailto:me@aaronsw.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="984.1837px" cy="989.21014px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="964.6837px" y="985.21014px" fill="black">Person</text>
+<text x="964.6837px" y="1000.21014px" fill="black">#edd</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="967.2158px" cy="621.69684px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="924.2158px" y="617.69684px" fill="black">Person</text>
+<text x="924.2158px" y="632.69684px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1047.1041px" cy="708.6893px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1027.6041px" y="704.6893px" fill="black">Person</text>
+<text x="1027.6041px" y="719.6893px" fill="black">#robin</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1147.3567px" cy="528.1988px" rx="80.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1066.8567px" y="524.1988px" fill="black">-- resource --</text>
+<text x="1066.8567px" y="539.1988px" fill="black">http://robin.berjon.com/foaf.rdf</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1121.2925px" cy="826.6752px" rx="38.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1082.7925px" y="822.6752px" fill="black">-- resource --</text>
+<text x="1082.7925px" y="837.6752px" fill="black">http://xml.com/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1151.9929px" cy="649.8898px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1108.9929px" y="645.8898px" fill="black">Person</text>
+<text x="1108.9929px" y="660.8898px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1296.4294px" cy="555.8095px" rx="105.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1190.9294px" y="551.8095px" fill="black">-- resource --</text>
+<text x="1190.9294px" y="566.8095px" fill="black">http://photos.hedd....waii_017.sized.jpg</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="986.86096px" cy="1262.6653px" rx="106.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="880.36096px" y="1258.6653px" fill="black">-- resource --</text>
+<text x="880.36096px" y="1273.6653px" fill="black">http://heddley.com..../edd-shoulders.jpg</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1250.0417px" cy="730.4624px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1230.5417px" y="726.4624px" fill="black">Person</text>
+<text x="1230.5417px" y="741.4624px" fill="black">#blech</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="631.2331px" cy="1093.5797px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="588.2331px" y="1089.5797px" fill="black">Person</text>
+<text x="588.2331px" y="1104.5797px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="396.6599px" y="1189.9502px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="396.6599px" y="1200.9502px" fill="black">-- literal --</text>
+<text x="396.6599px" y="1215.9502px" fill="black">"uche"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="672.81757px" cy="770.19446px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="629.81757px" y="766.19446px" fill="black">Person</text>
+<text x="629.81757px" y="781.19446px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="487.56506px" cy="636.8476px" rx="62.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="425.56506px" y="632.8476px" fill="black">-- resource --</text>
+<text x="425.56506px" y="647.8476px" fill="black">mailto:matt@arghh.org</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1299.3855px" cy="1262.7216px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1256.3855px" y="1258.7216px" fill="black">Person</text>
+<text x="1256.3855px" y="1273.7216px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1390.0924px" y="1373.3026px" width="91.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1390.0924px" y="1384.3026px" fill="black">-- literal --</text>
+<text x="1390.0924px" y="1399.3026px" fill="black">"Brendan Quinn"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1054.6365px" cy="772.0745px" rx="63.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="991.6365px" y="768.0745px" fill="black">-- resource --</text>
+<text x="991.6365px" y="783.0745px" fill="black">http://heddley.com/edd/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1287.8386px" cy="1131.9025px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1268.3386px" y="1127.9025px" fill="black">Person</text>
+<text x="1268.3386px" y="1142.9025px" fill="black">#zool</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1178.2596px" cy="1213.7751px" rx="103.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1074.7596px" y="1209.7751px" fill="black">-- resource --</text>
+<text x="1074.7596px" y="1224.7751px" fill="black">http://matthau.yoz....609/bots_talk4.jpg</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="887.97125px" cy="1225.6873px" rx="20.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="867.97125px" y="1221.6873px" fill="black">Person</text>
+<text x="867.97125px" y="1236.6873px" fill="black">#space</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1255.9745px" cy="845.75323px" rx="22.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1233.9745px" y="841.75323px" fill="black">Person</text>
+<text x="1233.9745px" y="856.75323px" fill="black">#eikeon</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1125.3595px" y="1340.9858px" width="201.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1125.3595px" y="1351.9858px" fill="black">-- literal --</text>
+<text x="1125.3595px" y="1366.9858px" fill="black">"From left to righ....   Celia Romaniuk"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="750.1303px" cy="1370.1946px" rx="80.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="669.6303px" y="1366.1946px" fill="black">-- resource --</text>
+<text x="669.6303px" y="1381.1946px" fill="black">mailto:space@shadowgirl.net</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1044.3207px" y="1104.115px" width="75.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1044.3207px" y="1115.115px" fill="black">-- literal --</text>
+<text x="1044.3207px" y="1130.115px" fill="black">"Edd Dumbill"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1586.2272px" cy="659.5157px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1543.2272px" y="655.5157px" fill="black">-- resource --</text>
+<text x="1543.2272px" y="670.5157px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1644.3593px" cy="808.73615px" rx="35.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1609.3593px" y="804.73615px" fill="black">-- resource --</text>
+<text x="1609.3593px" y="819.73615px" fill="black">foaf.rdf.asc</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1191.2616px" cy="1051.9058px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1171.7616px" y="1047.9058px" fill="black">Person</text>
+<text x="1171.7616px" y="1062.9058px" fill="black">#yoz</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1371.862px" cy="937.58527px" rx="56.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1315.862px" y="933.58527px" fill="black">-- resource --</text>
+<text x="1315.862px" y="948.58527px" fill="black">mailto:yoz@yoz.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1284.6409px" cy="442.9145px" rx="60.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1224.6409px" y="438.9145px" fill="black">-- resource --</text>
+<text x="1224.6409px" y="453.9145px" fill="black">mailto:danbri@w3.org</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="620.1893px" cy="942.0959px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="577.1893px" y="938.0959px" fill="black">Person</text>
+<text x="577.1893px" y="953.0959px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1103.633px" cy="1378.3661px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1060.633px" y="1374.3661px" fill="black">Person</text>
+<text x="1060.633px" y="1389.3661px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1057.8286px" y="1615.2902px" width="102.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1057.8286px" y="1626.2902px" fill="black">-- literal --</text>
+<text x="1057.8286px" y="1641.2902px" fill="black">"Simon St.Laurent"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="823.6724px" y="1010.2396px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="823.6724px" y="1021.2396px" fill="black">-- literal --</text>
+<text x="823.6724px" y="1036.2396px" fill="black">"edd-lap"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1233.7537px" y="1558.6665px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1233.7537px" y="1569.6665px" fill="black">-- literal --</text>
+<text x="1233.7537px" y="1584.6665px" fill="black">"simon"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1018.266px" y="372.35468px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1018.266px" y="383.35468px" fill="black">-- literal --</text>
+<text x="1018.266px" y="398.35468px" fill="black">"dajobe"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="693.1908px" cy="1248.5852px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="650.1908px" y="1244.5852px" fill="black">Person</text>
+<text x="650.1908px" y="1259.5852px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1383.7465px" cy="715.37915px" rx="66.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1317.7465px" y="711.37915px" fill="black">-- resource --</text>
+<text x="1317.7465px" y="726.37915px" fill="black">http://eikeon.com/foaf.rdf</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1508.6903px" y="1339.12px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1508.6903px" y="1350.12px" fill="black">-- literal --</text>
+<text x="1508.6903px" y="1365.12px" fill="black">"svlad"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="420.8921px" y="1316.569px" width="84.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="420.8921px" y="1327.569px" fill="black">-- literal --</text>
+<text x="420.8921px" y="1342.569px" fill="black">"Phil McCarthy"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1388.7864px" cy="1053.5375px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1345.7864px" y="1049.5375px" fill="black">Person</text>
+<text x="1345.7864px" y="1064.5375px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="365.6102px" y="829.4591px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="365.6102px" y="840.4591px" fill="black">-- literal --</text>
+<text x="365.6102px" y="855.4591px" fill="black">"giles"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1563.057px" y="930.35986px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1563.057px" y="941.35986px" fill="black">-- literal --</text>
+<text x="1563.057px" y="956.35986px" fill="black">"vdv"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="840.6848px" y="816.7326px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="840.6848px" y="827.7326px" fill="black">-- literal --</text>
+<text x="840.6848px" y="842.7326px" fill="black">"edd"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="482.08438px" cy="1051.2621px" rx="100.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="382.08438px" y="1047.2621px" fill="black">-- resource --</text>
+<text x="382.08438px" y="1062.2621px" fill="black">mailto:uche.ogbuji@fourthought.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="779.51874px" y="1132.789px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="779.51874px" y="1143.789px" fill="black">-- literal --</text>
+<text x="779.51874px" y="1158.789px" fill="black">"hector"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="965.05835px" y="1430.2548px" width="158.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="965.05835px" y="1441.2548px" fill="black">-- literal --</text>
+<text x="965.05835px" y="1456.2548px" fill="black">"Bots panel from XCom2002"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="985.19147px" y="1572.3337px" width="53.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="985.19147px" y="1583.3337px" fill="black">-- literal --</text>
+<text x="985.19147px" y="1598.3337px" fill="black">"simonstl"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1166.2437px" cy="1542.3431px" rx="82.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1084.2437px" y="1538.3431px" fill="black">-- resource --</text>
+<text x="1084.2437px" y="1553.3431px" fill="black">mailto:simonstl@simonstl.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1380.2101px" y="1472.5931px" width="54.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1380.2101px" y="1483.5931px" fill="black">-- literal --</text>
+<text x="1380.2101px" y="1498.5931px" fill="black">"brendan"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="348.5741px" y="1091.1979px" width="76.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="348.5741px" y="1102.1979px" fill="black">-- literal --</text>
+<text x="348.5741px" y="1117.1979px" fill="black">"Uche Ogbuji"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="864.5437px" cy="1361.587px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="821.5437px" y="1357.587px" fill="black">Person</text>
+<text x="821.5437px" y="1372.587px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="824.87px" cy="645.25714px" rx="43.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="781.87px" y="641.25714px" fill="black">Person</text>
+<text x="781.87px" y="656.25714px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="621.14404px" y="460.04596px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="621.14404px" y="471.04596px" fill="black">-- literal --</text>
+<text x="621.14404px" y="486.04596px" fill="black">"klurr"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1569.6464px" y="1170.0669px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1569.6464px" y="1181.0669px" fill="black">-- literal --</text>
+<text x="1569.6464px" y="1196.0669px" fill="black">"eric"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1472.2837px" cy="788.0108px" rx="74.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1398.2837px" y="784.0108px" fill="black">-- resource --</text>
+<text x="1398.2837px" y="799.0108px" fill="black">mailto:eikeon@eikeon.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1307.0399px" cy="1449.941px" rx="90.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1217.0399px" y="1445.941px" fill="black">-- resource --</text>
+<text x="1217.0399px" y="1460.941px" fill="black">mailto:brendan.quinn@bbc.co.uk</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1022.90173px" cy="509.80637px" rx="82.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="940.90173px" y="505.80637px" fill="black">-- resource --</text>
+<text x="940.90173px" y="520.8064px" fill="black">mailto:robin@knowscape.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="377.72174px" cy="970.7249px" rx="62.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="315.72174px" y="966.7249px" fill="black">-- resource --</text>
+<text x="315.72174px" y="981.7249px" fill="black">mailto:giles@gilest.org</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="762.88654px" cy="929.79956px" rx="57.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="705.88654px" y="925.79956px" fill="black">-- resource --</text>
+<text x="705.88654px" y="940.79956px" fill="black">mailto:edd@xml.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="745.9968px" cy="1048.3923px" rx="72.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="673.9968px" y="1044.3923px" fill="black">-- resource --</text>
+<text x="673.9968px" y="1059.3923px" fill="black">mailto:edd@usefulinc.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="432.47513px" y="889.8422px" width="84.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="432.47513px" y="900.8422px" fill="black">-- literal --</text>
+<text x="432.47513px" y="915.8422px" fill="black">"Giles Turnbull"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="511.66382px" y="1193.0481px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="511.66382px" y="1204.0481px" fill="black">-- literal --</text>
+<text x="511.66382px" y="1219.0481px" fill="black">"phil"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1403.1619px" cy="532.2938px" rx="79.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1323.6619px" y="528.2938px" fill="black">-- resource --</text>
+<text x="1323.6619px" y="543.2938px" fill="black">http://husk.org/misc/blech.xml</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="772.65533px" cy="804.64825px" rx="19.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="753.15533px" y="800.64825px" fill="black">Person</text>
+<text x="753.15533px" y="815.64825px" fill="black">#kip</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="953.1967px" cy="1130.0448px" rx="79.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="873.6967px" y="1126.0448px" fill="black">-- resource --</text>
+<text x="873.6967px" y="1141.0448px" fill="black">http://kingsgrantham.8m.com/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="933.927px" cy="380.77972px" rx="91.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="842.927px" y="376.77972px" fill="black">-- resource --</text>
+<text x="842.927px" y="391.77972px" fill="black">mailto:dave.beckett@bristol.ac.uk</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="845.8813px" y="464.8055px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="845.8813px" y="475.8055px" fill="black">-- literal --</text>
+<text x="845.8813px" y="490.8055px" fill="black">"clurr"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1452.4495px" cy="626.60065px" rx="64.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1387.9495px" y="622.60065px" fill="black">-- resource --</text>
+<text x="1387.9495px" y="637.60065px" fill="black">mailto:paulm@husk.org</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="535.4924px" y="559.302px" width="60.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="535.4924px" y="570.302px" fill="black">-- literal --</text>
+<text x="535.4924px" y="585.302px" fill="black">"Matt Hunt"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="710.538px" cy="1556.9252px" rx="70.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="640.538px" y="1552.9252px" fill="black">-- resource --</text>
+<text x="640.538px" y="1567.9252px" fill="black">mailto:matt@picdiary.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="764.3604px" y="1534.4055px" width="83.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="764.3604px" y="1545.4055px" fill="black">-- literal --</text>
+<text x="764.3604px" y="1560.4055px" fill="black">"Matt Biddulph"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1634.0483px" cy="1047.3174px" rx="75.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1558.5483px" y="1043.3174px" fill="black">-- resource --</text>
+<text x="1558.5483px" y="1058.3174px" fill="black">mailto:vdv@dyomedea.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1397.1172px" cy="1182.207px" rx="54.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1342.6172px" y="1178.207px" fill="black">-- resource --</text>
+<text x="1342.6172px" y="1193.207px" fill="black">mailto:zool@frot.org</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="543.3209px" y="1329.0952px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="543.3209px" y="1340.0952px" fill="black">-- literal --</text>
+<text x="543.3209px" y="1355.0952px" fill="black">"phl"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="567.0005px" cy="781.8047px" rx="77.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="490.0005px" y="777.8047px" fill="black">-- resource --</text>
+<text x="490.0005px" y="792.8047px" fill="black">http://hampton.ws/kip/foaf.rdf</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="544.1946px" cy="1450.6831px" rx="70.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="473.69458px" y="1446.6831px" fill="black">-- resource --</text>
+<text x="473.69458px" y="1461.6831px" fill="black">mailto:phil@chimpen.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1151.4324px" y="391.76297px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1151.4324px" y="402.76297px" fill="black">-- literal --</text>
+<text x="1151.4324px" y="417.76297px" fill="black">"danbri"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="781.8175px" cy="400.72046px" rx="76.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="705.3175px" y="396.72046px" fill="black">-- resource --</text>
+<text x="705.3175px" y="411.72046px" fill="black">mailto:claire@usefulinc.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="1491.9835px" y="1078.9696px" width="99.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1491.9835px" y="1089.9696px" fill="black">-- literal --</text>
+<text x="1491.9835px" y="1104.9696px" fill="black">"Eric van der Vlist"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="625.91px" y="1436.8076px" width="55.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="625.91px" y="1447.8076px" fill="black">-- literal --</text>
+<text x="625.91px" y="1462.8076px" fill="black">"phil_ps2"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="857.2252px" y="1597.4615px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="857.2252px" y="1608.4615px" fill="black">-- literal --</text>
+<text x="857.2252px" y="1623.4615px" fill="black">"mattb"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="815.3826px" y="1449.1631px" width="216.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="815.3826px" y="1460.1631px" fill="black">-- literal --</text>
+<text x="815.3826px" y="1475.1631px" fill="black">"Small head and sh....to, San Francisco"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="677.6165px" cy="637.9288px" rx="95.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="582.1165px" y="633.9288px" fill="black">-- resource --</text>
+<text x="582.1165px" y="648.9288px" fill="black">mailto:khampton@totalcinema.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1488.2328px" cy="1261.2789px" rx="103.5px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="1384.7328px" y="1257.2789px" fill="black">-- resource --</text>
+<text x="1384.7328px" y="1272.2789px" fill="black">http://gilest.org/....om/bus_brendan.jpg</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="695.83563px" y="489.36563px" width="93.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="695.83563px" y="500.36563px" fill="black">-- literal --</text>
+<text x="695.83563px" y="515.3656px" fill="black">"Claire Rowland"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<rect x="422.14944px" y="716.45264px" width="52.0px" height="30.0px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="422.14944px" y="727.45264px" fill="black">-- literal --</text>
+<text x="422.14944px" y="742.45264px" fill="black">"morfran"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="1274.3456px" cy="898.1724px" rx="108.0px" ry="15.0px" fill="rgb(100.0%,0.0%,0.0%)" fill-opacity="0.5" />
+<text x="1166.3456px" y="894.1724px" fill="black">-- resource --</text>
+<text x="1166.3456px" y="909.1724px" fill="black">http://starway.hed....edmundd/photos.rdf</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="908.75977px" cy="767.36316px" rx="70.0px" ry="15.0px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="838.75977px" y="763.36316px" fill="black">-- resource --</text>
+<text x="838.75977px" y="778.36316px" fill="black">mailto:edd@xmlhack.com</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1351.0597px" y="931.1167px" width="30.0px" height="15.0px"/>
+<line x1="1256.7482px" y1="963.4904px" x2="1475.3712px" y2="913.74304px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1475.3712,913.74304)">
+<g transform="rotate(-12.81929697395563)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1351.0597px" y="942.1167px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="958.19977px" y="797.9535px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="967.2158px" y2="621.69684px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(967.2158,621.69684)">
+<g transform="rotate(-92.64343872151741)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="958.19977px" y="808.9535px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1075.2305px" y="610.94403px" width="44.0px" height="15.0px"/>
+<line x1="1047.1041px" y1="708.6893px" x2="1147.3567px" y2="528.1988px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1147.3567,528.1988)">
+<g transform="rotate(-60.950229350415086)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1075.2305px" y="621.94403px" fill="black" fill-opacity="1.0">seeAlso</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="994.23804px" y="900.4426px" width="117.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1121.2925px" y2="826.6752px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1121.2925,826.6752)">
+<g transform="rotate(-49.85020296730394)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="994.23804px" y="911.4426px" fill="black" fill-opacity="1.0">workplaceHomepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1199.2112px" y="595.3496px" width="50.0px" height="15.0px"/>
+<line x1="1151.9929px" y1="649.8898px" x2="1296.4294px" y2="555.8095px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1296.4294,555.8095)">
+<g transform="rotate(-33.07863623035304)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1199.2112px" y="606.3496px" fill="black" fill-opacity="1.0">depiction</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="968.52234px" y="1118.4377px" width="34.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="986.86096px" y2="1262.6653px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(986.86096,1262.6653)">
+<g transform="rotate(89.43906703842946)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="968.52234px" y="1129.4377px" fill="black" fill-opacity="1.0">image</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1099.6128px" y="852.3363px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1250.0417px" y2="730.4624px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1250.0417,730.4624)">
+<g transform="rotate(-44.223484156039525)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1099.6128px" y="863.3363px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="515.94653px" y="1141.7649px" width="22.0px" height="15.0px"/>
+<line x1="631.2331px" y1="1093.5797px" x2="422.6599px" y2="1204.9502px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(422.6599,1204.9502)">
+<g transform="rotate(151.89940653876545)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="515.94653px" y="1152.7649px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="565.1913px" y="696.021px" width="30.0px" height="15.0px"/>
+<line x1="672.81757px" y1="770.19446px" x2="487.56506px" y2="636.8476px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(487.56506,636.8476)">
+<g transform="rotate(-144.25323014315566)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="565.1913px" y="707.021px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1351.989px" y="1318.0121px" width="31.0px" height="15.0px"/>
+<line x1="1299.3855px" y1="1262.7216px" x2="1435.5924px" y2="1388.3026px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1435.5924,1388.3026)">
+<g transform="rotate(42.67566624080031)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1351.989px" y="1329.0121px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="989.9101px" y="873.14233px" width="59.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1054.6365px" y2="772.0745px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1054.6365,772.0745)">
+<g transform="rotate(-72.02360341829895)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="989.9101px" y="884.14233px" fill="black" fill-opacity="1.0">homepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1118.5112px" y="1053.0563px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1287.8386px" y2="1131.9025px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1287.8386,1131.9025)">
+<g transform="rotate(25.169585810834114)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1118.5112px" y="1064.0563px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1013.6155px" y="1212.2312px" width="39.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="887.97125px" y2="1225.6873px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(887.97125,1225.6873)">
+<g transform="rotate(177.65016134515352)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1013.6155px" y="1223.2312px" fill="black" fill-opacity="1.0">depicts</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1172.0596px" y="1277.3805px" width="60.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="1225.8595px" y2="1355.9858px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1225.8595,1355.9858)">
+<g transform="rotate(71.49390542579778)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1172.0596px" y="1288.3805px" fill="black" fill-opacity="1.0">description</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="804.0508px" y="1290.4409px" width="30.0px" height="15.0px"/>
+<line x1="887.97125px" y1="1225.6873px" x2="750.1303px" y2="1370.1946px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(750.1303,1370.1946)">
+<g transform="rotate(133.64746967369163)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="804.0508px" y="1301.4409px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1024.8408px" y="1183.3901px" width="19.0px" height="15.0px"/>
+<line x1="986.86096px" y1="1262.6653px" x2="1081.8207px" y2="1119.115px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1081.8207,1119.115)">
+<g transform="rotate(-56.51503145327411)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1024.8408px" y="1194.3901px" fill="black" fill-opacity="1.0">title</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1586.7932px" y="726.6259px" width="57.0px" height="15.0px"/>
+<line x1="1586.2272px" y1="659.5157px" x2="1644.3593px" y2="808.73615px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1644.3593,808.73615)">
+<g transform="rotate(68.71551544919261)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1586.7932px" y="737.6259px" fill="black" fill-opacity="1.0">assurance</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1266.5618px" y="987.2455px" width="30.0px" height="15.0px"/>
+<line x1="1191.2616px" y1="1051.9058px" x2="1371.862px" y2="937.58527px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1371.862,937.58527)">
+<g transform="rotate(-32.33390145809338)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1266.5618px" y="998.2455px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1203.3169px" y="538.9021px" width="30.0px" height="15.0px"/>
+<line x1="1151.9929px" y1="649.8898px" x2="1284.6409px" y2="442.9145px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1284.6409,442.9145)">
+<g transform="rotate(-57.34468190123562)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1203.3169px" y="549.9021px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="784.6865px" y="958.153px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="620.1893px" y2="942.0959px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(620.1893,942.0959)">
+<g transform="rotate(-172.6248257129229)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="784.6865px" y="969.153px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1102.5791px" y="909.9817px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1255.9745px" y2="845.75323px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1255.9745,845.75323)">
+<g transform="rotate(-27.826038611394328)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1102.5791px" y="920.9817px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1090.7308px" y="1496.8281px" width="31.0px" height="15.0px"/>
+<line x1="1103.633px" y1="1378.3661px" x2="1108.8286px" y2="1630.2902px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1108.8286,1630.2902)">
+<g transform="rotate(88.81852785498137)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1090.7308px" y="1507.8281px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="905.9281px" y="999.72485px" width="22.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="849.6724px" y2="1025.2396px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(849.6724,1025.2396)">
+<g transform="rotate(165.00505212295403)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="905.9281px" y="1010.72485px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1170.6934px" y="1468.5164px" width="22.0px" height="15.0px"/>
+<line x1="1103.633px" y1="1378.3661px" x2="1259.7537px" y2="1573.6665px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1259.7537,1573.6665)">
+<g transform="rotate(51.36161552115481)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1170.6934px" y="1479.5164px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="994.7409px" y="497.02576px" width="22.0px" height="15.0px"/>
+<line x1="967.2158px" y1="621.69684px" x2="1044.266px" y2="387.35468px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1044.266,387.35468)">
+<g transform="rotate(-71.79947310765121)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="994.7409px" y="508.02576px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="821.18726px" y="1111.3977px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="693.1908px" y2="1248.5852px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(693.1908,1248.5852)">
+<g transform="rotate(138.28794722700297)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="821.18726px" y="1122.3977px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1297.8605px" y="773.06616px" width="44.0px" height="15.0px"/>
+<line x1="1255.9745px" y1="845.75323px" x2="1383.7465px" y2="715.37915px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1383.7465,715.37915)">
+<g transform="rotate(-45.57752180052101)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1297.8605px" y="784.06616px" fill="black" fill-opacity="1.0">seeAlso</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1406.0378px" y="1300.9208px" width="22.0px" height="15.0px"/>
+<line x1="1299.3855px" y1="1262.7216px" x2="1534.6903px" y2="1354.12px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1534.6903,1354.12)">
+<g transform="rotate(21.227449909093504)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1406.0378px" y="1311.9208px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="562.54144px" y="1282.5771px" width="31.0px" height="15.0px"/>
+<line x1="693.1908px" y1="1248.5852px" x2="462.8921px" y2="1331.569px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(462.8921,1331.569)">
+<g transform="rotate(160.18433602211422)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="562.54144px" y="1293.5771px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1168.9851px" y="1013.8738px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1388.7864px" y2="1053.5375px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1388.7864,1053.5375)">
+<g transform="rotate(9.033782232408404)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1168.9851px" y="1024.8738px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="494.89972px" y="885.77747px" width="22.0px" height="15.0px"/>
+<line x1="620.1893px" y1="942.0959px" x2="391.6102px" y2="844.4591px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(391.6102,844.4591)">
+<g transform="rotate(-156.8704125245715)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="494.89972px" y="896.77747px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1124.2847px" y="1118.4658px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1299.3855px" y2="1262.7216px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1299.3855,1262.7216)">
+<g transform="rotate(40.94929900820745)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1124.2847px" y="1129.4658px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1477.9216px" y="991.94867px" width="22.0px" height="15.0px"/>
+<line x1="1388.7864px" y1="1053.5375px" x2="1589.057px" y2="945.35986px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1589.057,945.35986)">
+<g transform="rotate(-28.3760169782789)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1477.9216px" y="1002.94867px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="914.43427px" y="902.9714px" width="22.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="866.6848px" y2="831.7326px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(866.6848,831.7326)">
+<g transform="rotate(-126.7277669204466)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="914.43427px" y="913.9714px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="541.65875px" y="1064.9209px" width="30.0px" height="15.0px"/>
+<line x1="631.2331px" y1="1093.5797px" x2="482.08438px" y2="1051.2621px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(482.08438,1051.2621)">
+<g transform="rotate(-164.15988969925962)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="541.65875px" y="1075.9209px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="883.8512px" y="1060.9995px" width="22.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="805.51874px" y2="1147.789px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(805.51874,1147.789)">
+<g transform="rotate(138.40850024610447)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="883.8512px" y="1071.9995px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1101.6589px" y="1322.0149px" width="19.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="1044.0583px" y2="1445.2548px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1044.0583,1445.2548)">
+<g transform="rotate(120.10319663419465)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1101.6589px" y="1333.0149px" fill="black" fill-opacity="1.0">title</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1046.6622px" y="1475.3499px" width="22.0px" height="15.0px"/>
+<line x1="1103.633px" y1="1378.3661px" x2="1011.69147px" y2="1587.3337px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1011.69147,1587.3337)">
+<g transform="rotate(113.74853491986013)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1046.6622px" y="1486.3499px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1119.9384px" y="1452.8546px" width="30.0px" height="15.0px"/>
+<line x1="1103.633px" y1="1378.3661px" x2="1166.2437px" y2="1542.3431px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1166.2437,1542.3431)">
+<g transform="rotate(69.10187577869206)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1119.9384px" y="1463.8546px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1342.2979px" y="1367.6573px" width="22.0px" height="15.0px"/>
+<line x1="1299.3855px" y1="1262.7216px" x2="1407.2101px" y2="1487.5931px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1407.2101,1487.5931)">
+<g transform="rotate(64.3825594254849)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1342.2979px" y="1378.6573px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1061.7217px" y="1093.9927px" width="39.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="984.1837px" y2="989.21014px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(984.1837,989.21014)">
+<g transform="rotate(-130.83457697069625)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1061.7217px" y="1104.9927px" fill="black" fill-opacity="1.0">depicts</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="493.4036px" y="1092.3888px" width="31.0px" height="15.0px"/>
+<line x1="631.2331px" y1="1093.5797px" x2="386.5741px" y2="1106.1979px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(386.5741,1106.1979)">
+<g transform="rotate(177.047614994016)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="493.4036px" y="1103.3888px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1213.5491px" y="1165.3389px" width="39.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="1287.8386px" y2="1131.9025px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1287.8386,1131.9025)">
+<g transform="rotate(-36.76549746684472)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1213.5491px" y="1176.3389px" fill="black" fill-opacity="1.0">depicts</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="918.5775px" y="1099.9487px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="887.97125px" y2="1225.6873px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(887.97125,1225.6873)">
+<g transform="rotate(112.13931361395568)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="918.5775px" y="1110.9487px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="725.007px" y="552.65155px" width="22.0px" height="15.0px"/>
+<line x1="824.87px" y1="645.25714px" x2="647.14404px" y2="475.04596px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(647.14404,475.04596)">
+<g transform="rotate(-136.23728588180802)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="725.007px" y="563.65155px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="998.1439px" y="841.4497px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1047.1041px" y2="708.6893px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1047.1041,708.6893)">
+<g transform="rotate(-77.35787873159774)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="998.1439px" y="852.4497px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1050.5884px" y="812.0499px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1151.9929px" y2="649.8898px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1151.9929,649.8898)">
+<g transform="rotate(-63.68553143182878)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1050.5884px" y="823.0499px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1481.2163px" y="1111.8022px" width="22.0px" height="15.0px"/>
+<line x1="1388.7864px" y1="1053.5375px" x2="1595.6464px" y2="1185.0669px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1595.6464,1185.0669)">
+<g transform="rotate(32.44974712308852)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1481.2163px" y="1122.8022px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1349.1292px" y="809.382px" width="30.0px" height="15.0px"/>
+<line x1="1255.9745px" y1="845.75323px" x2="1472.2837px" y2="788.0108px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1472.2837,788.0108)">
+<g transform="rotate(-14.946248142974506)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1349.1292px" y="820.382px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1288.2126px" y="1348.8313px" width="30.0px" height="15.0px"/>
+<line x1="1299.3855px" y1="1262.7216px" x2="1307.0399px" y2="1449.941px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1307.0399,1449.941)">
+<g transform="rotate(87.65878114815179)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1288.2126px" y="1359.8313px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1020.0029px" y="601.7478px" width="30.0px" height="15.0px"/>
+<line x1="1047.1041px" y1="708.6893px" x2="1022.90173px" y2="509.80637px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1022.90173,509.80637)">
+<g transform="rotate(-96.9383038005022)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1020.0029px" y="612.7478px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="483.9555px" y="948.9104px" width="30.0px" height="15.0px"/>
+<line x1="620.1893px" y1="942.0959px" x2="377.72174px" y2="970.7249px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(377.72174,970.7249)">
+<g transform="rotate(173.26605569413695)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="483.9555px" y="959.9104px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="858.53516px" y="952.0049px" width="30.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="762.88654px" y2="929.79956px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(762.88654,929.79956)">
+<g transform="rotate(-164.97242097725066)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="858.53516px" y="963.0049px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="850.0903px" y="1011.3013px" width="30.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="745.9968px" y2="1048.3923px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(745.9968,1048.3923)">
+<g transform="rotate(166.04631624589416)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="850.0903px" y="1022.3013px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="531.8322px" y="915.96906px" width="31.0px" height="15.0px"/>
+<line x1="620.1893px" y1="942.0959px" x2="474.47513px" y2="904.8422px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(474.47513,904.8422)">
+<g transform="rotate(-165.65880540675016)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="531.8322px" y="926.96906px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="790.2084px" y="1033.8949px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="631.2331px" y2="1093.5797px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(631.2331,1093.5797)">
+<g transform="rotate(163.52674280193565)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="790.2084px" y="1044.8949px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="604.4273px" y="1220.8167px" width="22.0px" height="15.0px"/>
+<line x1="693.1908px" y1="1248.5852px" x2="537.6638px" y2="1208.0481px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(537.6638,1208.0481)">
+<g transform="rotate(-165.3912492732336)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="604.4273px" y="1231.8167px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1304.6018px" y="623.8781px" width="44.0px" height="15.0px"/>
+<line x1="1250.0417px" y1="730.4624px" x2="1403.1619px" y2="532.2938px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1403.1619,532.2938)">
+<g transform="rotate(-52.307596771848154)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1304.6018px" y="634.8781px" fill="black" fill-opacity="1.0">seeAlso</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="920.1902px" y="1052.1274px" width="97.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="953.1967px" y2="1130.0448px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(953.1967,1130.0448)">
+<g transform="rotate(102.40872827946434)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="920.1902px" y="1063.1274px" fill="black" fill-opacity="1.0">schoolHomepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="935.5714px" y="493.73828px" width="30.0px" height="15.0px"/>
+<line x1="967.2158px" y1="621.69684px" x2="933.927px" y2="380.77972px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(933.927,380.77972)">
+<g transform="rotate(-97.86705249937583)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="935.5714px" y="504.73828px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="837.3756px" y="555.0313px" width="22.0px" height="15.0px"/>
+<line x1="824.87px" y1="645.25714px" x2="871.8813px" y2="479.8055px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(871.8813,479.8055)">
+<g transform="rotate(-74.13807422977335)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="837.3756px" y="566.0313px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="860.91956px" y="889.4292px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="772.65533px" y2="804.64825px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(772.65533,804.64825)">
+<g transform="rotate(-138.89478284622834)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="860.91956px" y="900.4292px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1336.2456px" y="671.0315px" width="30.0px" height="15.0px"/>
+<line x1="1250.0417px" y1="730.4624px" x2="1452.4495px" y2="626.60065px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1452.4495,626.60065)">
+<g transform="rotate(-27.163783717496667)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1336.2456px" y="682.0315px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="603.65497px" y="664.7482px" width="31.0px" height="15.0px"/>
+<line x1="672.81757px" y1="770.19446px" x2="565.4924px" y2="574.302px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(565.4924,574.302)">
+<g transform="rotate(-118.71737163770229)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="603.65497px" y="675.7482px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="772.5409px" y="1451.7561px" width="30.0px" height="15.0px"/>
+<line x1="864.5437px" y1="1361.587px" x2="710.538px" y2="1556.9252px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(710.538,1556.9252)">
+<g transform="rotate(128.2524433638266)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="772.5409px" y="1462.7561px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="906.8637px" y="1167.8986px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="864.5437px" y2="1361.587px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(864.5437,1361.587)">
+<g transform="rotate(107.81155906645527)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="906.8637px" y="1178.8986px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="819.702px" y="1447.9963px" width="31.0px" height="15.0px"/>
+<line x1="864.5437px" y1="1361.587px" x2="805.8604px" y2="1549.4055px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(805.8604,1549.4055)">
+<g transform="rotate(107.35124905307894)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="819.702px" y="1458.9963px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1496.4174px" y="1042.9275px" width="30.0px" height="15.0px"/>
+<line x1="1388.7864px" y1="1053.5375px" x2="1634.0483px" y2="1047.3174px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1634.0483,1047.3174)">
+<g transform="rotate(-1.4527678187410764)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1496.4174px" y="1053.9275px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1327.4779px" y="1149.5547px" width="30.0px" height="15.0px"/>
+<line x1="1287.8386px" y1="1131.9025px" x2="1397.1172px" y2="1182.207px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1397.1172,1182.207)">
+<g transform="rotate(24.718191174202314)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1327.4779px" y="1160.5547px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="620.25586px" y="1288.8402px" width="22.0px" height="15.0px"/>
+<line x1="693.1908px" y1="1248.5852px" x2="569.3209px" y2="1344.0952px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(569.3209,1344.0952)">
+<g transform="rotate(142.36593825085794)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="620.25586px" y="1299.8402px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="647.8279px" y="785.72644px" width="44.0px" height="15.0px"/>
+<line x1="772.65533px" y1="804.64825px" x2="567.0005px" y2="781.8047px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(567.0005,781.8047)">
+<g transform="rotate(-173.66172686598455)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="647.8279px" y="796.72644px" fill="black" fill-opacity="1.0">seeAlso</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="887.02686px" y="809.73364px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="824.87px" y2="645.25714px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(824.87,645.25714)">
+<g transform="rotate(-114.85284385535807)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="887.02686px" y="820.73364px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="603.6927px" y="1342.1342px" width="30.0px" height="15.0px"/>
+<line x1="693.1908px" y1="1248.5852px" x2="544.1946px" y2="1450.6831px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(544.1946,1450.6831)">
+<g transform="rotate(126.39941101247038)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="603.6927px" y="1353.1342px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1153.7126px" y="520.82635px" width="22.0px" height="15.0px"/>
+<line x1="1151.9929px" y1="649.8898px" x2="1177.4324px" y2="406.76297px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1177.4324,406.76297)">
+<g transform="rotate(-84.02662063395202)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1153.7126px" y="531.82635px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="960.52234px" y="1118.4377px" width="50.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="986.86096px" y2="1262.6653px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(986.86096,1262.6653)">
+<g transform="rotate(89.43906703842946)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="960.52234px" y="1129.4377px" fill="black" fill-opacity="1.0">depiction</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="788.34375px" y="515.4888px" width="30.0px" height="15.0px"/>
+<line x1="824.87px" y1="645.25714px" x2="781.8175px" y2="400.72046px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(781.8175,400.72046)">
+<g transform="rotate(-99.9850187159999)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="788.34375px" y="526.4888px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1449.635px" y="1066.2535px" width="31.0px" height="15.0px"/>
+<line x1="1388.7864px" y1="1053.5375px" x2="1541.4835px" y2="1093.9696px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1541.4835,1093.9696)">
+<g transform="rotate(14.830791813132278)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1449.635px" y="1077.2535px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="662.3004px" y="1342.6964px" width="22.0px" height="15.0px"/>
+<line x1="693.1908px" y1="1248.5852px" x2="653.41px" y2="1451.8076px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(653.41,1451.8076)">
+<g transform="rotate(101.07561051385883)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="662.3004px" y="1353.6964px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="862.88446px" y="1479.5243px" width="22.0px" height="15.0px"/>
+<line x1="864.5437px" y1="1361.587px" x2="883.2252px" y2="1612.4615px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(883.2252,1612.4615)">
+<g transform="rotate(85.74129604315671)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="862.88446px" y="1490.5243px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="925.1218px" y="1355.9142px" width="60.0px" height="15.0px"/>
+<line x1="986.86096px" y1="1262.6653px" x2="923.3826px" y2="1464.1631px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(923.3826,1464.1631)">
+<g transform="rotate(107.4861151172901)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="925.1218px" y="1366.9142px" fill="black" fill-opacity="1.0">description</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="710.1359px" y="713.7885px" width="30.0px" height="15.0px"/>
+<line x1="772.65533px" y1="804.64825px" x2="677.6165px" y2="637.9288px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(677.6165,637.9288)">
+<g transform="rotate(-119.68540029139685)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="710.1359px" y="724.7885px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1102.966px" y="968.8503px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1256.7482px" y2="963.4904px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1256.7482,963.4904)">
+<g transform="rotate(-5.3905824995862215)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1102.966px" y="979.8503px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1368.8091px" y="1254.5002px" width="50.0px" height="15.0px"/>
+<line x1="1299.3855px" y1="1262.7216px" x2="1488.2328px" y2="1261.2789px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1488.2328,1261.2789)">
+<g transform="rotate(-0.43768077385798904)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1368.8091px" y="1265.5002px" fill="black" fill-opacity="1.0">depiction</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="768.1028px" y="567.3114px" width="31.0px" height="15.0px"/>
+<line x1="824.87px" y1="645.25714px" x2="742.33563px" y2="504.36563px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(742.33563,504.36563)">
+<g transform="rotate(-120.36180713422756)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="768.1028px" y="578.3114px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="811.0006px" y="872.2023px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="672.81757px" y2="770.19446px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(672.81757,770.19446)">
+<g transform="rotate(-144.87735585412136)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="811.0006px" y="883.2023px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="549.4835px" y="743.32355px" width="22.0px" height="15.0px"/>
+<line x1="672.81757px" y1="770.19446px" x2="448.14944px" y2="731.45264px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(448.14944,731.45264)">
+<g transform="rotate(-170.21612228381989)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="549.4835px" y="754.32355px" fill="black" fill-opacity="1.0">nick</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1165.2606px" y="1125.3405px" width="39.0px" height="15.0px"/>
+<line x1="1178.2596px" y1="1213.7751px" x2="1191.2616px" y2="1051.9058px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1191.2616,1051.9058)">
+<g transform="rotate(-85.40764867755524)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1165.2606px" y="1136.3405px" fill="black" fill-opacity="1.0">depicts</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1026.4084px" y="1176.2881px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1103.633px" y2="1378.3661px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1103.633,1378.3661)">
+<g transform="rotate(72.93641125904814)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1026.4084px" y="1187.2881px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1017.5022px" y="1046.6626px" width="31.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1081.8207px" y2="1119.115px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1081.8207,1119.115)">
+<g transform="rotate(53.07134109680577)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1017.5022px" y="1057.6626px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1070.2227px" y="1013.058px" width="35.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1191.2616px" y2="1051.9058px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1191.2616,1051.9058)">
+<g transform="rotate(16.844395121342345)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1070.2227px" y="1024.058px" fill="black" fill-opacity="1.0">knows</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="1107.2646px" y="936.1913px" width="44.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="1274.3456px" y2="898.1724px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(1274.3456,898.1724)">
+<g transform="rotate(-17.419147603482163)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="1107.2646px" y="947.1913px" fill="black" fill-opacity="1.0">seeAlso</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5">
+<rect x="931.47174px" y="870.7866px" width="30.0px" height="15.0px"/>
+<line x1="984.1837px" y1="989.21014px" x2="908.75977px" y2="767.36316px" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5"/>
+<g transform="translate(908.75977,767.36316)">
+<g transform="rotate(-108.77710148832267)">
+<use xlink:href="#ArrowHead"/>
+</g>
+</g>
+<text x="931.47174px" y="881.7866px" fill="black" fill-opacity="1.0">mbox</text>
+</g>
+
+
+
+</svg>
