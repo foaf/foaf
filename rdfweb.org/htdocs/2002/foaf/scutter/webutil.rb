@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.12 2002-07-14 14:43:11 danbri Exp $
+# $Id: webutil.rb,v 1.13 2002-07-14 19:23:15 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -55,7 +55,8 @@ def scutter_local (file, base_uri, opts={})
 	# use redland parser 'rdfdump' ?
   dbdriver = opts['dbdriver'] 
   dbdriver = 'Pg' if !dbdriver # default to PostgreSQL
- 
+  redparse=true 
+
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
 
   puts "Parsing cached RDF file: #{cache_dir} file: #{file} xslt: #{use_xslt} "
@@ -69,13 +70,19 @@ def scutter_local (file, base_uri, opts={})
 
   parsed_ok = false
 
+    puts "Scutter: parsing."
+
   # Run Redland/Repat parser
   #
   if redparse
     pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' `
-    red_nt = File::new( '#{cache_dir}webcache/_nt/rdf-#{file}.red.nt', File::CREAT|File::RDWR, 0644 )
+    # puts "Got N-Triples: #{pmsg} "
+    nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.red.nt"
+    red_nt = File::new( nt_cache, File::CREAT|File::RDWR, 0644 )
     red_nt.puts pmsg
     red_nt.close
+    # puts "Scutter: just parsed w/ redland: #{pmsg}"
+    parsed_ok = true if pmsg =~ /\w/
   end
 
 
@@ -123,6 +130,7 @@ def scutter_local (file, base_uri, opts={})
     graph = Loader.ntfile2graph( nt_cache )
     sql_inserts = graph.toSQLInserts ("uri=#{file}")
      # puts "GOT SQL: #{sql_inserts} \n\n====\n\n"
+
     if !sql_inserts.empty?
       puts "updating query server."
       DBI.connect ( dbi_driver, dbi_user, dbi_pass ) do |dbh|
@@ -182,10 +190,12 @@ def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
     data=''
     resp=''
     gzipped=false
+    user_agent = 'RDFWeb-Scutter-200207;http://rdfweb.org/foaf/'
     if proxy
       Net::HTTP::Proxy(proxy_addr, proxy_port).start( $1 ) do |http|
-        resp, data = http.get $2 , {'Accept' => 'application/rdf+xml' } 
-        # puts "Proxied GET."
+        resp, data = http.get $2 , {'Accept' => 'application/rdf+xml', 
+					'User-agent' => user_agent } 
+        # puts "Proxied GET." 
       end
       if resp['Content-encoding'] =~ /gzip/
         gzipped = true 
@@ -193,7 +203,8 @@ def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
 
     else
         # puts "Un-Proxied GET."
-      resp, data = h.get ($2, {'Accept' => 'application/rdf+xml'} )
+      resp, data = h.get ($2, {'Accept' => 'application/rdf+xml', 
+					'User-agent' => user_agent } )
     end
 
     # puts "Response: "+data.to_s
@@ -295,31 +306,35 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
       loaded = scutter_local(fetched, uri, opts )
       puts "load failed " if loaded == nil
 
-      seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil) ).objects
-#     puts "URI: #{uri} SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
-      seeAlso.each do |doc|
-        puts "Scutter: adding to TODO list: #{doc} from URI: #{uri}"
-        if (!done[doc.to_s])
-          todo.push doc.to_s 
-          done[doc.to_s]=1
+      if loaded
+      #puts "SCUTTER: Searching for seeAlsos... loaded='#{loaded.inspect}' "    
+      #     puts "URI: #{uri} SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
+      #TODO: should search for 'uri --seeAlso-> nil'; but doesn't seem to work.
+        seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil)).objects
+        seeAlso.each do |doc|
+          puts "Scutter: adding to TODO list: #{doc} from URI: #{uri}"
+          if (!done[doc.to_s])
+            todo.push doc.to_s 
+            done[doc.to_s]=1
+          end
         end
-      end
 
-      # look for signatures  
-      # puts "WOT: looking for <#{uri}> <#{wot+'assurance'}> <?>"
-      # puts "IN: "+loaded.toNtriples
-      assurances = loaded.ask(Statement.new(uri,wot+'assurance',nil)).objects
-      if !assurances.empty?
-        # puts "WOT assurances: #{assurances.inspect} "
-        mf = File::new("#{cache_dir}webcache/rdf-#{uri_hash}.meta", File::WRONLY|File::APPEND|File::CREAT, 0644)
-        #puts "Re-Opened RDF .meta file to store assurance ptr."
-        assurances.each do |sig|
-          # puts "Scutter: invoking GPG : #{sig} "
-          mf.puts "WOT-Assurance: #{sig.inspect} "
-	  # gpg --quiet --verify sigfile contentfile # do here or elsewhere?
+        # look for signatures  
+        # puts "WOT: looking for <#{uri}> <#{wot+'assurance'}> <?>"
+        # puts "IN: "+loaded.toNtriples
+        assurances = loaded.ask(Statement.new(uri,wot+'assurance',nil)).objects
+        if !assurances.empty?
+          # puts "WOT assurances: #{assurances.inspect} "
+          mf = File::new("#{cache_dir}webcache/rdf-#{uri_hash}.meta", File::WRONLY|File::APPEND|File::CREAT, 0644)
+          #puts "Re-Opened RDF .meta file to store assurance ptr."
+          assurances.each do |sig|
+            # puts "Scutter: invoking GPG : #{sig} "
+            mf.puts "WOT-Assurance: #{sig.inspect} "
+	    # gpg --quiet --verify sigfile contentfile # do here or elsewhere?
+          end
+          mf.close
         end
-        mf.close
       end
-    end
+     end
   end
 end

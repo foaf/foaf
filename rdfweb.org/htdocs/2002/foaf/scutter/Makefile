@@ -15,6 +15,7 @@ destroydata:
 	rm -f webcache/*.rdf
 	rm -f webcache/*.meta
 	rm -f webcache/_nt/*.nt
+	rm -f webcache/_nt/*.rdf
 	
 
 harvest:
