@@ -308,12 +308,13 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void addNodeAtPoint(String id, String typeName, String typeNamespace, NSPoint point)
+    public void addNodeAtPoint(String id, String typeName, String typeNamespace, NSPoint point, boolean isLiteral)
     {
         Node newNode = new Node(rdfModel, id, typeName, typeNamespace, point);
         rdfModel.add(newNode);
         newNode.setShowId(showIds);
         newNode.setShowType(showTypes);
+        newNode.setIsLiteral(isLiteral);
         rdfModel.setCurrentObject(newNode);
     }
     
@@ -366,7 +367,7 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void setIdForNodeAtPoint(String id, NSPoint point)
+    public void setIdForNodeAtPoint(String id, NSPoint point, boolean isLiteral)
     {
         ModelItem item = rdfModel.objectAtPoint(point);
         if ((item !=null) && item.isNode())
@@ -375,7 +376,7 @@ public class RDFAuthorDocument extends NSDocument {
         }
         else
         {
-            addNodeAtPoint(id, null, null, point);
+            addNodeAtPoint(id, null, null, point, isLiteral);
         }
     }
     
@@ -388,7 +389,7 @@ public class RDFAuthorDocument extends NSDocument {
         }
         else
         {
-            addNodeAtPoint(null, namespace, name, point);
+            addNodeAtPoint(null, namespace, name, point, false);  // false - not a literal
         }
     }
     
