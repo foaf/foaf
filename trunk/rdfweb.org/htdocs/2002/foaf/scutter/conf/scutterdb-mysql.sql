@@ -3,29 +3,25 @@ DROP DATABASE rdfweb1;
 CREATE DATABASE rdfweb1;
 use rdfweb1;
 
-CREATE TABLE triples (
-  subject int(10) DEFAULT '0' NOT NULL,
-  predicate int(10) DEFAULT '0' NOT NULL,
-  object int(10) DEFAULT '0' NOT NULL,
-  assertid text,
-  personid text,
-  isresource bool
-);
+# updated version w/ edits from Jim
 
 # note: 'keyhash' was called 'key' in postgres.
 #
+
 CREATE TABLE resources (
-  keyhash int(10) DEFAULT '0' NOT NULL,
-  value text
+  keyhash int(10) PRIMARY KEY NOT NULL default '0',
+  value text not NULL
+);
+CREATE TABLE triples (
+  subject int(10) NOT NULL  default '0',
+  predicate int(10)  NOT NULL  default '0',
+  object int(10)  NOT NULL default '0',
+  assertid text NOT NULL,
+  personid text NOT NULL,
+  isresource tinyint(1) NOT NULL default '0'
 );
 
-# how to recreate these in mysql?
-# 
-
-#CREATE INDEX sub_index ON triples USING btree (subject);
-#CREATE INDEX pred_index ON triples USING btree (predicate);
-#CREATE INDEX obj_index ON triples USING btree (object);
-#CREATE UNIQUE INDEX resources_key_key ON resources USING btree ("key");
-#CREATE INDEX res_key_index ON resources USING btree ("key");
-#CREATE INDEX res_val_index ON resources USING btree (value);
+ALTER TABLE triples ADD KEY (subject);
+ALTER TABLE triples ADD KEY (predicate);
+ALTER TABLE triples ADD KEY (object);
 
