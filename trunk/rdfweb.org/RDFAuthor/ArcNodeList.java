@@ -274,20 +274,6 @@ public class ArcNodeList implements Serializable
         return new ArcNodeListIterator(array, false);
     }
 
-    public void setCurrentObject(ModelItem anObject)
-    {
-        if (anObject != currentObject) // did it really change?
-        {
-            // indicate to old and new current (graphic) objects that something changed
-            if (currentObject != null) currentObject.graphicRep().changed();
-            if (anObject != null) anObject.graphicRep().changed();
-            
-            currentObject = anObject;
-            controller.modelChanged();
-            controller.currentObjectChanged();
-        }
-    }
-    
     public void selectNextObject()
     {
         ModelItem nextItem;
@@ -339,10 +325,6 @@ public class ArcNodeList implements Serializable
     public void itemChanged(ModelItem item)
     {
         controller.modelChanged();
-        if (item == currentObject)
-        {
-            controller.currentObjectChanged(); // for the info wndow
-        }
     }
     
     public void showTypes(boolean value)

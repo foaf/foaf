@@ -38,10 +38,12 @@ public class ArcNodeSelection {
     static final int IsMultiple = 2;
     
     HashSet selection;
+    HashSet nodes; // this is useful since I often want complete graphs
     
     public ArcNodeSelection()
     {
         selection = new HashSet();
+        nodes = new HashSet();
     }
     
     public boolean contains(ModelItem object)
@@ -52,48 +54,63 @@ public class ArcNodeSelection {
     public void add(ModelItem object)
     {
         selection.add(object);
+        object.graphicRep().changed();
+        findNodes();
     }
     
     public void set(ModelItem object)
     {
+        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        {
+            ModelItem objectGone = (ModelItem) iterator.next();
+            objectGone.graphicRep().changed();
+        }
         selection.clear();
-        selection.add(object);
+        if (object != null)
+        {
+            selection.add(object);
+            object.graphicRep().changed();
+        }
+        findNodes();
     }
     
     public void remove(ModelItem object)
     {
         selection.remove(object);
+        object.graphicRep().changed();
+        findNodes();
+    }
+    
+    // Find nodes is very useful - it contains all nodes
+    // necessary for the selection to be a complete subgraph
+    
+    public void findNodes()
+    {
+        nodes.clear();
+        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        {
+            ModelItem object = (ModelItem) iterator.next();
+            if (object.isNode())
+            {
+                nodes.add(object);
+            }
+            else
+            {
+                nodes.add(((Arc) object).fromNode());
+                nodes.add(((Arc) object).toNode());
+            }
+        }
     }
     
     public void moveBy(float dx, float dy)
     {
         // Move all elements by (dx,dy)
+        // Which is equivalent to moving all nodes in 'nodes'
         
-        for (Iterator iterator = selection.iterator(); iterator.hasNext();)
+        for (Iterator iterator = nodes.iterator(); iterator.hasNext();)
         {
-            ModelItem object = (ModelItem) iterator.next();
-            
-            if (object.isNode())
-            {
-                ((Node) object).moveBy(dx, dy);
-            }
-            else
-            {
-                Arc arc = (Arc) object;
-                Node toNode = arc.toNode();
-                Node fromNode = arc.fromNode();
-                
-                // We don't want to move nodes twice, so check to see if is part of the selection
-                if (!selection.contains(toNode))
-                {
-                    toNode.moveBy(dx, dy);
-                }
-                
-                if (!selection.contains(fromNode))
-                {
-                    fromNode.moveBy(dx, dy);
-                }
-            }
+            Node object = (Node) iterator.next();
+            object.moveBy(dx, dy);
         }
     }
 }
