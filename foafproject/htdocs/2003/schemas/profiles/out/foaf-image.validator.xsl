@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://www.ascc.net/xml/schematron" version="1.0" rdf:dummy-for-xmlns="" rdfs:dummy-for-xmlns="" foaf:dummy-for-xmlns="" dc:dummy-for-xmlns="">
+<axsl:stylesheet xmlns:axsl="http://www.w3.org/1999/XSL/Transform" xmlns:sch="http://www.ascc.net/xml/schematron" version="1.0" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:dummy-for-xmlns="" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" rdfs:dummy-for-xmlns="" xmlns:foaf="http://xmlns.com/foaf/0.1/" foaf:dummy-for-xmlns="" xmlns:dc="http://purl.org/dc/elements/1.1/" dc:dummy-for-xmlns="">
 <axsl:output method="html"/>
 <axsl:template mode="schematron-get-full-path" match="*|@*">
 <axsl:apply-templates mode="schematron-get-full-path" select="parent::*"/>
@@ -93,7 +93,7 @@
 <axsl:when test="count(foaf:Image) = count(*)"/>
 <axsl:otherwise>
 <li>
-<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: The only legalchildren of rdf:RDF are foaf:Image elements
+<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: The only legal children of rdf:RDF are foaf:Image elements
          ()
       </a>
 </li>
@@ -116,7 +116,7 @@
 <axsl:when test="dc:creator"/>
 <axsl:otherwise>
 <li>
-<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: Images musthave a creator
+<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: Images must have a creator
          ()
       </a>
 </li>
@@ -208,7 +208,7 @@
 <li>
 <a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">Error: a<axsl:text xml:space="preserve"> </axsl:text>
 <axsl:value-of select="name(.)"/>
-<axsl:text xml:space="preserve"> </axsl:text>element must containonly an rdfs:seeAlso element and a foaf:mbox_sha1sum element
+<axsl:text xml:space="preserve"> </axsl:text>element must contain only an rdfs:seeAlso element and a foaf:mbox_sha1sum element
          ()
       </a>
 </li>
@@ -252,7 +252,7 @@
 <axsl:when test="foaf:mbox or foaf:mbox_sha1sum or foaf:jabberID or foaf:aimChatID or foaf:icqChatID or foaf:yahooChatID or foaf:msnChatID or foaf:homepage or foaf:weblog"/>
 <axsl:otherwise>
 <li>
-<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">You should include atleast one inverse functional property
+<a title="Link to where this pattern was expected" target="out" href="schematron-out.html#{generate-id(.)}">You should include at least one inverse functional property
          ()
       </a>
 </li>
