@@ -1,12 +1,16 @@
 <!-- note: is this mis-specified? perhaps range ought to also be SpatialThing, so we
      can have multiple labels on the same point? -->
 
-<p>The <code>foaf:based_near</code> relationship relates a "spatial thing"
-(anything that can <em>be somewhere</em>) to a point in space, typically
-specified using the geo:lat / geo:long
+<p>The <code>foaf:based_near</code> relationship relates two "spatial 
+things"
+(anything that can <em>be somewhere</em>), the latter typically
+described using the geo:lat / geo:long
 <a href="http://www.w3.org/2003/01/geo/wgs84_84#">geo-positioning vocabulary</a>
 (See <a href="http://esw.w3.org/topic/GeoInfo">GeoInfo</a> in the W3C semweb
-wiki for details).</p>
+wiki for details). This allows us to say describe the typical latitute and 
+longitude of, say, a Person (people are spatial things - they can be 
+places) without implying that a precise location has been given.
+</p>
 
 <p>We do not say much about what 'near' means in this context; it is a
 'rough and ready' concept. For a more precise treatment, see

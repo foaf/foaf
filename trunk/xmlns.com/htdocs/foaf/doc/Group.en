@@ -126,6 +126,7 @@ nest either description inside the other. For (brief) example:
 &lt;foaf:Person rdf:nodeID="libby"&gt;
   &lt;!-- more about libby here --&gt;
 &lt;/foaf:Person&gt;
+</pre>
 </div>
 
 <p>

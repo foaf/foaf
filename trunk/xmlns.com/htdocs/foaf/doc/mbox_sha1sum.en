@@ -21,3 +21,10 @@ href="http://www.w3.org/2001/12/rubyrdf/util/foafwhite/intro.html">FOAF-based wh
 mail filtering.
 </p>
 
+<p>
+Code examples for SHA1 in C#, Java, PHP, Perl and Python can be found <a 
+href="http://www.intertwingly.net/blog/1545.html">in Sam Ruby's 
+weblog entry. Remember to include the 'mailto:' prefix, but no trailing 
+whitespace, when computing a <code>foaf:mbox_sha1sum</code> property.
+</p>
+<!-- what about Javascript. move refs to wiki maybe. -->
