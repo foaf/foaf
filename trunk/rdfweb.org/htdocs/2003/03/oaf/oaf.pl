@@ -28,10 +28,16 @@
 #  - normalise indenting
 #  - if it works, my tests should scrawl into http://rdfweb.org/rweb/wiki/wiki?ScratchPad
 #
-# cvs version: $Id: oaf.pl,v 1.4 2003-03-30 00:24:46 danbri Exp $
+# cvs version: $Id: oaf.pl,v 1.5 2003-03-30 00:27:47 danbri Exp $
 # cvsweb: http://rdfweb.org/viewcvs/viewcvs.cgi/rdfweb.org/htdocs/2003/03/oaf/
 # Recent changes:
 # $Log: not supported by cvs2svn $
+# Revision 1.4  2003/03/30 00:24:46  danbri
+# We now extract userid
+# this isn't the nick, or is it? Confused, I should check the docs.
+# Anyway it gets the bit at the start of userid!~foo@ip.addr.here from the
+# $who variable. Seems OK for now.
+#
 # Revision 1.3  2003/03/29 23:26:42  danbri
 # It basically works. Need to track nick of who made comment.
 #
@@ -262,9 +268,8 @@ sub on_poe_public {
 	my ($self, $event) = @_;
 	my @to=('oaf'); # danbri TODO: this is wrong! FIXME
 
-        my ($nick, $mynick)=('whoever','oafbot');#$listen{'nick'});  # FIXME
         $who =~ s/(.*)!.*/$1/;
-        my $nick = $who;
+        my ($nick, $mynick)=($who,'oafbot'); # FIXME: don't hardcode mynick
         my $arg=$msg;
         print "[oaf] from nick:'$nick'  considering '$arg'\n\n"; 
 	if (($nick eq $owner) && ($arg =~ /^$mynick, leave/i)) {
