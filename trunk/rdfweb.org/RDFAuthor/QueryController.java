@@ -99,6 +99,8 @@ public class QueryController extends NSObject {
             queryDrawer.parentWindow());
         infoTextField.setStringValue("Last query failed.");
         
+        NSApplication.beep(); // Since these can take a while I'll beep
+        
         queryThread = null;
     }
         
@@ -106,12 +108,15 @@ public class QueryController extends NSObject {
     {
         ArrayList rows = queryThread.result();
         
+        NSApplication.beep(); // Since these can take a while I'll beep
+        
         if (rows.isEmpty())
         {
             RDFAuthorUtilities.ShowError(
                 "Nothing Found", "No results found for this query", RDFAuthorUtilities.Informational, 
                 queryDrawer.parentWindow());
             infoTextField.setStringValue("Last query returned nothing.");
+            queryThread = null;
             return;
         }
         
