@@ -3,7 +3,7 @@
 <!-- first we introduce a number of RDF namespaces we will be using -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-14 15:38:57 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-20 19:26:33 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -35,7 +35,6 @@
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Group" vs:term_status="unstable" rdfs:label="Group" rdfs:comment="A class of Agents.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
   </rdfs:Class>
@@ -48,34 +47,27 @@
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
-    <!-- arguably a subclass of Agent; to be discussed -->
+<!-- arguably a subclass of Agent; to be discussed -->
   </rdfs:Class>
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Image" vs:term_status="testing" rdfs:label="Image" rdfs:comment="An image.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineAccount"  vs:term_status="unstable" 
-rdfs:label="Online Account" rdfs:comment="An online account.">
+  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineAccount" vs:term_status="unstable" rdfs:label="Online Account" rdfs:comment="An online account.">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineGamingAccount"  vs:term_status="unstable" rdfs:label="Online Gaming Account" rdfs:comment="An online gaming account.">
+  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineGamingAccount" vs:term_status="unstable" rdfs:label="Online Gaming Account" rdfs:comment="An online gaming account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineEcommerceAccount" vs:term_status="unstable" rdfs:label="Online E-commerce Account" rdfs:comment="An online e-commerce account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineChatAccount" vs:term_status="unstable" rdfs:label="Online Chat Account" rdfs:comment="An online chat account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-
 <!-- FOAF properties (ie. relationships). -->
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox" vs:term_status="testing" rdfs:label="personal mailbox" rdfs:comment="A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
@@ -100,8 +92,8 @@ rdfs:label="Online Account" rdfs:comment="An online account.">
   </rdf:Property>
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sha1" vs:term_status="unstable" rdfs:label="sha1sum (hex)" rdfs:comment="A sha1sum hash, in hex.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
-    <!-- rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty" -->
-    <!-- IFP under discussion -->
+<!-- rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty" -->
+<!-- IFP under discussion -->
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/based_near" vs:term_status="unstable" rdfs:label="based near" rdfs:comment="A location that something is based near, for some broadly human notion of near.">
@@ -322,43 +314,34 @@ rdfs:label="Online Account" rdfs:comment="An online account.">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/topic"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/theme" vs:term_status="unstable" rdfs:label="theme" rdfs:comment="A theme.">
     <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/holdsAccount" vs:term_status="unstable" rdfs:label="holds account" rdfs:comment="Indicates an account held by this agent.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/accountServiceHomepage" vs:term_status="unstable" rdfs:label="account service homepage" rdfs:comment="Indicates a homepage of the service provide for this online account.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/accountName" vs:term_status="unstable" rdfs:label="account name" rdfs:comment="Indicates the name (identifier) associated with this online account.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/member" vs:term_status="unstable" rdfs:label="member" rdfs:comment="Indicates a member of a Group">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
-  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/membershipClass"  vs:term_status="unstable" 
-rdfs:label="membershipClass" rdfs:comment="Indicates the class of individuals that are a member of a Group">
+  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/membershipClass" vs:term_status="unstable" rdfs:label="membershipClass" rdfs:comment="Indicates the class of individuals that are a member of a Group">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
-
 </rdf:RDF>
