@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.27 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.28 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -537,6 +537,9 @@ public class RDFModelView extends NSView {
         
         NSPoint point = convertPointFromView(sender.draggingLocation(), null);
         
+        // This is useful for some cases to determine whether a new node is needed
+        ModelItem item = objectAtPoint(point);
+        
         // check type to make sure it conforms with type you registered
         String type = pboard.availableTypeFromArray((NSArray) dragTypesArray);
         
@@ -551,8 +554,15 @@ public class RDFModelView extends NSView {
 
             String id = (String) URLs.objectAtIndex(0);
             
-            // false - if new node don't want a literal
-            rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), false); 
+            if (item == null) // didn't drag onto an object, so make a new one
+            {
+                // false - if new node don't want a literal
+                rdfAuthorDocument.addNodeAtPoint(id, null, null, point, false);
+            }
+            else
+            {
+                rdfAuthorDocument.setIdForNode(id, item);
+            }
         }
         else if (type.equals(NSPasteboard.StringPboardType)) {
             
@@ -563,15 +573,22 @@ public class RDFModelView extends NSView {
             
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
-            if (RDFAuthorUtilities.isValidURI(id))
+            if (item == null) // didn't drag onto an object, so make a new one
             {
-                // false - if new node don't want literal
-                rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), false);
+                if (RDFAuthorUtilities.isValidURI(id))
+                {
+                    // false - if new node don't want literal
+                    rdfAuthorDocument.addNodeAtPoint(id, null, null, point, false);
+                }
+                else
+                {
+                    // true - if new node want literal
+                    rdfAuthorDocument.addNodeAtPoint(id, null, null, point, true);
+                }
             }
-            else
+            else // try setting id for object
             {
-                // true - if new node want literal
-                rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), true);
+                rdfAuthorDocument.setIdForNode(id, item);
             }
         }
         else if (type.equals(SchemaData.ClassPboardType))
@@ -581,7 +598,14 @@ public class RDFModelView extends NSView {
             String name = (String) info.objectForKey("Name");
             String namespace = (String) info.objectForKey("Namespace");
             
-            rdfAuthorDocument.setTypeForNode(namespace, name, objectAtPoint(point));
+            if (item == null) // dragging onto nothing - create new node
+            {
+                rdfAuthorDocument.addNodeAtPoint(null, namespace, name, point, false);
+            }
+            else // try to set type for item
+            {
+                rdfAuthorDocument.setTypeForNode(namespace, name, item);
+            }
         }
         else if (type.equals(SchemaData.PropertyPboardType))
         {

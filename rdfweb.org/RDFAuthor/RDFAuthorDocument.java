@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.36 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.37 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -343,6 +343,7 @@ public class RDFAuthorDocument extends NSDocument {
             {
                 bookmarkController.setItems(bookmarkedItems);
             }
+            rdfToolbar.syncButtonState();
         }
 
         return success;
@@ -557,7 +558,8 @@ public class RDFAuthorDocument extends NSDocument {
     }
         
     
-    public void addNodeAtPoint(String id, String typeNamespace, String typeName, NSPoint point, boolean isLiteral)
+    public void addNodeAtPoint(String id, String typeNamespace, String typeName,
+                                NSPoint point, boolean isLiteral)
     {
         // Do the 'defaults' thing
         
@@ -692,7 +694,7 @@ public class RDFAuthorDocument extends NSDocument {
                 new NSNotification(InfoController.itemChangedNotification, this) );
     }
 
-    public void setIdForNode(String id, ModelItem item, boolean isLiteral)
+    public void setIdForNode(String id, ModelItem item)
     {
         if (item.isNode())
         {

@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.28 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: Node.java,v 1.29 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -229,12 +229,12 @@ public class Node implements Serializable, ModelItem
     {
         if (!literal && (typeNamespace != null))
         {
-            if (type().indexOf(text) > -1) return true;
+            if (type().toLowerCase().indexOf(text) > -1) return true;
         }
         
         if (id != null)
         {
-            return (id().indexOf(text) > -1);
+            return (id().toLowerCase().indexOf(text) > -1);
         }
         
         return false;

@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Arc.class */
 /* Originally compiled from Arc.java */
 
-/* $Id: Arc.java,v 1.19 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: Arc.java,v 1.20 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -159,7 +159,7 @@ public class Arc implements Serializable, ModelItem
     {
         if (propertyNamespace != null)
         {
-            return (property().indexOf(text) > -1);
+            return (property().toLowerCase().indexOf(text) > -1);
         }
         
         return false;

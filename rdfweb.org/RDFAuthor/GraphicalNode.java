@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalNode.java,v 1.8 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: GraphicalNode.java,v 1.9 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -102,22 +102,19 @@ public class GraphicalNode implements GraphicalObject
 
     public void drawMe(NSColor myColor, NSRect rect)
     {
-        if (bounds.intersectsRect(rect)) // do I need to be drawn?
-        {
-            myColor.set();
+        myColor.set();
             
-            if (node.isLiteral())
-            {
-                NSBezierPath.fillRect(bounds);
-            }
-            else
-            {
-                NSBezierPath.bezierPathWithOvalInRect(bounds).fill();
-            }
-            if (displayString != null)
-            {
+        if (node.isLiteral())
+        {
+            NSBezierPath.fillRect(bounds);
+        }
+        else
+        {
+            NSBezierPath.bezierPathWithOvalInRect(bounds).fill();
+        }
+        if (displayString != null)
+        {
                 NSGraphics.drawAttributedString(displayString, bounds);
-            }
         }
     }
 

@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalArc.java,v 1.8 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: GraphicalArc.java,v 1.9 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -121,17 +121,14 @@ public class GraphicalArc implements GraphicalObject
 
     public void drawMe(NSColor myColor, NSRect rect)
     {
-        if (bounds.intersectsRect(rect))
+        myColor.set();
+        
+        arrowToDraw.fill();
+        arrowToDraw.stroke();
+        
+        if (displayString != null)
         {
-            myColor.set();
-            
-            arrowToDraw.fill();
-            arrowToDraw.stroke();
-            
-            if (displayString != null)
-            {
-                NSGraphics.drawAttributedString(displayString, handleRect);
-            }
+            NSGraphics.drawAttributedString(displayString, handleRect);
         }
     }
     

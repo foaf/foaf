@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.34 2002-04-10 15:22:20 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.35 2002-05-09 19:36:28 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -298,6 +298,8 @@ public class ArcNodeList implements Serializable
     public void setSelectionFromText(String text)
     {
         ArrayList hits = new ArrayList();
+        
+        text = text.toLowerCase();
         
         for (ListIterator iterator = array.listIterator(); iterator.hasNext();)
         {
