@@ -2,6 +2,8 @@ package org.rdfweb.foafcon;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
@@ -107,27 +109,26 @@ public class Util
       }
   }
   
-  public static InetAddress getAddress()
-    throws Exception
+  public static List tokenise(StreamTokenizer in)
   {
+    ArrayList toReturn = new ArrayList();
 
-    InetAddress yourIP=InetAddress.getLocalHost();
-    
-    InetAddress[] allHostInfo = InetAddress.getAllByName(yourIP.getHostName());
-
-    for (int i=0; i<allHostInfo.length; i++)
+    for (int i = in.nextToken();
+	 (i != StreamTokenizer.TT_EOL) &&
+	   (i != StreamTokenizer.TT_EOF);
+	 i = in.nextToken())
       {
-	System.out.println(allHostInfo[i]);
-	
-	if (!allHostInfo[i].getHostAddress().equals("127.0.0.1"))
-	  return allHostInfo[i];
-	
-	
+	if ((i == StreamTokenizer.TT_WORD) ||
+	    (i == '\"') ||
+	    (i == '\''))
+	  toReturn.add(in.sval);
+	else if (i == StreamTokenizer.TT_NUMBER)
+	  toReturn.add(new Double(in.nval));
+	else
+	  System.err.println("Unknown token?");
       }
 
-    throw new Exception("Can't get a non-loopback address");
-    
+    return toReturn;
   }
-  
-  
+    
 }

@@ -111,11 +111,31 @@ public class People
   {
     try
       {
-	return ((Boolean) online.get(index)).equals(Boolean.TRUE);
+	return ((Boolean) online.get(index)).booleanValue();
       }
     catch (Exception e)
       {
 	return false;
+      }
+  }
+
+  public void find(String match)
+  {
+    System.out.println("\tName\t\tHomepage\t\tInterest");
+    
+    for (int i = 0; i < people.size(); i++)
+      {
+	Person checkee = (Person) people.get(i);
+
+	if (((Boolean) online.get(i)).booleanValue() &&
+	    checkee.matches(match))
+	  {
+	    System.out.print("[" + i + "]\t");
+
+	    checkee.printLineSummary(System.out);
+	
+	    System.out.print("\n");
+	  }
       }
   }
   

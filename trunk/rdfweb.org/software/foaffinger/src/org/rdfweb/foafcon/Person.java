@@ -3,6 +3,7 @@ package org.rdfweb.foafcon;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.io.PrintStream;
 
 public class Person
 {
@@ -272,8 +273,6 @@ public class Person
     return toReturn;
   }
 
-  
-  
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Person))
@@ -282,5 +281,34 @@ public class Person
     return mboxHash.equals(((Person) obj).getMboxHash());
   }
 
+  public boolean matches(String match)
+  {
+    if ((name != null) && (name.indexOf(match) != -1))
+      return true;
+
+    if ((homepage != null) && (homepage.indexOf(match) != -1))
+      return true;
+
+    if ((interest != null) && (interest.indexOf(match) != -1))
+      return true;
+
+    return false;
+  }
+
+  public void printLineSummary(PrintStream out)
+  {
+    out.print(name + "\t");
+
+    if (homepage != null)
+      out.print(homepage + "\t");
+    else
+      out.print("---\t\t");
+    
+    if (interest != null)
+      out.print(interest);
+    else
+      out.print("---");
+  }
+  
 }
 

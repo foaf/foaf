@@ -39,6 +39,18 @@ public class CommandLine
 
 	    // This lets URIs work
 	    inputTokeniser.wordChars(35, 126);
+
+	    List tokens = Util.tokenise(inputTokeniser);
+
+	    for (Iterator it = tokens.iterator(); it.hasNext();)
+	      {
+		Object obj = it.next();
+
+		System.out.println(obj.getClass() +
+				   ":\t" +
+				   obj);
+	      }
+	    
 	    
 	    int returned = inputTokeniser.nextToken();
 
@@ -100,32 +112,7 @@ public class CommandLine
 	
 	System.out.print("[" + n + "]\t");
 
-	String name =
-	  p.getName();
-	
-	String homepage =
-	  p.getHomepage();
-	
-	String interest =
-	  p.getInterest();
-	
-	String seeAlso =
-	  p.getSeeAlso();
-
-	System.out.
-	  print(name + "\t");
-
-	if (homepage != null)
-	  System.out.
-	    print(homepage + "\t");
-	else
-	  System.out.print("---\t\t");
-
-	if (interest != null)
-	  System.out.
-	    print(interest);
-	else
-	  System.out.print("---");
+	p.printLineSummary(System.out);
 	
 	System.out.print("\n");
       }	
