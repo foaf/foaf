@@ -42,7 +42,8 @@ can do several things.
 <p>
 They can use more precise relationships than <code>foaf:knows</code> to relate people to 
 people. The original FOAF design included two of these ('knowsWell','friend') which we 
-removed because they were too <em>awkward</em> to actually use. Other extensions have 
+removed because they were somewhat <em>awkward</em> to actually use, bringing an 
+inappopriate air of precision to an intrinsically vague concept. Other extensions have 
 been proposed, including Eric Vitiello's <a 
 href="http://www.perceive.net/schemas/20021119/relationship/">Relationship module</a> for 
 FOAF.
