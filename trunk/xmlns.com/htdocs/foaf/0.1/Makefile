@@ -5,7 +5,7 @@ GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 # todo: vocabtable.rb is kinda primitive, and expects different input
 # to the way we invoke it in this Makefile.
 
-all: clean index.html 
+all: clean colour.html index.html
 clean: tidyup 
 
 tidyup:
@@ -54,6 +54,7 @@ htaccess:
 	ruby ../../2003/apacheconf.rb > .htaccess
 
 colour.html:
+	rm -f colour.html
 	xsltproc colour-xml-serializer.xsl index.rdf > colour.html
 
 
