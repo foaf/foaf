@@ -1,0 +1,26 @@
+<%
+Response.ContentType="text/xml"
+RS = Server.CreateObject("ADODB.Recordset")
+sha1=Request.QueryString('sha1')+''
+pred=Request.QueryString('pred')+''
+
+
+ output=[]
+ output.push('<rdf:RDF xmlns:img="http://jibbering.com/2002/3/svg/#" xmlns:jim="http://jibbering.com/foaf/jim.rdf#" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:an="http://rdf.desire.org/vocab/recommend.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:LOCAL="'+pred+'">\n<foaf:Person><foaf:mbox_sha1sum>'+sha1+'</foaf:mbox_sha1sum>')
+
+ sqlstr='SELECT distinct b.pred,b.obj FROM rdf3 b, rdf3 a WHERE b.pred like "'+pred+'%" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'"'
+
+ RS.Open(sqlstr,"rdf")
+	if (!RS.EOF) {
+  Arr=RS.getRows().toArray()
+  FAl=Arr.length/2
+ 	for (i=0;i<FAl;i++) {
+   p=Arr[0].replace(pred,'')
+   output.push('<LOCAL:'+p+'>'+Arr[1]+'</LOCAL:'+p+'>\n')
+   Arr.splice(0,2)
+ 	}
+	}
+
+output.push('</foaf:Person></rdf:RDF>')
+Response.Write(output.join('\n'))
+%>
