@@ -1,9 +1,16 @@
 package org.rdfweb.foafcon;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
-public class CommandLine
+public class CommandLine implements UI
 {
   FoafFingerController controller;
   List messageQueue;
@@ -355,7 +362,7 @@ public class CommandLine
       return toReturn;
   }
 
-  public synchronized void addMessage(String message)
+  public synchronized void addMessage(Message message)
   {
     messageQueue.add(message);
   }
@@ -364,10 +371,10 @@ public class CommandLine
   {
     if (showMessages)
       {
-	for (Iterator i = messageQueue.iterator();i.hasNext();)
-	  {
-	    System.out.println((String) i.next());
-	  }
+        for (Iterator i = messageQueue.iterator();i.hasNext();)
+            {
+            		System.out.println(((Message) i.next()).getMessage());
+            }
       }
     
     messageQueue.clear();
