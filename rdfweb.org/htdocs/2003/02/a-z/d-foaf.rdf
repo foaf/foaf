@@ -1,0 +1,18 @@
+<rdf:RDF
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  <foaf:Person>
+    <foaf:name>Donnie Dinko</foaf:name>
+    <foaf:mbox rdf:resource="mailto:dd@foaf.example.org"/>
+    <foaf:homepage rdf:resource="http://www.example.org/foaf/people/donnie/"/>
+    <foaf:schoolHomepage rdf:resource="http://foafhigh.example.org/" />
+    <foaf:knows>
+      <foaf:Person>
+        <foaf:homepage rdf:resource="http://www.example.org/foaf/people/betrand/" />
+        <foaf:mbox_sha1sum>ec68415eab32042abcae975198c23d747592f27a</foaf:mbox_sha1sum>
+	<rdfs:seeAlso rdf:resource="b-foaf.rdf" />
+      </foaf:Person>
+    </foaf:knows>
+  </foaf:Person>
+</rdf:RDF>
