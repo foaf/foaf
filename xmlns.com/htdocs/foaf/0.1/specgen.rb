@@ -129,8 +129,9 @@ list.each do |t|
   doc += rdfsInfo(term) if category=='Property'
   doc += "</table>\n"
   doc += htmlDocInfo(t)
-  doc += "<p>[<a style=\"float: right; font-size: small;\" href=\"#glance\">back to top</a>]</p>\n"
-  doc += "</div>\n\n"
+  doc += "<p style=\"float: right; font-size: small;\">[<a href=\"#glance\">back to top</a>]</p>\n\n"
+
+  doc += "\n<br/>\n</div>\n\n"
 end
 return doc
 end
@@ -171,8 +172,7 @@ end
 
 ### OK a basic a-z table of contents
 
-azlist = "<h4>Classes and Properties (A-Z index)</h4>"
-azlist += "<div style=\"padding: 5px; border: dotted; background-color: #ddd;\">\n"
+azlist = "<div style=\"padding: 5px; border: dotted; background-color: #ddd;\">\n"
 azlist += "\n<p>Classes: |"
 clist.sort.each do |t| 
   t.gsub!(FOAF,'') 

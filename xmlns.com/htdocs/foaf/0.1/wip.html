@@ -134,6 +134,12 @@ accompanying documentation and does not extend to FOAF data formats, vocabulary 
 technology.
 </p>
 
+ <div><a href="http://validator.w3.org/check/referer"><img
+          src="http://www.w3.org/Icons/valid-xhtml10" style="float: right;"
+          alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+ </div>
+<p style="clear: left;"><br /><!-- not sure why i need this whitespace --></p>
+
 <!-- 
 Commented out so we can XHTML validate. Very unfortunate way of doing things... 
 
@@ -208,9 +214,7 @@ regarding future updates.
 </ul>
 
 <pre>
-
 FOAF Syntax
-
 FOAF Vocabulary
 - Classes
 - Properties
@@ -224,39 +228,16 @@ FOAF Vocabulary
  - Wordnet
  - RSS 1.0
  - Other extensions
-
 FOAF Implementations
 - authoring / editing tools
 - aggregators / harvesters
-
 Security considerations
-
 Privacy considerations
-
 FOAF Process and Vocabulary evolution
-
 FOAF Vocabulary cross-reference
-
 Appendix A: RDFS/OWL formal specification
 </pre>
 
-
-
-<ul class="toc">
-<li>1. <a href="#sec-intro">Introduction</a>
-  <ul class="toc">
-  <li>1.1 <a href="#subsec-a">@@@UPDATE ME</a></li>
-  <li>1.2 <a href="#subsec-b">b</a></li>
-  </ul>
-</li>
-<li>2. <a href="#sec-c">Term Reference</a>
-  <ul class="toc">
-  <li>2.1 <a href="#sec-root">...</a></li>
-  <li>2.2 <a href="#sec-header">...</a></li> 
-  </ul>
-</li>
-<li>Appendix A. <a href="apd-schema.html">RDFS/OWL Specifications</a></li>
-</ul>
 
 
 <div id="glance"/>
@@ -326,6 +307,10 @@ are used mainly to indicate the appropriate use for the various properties.
 <li><a href="#term_Document">Document</a></li>
 <li><a href="#term_Image">Image</a></li>
 <li><a href="#term_Organization">Organization</a></li>
+<li><a href="#term_OnlineAccount">OnlineAccount</a></li>
+<li><a href="#term_OnlineChatAccount">OnlineChatAccount</a></li>
+<li><a href="#term_OnlineEcommerceAccount">OnlineEcommerceAccount</a></li>
+<li><a href="#term_OnlineGamingAccount">OnlineGamingAccount</a></li>
 </ul>
 </div>
 
@@ -364,7 +349,7 @@ are used mainly to indicate the appropriate use for the various properties.
 </div>
 </div>
 
-<div style="clear: left" ></div>
+<div style="clear: left;"></div>
 
 
 <!-- ================================================================== --> 
@@ -403,14 +388,37 @@ documents to create a unified database of information.
 Here is a very basic document describing a person:
 </p>
 
-<div>
-<code>
+<div class="example">
+<pre>
 &lt;foaf:Person&gt;
   &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
+  &lt;foaf:mbox_sha1sum&gt;241021fb0e6289f92815fc210f9e9137262c252e&lt;/foaf:mbox_sha1sum&gt;
   &lt;foaf:homepage rdf:resource="http://rdfweb.org/people/danbri/" /&gt;
+  &lt;foaf:img rdf:resource="http://rdfweb.org/people/danbri/mugshot/danbri-small.jpeg" /&gt;
 &lt;/foaf:Person&gt;
-</code>
+</pre>
 </div>
+
+<p>
+This brief example introduces the basics of FOAF. It basically says, "there is a 
+<a href="#term_Person">foaf:Person</a> 
+with a <a href="#term_name">foaf:name</a> property of 'Dan Brickley' and a 
+<a href="#term_mbox_sha1sum">foaf:mbox_sha1sum</a> property of 
+241021fb0e6289f92815fc210f9e9137262c252e; this person stands in a <a 
+href="#term_homepage">foaf:homepage</a> 
+relationship to a thing called http://rdfweb.org/people/danbri/ and a <a 
+href="#term_img">foaf:img</a>  
+relationship to a thing called http://rdfweb.org/people/danbri/mugshot/danbri-small.jpeg. 
+</p>
+
+<p>
+The remainder of this specification describes how to publish and interpret descriptions 
+such as these on the Web, using RDF/XML for syntax (file format) and terms from FOAF. It 
+introduces a number of categories (RDF classes such as 'Person') and properties 
+(relationship and attribute types such as 'mbox' or 'workplaceHomepage'). Each term 
+definition is provided in both human and machine-readable form, hyperlinked for quick 
+reference.
+</p>
 
 <h2>Background</h2>
 <p>
@@ -501,87 +509,17 @@ stabilise in usage and documentation, they progress through the categories
 '<strong>unstable</strong>', '<strong>testing</strong>' and '<strong>stable</strong>'.
 </p>
 
-<h3>Vocabulary Status</h3>
 
-<h4>stable terms</h4>
-
-<p>At the present time ($Date: 2003-07-26 22:58:06 $), the following FOAF terms are
-considered <strong>stable</strong>.  This means that their names and definitions (in prose
-and in machine form) are unlikely to change dramatically. Clarifications and refinements
-may be made, but major changes are not expected. </p> 
-
-<p><strong>NOTE</strong>: @@TODO this part of the spec should be auto-generated from 
-schema</p>
-
-<ul>
- <li>foaf:Person</li>
- <li>foaf:Document</li>
- <li>foaf:Image</li>
- <li>foaf:name</li>
- <li>foaf:mbox</li>
- <li>foaf:mbox_sha1sum</li>
- <li>foaf:homepage</li>
- <li>foaf:weblog</li>
- <li>foaf:depiction</li>
- <li>foaf:depicts</li>
- <li>foaf:img</li>
- <li>foaf:knows</li>
- <li>foaf:nick</li>
- <li>foaf:topic</li>
- <li>foaf:page</li>
- <li>foaf:workplaceHomepage</li>
- <li>foaf:workInfoHomepage</li>
- <li>foaf:phone</li>
-</ul>
-
-<h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 22:58:06 $), the following FOAF terms are considered 
-<strong>unstable</strong>. 
-This means that their names and definitions (in prose and in machine form) could still change 
-dramatically. Clarifications and refinements still need to be made, and major changes are quite 
-possible.
-</p>
-<ul>
- <li>foaf:firstName</li>
- <li>foaf:surname</li>
- <li>foaf:family_name</li>
- <li>foaf:sha1</li>
-  <!-- given -->
-</ul>
- 
-<h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 22:58:06 $), the following FOAF terms are considered 
-to be of '<strong>testing</strong>' status. 
-This means that their names and definitions (in prose and in machine form) could still change, 
-although dramatic changes are (we hope) unlikely.
-Clarifications and refinements are still being made, and major changes in the light of deployment 
-testing and user feedback are still possible.
-</p>
-<ul>
-<li><em>all remaining FOAF terms except those listed above as 'stable' or 'unstable'</em></li>
-</ul>
-
-    <p>The original (if incomplete) <a href="http://rdfweb.org/2000/08/why/">general
-overview</a> provides some background goals for the RDFWeb system. 
-Note that the various RDFWeb tools can make use of a number of
-RDF vocabularies. The properties and types defined here provide some basic
-useful concepts for use in RDFWeb. Other vocabulary (eg. the <a 
+The properties and types defined here provide some basic
+useful concepts for use in FOAF descriptions. Other vocabulary (eg. the <a 
 href="http://dublincore.org/">Dublin Core</a> metadata elements for simple
-bibliographic description) can also be mixed in with FOAF terms, as can local extensions.
-FOAF is designed to be extended.
-</p>
-    <p>FOAF is expressed as an RDF Schema, annotated with <a href="http://www.daml.org/">DAML</a> 
-to express
-the fact that a foaf:mbox uniquely picks out an individual.
-FOAF:mbox is an <a 
-href="http://www.daml.org/2001/03/reference.html#UnambigousProperty-def">UnambiguousProperty</a>,
-in the DAML+OIL sense. Furthermore it is a 'static unambiguous property', in that it picks out at 
-most a 
-single individual, across time and change.
-
+bibliographic description), RSS 1.0 etc can also be mixed in with FOAF terms, as can local 
+extensions. FOAF is designed to be extended. The <a 
+href="http://rdfweb.org/topic/FoafVocab">FoafVocab</a> page in the FOAF wiki lists a 
+number of extension vocabularies that are particularly applicable to use with FOAF.
 </p>
 
-<h3>Publishing and Linking FOAF documents</h3>
+<h2>FOAF Auto-Discovery: Publishing and Linking FOAF files</h2>
 
 <p>If you publish a FOAF self-description (eg. using 
 <a href="http://www.ldodds.com/foaf/foaf-a-matic.html">foaf-a-matic</a>)  
@@ -590,26 +528,28 @@ the <code>head</code> of your HTML homepage. It doesn't really matter
 what filename you choose for your FOAF document, although 
 <code>foaf.rdf</code> is a common choice. The linking markup is as 
 follows:</p>
-<pre>
-<code>
 
+<div>
+<code class="example">
 &lt;link rel="meta" type="application/rdf+xml" title="FOAF" 
 	href="<em>http://example.com/people/~you/foaf.rdf</em>" /&gt;
 </code>
-</pre>
+</div>
 <p>...although of course change the <em>URL</em> to point to your 
 own FOAF document. See also: more on <a 
-href="http://www.tecknik.net/autofoaf/">FOAF autodiscovery</a>.
+href="http://rdfweb.org/mt/foaflog/archives/000041.html">FOAF autodiscovery</a> and 
+services that make use of it.
 </p>
 
 
 
-    <h2>Appendix A: Listing FOAF Classes and Properties</h2>
+<h2>Appendix A: Listing FOAF Classes and Properties</h2>
 
-    <p>
+<p>
 FOAF introduces the following classes and properties.  View this document's source markup to see 
 the RDF/XML version. 
 </p>
+
 <p>
 See also: <a href="http://xmlns.com/foaf/foafsig">rdf schema signature</a> and <a 
 href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a> (@@TODO).
