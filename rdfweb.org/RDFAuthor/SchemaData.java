@@ -29,7 +29,7 @@ public class SchemaData {
         propertiesList = new SchemaItem( "Connection Properties", null, null, null, null);
     }
 
-    public void importSchema(String url, NSOutlineView outlineView)
+    public void importSchema(String url, NSOutlineView outlineView, NSPanel panel)  // need panel for errors
     {
         try
         {
@@ -41,10 +41,9 @@ public class SchemaData {
             if (memModel.size() == 0)
             {
                 System.out.println("Oh dear - nothing read");
-                NSAlertPanel alert = new NSAlertPanel();
-                alert.runAlert("Nothing Imported",
+                RDFAuthorUtilities.ShowError("Nothing Imported",
                     "No classes or properties were found. Are you sure this is a schema?",
-                    null, null, null);
+                    RDFAuthorUtilities.Normal, (NSWindow) panel);
                 return;
             }
         
@@ -96,10 +95,10 @@ public class SchemaData {
         catch (RDFException exception)
         {
             System.err.println("Import failed: " + exception);
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runAlert("Import Failed",
+            RDFAuthorUtilities.ShowError(
+                "Import Failed",
                 "Try checking the URL. You are online, aren't you?",
-                null, null, null);
+                RDFAuthorUtilities.Normal, (NSWindow) panel);
         }
     }
     

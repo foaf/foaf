@@ -110,19 +110,19 @@ public class ErrorWindowController extends NSObject {
         
         if (newData.hasErrors())
         {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runCriticalAlert("This Model Contains " + newData.numberOfErrors() + " Errors",
+            RDFAuthorUtilities.ShowError(
+                "This Model Contains " + newData.numberOfErrors() + " Errors",
                 "Double-click on error entries to display information on the problematic parts of the model." +
                 "\nErrors: " + newData.numberOfErrors() + "\nWarnings: " + newData.numberOfWarnings(),
-                null, null, null);
+                RDFAuthorUtilities.Critical, (NSWindow) errorWindow);
                 errorWindow.orderFront(this);
         }
         else
         {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runInformationalAlert("This Model Has No Errors",
+            RDFAuthorUtilities.ShowError(
+                "This Model Has No Errors",
                 "Errors: " + newData.numberOfErrors() + "\nWarnings: " + newData.numberOfWarnings(),
-                null, null, null);
+                RDFAuthorUtilities.Informational, (NSWindow) errorWindow);
             if (newData.hasWarnings())
             {
                 errorWindow.orderFront(this);

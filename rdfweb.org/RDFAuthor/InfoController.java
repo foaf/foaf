@@ -258,10 +258,10 @@ public class InfoController extends NSObject {
         }
         catch (MalformedURLException error)
         {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runAlert("Not a URL: ",
+            RDFAuthorUtilities.ShowError(
+                "Not a URL: ",
                 error + "\nThis field requires either a URL or an empty value.",
-                null, null, null);
+                RDFAuthorUtilities.Normal, (NSWindow) infoWindow);
             setCurrentItem(currentItem); // sneaky way to revert to previous
             return false;
         }

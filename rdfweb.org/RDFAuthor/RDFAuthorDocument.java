@@ -96,10 +96,10 @@ public class RDFAuthorDocument extends NSDocument {
             
             if (rdfData == null)
             {
-                NSAlertPanel alert = new NSAlertPanel();
-                alert.runCriticalAlert("RDF Export Failed",
+                RDFAuthorUtilities.ShowError(
+                    "RDF Export Failed",
                     "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
-                    null, null, null);
+                    RDFAuthorUtilities.Critical, window);
                 return null;
             }
             else
@@ -134,11 +134,11 @@ public class RDFAuthorDocument extends NSDocument {
                 String formatVersion = (String) s.readObject();
                 if (!formatVersion.equals(FileFormatVersion))
                 {
-                    NSAlertPanel alert = new NSAlertPanel();
-                    alert.runAlert("Incompatible File Format",
+                    RDFAuthorUtilities.ShowError(
+                        "Incompatible File Format",
                         "This version requires " + FileFormatVersion + ", but this file is in " + formatVersion
                         + ".\nBlame the author." ,
-                        null, null, null);
+                        RDFAuthorUtilities.Critical, null);
                     success = false;
                 }
                 else
@@ -155,8 +155,10 @@ public class RDFAuthorDocument extends NSDocument {
             }
             catch (Exception e)
             {
-                System.out.println("Input died with: " +e);
-                e.printStackTrace(System.out);
+                RDFAuthorUtilities.ShowError(
+                    "File Loading Failed", 
+                    "Loading failed. Is this really an RDFAuthor file?\nError:\n"+e,
+                    RDFAuthorUtilities.Critical, null);
                 success = false;
             }
         }
@@ -245,11 +247,11 @@ public class RDFAuthorDocument extends NSDocument {
         String rdfData = rdfModel.exportAsRDF(type);
         if (rdfData == null)
         {
-            NSAlertPanel alert = new NSAlertPanel();
-            alert.runCriticalAlert("Serialisation Failed",
+            RDFAuthorUtilities.ShowError(
+                "Serialisation Failed",
                 "I couldn't convert this to '" + type + 
                 "'. Try using 'Check Model' for possible problems.\n(Note: N3 Doesn't work currently)",
-                null, null, null);
+                RDFAuthorUtilities.Critical, window);
             previewTextView.setString("");
             return false;
         }
@@ -386,6 +388,7 @@ public class RDFAuthorDocument extends NSDocument {
         if (item != null)
         {
             rdfModel.deleteObject(item);
+            queryController.checkForDeletedItems(rdfModel);
         }
     }
     
@@ -394,6 +397,7 @@ public class RDFAuthorDocument extends NSDocument {
         if (rdfModel.currentObject() != null)
         {
             rdfModel.deleteObject(rdfModel.currentObject());
+            queryController.checkForDeletedItems(rdfModel);
         }
     }
     
@@ -549,10 +553,6 @@ public class RDFAuthorDocument extends NSDocument {
             defaultClassNamespace = null;
             defaultClassName = null;
         }
-        
-        System.out.println("We now have:");
-        System.out.println("Property: " + defaultPropertyNamespace + " " + defaultPropertyName);
-        System.out.println("Class: " + defaultClassNamespace + " " + defaultClassName);
     }
     
 }

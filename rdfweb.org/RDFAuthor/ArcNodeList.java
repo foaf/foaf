@@ -6,6 +6,7 @@ import com.apple.cocoa.application.*;
 
 import java.util.ListIterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.AbstractList;
 import java.io.StringWriter;
 import java.io.*;
@@ -79,11 +80,26 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         array.remove(anObject);
     }
     
+    public boolean contains(ModelItem anObject)
+    {
+        return array.contains(anObject);
+    }
+    
     public ListIterator getObjects()
     {
         return array.listIterator();
     }
     
+    public ArcNodeListIterator getNodes()
+    {
+        return new ArcNodeListIterator(array, true);
+    }
+        
+    public ArcNodeListIterator getArcs()
+    {
+        return new ArcNodeListIterator(array, false);
+    }
+        
     public void drawModel()
     {
         for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
@@ -227,55 +243,48 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         try {
             // Create each node
             
-            for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
+            for (Iterator enumerator = this.getNodes(); enumerator.hasNext(); )
             {
-                ModelItem item = (ModelItem) enumerator.next();
-                if (item.isNode())
-                {
-                    Node node = (Node) item;
+                Node node = (Node) enumerator.next();
                     
-                    if (node.isLiteral())
+                if (node.isLiteral())
+                {
+                    String id = (node.id() == null)?"":node.id();
+                    node.setJenaNode(memModel.createLiteral(id));
+                }
+                else
+                {
+                    if ((node.id() == null) && (node.typeNamespace() == null))
                     {
-                        String id = (node.id() == null)?"":node.id();
-                        node.setJenaNode(memModel.createLiteral(id));
+                        node.setJenaNode( memModel.createResource() );
+                    }
+                    else if (node.typeNamespace() == null)
+                    {
+                        node.setJenaNode(memModel.createResource( node.id() ));
+                    }
+                    else if (node.id() == null)
+                    {
+                        Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
+                        node.setJenaNode( memModel.createResource( type ) );
                     }
                     else
                     {
-                        if ((node.id() == null) && (node.typeNamespace() == null))
-                        {
-                            node.setJenaNode( memModel.createResource() );
-                        }
-                        else if (node.typeNamespace() == null)
-                        {
-                            node.setJenaNode(memModel.createResource( node.id() ));
-                        }
-                        else if (node.id() == null)
-                        {
-                            Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                            node.setJenaNode( memModel.createResource( type ) );
-                        }
-                        else
-                        {
-                            Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                            node.setJenaNode( memModel.createResource( node.id(), type ) );
-                        }
+                        Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
+                        node.setJenaNode( memModel.createResource( node.id(), type ) );
                     }
                 }
             }
             
             // Create arcs
             
-            for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
+            for (Iterator enumerator = this.getArcs(); enumerator.hasNext(); )
             {
-                ModelItem item = (ModelItem) enumerator.next();
-                if (!item.isNode())
-                {
-                    Arc arc = (Arc) item;
-                    Property property = memModel.createProperty( arc.propertyNamespace() +
-                            arc.propertyName() );
-                    memModel.add((Resource) arc.fromNode().jenaNode(), 
-                            property, arc.toNode().jenaNode() );
-                }
+                Arc arc = (Arc) enumerator.next();
+                
+                Property property = memModel.createProperty( arc.propertyNamespace() +
+                        arc.propertyName() );
+                memModel.add((Resource) arc.fromNode().jenaNode(), 
+                        property, arc.toNode().jenaNode() );
             }
             
             StringWriter stringOutput = new StringWriter();
