@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<rdf:RDF 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" 
+xmlns:foaf="http://xmlns.com/foaf/0.1/"
+xmlns:addr="http://www.w3.org/2000/10/swap/pim/contact#"
+xmlns:wl="http://downlode.org/rdf/wireless/0.1/"
+>
+
+<wl:Node rdf:ID="AliceNode">
+
+	<foaf:homepage>http://example.com/~alice/alicenode.html</foaf:homepage>
+
+	<wl:status>Operational</wl:status>
+	<wl:upSince>20030608Z142300</wl:upSince>
+
+	<wl:location>
+		<addr:Address>
+			<addr:Street>1 Some Street</addr:Street>
+			<addr:City>London</addr:City>
+			<addr:PostalCode>W1 1AA</addr:PostalCode>
+			<geo:lat>51.5197</geo:lat>
+			<geo:long>-0.1873</geo:long>
+		</addr:Address>
+	</wl:location>
+    
+	<wl:admin>
+		<foaf:Person rdf:ID="Alice">
+			<foaf:mbox rdf:resource="mailto:alice@example.com"/>
+			<foaf:name>Alice Smith</foaf:name>
+			<foaf:homepage>http://example.com/~alice/</foaf:homepage>
+		</foaf:Person>
+	</wl:admin>
+
+	<wl:hasAntenna>
+		<wl:Antenna rdf:ID="AliceAntenna">
+			<geo:alt>50m</geo:alt>
+			<wl:antennaType>Slotted Waveguide</wl:antennaType>
+		</wl:Antenna>
+	</wl:hasAntenna>
+	
+	<wl:hasInterface>
+		<wl:Interface>
+			<wl:essid>alice</wl:essid>
+			<wl:type>upstream</wl:type>
+			<wl:linkLayer>802.11b</wl:linkLayer>
+			<wl:capability>AP</wl:capability>
+			<wl:capability>BSS</wl:capability>
+			<wl:capability>NoWEP</wl:capability>
+			<wl:subnet>10.15.3.1/24</wl:subnet>
+			<wl:rate>1</wl:rate>
+			<wl:rate>2</wl:rate>
+			<wl:rate>5.5</wl:rate>
+			<wl:rate>11</wl:rate>
+		</wl:Interface>
+	</wl:hasInterface>
+
+	<wl:meshesWith>
+		<wl:Node>
+			<wl:nodeName>Bob's Node</wl:nodeName>
+			<wl:admin rdf:resource="#Bob"/>
+			<geo:lat>51.5304</geo:lat>
+			<geo:long>-0.1962</geo:long>
+		</wl:Node>
+	</wl:meshesWith>
+
+</wl:Node>
+
+<foaf:Person rdf:ID="Bob">
+	<foaf:mbox rdf:resource="mailto:bob@example.com"/>                         
+	<foaf:name>Bob Smith</foaf:name>
+	<foaf:homepage>http://example.com/~bob/</foaf:homepage>
+</foaf:Person>
+
+</rdf:RDF>
