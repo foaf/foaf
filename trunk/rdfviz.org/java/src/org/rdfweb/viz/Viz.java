@@ -7,8 +7,7 @@
 //keep lists of node arcs and schemas in the controller class
 //have things draw themselves
 
-///next: store nodes in a model in teir correct form (resource/literal/property)
-
+//put saving and loading in a diferent class
 
 package org.rdfweb.viz;
 
@@ -19,14 +18,6 @@ import com.hp.hpl.mesa.rdf.jena.mem.*;
 import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
-
-//need to join nodes and arcs
-//technique:
-//when a property is created, we add it to a node from where it starts using the jena addProperty
-//we also need the property to know about this startnode
-//when a property is terminated, we tell it about the terminal node
-//we make its start and end coordinated references to the coordinates of its nodes
-
 import java.io.*;
 import java.net.*;
 import java.awt.*;
@@ -36,13 +27,12 @@ import javax.swing.event.*;
 import java.util.*;
 import javax.swing.border.*;
 
-public class BasicDraw extends JComponent implements MouseMotionListener,
-MouseListener, ActionListener, DocumentListener {
+public class Viz extends JComponent implements  ActionListener, DocumentListener {
 
 
-    static int NODE_FOCUS = 1;
-    static int ARC_DRAG = 2;
-    static int ARC_FOCUS = 3;
+    public static int NODE_FOCUS = 1;
+    public static int ARC_DRAG = 2;
+    public static int ARC_FOCUS = 3;
 
     int edit_state = NODE_FOCUS;
 
@@ -53,7 +43,7 @@ MouseListener, ActionListener, DocumentListener {
     DrawableNode cNode;
     DrawableProperty cArc;
 
-    String defaultURL = "http://example.com/noproperty";
+    public String defaultURL = "http://example.com/noproperty";
 
     int xoffset = 15;
     int yoffset = 60;
@@ -85,7 +75,7 @@ MouseListener, ActionListener, DocumentListener {
 
     */
 
-    public BasicDraw() {
+    public Viz() {
 
         edit_state = NODE_FOCUS;
 
@@ -134,8 +124,8 @@ MouseListener, ActionListener, DocumentListener {
 
         frame.setVisible(true);
 
-        frame.addMouseMotionListener(this);
-        frame.addMouseListener(this);
+        frame.addMouseMotionListener(new VizMouseMotionListener(this));
+        frame.addMouseListener(new VizMouseListener(this));
 
         //menu
         //new: make node a main menu item
@@ -196,6 +186,32 @@ MouseListener, ActionListener, DocumentListener {
 
     }//end constructor
 
+
+
+/**
+
+get method for EditState
+
+*/
+
+
+public int getEditState(){
+return edit_state;
+}
+
+public void setEditState(int state){
+edit_state=state;
+}
+
+
+public Vector getArcs(){
+return arcs;
+}
+
+
+public DefaultStyledDocument getPropertyPane(){
+return lsd;
+}
 
     /**
     paint method - loops through all nodes and arcs pintint them
@@ -294,50 +310,9 @@ MouseListener, ActionListener, DocumentListener {
 
     /**
 
-     mouse listeners
+     mouse listeners are now in VizMouseMotionListener and Viz MouseListener
 
      */
-
-    public void mouseMoved(MouseEvent me) {
-    }
-
-
-    /**
-
-     mouseDragged -
-     if a node is the focus, display the node as it changes
-     as the mouse is dragged
-     if an arc is the focus, display the arc as it changes
-
-     */
-
-
-    public void mouseDragged(MouseEvent me) {
-        updateAll();
-
-        if (edit_state == NODE_FOCUS) {//i.e. current focus is a node
-            cNode.setX(me.getX());
-            cNode.setY(me.getY());
-            if (!nodes.contains(cNode)) {
-                nodes.addElement(cNode);
-            }
-        }
-
-
-        if (edit_state == ARC_FOCUS) {//i.e. curent focus is an arc
-            cArc.endX = me.getX();
-            cArc.endY = me.getY();
-            if (!arcs.contains(cArc)) {
-                arcs.addElement(cArc);
-                System.out.println("ADDING arc "+arcs);
-            }
-            ///????
-            ///	cArc.update();
-        }
-
-
-        repaint();
-    }
 
 
     /**
@@ -580,198 +555,6 @@ MouseListener, ActionListener, DocumentListener {
 
     /**
 
-     mouseClicked transfers the focus to the clicked object (node or arc) and
-     displays the text in the object in the text area
-
-     */
-
-    public void mouseClicked(MouseEvent me) {
-
-        //causing a loop
-        //we are inserting a string which is updating which is reinserting
-
-        if (getNodeFromPoint(me) != null) {
-            DrawableNode nn = getNodeFromPoint(me);
-            System.out.println("NN "+nn.getTmpText());
-            String tmp = nn.getTmpText();
-            f = nn;
-
-            try {
-                lsd.remove(0, lsd.getLength());
-                lsd.insertString(0, tmp, new SimpleAttributeSet());
-            } catch (BadLocationException be) {
-                System.err.println("bad loc1 "+be);
-            }
-            //	f=nn;
-            repaint();
-
-        }
-
-
-
-        if (getArcFromPoint(me) != null) {
-            DrawableProperty nn = getArcFromPoint(me);
-            System.out.println("NN "+nn.getTmpText());
-            String tmp = nn.getTmpText();
-            f = nn;
-
-            try {
-                lsd.remove(0, lsd.getLength());
-                lsd.insertString(0, tmp, new SimpleAttributeSet());
-            } catch (BadLocationException be) {
-                System.err.println("bad loc2 "+be);
-            }
-
-            //	f=nn;
-            repaint();
-
-        }
-
-
-    }
-
-    public void mouseEntered(MouseEvent me) {
-
-    }
-
-    public void mouseExited(MouseEvent me) {
-
-    }
-
-
-    /**
-
-     mousePressed handles the start of dragging
-
-     if a node is mouse-pressed on, the focus is changed to that node
-     if an arc is mouse-pressed on, the focus changes to the arc, and the node is
-     made the startNode of the arc
-
-     */
-
-    public void mousePressed(MouseEvent me) {
-
-        System.out.println("mouse pressed state is "+edit_state);
-
-        if (edit_state == NODE_FOCUS) {
-
-            if (getNodeFromPoint(me) != null) {
-                cNode = getNodeFromPoint(me);
-                f = cNode;
-            }
-
-
-        } else if (edit_state == ARC_DRAG) {
-
-            cArc.startX = me.getX();
-            cArc.startY = me.getY();
-            cArc.endX = me.getX();
-            cArc.endY = me.getY();
-            f = cArc;
-
-            if (getNodeFromPoint(me) != null) {
-                DrawableNode node = getNodeFromPoint(me);
-                cArc.startNode = node;
-                cArc.update();
-                edit_state = ARC_FOCUS;
-                System.out.println("zz 3state "+edit_state);
-            } else {
-                edit_state = ARC_DRAG;
-                //		edit_state=NODE_FOCUS;
-                ///arcs.removeElement(f);
-                System.out.println("zz 2state "+edit_state);
-            }
-
-        }
-
-    }
-
-
-    /**
-
-     mouseReleased handles the end of drag events
-
-     if the focus is an arc, if the mouseReleased point is a node,
-     the node is made the arc's endpoint.
-     A new arc is created as the cArc.
-
-     otherwise nothing happens
-
-     */
-
-
-    public void mouseReleased(MouseEvent me) {
-        System.out.println("ok [0]");
-        if (edit_state == ARC_FOCUS) {
-
-            System.out.println("mouse pressed - edit_state is "+ARC_FOCUS);
-
-            cArc.endX = me.getX();
-            cArc.endY = me.getY();
-
-            System.out.println("ok [1]");
-            if (getNodeFromPoint(me) != null) {
-
-                System.out.println("ok [2]");
-
-                DrawableNode node = getNodeFromPoint(me);
-
-                cArc.endNode = node;
-                cArc.update();
-
-                try {
-                    DrawableProperty a = new DrawableProperty(defaultURL);
-                    arcs.addElement(a);//??
-                    cArc = a;
-                    //		f= cArc;
-                    f = cNode;
-                } catch (RDFException ex) {
-                    System.err.println("can't create property "+ex);
-                }
-
-                System.out.println("YEP!!!!");
-                edit_state = NODE_FOCUS;
-            } else {
-                System.out.println("ok [3]");
-
-                arcs.removeElement(f);
-                f = cNode;
-                //		state=3;
-                edit_state = NODE_FOCUS;
-
-                System.out.println("YNOPE!!!!");
-            }
-
-            System.out.println("ok [4]");
-
-            /*
-
-            		try{
-            		DrawableProperty a = new DrawableProperty(defaultURL);
-            		arcs.addElement(a);//??
-            		cArc=a;
-            		f= cArc;
-
-            		}catch(RDFException ex){
-            		System.err.println("can't create property "+ex);
-            		}
-
-            */
-
-            //if(!arcs.contains(cArc)){
-            //arcs.addElement(cArc);
-            //System.out.println("ADDING arc "+arcs);
-            //}
-
-            repaint();
-
-        }
-
-    }
-
-
-    /**
-
      getNodeFromPoint takes a mouseEvent point and loops through all the nodes
      returning the first one it finds whose coordinates match the mouseEvent point
 
@@ -964,6 +747,10 @@ MouseListener, ActionListener, DocumentListener {
         return f;
     }
 
+
+public void setFocussedItem(FocussedItem focus){
+f=focus;
+}
 
     public void updateMenus(Model m) throws RDFException {
 
