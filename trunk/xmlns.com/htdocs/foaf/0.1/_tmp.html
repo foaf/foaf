@@ -646,7 +646,7 @@ for related issues).
 The <code><a href="#term_Group">foaf:Group</a></code> class represents a collection of individual agents (and may 
 itself play the role of a <code><a href="#term_Agent">foaf:Agent</a></code>, ie. something that can perform actions).
 </p>
-</p>
+<p>
 This concept is intentionally quite broad, covering informal and 
 ad-hoc groups, long-lived communities, organizational groups within a workplace, etc. Some 
 such groups may have associated characteristics which could be captured in RDF (perhaps a 
@@ -663,15 +663,48 @@ little complicated, but allows us to make group membership rules explicit.
 </p>
 
 
-<p>The markup for defining a group is both complex and powerful. It allows group 
-membership rules to match against any RDF-describable characteristics of the potential 
+<p>The markup (shown below) for defining a group is both complex and powerful. It 
+allows group membership rules to match against any RDF-describable characteristics of the potential 
 group members. As FOAF and similar vocabularies become more expressive in their ability to 
 describe individuals, the <code><a href="#term_Group">foaf:Group</a></code> mechanism for categorising them into 
 groups also becomes more powerful. 
 </p>
 
-<p>Here we define a <code><a href="#term_Group">foaf:Group</a></code> representing those people who are ILRT staff members. The 
-<code><a href="#term_membershipClass">foaf:membershipClass</a></code> property connects the group (conceived of as a social 
+<p> 
+While the formal description of membership criteria for a <code><a href="#term_Group">foaf:Group</a></code> may
+be complex, the basic mechanism for saying that someone is in a <code><a href="#term_Group">foaf:Group</a></code> is
+very simple. We simply use a <code><a href="#term_member">foaf:member</a></code> property of the
+<code><a href="#term_Group">foaf:Group</a></code> to indicate the agents that are members of the group. For example:
+
+</p> 
+
+<div class="example"> 
+
+<pre> 
+&lt;foaf:Group&gt;
+ &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
+ &lt;foaf:member&gt;
+  &lt;foaf:Person&gt;
+   &lt;foaf:name&gt;Libby Miller&lt;/foaf:name&gt;
+   &lt;foaf:homepage rdf:resource="http://ilrt.org/people/libby/"/&gt;
+   &lt;foaf:workplaceHomepage rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
+  &lt;/foaf:Person&gt;
+ &lt;/foaf:member&gt;
+&lt;/foaf:Group&gt;
+</pre>
+</div>
+
+
+
+<p>
+Behind the scenes, further RDF statements can be used to express the rules for being a 
+member of this group. End-users of FOAF need not pay attention to these details.
+</p>
+
+
+<p>
+Here is an example. We define a <code><a href="#term_Group">foaf:Group</a></code> representing those people who 
+are ILRT staff members. The <code><a href="#term_membershipClass">foaf:membershipClass</a></code> property connects the group (conceived of as a social 
 entity and agent in its own right) with the class definition for those people who 
 constitute it. In this case, the OWL rule is that all group members are in the 
 ILRTStaffPerson class, which is in turn populated by all those things that are a 
@@ -701,26 +734,6 @@ http://www.ilrt.bris.ac.uk/.
 </pre>
 </div>
   
-<p>
-While this markup is fancy, the basic mechanism for saying that someone is in a 
-<code><a href="#term_Group">foaf:Group</a></code> is very simple. We simply use a <code><a href="#term_member">foaf:member</a></code> 
-property of the <code><a href="#term_Group">foaf:Group</a></code> to indicate the agents that are members of the 
-group. For example:
-</p>
-<div class="example">
-<pre>
-&lt;foaf:Group&gt;
- &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
- &lt;foaf:member&gt;
-  &lt;foaf:Person&gt;
-   &lt;foaf:name&gt;Libby Miller&lt;/foaf:name&gt;
-   &lt;foaf:homepage rdf:resource="http://ilrt.org/people/libby/"/&gt;
-   &lt;foaf:workplaceHomepage rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
-  &lt;/foaf:Person&gt;
- &lt;/foaf:member&gt;
-&lt;/foaf:Group&gt;
-</pre>
-</div>
 
 <p>
 Note that while these example OWL rules for being in the eg:ILRTStaffPerson class are 
@@ -2717,7 +2730,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-27 18:34:45 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 19:00:53 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
