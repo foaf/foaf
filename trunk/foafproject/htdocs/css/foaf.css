@@ -2,7 +2,7 @@
 		  margin: 0;
 		  padding: 0;
 		  height: 100%;
-		  background: #fff url("../images/bg-Left.png") repeat-y;
+	/*	  background: #fff url("../images/bg-Left.png") repeat-y; */
 		  font: 12px Verdana,Sans-serif;
 			}
 	
@@ -17,16 +17,21 @@
 		
 		
 		div.marginLeft {
-			margin-left: 22px;
+/*			margin-left: 22px; */
 			padding: 0px;
 			}
 		.header	{
-			background: #0099CB url("../images/bg-Header-5.png");
+/* this sets the right hand bit of the header */
+/*			background: #0099CB url("../images/bg-Header-5.png"); */
+			background: #0099CB url("../images/lightBlueBackgroundPlain.png"); 
+
 			width: 100%;
 			height: 80px;
 			}
 		.header-dark {
-			background: #002D3B url("../images/bg-Header-Black.png");
+/*			background: #002D3B url("../images/bg-Header-Black.png"); */
+			background: #002D3B url("../images/darkBlueBackgroundPlain.png"); 
+
 			width: 200px;
 			height: 100%;
 			}	
@@ -84,7 +89,7 @@
 
 #leftcontent {
 	position: absolute;
-	left: 22px;
+/*	left: 22px; */
 	width: 252px;
 	background: black;
 	border: 0px solid #000;
@@ -180,7 +185,7 @@ li {
 	}
 #centercontent h2 {
 	font-size: large;
-	border-top: 1px dashed gray;
+	/* border-top: 1px dashed gray; */
 	}
 #centercontent h3 {
 	font-size: medium;
