@@ -19,16 +19,13 @@ public class RendTest
   Rendezvous rv;
   InetAddress inetaddr;
   ServiceInfo si;
+  CommandLine cl;
   
   public static void main(String[] args)
   {
     RendTest rt = new RendTest(args);
 
     rt.start();
-
-    CommandLine cl = new CommandLine(rt);
-
-    cl.run();
   }
 
   public RendTest(String[] args)
@@ -84,13 +81,15 @@ public class RendTest
     Hashtable props = person.getProps();
     String hashBox = person.getMboxHash();
     
-    listener = new TestListener();
+    listener = new TestListener(this);
     
     try
       {
+	cl = new CommandLine(this);
+	
 	rv = new Rendezvous();
 
-	System.out.println("Binding to: " + inetaddr);
+	showMessage("Binding to: " + inetaddr);
 
 	si = new ServiceInfo(type,
 			     hashBox + "." + type,
@@ -105,9 +104,11 @@ public class RendTest
 	rv.addServiceListener(type, listener);
 	
 	HttpServer httpServer =
-	  new HttpServer(port, new HTTPTestHandler(person));
+	  new HttpServer(port, new HTTPTestHandler(person), this);
 
 	httpServer.start();
+
+	cl.run();
       }
     catch (Exception e)
       {
@@ -150,30 +151,44 @@ public class RendTest
   {
     return person;
   }
+
+  public void showMessage(String message)
+  {
+    cl.addMessage(message);
+  }
   
-    
 }
 
 class TestListener implements ServiceListener
 {
   List people;
-  
-  public TestListener()
+  RendTest controller;
+    
+  public TestListener(RendTest controller)
   {
+    this.controller = controller;
+    
     people = new ArrayList();
   }
   
   public void addService(Rendezvous rendezvous, String type, String name)
   {
-    //System.out.println("ADD: " + rendezvous.getServiceInfo(type, name));
+    controller.showMessage
+      ("ADD: " + name);
 
     people.add(rendezvous.getServiceInfo(type,name));
   }
 
   public void removeService(Rendezvous rendezvous, String type, String name)
   {
-    //System.out.println("REMOVE: " + name);
+    System.out.println("hi");
+    
+    
+    controller.showMessage("REMOVE: " + name);
 
+    System.out.println("hello");
+    
+    
     people.remove(rendezvous.getServiceInfo(type,name));
   }
 
