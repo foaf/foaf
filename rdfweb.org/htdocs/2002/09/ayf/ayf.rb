@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.19 2002-12-12 13:58:20 danbri Exp $
+# $Id: ayf.rb,v 1.20 2003-03-26 04:05:28 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -15,10 +15,6 @@
 #
 # TODO list:
 #
-# - parser may have a fixme re genid generation from ntriples
-#   bug is probably in the parser wrapping code I wrote.
-#   a good point at which to write syntax tests?
-#
 # - parser also generates \n triples -- need to investigate.
 #
 # some possible starting points:
@@ -30,10 +26,6 @@
 #   wordnet/ruby hacking, 
 #   http://fireball.danbri.org/people/danbri/2002/07/xmlns-wordnet/dantest.rb
 
-
-require 'net/http'
-require 'RDF4R/Driver/XMLParser'
-require 'RDF4R/Consumer/Standard'
 require 'basicrdf'
 
 ###############################################################################
@@ -153,7 +145,7 @@ class SimpleScutter
       #
       seen[uri]=seen[uri]+1  # increment per-uri encounter
       begin 
-        page = rdfget(uri)
+        page = Loader.get_rdf_from_uri(uri, errorhandlers)
         raise "#{$!} (rdfget returned nil)" if page==nil
       rescue
         err_msg="FAILED URI: '#{uri}' MSG: #{$!}" 
@@ -176,87 +168,26 @@ class SimpleScutter
       end
       self.left=[] # reset and rebuild
       seealso.each_key {|k| left.push(k) if seen[k]==0 }
-
-    pagehandlers.each {|handler| handler.call(self,page)} # call pagehandlers
-  end 
-  puts "RDF crawl complete. Exiting!" if @debug
-end
-
-
-#########################################################################
-#
-# temporary stuff that should be in a library...
-
-def SimpleScutter.writefile(fn,html)
-  begin 
-    File::delete fn if File::exists? fn
-  rescue Exception
-    puts "HTML logfile locked? Skipping. #{$!}"
-    next
-  end 
-  begin
-    cf = File::new( fn, File::CREAT|File::RDWR, 0644)
-    cf.write html
-    cf.close
-  rescue Exception
-    puts "ERROR: can't write HTML logfile #{cf} "
-  end
-end
-
-def rdfget(uri)
-  uri=uri.to_s
-  uri.chomp!
-  models=[] 
-  uri =~ /:\/\/([^\/]+)(\/*.*)$/
-  host = $1
-  res = $2
-  h = Net::HTTP::new host
-  user_agent = 'RDFWeb-SimpleScutter-200212;http://rdfweb.org/foaf/'
-  rdfdata=Graph.new([])
-  my_headers = {'Accept' => 'application/rdf+xml', 'User-agent' => user_agent }  
-  h.open_timeout = 10   
-  h.read_timeout = 60
-  begin 
-    resp, data = h.get(res, my_headers)
-    rescue
-    error_msg="rdfget: HTTP GET failed. Returning empty graph. error:#{$!}"
-    errorhandlers.each {|handler| handler.call error_msg } 
-    return rdfdata
+      pagehandlers.each {|handler| handler.call(self,page)} # call pagehandlers
+    end 
+    puts "RDF crawl complete. Exiting!" if @debug
   end
 
-  base=uri
-  fn="_local.rdf" 	# temporary file; shouldn't need this :(
-  File::delete fn if File::exists? fn
-  cf = File::new( fn, File::CREAT|File::RDWR, 0644)
-  cf.write data  
-  cf.close
-
-  begin 
-    consumer = RDF4R::Consumer::Standard.new
-    File.open(fn, "r") do |file|
-        begin
-          models=RDF4R::Driver::XMLParser.process(file, base, consumer)
-        rescue Exception 
-          raise "Expat setup error. url=#{base} error: #{$!}"
-        end
-      end
-    rescue
-      raise "RDF parser error. #{$!}\n"	
+  #unused?
+  def SimpleScutter.writefile(fn,html)
+    begin 
+      File::delete fn if File::exists? fn
+    rescue Exception
+      puts "HTML logfile locked? Skipping. #{$!}"
+      next
+    end 
+    begin
+      cf = File::new( fn, File::CREAT|File::RDWR, 0644)
+      cf.write html
+      cf.close
+    rescue Exception
+      puts "ERROR: can't write HTML logfile #{cf} "
     end
-
-    return rdfdata if models==nil 
-    return rdfdata if models==0
-
-    bnode_cache={}
-    model = models.shift
-    model.statements.each_value do |s|
-      begin  
-        Loader.parseline s.to_ntriple.to_s, rdfdata, bnode_cache # fixme!
-      rescue
-        puts "rdfget: error w/ parseline. #{$!} "
-      end
-    end
-    return rdfdata
   end
 end
 
