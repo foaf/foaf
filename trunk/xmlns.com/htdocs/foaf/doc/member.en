@@ -1,0 +1,8 @@
+<p>
+The <code>foaf:member</code> property relates a <code>foaf:Group</code> to a 
+<code>foaf:Agent</code> that is a member of that group.
+</p>
+
+<p>
+See <code>foaf:Group</code> for details and examples.
+</p>

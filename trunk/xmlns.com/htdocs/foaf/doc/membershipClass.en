@@ -1,0 +1,9 @@
+<p>
+The <code>foaf:membershipClass</code> property relates a <code>foaf:Group</code> to an RDF 
+class representing a sub-class of <code>foaf:Agent</code> whose instances are all the 
+agents that are a <code>foaf:member</code> of the <code>foaf:Group</code>.
+</p>
+
+<p>
+See <code>foaf:Group</code> for details and examples.
+</p>
