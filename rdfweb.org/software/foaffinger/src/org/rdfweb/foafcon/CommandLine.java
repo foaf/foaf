@@ -9,12 +9,15 @@ public class CommandLine
 {
   RendTest controller;
   List messageQueue;
-  
+  boolean showMessages;
+    
   public CommandLine(RendTest controller)
   {
     this.controller = controller;
     this.messageQueue =
       Collections.synchronizedList(new ArrayList());
+
+    showMessages = true;
   }
   
   public void run()
@@ -69,6 +72,8 @@ public class CommandLine
 		else if (command.equals("exit") ||
 			 command.equals("quit"))
 		  exit();
+		else if (command.equals("messages"))
+		  showMessages(tokenIt);
 		else if (command.equals("set"))
 		  set(tokenIt);
 		else if (command.equals("help") ||
@@ -118,6 +123,22 @@ public class CommandLine
       }	
   }
 
+  public void showMessages(Iterator tokenIt)
+    throws Exception
+  {
+    if (!tokenIt.hasNext())
+      throw new Exception("Usage: messages [on|off]");
+
+    String val = tokenIt.next().toString().toLowerCase();
+
+    if (val.equals("on"))
+      showMessages = true;
+    else if (val.equals("off"))
+      showMessages = false;
+    else
+      throw new Exception("Usage: messages [on|off]");
+  }
+        
   public void show(Iterator tokenIt)
     throws Exception
   {
@@ -254,21 +275,35 @@ public class CommandLine
       }
     else if (var.equals("homepage"))
       {
+	if ((val != null) &&
+	    !Util.isURL(val))
+	  throw new Exception("Homepage must be a URL");
+	
 	person.setHomepage(val);
 	controller.kickService();
       }
     else if (var.equals("seealso"))
       {
+	if ((val != null) &&
+	    !Util.isURL(val))
+	  throw new Exception("SeeAlso must be a URL");
+	
 	person.setSeeAlso(val);
 	controller.kickService();
       }
     else if (var.equals("interest"))
       {
+	if ((val != null) &&
+	    !Util.isURL(val))
+	  throw new Exception("Interest must be a URL");
+	
 	person.setInterest(val);
 	controller.kickService();
       }
+
     else if (var.equals("plan"))
       person.setPlan(getMultiInput());
+
     else if (var.equals("showmbox"))
       {
 	val = val.toLowerCase();
@@ -322,20 +357,23 @@ public class CommandLine
       return toReturn;
   }
 
-public synchronized void addMessage(String message)
-{
-messageQueue.add(message);
-}
-
-public synchronized void flushMessages()
-{
-for (Iterator i = messageQueue.iterator();i.hasNext();)
-{
-System.out.println((String) i.next());
-}
-
-messageQueue.clear();
-}
+  public synchronized void addMessage(String message)
+  {
+    messageQueue.add(message);
+  }
+  
+  public synchronized void flushMessages()
+  {
+    if (showMessages)
+      {
+	for (Iterator i = messageQueue.iterator();i.hasNext();)
+	  {
+	    System.out.println((String) i.next());
+	  }
+      }
+    
+    messageQueue.clear();
+  }
 
   public void help()
   {
@@ -345,6 +383,7 @@ messageQueue.clear();
 		       "find [<term>] -- show people on the local network whose\n\tname, interest, or homepage contains <term>.\n\tJust 'find' will show everyone.\n" +
 "show <number> [<number>...] -- show detailed information on person (people).\n" +
 		       "iknow <number> [<number>...] -- indicate that you know person (people)\n" +
+		       "messages [on|off] -- show or hide the \"X is online\" messages\n" +
 		       "set <var> <val> -- set information. If <val> is \"\" unsets <var>.\n" +
 		       "\t<var> can be:\n" +
 		       "\tname -- your name (can't be unset)\n" +

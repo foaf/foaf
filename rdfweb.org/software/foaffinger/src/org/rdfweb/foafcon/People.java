@@ -20,7 +20,7 @@ public class People
 
   public synchronized void add(ServiceInfo info)
   {
-    System.out.println("I got: " + info);
+    //System.out.println("I got: " + info);
     
     Person person =
       new Person(info.getPropertyString(Person.NAME),
