@@ -6,11 +6,24 @@ BODY {
 }
 
 DIV.navbar {
- padding: 2px; 
+ font-weight: bold;
+}
+
+.sitepart {
+ background: white;
+}
+
+.navtext {
+ font-weight: bold;
+ /* background: white; */
 }
 
 SPAN.sitepart {
- background: white;
+ letter-spacing: 2px;
+}
+
+A:hover.sitepart {
+/*  background: red; */
 }
 
 SPAN.siteutil {
@@ -39,6 +52,7 @@ DIV.splashbox {
   float: right;
 /*  width: 25%; */
   padding: 2px;
+  font-size: smaller;
 }
 
 DIV.splashblurb {

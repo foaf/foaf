@@ -9,34 +9,30 @@
     <link rel="stylesheet" href="ssi/main.css" type="text/css" />
   </head>
   <body bgcolor="#ffffff">
-
- <div class="navbar">
-          <table border="0" bgcolor="#cccccc" cellpadding="20"
-		background="images/glib5-pale.jpg"
-
-          cellspacing="0" summary="a layout table" width="100%">
-            <tr>
-              <td align="left" valign="top">
-                <strong><a href="/">RDFWeb</a>: <span class="sitepart">semantic web vapourware</a></strong> 
-              </td>
-              <td align="right">
-                <span class="siteutil"><a href="about.html">about</a> | <a
-                href="sitemap.html">sitemap</a> | <a
-                href="search.html">search</a> | <a
-                href="mod.html">modesty</a> | <a
-                href="hype.html">hype</a></span> 
-              </td>
-            </tr>
-          </table>
-  </div>
-
+    <div class="navbar">
+      <table border="0" bgcolor="#cccccc" cellpadding="20"
+      background="images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">semantic web
+            vapourware</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="about.html">about</a> |
+            <a href="projects.html">projects</a> | <a
+            href="dev.html">developers</a> | <a
+            href="sitemap.html">sitemap</a> | <a
+            href="search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
     <div class="splashblurb">
-
-    <h2>
-      Welcome to RDFWeb 
-    </h2>
-
-
+      <h2>
+        Welcome to RDFWeb
+      </h2>
       <span style="">RDFWeb</span> is an experimental linked
       information system. 
       <p>
@@ -46,8 +42,8 @@
         and various other fun things.</em>
       </p>
       <!-- too vapourwarey even for me ;)
-                  RDFWeb provides a showcase for RDF and semantic Web tools, a testbed for technology
-                  design, and a sampler for the  Web as it might become... -->
+                                                      RDFWeb provides a showcase for RDF and semantic Web tools, a testbed for technology
+                                                      design, and a sampler for the  Web as it might become... -->
       <div class="item" id="x20020126b">
         <h2 class="headline">
           <img alt="" width="20" height="22"
@@ -87,8 +83,6 @@
       </div>
       <!--      end of news section -->
     </div>
-
-
     <div class="splashbox">
       <table border="0" bgcolor="#ffffff" summary="a layout table"
       align="right">
@@ -100,34 +94,75 @@
               <tr>
                 <td>
                   <table height="100%" width="100%" border="0"
-                  bgcolor="#cccccc" 
-		summary="layout table"
+                  bgcolor="#cccccc" summary="layout table"
                   cellpadding="3">
                     <tr>
-                      <td class="sidebar-header"
-                      zzzbgcolor="#cccccc"
-			background="images/glib5-pale.jpg"
-                      zzzstyle="background: #cccccc;">
-                        RDFWeb quick links
+                      <td zzzbgcolor="#cccccc"
+                      background="images/glib5-pale.jpg">
+                        <span class="navtext">RDFWeb quick
+                        links</span> 
                       </td>
                     </tr>
                     <tr>
                       <td style="background: #ffffff;">
                         <ul>
                           <li>
-                            <a href="overview.html">overview</a>
+                            <a href="/">RDF home</a>
                           </li>
                           <li>
-                            <a href="demos.html">demos</a>
+                            <a href="overview.html">about</a> 
+                            <ul>
+                              <li>
+                                <a href="mod.html">modesty</a>
+                              </li>
+                              <li>
+                                <a href="hype.html">hype</a>
+                              </li>
+                            </ul>
                           </li>
                           <li>
-                            <a href="dev.html">developers</a>
+                            <a href="projects.html">projects</a> 
+                            <ul>
+                              <li>
+                                <a
+                                href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
+                                co-depiction</a>
+                              </li>
+                              <li>
+                                <a
+                                href="http://xmlns.com/">xmlns.com</a>
+                              </li>
+                              <li>
+                                <a
+                                href="http://rdfviz.org/">rdfviz</a>
+                              </li>
+                              <li>
+                                <a
+                                href="http://rdfweb.org/people/danbri/2001/09/foafcorp/">
+                                FOAFCorp</a>
+                              </li>
+                              <li>
+                                <a href="...">...</a>
+                              </li>
+                            </ul>
                           </li>
                           <li>
-                            <a href="projects.html">projects</a>
-                          </li>
-                          <li>
-                            <a href="who.html">who</a>
+                            <a href="dev.html">developers</a> 
+                            <ul>
+                              <li>
+                                <a href="who.html">who</a>
+                              </li>
+                              <li>
+                                <a
+                                href="http://www.yahoogroups.com/group/rdfweb-dev/">
+                                rdfweb-dev</a>
+                              </li>
+                              <li>
+                                <a
+                                href="http://rdfig.xmlhack.com/">rdfig
+                                chump</a>
+                              </li>
+                            </ul>
                           </li>
                         </ul>
                       </td>
@@ -140,22 +175,19 @@
         </tr>
       </table>
     </div>
-
-
-
     <div align="right" class="bottom">
-<p>
-<a href="http://rdfweb.org/"><img src="rdf.jpg" alt="RDFWeb"
-class="rdflogo"  border="0"/></a><br />
-      <strong><small><a
-      href="http://rdfweb.org/">http://rdfweb.org/</a></small></strong>
-</p>
-</div>
-
-<div>
-<pre>$Id: index.html,v 1.14 2002-01-27 22:03:42 danbri Exp $</pre>
-</div>
-
+      <p>
+        <a href="http://rdfweb.org/"><img src="rdf.jpg"
+        alt="RDFWeb" class="rdflogo" border="0" /></a><br />
+         <strong><small><a
+        href="http://rdfweb.org/">http://rdfweb.org/</a></small></strong>
+      </p>
+    </div>
+    <div>
+<pre>
+$Id: index.html,v 1.15 2002-01-28 02:58:09 danbri Exp $
+</pre>
+    </div>
   </body>
 </html>
 
