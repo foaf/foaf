@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.14 2002-07-16 19:38:24 danbri Exp $
+# $Id: webutil.rb,v 1.15 2002-07-16 21:03:25 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -169,7 +169,8 @@ def load_graph_from_cache (file, base_uri='lookup:', opts={})
   cache_dir = opts['cache-dir']
   use_xslt= opts['use-xslt'] 
   redparse = opts['use-raptor'] 
-  redparse=true 
+  redparse=false if use_xslt
+
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
   puts "Parsing cached RDF file: #{cache_dir} file: #{file} xslt: #{use_xslt} base: #{base_uri}"
  
