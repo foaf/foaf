@@ -3,6 +3,10 @@ VERSION=pre-alpha
 dist:	dirs
 	cd ../; tar -zcvf software/scutter_$(VERSION).tar.gz `xargs<scutter/FILES`
 
+
+install:
+	ruby ./install.rb
+
 clean:
 	rm *.bak
 	rm *.tmp
@@ -33,10 +37,10 @@ stats:
 
 
 foafpathdemo:
-	bin/pathfinder --input=doc/sample_pathdata.txt 
+	bin/paths --input=doc/sample_pathdata.txt 
 
 foafcorpdemo:
-	bin/pathfinder --input=doc/sample_foafcorp.txt --search=microsoft  
+	bin/paths --input=doc/sample_foafcorp.txt --search=microsoft  
 
 dot:
 	dot -Tsvg seealso.dot > seealso.svg

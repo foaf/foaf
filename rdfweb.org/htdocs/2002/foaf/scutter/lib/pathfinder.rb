@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder,v 1.8 2002-07-17 11:24:20 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.

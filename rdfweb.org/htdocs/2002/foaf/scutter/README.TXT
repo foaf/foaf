@@ -82,7 +82,8 @@ PATHFINDER
 
 try:
 
-bin/pathfinder --input=doc/sample_pathdata.txt  
+bin/paths --input=doc/sample_pathdata.txt --search=mailto:libby.miller@bristol.ac.uk
+(or see Makefile for more demos)
 
 ...code to find paths thru the data. needs documenting.
 
