@@ -27,6 +27,9 @@ public class People
 		 info.getPropertyString(Person.INTEREST),
 		 info.getPropertyString(Person.SEEALSO));
 
+    if (person.equals(controller.getPerson()))
+	return;
+
     int index = people.indexOf(person);
 
     if (index != -1)
@@ -59,8 +62,6 @@ public class People
 
   public synchronized void remove(ServiceInfo info)
   {
-    System.out.println("r: " + info);
-    
     Person person =
       new Person(info.getPropertyString(Person.NAME),
 		 info.getName(),
@@ -68,6 +69,9 @@ public class People
 		 info.getPropertyString(Person.INTEREST),
 		 info.getPropertyString(Person.SEEALSO));
 
+    if (person.equals(controller.getPerson()))
+	return;
+    
     int index = people.indexOf(person);
 
     if (index == -1)
