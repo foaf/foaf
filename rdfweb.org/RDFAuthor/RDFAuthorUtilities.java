@@ -5,7 +5,7 @@
 //  Created by pldms on Wed Nov 07 2001.
 //
 
-/* $Id: RDFAuthorUtilities.java,v 1.9 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: RDFAuthorUtilities.java,v 1.10 2002-01-17 18:37:01 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -38,7 +38,7 @@ import java.util.HashMap;
 
 import org.apache.xerces.utils.URI;
 
-public class RDFAuthorUtilities {
+public final class RDFAuthorUtilities {
     
     static final int Normal = 1;
     static final int Critical = 2;

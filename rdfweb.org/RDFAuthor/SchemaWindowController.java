@@ -1,6 +1,6 @@
 /* SchemaWindowController */
 
-/* $Id: SchemaWindowController.java,v 1.8 2002-01-06 22:15:29 pldms Exp $ */
+/* $Id: SchemaWindowController.java,v 1.9 2002-01-17 18:37:02 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -28,8 +28,11 @@ import com.apple.cocoa.application.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.*;
 
-public class SchemaWindowController extends NSObject {
+import com.hp.hpl.mesa.rdf.jena.model.RDFWriter;
+
+public class SchemaWindowController {
 
     NSMenuItem schemaMenuItem;
 
@@ -44,6 +47,59 @@ public class SchemaWindowController extends NSObject {
     public void awakeFromNib()
     {
         schemaOutlineView.setDataSource(schemaData);
+        
+        // Load namespace / abbrevs
+        
+        String schemasFile = NSBundle.mainBundle().pathForResource("Schemas", null);
+        
+        if (schemasFile == null)
+        {
+            System.err.println("Couldn't locate \"Schemas\" file");
+            return;
+        }
+        
+        try
+        {
+            FileReader schemasFileReader = new FileReader(schemasFile);
+            
+            StreamTokenizer tokenizer = new StreamTokenizer(schemasFileReader);
+            
+            tokenizer.commentChar('#');
+            
+            String namespace = null;
+            
+            while (tokenizer.nextToken() != StreamTokenizer.TT_EOF)
+            {
+                // Note - is something up with this class?
+                // If I check the type of token I never get TT_WORD
+                // So I plunge in regardless
+                
+                String word = tokenizer.sval;
+                
+                if (namespace == null) namespace = word;
+                else
+                {
+                    // Set this property for nice output
+                    System.setProperty(RDFWriter.NSPREFIXPROPBASE + 
+                                namespace, word);
+                    
+                    // Add this to the combo box
+                    schemaUrlField.addItemWithObjectValue( namespace );
+                    
+                    System.out.println("Added to schema: " + namespace + 
+                        " -> " + word);
+                        
+                    namespace = null;
+                }
+            }
+            System.out.println(System.getProperties());
+            schemasFileReader.close();
+        }
+        catch (Exception e)
+        {
+            System.err.println("Error: " + e);
+        }
+        
     }
 
     public void addSchema(Object sender) 

@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.30 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.31 2002-01-17 18:37:02 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -450,7 +450,7 @@ public class ArcNodeList implements Serializable
             memModel.add( (Resource) nodeToJenaNode.get( arc.fromNode() ),
                           property, (RDFNode) nodeToJenaNode.get( arc.toNode() ) );
         }
-            
+        
         memModel.write(writer, outputType);
     }
     
