@@ -6,7 +6,7 @@
 # Generate HTML.
 # Assumes data has been drafragmented / smushed.
 #
-# danbri $Id: pathfinder_foaf.rb,v 1.2 2002-07-10 21:31:12 danbri Exp $
+# danbri $Id: pathfinder_foaf.rb,v 1.3 2002-07-11 13:19:05 danbri Exp $
 
 require 'squish'
 require 'dbi'
@@ -28,7 +28,7 @@ query=<<EOQ;
 
 EOQ
 
-DBI_DRIVER = 'DBI:Pg:test1'
+DBI_DRIVER = 'DBI:Pg:rdfweb1'
 DBI_USER = 'danbri'
 DBI_PASS=''
 

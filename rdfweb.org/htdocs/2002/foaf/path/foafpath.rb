@@ -1,12 +1,16 @@
 #!/usr/bin/env ruby
 
+# i've moved this into scutter now. see bin/foafpath 
+#
+# this copy to be removed.
+
 # foafpath (cargo cult edition) 
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
 # see http://rdfweb.org/people/damian/2002/02/foafnation/
 #
-# $Id: foafpath.rb,v 1.2 2002-07-10 21:31:12 danbri Exp $ danbri@rdfweb.org
+# $Id: foafpath.rb,v 1.3 2002-07-11 13:19:05 danbri Exp $ danbri@rdfweb.org
 #
 # 
 # classes: TElement, TEdge, TNode, TGraph
@@ -443,7 +447,7 @@ class TGraph
 EOQ
 
     q = SquishQuery.new.parseFromText query
-    DBI.connect ('DBI:Pg:test1','danbri','') do | dbh |
+    DBI.connect ('DBI:Pg:rdfweb1','danbri','') do | dbh |
       dbh.select_all( q.toSQLQuery  ) do | row |
         puts row.inspect
         p = ResultRow.new(row)
