@@ -1,0 +1,45 @@
+/* first draft. blue dotted means draws upon in part; other arrows indicate 
+based upon relationships */
+
+digraph rss  {
+	rss091 -> urss;
+	nsmcf -> rss090;
+	applemcf -> rss090;
+	mscdf -> rss090;
+        rdf -> rss090 [style=dashed, color=blue];
+	applemcf -> sn;
+	applemcf -> mscdf [style=dashed, color=blue];
+	applemcf -> rdf [style=dashed, color=blue];
+	mscdf -> sn;
+        nsmcf -> rdf [style=dashed, color=blue];
+	applemcf -> nsmcf;
+	picsng -> rdf [style=dashed, color=blue];
+	rss090 -> rss100;
+	msxmldata -> rdf [style=dashed, color=blue];
+	rss090 -> rss091;
+	rss091 -> rss092;
+	rss092 -> urss;
+	rdf -> rss100 [style=dashed, color=blue];	
+	urss [label="Userland RSS (2.0)"];
+	rss100 [label="RSS 1.0"];
+	rdf [label="Resource Description Framework (RDF)"];
+	mscdf [label="Channel Definition Format (CDF)" ];
+	applemcf [label="(Apple) Meta Content Format (MCF)"];
+	nsmcf [label="(Netscape) MCF in XML"];
+	sn [label="(Userland) ScriptingNews"]; 
+	rss090 [label="(Netscape) RSS 0.90"];
+	rss091 [label="(Netscape) RSS 0.91"];
+	rss092 [label="(Userland) RSS 0.92"];
+	picsng [label="PICS Next-Generation proposals"];
+	msxmldata [label="(Microsoft) XML-Data"];
+	
+	}
+/*
+
+ - Userland RSS descends from NetscapeRSS0.91 
+ - NetscapeRSS0.90 descends from MCFinXML and AppleMCF and CDF and uses RDF. 
+ -NetscapeRSS0.91 descends from RSS0.90 and scriptingNews 
+ - scriptingNews descends from AppleMCF and CDF. 
+ - CDF descends partly from AppleMCF. 
+ - RDF descends partly from AppleMCF and MCFinXML (and various other proposals) - RSS 1.0 descends from NetscapeRSS0.90 and uses RDF. 
+ */

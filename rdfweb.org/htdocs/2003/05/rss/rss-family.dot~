@@ -1,0 +1,22 @@
+digraph rss {
+	nsrss091 -> urss;
+	mcfxml -> nrss090;
+	applemcf -> nrss090;
+	mscdf -> nsrss090;
+	nsrss090 -> rdf [style=dashed, color=blue];
+	applemcf -> sn;
+	mscdf -> sn;
+	applemcf -> cdf [style=dashed, color=blue];
+	applemcf -> rdf [style=dashed, color=blue];
+	applemcf -> sn;
+	cdf -> sn;
+	}
+/*
+
+ - Userland RSS descends from NetscapeRSS0.91 
+ - NetscapeRSS0.90 descends from MCFinXML and AppleMCF and CDF and uses RDF. 
+ -NetscapeRSS0.91 descends from RSS0.90 and scriptingNews 
+ - scriptingNews descends from AppleMCF and CDF. 
+ - CDF descends partly from AppleMCF. 
+ - RDF descends partly from AppleMCF and MCFinXML (and various other proposals) - RSS 1.0 descends from NetscapeRSS0.90 and uses RDF. 
+ */
