@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.12 2002-12-10 20:02:20 danbri Exp $
+# $Id: ayf.rb,v 1.13 2002-12-11 00:22:02 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -55,6 +55,8 @@ def go(uri)
   end
 
 
+  # basic image metadata harvesting
+  #
   mugshots = Proc.new do |crawler,page|
     images=[]
     img = page.ask Statement.new(nil,  foaf+'img', nil)
@@ -70,9 +72,10 @@ def go(uri)
       end
       crawler.seenpic[pic]=crawler.seenpic[pic]+1
     end
+    # todo: some thought needed w.r.t. outfile/html generation and state
   end
 
-      
+  # stats to be output at start of each loop      
   loopstats = Proc.new do |s|
     puts "INIT: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{s.uri}"
   end
@@ -84,8 +87,7 @@ def go(uri)
   ayf.inithandlers.push loopstats
   ayf.errorhandlers.push error_logger 
 
-  ayf.run  # set it going! our handlers will get called for each RDF doc
-
+  ayf.run  # set crawler running!
 end 
 
 
@@ -102,7 +104,7 @@ class SimpleScutter
 
   # Set up state needed for each crawler
   # 
-  def initialize(start_uri='')
+  def initialize(start_uri='',outfile="_allyourfoaf.html")
 
     @left=[]
     @uri=start_uri 			# todo: should allow for a list?
@@ -122,8 +124,8 @@ class SimpleScutter
 
     @seenpic=Hash.new(0)	# counter for whether a pic been seen
 
-    # state relating to output; really belongs elsewhere
-    @outfile="_allyourfoaf.html" # output filename
+    # state relating to output
+    @outfile=outfile # output filename
     @out=""                      # output content
 
   end
@@ -138,12 +140,8 @@ class SimpleScutter
 
     while left.size>0
 
-      uri = @left.pop.to_s
+      @uri = @left.pop.to_s
       page = nil
-      if uri == nil
-        puts "Nothing left todo. Exiting... (???fixme)"
-        exit 0
-      end
 
       # call initialization handlers 
       #
@@ -157,24 +155,20 @@ class SimpleScutter
 
       seen[uri]=seen[uri]+1  # increment per-uri encounter
       begin 
-       page = rdfget(uri)
-       raise "#{$!} (rdfget returned nil)" if page==nil
-     rescue
-       errorhandlers.each do |handler|
-         handler.call( "FAILED URI: '#{uri}' MSG: #{$!}" )
-       end
-       next
+        page = rdfget(uri)
+        raise "#{$!} (rdfget returned nil)" if page==nil
+      rescue
+        errorhandlers.each do |handler|
+          handler.call( "FAILED URI: '#{uri}' MSG: #{$!}" )
+        end
+        next
       end
-
       next if page.size==0 # skip to next URI if empty graph
 
 
-      ################################################################
-      #
       # From here on in, we have an rdf graph
+      #
   
-      
-
       # look in page for seeAlso and store details
       #
       also = page.ask Statement.new(nil,  rdfs+'seeAlso',nil)
@@ -182,15 +176,13 @@ class SimpleScutter
         a=a.to_s
         if seen[a]==0
           seealso[a]=seealso[a]+1
-          left.push a 			# stash this unseen link
+          left.push a unless a==nil           # stash this unseen link
         end
       end
-
       self.left=[] # reset and rebuild
       seealso.each_key do |k|
         left.push(k) if seen[k]==0 
       end
-
 
  
 
@@ -198,39 +190,8 @@ class SimpleScutter
     #############################################################
     # Things we do with each RDF 'page' we find 
     #
-    # (could do all this via handlers/blocks?)
 
-
-#    foaf='http://xmlns.com/foaf/0.1/'
-#    images=[]
-
-
-
-    ##
-    # code to gather some images #
-#    img = page.ask Statement.new(nil,  foaf+'img', nil)
-#    img.objects.each {|a| images.push a.to_s }
-
-#    img = page.ask Statement.new(nil,  foaf+'depiction',nil)
-#    img.objects.each {|a| images.push a.to_s }
-
-#    images.each do |pic|
-#      return if (!pic =~ /\S/) #bug in Liber RDF parser.
-#      if seenpic[pic]==0 
-#        @out += "<img src='#{pic}' width='128' height='128' />" 
-#        @out += "<!-- from #{uri} -->\n\n"
-#      end
-#      seenpic[pic]=seenpic[pic]+1
-#    end
-
-    ######## end block
-
-
-
-
-    #################################################################
-    #
-    # (Re)write an HTML page 
+    # (Re)write an HTML page  (move to block)
     #
     html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
     html += "<h1>AllYourFoaf Image Index</h1>\n"  
@@ -254,7 +215,8 @@ class SimpleScutter
     rescue Exception
       puts "ERROR: can't write HTML logfile #{cf} "
     end
-  
+   
+    #################################################################
 
 
 
