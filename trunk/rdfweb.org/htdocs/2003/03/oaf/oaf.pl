@@ -28,10 +28,13 @@
 #  - normalise indenting
 #  - if it works, my tests should scrawl into http://rdfweb.org/rweb/wiki/wiki?ScratchPad
 #
-# cvs version: $Id: oaf.pl,v 1.5 2003-03-30 00:27:47 danbri Exp $
+# cvs version: $Id: oaf.pl,v 1.6 2003-03-30 00:33:09 danbri Exp $
 # cvsweb: http://rdfweb.org/viewcvs/viewcvs.cgi/rdfweb.org/htdocs/2003/03/oaf/
 # Recent changes:
 # $Log: not supported by cvs2svn $
+# Revision 1.5  2003/03/30 00:27:47  danbri
+# tidying mynick code
+#
 # Revision 1.4  2003/03/30 00:24:46  danbri
 # We now extract userid
 # this isn't the nick, or is it? Confused, I should check the docs.
@@ -68,8 +71,8 @@ my $version = "0.21-OAF-Forkv0.0";
 $ua->agent('Wikibot/$version');
 
 my $listen = {
-    nick => 'oafbot-dev',
-    chan => '#foaf2',
+    nick => 'oafbot',
+    chan => '#foaf',
     feed => 'FOAF',
     server => 'irc.freenode.net',
 };
