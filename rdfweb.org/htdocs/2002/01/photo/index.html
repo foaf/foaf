@@ -32,15 +32,62 @@
       Photo metadata: the co-depiction experiment
       </h2>
 
-<p>This document will provide an illustrated walkthrough of the RDFWeb 
-distributed photo-metadata experiment. 
-</p>
+<dl>
+<dt>author(s):</dt>
+<dd>Dan Brickley &lt;danbri@rdfweb.org&gt; </dd>
+<!-- ask libby too ? -->
+</dl>
+
+
+
+<p>This document is intended to provide an illustrated walkthrough of the RDFWeb 
+distributed photo-metadata experiment. Right now it is pretty bare, but
+hopefully will give you an idea of what we're attempting.
+</p> 
+
 
 <p>Nearby: <a
 href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">co-depiction 
 online demo</a></p>
 
 <p>
+RDFWeb is intended to be both fun and technically challenging. We are trying to 
+make at least some of the writing here accessible for a general audience,
+although much of it will be for the rather small community familiar with the 
+subtleties of various Semantic Web technologies. So we're trying to build a
+linked information system, RDFWeb, as a way of connecting these two goals. In 
+particular, we're trying to come up with practical and interesting applications
+for the Semantic Web, and explore ways of making them real. One of our favourite 
+examples is <em>photo metadata</em>. This document tries to explain why...
+</p>
+
+<p>
+The (soon to be "Semantic") Web, if it is to reach its full
+potential, needs to become a lot more <em>automatic</em>. We hope that it will be able to do
+things (offer us <em>services</em>) based on combining data and services
+scattered around the Web. It might, for example, be able to find the phone
+numbers or AOL screen names of all your friends and professional collaborators.
+Or show you the photos, names and recent publications and shared bookmarks for 
+everyone attending the next meeting in your calendar. 
+</p>
+<p>
+There are so many things the 
+Web <em>might</em> usefully do in the future, that it is sometimes hard to see how we 
+might get there from here. W3C's RDF has been around since 1997, yet while it 
+has been adopted in a number of applications (eg. Mozilla, Open Directory, Adobe, RSS 1.0), people often ask why there is as yet no <em>killer app</em> for RDF. While 
+we're not sure that 'killer app' is the right way to think about the problem, it 
+is true that there is relatively little RDF data 'out there in the public Web',
+ in the way that HTML is 'out there'.
+</p>
+
+<p>
+The original idea behind RDFWeb was to experiment with making some cheap, simple 
+RDF document formats that were designed for deployment in the public Web. We 
+began by asking 'What would it be like if machines could read my homepage?', and 
+by prototyping a simple vocabulary called FOAF ('Friend of a Friend'). 
+</p>
+ 
+
 @@writeme <em>Blah blah rdfweb co-depiction blah foaf blah knows blah what
 happened... blah six degrees blah fun blah testbed blah real</em></p>
 
@@ -52,15 +99,23 @@ these photos are described in RDFWeb already, others I just found using
 <a href="http://images.google.com/">Google image search</a>. 
 </p>
 <h3 class="foafpicpath" style="background: #cccccc;">danbri to frank sinatra</h3>
-<p><img src="http://rdfweb.org/people/danbri/2001/06/mmw/images/p5290091.jpg" alt=" danbri and jan" height="100" />
-<img src="http://swordfish.rdfweb.org/photos/2001/07/30/000573.JPG" alt="jan and libby" height="100" />
-<img src="http://rdfweb.org/people/danbri/media/2001/09/27/photos/1/images/p1010011.jpg" alt="libby  and timbl" height="100" />
-<img src="http://www.w3.org/2001/08/rdfweb/img/tbl-bc-ag.jpg" alt="timbl and clinton" height="100" />
-<img src="http://clinton1.nara.gov/White_House/EOP/OP/images/b_jfk.gif" alt="clinton and jfk" height="100" />
-<img src="http://www.coolstamps.com/trk98ss-sinatra-jfk.jpg" alt="jfk and sinatra" height="100" />
+<p>
+<img src="eg1/p1-dan-jan.jpg" alt="codepiction image p1-dan-jan.jpg" height="100" />
+
+<img src="eg1/p2-jan-lib.jpg" alt="codepiction image p2-jan-lib.jpg" height="100" />
+
+<img src="eg1/p3-lib-tim.jpg" alt="codepiction image p3-lib-tim.jpg" height="100" />
+
+<img src="eg1/p4-tim-bill.jpg" alt="codepiction image p4-tim-bill.jpg" height="100" />
+
+<img src="eg1/p5-bill-jfk.jpg" alt="codepiction image p5-bill-jfk.jpg" height="100" />
+
+<img src="eg1/p6-jfk-frk.jpg" alt="codepiction image p6-jfk-frk.jpg" height="100" />
+
 </p>
 
 
+<h4>Source images</h4>
 
 <ul>
 <li><a href="http://rdfweb.org/people/danbri/2001/06/mmw/images/p5290091.jpg"> danbri and jan</a></li>
@@ -77,7 +132,7 @@ these photos are described in RDFWeb already, others I just found using
 <p>..etc</p>
 
 <pre>
-$Id: index.html,v 1.1 2002-02-02 17:58:20 danbri Exp $
+$Id: index.html,v 1.2 2002-02-09 00:06:32 danbri Exp $
 </pre>
 </body>
 </html>
