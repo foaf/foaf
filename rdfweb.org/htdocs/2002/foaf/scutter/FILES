@@ -1,7 +1,7 @@
 ./scutter/webutil.rb
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
-./scutter/bin/gen_scutterstats.sh
+./scutter/bin/vocabstats.rb
 ./scutter/bin/pathfinder
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
