@@ -250,8 +250,21 @@ public class Node extends ModelItem implements Serializable
         }
         else
         {
-            String typeToShow = (typeName == null)?"-- None --":typeName;
-            String idToShow = (id == null)?"-- None --":id;
+            String typeToShow;
+            String idToShow;
+            
+            if (isLiteral())
+            {
+                typeToShow = "-- literal --";
+                idToShow = (id == null)?"-- empty --":"\"" + id + "\"";
+            }
+            else
+            {
+                typeToShow = (typeName == null)?"-- resource --":typeName;
+                idToShow = (id == null)?"-- anonymous --":id;
+            }
+            
+            typeToShow = isLiteral()?"-- literal --":typeToShow;
             
             if (showType && showId)
             {

@@ -332,7 +332,7 @@
 			<string>RDFAuthorDocument</string>
 			<key>NSExportableAs</key>
 			<array>
-				<string>NSStringPboardType</string>
+				<string>RDF/XML Document</string>
 			</array>
 		</dict>
 		<dict>
@@ -341,28 +341,11 @@
 				<string>rdf</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>RDF Document</string>
+			<string>RDF/XML Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>rdf*</string>
+				<string>text</string>
 			</array>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>NSDocumentClass</key>
-			<string>RDFAuthorDocument</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rdf</string>
-				<string>xml</string>
-				<string>*</string>
-				<string>txt</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>(txt.icns)</string>
-			<key>CFBundleTypeName</key>
-			<string>NSStringPboardType</string>
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 		</dict>

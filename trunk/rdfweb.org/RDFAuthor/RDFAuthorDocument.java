@@ -58,7 +58,7 @@ public class RDFAuthorDocument extends NSDocument {
                 return null;
             }
         }
-        else if (aType.equals("RDF Document"))
+        else if (aType.equals("RDF/XML Document"))
         {
             String rdfData = rdfModel.exportAsRDF();
             
