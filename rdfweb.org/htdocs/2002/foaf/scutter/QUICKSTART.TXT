@@ -17,7 +17,8 @@ running.
 
 6. create tables for storing RDF: psql rdfweb1 < conf/scutterdb.sql
 
-7. create 'webcache/' and 'webcache/_nt' sub directories if needed (*b)
+7. create 'webcache/' and 'webcache/_nt' sub directories if needed 
+   mkdir -p webcache/_nt/
 
 8. Try running Scutter from top level directory: bin/scutter --scutter
 
