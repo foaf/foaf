@@ -189,6 +189,7 @@
 				F6E8FB7A0171F2E101000211,
 				F660C47701732AA701000211,
 				F660C4790173300201000211,
+				F54297F30174F93501C4327A,
 				F660C47B0173870901000211,
 				02218D9AFECEFA92C02AAC07,
 				2A37F4C3FDCFA73011CA2CEA,
@@ -329,10 +330,6 @@
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
-			<key>NSExportableAs</key>
-			<array>
-				<string>RDFDocument</string>
-			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -343,10 +340,10 @@
 			<string>RDFDocument</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>rdf*</string>
+				<string>rdf</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>None</string>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
 		</dict>
@@ -410,6 +407,7 @@
 				F6E8FB7B0171F2E101000211,
 				F660C47801732AA801000211,
 				F660C47A0173300201000211,
+				F54297F40174F93601C4327A,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -468,6 +466,27 @@
 //4A2
 //4A3
 //4A4
+//F50
+//F51
+//F52
+//F53
+//F54
+		F54297F30174F93501C4327A = {
+			isa = PBXFileReference;
+			path = InfoController.java;
+			refType = 4;
+		};
+		F54297F40174F93601C4327A = {
+			fileRef = F54297F30174F93501C4327A;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//F50
+//F51
+//F52
+//F53
+//F54
 //F60
 //F61
 //F62

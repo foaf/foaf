@@ -2,6 +2,27 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
+            ACTIONS = {
+                literalButtonChanged = id; 
+                literalTextChanged = id; 
+                propertyTextChanged = id; 
+                resourceIdTextChanged = id; 
+                resourceTypeTextChanged = id; 
+                showInfoWindow = id; 
+            }; 
+            CLASS = InfoController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                infoWindow = id; 
+                literalButton = id; 
+                literalTextField = id; 
+                propertyTextField = id; 
+                resourceIdField = id; 
+                resourceTypeField = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             ACTIONS = {addSchema = id; showSchemaWindow = id; }; 
             CLASS = SchemaWindowController; 
             LANGUAGE = Java; 
