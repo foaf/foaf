@@ -24,3 +24,5 @@ waireport:
  
 
 
+publish:
+	ssh rdfweb.org make slaves
