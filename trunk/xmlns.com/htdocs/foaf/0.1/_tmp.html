@@ -644,7 +644,7 @@ for related issues).
 <tr><th>in-domain-of:</th><td><a href="#term_member">foaf:member</a> <a href="#term_membershipClass">foaf:membershipClass</a> </td></tr></table>
 <p>
 The <code><a href="#term_Group">foaf:Group</a></code> class represents a collection of individual agents (and may 
-itself play the role of a <code><a href="#term_Agent">foaf:Agent</a></code>.
+itself play the role of a <code><a href="#term_Agent">foaf:Agent</a></code>, ie. something that can perform actions).
 </p>
 </p>
 This concept is intentionally quite broad, covering informal and 
@@ -707,7 +707,7 @@ While this markup is fancy, the basic mechanism for saying that someone is in a
 property of the <code><a href="#term_Group">foaf:Group</a></code> to indicate the agents that are members of the 
 group. For example:
 </p>
-<p class="example">
+<div class="example">
 <pre>
 &lt;foaf:Group&gt;
  &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
@@ -720,7 +720,7 @@ group. For example:
  &lt;/foaf:member&gt;
 &lt;/foaf:Group&gt;
 </pre>
-</p>
+</div>
 
 <p>
 Note that while these example OWL rules for being in the eg:ILRTStaffPerson class are 
@@ -742,7 +742,7 @@ allowed in RDF, so you can write claims about the Person and the Group without h
 nest either description inside the other. For (brief) example:
 </p>
 
-<p class="example">
+<div class="example">
 <pre>
 &lt;foaf:Group&gt;
  &lt;foaf:member rdf:nodeID="libby"/&gt;
@@ -751,7 +751,7 @@ nest either description inside the other. For (brief) example:
 &lt;foaf:Person rdf:nodeID="libby"&gt;
   &lt;!-- more about libby here --&gt;
 &lt;/foaf:Person rdf:nodeID="libby"/&gt;
-</p>
+</div>
 
 <p>
 There is a FOAF <a href="http://rdfweb.org/issues/show_bug.cgi?id=8">issue tracker (8)</a> 
@@ -2715,7 +2715,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-27 18:03:18 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 18:04:24 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
