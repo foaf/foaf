@@ -11,6 +11,12 @@ sign:
 	mv index.html.asc ../htmlfoafsig
 #
 
+vocabtable:
+	rdfdump -o ntriples -q file:index.rdf  | ./vocabtable.rb  > table.html
+
+getrdf:
+	xsltproc ../../2002/07/extractrdf.xsl index.html > index.rdf
+
 
 # should this be the rdf version i'm signing? both?
 

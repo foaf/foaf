@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
-
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:daml="http://www.daml.org/2001/03/daml+oil#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:daml="http://www.daml.org/2001/03/daml+oil#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <rdf:Description rdf:about="http://xmlns.com/foaf/0.1/">
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <wot:assurance rdf:resource="../foafsig"/>
         <wot:src_assurance rdf:resource="../htmlfoafsig"/>
 <!-- where multiple renderings are content negotiable, wot:src_assurance assures the source format, eg. the xhtml -->
       </rdf:Description>
-<!-- 
-classes:
 
--->
-      <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Person" rdfs:label="person" rdfs:comment="a foaf subclass of wordnet person">
+      <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Person" rdfs:label="person" rdfs:comment="a person">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdfs:Class>
@@ -27,19 +23,35 @@ classes:
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Project"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdfs:Class>
-<!--properties-->
+
+
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox" rdfs:label="personal mailbox" rdfs:comment="A web-identifiable Internet mailbox associated with exactly one owner, the first   owner of this mailbox. This property is a 'static unambiguous property', in that  there is (across time and change) at most one individual that has any particular personal  mailbox.">
-<!-- rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"  -->
-<!-- commented out 20020704 danbri, too restrictive to say Person -->
-<!-- should we add foaf:Agent -->
-<!-- rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource" -->
-<!-- uninformative -->
         <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
+
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox_sha1sum" rdfs:label="sha1 of personal mailbox URI" rdfs:comment="the sha1sum of the URI of a web-identifiable Internet mailbox associated with exactly one owner, the  first owner of this mailbox.">
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/geekcode" rdfs:label="geekcode" rdfs:comment="a textual geekcode for this person">
+	<rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/dnaChecksum" rdfs:label="DNA checksum" rdfs:comment="A checksum for the DNA of some (presumably living) thing. Joke.">
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+      </rdf:Property>
+
+
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/givenname" rdfs:label="Given name" rdfs:comment="The given name of some agent.">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
+
+
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/surname" rdfs:label="Surname" rdfs:comment="The surname of some agent.">
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
