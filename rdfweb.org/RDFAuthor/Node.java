@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.25 2002-02-07 16:09:56 pldms Exp $ */
+/* $Id: Node.java,v 1.26 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -157,7 +157,7 @@ public class Node implements Serializable, ModelItem
     {
         id = theString;
         myList.itemChanged(this);
-        if (graphicNode != null) graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.contentChanged();
     }
 
     public String id()
@@ -170,7 +170,7 @@ public class Node implements Serializable, ModelItem
         typeNamespace = namespace;
         typeName = name;
         myList.itemChanged(this);
-        if (graphicNode != null) graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.contentChanged();
     }
     
     // Version of above for unsplit types
@@ -211,7 +211,7 @@ public class Node implements Serializable, ModelItem
     {
         literal = literalValue;
         myList.itemChanged(this);
-        if (graphicNode != null) graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.contentChanged();
     }
 
     public void setMyList(ArcNodeList list)
@@ -282,7 +282,7 @@ public class Node implements Serializable, ModelItem
         }
         
         myList.itemChanged(this);
-        if (graphicNode != null) graphicNode.calculateRectangle();
+        if (graphicNode != null) graphicNode.boundsChanged();
     }
     
     public void setPositionDumb(float x, float y)
@@ -291,7 +291,7 @@ public class Node implements Serializable, ModelItem
         this.y = y;
         
         myList.itemChanged(this);
-        if (graphicNode != null) graphicNode.calculateRectangle();
+        if (graphicNode != null) graphicNode.boundsChanged();
     }
     
     public void moveBy(float dx, float dy)
@@ -307,13 +307,13 @@ public class Node implements Serializable, ModelItem
     public void setShowType(boolean value)
     {
         showType = value;
-        if (graphicNode != null) graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.contentChanged();
     }
     
     public void setShowId(boolean value)
     {
         showId = value;
-        if (graphicNode != null) graphicNode.calculateSize();
+        if (graphicNode != null) graphicNode.contentChanged();
     }
     
     public String displayString() // string to display
