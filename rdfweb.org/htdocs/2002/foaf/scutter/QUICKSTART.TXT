@@ -18,6 +18,9 @@ Long version:
 2. install RubyRDF, ie. squish.rb and basicrdf.rb from
 	http://www.w3.org/2001/12/rubyrdf/
     - these will live somewhere like /usr/lib/ruby/1.6/
+  ...and the Scutter utility library in same place.
+  do this by running ./install.rb with appropriate privileges.
+
 
 3. install Redland's Raptor parser (and rdfdump utility)
     - you should be able to run 'rdfdump' on the command line
