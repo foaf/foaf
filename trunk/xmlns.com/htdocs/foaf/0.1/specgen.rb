@@ -48,7 +48,7 @@ def initialize(specname)
     # For this class, what properties have it as a range?
     spec.ask(Statement.new (nil, RDFS+'range', classuri)).subjects.each do |rp| 
       rp=rp.to_s
-      STDERR.puts "INRANGE: #{rp} #{rp.type}"
+      STDERR.puts "INRANGE: #{rp} #{rp.class}"
       if ranges[classname] != nil
         ranges[classname].push(rp) 
       else
@@ -59,7 +59,7 @@ def initialize(specname)
     # For this class, what properties have it as a domain?
     spec.ask(Statement.new (nil, RDFS+'domain', classuri)).subjects.each do |dp| 
       dp=dp.to_s
-      STDERR.puts "INDOMAIN for class #{classuri}: #{dp} #{dp.type}"
+      STDERR.puts "INDOMAIN for class #{classuri}: #{dp} #{dp.class}"
       if domains[classname] != nil
         domains[classname].push(dp) 
       else
@@ -156,7 +156,7 @@ def rdfsPropertyInfo(term, doc='')
   if (r!=nil) 
     r.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
     doc += "\t<tr><th>Range:</th>\n\t<td>#{r}</td></tr>\n"
-    # STDERR.puts "ranges: #{self.ranges.type}\n"
+    # STDERR.puts "ranges: #{self.ranges.class}\n"
   else
     doc += "-"
   end
