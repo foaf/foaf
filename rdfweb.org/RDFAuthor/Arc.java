@@ -27,6 +27,8 @@ import com.apple.cocoa.foundation.*;
 
 import java.io.*;
 
+import com.hp.hpl.mesa.rdf.jena.common.Util;
+
 public class Arc extends ModelItem implements Serializable
 {
     static final long serialVersionUID = 2402533035356176862L;
@@ -54,6 +56,26 @@ public class Arc extends ModelItem implements Serializable
         fromNode.addFromArc(this);
         toNode.addToArc(this);
         setProperty(namespace, name);
+        initArrowHead();
+    }
+    
+    // Same as before - but split the property into namespace & name
+    
+    public Arc(ArcNodeList myList, Node fromNode, Node toNode, String property)
+    {
+        this.myList = myList;
+        this.fromNode = fromNode;
+        this.toNode = toNode;
+        fromNode.addFromArc(this);
+        toNode.addToArc(this);
+        
+        int sep = Util.splitNamespace(property);
+                
+        String namespace = property.substring(0, sep);
+        String name = property.substring(sep);
+        
+        setProperty(namespace, name);
+        
         initArrowHead();
     }
     
@@ -118,7 +140,19 @@ public class Arc extends ModelItem implements Serializable
         calculateSize();
         myList.itemChanged(this);
     }
-
+    
+    // Version of above but property not split
+    
+    public void setProperty(String property)
+    {
+        int sep = Util.splitNamespace(property);
+        
+        String namespace = property.substring(0, sep);
+        String name = property.substring(sep);
+        
+        setProperty(namespace, name);
+    }
+    
     public String propertyName()
     {
         return propertyName;
