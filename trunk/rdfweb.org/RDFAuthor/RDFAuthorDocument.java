@@ -140,6 +140,12 @@ public class RDFAuthorDocument extends NSDocument {
         // Insert code here to read your document from the given data.
         System.out.println("Wants to load something of type " + aType);
         
+        exportMappings = new HashMap();
+        
+        exportMappings.put("XML/RDF Document", "RDF/XML-ABBREV");
+        exportMappings.put("N-Triple Document", "N-TRIPLE");
+        exportMappings.put("N3 Document", "N3");
+        
         boolean success;
         
         if (aType.equals("RDFAuthor Document"))
@@ -176,6 +182,32 @@ public class RDFAuthorDocument extends NSDocument {
                 RDFAuthorUtilities.ShowError(
                     "File Loading Failed", 
                     "Loading failed. Is this really an RDFAuthor file?\nError:\n"+e,
+                    RDFAuthorUtilities.Critical, null);
+                success = false;
+            }
+        }
+        // Import from serialised form
+        else if (exportMappings.get(aType) != null)
+        {
+            String inputType = (String) exportMappings.get(aType);
+            
+            try
+            {
+                String rdf = new String(data.bytes(0, data.length()), "UTF-8");
+            
+                System.out.print("Data is: " + rdf);
+            
+                StringReader reader = new StringReader(rdf);
+                rdfModel = new ArcNodeList(this, reader, inputType );
+                success = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Deserialisation: " + e);
+                e.printStackTrace();
+                RDFAuthorUtilities.ShowError(
+                    "File Import Failed", 
+                    "Loading failed. There may be errors in the serialisation\nError:\n"+e,
                     RDFAuthorUtilities.Critical, null);
                 success = false;
             }
@@ -308,10 +340,13 @@ public class RDFAuthorDocument extends NSDocument {
     public void modelChanged()
     {
         updateChangeCount(1);
-        rdfModelView.setNeedsDisplay(true);
-        // Tell info window that something changed
-        NSNotificationCenter.defaultCenter().postNotification(
-            new NSNotification(InfoController.itemChangedNotification, this) );
+        if (rdfModelView != null) // I need to check for this since the model changed message can occur when loading
+        {
+            rdfModelView.setNeedsDisplay(true);
+            // Tell info window that something changed
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.itemChangedNotification, this) );
+        }
     }
     
     public ModelItem currentObject()

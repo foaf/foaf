@@ -42,9 +42,12 @@ public class SchemaItem {
     
     String displayName;
     
+    String description;
+    
     SchemaItem parent;
     
-    public SchemaItem(String displayName, String type, String nameSpace, String name, SchemaItem parent)
+    public SchemaItem(String displayName, String type, String nameSpace, 
+        String name, String description, SchemaItem parent)
     {
         children = new ArrayList();
         
@@ -52,6 +55,7 @@ public class SchemaItem {
         this.type = type;
         this.namespace = nameSpace;
         this.name = name;
+        this.description = description;
         this.parent = parent;
     }
     
@@ -73,6 +77,7 @@ public class SchemaItem {
     
     public boolean draggable()
     {
+        if (type == null) return false;
         return (type.equals(SchemaData.ClassPboardType) || type.equals(SchemaData.PropertyPboardType));
     }
     
@@ -124,6 +129,11 @@ public class SchemaItem {
     public String displayName()
     {
         return displayName;
+    }
+    
+    public String description()
+    {
+        return description;
     }
     
     public SchemaItem parent()

@@ -43,8 +43,8 @@ public class SchemaData {
     
     public SchemaData()
     {
-        classesList = new SchemaItem("Node Types", null, null, null, null);
-        propertiesList = new SchemaItem( "Connection Properties", null, null, null, null);
+        classesList = new SchemaItem("Node Types", null, null, null, null, null);
+        propertiesList = new SchemaItem( "Connection Properties", null, null, null, null, null);
     }
 
     public void importSchema(String url, NSOutlineView outlineView, NSPanel panel)  // need panel for errors
@@ -76,26 +76,32 @@ public class SchemaData {
             while (classes.hasNext())
             {
                 hasClasses = true;
-                String className = classes.next().toString();
+                Resource aClass = classes.next();
+                String className = aClass.toString();
+                
+                String description = getDescription(aClass, memModel);
                 
                 int sep = Util.splitNamespace(className);
             
                 String namespace = className.substring(0, sep);
                 String name = className.substring(sep);
                 
-                addToTree(classesList, ClassPboardType, url, namespace, name);
+                addToTree(classesList, ClassPboardType, url, namespace, name, description);
             }
             while (properties.hasNext())
             {
                 hasProperties = true;
-                String propertyName = properties.next().toString();
+                Resource aProperty = properties.next();
+                String propertyName = aProperty.toString();
+                
+                String description = getDescription(aProperty, memModel);
                 
                 int sep = Util.splitNamespace(propertyName);
                 
                 String namespace = propertyName.substring(0, sep);
                 String name = propertyName.substring(sep);
                 
-                addToTree(propertiesList, PropertyPboardType, url, namespace, name);
+                addToTree(propertiesList, PropertyPboardType, url, namespace, name, description);
             }
             
             if (hasClasses)
@@ -120,17 +126,25 @@ public class SchemaData {
         }
     }
     
-    public void addToTree(SchemaItem list, String type, String url, String namespace, String name)
+    public String getDescription(Resource schemaItem, Model model) throws RDFException
+    {
+        NodeIterator iterator = model.listObjectsOfProperty(schemaItem, RDFS.comment);
+        
+        if (iterator.hasNext()) return iterator.next().toString().replace('\n',' '); // return first comment
+        else return null;
+    }
+    
+    public void addToTree(SchemaItem list, String type, String url, String namespace, String name, String description)
     {
         SchemaItem namespaceList = list.childWithDisplayName(url);
         
         if (namespaceList == null)
         {
-            namespaceList = new SchemaItem( url, null, null, null, list);
+            namespaceList = new SchemaItem( url, null, null, null, null, list);
             list.add(namespaceList);
         }
         
-        SchemaItem nameItem = new SchemaItem(name, type, namespace, name, namespaceList);
+        SchemaItem nameItem = new SchemaItem(name, type, namespace, name, description, namespaceList);
         namespaceList.add(nameItem);
     }
     
@@ -194,7 +208,21 @@ public class SchemaData {
     public String outlineViewObjectValueForItem( NSOutlineView outlineView,
             NSTableColumn tableColumn, SchemaItem item)
     {
-        return item.displayName();
+        String columnId = (String) tableColumn.identifier();
+        
+        if (columnId.equals("Schemas"))
+        {
+            return item.displayName();
+        }
+        else if (columnId.equals("Description"))
+        {
+            return item.description();
+        }
+        else
+        {
+            System.err.println("No such table col: " + columnId);
+            return null;
+        }
     }
     
     public boolean outlineViewWriteItemsToPasteboard( NSOutlineView outlineView, 

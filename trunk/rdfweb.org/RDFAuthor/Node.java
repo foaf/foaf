@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.AbstractList;
 import java.io.*;
 
+import com.hp.hpl.mesa.rdf.jena.common.Util;
+
 public class Node extends ModelItem implements Serializable
 {
     static final long serialVersionUID = 8496964442985450307L;
@@ -63,7 +65,26 @@ public class Node extends ModelItem implements Serializable
         arcsFrom = new ArrayList();
         arcsTo = new ArrayList();
     }
+   
+    // Same as before - but split the type into namespace & name
     
+    public Node(ArcNodeList myList, String id, String type, NSPoint position)
+    {
+        this.myList = myList;
+        literal = false;
+        this.id = id;
+        this.position = position;
+        
+        int sep = Util.splitNamespace(type);
+                
+        String namespace = type.substring(0, sep);
+        String name = type.substring(sep);
+        
+        setType(namespace, name);
+        
+        arcsFrom = new ArrayList();
+        arcsTo = new ArrayList();
+    } 
         
     private void writeObject(java.io.ObjectOutputStream out)
      throws IOException
@@ -137,6 +158,18 @@ public class Node extends ModelItem implements Serializable
         typeName = name;
         calculateSize();
         myList.itemChanged(this);
+    }
+    
+    // Version of above for unsplit types
+    
+    public void setType(String type)
+    {
+        int sep = Util.splitNamespace(type);
+                
+        String namespace = type.substring(0, sep);
+        String name = type.substring(sep);
+        
+        setType(namespace, name);
     }
 
     public String typeNamespace()

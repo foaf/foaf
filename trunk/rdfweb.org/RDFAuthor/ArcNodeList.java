@@ -58,6 +58,104 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         this.controller = controller;
     }
     
+    public ArcNodeList(RDFAuthorDocument controller, Reader reader, String type)
+                throws RDFException
+    {
+        currentObject = null;
+        array = new ArrayList();
+        this.controller = controller;
+        
+        // Import from contents of reader
+        
+        Model memModel = new ModelMem();
+        
+        memModel.read(reader, ""); // Hmm - what's base?
+        
+        HashMap jenaNodeToNode = new HashMap(); 
+        
+        float x = 70; // nasty out layout. Improve me!
+        float y = 70;
+        
+        for (StmtIterator iterator = memModel.listStatements(); iterator.hasNext(); )
+        {
+            Statement statement = iterator.next();
+            RDFNode object = statement.getObject();
+            Resource subject = statement.getSubject();
+            Property property = statement.getPredicate();
+            
+            Node subjectNode = (Node) jenaNodeToNode.get(subject);
+            Node objectNode = (Node) jenaNodeToNode.get(object);
+            
+            // If this statement sets the type of the subject node then
+            // set the type of the node
+            
+            if (property.equals(RDF.type))
+            {
+                if (subjectNode == null) // not added yet
+                {
+                    String id = subject.getURI();
+                    if (id != null) id = (id.equals(""))?null:id;
+                    // This is dodgy - object might be a literal (I guess)
+                    subjectNode = new Node(this, id, object.toString(),
+                        new NSPoint( x, y));
+                    x += 70; y += 10;
+                    if (x > 400F) x = 70;
+                    jenaNodeToNode.put(subject, subjectNode);
+                    array.add(subjectNode);
+                }
+                else
+                {
+                    // This is dodgy - see above
+                    subjectNode.setType(object.toString());
+                }
+            }
+            else
+            {
+                // First create nodes (if needed)
+                if (subjectNode == null) // never a literal, which makes life easy
+                {
+                    String id = subject.getURI();
+                    if (id != null) id = (id.equals(""))?null:id;
+                    subjectNode = new Node(this, id, null, null, new NSPoint( x, y));
+                    x += 70; y += 10;
+                    if (x > 400F) x = 70;
+                    jenaNodeToNode.put(subject, subjectNode);
+                    array.add(subjectNode);
+                }
+                if (objectNode == null)
+                {
+                    // Is this a resource?
+                    if (object instanceof Resource)
+                    {
+                        String id = ((Resource) object).getURI();
+                        if (id != null) id = (id.equals(""))?null:id;
+                        objectNode = new Node(this, id, null, null, new NSPoint( x, y));
+                        x += 70; y += 10;
+                        if (x > 400F) x = 70;
+                        jenaNodeToNode.put(object, objectNode);
+                        array.add(objectNode);
+                    }
+                    else // Must be a literal
+                    {
+                        String content = ((Literal) object).getString();
+                        content = (content.equals(""))?null:content;
+                        objectNode = new Node(this, content, null, null, new NSPoint( x, y));
+                        x += 70; y += 10;
+                        if (x > 400F) x = 70;
+                        objectNode.setIsLiteral(true);
+                        jenaNodeToNode.put(object, objectNode);
+                        array.add(objectNode);
+                    }
+                }
+                
+                // Now create the arc
+                
+                Arc arc = new Arc( this, subjectNode, objectNode, property.getNameSpace(), property.getLocalName() );
+                array.add(arc);
+            }
+        }
+    }
+    
     public void setController(RDFAuthorDocument controller)
     {
         this.controller = controller;

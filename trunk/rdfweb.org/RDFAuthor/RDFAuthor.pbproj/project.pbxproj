@@ -362,7 +362,9 @@
 				<string>text</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>None</string>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>RDFAuthorDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
