@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
 # ayf.pl (all your foaf...)
-# $Id: ayf.pl,v 1.1 2002-09-28 16:23:25 danbri Exp $ by danbri@rdfweb.org
+# $Id: ayf.pl,v 1.2 2002-09-28 17:27:19 danbri Exp $ by danbri@rdfweb.org
 #
 # A quick perl script that harvests and traverses RDF FOAF files
 # I blame Bob for my calling this 'all your foaf'.
@@ -55,13 +55,23 @@ while (1) {
   #
   while($page =~ s!rdfs:seeAlso\srdf:resource="([^"]+)"\s*/>!gotlink($1,$todo)!e) {};
 
+  sub gotlink { 
+    my $more=shift;  my $p=shift;
+    print "Seealso: $more FROM $p\n" if $debug;
+    if (!$seen{$more}) {
+      $seealso{$more}++;
+    }
+    return '';
+  }
+
+
 
 
   ##########################
   # look for pictures :)
   
-  while($page =~ s!depiction\srdf:resource="([^"]+)"\s*/>!gotpic($1,$todo)!e) {};
-  while($page =~ s!img\srdf:resource="([^"]+)"\s*/>!gotpic($1,$todo)!e) {};
+  while($page =~ s!depiction\s+rdf:resource="([^"]+)"\s*/>!gotpic($1,$todo)!e) {};
+  while($page =~ s!img\s+rdf:resource="([^"]+)"\s*/>!gotpic($1,$todo)!e) {};
 
   sub gotpic{
     my $pic = shift; 
@@ -92,7 +102,7 @@ while (1) {
   print OUT $out;
   print OUT "</body></html>\n\n";
   
-  print "(re)writing output: $outfile" if $debug;
+  print "(re)writing output: $outfile\n\n" if $debug;
   close OUT;
 
   ##########################
@@ -101,11 +111,3 @@ while (1) {
 
 
 
-sub gotlink { 
-  my $more=shift;  my $p=shift;
-  print "Seealso: $more FROM $p\n" if $debug;
-  if (!$seen{$more}) {
-    $seealso{$more}++;
-  }
-  return '';
-}
