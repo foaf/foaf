@@ -486,6 +486,7 @@
 				F61C69ED0198593D01000211,
 				F6BC9AD4019990A701000211,
 				F6BC9AD60199A28B01000211,
+				F6BC9AD8019AB14801000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -923,6 +924,7 @@
 			children = (
 				F6C639C40196DC8A01000211,
 				F61C69EC0198593C01000211,
+				F6BC9AD7019AB14801000211,
 			);
 			isa = PBXGroup;
 			name = "Query Classes";
@@ -982,6 +984,17 @@
 		};
 		F6BC9AD60199A28B01000211 = {
 			fileRef = F6BC9AD50199A28B01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6BC9AD7019AB14801000211 = {
+			isa = PBXFileReference;
+			path = QueryThread.java;
+			refType = 4;
+		};
+		F6BC9AD8019AB14801000211 = {
+			fileRef = F6BC9AD7019AB14801000211;
 			isa = PBXBuildFile;
 			settings = {
 			};

@@ -29,7 +29,9 @@ public class RDFAuthorUtilities {
             switch (type)
             {
                 case Normal:		NSAlertPanel.runAlert(errorTitle, errorText, null, null, null);
+                                        break;
                 case Critical:		NSAlertPanel.runCriticalAlert(errorTitle, errorText, null, null, null);
+                                        break;
                 case Informational: 	NSAlertPanel.runInformationalAlert(errorTitle, errorText, null, null, null);
             }
         }
@@ -40,9 +42,11 @@ public class RDFAuthorUtilities {
                 case Normal:
                     NSAlertPanel.beginAlertSheet(errorTitle, null, null, null,
                                                     window, null, null, null, window, errorText);
+                    break;
                 case Critical:
                     NSAlertPanel.beginCriticalAlertSheet(errorTitle, null, null, null,
                                                     window, null, null, null, window, errorText);
+                    break;
                 case Informational:
                     NSAlertPanel.beginInformationalAlertSheet(errorTitle, null, null, null,
                                                     window, null, null, null, window, errorText);
