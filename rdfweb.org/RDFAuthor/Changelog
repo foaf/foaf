@@ -1,4 +1,9 @@
-$Date: 2002-02-06 17:28:53 $ - pldms
+$Date: 2002-02-07 16:09:56 $ - pldms
+    
+    All toolbar functions have menu equivalents - so they are now accessable
+    via keyboard shortcuts.
+
+2002/02/06 17:28:53 - pldms
     
     Namespace prefixes fixed (i.e. works).
     
@@ -18,7 +23,7 @@ $Date: 2002-02-06 17:28:53 $ - pldms
     
     Literal info field is now an NSTextView - this can handle /n and long strings.
     
-    ID display is truncated if string > 30 chars. This is very useful for literals
+    ID display is truncated if string > 40 chars. This is very useful for literals
     which can get very long. (You can still see the full thing in info).
     
     Info window is now tabbed - one for the selected item, one for the document.

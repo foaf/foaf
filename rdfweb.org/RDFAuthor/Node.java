@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.24 2002-02-06 17:29:53 pldms Exp $ */
+/* $Id: Node.java,v 1.25 2002-02-07 16:09:56 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -35,7 +35,7 @@ public class Node implements Serializable, ModelItem
 {
     static final long serialVersionUID = 8496964442985450307L;
     
-    static final int maxDisplayStringLength = 30;
+    static final int maxDisplayStringLength = 40;
     
     String id;
     String typeNamespace;
@@ -347,8 +347,8 @@ public class Node implements Serializable, ModelItem
             idToShow = idToShow.replace('\n',' ');
             if (idToShow.length() > maxDisplayStringLength)
             {
-                idToShow = idToShow.substring(0, maxDisplayStringLength / 2 + 2) + "...."
-                    + idToShow.substring(idToShow.length() - maxDisplayStringLength / 2 - 2);
+                idToShow = idToShow.substring(0, maxDisplayStringLength / 2 - 2) + "...."
+                    + idToShow.substring(idToShow.length() - maxDisplayStringLength / 2 + 2);
             }
             
             if (showType && showId)

@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.32 2002-02-06 17:29:53 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.33 2002-02-07 16:09:56 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -65,20 +65,21 @@ public class RDFAuthorDocument extends NSDocument {
     boolean showIds;
     boolean showProperties;
     
+    boolean showingPreview;
+    
     String defaultPropertyNamespace = null;
     String defaultPropertyName = null;
     String defaultClassNamespace = null;
     String defaultClassName = null;
     
-    public RDFAuthorDocument() {
+    public RDFAuthorDocument() 
+    {
         super();
         rdfModel = new ArcNodeList(this);
-        showTypes = false;
-        showIds = false;
-        showProperties = false;
     }
     
-    public RDFAuthorDocument(String fileName, String fileType) {
+    public RDFAuthorDocument(String fileName, String fileType) 
+    {
         super(fileName, fileType);
         System.out.println("Loading file: " + fileName + " (" + fileType + ")");
         // Big secret - Document and Stationery identical
@@ -89,10 +90,10 @@ public class RDFAuthorDocument extends NSDocument {
             this.setFileName(null);
             this.setFileType("RDFAuthor Document");
         }
-        System.out.println("RDFModelView is: " + rdfModelView);
     }
     
-    public RDFAuthorDocument( java.net.URL anURL, String docType) {
+    public RDFAuthorDocument( java.net.URL anURL, String docType) 
+    {
         super(anURL, docType);
         System.out.println("Loading url: " + anURL + " (" + docType + ")");
     }
@@ -435,29 +436,6 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModelScrollView.setNeedsDisplay(true);
     }
     
-    public boolean showTextPreview(boolean showPreview, String type)
-    {
-        if (showPreview)
-        {
-            boolean success = createPreviewText(type);
-            if (!success)
-            {
-                return false;
-            }
-            NSRect rect = rdfModelScrollView.frame();
-            previewView.setFrame(rect);
-            window.contentView().replaceSubview(rdfModelScrollView, previewView);
-            return true;
-        }
-        else
-        {
-            NSRect rect = previewView.frame();
-            rdfModelScrollView.setFrame(rect);
-            window.contentView().replaceSubview(previewView, rdfModelScrollView);
-            return true;
-        }
-    }
-    
     public boolean createPreviewText(String type)
     {
         try
@@ -474,7 +452,7 @@ public class RDFAuthorDocument extends NSDocument {
             RDFAuthorUtilities.ShowError(
                 "Serialisation Failed",
                 "I couldn't convert this to '" + type + 
-                "'. Try using 'Check Model' for possible problems.", //\n(Note: N3 Doesn't work currently)",
+                "'. Try using 'Check Model' for possible problems.",
                 RDFAuthorUtilities.Critical, window);
             previewTextView.setString("");
             return false;
@@ -488,7 +466,7 @@ public class RDFAuthorDocument extends NSDocument {
             new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    public void showTypes(boolean value)
+    /*public void showTypes(boolean value)
     {
         showTypes = value;
         rdfModel.showTypes(value);
@@ -505,7 +483,8 @@ public class RDFAuthorDocument extends NSDocument {
         showProperties = value;
         rdfModel.showProperties(value);
     }
-
+    */
+    
     public void showInfoForObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
@@ -775,21 +754,6 @@ public class RDFAuthorDocument extends NSDocument {
         queryController.drawQueryItems();
     }
     
-    public void autoLayout()
-    {
-        RDFAuthorUtilities.layoutModel(rdfModel,
-            rdfModelView.frame().x(),
-            rdfModelView.frame().y(),
-            rdfModelView.frame().maxX(),
-            rdfModelView.frame().maxY());
-    }
-    
-    public void doCheckModel()
-    {
-        NSNotificationCenter.defaultCenter().postNotification(
-            new NSNotification(ErrorWindowController.checkModelNotification, window) );
-    }
-    
     public void checkModel(ModelErrorData errorData)
     {
         rdfModel.checkModel(errorData);
@@ -802,6 +766,134 @@ public class RDFAuthorDocument extends NSDocument {
         defaultPropertyName = propertyName;
         defaultClassNamespace = classNamespace;
         defaultClassName = className;
+    }
+    
+    /*
+        The following are driven by user input, either via the toolbar
+        or menu. They set editing modes, display settings, start error
+        checking and auto-layout, and show the query and bookmark panels.
+        
+        Since the toolbar items are sometimes stateful (eg buttons)
+        if an action is made from the menu we need to check for it and
+        sync the button states.
+    */
+    
+    private void selectMoveMode(Object sender)
+    {
+        rdfModelView.setEditingMode( RDFModelView.MoveSelectMode );
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void selectAddNodeMode(Object sender)
+    {
+        rdfModelView.setEditingMode( RDFModelView.AddNodeMode );
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void selectAddArcMode(Object sender)
+    {
+        rdfModelView.setEditingMode( RDFModelView.AddConnectionMode );
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void selectDeleteMode(Object sender)
+    {
+        rdfModelView.setEditingMode( RDFModelView.DeleteItemsMode );
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void selectMarkQueryMode(Object sender)
+    {
+        rdfModelView.setEditingMode( RDFModelView.AddQueryItemMode );
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void showTypes(Object sender)
+    {
+        showTypes = !showTypes;
+        rdfModel.showTypes(showTypes);
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void showProperties(Object sender)
+    {
+        showProperties = !showProperties;
+        rdfModel.showProperties(showProperties);
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+    
+    private void showIds(Object sender)
+    {
+        showIds = !showIds;
+        rdfModel.showIds(showIds);
+        if (sender instanceof NSMenuItem) rdfToolbar.syncButtonState();
+    }
+
+    private void showQueryPanel(Object sender)
+    {
+        queryController.toggleShow();
+    }
+    
+    private void showBookmarkWindow(NSToolbarItem sender)
+    {
+        bookmarkController.toggleShow();
+    }
+    
+    public void autoLayout(Object sender)
+    {
+        RDFAuthorUtilities.layoutModel(rdfModel,
+            rdfModelView.frame().x(),
+            rdfModelView.frame().y(),
+            rdfModelView.frame().maxX(),
+            rdfModelView.frame().maxY());
+    }
+    
+    public void doCheckModel(Object sender)
+    {
+        NSNotificationCenter.defaultCenter().postNotification(
+            new NSNotification(ErrorWindowController.checkModelNotification, window) );
+    }
+    
+    public void showTextPreview(Object sender)
+    {
+        String jenaType = rdfToolbar.previewType();
+    
+        if (!showingPreview)
+        {
+            boolean success = createPreviewText(jenaType);
+            if (!success) return;
+            
+            NSRect rect = rdfModelScrollView.frame();
+            previewView.setFrame(rect);
+            window.contentView().replaceSubview(rdfModelScrollView, previewView);
+            showingPreview = true;
+        }
+        else
+        {
+            NSRect rect = previewView.frame();
+            rdfModelScrollView.setFrame(rect);
+            window.contentView().replaceSubview(previewView, rdfModelScrollView);
+            showingPreview = false;
+        }
+        
+        // Set the toolbar image correctly
+        rdfToolbar.syncPreview(showingPreview);
+    }
+    
+    private void previewModeChanged(Object sender)
+    {
+        if (sender instanceof NSMenuItem) // Set popupmenu to selected type
+        {
+            int item = ((NSMenuItem) sender).menu().indexOfItem((NSMenuItem) sender);
+            rdfToolbar.setPreviewType(item);
+        }
+        
+        String jenaType = rdfToolbar.previewType();
+        
+        if (showingPreview)
+        {
+            createPreviewText(jenaType);
+        }
     }
 
 }
