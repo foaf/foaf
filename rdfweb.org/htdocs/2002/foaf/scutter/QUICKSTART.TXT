@@ -27,8 +27,14 @@ running.
 
 10. see doc/scutter.html for more details.
 
-notes:
-*a todo: investigate default encoding at this stage
+Notes:
+
+    bin/pathfinder might be of interest. This finds paths thru the 
+    FOAF/codepiction graph. Is slower than the Java one that runs on 
+    the live site, and doesn't have persistent storage.
+
+TODOs:
+*a investigate default encoding at this stage
 
 --
 danbri
