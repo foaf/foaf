@@ -1,0 +1,61 @@
+<p>
+The <code>foaf:PersonalProfileDocument</code> class represents those
+things that are a <code>foaf:Document</code>, and that use RDF to
+describe properties of the person who is the <code>foaf:maker</code>
+of the document. There is just one <code>foaf:Person</code> described in
+the document, ie.
+the person who <code>foaf:made</code> it and who will be its
+<code>foaf:primaryTopic</code>.
+</p>
+
+<p>
+The <code>foaf:PersonalProfileDocument</code> class, and FOAF's
+associated conventions for describing it, captures an important
+deployment pattern for the FOAF vocabulary. FOAF is very often used in
+public RDF documents made available through the Web. There is a
+colloquial notion that these "FOAF files" are often <em>somebody's</em>
+FOAF file. Through <code>foaf:PersonalProfileDocument</code> we provide
+a machine-readable expression of this concept, providing a basis for 
+FOAF documents to make claims about their maker and topic.
+</p>
+
+<p>
+When describing a <code>foaf:PersonalProfileDocument</code> it is
+typical (and useful) to describe its associated <code>foaf:Person</code>
+using the <code>foaf:maker</code> property. Anything that is a
+<code>foaf:Person</code> and that is the <code>foaf:maker</code> of some
+<code>foaf:Document</code> will be the <code>foaf:primaryTopic</code> of
+that <code>foaf:Document</code>. Although this can be inferred, it is
+helpful to include this information explicitly within the
+<code>foaf:PersonalProfileDocument</code>.
+</p>
+
+<p>
+For example, here is a fragment of a personal profile document which
+describes its author explicitly:
+</p>
+<p class="example">
+<pre>
+&lt;foaf:Person rdf:nodeID="p1"&gt;
+ &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
+ &lt;foaf:homepage rdf:resource="http://rdfweb.org/people/danbri/"/&gt;
+ &lt;!-- etc... --&gt;
+&lt;/foaf:Person&gt;
+
+&lt;foaf:PersonalProfileDocument rdf:about=""&gt;
+   &lt;foaf:maker rdf:nodeID="p1"/&gt;
+   &lt;foaf:primaryTopic rdf:nodeID="p1"/&gt;
+&lt;/foaf:PersonalProfileDocument&gt;
+</pre>
+</p>
+
+<p>
+Note that a <code>foaf:PersonalProfileDocument</code> will have some
+representation as RDF. Typically this will be in W3C's RDF/XML syntax,
+however we leave open the possibility for the use of other notations, or
+representational conventions including automated transformations from
+HTML (<a href="http://www.w3.org/2004/01/rdxh/spec">GRDDL</a> spec for
+one such technique).
+</p>
+
+
