@@ -1,8 +1,11 @@
-#!/bin/perl
+#!/usr/bin/perl
 
 #
 # Simple Perl hack to present RDF view of WordNet 
 
+# Fixup in Jan 2003, though this is still basically broken.
+# TODO:
+# migrate to using Lingua perl module.
 
 
 my $n= 1; # Default to Sense 1.
@@ -23,7 +26,7 @@ if (!$id) {
 print "Content-type: application/rdf+xml\n\n"; # :)
 
 my $wnns = 'http://xmlns.com/wordnet/1.6/'; # Base URI for this vocabulary
-$wnbin = '/usr/local/bin/wn';  ## Configure this to point to wordnet binary
+$wnbin = '/usr/bin/wn';  ## Configure this to point to wordnet binary
 
 
 print getXML();
