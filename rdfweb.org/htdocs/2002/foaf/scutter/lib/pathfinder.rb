@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder.rb,v 1.2 2002-07-17 16:19:00 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder.rb,v 1.3 2002-07-21 09:55:49 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -334,7 +334,7 @@ class TGraph
           childNode = edge.getOtherNode parentNode
           if childNode.notVisited
  	    childNode.visited=true 
-            puts "visited: #{childNode}"
+            # puts "visited: #{childNode}"
             child = TElement.new (childNode, parent, edge)
             leaves.push child
             children.push child

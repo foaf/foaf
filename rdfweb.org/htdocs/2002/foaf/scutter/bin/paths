@@ -3,18 +3,13 @@
 require 'getoptlong'
 require 'lib/pathfinder'
 
-# todo: get pathfinder installed
-
-puts "Running pathfinder..."
-
-
+opts={}
 opt = GetoptLong.new(
 	['--paths-from-mbox', '-m', GetoptLong::REQUIRED_ARGUMENT],
 	['--input', '-i', GetoptLong::REQUIRED_ARGUMENT],
 	['--search', '-s', GetoptLong::REQUIRED_ARGUMENT],
-    ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
+        ['--generate-rdf', '-g', GetoptLong::OPTIONAL_ARGUMENT] )
 
-opts={}
 
 opt.each_option do |name,arg|
   #  puts "got: #{name} -> #{arg}"
@@ -41,7 +36,7 @@ if !opts['input']
   TGraph.main(opts) 
 else
 
-  puts "Loading from file..."
+  puts "Loading link data from #{opts['input']}\n"
 
   graph = TGraph.new       
 
@@ -50,7 +45,7 @@ else
     f.each do |line|
       line.chomp!
       p = line.split(/\s+/)
-      puts "Got link info: #{p.inspect} "
+      print "."
       graph.addPath(p[0], p[1], p[2])
     end
     rescue
@@ -63,10 +58,9 @@ else
     target= 'mailto:libby.miller@bristol.ac.uk'
   end
 
-  puts "Search target: #{target} input: #{f}"
+  puts "\nGenerating paths to target: #{target} \n\n"
 
-  path = graph.findShortestPathsFromNodeNamed target
-  puts "\n\nDanpaths: " 
+   path = graph.findShortestPathsFromNodeNamed target
   path.each do |e|
     puts "\n\nPath:\n"
     while (e.parent != nil) 
