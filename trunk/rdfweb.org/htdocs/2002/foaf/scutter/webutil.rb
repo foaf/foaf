@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.7 2002-07-11 19:26:35 danbri Exp $
+# $Id: webutil.rb,v 1.8 2002-07-13 12:49:57 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -50,7 +50,9 @@ def scutter_local (file, base_uri, opts={})
   # config info
   cache_dir = opts['cache-dir']
   use_xslt= opts['use-xslt'] 
-  #use_xslt = false if use_xslt == nil
+  redparse = false
+	# use redland parser 'rdfdump' ?
+
  
   nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
 
@@ -63,9 +65,16 @@ def scutter_local (file, base_uri, opts={})
   dbi_user = 'danbri'		    # user
   dbi_pass=''	                    # autho
 
+  parsed_ok = false
+
   # Run Redland/Repat parser
   #
-  pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
+  if redparse
+    pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' `
+    red_nt = File::new( '#{cache_dir}webcache/_nt/rdf-#{file}.red.nt', File::CREAT|File::RDWR, 0644 )
+    red_nt.puts pmsg
+    red_nt.close
+  end
 
 
   # NOTE: *plug in alternate RDF parsers here*
@@ -74,14 +83,26 @@ def scutter_local (file, base_uri, opts={})
 
   if use_xslt 
     puts "\n\nRunning XSLT PARSER_#5:\n\n"
-    p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf'`
-    p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
+	
+    c14n_fn = "#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf"
     nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"    
-    puts "\n==#5\n\n"
+    ctext= `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' `
+    c14n = File::new( c14n_fn, File::CREAT|File::RDWR, 0644 )
+    c14n.puts ctext
+    c14n.close
+    puts "Stored canonicalised RDF."
+    nt_text = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl' '#{c14n_fn}'`
+    puts "N-Triples: #{nt}"
+    nt = File::new( nt_cache, File::CREAT|File::RDWR, 0644 )
+    nt.puts nt_text
+    nt.close
+    parsed_ok = true
+    puts "\n==#5 done.\n\n"
   end 
 
   puts "N-Triples cache: #{nt_cache}"
-  parsed_ok = (pmsg=='')
+#  parsed_ok = (pmsg=='')
+
   graph = nil
   sql_script = nil
   if  parsed_ok   
@@ -248,6 +269,8 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
 
     if (fetched != nil)
       loaded = scutter_local(fetched, uri, opts )
+      puts "load failed " if loaded == nil
+
       seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil) ).objects
       # puts "SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
       seeAlso.each do |doc|
