@@ -1,7 +1,8 @@
 package org.rdfweb.foafcon;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -25,7 +26,7 @@ public class Person
   
   boolean showMbox = false;
   
-  ArrayList knows;
+  Set knows;
   
   public Person(String name,
 		String mbox)
@@ -33,7 +34,7 @@ public class Person
     setName(name);
     setMbox(mbox);
 
-    knows = new ArrayList();
+    knows = new HashSet();
   }
 
   public Person(String mboxHash)
@@ -54,7 +55,7 @@ public class Person
     setInterest(interest);
     setSeeAlso(seeAlso);
     
-    knows = new ArrayList();
+    knows = new HashSet();
   }
 
   public void setFromPerson(Person person)
@@ -167,6 +168,11 @@ public class Person
     knows.add(person);
   }
   
+    public synchronized void removeKnows(Person person)
+    {
+	knows.remove(person);
+    }
+
   public Hashtable getProps()
   {
     Hashtable toReturn = new Hashtable();
@@ -282,12 +288,17 @@ public class Person
     
     return toReturn;
   }
+    
+    public int hashCode()
+    {
+	return mboxHash.hashCode();
+    }
 
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Person))
       return false;
-
+    
     return mboxHash.equals(((Person) obj).getMboxHash());
   }
 

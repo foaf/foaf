@@ -43,25 +43,21 @@ public class InfoDialog extends Dialog
 	{
 		getShell().setText("More Information");
 		
-		Composite content = new Composite(parent, SWT.NONE);
 		GridData layoutData = new GridData(GridData.FILL_BOTH);
 		layoutData.heightHint = 150;
 		layoutData.widthHint = 250;
-		content.setLayoutData(layoutData);
 		
-		GridLayout layout = new GridLayout();
-		content.setLayout(layout);
-		
-		textField = new Text(content, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.READ_ONLY);
+		textField = new Text(parent, 
+				     SWT.MULTI | SWT.V_SCROLL | 
+				     SWT.H_SCROLL | SWT.READ_ONLY);
 		if (infoText == null)
 			textField.setText("NOWT");
 		else
 			textField.setText(infoText);
 		
-		layoutData = new GridData(GridData.FILL_BOTH);
 		textField.setLayoutData(layoutData);
 		
-		return content;
+		return textField;
 	}
 
 }

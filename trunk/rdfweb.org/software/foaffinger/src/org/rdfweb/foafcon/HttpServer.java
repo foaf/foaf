@@ -68,7 +68,8 @@ public class HttpServer implements Runnable
     
     catch (IOException e)
       {
-	System.out.println(e);
+	  controller.showMessage(new Message("HttpServer problem: " +
+					     e.getMessage()));
       }
   }
 }

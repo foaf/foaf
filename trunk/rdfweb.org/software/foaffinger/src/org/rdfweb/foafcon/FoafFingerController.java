@@ -166,6 +166,11 @@ public class FoafFingerController
   {
     return people.isOnline(index);
   }
+    
+    public boolean personOnline(Person person)
+    {
+	return people.isOnline(person);
+    }
 
   public int numberOfPeople()
   {
