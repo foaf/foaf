@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>rdfviz!</title>
+<link rel="stylesheet" type="text/css" href="style/simple.css" />
+</head>
+
+<body bgcolor="#ffffff">
+<div><a href="/discovery/"><img
+src="http://ilrt.org/discovery/images/rudolf-small.gif" border="0"
+width="33" height="68" alt="RDF hacking" align="right" /></a> <a
+href="http://ilrt.org/"><img
+src="http://ilrt.org/images/nav_logo.gif" width="114" height="64"
+alt="ILRT Home" border="0" align="right" /></a></div>
+
+<h1>RDFViz</h1>
+
+<p><strong>A visualisation tool for RDF developers...</strong></p>
+
+<p><small>Version: 0.1 (prototype)</small></p>
+
+<form
+action="http://snowball.ilrt.bris.ac.uk/cgi-bin/rdf-dot/uri2gif"
+method="get"><small><input type="text" name="URI"
+value="http://xmlns.com/wordnet/1.6/Web" size="80" /><br />
+ <strong><input type="submit" value="Go!" /> (get RDF Graph
+Visualisation of this URI)</strong><br />
+ SVG output? <input type="checkbox" name="SVG"
+value="TRUE" /></small> | VRML output? <input type="checkbox"
+name="VRML" value="TRUE" /></form>
+
+<p>See also:</p>
+
+<ul>
+<li><a
+href="http://www.ilrt.bris.ac.uk/discovery/rdf-dev/rudolf/rdfviz/">
+RDFViz development page at ILRT</a></li>
+
+<li><a href="demo1.svg">sample svg output</a></li>
+<li><a href="http://www.research.att.com/sw/tools/graphviz/">
+GraphViz</a> (the underlying system RDFViz uses)</li>
+
+<li><a href="http://www.w3.org/RDF/Implementations/SiRPAC/">W3C
+SiRPAC page</a> (online parser, now with GraphViz-based images,
+Java src available)</li>
+
+<li><a href="http://www.dfki.uni-kl.de/frodo/RDFSViz/">Frodo
+RDFS-Viz</a>, an RDF Schema visualisation tool</li>
+
+<li><a href="http://www.w3.org/RDF/">W3C RDF home page</a></li>
+</ul>
+
+<p>
+Handy tools:
+</p>
+<ul>
+<li>
+<a
+href="javascript:location.href='http://snowball.ilrt.bris.ac.uk/cgi-bin/rdf-dot/uri2gif?URI='+location.href">RDFViz 
+this!</a><br />
+... a Javascript 'bookmarklet', and can be added to toolbar in IE,
+Netscape (try dragging, otherwise use Bookmark/Favourite manager). To use:
+select when browsing raw RDF to view using RDFViz
+</li>
+<li><a href="demo1.svg">demo1.svg</a> (test SVG file; amended after
+GraphViz generation)</li>
+ </ul>
+
+
+<p><strong>Privacy warning</strong>: the RDFViz service implemented
+here will expose your RDF data in various forms in a <a
+href="http://snowball.ilrt.bris.ac.uk/rdf-viz/out/">public</a>
+directory. Only use this system for files you're happy others
+seeing.</p>
+
+<address>maintainer: <a
+href="mailto:daniel.brickley@bristol.ac.uk">dan
+brickley</a></address>
+</body>
+</html>
+
