@@ -1,0 +1,66 @@
+<!-- this RDF file holds draft property and class descriptions proposed for 
+     inclusion in the main FOAF namespace.
+     $Id: proposals.rdf,v 1.1 2003-02-26 23:33:30 danbri Exp $
+     $Log: not supported by cvs2svn $
+
+     danbri@rdfweb.org
+     -->
+
+<rdf:RDF 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" 
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:daml="http://www.daml.org/2001/03/daml+oil#" 
+	xmlns:foaf="http://xmlns.com/foaf/0.1/" 
+	xmlns:wot="http://xmlns.com/wot/0.1/" 
+	xmlns:wn="http://xmlns.com/wordnet/1.6/" 
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/brother" 
+	rdfs:label="brother"
+	rdfs:comment="A brother of this person.">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/sibling" />
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sister" 
+	rdfs:label="sister"
+	rdfs:comment="A sister of this person.">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/sibling" />
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sibling" 
+	rdfs:label="sibling"
+	rdfs:comment="A sibling of this person.">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+      </rdf:Property>
+
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mother" 
+	rdfs:label="mother"
+	rdfs:comment="The mother of this person.">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/parent" />
+      </rdf:Property>
+
+      <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/father" 
+	rdfs:label="father"
+	rdfs:comment="The father of this person.">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/parent" />
+      </rdf:Property>
+
+
+
+</rdf:RDF>
+
