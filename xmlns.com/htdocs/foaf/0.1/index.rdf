@@ -11,7 +11,7 @@
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-07-09 10:26:51 $</dc:date>
+        <dc:date>$Date: 2003-07-09 18:35:18 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -433,7 +433,7 @@ TODO: just for account IDs, or resources? chatrooms?">
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/topic" 
 	rdfs:label="topic"
 	rdfs:comment="A topic of some page or document.">
-        <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Document"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
@@ -443,7 +443,7 @@ TODO: just for account IDs, or resources? chatrooms?">
 	rdfs:label="page"
 	rdfs:comment="A page or document about this thing.">
         <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Document"/>
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/topic"/>
       </rdf:Property>
