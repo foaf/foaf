@@ -1,0 +1,140 @@
+#!/usr/local/bin/ruby
+
+require 'webrick'
+include WEBrick
+require '/home/danbri/s-rubyrdf/squish/squish'
+require '/home/danbri/s-rubyrdf/basicrdf'
+
+
+
+# Notes:
+#
+# We can run this here and make it appear on the main server, eg:
+# ssh -v pldab@rdfweb.org -g -R 8080:127.0.0.1:2000      
+#
+
+# Webrick servlet gives an erb/erb1 error 
+# so I commented some lines out, see:
+#/usr/local/lib/ruby/site_ruby/1.6/webrick/httpservlet.rb 
+# or webrick archives for details.
+
+class RSSViewServlet < HTTPServlet::AbstractServlet
+
+  def do_GET(req, res)
+
+    require 'bin/scutter' # should integrate into rdf library
+    query = SquishQuery.new.parseFromText 'SELECT ?i, ?t, ?d,  
+ 	 WHERE 
+	 (rss::title ?i ?t)
+	 (rss::description ?i ?d)
+	USING
+	rss for http://purl.org/rss/1.0/'
+
+     
+    x = '<?xml version="1.0" encoding="UTF-8"?>'
+    x +=  ''
+    x += '<html xmlns="http://www.w3.org/1999/xhtml">'
+    x += "<head><title>RDFWeb: RSS Channel</title></head>\n\n<body>\n"
+
+    ## we load some RDF from the Web
+
+    loaded = false
+    base = './'
+    u = req.query['u'] # how to get args?
+    u = 'http://www.ilrt.bristol.ac.uk/discovery/rdf/resources/rss.rdf' if !u
+
+    x += "<h1>RSS feed: #{u}</h1>\n\n"
+
+    src_id = scutter_remote u 		# grab files, stash locally 
+    puts "got srcid: #{src_id}" 	# basis for file name 
+    cache_id = "#{base}webcache/_nt/rdf-#{src_id}.nt"
+    puts "got cache_id: #{cache_id}" 	
+    begin  
+      data = Loader.ntfile2graph cache_id # load rdf from cached file
+      loaded = true	
+    rescue
+      puts "Error loading rdf document"
+    end
+
+    if loaded
+      begin  
+        resultset = SquishQuery.ask query, data
+        # x += "Request: #{req.inspect} <br />"
+        x += "<ul>\n\n"
+        x += "<h1>Recent items</h1>\n"
+        resultset.each do |row|
+          t = row.values['t']
+          t.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+          d = row.values['d']
+          d.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+          i = row.values['i']
+          i.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+          x += "<li><a href=\"#{i}\">#{t}</a> <em>#{d}</em></li>\n"
+        end
+        x += "</ul>\n\n"
+      rescue
+        x += "Query error"
+        puts "Error during squish query"
+      end
+    else 
+      x += "No channel loaded."
+      puts "Load failed."
+    end
+    puts "Closing RSS doc."
+    x += "</body>\n</html>\n\n"
+    res.body=x
+  end
+end
+
+
+class RSSDirectoryServlet < HTTPServlet::AbstractServlet
+
+  def do_GET(req, res)
+    require 'dbi'
+    query=<<EOQ;
+
+	SELECT ?uri, ?title, ?desc,  
+	WHERE (rdf::type ?uri rss::channel)
+	(rss::title ?uri ?title)
+	(rss::description ?uri ?desc)
+	USING 
+	rdf for http://www.w3.org/1999/02/22-rdf-syntax-ns#
+	rss for http://purl.org/rss/1.0/
+	foaf for http://xmlns.com/foaf/0.1/  
+	dc for http://purl.org/dc/elements/1.1/
+EOQ
+
+    dbi_driver = 'DBI:Pg:rdfweb1'
+    dbi_user = 'danbri'
+    dbi_pass =''
+    q = SquishQuery.new.parseFromText query 
+    h= '<?xml version="1.0" encoding="UTF-8"?>'
+    h += '' 
+    h += '<html xmlns="http://www.w3.org/1999/xhtml">'
+    h +=  "<head><title>RDFWeb: RSS Channel Directory</title></head>\n\n<body>\n"
+    h += "<h1>RSS 1.0 Channels:</h1>\n\n"
+    h +=  "<ul>\n\n"
+    DBI.connect(  dbi_driver, dbi_user ,  dbi_pass ) do | dbh |
+      dbh.select_all( q.toSQLQuery  ) do | c |
+        channel=ResultRow.new c
+        channel.desc.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+        channel.title.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+        h += "<li><a href=\"/rssview/?u=#{channel.uri}\">#{channel.title}</a> <em>#{channel.desc}</em></li>";
+      end
+    end
+    h += "</ul>"
+    h += "\n\n</body>\n</html>\n\n"
+    res.body=h
+  end
+end
+
+
+s = HTTPServer.new( :Port => 2000, 
+	:Logger => WEBrick::Log::new('logfile', WEBrick::Log::DEBUG) ,	:BindAddress    => '0.0.0.0' )
+
+s.mount  '/rssview', RSSViewServlet
+s.mount  '/rss', RSSDirectoryServlet
+	
+trap("INT"){ s.shutdown }
+s.start
+

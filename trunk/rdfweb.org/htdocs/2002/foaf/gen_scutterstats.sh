@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# genscutterstats.sh $Id: gen_scutterstats.sh,v 1.1 2002-06-28 19:08:21 danbri Exp $ danbri@w3.org
+# genscutterstats.sh $Id: gen_scutterstats.sh,v 1.2 2002-07-10 21:38:06 danbri Exp $ danbri@w3.org
 #
 # a few simple queries that describe the contents of 
 # some RDF query service. Note that we use raw SQL 
@@ -15,9 +15,9 @@
 
 
 echo 'RDF Properties:'
-echo 'select value, count(value)   from resources, triples where resources.key = triples.predicate group by value order by count(value)' | psql test1
-   
+echo 'select value, count(value)   from resources, triples where resources.key = triples.predicate group by value order by count(value)' | psql rdfweb1
+    
 
 echo 'RDF Classes:'
-echo "select r2.value, count(r2.value) from resources r1, resources r2, triples t1 where r1.key = t1.predicate AND r1.value='http://www.w3.org/1999/02/22-rdf-syntax-ns#type' AND r2.key = t1.object group by r2.value order by count(r2.value);" | psql test1
-
+echo "select r2.value, count(r2.value) from resources r1, resources r2, triples t1 where r1.key = t1.predicate AND r1.value='http://www.w3.org/1999/02/22-rdf-syntax-ns#type' AND r2.key = t1.object group by r2.value order by count(r2.value);" | psql  rdfweb1
+ 
