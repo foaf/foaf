@@ -11,7 +11,7 @@ tidyup:
 	rm -f $(GENFILES)
 	
 rdf_vdl.nt:
-	rdfdump -o ntriples -q file:index.rdf > rdf_vdl.nt
+	rapper -o ntriples -q file:index.rdf > rdf_vdl.nt
 
 index.html: index.rdf rdf_vdl.nt table.html _top 
 	rm -f index2.html
