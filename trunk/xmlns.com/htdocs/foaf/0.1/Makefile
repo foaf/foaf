@@ -46,6 +46,9 @@ publish:
 	ssh xmlns.com make slaves
 
 
+htaccess:
+	ruby ../../2003/apacheconf.rb > .htaccess
+
 
 
 
