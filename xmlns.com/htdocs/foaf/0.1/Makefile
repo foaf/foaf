@@ -14,6 +14,9 @@ sign:
 vocabtable:
 	rdfdump -o ntriples -q file:index.rdf  | ./vocabtable.rb  > table.html
 
+jenavoc:
+	rdfdump -o ntriples -q file:index.rdf  | ./vocab2jena.rb  > FOAFJena.java
+
 getrdf:
 	xsltproc ../../2002/07/extractrdf.xsl index.html > index.rdf
 
