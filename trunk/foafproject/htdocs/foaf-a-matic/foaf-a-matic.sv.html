@@ -1,0 +1,353 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
+<head>
+<title>FOAF-a-matic -- Beskriv dig sj&auml;lv i RDF</title>
+<link rel="stylesheet" href="css/foaf-a-matic.css" type="text/css"/>
+<script language="javascript" type="text/javascript" src="js/foaf-a-matic.js" xml:space="preserve">
+</script>
+<script language="javascript" type="text/javascript" src="js/foaf.js" xml:space="preserve"/>
+<script language="javascript" type="text/javascript" src="js/sha1.js" xml:space="preserve"/>
+<script language="javascript" xml:space="preserve">
+<!--
+// check for parameters in URL
+checkParameters();
+// -->
+</script>
+<link rel="stylesheet" href="../css/foaf3.css" type="text/css"/>
+</head>
+
+<body>
+<h1>
+<a href="http://www.foaf-project.org/" shape="rect">
+<span class="lefthead">foaf  
+</span>
+<span class="righthead">project</span>
+</a>
+</h1>
+<div class="description-bar">friend of a friend</div>
+<div class="marginLeft">
+<div class="header">
+<img id="circleLogo" src="../images/SmileysTransp.gif" alt="Foaf Icon - colorful circles"/>
+</div>
+<div id="links">
+<a href="/foaf-a-matic/" shape="rect">foaf-a-matic</a>
+<a href="http://rdfweb.org/topic/FAQ" shape="rect">
+about</a>
+<a href="http://xmlns.com/foaf/0.1/" shape="rect">specification</a>
+<a href="http://rdfweb.org/" shape="rect">
+developers</a>
+<a href="http://rdfweb.org/foaf/corp/intro.html" shape="rect">foafcorp</a>
+<a href="foaf-contact@rdfweb.org" shape="rect">
+contact</a>
+</div>
+<!-- main page content follows -->
+</div>
+<h2>FOAF-a-Matic</h2>
+
+
+
+
+
+<p>
+F&ouml;rfattat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. &Ouml;versatt av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="http://mymarkup.net">Erik Stattin</a>
+</p>
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introduktion</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      FOAF-a-Matic &auml;r en enkel Javascript-applikation som l&aring;ter dig skapa en FOAF ("Friend-of-A-Friend" eller "V&auml;n-till-En-V&auml;n")-beskrivning av dig sj&auml;lv. Du kan l&auml;sa mer om FOAF i Edd Dumbills artikel "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML Watch: Finding friends with XML and RDF</a>" p&aring; <a href="http://rdfweb.org/foaf/">hemsidan f&ouml;r FOAF hos RDFWeb</a>, liksom <a href="http://xmlns.com/foaf/0.1/">beskrivningen av FOAF-vokabul&auml;ren</a>.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      I korthet &auml;r FOAF ett s&auml;tt att beskriva dig sj&auml;lv - ditt namn, din e-postadress och de personer du &auml;r v&auml;n med - genom att anv&auml;nda XML och RDF. Detta l&aring;ter mjukvara hantera dessa beskrivningar, kanske som en del av en automatiserad s&ouml;kmotor, f&ouml;r att hitta information om dig och de gemenskaper som du deltar i. FOAF skapar m&ouml;jligheter att driva en ny intressant utveckling i online-gemenskaper. Ben Hammersleys artikel "<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>" f&ouml;r webbplatsen Guardian Unlimited utforskar dessa id&eacute;er ytterligare.  
+      </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      FOAF-a-Matic finns f&ouml;r att du snabbt och enkelt ska kunna skapa din egen FOAF-beskrivning. G&aring; helt enkelt igenom formul&auml;ren p&aring; den h&auml;r sidan och l&auml;gg till de uppgifter som du vill ha med i din beskrivning. Som minimum m&aring;ste du l&auml;gga till ditt namn och din e-postadress, och likadant f&ouml;r de v&auml;nner som du l&auml;gger till. Det &auml;r v&auml;rt att l&auml;gga till n&aring;gra v&auml;nner till din beskrivning (men l&auml;gg till s&aring; m&aring;nga som du vill) s&aring; att n&auml;r en FOAF-sk&ouml;rdare indexerar din FOAF-beskrivning s&aring; kan den knyta ihop er som ett n&auml;tverk av individer.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Anm&auml;rkning: ingen av den information som du skriver in p&aring; den h&auml;r sidan anv&auml;nds eller lagras p&aring; n&aring;got vis. Hanterandet sker helt och h&aring;ller p&aring; klient-sidan, s&aring; att din integritet kan garanteras.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Om du har kommentarer till den h&auml;r applikationen, eller har ytterligare fr&aring;gor om FOAF, varf&ouml;r inte g&aring; med i e-postlistan <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-dev</a>?
+      </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<b>Uppdatering</b>: Jag arbetar f&ouml;r n&auml;rvarande med att skriva <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>, en skrivbordsapplikation f&ouml;r att skapa och hantera dina FOAF-data.
+        </p>
+    
+
+<form name="details" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Formul&auml;ren</h2>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personligt</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Lite information om dig och hur andra kan kontakta dig.
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">Titel (Herr, Fru, Doktor, etc)</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="title"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">F&ouml;rnamn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="firstName"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Efternamn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="surname"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Smeknamn</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="nick"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Din e-postadress</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="email"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Hemsida</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="homepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Din bild</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="depiction"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Telefonnummer</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="phone"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Arbete</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Information om d&auml;r du arbetar.
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">Arbetets hemsida</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workplaceHomepage"/>
+</td>
+</tr>
+<tr>
+<td rowspan="1" colspan="1">Sida som beskriver vad du arbetar med</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="workInfoHomepage"/>
+</td>
+</tr>
+</table>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Skola</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Var gick du i skolan?
+        </p>
+    
+
+<table>
+<tr>
+<td rowspan="1" colspan="1">Skolans hemsida</td>
+<td rowspan="1" colspan="1">
+<input type="text" name="schoolHomepage"/>
+</td>
+</tr>
+</table>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">M&auml;nniskor du k&auml;nner</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Tala om f&ouml;r FOAF-a-Matic om n&aring;gra m&auml;nniskor som du k&auml;nner. Klicka p&aring; "Fler v&auml;nner" f&ouml;r att f&aring; mer utrymme att l&auml;gga till fler m&auml;nniskor. Om din v&auml;n redan har en FOAF-beskrivning, placera d&aring; en l&auml;nk till den i f&auml;ltet "Se ocks&aring;".
+        </p>
+    
+
+<form name="friends" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<table>
+<tbody id="friendtable">
+<script language="javascript" xml:space="preserve">
+//see foaf-a-matic.js
+createFriendFields();
+</script>
+</tbody>
+</table>
+
+<input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()"/>
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Skapa resultat</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Nu har du fyllt i alla uppgifter och &auml;r beredd p&aring; att f&ouml;rvandlas till FOAF...
+        </p>
+    
+
+<form name="results" onSubmit="return false;" method="get" enctype="application/x-www-form-urlencoded">
+<p>
+   <input type="checkbox" id="spamProtect" name="spamProtect" checked="checked"/> Skydda e-postadresser fr&aring;n spam 
+</p>
+<p>
+   <input type="submit" id="generate" value="FOAF me!" onClick="generate()"/>
+</p>
+<textarea name="rdf" cols="80" rows="20"/>
+
+<p align="left">
+   <input id="reset" type="reset"/>
+</p>
+
+</form>
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Och nu?</h2>
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Publicera din FOAF-beskrivning</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Det h&auml;r &auml;r den enkla biten. Kopiera helt enkelt den skapade FOAF-beskrivningen fr&aring;n textrutan ovan och klistra in den i en fil. L&auml;gg filen p&aring; din webbplats n&aring;gonstans d&auml;r den &auml;r publikt &aring;tkomlig. Det &auml;r en bra id&eacute; att d&ouml;pa filen till "foad.rdf" f&ouml;r d&aring; kan en Google-s&ouml;kning anv&auml;ndas f&ouml;r att hitta FOAF-filer &ouml;ver hela webben.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Din FOAF-beskrivning &auml;r nu f&auml;rdig, och nu beh&ouml;vs bara att m&auml;nniskor kommer och l&auml;ser den...
+      </p>
+
+        
+<h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Kom med i FOAF-gemenskapen</h3>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Hur FOAF ska "uppt&auml;ckas" (dvs. hur FOAF-anpassade applikationer ska hitta din beskrivning) &auml;r ett omr&aring;de som fortfarande diskuteras. Om du har f&ouml;rslag s&aring; skicka dem till e-postlistan <a href="http://groups.yahoo.com/group/rdfweb-dev/">RDFWeb-dev</a>. Det finns emellertid tre m&ouml;jligheter. Du kan pr&ouml;va en av dem eller alla.
+        </p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Anv&auml;nda Link-taggen</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Aaron Swartz har <a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">f&ouml;reslagit</a> att man ska anv&auml;nda HTML-taggen Link f&ouml;r att peka p&aring; FOAF-beskrivningar, p&aring; samma s&auml;tt som m&aring;nga bloggare pekar p&aring; sina RSS-fl&ouml;den. S&aring; h&auml;r skulle det se ut:
+        </p>
+
+        
+<code xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" /&gt;
+        </code>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">H&auml;nvisningar fr&aring;n en v&auml;n</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Det andra rekommenderade s&auml;ttet att f&aring; din FOAF-fil indexerad &auml;r att l&aring;ta n&aring;gon annan (dvs. en v&auml;n) peka p&aring; den. En FOAF-spindel kan d&aring; kl&auml;ttra efter alla FOAF-filer. Du kan &aring;sadkomma detta genom att g&ouml;ra f&ouml;ljande &auml;ndringar i din FOAF-beskrivning:
+        </p>
+
+        
+<ol xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<li>&Auml;ndra <code>rdf:RDF</code>-elementet f&ouml;r att l&auml;gga till namnrymden f&ouml;r RDF Schema, som f&ouml;ljer:
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
+        </code>
+        
+</li>
+        
+<li>Du kan sedan l&auml;gga till l&auml;nkar till andra FOAF-beskrivningar genom att l&auml;gga till ett <code>rdfs:seeAlso</code>-element f&ouml;r varje ytterligare fil, som f&ouml;ljer:</li>
+        
+<code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/&gt;
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/&gt;
+        </code>
+        
+</ol>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        
+<i>Uppdatering</i>: om dina v&auml;nner redan har FOAF-beskrivningar, l&auml;gg d&aring; till dem i "Se ocks&aring;"-f&auml;ltet i formul&auml;ret ovan. Du kan ocks&aring; <a href="http://www.ldodds.com/blog/archives/000033.html">H&auml;nvisa en V&auml;n till FOAF-a-Matic</a>
+        
+</p>
+
+        
+<h4 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Anv&auml;nda FOAF-anslagstavlan</h4>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Ett sj&auml;lvklart s&auml;tt f&ouml;r applikationer att hitta FOAF-beskrivningar &auml;r om det finns ett register &ouml;ver m&auml;nniskor. Jag har kokat ihop ett enkelt s&auml;tt att g&ouml;ra detta p&aring;, kallad <a href="bulletin-board.html">FOAF-anslagstavlan</a>. Bes&ouml;k FOAFWikin och redigera sidan <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a> och l&auml;gg till ditt namn och en l&auml;nk till din FOAF-beskrivning. Jag har lagt till min redan som du kan anv&auml;nda som ett exempel.
+        </p>
+
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+      Genom att anv&auml;nda magiken hos HTML Tidy och XSLT kan applikationer s&aring;som Edd Dumbills <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a> hantera detta index. Bes&ouml;k hemsidan f&ouml;r FOAFBot f&ouml;r mer information om hur du kan se hur det fungerar.
+        </p>
+    
+
+
+<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license"></a>
+<h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Licens</h2>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        Det h&auml;r verket &auml;r licensierat under en <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons-license</a>.
+        </p>
+        
+<p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+        <!-- Creative Commons License -->
+        
+<a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif"></a>
+<br>
+        <!-- /Creative Commons License -->
+        
+</p>
+    
+
+<hr/>
+[<a href="index.html" shape="rect">FOAF Hackery</a>]
+
+</body>
+</html>

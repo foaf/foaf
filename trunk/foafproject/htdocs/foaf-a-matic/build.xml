@@ -1,0 +1,93 @@
+<project name="FOAF-a-Matic" default="build" basedir=".">
+
+
+   <target name="build">
+      <antcall target="makeVersion">
+         <param name="lang" value="en"/>
+         <param name="charset" value="UTF-8"/>
+      </antcall>
+
+      <antcall target="makeVersion">
+         <param name="lang" value="ja"/>
+         <param name="charset" value="UTF-8"/>
+      </antcall>
+
+      <antcall target="makeVersion">
+         <param name="lang" value="fr"/>
+         <param name="charset" value="iso-8859-1"/>
+      </antcall>
+      
+      <antcall target="makeVersion">
+         <param name="lang" value="es"/>
+         <param name="charset" value="iso-8859-1"/>
+      </antcall>
+      
+      <antcall target="makeVersion">
+         <param name="lang" value="da"/>
+         <param name="charset" value="iso-8859-1"/>
+      </antcall>      
+
+      <antcall target="makeVersion">
+         <param name="lang" value="sv"/>
+         <param name="charset" value="iso-8859-1"/>
+      </antcall>      
+
+   </target>
+   
+   <target name="makeVersion">
+      <antcall target="makeApp">
+         <param name="lang" value="${lang}"/>
+         <param name="charset" value="${charset}"/>
+      </antcall>
+      <antcall target="makeMessages">
+         <param name="lang" value="${lang}"/>
+         <param name="charset" value="${charset}"/>
+      </antcall>   
+   </target>
+
+   <target name="makeApp" description="Make a version of the application">
+      <style in="src/${lang}.xml" out="foaf-a-matic.${lang}.html" style="xsl/foaf-a-matic.xsl">
+          <outputproperty name="method" value="html"/>
+          <outputproperty name="encoding" value="${charset}"/>
+      </style>      
+   </target>
+
+  <target name="makeMessages" description="Make Javascript messages">
+      <xslt in="src/${lang}.xml" out="js/${lang}.js" style="xsl/messages.xsl">
+          <outputproperty name="method" value="text"/>
+          <outputproperty name="encoding" value="${charset}"/>
+      </xslt>
+  </target>
+
+   
+  <!--   
+    <target name="makeEN" description="Create all language versions of the FOAF-a-Matic">
+      <style in="src/en.xml" out="foaf-a-matic.en.html" style="xsl/foaf-a-matic.xsl">
+          <outputproperty name="method" value="html"/>
+          <outputproperty name="encoding" value="UTF-8"/>
+      </style>
+   </target>
+
+  <target name="makeENMessages" description="Make Javascript messages">
+      <xslt in="src/en.xml" out="js/en.js" style="xsl/messages.xsl">
+          <outputproperty name="method" value="text"/>
+          <outputproperty name="encoding" value="UTF-8"/>
+      </xslt>
+  </target>
+
+  <target name="makeJP" description="Create all language versions of the FOAF-a-Matic">
+      <style in="src/ja.xml" out="foaf-a-matic.ja.html" style="xsl/foaf-a-matic.xsl">
+          <outputproperty name="method" value="html"/>
+          <outputproperty name="encoding" value="UTF-8"/>
+      </style>
+   </target>
+
+  <target name="makeJPMessages" description="Make Javascript messages">
+      <xslt in="src/ja.xml" out="js/ja.js" style="xsl/messages.xsl">
+          <outputproperty name="method" value="text"/>
+          <outputproperty name="encoding" value="UTF-8"/>
+      </xslt>
+  </target>
+   -->
+   
+</project>

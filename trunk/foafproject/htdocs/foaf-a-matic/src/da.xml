@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+         The main elements in this document correspond to sections of text in the
+         FOAF-a-Matic, e.g. the introduction. These sections can include any HTML
+         markup.
+
+         For the field, button, and message elements, please just translate the
+         provided text: no markup is allowed in these elements.
+
+         Note: for the missingFriendEmail message the ? symbol will be replaced by
+         the name of the friend. Please incorporate that into the translated version as
+         appropriate.
+
+         Thanks!
+
+         leigh@ldodds.com
+
+    -->
+<fm:translation lang="da" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+
+    <fm:by-line>Beskriv dig selv med RDF</fm:by-line>
+
+    <fm:author>Skrevet af <a href="mailto:leigh@ldodds.com">Leigh Dodds</a>.</fm:author>
+
+    <!-- Add your name here, e.g. "Translated By <a href="">Your Name</a>." -->
+    <fm:translator>Oversat af <a href="mailto:morten@wasab.dk">Morten Frederiksen</a>.</fm:translator>
+
+    <fm:introduction title="Introduktion">
+        <p>
+        FOAF-a-Matic er en simpel Javascript applikation der kan hjælpe med at lave
+        en FOAF-beskrivelse ("Friend-of-A-Friend", "Ven-af-en-Ven") af dig selv.
+        Du kan læse mere om
+        FOAF i Edd Dumbills artikel "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
+        Watch: Finding friends with XML and RDF</a>" ("Find venner med XML og RDF"), på
+        <a href="http://rdfweb.org/foaf/">FOAF-hjemmesiden på RDFWeb</a> samt i
+        <a href="http://xmlns.com/foaf/0.1/">FOAF's tekniske beskrivelse</a>.
+        </p>
+
+        <p>
+        Kort fortalt: FOAF er en måde at beskrive dig selv på -- dit navn, e-mail adresse
+        og de mennesker du er venner med -- ved hjælp af XML og RDF. Det gør det muligt
+        for software at "forstå" disse beskrivelser, måske som en del af en automatiseret
+        søgemaskine, og dermed opdage information om dig og de sociale grupper du er medlem af.
+        FOAF har potentiale til at fremme mange interessante udviklinger indenfor online-grupper,
+        Ben Hammersleys artikel "<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"
+        ("Klik til kliken") på The Guardian Unlimited ser nærmere på disse muligheder.
+        </p>
+
+        <p>
+        FOAF-a-Matic stilles til rådighed som en hurtig og nem måde at danne din egen FOAF-beskrivelse.
+        Det er nemt, benyt blot de forskellige felter på denne side, og udfyld de detaljer du
+        finder passende at beskrive dig selv med. Som minimum skal du dog udfylde dit navn og e-mail
+        adresse, og tilsvarende for de af dine venner du angiver. Det er en god idé at angive et
+        par venner i din beskrivelse (tilføj endelig så mange du har lyst til), for så vil
+        det være muligt for de forskellige FOAF-robotter at forbinde dig og dine venner som et
+        virtuelt netværk når din beskrivelse bliver indekseret.
+        </p>
+
+        <p>
+        NB: De oplysninger du indtaster på denne side bliver IKKE brugt eller gemt på nogen måde.
+        Behandlingen foregår udelukkende i din browser, så din sikkerhed og dit privatliv er sikret.
+        </p>
+
+        <p>
+        Skulle du have spørgsmål om denne applikation, eller andre spørgsmål om FOAF, er du velkommen
+        til at tilmelde dig <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-dev mailing-listen</a>.
+        </p>
+
+        <p>
+        <b>Seneste nyt</b>: Jeg er i øjeblikket i gang med at skrive <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>,
+        et program til oprettelse og vedligeholdelse af FOAF-beskrivelser.
+        </p>
+    </fm:introduction>
+
+    <fm:forms title="Formularerne"/>
+
+    <fm:personal title="Personligt">
+        <p>
+        Hvem er du, og hvordan kan folk få fat på dig?
+        </p>
+    </fm:personal>
+
+    <fm:work title="Arbejde">
+        <p>
+        Hvor arbejder du?
+        </p>
+    </fm:work>
+
+    <fm:school title="Skole">
+        <p>
+        Hvor har du senest gået i skole?
+        </p>
+    </fm:school>
+
+    <fm:friends title="Venner">
+        <p>
+        Fortæl FOAF-a-matic om nogle af de venner du har. Klik på "Tilføj ven" for at få plads
+        til at angive flere venner. Hvis din ven allerede har en FOAF-beskrivelse, så skriv
+        URL på filen i "Se også"-feltet.
+        </p>
+    </fm:friends>
+
+    <fm:results title="Dan Beskrivelse">
+        <p>
+        Nu da detaljerne er på plads, er du klar til at blive beskrevet i FOAF...
+        </p>
+    </fm:results>
+
+    <fm:what-next title="Hvad nu?">
+        <h3>Offentliggør din FOAF-beskrivelse</h3>
+
+        <p>
+        Dette er den nemmeste del. Tag en kopi af den genererede FOAF-beskrivelse fra boksen ovenfor
+        og indsæt den i en fil. Læg denne fil på din hjemmeside hvor der er offentlig adgang til den --
+        det er en god idé at kalde den "foaf.rdf", for så kan en søgning på Google hjælpe med at
+        finde FOAF-beskrivelser.
+        </p>
+
+        <p>
+        Din FOAF-beskrivelse er nu klar, nu mangler det bare at folk kommer forbi og læser den...
+        </p>
+
+        <h3>Bliv en del af FOAF-fællesskabet</h3>
+
+        <p>
+        Det bliver stadig diskuteret hvordan FOAF-beskrivelser skal blive 'opdaget' (dvs. hvordan f.eks.
+        FOAF-robotter finder din beskrivelse). Har du forslag eller gode idéer så send dem endelig
+        til <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-dev mailing-listen</a>.
+        Der er dog tre muligheder, du kan benytte dig af.
+        </p>
+
+        <h4>Brug af HTML's <em>link</em> element</h4>
+
+        <p>
+        Aaron Swartz har <a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">foreslået</a> at bruge
+        HTML's <em>link</em> element til at pege på FOAF-beskrivelse, efter samme princip som mange
+        bloggere bruger til at pege på deres RSS-filer. Det skal se ud som sådan:
+        </p>
+
+        <code>
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" />
+        </code>
+
+        <h4>Henvisninger fra en ven</h4>
+
+        <p>
+        Den anden anbefalede metode til at få din FOAF-beskrivelse indekseret er at have en anden (typisk en ven) til at
+        pege på den. En FOAF-robot kan således finde nye FOAF-beskrivelser ved at gennemløbe
+        beskrivelser den allerede kender. Du kan sørge for dette ved at f† foretaget de følgende
+        ændringer i en vens FOAF-beskrivelse:
+        </p>
+
+        <ol>
+        <li>Sørg for at <code>rdf:RDF</code>-elementet indeholder definitionen for RDF Schema, f.eks. som følger:
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"&gt;
+        </code>
+        </li>
+        <li>Du kan nu tilføje links til andre FOAF-beskrivelser ved at indsætte et <code>rdfs:seeAlso</code>-element
+        for hver beskrivelse, som følger:
+        <code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/&gt;
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/&gt;
+        </code>
+        </li>
+        </ol>
+
+        <p>
+        <i>Seneste nyt</i>: Hvis din ven allerede har en FOAF-beskrivelse bør du angive den i "See også"-feltet ovenfor.
+        Du kan også <a href="http://www.ldodds.com/blog/archives/000033.html">henvise en ven til FOAF-a-Matic</a>.
+        </p>
+
+        <h4>Brug af FOAF-opslagstavlen</h4>
+
+        <p>
+        En indlysende måde for FOAF-robotter at finde FOAF-beskrivelser på er et centralt katalog af venner.
+        Jeg har flikket en simpel metode sammen kaldet <a href="bulletin-board.html">FOAF-opslagstavlen</a>.
+        Kig forbi FOAF-Wikien, redigér <a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a>-siden
+        og tilføj dit navn og et link til din FOAF-beskrivelse.
+        </p>
+
+        <p>
+        Ved hjælp af magien fra HTML Tidy og XSLT kan FOAF-robotter som f.eks. Edd Dumbills <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>
+        forstå dette indeks. Besøg FOAFBots hjemmeside hvor der er information om hvordan du kan se den i aktion.
+        </p>
+    </fm:what-next>
+
+    <fm:license title="Licensbetingelser">
+        <p>
+        Dette stykke arbejde stilles til rådighed under en
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons Licens</a>.
+        </p>
+        <p>
+        <!-- Creative Commons License -->
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif" /></a><br />
+        <!-- /Creative Commons License -->
+        </p>
+    </fm:license>
+
+    <fm:fields>
+        <fm:field id="title" name="Titel (Hr, Fr, Frk osv.)"/>
+        <fm:field id="firstName" name="Fornavn"/>
+        <fm:field id="surname" name="Efternavn"/>
+        <fm:field id="nick" name="Kælenavn"/>
+        <fm:field id="email" name="E-mail-adresse"/>
+        <fm:field id="homepage" name="Hjemmeside"/>
+        <fm:field id="depiction" name="URL for fotografi"/>
+        <fm:field id="phone" name="Telefonnummer"/>
+        <fm:field id="workplaceHomepage" name="URL for dit arbejdes hjemmeside"/>
+        <fm:field id="workInfoHomepage" name="URL med beskrivelse af hvad du laver på arbejdet"/>
+        <fm:field id="schoolHomepage" name="URL for skolens hjemmeside"/>
+        <fm:field id="spamProtect" name="Beskyt e-mail-adresser fra spammere"/>
+        <fm:field id="friend" name="Ven"/>
+        <fm:field id="friendEmail" name="E-mail"/>
+        <fm:field id="friendName" name="Navn"/>
+        <fm:field id="friendSeeAlso" name="Se også"/>
+    </fm:fields>
+
+    <fm:buttons>
+        <fm:button id="addFriend" title="Tilføj ven"/>
+        <fm:button id="generate" title="FOAF mig!"/>
+        <fm:button id="reset" title="Nulstil formular"/>
+    </fm:buttons>
+
+    <fm:messages>
+        <fm:message id="missingRequired">Du mangler at udfylde følgende felter:</fm:message>
+        <fm:message id="missingFriendEmail">En e-mail-adresse for ?</fm:message>
+    </fm:messages>
+</fm:translation>

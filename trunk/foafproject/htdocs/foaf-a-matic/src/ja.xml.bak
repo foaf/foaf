@@ -1,0 +1,193 @@
+<!--
+         The main elements in this document correspond to sections of text in the
+         FOAF-a-Matic, e.g. the introduction. These sections can include any HTML
+         markup.
+
+         For the field, button, and message elements, please just translate the
+         provided text: no markup is allowed in these elements.
+
+         Note: for the missingFriendEmail message the ? symbol will be replaced by
+         the name of the friend. Please incorporate that into the translated version as
+         appropriate.
+
+         Thanks!
+
+         leigh@ldodds.com
+
+    -->
+<fm:translation lang="ja" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
+
+    <fm:by-line>RDFを使って自己紹介してみよう</fm:by-line>
+
+    <fm:author>原作者<a href="mailto:leigh@ldodds.com">Leigh Dodds</a>.</fm:author>
+
+    <!-- Add your name here, e.g. "" -->
+        <fm:translator>翻訳者<a href="http://www.kanzaki.com/">神崎正英</a>.</fm:translator>
+
+    <fm:introduction title="はじめに">
+        <p>
+        FOAF-a-maticは、FOAF ("Friend-of-A-Friend")によるあなたの紹介を作成するシンプルなJavascriptアプリケーションです。FOAFの詳細については、Edd Dumbillによる"<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML
+        Watch: Finding friends with XML and RDF</a>"（<a href="http://www.ibm.com/jp/developerworks/xml/020906/j_x-foaf.html">日本語訳</a>）、"<a href="http://www.kanzaki.com/docs/sw.foaf.html">メタデータによる知人ネットワークの表現</a>"、
+        <a href="http://rdfweb.org/foaf/">RDFWebのFOAFホームページ</a>、および
+        <a href="http://xmlns.com/foaf/0.1/">FOAFの語彙定義</a>を参照してください。
+        </p>
+
+        <p>
+        細かいことはさておき、FOAFとはひとことで言えば、XMLとRDFを使ってあなた自身を紹介する — 名前、メールアドレス、それに友人についてなど — ための手段です。こうすることで、ソフトウェアが（たとえばサーチエンジンの一部分として）あなたの紹介データを処理し、あなた自身やあなたが所属するコミュニティの情報を見つけだすといったことが可能になります。FOAFは、オンラインコミュニティにおけるさまざまな興味深い新展開をひきだす可能性を秘めているのです。
+        Ben HammerselyがGuardian Unlimitedウェブサイトに書いた記事"<a href="http://www.guardian.co.uk/online/story/0,3605,870848,00.html">Click to the Clique</a>"には、これらのアイデアについて更に掘り下げた記述があります。
+        </p>
+
+        <p>
+        FOAF-a-Maticは、あなたのFOAFによる自己紹介を素早く簡単に作成するために用意されています。このページのフォームを使って、あなたが自己紹介に加えようと思う項目を記入してください。少なくとも、名前とメールアドレスだけは記入する必要があります。友人の場合も同様です。
+        自己紹介に友人情報があれば、FOAF収集システムがあなたのFOAF自己紹介をインデックスに登録する際、みんなを人間のネットワークとしてつなぐことができるので、よかったら何名か加えてみてください（何人加えるかは、自由です）。
+        </p>
+
+        <p>
+        （注）あなたがこのページで入力した情報は、いかなる形でもほかで利用したり保存したりすることはありません。FOAFの生成はすべてクライアント側の処理で行われますから、あなたのプライバシーは安全です。
+        </p>
+
+        <p>
+        このアプリケーションについて意見がある場合、あるいはもっとFOAFについて知りたい場合は、<a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">RDFWeb-devメーリングリスト</a>に参加しましょう。
+        </p>
+
+        <p>
+        <b>更新情報</b>: 現在、あなたのFOAFデータを作成・管理できるデスクトップ・アプリケーション <a href="http://www.ldodds.com/wordtin/Wiki.jsp?page=FOAFaMaticMark2">FOAF-a-Matic Mark 2</a>を作成中です。
+        </p>
+    </fm:introduction>
+
+    <fm:forms title="入力フォーム"/>
+
+    <fm:personal title="自分自身の情報">
+        <p>
+        あなた自身についての情報と、コンタクトのための情報を入力します。
+        </p>
+    </fm:personal>
+
+    <fm:work title="仕事">
+        <p>
+        あなたが働いているところについての情報です。
+        </p>
+    </fm:work>
+
+    <fm:school title="学校">
+        <p>
+        あなたの卒業した（通っている）学校は？
+        </p>
+    </fm:school>
+
+    <fm:friends title="あなたの知人">
+        <p>
+        あなたの知っている人について記述してください。知人をもっと追加したい場合は、"Add Friend" ボタンをクリックしてください。もしあなたの知人が自分のFOAFを持っていたら、そこへのリンク(URL)を 'seeAlso' に記入してください。
+        </p>
+    </fm:friends>
+
+    <fm:results title="FOAFデータの生成">
+        <p>
+        データを入力できたら、FOAF生成の準備完了です...
+        </p>
+    </fm:results>
+
+    <fm:what-next title="その次には？">
+        <h3>あなたのFOAF自己紹介を公開しましょう</h3>
+
+        <p>
+        これは簡単です。上のテキストボックスに生成されているFOAFデータをコピーし、ファイルに貼り付けてください。そのファイルを、あなたのウェブサイト上で、外部からアクセスできる場所にアップロードします。ファイル名は"foaf.rdf"としておくと、Googleの検索であなたのFOAFを見つけることができるので具合がいいでしょう。
+        </p>
+
+        <p>
+        さあ、FOAFの自己紹介は用意できたので、あとは他の人にアクセスしてもらって読んでもらうばかりです...
+        </p>
+
+        <h3>FOAFコミュニティに参加しよう</h3>
+
+        <p>
+        FOAFを「発見」する方法（つまり、FOAFを扱うアプリケーションが、あなたのFOAF自己紹介を見つけだすこと）については、まだ議論の最中です。もしよい方法や提案があれば、<a href="http://groups.yahoo.com/group/rdfweb-dev/">RDFWeb-devメーリングリスト</a>に投稿してください。それはともかく、現状では3つの方法が考えられます。そのうちのどれか、あるいは全部を試してみるのもいいでしょう。
+        </p>
+
+        <h4>link要素を使う</h4>
+
+        <p>
+        Aaron Swartzは、FOAFファイルの存在を示すために<a href="http://groups.yahoo.com/group/rdfweb-dev/message/190">link要素を用いる方法を提案</a>しました。ちょうどブログ作者がRSSファイルの存在を示すのと同じ方法です。つぎのような具合になります：
+        </p>
+
+        <code>
+        &lt;link rel="meta" type="application/rdf+xml" title="FOAF" href="foaf.rdf" />
+        </code>
+
+        <h4>知人から参照してもらう</h4>
+
+        <p>
+        FOAFファイルをインデックスに登録させるもうひとつの方法は、だれか他の人（つまり友人）にそれを参照してもらうというものです。FOAF収集ロボットは、その参照を辿ってあらゆるFOAFファイルを見つけだすことができます。このためには、あなたの〔訳注：参照してもらうには、友人の〕FOAFファイルを次のように修正します：
+        </p>
+
+        <ol>
+        <li><code>rdf:RDF</code>要素に、次のようにRDFスキーマの名前空間を追加します：
+        <code>&lt;rdf:RDF
+              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              xmlns:foaf="http://xmlns.com/foaf/0.1/"
+              xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+        </code>
+        </li>
+        <li>次に、他の人のFOAFへのリンクを、それぞれ<code>rdfs:seeAlso</code>要素に記述します：</li>
+        <code>
+        &lt;rdfs:seeAlso rdf:resource="http://www.example.com/friends.xrdf"/>
+        &lt;rdfs:seeAlso rdf:resource="http://www.ldodds.com/webwho.xrdf"/>
+        </code>
+        </ol>
+
+        <p>
+        <i>更新情報</i>: もしあなたの知人がすでにFOAF自己紹介を持っているのならば、上のフォームの 'seeAlso' 欄に記述するだけでこれらを含むFOAFデータを生成します。関連情報は<a href="http://www.ldodds.com/blog/archives/000033.html">Refer a Friend to the FOAF-a-matic</a>も参照してください。
+        </p>
+
+        <h4>FOAF Bulletin Boardを利用する</h4>
+
+        <p>
+        アプリケーションにFOAFファイルを発見してもらう分かりやすい方法は、人々のレジストリに登録することです。そのために、簡単な方法として <a href="bulletin-board.html">FOAF Bulletin Board</a>を用意しました。FOAFWikiの<a href="http://rdfweb.org/rweb/wiki/wiki.pl?FOAFBulletinBoard">FOAFBulletinBoard</a>を編集して、あなたの名前とFOAFファイルへのリンクを加えてください。例として、私のFOAFをそこに加えてあります。
+        </p>
+
+        <p>
+        HTML TidyとXSLTの力を利用すると、Edd Dumbillの <a href="http://usefulinc.com/foaf/foafbot">FOAFbot</a>のようなアプリケーションがこのインデックスを処理できます。どんな風に行われるのかについてはFOAFBotのホームページを参照してください。
+        </p>
+    </fm:what-next>
+
+    <fm:license title="License">
+        <p>
+        このページおよびスクリプトは<a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons License</a>のライセンスに従って利用できます。
+        </p>
+        <p>
+        <!-- Creative Commons License -->
+        <a href="http://creativecommons.org/licenses/by-sa/1.0/"><img alt="Creative Commons License" border="0" src="http://creativecommons.org/images/public/somerights.gif" /></a><br />
+        <!-- /Creative Commons License -->
+        </p>
+    </fm:license>
+
+    <fm:fields>
+        <fm:field id="friend" name="\345\217\213\344\272\272"/>
+        <fm:field id="title" name="敬称 (Mr, Mrs, Dr, etc)"/>
+        <fm:field id="firstName" name="名 (First Name)"/>
+        <fm:field id="surname" name="姓 (Family/Given)"/>
+        <fm:field id="nick" name="ニックネーム"/>
+        <fm:field id="email" name="メールアドレス"/>
+        <fm:field id="homepage" name="ホームページURL"/>
+        <fm:field id="depiction" name="あなたの写真のURL"/>
+        <fm:field id="phone" name="電話番号"/>
+        <fm:field id="workplaceHomepage" name="職場ホームページのURL"/>
+        <fm:field id="workInfoHomepage" name="仕事を説明しているページのURL"/>
+        <fm:field id="schoolHomepage" name="学校のホームページURL"/>
+        <fm:field id="spamProtect" name="メールアドレスをSPAMから保護する"/>
+        <fm:field id="friendEmail" name="メールアドレス"/>
+        <fm:field id="friendName" name="氏名"/>
+        <fm:field id="friendSeeAlso" name="See Also"/>
+    </fm:fields>
+
+    <fm:buttons>
+        <fm:button id="addFriend" title="Add Friend"/>
+        <fm:button id="generate" title="FOAFを生成!"/>
+        <fm:button id="reset" title="Reset Form"/>
+    </fm:buttons>
+
+    <fm:messages>
+        <fm:message id="missingRequired">次の項目は必須です:</fm:message>
+        <fm:message id="missingFriendEmail">? さんのメールアドレスがありません:</fm:message>
+    </fm:messages>
+</fm:translation>

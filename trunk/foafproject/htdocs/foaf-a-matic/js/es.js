@@ -1,0 +1,19 @@
+
+var field_friend='Amigo';
+var field_title='Titulo (Sr, Sra, Dr, etc)';
+var field_firstName='Nombre/s';
+var field_surname='Apellido';
+var field_nick='Apodo';
+var field_email='Su Dirección de Email';
+var field_homepage='Homepage';
+var field_depiction='Su Foto';
+var field_phone='Teléfono';
+var field_workplaceHomepage='Homepage del Trabajo';
+var field_workInfoHomepage='Página describiendo su trabajo';
+var field_schoolHomepage='Homepage de su Escuela';
+var field_spamProtect='Proteger direcciones de email de los spammers';
+var field_friendEmail='Email';
+var field_friendName='Nombre';
+var field_friendSeeAlso='Ver Tambien';
+var msg_missingRequired='Debe completar estos campos:';
+var msg_missingFriendEmail='Una dirección de email para ?';
