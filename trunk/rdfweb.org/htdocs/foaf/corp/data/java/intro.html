@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: FOAFCorp: java demo
+    </title>
+  </head>
+  <body bgcolor="#ffffff">
+    <h1>
+      FOAFCorp java demo
+    </h1>
+    <p>
+      These files show the use of a path-finding algorithm with the
+      foafcorp data.
+    </p>
+    <p>
+      Various other files here can be used (with some minor
+      modifications to the Java code) to find paths through other
+      datasets.
+    </p>
+    <h3>
+      Files
+    </h3>
+    <ul>
+      <li>
+        <a href="foafpath.jar">foafpath.jar</a> (bundled up demo,
+        use 'java -jar foaftest.jar' to run the main method, which
+        will expect a file _corplinks-simple.dat in current
+        directory, and will compute all the paths to a company.
+      </li>
+      <li>
+        <a href="src/">Java source code</a>
+      </li>
+      <li>
+        <a href="_enron.txt">_enron.txt</a> (example output)
+      </li>
+      <li>
+        <a href="http://rdfweb.org/foaf/corp/">FOAFCorp</a> home
+        page
+      </li>
+      <li>
+        <a href="http://www.theyrule.net/">www.theyrule.net</a>
+      </li>
+    </ul>
+    <h2>
+      Examples
+    </h2>
+    <p>
+      Run on the commandline, the demo will output a complete list
+      of paths given a (lowercase) name that matches a company in
+      the listing. Each link in the chain corresponds to a claim in
+      the <em>They Rule</em> dataset that there is a common board
+      member shared by the two companies. Note that this data is
+      provided for demo purposes only; it may be out of date or
+      otherwise innacurate.
+    </p>
+    <p>
+      The following demo script shows some sample paths, based on
+      simple 'grep' filtering of the output.
+    </p>
+<pre>
+java -jar foafpath.jar microsoft | grep ^motorola
+motorola , j.p._morgan_chase , merck , microsoft
+
+java -jar foafpath.jar safeway | grep ^microsoft
+microsoft , citigroup , at*t , caterpillar , safeway
+
+java -jar foafpath.jar j.p._morgan_chase | grep ^hewlett-packard
+hewlett-packard , merck , j.p._morgan_chase
+
+java -jar foafpath.jar hewlett-packard | grep ^microsoft
+microsoft , merck , hewlett-packard
+
+</pre>
+    <hr />
+    $Id: intro.html,v 1.1 2002-07-15 16:38:59 danbri Exp $<br />
+     this page: danbri@rdfweb.org<br />
+     java code: damian steer, libby miller
+  </body>
+</html>
+

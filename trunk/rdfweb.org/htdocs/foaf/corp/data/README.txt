@@ -1,11 +1,14 @@
-Useful Ruby stuff
+Notes
+=====
 
-Sha-1:
-http://www.omcl.org/~spcoltri/ruby/ruby-sha1.html
-...note that sha1 is now builtin.
+These files are based around the database behind http://www.theyrule.net/ plus some scripts
+and an additional table needed for foafcorp.
 
-The SHA1 function in the Stanford RDF API is documented at 
-http://www-db.stanford.edu/~melnik/rdf/api-doc/org/w3c/rdf/digest/Digest.html#SHA1
+work in progress.
+
+see java/ subdir for one use of this data.
+
+danbri@rdfweb.org
 
 
 MySQL admin:
