@@ -14,6 +14,8 @@ public class RDFModelView extends NSView {
     boolean deleting = false;
     String saveDescription;
     
+    float currentScale = 1F;
+    
     NSMutableArray dragTypesArray = new NSMutableArray();
     HashMap dragInformation = new HashMap();
     
@@ -63,7 +65,7 @@ public class RDFModelView extends NSView {
         // Drawing code here.
         
         NSColor.whiteColor().set();
-        NSBezierPath.fillRect(bounds());
+        NSBezierPath.fillRect(this.frame());
         
         if (draggingConnection)
         {
@@ -72,6 +74,40 @@ public class RDFModelView extends NSView {
         }
         
         rdfAuthorDocument.drawModel();
+    }
+    
+    public void setSizeFromPrintInfo(NSPrintInfo printInfo)
+    {
+        // This would be simple, but for the margins
+        
+        float width = printInfo.paperSize().width() - printInfo.leftMargin() - printInfo.rightMargin();
+        float height = printInfo.paperSize().height() - printInfo.topMargin() - printInfo.bottomMargin();
+        
+        this.setFrameSize(new NSSize( width, height ));
+    }
+    
+    public void sliderChanged(NSSlider slider)
+    {
+        NSClipView clipView = this.enclosingScrollView().contentView();
+        
+        float newScale = slider.floatValue() / 100F;
+        
+        float scaleValue = newScale / currentScale;
+        
+        float midX = this.visibleRect().midX();
+        float midY = this.visibleRect().midY();
+        
+        currentScale = newScale;
+        
+        NSSize oldSize = clipView.frame().size();
+        clipView.scaleUnitSquareToSize(new NSSize(scaleValue, scaleValue));
+        
+        float x = midX - this.visibleRect().width()/2F;
+        float y = midY - this.visibleRect().height()/2F;
+        
+        this.scrollPoint(new NSPoint(x,y));
+        
+        this.setNeedsDisplay(true);
     }
     
     public boolean acceptsFirstResponder()
