@@ -6,7 +6,8 @@
     <title>
       RDFWeb design notes: aggregation strategies
     </title>
-    <link rel="stylesheet" href="../../../ssi/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../../ssi/main.css"
+    type="text/css" />
   </head>
   <body bgcolor="#ffffff">
     <div class="navbar">
@@ -18,7 +19,8 @@
             <strong><a href="/" class="sitepart">RDFWeb</a>: <a
             class="sitepart"
             href="../../../dev.html">developers</a>: <span
-            class="sitepart">aggregation strategies</span></strong> 
+            class="sitepart">aggregation strategies</span></strong>
+            
           </td>
           <td align="right">
             <span class="siteutil"><a href="about.html">about</a> |
@@ -40,6 +42,23 @@
       then explore the implications for deployable RDF systems. The
       accompanying <a href="examples.rdf">examples.rdf</a> file
       might be useful for RDF implementors to experiment with.
+    </p>
+    <h2>
+      Implementations
+    </h2>
+    <p>
+      See the <a
+      href="http://ilrt.org/discovery/chatlogs/rdfig/2001-07-20.html#T15-26-36">
+      RDF Interest Group logs</a> for details on Dan Connolly's
+      implementation using <a
+      href="http://www.w3.org/2000/10/swap/">cwm</a> and N3 rules.
+      To run, you'll need <a href="#various">various files</a> from
+      the CWM/SWAP site, and an installation of Python. Usage:
+      <code>python cwm.py --rdf smush-examples.rdf --n3
+      smush-schema.n3 sameThing.n3 --think --apply=forgetDups.n3
+      --purge</code> The resulting <a href="cwm-output.n3">N3
+      output</a> from CWM shows a dump of everything it concludes
+      from this input.
     </p>
     <h2>
       Problem statement
@@ -94,13 +113,11 @@
 <pre>
 &lt;User&gt;
  &lt;personalMailbox web:resource="mailto:mega@megacorp.example.com"/&gt;
- &lt;technologyInterest web:resource="http://www.w3.org/XML/"&gt;
- &lt;technologyInterest web:resource="http://www.w3.org/RDF/"&gt;
- &lt;technologyInterest web:resource="http://www.mozilla.org/"&gt;
+ &lt;technologyInterest web:resource="http://www.w3.org/XML/" /&gt;
+ &lt;technologyInterest web:resource="http://www.w3.org/RDF/" /&gt;
+ &lt;technologyInterest web:resource="http://www.mozilla.org/" /&gt;
 &lt;/User&gt;
 </pre>
-
-
     <h3>
       c.rdf
     </h3>
@@ -108,7 +125,7 @@
 &lt;Organisation&gt;
 &lt;corporateHomepage web:resource="http://megacorp.example.com/"/&gt;
  &lt;ethicalPolicy&gt;
-   &lt;PolicyStatement web:about="http://dotherightthing.example.org/policy.xhtml"/&gt;
+ &lt;PolicyStatement web:about="http://dotherightthing.example.org/policy.xhtml" &gt;
    &lt;title&gt;Ethical Business Shared Guidelines 1.1&lt;/title&gt;
    &lt;/PolicyStatement&gt;
  &lt;/ethicalPolicy&gt;
@@ -597,9 +614,30 @@ foreeach $genid ( $incoming-&gt;genids ) {
     <p>
       .....
     </p>
+    <h3>
+      appendix: cwm files needed:
+    </h3>
+    <a name="various" id="various"></a> 
+<pre>
+xml2rdf.py 
+cwm.py
+notation3.pyc
+sax2rdf.py
+sax2rdf.pyc
+smush-examples.rdf
+smush-schema.n3
+sameThing.n3
+forgetDups.n3
+
+available from base uri, http://www.w3.org/2000/10/swap/test/
+(packaged up anywhere???)
+
+usage:
+python cwm.py --rdf smush-examples.rdf --n3 smush-schema.n3 sameThing.n3 --think --apply=forgetDups.n3 --purge
+</pre>
     <hr />
-    dan brickley, initial draft 2001-01-01 last updated: $Id: smush.html,v 1.3 2002-01-29 01:15:13 danbri Exp $
-    <br />
+    dan brickley, initial draft 2001-01-01 last updated: $Id:
+    smush.html,v 1.3 2002/01/29 01:15:13 danbri Exp $ <br />
   </body>
 </html>
 
