@@ -659,12 +659,18 @@ is also associated with a number of other <code><a href="#term_Agents">foaf:Agen
 constitute the <code><a href="#term_Group">foaf:Group</a></code>. FOAF provides a mechanism, the 
 <code><a href="#term_membershipClass">foaf:membershipClass</a></code> property, which relates a <code><a href="#term_Group">foaf:Group</a></code> to a 
 sub-class of the class <code><a href="#term_Agent">foaf:Agent</a></code> who are members of the group. This is a 
-little complex, but allows us to make group membership rules explicit.
+little complicated, but allows us to make group membership rules explicit.
 </p>
 
 
-<p>The markup for defining a group can be complex. Here we define a 
-<code><a href="#term_Group">foaf:Group</a></code> representing those people who are ILRT staff members. The 
+<p>The markup for defining a group is both complex and powerful. It allows group 
+membership rules to match against any RDF-describable characteristics of the potential 
+group members. As FOAF and similar vocabularies become more expressive in their ability to 
+describe individuals, the <code><a href="#term_Group">foaf:Group</a></code> mechanism for categorising them into 
+groups also becomes more powerful. 
+</p>
+
+<p>Here we define a <code><a href="#term_Group">foaf:Group</a></code> representing those people who are ILRT staff members. The 
 <code><a href="#term_membershipClass">foaf:membershipClass</a></code> property connects the group (conceived of as a social 
 entity and agent in its own right) with the class definition for those people who 
 constitute it. In this case, the OWL rule is that all group members are in the 
@@ -674,7 +680,7 @@ http://www.ilrt.bris.ac.uk/.
 </p>
 
 <p class="example">
-
+<pre>
 &lt;!-- here we see a FOAF group described.
      each foaf group may be associated with an OWL definition 
      specifying the class of agents that constitute the group's membership --&gt;
@@ -692,6 +698,7 @@ http://www.ilrt.bris.ac.uk/.
    &lt;/eg:ILRTStaffPerson&gt;
  &lt;/foaf:membershipClass&gt;
 &lt;/foaf:Group&gt;
+</pre>
 </p>
   
 <p>
@@ -701,6 +708,7 @@ property of the <code><a href="#term_Group">foaf:Group</a></code> to indicate th
 group. For example:
 </p>
 <p class="example">
+<pre>
 &lt;foaf:Group&gt;
  &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
  &lt;foaf:member&gt;
@@ -711,6 +719,7 @@ group. For example:
   &lt;/foaf:Person&gt;
  &lt;/foaf:member&gt;
 &lt;/foaf:Group&gt;
+</pre>
 </p>
 
 <p>
@@ -734,10 +743,14 @@ nest either description inside the other. For (brief) example:
 </p>
 
 <p class="example">
+<pre>
 &lt;foaf:Group&gt;
  &lt;foaf:member rdf:nodeID="libby"/&gt;
+ &lt;!-- more about the group here --&gt;
 &lt;/foaf:Group&gt;
-&lt;foaf:Person rdf:nodeID="libby"/&gt;
+&lt;foaf:Person rdf:nodeID="libby"&gt;
+  &lt;!-- more about libby here --&gt;
+&lt;/foaf:Person rdf:nodeID="libby"/&gt;
 </p>
 
 <p>
@@ -2702,7 +2715,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-27 17:55:40 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-27 18:01:16 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
