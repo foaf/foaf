@@ -13,8 +13,8 @@ public class Arc extends ModelItem
     String propertyNamespace;
     boolean showProperty = false;
     
-    NSColor normalColor = NSColor.blueColor();
-    NSColor hilightColor = NSColor.redColor();
+    NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 0F, 1F, 0.5F);
+    NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
     NSBezierPath arrowHead;
     NSSize mySize;
     NSSize defaultSize = new NSSize(15,15);
@@ -30,8 +30,8 @@ public class Arc extends ModelItem
         setProperty(name, namespace);
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
-        arrowHead.lineToPoint(new NSPoint(10.0F, -20.0F));
-        arrowHead.lineToPoint(new NSPoint(-10.0F, -20.0F));
+        arrowHead.lineToPoint(new NSPoint(6.0F, -20.0F));
+        arrowHead.lineToPoint(new NSPoint(-6.0F, -20.0F));
         arrowHead.closePath();
     }
 
@@ -113,11 +113,6 @@ public class Arc extends ModelItem
         
         NSBezierPath.fillRect(myRect);
         
-        if (displayString != null)
-        {
-            NSGraphics.drawAttributedString(displayString, myRect);
-        }
-        
         NSBezierPath.strokeLineFromPoint(fromNode.position(), toNode.position());
         
         NSAffineTransform transformArrow = NSAffineTransform.transform();
@@ -134,6 +129,11 @@ public class Arc extends ModelItem
         NSBezierPath arrowToDraw = transformArrow.transformBezierPath(arrowHead);
         
         arrowToDraw.fill();
+        
+        if (displayString != null)
+        {
+            NSGraphics.drawAttributedString(displayString, myRect);
+        }
     }
 
     public boolean containsPoint(NSPoint point)

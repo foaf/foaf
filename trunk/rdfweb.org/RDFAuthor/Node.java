@@ -20,8 +20,8 @@ public class Node extends ModelItem
     boolean showId = false;
     
     NSPoint position;
-    NSColor normalColor = NSColor.blackColor();
-    NSColor hilightColor = NSColor.redColor();
+    NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
+    NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
     NSSize mySize;
     NSSize defaultSize = new NSSize(20,20);
     NSRect myRect;
