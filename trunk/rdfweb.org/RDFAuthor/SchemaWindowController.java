@@ -34,7 +34,7 @@ public class SchemaWindowController extends NSObject {
         }
         else
         {
-            schemaWindow.makeKeyAndOrderFront(this);
+            schemaWindow.orderFront(this);
         }
     }
 

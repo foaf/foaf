@@ -134,6 +134,7 @@ public class Node extends ModelItem implements Serializable
     public void setIsLiteral(boolean literalValue)
     {
         literal = literalValue;
+        calculateSize();
         myList.itemChanged(this);
     }
 
