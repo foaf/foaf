@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalArc.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: GraphicalArc.java,v 1.2 2002-04-11 12:32:06 pldms Exp $ */
 
 /*
     Copyright 2001, 2002 Damian Steer <dm_steer@hotmail.com>
@@ -33,12 +33,17 @@
 package org.rdfweb.rdfauthor.view;
 
 import java.awt.*;
+import java.awt.font.*;
 import javax.swing.*;
 import java.awt.geom.*;
 
 import java.io.Writer;
 
-import org.rdfweb.rdfauthor.model.*;
+//import org.rdfweb.rdfauthor.model.*;
+import Arc;
+import Node;
+import ModelItem;
+import ArcNodeList;
 import org.rdfweb.rdfauthor.gui.*;
 
 public class GraphicalArc implements GraphicalObject
@@ -48,17 +53,21 @@ public class GraphicalArc implements GraphicalObject
     
     RDFModelView rdfModelView;
     
-    Rectangle bounds = null;
+    Rectangle2D bounds = new Rectangle2D.Double();
     
     Color normalColor = new Color(0F, 0F, 1F, 0.5F);
     Color hilightColor = new Color(1F, 0F, 0F, 0.5F);
     GeneralPath arrowHead;
     GeneralPath arrowToDraw; // we precalculate the path, since it involves some overhead
-    Dimension mySize;
-    Dimension defaultSize = new Dimension(15,15);
-    Rectangle handleRect = null;
-    String displayString = null;
-    
+    Rectangle2D mySize;
+    Rectangle2D defaultSize = new Rectangle2D.Double(0, 0, 15,15);
+    Rectangle2D handleRect;
+    MultiText displayString;
+  
+  Font font = new Font("Helvetica", Font.PLAIN, 12);
+
+  boolean graphicsReady;
+  
     public GraphicalArc(Arc arc, RDFModelView rdfModelView)
     {
         this.arc = arc;
@@ -66,8 +75,14 @@ public class GraphicalArc implements GraphicalObject
         arc.setGraphicRep(this);
         
         initArrowHead();
-        
-        contentChanged();
+
+	// We need the graphics context to work out the shape
+	if (rdfModelView.getGraphics() != null)
+	  {
+	    graphicsReady = true;
+	    contentChanged();
+	  }
+
         rdfModelView.addObject(this);
     }
     
@@ -76,7 +91,7 @@ public class GraphicalArc implements GraphicalObject
         return arc;
     }
     
-    public Rectangle bounds()
+    public Rectangle2D bounds()
     {
         return bounds;
     }
@@ -84,13 +99,13 @@ public class GraphicalArc implements GraphicalObject
     public void delete()
     {
         // We're going to be deleted, so redraw the space this node occupies
-        rdfModelView.repaint(bounds);
+        rdfModelView.repaint(bounds.getBounds());
         rdfModelView.removeObject(this);
     }
     
     public void changed() // something changed - needs redisplaying
     {
-        rdfModelView.repaint(bounds);
+        rdfModelView.repaint(bounds.getBounds());
     }
     
     public void initArrowHead()
@@ -109,6 +124,8 @@ public class GraphicalArc implements GraphicalObject
     
     public boolean intersects(Shape shape)
     {
+      if (!graphicsReady) return true;
+      
         return shape.intersects(bounds);
     }
     
@@ -124,69 +141,82 @@ public class GraphicalArc implements GraphicalObject
 
     public void drawMe(Color myColor, Graphics2D g)
     {
-      //if (bounds.intersectsRect(rect))
-      //{
-            g.setPaint(myColor);
-            
-            g.fill(arrowToDraw);
-            g.draw(arrowToDraw);
-
-	    /*
-            if (displayString != null)
-            {
-                NSGraphics.drawAttributedString(displayString, handleRect);
-            }
-	    */
+      if (!graphicsReady)
+	{
+	  graphicsReady = true;
+	  contentChanged();
+	}
+      
+      g.setPaint(myColor);
+      
+      g.fill(arrowToDraw);
+      g.draw(arrowToDraw);
+      
+      if (displayString != null)
+	{
+	  g.setPaint(Color.black);
+	  
+	  displayString.draw(g, handleRect.getX(),
+			   handleRect.getY());
+	  
+	}
     }
     
     public void contentChanged()
     {
-        String stringToDraw = arc.displayString();
-        //if (stringToDraw == null)
-        //{
-            mySize = defaultSize;
-            displayString = null;
-	    //}
-	    //else
-	    /*{
-            displayString = new NSAttributedString( stringToDraw );
-            mySize = NSGraphics.sizeOfAttributedString(displayString);
-	    }*/
-        
+      String stringToDraw = arc.displayString();
+        if (stringToDraw == null)
+        {
+	  mySize = defaultSize;
+	  displayString = null;
+	}
+	else
+	  {
+	    displayString = new MultiText(
+					  (Graphics2D)
+					  rdfModelView.getGraphics(),
+					  stringToDraw, font);
+
+	    mySize = displayString.getBounds();
+	    
+	  }
         boundsChanged();
     }
     
     public void boundsChanged()
     {
-        rdfModelView.repaint(bounds); // mark old bounds as dirty
+        rdfModelView.repaint(bounds.getBounds()); // mark old bounds as dirty
         
-        Point toNodePos = new Point( (int) arc.toNode().x(),
-				     (int) arc.toNode().y() );
-        Point fromNodePos = new Point( (int) arc.fromNode().x(),
-				       (int) arc.fromNode().y() );
+        Point2D toNodePos = new Point2D.Float( arc.toNode().x(),
+				     arc.toNode().y() );
+        Point2D fromNodePos = new Point2D.Float( arc.fromNode().x(),
+				       arc.fromNode().y() );
         
-        int x = (toNodePos.x + fromNodePos.x) / 2;
-        int y = (toNodePos.y + fromNodePos.y) / 2;
+        double x = (toNodePos.getX() + fromNodePos.getX()) / 2;
+        double y = (toNodePos.getY() + fromNodePos.getY()) / 2;
         
-        // handleRect is the rectangle on the arc which is clickable and contains the text
-        handleRect = new Rectangle(x - mySize.width/2,
-                            y - mySize.height/2,
-                            mySize.width,
-                            mySize.height );
+        // handleRect is the rectangle on the arc which is clickable
+	// and contains the text
+
+        handleRect = new Rectangle2D.Double(
+					    x - mySize.getWidth() / 2,
+					    y - mySize.getHeight() / 2,
+					    mySize.getWidth(),
+					    mySize.getHeight() );
         
         createArrow(fromNodePos, toNodePos);
         
         bounds = arrowToDraw.getBounds();
-        
-        rdfModelView.repaint(bounds); // mark new bounds as dirty
+	
+        rdfModelView.repaint(bounds.getBounds()); // mark new bounds as dirty
     }
     
-    public void createArrow(Point fromNodePos, Point toNodePos)
+    public void createArrow(Point2D fromNodePos, Point2D toNodePos)
     {
         double dx = toNodePos.getX() - fromNodePos.getX();
         double dy = toNodePos.getY() - fromNodePos.getY();
-        float angle = (float)Math.atan2(dy, dx);
-        float distance = (float) fromNodePos.distance(toNodePos);
+        double angle = Math.atan2(dy, dx);
+        double distance = fromNodePos.distance(toNodePos);
         
         arrowToDraw = new GeneralPath();
         
@@ -195,12 +225,12 @@ public class GraphicalArc implements GraphicalObject
         if (distance > 50)
         {
             arrowToDraw.moveTo(-20, 0);
-            arrowToDraw.lineTo(30 - distance, 0);
+            arrowToDraw.lineTo(30 - (float) distance, 0);
         }
         else if (!(distance < 20))
         {
             arrowToDraw.moveTo(-20, 0);
-            arrowToDraw.lineTo(-distance, 0);
+            arrowToDraw.lineTo((float) -distance, 0);
         }
         
         AffineTransform transform = new AffineTransform();
@@ -217,12 +247,9 @@ public class GraphicalArc implements GraphicalObject
 	arrowToDraw = (GeneralPath)
 	  transform.createTransformedShape(arrowToDraw);
         
-        //arrowToDraw.moveToPoint(fromNodePos);
-        //arrowToDraw.lineToPoint(toNodePos);
-        
         arrowToDraw.append(handleRect, false);
-        //arrowToDraw.appendBezierPath(line);
     }
+
   /*
     public void drawSvgNormal(Writer writer) throws java.io.IOException
     {

@@ -1,6 +1,6 @@
 /* Application */
 
-/* $Id: Application.java,v 1.1.1.1 2002-04-09 12:49:40 pldms Exp $ */
+/* $Id: Application.java,v 1.2 2002-04-11 12:32:05 pldms Exp $ */
 
 /*
   Copyright 2002 Damian Steer <pldms@mac.com>
@@ -40,7 +40,6 @@ package org.rdfweb.application;
 import java.util.*;
 import java.net.URL;
 import java.io.File;
-import java.awt.event.*;
 import java.lang.reflect.*;
 import javax.swing.*;
 
@@ -158,13 +157,13 @@ public class Application
       }
   }
 
-  public void newDoc(ActionEvent e)
+  public void newDoc(EventObject e)
   {
     Document document = newUntitledDocument();
     addDocument(document);
   }
     
-  public void open(ActionEvent e)
+  public void open(EventObject e)
   {
     JFileChooser chooser = new JFileChooser();
 
@@ -179,14 +178,11 @@ public class Application
     int result = chooser.showOpenDialog(null);
     if (result == JFileChooser.APPROVE_OPTION)
       {
-	Document document = 
-	  newDocumentFromFile(chooser.getSelectedFile());
-
-	addDocument(document);
+	openDocumentWithContentsOfFile(chooser.getSelectedFile());
       }
   }
 
-  public void openURL(ActionEvent e)
+  public void openURL(EventObject e)
   {
     String result = (String) JOptionPane.showInputDialog(null,
 						"Enter a URL to open:",
@@ -213,13 +209,12 @@ public class Application
 	    return;
 	  }
 	
-	Document document =
-	  newDocumentFromURL(url);
+	openDocumentWithContentsOfURL(url);
       }
     
   }
 
-  public void quit(ActionEvent e)
+  public void quit(EventObject e)
   {
   }
   
@@ -316,14 +311,12 @@ public class Application
 
     if (sourceURL == null)
       {
-	document = newDocumentFromFile(new File(source));
+	openDocumentWithContentsOfFile(new File(source));
       }
     else
       {
-	document = newDocumentFromURL(sourceURL);
+	openDocumentWithContentsOfURL(sourceURL);
       }
-	
-    addDocument(document);
   }
 
   public void openDocumentWithContentsOfFile(File file)
@@ -373,7 +366,7 @@ public class Application
       }
   }
 
-  public void changeWindow(ActionEvent e)
+  public void changeWindow(EventObject e)
   {
     JMenuItem sender = (JMenuItem) e.getSource();
 

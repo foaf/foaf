@@ -27,17 +27,23 @@ package org.rdfweb.rdfauthor.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 
 import javax.swing.*;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.EventObject;
 import java.io.*;
 
 import org.rdfweb.rdfauthor.*;
-import org.rdfweb.rdfauthor.model.*;
 import org.rdfweb.rdfauthor.view.*;
+import ModelItem;
+import ArcNodeList;
+import ArcNodeSelection;
+import Arc;
+import Node;
 
 public class RDFModelView extends JComponent
   implements MouseListener, MouseMotionListener
@@ -46,11 +52,11 @@ public class RDFModelView extends JComponent
   RDFAuthorDocument rdfAuthorDocument;
   ArrayList graphicObjects;
   
-  static final int AddConnectionMode = 1;
-  static final int AddNodeMode = 2;
-  static final int AddQueryItemMode = 3;
-  static final int MoveSelectMode = 4;
-  static final int DeleteItemsMode =5;
+  public static final int AddConnectionMode = 1;
+  public static final int AddNodeMode = 2;
+  public static final int AddQueryItemMode = 3;
+  public static final int MoveSelectMode = 4;
+  public static final int DeleteItemsMode =5;
   
   boolean draggingConnection = false;
   boolean draggingSelection = false;
@@ -60,7 +66,7 @@ public class RDFModelView extends JComponent
   
   String saveDescription;
   
-  float currentScale = 1;
+  double currentScale = 1;
     
   HashMap dragInformation = new HashMap();
   
@@ -71,15 +77,19 @@ public class RDFModelView extends JComponent
   
   Rectangle selectionRect;
 
-
-  public RDFModelView()
+  public JTextField textDescriptionField;
+  
+  public RDFModelView(RDFAuthorDocument rdfAuthorDocument)
   {
         super();
         // Initialization code here.
 
+	this.rdfAuthorDocument = rdfAuthorDocument;
+	
 	this.addMouseListener(this);
 	this.addMouseMotionListener(this);
-	
+
+	this.setPreferredSize(new Dimension(400, 600));
 	
         graphicObjects = new ArrayList();
 	/*      
@@ -137,18 +147,20 @@ public class RDFModelView extends JComponent
   
   public boolean isOpaque()
   {
-    return true;
+    return false;
   }
     
   public void paint(Graphics g)
   {
     Graphics2D g2 = (Graphics2D) g;
+
+    g2.scale(currentScale, currentScale);
     
     // Drawing code here.
         
     g2.setPaint(Color.white);
     
-    g2.fill(g2.getClip());
+    g2.fill(new Rectangle(new Point(), getPreferredSize()));
         
     if (draggingConnection)
       {
@@ -166,63 +178,36 @@ public class RDFModelView extends JComponent
     drawModel(g2);
     //rdfAuthorDocument.drawModel(g2);
   }
+   
+    public void sliderChanged(EventObject e)
+    {
+      JSlider slider = (JSlider) e.getSource();
+      
+      currentScale = (double) slider.getValue() / 100d;
 
-  /*
-    public NSData TIFFRepresentation() // I have half an idea what's going on here :-)
-    {
-        NSRect bounds = this.bounds();
-        NSImage image;
-        NSData tiffData;
-        NSGraphicsContext currentContext;
-        
-        if (bounds.isEmpty()) {
-            return null;
-        }
-        image = new NSImage(bounds.size());
-        image.setFlipped(true);
-        image.lockFocus();
-        currentContext = NSGraphicsContext.currentContext();
-        currentContext.saveGraphicsState();
-        this.drawRect(bounds);
-        currentContext.restoreGraphicsState();
-        image.unlockFocus();
-        tiffData = image.TIFFRepresentation();
-        return tiffData;
+      repaint();
     }
-  */
-  /*    
-    public void sliderChanged(NSSlider slider)
-    {
-        // This is pretty sneaky - though maybe standard (I don't know)
-        // We set the scale for the clip view of the scroll view - the
-        // rdf model view is unchanged.
-        
-        NSClipView clipView = this.enclosingScrollView().contentView();
-        
-        float newScale = slider.floatValue() / 100f;
-        
-        // Scaling is cumulative for NSViews, so this sets the absolute scale
-        
-        float scaleValue = newScale / currentScale;
-        
-        // Remember the center so that we can move to it afterwards
-        
-        float midX = this.visibleRect().midX();
-        float midY = this.visibleRect().midY();
-        
-        currentScale = newScale;
-        
-        clipView.scaleUnitSquareToSize(new NSSize(scaleValue, scaleValue));
-        
-        // Now scaling has occured try to center on the previous center
-        // (visible rect has now changed due to the scaling)
-        
-        float x = midX - this.visibleRect().width()/2F;
-        float y = midY - this.visibleRect().height()/2F;
-        
-        this.scrollPoint(new NSPoint(x,y));
+  
+  public void repaint(Rectangle rect)
+  {
+    //(GeneralPath) region = (GeneralPath) scaleTransform.createTransformedShape(rect);
+    Rectangle rect2 = new Rectangle(rect);
+    
+    rect2.setRect(rect.getX() * currentScale -1, rect.getY() * currentScale -1,
+		  rect.getWidth() * currentScale + 3,
+		  rect.getHeight() * currentScale + 3);
+    
+    super.repaint(rect2);
     }
-  */
+
+  public Point scalePoint(Point point)
+  {
+    Point point2 = new Point(point);
+
+    point2.setLocation(point2.getX() / currentScale, point2.getY() / currentScale);
+    
+    return point2;
+  }
   
     public void moveBy(float x, float y)
     {
@@ -253,10 +238,10 @@ public class RDFModelView extends JComponent
     }
   */
 
-  public void mouseReleased(MouseEvent theEvent)
+  public void mousePressed(MouseEvent theEvent)
   {
-    Point point = theEvent.getPoint();
-    
+    Point point = scalePoint(theEvent.getPoint());
+
     switch (currentEditingMode)
       {
       case AddConnectionMode:
@@ -272,7 +257,7 @@ public class RDFModelView extends JComponent
       case MoveSelectMode:
 	startPoint = point;
 	ModelItem item = objectAtPoint(point);
-	if (theEvent.getModifiers() == InputEvent.SHIFT_MASK)
+	if (theEvent.isShiftDown())
 	  {
 	    if (item != null)
 	      {
@@ -282,7 +267,7 @@ public class RDFModelView extends JComponent
 	    else
 	      {
 		draggingSelection = false;
-		selectionRect = new Rectangle(0, 0);
+		selectionRect = new Rectangle();
 		addingRectToSelection = true;
 	      }
 	  }
@@ -296,7 +281,7 @@ public class RDFModelView extends JComponent
 	    else
 	      {
 		draggingSelection = false;
-		selectionRect = new Rectangle(0, 0);
+		selectionRect = new Rectangle();
 		addingRectToSelection = false;
 	      }
 	  }
@@ -305,8 +290,8 @@ public class RDFModelView extends JComponent
     
   public void mouseDragged(MouseEvent theEvent)
   {
-    Point point = theEvent.getPoint();
-    
+    Point point = scalePoint(theEvent.getPoint());
+
     switch (currentEditingMode)
       {
       case AddConnectionMode:
@@ -326,7 +311,7 @@ public class RDFModelView extends JComponent
 					      startPoint.y);
 	    startPoint = point;
 	  }
-	else if (theEvent.getModifiers() == InputEvent.ALT_MASK)
+	else if (theEvent.isAltDown())
 	  {
 	    this.moveBy(
 			point.x - startPoint.x,
@@ -357,10 +342,10 @@ public class RDFModelView extends JComponent
   {
   }
 
-  public void mousePressed(MouseEvent theEvent)
+  public void mouseReleased(MouseEvent theEvent)
   {
-      Point point = theEvent.getPoint();
-              
+      Point point = scalePoint(theEvent.getPoint());
+
       switch (currentEditingMode)
         {
 	case AddConnectionMode:
@@ -398,25 +383,25 @@ public class RDFModelView extends JComponent
   public void setEditingMode(int mode)
   {
     currentEditingMode = mode;
-    /*  
+      
     switch (currentEditingMode)
       {
       case MoveSelectMode:
-	textDescriptionField.setStringValue(""); break;
+	textDescriptionField.setText(""); break;
       case AddNodeMode:
-	textDescriptionField.setStringValue("Click to place a new node");
+	textDescriptionField.setText("Click to place a new node");
 	break;
       case AddConnectionMode:
-	textDescriptionField.setStringValue("Drag between two nodes to connect");
+	textDescriptionField.setText("Drag between two nodes to connect");
 	break;
       case DeleteItemsMode:	
-	textDescriptionField.setStringValue("Click on items to remove them from the model");
+	textDescriptionField.setText("Click on items to remove them from the model");
 	break;
       case AddQueryItemMode:	
-	textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
+	textDescriptionField.setText("Click on items to mark them as unknown objects for query");
 	break;
       }
-    */
+    
   }
     
   public int editingMode()
@@ -667,7 +652,8 @@ public class RDFModelView extends JComponent
     public void addObject(GraphicalObject object)
     {
         graphicObjects.add(object);
-        this.repaint(object.bounds());
+
+        this.repaint(object.bounds().getBounds());
     }
     
     public void addObject(ArcNodeList model)
