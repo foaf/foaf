@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator"
+content="HTML Tidy for Linux/x86 (vers 1st March 2002), see www.w3.org" />
+<title>Server access for collaborators</title>
+</head>
+<body>
+<h1>CVS/SSH server access</h1>
+
+<p>Brief info on access to the rdfweb CVS server.</p>
+
+<p>Using Jim as an example, here is how we set up CVS-over-SSH,
+noting that the SSH server currently runs on an unfashionable port,
+so we need a tiny wrapper script, <code>./fssh</code> to deal with
+this.</p>
+
+<pre>
+[foafnaut]$ cat ./fssh
+#!/bin/bash
+/usr/bin/ssh -p 2223 $*
+
+[foafnaut]$ export CVS_RSH='./fssh'
+[foafnaut]$ export CVSROOT=:ext:jibberjim@foafnaut.org:/var/lib/cvs
+[foafnaut]$ cvs co foafnaut.org/
+
+</pre>
+
+<hr />
+Author: <a href="mailto:danbri-sysadmin@rdfweb.org">Dan
+Brickley</a> <br />
+$Id: 01-server-access.html,v 1.1 2003-01-29 19:37:17 danbri Exp $
+</body>
+</html>
+
