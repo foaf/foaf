@@ -13,7 +13,7 @@ if (sha1=='') {
 mbox=''
 var hex_chr = "0123456789abcdef";
 fso=Server.CreateObject("Scripting.FileSystemObject")
-if (false && fso.FileExists(Server.MapPath("/foaf/cache-new/")+"\\"+sha1+'.cz')) { 
+if (fso.FileExists(Server.MapPath("/foaf/cache-new/")+"\\"+sha1+'.cz')) { 
  Response.Expires=6000
  Response.CacheControl="Public, max-age=6000"
  Response.AddHeader('Location','http://jibbering.com/foaf/cache-new/'+sha1+'.cz')
