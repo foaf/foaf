@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns="http://xmlns.com/foaf/0.1/"
+ xmlns:cpan="http://rdfweb.org/2003/06/cpan/author-id-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/" >
+
+
+<foaf:Person>
+  <foaf:name>Jo Walsh</foaf:name>
+  <foaf:nick>zool</foaf:nick>
+  <cpan:id>ZOOLEIKA</cpan:id>
+  <foaf:mbox rdf:resource="mailto:jo@london.pm.org" />
+  <foaf:mbox_sha1sum rdf:resource="a235a0d6eb716e66da17484b5a3f208fe84f58e8" />
+  <foaf:homepage rdf:resource="http://www.zooleika.org.uk"/>
+  <foaf:weblog>
+    <foaf:Document rdf:about="http://www.zooleika.org.uk/blog.html">
+      <foaf:rssfeed rdf:resource="http://www.zooleika.org.uk/blog.rss"/><!--more  bloat?-->
+    </foaf:Document>
+  </foaf:weblog>
+</foaf:Person>
+
+<foaf:Person>
+  <cpan:id>NWALSH</cpan:id>
+  <foaf:mbox rdf:resource="mailto:ndw@nwalsh.com"/>
+  <foaf:mbox_sha1sum rdf:resource="9f5c771a25733700b2f96af4f8e6f35c9b0ad327" />
+  <foaf:homepage rdf:resource="http://nwalsh.com/people/ndw/"/>
+  <foaf:weblog>
+    <foaf:Document rdf:about="http://norman.walsh.name/">
+      <foaf:rssfeed rdf:resource="http://norman.walsh.name/index.rss"/>
+    </foaf:Document>
+  </foaf:weblog>
+</foaf:Person>
+
+
+<foaf:Person>
+  <foaf:name>Earle Martin</foaf:name>
+  <cpan:id>EMARTIN</cpan:id>
+  <!-- foaf:mbox rdf:resource="mailto:pause.spam@downlode.org" -->
+  <foaf:mbox_sha1sum rdf:resource="669ee7c0b8fbd58871841fa363f559d8833ea5c7" />
+  <foaf:homepage rdf:resource="http://downlode.org/"/>
+  <foaf:weblog>
+    <foaf:Document rdf:about="http://downlode.org/blog.pl">
+      <dc:title>two bits short of a byte</dc:title>
+      <dc:description>usings, links commentary onspace, technology and culture by Earle Martin.</dc:description>
+    </foaf:Document>
+    <foaf:rssfeed rdf:resource="http://downlode.org/blog.pl/index.rss10"/>
+  </foaf:weblog>
+</foaf:Person>
+
+</rdf:RDF>
+
+<!--
+Some examples; ideally this would all be collected from multiple sites.
+To merge with the other data, here is names and weblog URIs, and a few other 
+snippets. 
+tools: http://www.crystalflame.net/sha1sum.cgi useful for sha1sums
+-->
+
+
+
