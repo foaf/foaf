@@ -1,0 +1,29 @@
+<p>
+The <code>foaf:jabberID</code> property relates a <code>foaf:Agent</code> to a textual 
+identifier assigned to them in the <a href="http://www.jabber.org/">Jabber</a> messaging 
+system. 
+See the <a href="http://www.jabber.org/">Jabber</a> site for more information about the Jabber 
+protocols and tools.
+</p>
+
+<p>
+Jabber, unlike several other online messaging systems, is based on an open, publically 
+documented protocol specification, and has a variety of open source implementations. Jabber IDs 
+can be assigned to a variety of kinds of thing, including software 'bots', chat rooms etc. For 
+the purposes of FOAF, these are all considered to be kinds of <code>foaf:Agent</code> (ie. 
+things that <em>do</em> stuff). The uses of Jabber go beyond simple IM chat applications. The 
+<code>foaf:jabberID</code> property is provided as a basic hook to help support RDF description 
+of Jabber users and services.
+</p>
+
+<p>
+Note that it may be impolite to carelessly reveal someone else's chat identifier (which might 
+also serve as an indicate of email address) As with email,  there are privacy and anti-SPAM 
+considerations. FOAF does not currently provide a way to  represent an obfuscated chat ID (ie. 
+there is no parallel to the <code>foaf:mbox</code> / <code>foaf:mbox_sha1sum</code> mapping). 
+Future extensions to FOAF may address the general  problem of representing online accounts (for 
+mail, ecommerce etc); treatment of privacy should be ddressed within such a broader framework. 
+The FOAF chat ID properties (<code>foaf:aimChatID</code>, <code>foaf:msnChatID</code>, 
+<code>foaf:yahooChatID</code>, <code>foaf:msnChatID</code>) are provided as a convenient 
+shorthand for some common cases; their use may not always be appropriate.
+</p>
