@@ -19,6 +19,46 @@ connected from there.
 
 
 
+Debian
+
+Currently, the debian installer is putting files in:
+	/usr/lib/ruby/site_ruby/1.6/basicrdf.rb
+...instead of wherever else they're supposed to go. Investigating.
+
+	sudo cp -R /usr/lib/ruby/site_ruby/1.6/RDF4R* /usr/lib/ruby/1.6/
+  	sudo cp /usr/lib/ruby/site_ruby/1.6/basicrdf.rb /usr/lib/ruby/1.6/
+  	sudo cp /usr/lib/ruby/site_ruby/1.6/squish.rb /usr/lib/ruby/1.6/
+
+For DBI storage, we want 
+	apt-get install libdbi-ruby
+
+...and the DBI driver for postgres:
+	apt-get install libdbd-pg-ruby
+
+For XSLT,
+	apt-get install xsltproc
+
+To set up PostgresSQL
+	apt-get install postgresql
+
+...and we'll want a new user, in my case called 'danbri', to work as:
+
+	sudo su postgres /usr/lib/postgresql/bin/createuser danbri
+
+	/usr/lib/postgresql/bin/createdb -E UNICODE rdfweb1
+	/usr/bin/psql rdfweb1 < conf/scutterdb.sql
+
+Raptor RDF parser
+
+	Grab from http://www.redland.opensource.ac.uk/raptor/
+
+	apt-get install libxml2 libxml2-dev
+	...use libxml in preference to Expat
+	For raptor:
+		./configure
+		make
+		make test
+		make install
 
 XSLT RDF parser
 

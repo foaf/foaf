@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # 
 # Scutter, an RDF harvesting and indexing program.
-# $Id: scutter,v 1.9 2002-08-19 03:51:09 danbri Exp $
+# $Id: scutter,v 1.10 2003-01-29 03:28:19 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -23,7 +23,7 @@
 
 
 #require 'webutil'	
-require 'scutter'
+require 'lib/scutter'
 
 
 opt = GetoptLong.new (

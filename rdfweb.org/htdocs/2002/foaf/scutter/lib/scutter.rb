@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: scutter.rb,v 1.5 2002-08-19 03:51:09 danbri Exp $
+# $Id: scutter.rb,v 1.6 2003-01-29 03:28:19 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -287,7 +287,7 @@ def store_graph graph, cache_id, opts={}
      # puts "GOT SQL: #{sql_inserts} \n\n====\n\n"
 
     if !sql_inserts.empty?
-      puts "updating query server."
+      puts "updating query server. d1:#{dbi_driver} d2:#{dbi_user} d3:#{dbi_pass}"
       DBI.connect ( dbi_driver, dbi_user, dbi_pass ) do |dbh|
         # clean out last triples from this src
         # TODO: this risky? make sure won't accidentially zap the db.
@@ -305,7 +305,7 @@ def store_graph graph, cache_id, opts={}
 	      # print "INSERT: '#{sql_insert}' "
             dbh.do sql_insert 
           rescue 
-            #puts "DBI: Error in sql insert #{cache_id} sql: #{sql_insert} msg: #{$!}"
+	#            puts "DBI: Error in sql insert #{cache_id} sql: #{sql_insert} msg: #{$!}"
 	    # we need an --debug= verbosity level here. @@todo
             # this will be really verbose (lots of inserts into fields where dups not allowed)
           end
@@ -322,9 +322,16 @@ def store_graph graph, cache_id, opts={}
   service = DBIDataService.new( dbi_driver, dbi_user, dbi_pass )
   foaf = 'http://xmlns.com/foaf/0.1/'
   puts "\nSmushing in db: #{service.inspect}\n"
-  service.defrag [ foaf+'mbox', foaf+'homepage', foaf+'mbox_sha1']
-  #service.defrag [ foaf+'mbox' ] 
+
+  begin
+    service.defrag [ foaf+'mbox', foaf+'homepage', foaf+'mbox_sha1']
+    #service.defrag [ foaf+'mbox' ] 
+  rescue 
+    puts "Recovering from DB error in smushing; service.defrag failed: #{$!}"
+  end
+
   puts "done smushing.\n\n"
+  puts "Computing superproperties:\n\n"
   service.addAllSuperProperties
 
 
@@ -347,7 +354,7 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
   rdfs = 'http://www.w3.org/2000/01/rdf-schema#'	
   wot = 'http://xmlns.com/wot/0.1/'	
   opts['cache-dir']='./'  if !opts['cache-dir']       
-  opts['max']='500'  if !opts['max']   # debug limit!
+  opts['max']='5000'  if !opts['max']   # debug limit!
 
   seeAlsoRef = {} # from -> to
   done = {}
@@ -357,14 +364,18 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
   #
   todo.each do |uri|
 
-  puts "==================================================\n\n"
+   puts "==================================================\n\n"
 
-    count = count+1
+   count = count+1
    if count > opts['max'].to_i
       puts "Max retrieval count reached. Exiting harvester."
       break 
    end
-    uri_hash = hashcodeIntFromString uri
+   if uri =~ /irc/ 
+     puts "Skipping URI: #{uri} REASON: substring 'irc' (avoid irc logs)"
+     next
+   end
+   uri_hash = hashcodeIntFromString uri
 
     begin 
       cache_id = fetch_and_cache (uri, cache_dir, proxy)
@@ -384,7 +395,7 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
     begin 
       store_graph loaded, cache_id, opts
     rescue
-      puts "scutter: problem storing data, #{cache_id}"
+      puts "scutter: problem storing data, #{cache_id} error: #{$!} data: #{loaded}"
       next # can we do this?
     end
 
