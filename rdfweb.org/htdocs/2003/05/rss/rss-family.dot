@@ -1,45 +1,44 @@
 /* first draft. blue dotted means draws upon in part; other arrows indicate 
 based upon relationships */
 
+# $Revision: 1.4 $
+# 
+
 digraph rss  {
 
-
+# relationships
+# 
+# main links: 'is drawn upon significantly by' 
+# blue/dashed: 'is used by / was an influence on' (todo - separate?)
+#
+# todo: 
+#  
 	nsmcf -> rss090;
-
 	applemcf -> rss090;
 	applemcf -> nsmcf;
-
 	mscdf -> rss090;
-
         rdf -> rss090 [style=dashed, color=blue];
-
 	applemcf -> sn;
 	applemcf -> mscdf [style=dashed, color=blue];
-	applemcf -> rdf [style=dashed, color=blue];
-
 	mscdf -> sn;
-
         nsmcf -> rdf [style=dashed, color=blue];
 	msxmldata -> rdf [style=dashed, color=blue];
-
 	picsng -> rdf [style=dashed, color=blue];
 	rss090 -> rss100;
 	rss090 -> nsrssfutures;
 	nsrssfutures -> rss100;	
-
 	rss090 -> rss091;
 	sn -> rss091;
 	rss091 -> urss091;
 	rss092 -> urss200;
-
 	rdf -> rss100 [style=dashed, color=blue];	
-
+	urss091 -> rss092;
+ 	
 # node labels
 
 	nsrssfutures [label="(Netscape) RSS Futures document"];
 	urss200 [label="Userland RSS 2.0"];
 	urss091 [label="(Userland) RSS 0.91"];
-	urss091 -> rss092;
  	rss092 [label="(Userland) RSS 0.92"];
 	rss100 [label="RSS 1.0"];
 	rdf [label="Resource Description Framework (RDF)"];
