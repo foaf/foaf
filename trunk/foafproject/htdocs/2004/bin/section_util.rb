@@ -5,9 +5,12 @@
 # status: Work in progress. Parsing works; no rewriting yet. 
 # see also: navtest1
 #
-# version: $Id: section_util.rb,v 1.1 2004-08-14 19:45:07 danbri Exp $
+# version: $Id: section_util.rb,v 1.2 2004-08-14 20:38:13 danbri Exp $
 # Log:
 #   $Log: not supported by cvs2svn $
+#   Revision 1.1  2004/08/14 19:45:07  danbri
+#   coding
+#
 #
 # Utility to parse files on FOAF site 
 # It reads an HTML page from disk, 
@@ -151,15 +154,15 @@ end # Class definition
 
 ###############################################################################
 
-todo = `find . -name \*.html`
+#todo = `find . -name \*.html`
 
-todo.each do |file|
-  file.chomp!
-  doc = DocFile.new(file)  
-  STDERR.puts "Scanning file: #{file} title: #{doc.title} "
-  mangled=doc.scan
+#todo.each do |file|
+ # file.chomp!
+ # doc = DocFile.new(file)  
+ # STDERR.puts "Scanning file: #{file} title: #{doc.title} "
+ # mangled=doc.scan
 #  print mangled
-  print doc.section_debug
-end
+ # print doc.section_debug
+#end
 
 
