@@ -98,26 +98,23 @@ div.specterm {
 <body>
 <h1>FOAF Vocabulary Specification <br/></h1>
 
-<h2>RDFWeb Namespace Document 22 June 2003</h2>
+<h2>RDFWeb Namespace Document 16 August 2003</h2>
 
 <dl>
-<dt>Version history:</dt> 
-<dd><a 
-href="http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/index.html">http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/index.html</a></dd>
-
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
-
+<dt>Last update:</dt>
+<dd>$Date: 2003-08-14 23:52:43 $</dd>
+<dt>Revision:</dt>
+<dd>$Revision</dd>
 <dt>Authors:</dt> 
-<dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>
-</dd>
-<dd><a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
+<dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
 <dt>Contributors:</dt> 
 <dd>Members of the FOAF mailing list (<a 
 href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">rdfweb-dev@vapours.rdfweb.org</a>) and the 
 wider <a href="http://www.w3.org/RDF/Interest/">RDF developer community</a>. See <a 
-href="#ack">Acknowledgements</a>.
+href="#ack">acknowledgements</a>.
 </dd>
 </dl>
 
@@ -130,8 +127,10 @@ style="border: 0; float: right;" src="http://creativecommons.org/images/public/s
 
 This work is licensed under a <a href="http://creativecommons.org/licenses/by/1.0/">Creative 
 Commons License</a>. This copyright applies to the <em>FOAF Vocabulary Specification</em> and 
-accompanying documentation and does not extend to FOAF data formats, vocabulary terms, or 
-technology.
+accompanying documentation and does not apply to FOAF data formats,
+vocabulary terms, or technology. Regarding underlying technology, FOAF relies heavily on W3C's <a
+href="http://www.w3.org/RDF/">RDF</a> technology, an open Web standard
+that can be freely used by anyone. 
 </p>
 
  <div><a href="http://validator.w3.org/check/referer"><img
@@ -205,8 +204,9 @@ Please send comments on this document to the FOAF developers list
 <a href="mailto:rdfweb-dev@vapours.rdfweb.org">rdfweb-dev@vapours.rdfweb.org</a>; 
 <a href="http://rdfweb.org/mailman/listinfo/rdfweb-dev">public 
 archives</a> are available.  This document may be updated or added to based 
-on implementation experience, but no commitment is made by the authors, or the RDFWeb project, 
-regarding future updates. <!-- todo: link to stability section -->
+on implementation experience, but no commitment is made by the authors 
+regarding future updates (<em>todo: link to stability info re FOAF
+properties, also need to explain extensibility model</em>).
 </p> 
 
 </div> 
@@ -2882,7 +2882,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-08-14 23:46:05 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-08-14 23:52:43 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3568,7 +3568,7 @@ Sesame, 3store etc).
 <!-- first we introduce a number of RDF namespaces we will be using -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-14 23:46:05 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-14 23:52:43 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
