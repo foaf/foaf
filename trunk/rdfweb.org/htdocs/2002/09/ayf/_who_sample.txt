@@ -1,0 +1,283 @@
+INIT: size=0 seen:=0 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Joe Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Margaret Hart  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Art Barstow  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Eric Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Libby Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Jim Ley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Eric Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Art Barstow  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Edd Dumbill  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Ian Sealy  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Martin Poulter  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Dan Connolly  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Martin L Poulter  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Aaron Swartz  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Damian Steer  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Craig Dibble  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Jan Grant  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Libby Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Liz Dibble  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+Dave Beckett  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf
+RDF: no.:'1': uri:http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf size:200
+INIT: size=16 seen:=1 uri: http://bailey.dscga.com/michaelmwho.xrdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:404 "Not Found"
+INIT: size=15 seen:=2 uri: http://ilrt.org/people/bzims/webwho.xrdf
+Dan Brickley  			 uri: http://ilrt.org/people/bzims/webwho.xrdf
+Kieren Pitts  			 uri: http://ilrt.org/people/bzims/webwho.xrdf
+Martin Belcher  			 uri: http://ilrt.org/people/bzims/webwho.xrdf
+Ian Sealy  			 uri: http://ilrt.org/people/bzims/webwho.xrdf
+Lotta Lundh  			 uri: http://ilrt.org/people/bzims/webwho.xrdf
+RDF: no.:'2': uri:http://ilrt.org/people/bzims/webwho.xrdf size:15
+INIT: size=14 seen:=3 uri: http://mail.bris.ac.uk/~plmlp/webwho.xrdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:404 ""
+INIT: size=13 seen:=4 uri: http://www.blogspace.com/rss/rss10
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:301 "Moved Permanently"
+INIT: size=12 seen:=5 uri: http://hippyrigs.fiendsreunited.com/people/joe/foaf.rdf
+Dan Brickley  			 uri: http://hippyrigs.fiendsreunited.com/people/joe/foaf.rdf
+Joe Brickley  			 uri: http://hippyrigs.fiendsreunited.com/people/joe/foaf.rdf
+RDF: no.:'3': uri:http://hippyrigs.fiendsreunited.com/people/joe/foaf.rdf size:16
+INIT: size=11 seen:=6 uri: http://purl.org/net/eric/webwho.xrdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:302 "Found"
+INIT: size=10 seen:=7 uri: http://ioctl.org/jan/webwho.xrdf
+Jan Grant  			 uri: http://ioctl.org/jan/webwho.xrdf
+RDF: no.:'4': uri:http://ioctl.org/jan/webwho.xrdf size:10
+INIT: size=11 seen:=8 uri: http://rdfwebring.org/~pldab/webweb/webwho.xweb
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:getaddrinfo: no address associated with hostname.
+INIT: size=10 seen:=9 uri: http://ioctl.org/jan/webwho.xweb
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:404 "Not Found"
+INIT: size=9 seen:=10 uri: http://www.aaronsw.com/about.xrdf
+Libby Miller  			 uri: http://www.aaronsw.com/about.xrdf
+Aaron Swartz  			 uri: http://www.aaronsw.com/about.xrdf
+Dan Brickley  			 uri: http://www.aaronsw.com/about.xrdf
+RDF: no.:'5': uri:http://www.aaronsw.com/about.xrdf size:45
+INIT: size=8 seen:=11 uri: http://purl.org/net/dajobe/webwho.xrdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:302 "Found"
+INIT: size=7 seen:=12 uri: http://www.w3.org/People/Barstow/webwho.rdf
+Art Barstow  			 uri: http://www.w3.org/People/Barstow/webwho.rdf
+RDF: no.:'6': uri:http://www.w3.org/People/Barstow/webwho.rdf size:14
+INIT: size=6 seen:=13 uri: http://www.w3.org/People/Connolly/home-smart.rdf
+RDF: no.:'7': uri:http://www.w3.org/People/Connolly/home-smart.rdf size:29
+INIT: size=6 seen:=14 uri: http://www.w3.org/People/Connolly/events/events-smart.rdf
+ERROR: FAILED URI: 'http://www.w3.org/People/Connolly/events/events-smart.rdf' MSG: RDF parser error. Expat setup error. url=http://www.w3.org/People/Connolly/events/events-smart.rdf error: where am i? "W3C advisory committee meeting" in resource
+INIT: size=5 seen:=15 uri: http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf
+Dan Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf
+RDF: no.:'8': uri:http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf size:54
+INIT: size=11 seen:=16 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Libby Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Joe Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Martin L Poulter  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Matt Biddulph  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Matt Biddulph  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Damian Steer  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Edd Dumbill  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dan Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dan Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+jo walsh (zooleika)  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Charles McCathieNevile (Chaals)  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dave Beckett  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Rael Dornfest  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dan Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+jo walsh (zooleika)  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dan Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Dave Beckett  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Joe Brickley  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Libby Miller  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+Damian Steer  			 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf
+RDF: no.:'9': uri:http://rdfweb.org/people/danbri/rdfweb/danbri-wot.rdf size:142
+INIT: size=10 seen:=17 uri: http://ilrt.org/discovery/rdf-dev/roads/cgi-bin/desire/ig2rss
+RDF: no.:'10': uri:http://ilrt.org/discovery/rdf-dev/roads/cgi-bin/desire/ig2rss size:8
+INIT: size=9 seen:=18 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-biblio.rdf
+RDF: no.:'11': uri:http://rdfweb.org/people/danbri/rdfweb/danbri-biblio.rdf size:177
+INIT: size=8 seen:=19 uri: http://xmlns.com/foaf/0.1/
+RDF: no.:'12': uri:http://xmlns.com/foaf/0.1/ size:185
+INIT: size=8 seen:=20 uri: \n 
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:wrong argument type nil (expected String)
+INIT: size=7 seen:=21 uri: http://rdfweb.org/people/danbri/rdfweb/danbri-foafshop.rdf
+RDF: no.:'13': uri:http://rdfweb.org/people/danbri/rdfweb/danbri-foafshop.rdf size:16
+INIT: size=6 seen:=22 uri: http://heddley.com/edd/foaf.rdf
+Phil McCarthy  			 uri: http://heddley.com/edd/foaf.rdf
+Giles Turnbull  			 uri: http://heddley.com/edd/foaf.rdf
+Eric van der Vlist  			 uri: http://heddley.com/edd/foaf.rdf
+Uche Ogbuji  			 uri: http://heddley.com/edd/foaf.rdf
+Matt Biddulph  			 uri: http://heddley.com/edd/foaf.rdf
+Simon St.Laurent  			 uri: http://heddley.com/edd/foaf.rdf
+Jason Bell  			 uri: http://heddley.com/edd/foaf.rdf
+Matt Hunt  			 uri: http://heddley.com/edd/foaf.rdf
+Brendan Quinn  			 uri: http://heddley.com/edd/foaf.rdf
+Edd Dumbill  			 uri: http://heddley.com/edd/foaf.rdf
+Claire Rowland  			 uri: http://heddley.com/edd/foaf.rdf
+RDF: no.:'14': uri:http://heddley.com/edd/foaf.rdf size:162
+INIT: size=17 seen:=23 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Jordan Katz  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Bijan Parsia  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+H. Ross Baker  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Mike Grove  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Ron Reck  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Ron Alford  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Amy Loomis  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Aditya Kalyanpur  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Jim Hendler  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+Jennifer Golbeck  			 uri: http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf
+RDF: no.:'15': uri:http://www.cs.umd.edu/~golbeck/daml/golbeckFOAF.rdf size:73
+INIT: size=18 seen:=24 uri: http://sarn.org/foaf.rdf
+Amy Loomis  			 uri: http://sarn.org/foaf.rdf
+RDF: no.:'16': uri:http://sarn.org/foaf.rdf size:23
+INIT: size=17 seen:=25 uri: http://www.ece.umd.edu/~adityak/aditya_foaf.rdf
+Aditya Kalyanpur  			 uri: http://www.ece.umd.edu/~adityak/aditya_foaf.rdf
+RDF: no.:'17': uri:http://www.ece.umd.edu/~adityak/aditya_foaf.rdf size:10
+INIT: size=16 seen:=26 uri: http://www.picdiary.com/foaf.rdf
+Deb Bassett  			 uri: http://www.picdiary.com/foaf.rdf
+Paul Mison  			 uri: http://www.picdiary.com/foaf.rdf
+Anna Johnson  			 uri: http://www.picdiary.com/foaf.rdf
+Edd Dumbill  			 uri: http://www.picdiary.com/foaf.rdf
+Matt Biddulph  			 uri: http://www.picdiary.com/foaf.rdf
+Brendan Quinn  			 uri: http://www.picdiary.com/foaf.rdf
+Dave Beckett  			 uri: http://www.picdiary.com/foaf.rdf
+Chris Ball  			 uri: http://www.picdiary.com/foaf.rdf
+Will Wade  			 uri: http://www.picdiary.com/foaf.rdf
+Simon Batistoni  			 uri: http://www.picdiary.com/foaf.rdf
+Simon Frost  			 uri: http://www.picdiary.com/foaf.rdf
+Tom Coates  			 uri: http://www.picdiary.com/foaf.rdf
+Phil McCarthy  			 uri: http://www.picdiary.com/foaf.rdf
+Giles Turnbull  			 uri: http://www.picdiary.com/foaf.rdf
+Claire Rowland  			 uri: http://www.picdiary.com/foaf.rdf
+Jo Walsh  			 uri: http://www.picdiary.com/foaf.rdf
+RDF: no.:'18': uri:http://www.picdiary.com/foaf.rdf size:115
+INIT: size=16 seen:=27 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Celia Romaniuk  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Simon Wistow  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Alex McLean  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Simon Batistoni  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Earle Martin  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Jo Walsh  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Dave Cross  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Paul Mison  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Phil Gyford  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+DJ Adams  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Rob Partington  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Chris Ball  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Loubie  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Lisa Haskel  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Edd Dumbill  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Yoz Grahame  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Matt Biddulph  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Leon Brocard  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Kip Hampton  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Robin Houston  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+Mark Fowler  			 uri: http://www.zooleika.org.uk/bio/foaf.rdf
+RDF: no.:'19': uri:http://www.zooleika.org.uk/bio/foaf.rdf size:128
+INIT: size=19 seen:=28 uri: http://downlode.org/foaf/foaf.rdf
+Earle Martin  			 uri: http://downlode.org/foaf/foaf.rdf
+Celia Romaniuk  			 uri: http://downlode.org/foaf/foaf.rdf
+Matt Biddulph  			 uri: http://downlode.org/foaf/foaf.rdf
+Simon Kent  			 uri: http://downlode.org/foaf/foaf.rdf
+Dan Brickley  			 uri: http://downlode.org/foaf/foaf.rdf
+Leon Brocard  			 uri: http://downlode.org/foaf/foaf.rdf
+Paul Mison  			 uri: http://downlode.org/foaf/foaf.rdf
+Jo Walsh  			 uri: http://downlode.org/foaf/foaf.rdf
+Chris Ball  			 uri: http://downlode.org/foaf/foaf.rdf
+Yoz Grahame  			 uri: http://downlode.org/foaf/foaf.rdf
+Mark Fowler  			 uri: http://downlode.org/foaf/foaf.rdf
+Alex McClean  			 uri: http://downlode.org/foaf/foaf.rdf
+Giles Turnbull  			 uri: http://downlode.org/foaf/foaf.rdf
+Simon Wistow  			 uri: http://downlode.org/foaf/foaf.rdf
+Robin Berjon  			 uri: http://downlode.org/foaf/foaf.rdf
+Gareth Klose  			 uri: http://downlode.org/foaf/foaf.rdf
+Sam Vilain  			 uri: http://downlode.org/foaf/foaf.rdf
+RDF: no.:'20': uri:http://downlode.org/foaf/foaf.rdf size:147
+INIT: size=20 seen:=29 uri: http://starway.heddley.com/~edmundd/photos.rdf
+RDF: no.:'21': uri:http://starway.heddley.com/~edmundd/photos.rdf size:8
+INIT: size=22 seen:=30 uri: http://starway.heddley.com/~edmundd/hawaii.rdf
+RDF: no.:'22': uri:http://starway.heddley.com/~edmundd/hawaii.rdf size:128
+INIT: size=21 seen:=31 uri: http://starway.heddley.com/~edmundd/barcelona.rdf
+RDF: no.:'23': uri:http://starway.heddley.com/~edmundd/barcelona.rdf size:75
+INIT: size=20 seen:=32 uri: http://downlode.org/foaf/foaf-private.rdf.asc
+ERROR: FAILED URI: 'http://downlode.org/foaf/foaf-private.rdf.asc' MSG: RDF parser error. Expat setup error. url=http://downlode.org/foaf/foaf-private.rdf.asc error: syntax error
+INIT: size=19 seen:=33 uri: http://hampton.ws/kip/foaf.rdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:socket read timeout (60 sec)
+INIT: size=18 seen:=34 uri: http://weblog.greenpeace.org/foaf.rdf
+Giles Turnbull  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Dru Jay  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Kendall Clark  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Mark Pilgrim  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Dru Oja Jay  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Bijan Parsia  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Gilberto Cutrupi  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Edd Dumbill  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Kendall  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Dru  			 uri: http://weblog.greenpeace.org/foaf.rdf
+Niel Bornstein  			 uri: http://weblog.greenpeace.org/foaf.rdf
+RDF: no.:'24': uri:http://weblog.greenpeace.org/foaf.rdf size:66
+INIT: size=19 seen:=35 uri: http://www.mycgiserver.com/~jasonbell/foaf/foaf.rdf
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:404 "Not Found"
+INIT: size=18 seen:=36 uri: http://es.ca.pi.st/foaf.rdf
+ERROR: FAILED URI: 'http://es.ca.pi.st/foaf.rdf' MSG: RDF parser error. Expat setup error. url=http://es.ca.pi.st/foaf.rdf error: bad URI(is not URI?): newsmaster / developer
+INIT: size=17 seen:=37 uri: http://hitherto.net/foaf/foaf.rdf
+Leon Brocard  			 uri: http://hitherto.net/foaf/foaf.rdf
+Gareth Klose  			 uri: http://hitherto.net/foaf/foaf.rdf
+Yoz Graeme  			 uri: http://hitherto.net/foaf/foaf.rdf
+John Handelaar  			 uri: http://hitherto.net/foaf/foaf.rdf
+Jo Walsh  			 uri: http://hitherto.net/foaf/foaf.rdf
+Mark Fowler  			 uri: http://hitherto.net/foaf/foaf.rdf
+Emily Dubberley  			 uri: http://hitherto.net/foaf/foaf.rdf
+Paul Mison  			 uri: http://hitherto.net/foaf/foaf.rdf
+Simon Wistow  			 uri: http://hitherto.net/foaf/foaf.rdf
+Tom Insam  			 uri: http://hitherto.net/foaf/foaf.rdf
+Simon Batistoni  			 uri: http://hitherto.net/foaf/foaf.rdf
+Celia Romaniuk  			 uri: http://hitherto.net/foaf/foaf.rdf
+Sally Burgess  			 uri: http://hitherto.net/foaf/foaf.rdf
+RDF: no.:'25': uri:http://hitherto.net/foaf/foaf.rdf size:104
+INIT: size=16 seen:=38 uri: http://starway.heddley.com/~edmundd/ha
+ERROR: rdfget: HTTP GET failed. Returning empty graph. error:404 "Not Found"
+INIT: size=15 seen:=39 uri: http://swordfish.rdfweb.org/discovery/2001/08/codepict/scutterplan.rdf
+RDF: no.:'26': uri:http://swordfish.rdfweb.org/discovery/2001/08/codepict/scutterplan.rdf size:1650
+INIT: size=1610 seen:=40 uri: http://ilrt.org/discovery/2002/04/query/rss-subject.rdf
+RDF: no.:'27': uri:http://ilrt.org/discovery/2002/04/query/rss-subject.rdf size:9
+INIT: size=1609 seen:=41 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/30813.rdf
+RDF: no.:'28': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/30813.rdf size:7
+INIT: size=1608 seen:=42 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/43817.rdf
+RDF: no.:'29': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/43817.rdf size:7
+INIT: size=1607 seen:=43 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/36416.rdf
+RDF: no.:'30': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/36416.rdf size:2
+INIT: size=1606 seen:=44 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/57352.rdf
+RDF: no.:'31': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/doc/57352.rdf size:7
+INIT: size=1605 seen:=45 uri: http://jibbering.com/rdfsvg/1025709113824.rdf
+Jim Ley  			 uri: http://jibbering.com/rdfsvg/1025709113824.rdf
+Nadia Heninger  			 uri: http://jibbering.com/rdfsvg/1025709113824.rdf
+Jim Ley  			 uri: http://jibbering.com/rdfsvg/1025709113824.rdf
+Ian Hickson  			 uri: http://jibbering.com/rdfsvg/1025709113824.rdf
+RDF: no.:'32': uri:http://jibbering.com/rdfsvg/1025709113824.rdf size:43
+INIT: size=1604 seen:=46 uri: http://swordfish.rdfweb.org/photos/rdf/000570.rdf
+Dave Beckett  			 uri: http://swordfish.rdfweb.org/photos/rdf/000570.rdf
+Dan Brickley  			 uri: http://swordfish.rdfweb.org/photos/rdf/000570.rdf
+Jim Hendler  			 uri: http://swordfish.rdfweb.org/photos/rdf/000570.rdf
+libby  			 uri: http://swordfish.rdfweb.org/photos/rdf/000570.rdf
+RDF: no.:'33': uri:http://swordfish.rdfweb.org/photos/rdf/000570.rdf size:32
+INIT: size=1603 seen:=47 uri: http://www.kungfugrippe.com/foaf.rdf
+Michael Ferguson  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Merlin Mann  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Jesse James Garrett  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Matt Harris  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Sam Misemer  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Hoon Kim  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Dan Catalano  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Dan Cohen  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Matt Haughey  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Derek Powazek  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Lisa Rein  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Antony Bolante  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Jonathan Lammers  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Heather Champ  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Michael Coleman  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Giles Cassels  			 uri: http://www.kungfugrippe.com/foaf.rdf
+Madeline Stiness  			 uri: http://www.kungfugrippe.com/foaf.rdf
+RDF: no.:'34': uri:http://www.kungfugrippe.com/foaf.rdf size:118
+INIT: size=1602 seen:=48 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/47052.rdf
+RDF: no.:'35': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/47052.rdf size:2
+INIT: size=1601 seen:=49 uri: http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/35784.rdf
+RDF: no.:'36': uri:http://ilrt.org/discovery/2001/11/ilrt-rdf/iris/records/person/35784.rdf size:2
+INIT: size=1600 seen:=50 uri: http://www.intellidimension.com/rdf/foaf.rdf
+
+
+#...truncated

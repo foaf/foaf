@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.18 2002-12-11 22:59:36 danbri Exp $
+# $Id: ayf.rb,v 1.19 2002-12-12 13:58:20 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -9,6 +9,9 @@
 # retrieves each RDF document. It comes with some demo code blocks that
 # collect photo information, look out for mentions of airports, and 
 # generate basic logging records.
+#
+# nearby: myScutter.rb, a demo showing how to use ayf.rb as a library
+#         by defining new behaviours to be invoked by the RDF crawler.
 #
 # TODO list:
 #
@@ -261,4 +264,5 @@ end
 
 start_uri = 'http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf' 
 start_uri = ARGV.shift if ARGV.length > 0
-go(start_uri)
+
+go(start_uri) if __FILE__ == $0  # go unless we're being used as a library...
