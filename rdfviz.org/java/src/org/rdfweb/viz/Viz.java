@@ -399,9 +399,12 @@ return textArea3;///???
                 g2d.setColor(Color.black);
             }
 
+	    if(n.isLiteral()){
+            g2d.drawRect(nodex - xoffset, nodey - yoffset, z, z);
+	    }else{
             g2d.drawOval(nodex - xoffset, nodey - yoffset, z, z);
             //System.out.println("OVAL: "+(nodex-xoffset)+" "+(nodey-yoffset)+" "+z+" "+z);
-
+	    }
         }
 
         //should not draw line always?
@@ -435,10 +438,50 @@ return textArea3;///???
                 g2d.setColor(Color.black);
             }
 
+
+int offSX=arcstartx - xoffset + lineoffset;
+int offSY=arcstarty - yoffset + lineoffset;
+int offEX=arcendx - xoffset + lineoffset;
+int offEY=arcendy - yoffset + lineoffset;
+
+
+//System.out.println("gah "+arcs);
+//System.out.println("sx "+arcstartx+" sy "+arcstarty+" ex "+arcendx+" ey "+arcendy);
+//System.out.println("sx "+offSX+" sy "+offSY+" ex "+offEX+" ey "+offEY);
+
+//int segX=getSegX(z,offSX,offSY,offEX,offEY);
+//int segY=getSegY(z,offSX,offSY,offEX,offEY);
+int segX=getSegX(10,offSX,offSY,offEX,offEY);
+int segY=getSegY(10,offSX,offSY,offEX,offEY);
+
+double segX2=getSegX(20,offSX,offSY,offEX,offEY);
+double segY2=getSegY(20,offSX,offSY,offEX,offEY);
+
+double w=10;
+double theta=java.lang.Math.atan2((offEX-offSX), (offEY-offSY));
+
+double segLX=(segX2-w*java.lang.Math.cos(theta));
+double segLY=(segY2+w*java.lang.Math.sin(theta));
+double segRX=(segX2+w*java.lang.Math.cos(theta));
+double segRY=(segY2-w*java.lang.Math.sin(theta));
+
+//g2d.drawLine((int)segLX,(int)segLY,segX, segY);
+//g2d.drawLine((int)segRX,(int)segRY,segX, segY);
+
+int[] xs={(int)segLX,(int)segRX,segX};
+int[] ys={(int)segLY,(int)segRY,segY};
+
+//g2d.fillPolyline(xs,ys,3);
+g2d.fillPolygon(xs,ys,3);
+
             g2d.drawLine(arcstartx - xoffset + lineoffset,
                     arcstarty - yoffset + lineoffset,
                     arcendx - xoffset + lineoffset,
                     arcendy - yoffset + lineoffset);
+
+//Arrow?
+
+
 
             int centrexX = getCentreArcX(arcstartx - xoffset + lineoffset,
                     arcendx - xoffset + lineoffset);
@@ -448,6 +491,7 @@ return textArea3;///???
             g2d.drawRect((centrexX - sqdi / 2), (centreyY - sqdi / 2),
                     sqdi, sqdi);
 
+
             //System.out.println("RECT "+(centrexX-sqdi/2)+" "+(centreyY-sqdi/2)+" "+sqdi+" "+sqdi);
 
             //System.out.println("LINE: "+(arcstartx-xoffset+lineoffset)+" "+(arcstarty-yoffset+lineoffset)+" "+(arcendx-xoffset+lineoffset)+" "+(arcendy-yoffset+lineoffset));
@@ -455,6 +499,52 @@ return textArea3;///???
         }
 
     }//end paint method
+
+
+/**
+
+gets coords of a point n down from the end of a line
+//get length of full line (sqrt(x*x+y*y))
+//work out ratio of that under ((sqrt(x*x+y*y))-r=R
+//R-r/R * x= x' and *y = y'
+
+*/
+
+
+public int getSegX(double r, double sx, double sy, double ex, double ey){
+//System.out.println("x "+sx+" "+ex);
+//System.out.println("y "+sy+" "+ey);
+
+double x=ex - sx;
+double y=ey - sy;
+
+//r =50;
+
+//System.out.println("[1]x "+x);
+//System.out.println("[1]y "+y);
+
+double R=java.lang.Math.sqrt((x*x)+(y*y));
+//System.out.println("R "+R);
+//System.out.println("end "+(((R-r)/R)));
+//return (int)( sx + (R-r) * x / R );
+return (int)(sx+(  (R-r) * x / R) );
+//return ex-(((x*2)/2)*ratio)-r;
+}
+
+public int getSegY(double r, double sx, double sy, double ex, double ey){
+
+double x=ex - sx;
+double y=ey - sy;
+
+//r = 50;
+
+double R=java.lang.Math.sqrt((x*x)+(y*y));
+//System.out.println("end [2]"+(((R-r)/R)));
+return (int)(sy+ ((R-r) * y / R ));
+//return (int)(sy + (R-r) * y / R );
+//return ey-(((y*2)/2)*ratio)-r;
+}
+
 
 
 
@@ -718,6 +808,8 @@ f=focus;
                 String className = classes.next().toString();
                         /////////
 
+System.out.println("class "+className);
+
 			JMenuItem cl=new JMenuItem(className);
                         menuNodes.add(cl);
 		        cl.addActionListener(new NodeActionListener(this));
@@ -731,10 +823,15 @@ f=focus;
 
 
         try {
+
+
             while (properties.hasNext()) {
 
 
                 String propertyName = properties.next().toString();
+
+System.out.println("props "+propertyName);
+
                 /////////
 		JMenuItem pr=new JMenuItem(propertyName);
                 menuArcs.add(pr);

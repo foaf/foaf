@@ -69,10 +69,23 @@ System.out.println("ggetting label "+nn.getProp("label"));
             viz.setFocussedItem(nn);
 
             try {
+
+                viz.getTypeText().setText(nn.getProp("type"));
+                viz.getIDText().setText(nn.getProp("uri"));
+                viz.getLabelText().setText(nn.getProp("label"));
+
+
+//		viz.updateNodeTextFrame(nn);
+
+System.out.println("ggetting type "+nn.getProp("type"));
+System.out.println("ggettingid "+nn.getProp("uri"));
+System.out.println("ggetting label "+nn.getProp("label"));
+
+
 //                viz.getTmpText().setText(nn.getTmpText());
-                viz.getTypeText().setText(nn.getTypeText());
-                viz.getIDText().setText("");
-                viz.getLabelText().setText("");
+//                viz.getTypeText().setText(nn.getTypeText());
+  //              viz.getIDText().setText("");
+    //            viz.getLabelText().setText("");
 //		viz.updatePropertyTextFrame(nn);
 
 //                viz.getIDText().setText(nn.getProp("uri"));

@@ -14,14 +14,23 @@ public class DrawableNode implements RDFNode, FocussedItem {
     Color color = Color.black;
     Hashtable properties;
 
+boolean isLiteral=false;
+
     public DrawableNode(int x, int y) {
         this.x = x;
         this.y = y;
 	properties = new Hashtable();
 	properties.put("type","");;
-	properties.put("ID","");;
+	properties.put("uri","");;
 	properties.put("label","");;
     }
+
+public boolean isLiteral(){
+return isLiteral;
+}
+public void setAsLiteral(){
+isLiteral=true;
+}
 
     public boolean setProperty(String key, String val){
 	if(val!=null&&(!val.equals("")) && key!=null && (!key.equals(""))){
