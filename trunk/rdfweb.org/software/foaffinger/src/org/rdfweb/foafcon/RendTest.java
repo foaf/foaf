@@ -133,7 +133,7 @@ public class RendTest
   public void kickService()
     throws Exception
   {
-    System.out.println("UNS: " + si);
+    //System.out.println("UNS: " + si);
     
     
     rv.unregisterService(si);
@@ -149,7 +149,7 @@ public class RendTest
 			 0,
 			 props);
 
-    System.out.println("Set: " + si);
+    //System.out.println("Set: " + si);
         
     rv.registerService(si);
   }

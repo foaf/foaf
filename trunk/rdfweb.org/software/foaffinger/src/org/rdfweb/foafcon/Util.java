@@ -137,5 +137,19 @@ public class Util
     
     return toReturn;
   }
-    
+
+  public static boolean isURL(String pUrl)
+  {
+    try
+      {
+	URL url = new URL(pUrl);
+
+	return true;
+      }
+    catch (MalformedURLException e)
+      {
+	return false;
+      }
+  }
+  
 }

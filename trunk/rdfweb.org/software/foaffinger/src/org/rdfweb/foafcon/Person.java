@@ -54,7 +54,7 @@ public class Person
 
   public void setFromPerson(Person person)
   {
-    System.out.println(person);
+    //System.out.println(person);
     
     setName(person.getName());
     setMboxHash(person.getMboxHash());
