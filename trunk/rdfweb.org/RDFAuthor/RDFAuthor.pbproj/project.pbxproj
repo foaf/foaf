@@ -302,7 +302,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
-				JAVA_COMPILER_FLAGS = "";
+				JAVA_COMPILER_FLAGS = "-deprecation";
 				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
