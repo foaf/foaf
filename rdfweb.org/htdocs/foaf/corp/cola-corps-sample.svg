@@ -1,0 +1,798 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+	"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+
+<svg width="800.0px" height="800.0px" xmlns="http://www.w3.org/2000/svg">
+
+<desc>Produced by RDFAuthor (http://rdfweb.org/people/damian/RDFAuthor)</desc>
+<rect x="0px" y="0px" width="800.0px" height="800.0px" fill="white" />
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="409.9206px" y="70.990234px" width="31.0px" height="15.0px"/>
+<line x1="391.52423px" y1="87.53714px" x2="459.317px" y2="69.44332px"/>
+<text x="409.9206px" y="83.990234px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="482.3559px" y="578.6472px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="550.0902px" y2="630.4816px"/>
+<text x="482.3559px" y="591.6472px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="615.3336px" y="233.88672px" width="59.0px" height="15.0px"/>
+<line x1="621.7335px" y1="204.54579px" x2="667.93365px" y2="278.22766px"/>
+<text x="615.3336px" y="246.88672px" fill="black" fill-opacity="1.0">homepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="446.85724px" y="591.29016px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="479.09293px" y2="655.7676px"/>
+<text x="446.85724px" y="604.29016px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="132.87674px" y="465.80054px" width="31.0px" height="15.0px"/>
+<line x1="140.00629px" y1="444.94458px" x2="156.7472px" y2="501.6565px"/>
+<text x="132.87674px" y="478.80054px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="365.77032px" y="586.0243px" width="31.0px" height="15.0px"/>
+<line x1="409.15668px" y1="587.30365px" x2="353.384px" y2="599.74493px"/>
+<text x="365.77032px" y="599.0243px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="350.3177px" y="537.51324px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="286.01376px" y2="548.21375px"/>
+<text x="350.3177px" y="550.51324px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="510.64368px" y="256.1007px" width="31.0px" height="15.0px"/>
+<line x1="535.74585px" y1="233.01338px" x2="516.54144px" y2="294.18802px"/>
+<text x="510.64368px" y="269.1007px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="411.88913px" y="557.0582px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="409.15668px" y2="587.30365px"/>
+<text x="411.88913px" y="570.0582px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="93.05138px" y="493.98602px" width="59.0px" height="15.0px"/>
+<line x1="140.00629px" y1="444.94458px" x2="105.09647px" y2="558.02747px"/>
+<text x="93.05138px" y="506.98602px" fill="black" fill-opacity="1.0">homepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="212.58783px" y="275.65375px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="210.3015px" y2="307.8px"/>
+<text x="212.58783px" y="288.65375px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="512.4764px" y="120.38602px" width="45.0px" height="15.0px"/>
+<line x1="545.57526px" y1="166.5765px" x2="524.3775px" y2="89.19553px"/>
+<text x="512.4764px" y="133.38602px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="485.96588px" y="329.42523px" width="31.0px" height="15.0px"/>
+<line x1="486.3903px" y1="379.6624px" x2="516.54144px" y2="294.18802px"/>
+<text x="485.96588px" y="342.42523px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="393.17035px" y="514.6193px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="371.71912px" y2="502.42587px"/>
+<text x="393.17035px" y="527.6193px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="370.90833px" y="603.87555px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="327.19504px" y2="680.93835px"/>
+<text x="370.90833px" y="616.87555px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="369.1532px" y="224.68575px" width="31.0px" height="15.0px"/>
+<line x1="331.80823px" y1="230.45941px" x2="437.49817px" y2="233.91208px"/>
+<text x="369.1532px" y="237.68575px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="383.25568px" y="701.6366px" width="31.0px" height="15.0px"/>
+<line x1="409.27698px" y1="681.53284px" x2="388.2344px" y2="736.7404px"/>
+<text x="383.25568px" y="714.6366px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="303.19922px" y="165.52231px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="391.52423px" y2="87.53714px"/>
+<text x="303.19922px" y="178.52231px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="517.4509px" y="487.43048px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="620.2802px" y2="448.04822px"/>
+<text x="517.4509px" y="500.43048px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="670.3645px" y="478.06744px" width="31.0px" height="15.0px"/>
+<line x1="648.1844px" y1="522.7541px" x2="723.5447px" y2="448.38077px"/>
+<text x="670.3645px" y="491.06744px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="286.99356px" y="694.9434px" width="31.0px" height="15.0px"/>
+<line x1="327.19504px" y1="680.93835px" x2="277.79208px" y2="723.9485px"/>
+<text x="286.99356px" y="707.9434px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="411.94928px" y="604.1728px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="409.27698px" y2="681.53284px"/>
+<text x="411.94928px" y="617.1728px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="518.1605px" y="192.29495px" width="45.0px" height="15.0px"/>
+<line x1="545.57526px" y1="166.5765px" x2="535.74585px" y2="233.01338px"/>
+<text x="518.1605px" y="205.29495px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="298.99567px" y="92.142426px" width="31.0px" height="15.0px"/>
+<line x1="312.84613px" y1="130.317px" x2="316.14523px" y2="68.96786px"/>
+<text x="298.99567px" y="105.142426px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="71.61162px" y="359.13098px" width="31.0px" height="15.0px"/>
+<line x1="108.64536px" y1="347.84702px" x2="65.57788px" y2="385.41495px"/>
+<text x="71.61162px" y="372.13098px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="294.8427px" y="269.9803px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="374.81125px" y2="296.45312px"/>
+<text x="294.8427px" y="282.9803px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="181.23589px" y="327.7685px" width="31.0px" height="15.0px"/>
+<line x1="210.3015px" y1="307.8px" x2="183.17027px" y2="362.73697px"/>
+<text x="181.23589px" y="340.7685px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="577.7022px" y="416.55823px" width="31.0px" height="15.0px"/>
+<line x1="541.48553px" y1="467.5782px" x2="644.9189px" y2="380.5383px"/>
+<text x="577.7022px" y="429.55823px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="608.37646px" y="525.4719px" width="28.0px" height="15.0px"/>
+<line x1="648.1844px" y1="522.7541px" x2="596.5686px" y2="543.18976px"/>
+<text x="608.37646px" y="538.4719px" fill="black" fill-opacity="1.0">stock</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="263.86017px" y="186.91223px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="312.84613px" y2="130.317px"/>
+<text x="263.86017px" y="199.91223px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="476.34723px" y="71.81943px" width="31.0px" height="15.0px"/>
+<line x1="524.3775px" y1="89.19553px" x2="459.317px" y2="69.44332px"/>
+<text x="476.34723px" y="84.81943px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="630.90967px" y="550.4529px" width="59.0px" height="15.0px"/>
+<line x1="648.1844px" y1="522.7541px" x2="672.635px" y2="593.1516px"/>
+<text x="630.90967px" y="563.4529px" fill="black" fill-opacity="1.0">homepage</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="647.55725px" y="610.0958px" width="19.0px" height="15.0px"/>
+<line x1="672.635px" y1="593.1516px" x2="641.47955px" y2="642.04px"/>
+<text x="647.55725px" y="623.0958px" fill="black" fill-opacity="1.0">title</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="558.56995px" y="348.50568px" width="31.0px" height="15.0px"/>
+<line x1="555.6562px" y1="390.4693px" x2="592.48376px" y2="321.54208px"/>
+<text x="558.56995px" y="361.50568px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="183.94023px" y="344.226px" width="32.0px" height="15.0px"/>
+<line x1="140.00629px" y1="444.94458px" x2="259.87418px" y2="258.50748px"/>
+<text x="183.94023px" y="357.226px" fill="black" fill-opacity="1.0">board</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="417.18433px" y="433.05707px" width="31.0px" height="15.0px"/>
+<line x1="451.67413px" y1="465.1066px" x2="413.69452px" y2="416.00757px"/>
+<text x="417.18433px" y="446.05707px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="88.15671px" y="258.1883px" width="31.0px" height="15.0px"/>
+<line x1="131.73512px" y1="261.3213px" x2="75.578285px" y2="270.0553px"/>
+<text x="88.15671px" y="271.1883px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="161.75977px" y="295.67725px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="108.64536px" y2="347.84702px"/>
+<text x="161.75977px" y="308.67725px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="200.97353px" y="225.252px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="187.07288px" y2="206.99652px"/>
+<text x="200.97353px" y="238.252px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="466.99756px" y="684.59546px" width="31.0px" height="15.0px"/>
+<line x1="479.09293px" y1="655.7676px" x2="485.90222px" y2="728.4233px"/>
+<text x="466.99756px" y="697.59546px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="602.89844px" y="160.54323px" width="31.0px" height="15.0px"/>
+<line x1="621.7335px" y1="204.54579px" x2="615.06335px" y2="131.54066px"/>
+<text x="602.89844px" y="173.54323px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="222.24744px" y="130.09325px" width="31.0px" height="15.0px"/>
+<line x1="250.73486px" y1="169.77359px" x2="224.76001px" y2="105.41291px"/>
+<text x="222.24744px" y="143.09325px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="273.3412px" y="236.98344px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="331.80823px" y2="230.45941px"/>
+<text x="273.3412px" y="249.98344px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="332.65753px" y="479.24374px" width="31.0px" height="15.0px"/>
+<line x1="371.71912px" y1="502.42587px" x2="324.59592px" y2="471.0616px"/>
+<text x="332.65753px" y="492.24374px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="231.89108px" y="324.4227px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="248.90797px" y2="405.33792px"/>
+<text x="231.89108px" y="337.4227px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="256.3618px" y="285.78568px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="297.8494px" y2="328.06387px"/>
+<text x="256.3618px" y="298.78568px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="462.0747px" y="541.095px" width="48.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="512.52783px" y2="555.37726px"/>
+<text x="462.0747px" y="554.095px" fill="black" fill-opacity="1.0">moreinfo</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="686.19653px" y="280.08276px" width="19.0px" height="15.0px"/>
+<line x1="667.93365px" y1="278.22766px" x2="723.45935px" y2="296.93784px"/>
+<text x="686.19653px" y="293.08276px" fill="black" fill-opacity="1.0">title</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="299.59863px" y="209.59113px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="384.32306px" y2="175.67477px"/>
+<text x="299.59863px" y="222.59113px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="110.37665px" y="577.6483px" width="19.0px" height="15.0px"/>
+<line x1="105.09647px" y1="558.02747px" x2="134.65681px" y2="612.26917px"/>
+<text x="110.37665px" y="590.6483px" fill="black" fill-opacity="1.0">title</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="668.85974px" y="512.9684px" width="32.0px" height="15.0px"/>
+<line x1="648.1844px" y1="522.7541px" x2="721.53516px" y2="518.18274px"/>
+<text x="668.85974px" y="525.9684px" fill="black" fill-opacity="1.0">filings</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="567.6544px" y="178.06116px" width="32.0px" height="15.0px"/>
+<line x1="621.7335px" y1="204.54579px" x2="545.57526px" y2="166.5765px"/>
+<text x="567.6544px" y="191.06116px" fill="black" fill-opacity="1.0">board</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="537.90295px" y="524.78345px" width="32.0px" height="15.0px"/>
+<line x1="648.1844px" y1="522.7541px" x2="459.62158px" y2="541.81274px"/>
+<text x="537.90295px" y="537.78345px" fill="black" fill-opacity="1.0">board</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="91.482895px" y="451.79535px" width="28.0px" height="15.0px"/>
+<line x1="140.00629px" y1="444.94458px" x2="70.959496px" y2="473.64615px"/>
+<text x="91.482895px" y="464.79535px" fill="black" fill-opacity="1.0">stock</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="226.42126px" y="428.21008px" width="31.0px" height="15.0px"/>
+<line x1="248.90797px" y1="405.33792px" x2="234.93457px" y2="466.08224px"/>
+<text x="226.42126px" y="441.21008px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="235.51385px" y="550.31104px" width="31.0px" height="15.0px"/>
+<line x1="286.01376px" y1="548.21375px" x2="216.01396px" y2="567.4084px"/>
+<text x="235.51385px" y="563.31104px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="385.98584px" y="299.79187px" width="31.0px" height="15.0px"/>
+<line x1="374.81125px" y1="296.45312px" x2="428.1604px" y2="318.13058px"/>
+<text x="385.98584px" y="312.79187px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="232.80452px" y="206.64053px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="250.73486px" y2="169.77359px"/>
+<text x="232.80452px" y="219.64053px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="433.14786px" y="495.95966px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="451.67413px" y2="465.1066px"/>
+<text x="433.14786px" y="508.95966px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="485.1389px" y="458.64102px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="555.6562px" y2="390.4693px"/>
+<text x="485.1389px" y="471.64102px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="173.30466px" y="252.41437px" width="45.0px" height="15.0px"/>
+<line x1="259.87418px" y1="258.50748px" x2="131.73512px" y2="261.3213px"/>
+<text x="173.30466px" y="265.41437px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="220.7832px" y="641.1389px" width="31.0px" height="15.0px"/>
+<line x1="269.1968px" y1="629.5063px" x2="203.3696px" y2="667.7715px"/>
+<text x="220.7832px" y="654.1389px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="149.96909px" y="179.2038px" width="31.0px" height="15.0px"/>
+<line x1="187.07288px" y1="206.99652px" x2="143.86528px" y2="166.41109px"/>
+<text x="149.96909px" y="192.2038px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="636.8644px" y="195.16466px" width="28.0px" height="15.0px"/>
+<line x1="621.7335px" y1="204.54579px" x2="679.99524px" y2="200.78352px"/>
+<text x="636.8644px" y="208.16466px" fill="black" fill-opacity="1.0">stock</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="403.31808px" y="158.01659px" width="31.0px" height="15.0px"/>
+<line x1="384.32306px" y1="175.67477px" x2="453.3131px" y2="155.3584px"/>
+<text x="403.31808px" y="171.01659px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="543.6441px" y="654.8926px" width="31.0px" height="15.0px"/>
+<line x1="550.0902px" y1="630.4816px" x2="568.198px" y2="694.3036px"/>
+<text x="543.6441px" y="667.8926px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="478.05356px" y="497.19547px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="541.48553px" y2="467.5782px"/>
+<text x="478.05356px" y="510.19543px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="341.90918px" y="578.15955px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="269.1968px" y2="629.5063px"/>
+<text x="341.90918px" y="591.15955px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="657.1728px" y="405.79114px" width="31.0px" height="15.0px"/>
+<line x1="620.2802px" y1="448.04822px" x2="725.06537px" y2="378.53403px"/>
+<text x="657.1728px" y="418.79114px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="300.32172px" y="346.21564px" width="31.0px" height="15.0px"/>
+<line x1="297.8494px" y1="328.06387px" x2="333.79407px" y2="379.36743px"/>
+<text x="300.32172px" y="359.21564px" fill="black" fill-opacity="1.0">name</text>
+</g>
+
+<g font-family="Helvetica" font-size="12" fill="rgb(0.0%,0.0%,100.0%)" fill-opacity="0.5" stroke="rgb(0.0%,0.0%,100.0%)" stroke-opacity="0.5">
+<rect x="450.50592px" y="453.23758px" width="45.0px" height="15.0px"/>
+<line x1="459.62158px" y1="541.81274px" x2="486.3903px" y2="379.6624px"/>
+<text x="450.50592px" y="466.23758px" fill="black" fill-opacity="1.0">member</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="391.52423px" cy="87.53714px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="348.52423px" y="93.03714px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="459.317px" cy="69.44332px" rx="63.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="395.817px" y="74.94332px" fill="black">"James D. Robinson III"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="459.62158px" cy="541.81274px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="416.62158px" y="547.31274px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="550.0902px" cy="630.4816px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="507.0902px" y="635.9816px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="621.7335px" cy="204.54579px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="578.7335px" y="210.04579px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="667.93365px" cy="278.22766px" rx="55.5px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="612.43365px" y="283.72766px" fill="black">http://www.bms.com/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="479.09293px" cy="655.7676px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="436.09293px" y="661.2676px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="140.00629px" cy="444.94458px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="97.00629px" y="450.44458px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="286.01376px" cy="548.21375px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="243.01376px" y="553.71375px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="156.7472px" cy="501.6565px" rx="42.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="114.24719px" y="507.1565px" fill="black">"Coca Cola co."</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="409.15668px" cy="587.30365px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="366.15668px" y="592.80365px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="353.384px" cy="599.74493px" rx="56.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="297.384px" y="605.24493px" fill="black">"Solomon D. Trujillo"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="486.3903px" cy="379.6624px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="443.3903px" y="385.1624px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="672.635px" cy="593.1516px" rx="65.5px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="607.135px" y="598.6516px" fill="black">http://www.pepsico.com/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="535.74585px" cy="233.01338px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="492.74585px" y="238.51338px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="516.54144px" cy="294.18802px" rx="45.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="471.54144px" y="299.68802px" fill="black">"Robert E. Allen"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="105.09647px" cy="558.02747px" rx="68.5px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="36.596474px" y="563.52747px" fill="black">http://www.cocacola.com/</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="259.87418px" cy="258.50748px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="216.87418px" y="264.00748px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="210.3015px" cy="307.8px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="167.3015px" y="313.3px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="545.57526px" cy="166.5765px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="502.57526px" y="172.0765px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="524.3775px" cy="89.19553px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="481.3775px" y="94.69553px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="371.71912px" cy="502.42587px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="328.71912px" y="507.92587px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="327.19504px" cy="680.93835px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="284.19504px" y="686.43835px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="248.90797px" cy="405.33792px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="205.90797px" y="410.83792px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="331.80823px" cy="230.45941px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="288.80823px" y="235.95941px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="437.49817px" cy="233.91208px" rx="42.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="394.99817px" y="239.41208px" fill="black">"Susan B. King"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="409.27698px" cy="681.53284px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="366.27698px" y="687.03284px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="388.2344px" cy="736.7404px" rx="63.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="324.7344px" y="742.2404px" fill="black">"Sharon P. Rockefeller"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="620.2802px" cy="448.04822px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="577.2802px" y="453.54822px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="187.07288px" cy="206.99652px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="144.07288px" y="212.49652px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="648.1844px" cy="522.7541px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="605.1844px" y="528.2541px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="723.5447px" cy="448.38077px" rx="78.0px" ry="7.5px" fill="rgb(100.0%,0.0%,0.0%)" fill-opacity="0.5" />
+<text x="645.5447px" y="453.88077px" fill="black">"PepsiCo Investor Relations"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="108.64536px" cy="347.84702px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="65.64536px" y="353.34702px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="277.79208px" cy="723.9485px" rx="56.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="221.29208px" y="729.4485px" fill="black">"Franklin A. Thomas"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="384.32306px" cy="175.67477px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="341.32306px" y="181.17477px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="297.8494px" cy="328.06387px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="254.8494px" y="333.56387px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="312.84613px" cy="130.317px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="269.84613px" y="135.817px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="316.14523px" cy="68.96786px" rx="49.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="266.64523px" y="74.46786px" fill="black">"Warren E. Buffett"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="65.57788px" cy="385.41495px" rx="48.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="17.57788px" y="390.91495px" fill="black">"Ronald W. Allen"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="374.81125px" cy="296.45312px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="331.81125px" y="301.95312px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="183.17027px" cy="362.73697px" rx="47.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="136.17027px" y="368.23697px" fill="black">"Paul F. Oreiffice"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="541.48553px" cy="467.5782px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="498.48553px" y="473.0782px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="644.9189px" cy="380.5383px" rx="45.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="599.4189px" y="386.0383px" fill="black">"John J. Murphy"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="596.5686px" cy="543.18976px" rx="16.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="580.5686px" y="548.68976px" fill="black">"PEP"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="641.47955px" cy="642.04px" rx="34.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="606.97955px" y="647.54px" fill="black">"Pepsiworld"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="555.6562px" cy="390.4693px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="512.6562px" y="395.9693px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="592.48376px" cy="321.54208px" rx="30.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="562.48376px" y="327.04208px" fill="black">"Peter Foy"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="451.67413px" cy="465.1066px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="408.67413px" y="470.6066px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="413.69452px" cy="416.00757px" rx="36.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="377.69452px" y="421.50757px" fill="black">"Ray L. Hunt"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="131.73512px" cy="261.3213px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="88.73512px" y="266.8213px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="75.578285px" cy="270.0553px" rx="47.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="28.578285px" y="275.5553px" fill="black">"Herbert A. Allen"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="485.90222px" cy="728.4233px" rx="41.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="444.90222px" y="733.9233px" fill="black">"John F. Akers"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="615.06335px" cy="131.54066px" rx="60.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="554.56335px" y="137.04066px" fill="black">"Bristol-Myers Squibb"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="250.73486px" cy="169.77359px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="207.73486px" y="175.27359px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="224.76001px" cy="105.41291px" rx="47.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="177.76001px" y="110.91291px" fill="black">"Douglas N. Daft"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="324.59592px" cy="471.0616px" rx="53.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="271.59592px" y="476.5616px" fill="black">"Arthur C. Martinez"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="512.52783px" cy="555.37726px" rx="136.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="376.52783px" y="560.87726px" fill="black">http://www.pepsico.com/filings/2001DEF14A.shtml</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="723.45935px" cy="296.93784px" rx="88.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="635.45935px" y="302.43784px" fill="black">"Bristol Myers Squibb Company"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="134.65681px" cy="612.26917px" rx="33.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="101.156815px" y="617.76917px" fill="black">"Coca-Cola"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="721.53516px" cy="518.18274px" rx="119.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="602.53516px" y="523.68274px" fill="black">http://www.pepsico.com/filings/content.shtml</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="70.959496px" cy="473.64615px" rx="12.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="58.459496px" y="479.14615px" fill="black">"KO"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="234.93457px" cy="466.08224px" rx="50.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="184.43457px" y="471.58224px" fill="black">"James B. William"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="216.01396px" cy="567.4084px" rx="54.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="161.51396px" y="572.9084px" fill="black">"Franklin D. Raines"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="428.1604px" cy="318.13058px" rx="45.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="382.6604px" y="323.63058px" fill="black">"Cathleen Black"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="269.1968px" cy="629.5063px" rx="43.0px" ry="7.5px" fill="rgb(0.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="226.19681px" y="635.0063px" fill="black">-- anonymous --</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="203.3696px" cy="667.7715px" rx="63.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="139.8696px" y="673.2715px" fill="black">"Steven S. Reinemund"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="143.86528px" cy="166.41109px" rx="54.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="89.36528px" y="171.91109px" fill="black">"Peter V. Ueberroth"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="679.99524px" cy="200.78352px" rx="17.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="662.99524px" y="206.28352px" fill="black">"BMY"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="453.3131px" cy="155.3584px" rx="56.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="396.8131px" y="160.8584px" fill="black">"Donald F. McHenry"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="568.198px" cy="694.3036px" rx="47.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="521.198px" y="699.8036px" fill="black">"Roger A. Enrico"</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="725.06537px" cy="378.53403px" rx="70.5px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="654.56537px" y="384.03403px" fill="black">"Cynthia M. Trudell, Ph.d."</text>
+</g>
+
+<g font-family="Helvetica" font-size="12">
+<ellipse cx="333.79407px" cy="379.36743px" rx="33.0px" ry="7.5px" fill="rgb(100.0%,100.0%,0.0%)" fill-opacity="0.5" />
+<text x="300.79407px" y="384.86743px" fill="black">"Sam Nunn"</text>
+</g>
+
+
+
+</svg>
