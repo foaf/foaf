@@ -14,6 +14,8 @@ foaftest1:
 foaftest2:
 	$(XSLT) -in foaf2.rdf -xsl foafc.xsl  -out _foaf2-errors.html
 	
+waitest: wai waireport
+
 wai:
 	$(XSLT) -in wai.xml -xsl schematron-report.xsl  -out wai.xsl
 
