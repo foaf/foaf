@@ -96,6 +96,8 @@ public class Person
   
   public void setMbox(String mbox)
   {
+      if (mbox.startsWith("mailto:"))
+	  mbox = mbox.substring(7);
     this.mbox = mbox;
     setMboxHash(Util.sha1Hash("mailto:" + mbox));
   }
