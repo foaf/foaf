@@ -6,6 +6,15 @@ BODY {
 }
 
 DIV.navbar {
+ padding: 2px; 
+}
+
+SPAN.sitepart {
+ background: white;
+}
+
+SPAN.siteutil {
+ background: white;
  font-size: smaller;
 }
 
@@ -28,14 +37,18 @@ H1, H2, H3, H4, H5 {
 
 DIV.splashbox {
   float: right;
-  width: 30%;
+/*  width: 25%; */
   padding: 2px;
 }
 
 DIV.splashblurb {
   float: left;
-  width: 60%;
+  width: 65%; 
   padding: 3px;
+}
+
+IMG.rdflogo {
+  float: top;
 }
 
 DIV.bottom {
