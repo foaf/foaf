@@ -42,44 +42,35 @@ public class CommandLine
 
 	    List tokens = Util.tokenise(inputTokeniser);
 
-	    for (Iterator it = tokens.iterator(); it.hasNext();)
-	      {
-		Object obj = it.next();
-
-		System.out.println(obj.getClass() +
-				   ":\t" +
-				   obj);
-	      }
-	    
-	    
-	    int returned = inputTokeniser.nextToken();
-
-	    if ((returned == StreamTokenizer.TT_EOL) ||
-		(returned == StreamTokenizer.TT_EOF))
+	    if (tokens.isEmpty())
 	      continue;
 
-	    else if (returned == StreamTokenizer.TT_NUMBER)
+	    Iterator tokenIt = tokens.iterator();
+
+	    Object nextToken = tokenIt.next();
+
+	    if (nextToken instanceof Number)
 	      {
 		unrecognised();
-		continue;
 	      }
-
+	    	    
 	    else // A Word
 	      {
-		String command = inputTokeniser.sval.toLowerCase();
-		
+		String command = ((String) nextToken).toLowerCase();
+				
 		if (command.equals("find"))
-		  find(inputTokeniser);
+		  find(tokenIt);
 		else if (command.equals("show"))
-		  show(inputTokeniser);
+		  show(tokenIt);
 		else if (command.equals("iknow"))
-		  iknow(inputTokeniser);
+		  iknow(tokenIt);
 		else if (command.equals("dump"))
-		  dump(inputTokeniser);
-		else if (command.equals("exit"))
+		  dump(tokenIt);
+		else if (command.equals("exit") ||
+			 command.equals("quit"))
 		  exit();
 		else if (command.equals("set"))
-		  set(inputTokeniser);
+		  set(tokenIt);
 		else if (command.equals("help") ||
 			 command.equals("?"))
 		  help();
@@ -94,9 +85,18 @@ public class CommandLine
       }
   }
 
-  public void find(StreamTokenizer it)
+  public void find(Iterator tokenIt)
     throws Exception
   {
+    if (tokenIt.hasNext())
+      {
+	String term = tokenIt.next().toString();
+
+	controller.find(term);
+
+	return;
+      }
+        
     System.out.println("\tName\t\tHomepage\t\tInterest");
 
     int noOfPeople = controller.numberOfPeople();
@@ -118,22 +118,21 @@ public class CommandLine
       }	
   }
 
-  public void show(StreamTokenizer it)
+  public void show(Iterator tokenIt)
     throws Exception
   {
+    if (!tokenIt.hasNext())
+      throw new Exception("Usage: show <number>");
     
-    while (true)
+    while (tokenIt.hasNext())
       {
-	int tt = it.nextToken();
-
-	if ((tt == StreamTokenizer.TT_EOF) ||
-	    (tt == StreamTokenizer.TT_EOL))
-	  return;
-
-	if (tt == StreamTokenizer.TT_WORD)
+	Object nextToken = tokenIt.next();
+	
+	
+	if (nextToken instanceof String)
 	  throw new Exception("Usage: show <number>");
 
-	int num = (int) it.nval;
+	int num = ((Number) nextToken).intValue();
 
 	Person person =
 	  controller.getPerson(num);
@@ -159,21 +158,20 @@ public class CommandLine
       }
   }
 
-  public void iknow(StreamTokenizer it)
+  public void iknow(Iterator it)
     throws Exception
   {
-    while (true)
+    if (!it.hasNext())
+      throw new Exception("Usage: iknow <number>");
+    
+    while (it.hasNext())
       {
-	int tt = it.nextToken();
-
-	if ((tt == StreamTokenizer.TT_EOF) ||
-	    (tt == StreamTokenizer.TT_EOL))
-	  return;
-
-	if (tt == StreamTokenizer.TT_WORD)
+	Object nextToken = it.next();
+	
+	if (nextToken instanceof String)
 	  throw new Exception("Usage: iknow <number>");
 
-	int num = (int) it.nval;
+	int num = ((Number) nextToken).intValue();
 
 	Person person =
 	  controller.getPerson(num);
@@ -188,17 +186,18 @@ public class CommandLine
       }
   }
 
-  public void dump(StreamTokenizer it)
+  public void dump(Iterator it)
     throws Exception
   {
-    int tt = it.nextToken();
-
-    if (tt != StreamTokenizer.TT_WORD)
+    if (!it.hasNext())
       System.out.println(controller.getPerson().toRDF());
 
     else
       {
-	String filename = it.sval;
+	Object nextToken = it.next();
+
+	String filename = nextToken.toString();
+	
 	Util.toFile(filename,
 		    controller.getPerson().toRDF());
 
@@ -217,29 +216,29 @@ public class CommandLine
     throw new Exception("Unrecognised command");
   }
 
-  public void set(StreamTokenizer it)
+  public void set(Iterator it)
     throws Exception
   {
-    int tt = it.nextToken();
-
-    if (tt != StreamTokenizer.TT_WORD)
+    if (!it.hasNext())
       throw new Exception("Usage: set <var>");
 
-    String var = it.sval.toLowerCase();
+    Object varObj = it.next();
 
+    if (varObj instanceof Number)
+      throw new Exception("Usage: set <var>");
+    
+    String var = ((String) varObj).toLowerCase();
+    
     String val = null;
         
     if (!var.equals("plan"))
       {
-	tt = it.nextToken();
-
-	if ((tt != StreamTokenizer.TT_WORD) &&
-		(tt != '"'))
+	if (!it.hasNext())
 	  throw new Exception("Usage: set " + var + " <val>");
 	
-	val = it.sval;
+	val = it.next().toString();
 
-	if (val.equals("\"\""))
+	if (val.equals(""))
 	  val = null;
       }
     

@@ -173,7 +173,12 @@ public class RendTest
   {
     return people.size();
   }
-  
+
+  public void find(String term)
+  {
+    people.find(term);
+  }
+    
   public void addPerson(ServiceInfo info)
   {
     people.add(info);
