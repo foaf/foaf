@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>An ontology for wireless network nodes, version 0.1</title>
+<style type="text/css">
+#rdf { display: none }
+</style>
+</head>
+<body>
+<h1>An ontology for wireless network nodes, version 0.1</h1>
+<p>
+Embedded in this document is an OWL ontology for wireless network nodes - to
+see it, view the source. It was constructed along the lines of the notes on
+<a href="http://esw.w3.org/topic/WirelessOntology">the Wireless Ontology
+page on ESW</a>. There is <a href="wireless_example.rdf">an example of this
+ontology in use</a>. These documents are under active development <em>right
+now</em> - expect things to be broken.
+</p>
+<p>
+If your browser is not CSS-capable, a mess of words will appear below. This
+is because the RDF uses the property element style rather than the property
+attribute style, and as a result can't be embedded invisibly into HTML -
+it's hidden here with CSS.
+</p>
+<p>
+<strong>Contributors:</strong> <a href="/">Earle Martin</a>, <a
+href="http://gawth.com/belial/">Matt Westervelt</a>, <a
+href="http://www.hackdiary.com/">Matt Biddulph</a>, <a
+href="http://www.zooleika.org.uk/">Jo Walsh</a>, <a
+href="http://www.ecs.soton.ac.uk/~nmg/">Nick Gibbins</a>
+</p>
+<div id="rdf">
+
+<rdf:RDF
+    xmlns:dc="http://purl.org/dc/1.0/"
+    xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:daml="http://www.w3.org/2001/10/daml+oil#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+
+<owl:Ontology rdf:about="http://downlode.org/rdf/wireless/0.1/">
+	<owl:versionInfo>0.1</owl:versionInfo>
+	<rdfs:label>Ontology for Wireless Nodes</rdfs:label>
+	<rdfs:comment>An ontology for describing wireless networks.</rdfs:comment> 
+</owl:Ontology>
+
+<owl:Class rdf:ID="Node">
+	<rdfs:label>Node</rdfs:label>
+	<rdfs:comment>a wireless node</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:ID="Antenna">
+	<rdfs:label>Antenna</rdfs:label>
+	<rdfs:comment>the node's antenna</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:ID="Interface">
+	<rdfs:label>Interface</rdfs:label>
+	<rdfs:comment>one of the node's interfaces</rdfs:comment>
+</owl:Class>
+
+<owl:Property rdf:ID="status">
+	<rdfs:label>Status</rdfs:label>
+	<rdfs:comment>status information for the node</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="nodeName">
+	<rdfs:label>nodeName</rdfs:label>
+        <rdfs:comment>the name of the node</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+	<rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="connection">
+	<rdfs:label>Connection</rdfs:label>
+	<rdfs:comment>the node's type of connection to the internet</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="owner">
+    <rdfs:label>Owner</rdfs:label>
+    <rdfs:comment>the owner of the node</rdfs:comment>
+    <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="admin">
+    <rdfs:label>Admin</rdfs:label>
+    <rdfs:comment>the administrator of the node</rdfs:comment>
+    <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="machineType">
+	<rdfs:label>machineType</rdfs:label>
+        <rdfs:comment>the node's machine type</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+
+<owl:Property rdf:ID="upSince">
+	<rdfs:label>upSince</rdfs:label>
+        <rdfs:comment>the date and time the node became active</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> 
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="capability">
+	<rdfs:label>capability</rdfs:label>
+	<rdfs:comment>the capability of a node's interface (e.g. AP, NoWEP)</rdfs:comment>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="hasInterface">
+	<rdfs:label>hasInterface</rdfs:label>
+	<rdfs:comment>a reference to a node's interface</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="hasAntenna">
+	<rdfs:label>hasAntenna</rdfs:label>
+	<rdfs:comment>a reference to a node's antenna</rdfs:comment>
+        <rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+<owl:Property rdf:ID="coverageArc">
+	<rdfs:label>CoverageArc</rdfs:label>
+	<rdfs:comment>arc of coverage of the node's antenna</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Antenna"/>
+</owl:Property>
+
+<owl:Property rdf:ID="antennaType">
+	<rdfs:label>antennaType</rdfs:label>
+	<rdfs:comment>the type of the node's antenna</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Antenna"/>
+</owl:Property>
+
+<owl:Property rdf:ID="gain">
+	<rdfs:label>gain</rdfs:label>
+	<rdfs:comment>the gain level of the node's antenna</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Antenna"/>
+</owl:Property>
+
+<owl:Property rdf:ID="essid">
+	<rdfs:label>essid</rdfs:label>
+	<rdfs:comment>the Extended Service Set Identity of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+
+<owl:Property rdf:ID="type">
+	<rdfs:label>type</rdfs:label>
+        <rdfs:comment>the type of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> 
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="linkLayer">
+	<rdfs:label>linkLayer</rdfs:label>
+        <rdfs:comment>the link layer of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="subnet">
+	<rdfs:label>subnet</rdfs:label>
+        <rdfs:comment>the subnet of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> 
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="rate">
+	<rdfs:label>rate</rdfs:label>
+	<rdfs:comment>a data transfer rate supported by the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+	<rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="gatewayMode">
+	<rdfs:label>gatewayMode</rdfs:label>
+        <rdfs:comment>the gateway mode of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/> 
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="loginTimeout">
+	<rdfs:label>loginTimeout</rdfs:label>
+        <rdfs:comment>the login timeout value of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="idleTimeout">
+	<rdfs:label>idleTimeout</rdfs:label>
+        <rdfs:comment>the interface's idle timeout value of the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="accessType">
+	<rdfs:label>AccessType</rdfs:label>
+        <rdfs:comment>type of access to the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#Interface"/>
+</owl:Property>
+
+<owl:Property rdf:ID="encryptionType">
+	<rdfs:label>EncryptionType</rdfs:label>
+        <rdfs:comment>the type of encryption used by the interface</rdfs:comment>
+	<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+        <rdfs:domain rdf:resource="#AccessType"/>
+</owl:Property>
+
+<owl:Property rdf:ID="meshesWith">
+	<rdfs:label>meshesWith</rdfs:label>
+	<rdfs:comment>a reference to other nodes meshing with the node</rdfs:comment>
+	<rdfs:domain rdf:resource="#Node"/>
+</owl:Property>
+
+</rdf:RDF>
+
+</div>
+</body>
+</html>
