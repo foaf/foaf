@@ -1,0 +1,422 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+          .http\:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns\# { color: black }
+          .http\:\/\/purl\.org\/dc\/elements\/1\.1\/ {color: blue }
+          .http\:\/\/purl\.org\/rss\/1\.0\/modules\/syndication\/ {color: red }
+          .http\:\/\/purl\.org\/rss\/1\.0\/modules\/company\/ {color: purple }
+          .http\:\/\/purl\.org\/rss\/1\.0\/modules\/textinput\/ {color: orange }
+          .http\:\/\/purl\.org\/rss\/1\.0\/ { color: green } 
+        </style>
+</head>
+<body bgcolor="#FFFFFF"><pre><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:RDF</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+
+      <span class="http://www.w3.org/2002/07/owl#">&lt;owl:Ontology</span><span class="http://www.w3.org/2002/07/owl#"> rdf:about&quot;http://xmlns.com/foaf/0.1/&quot; dc:title&quot;Friend of a Friend (FOAF) vocabulary&quot; dc:description&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot; dc:date&quot;$Date: 2003-07-25 14:22:30 $&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:imports&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://www.w3.org/2002/07/owl&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:imports&gt;</span>
+        <span class="http://xmlns.com/wot/0.1/">&lt;wot:assurance</span><span class="http://xmlns.com/wot/0.1/"> rdf:resource&quot;../foafsig&quot;</span><span class="http://xmlns.com/wot/0.1/">&gt;&lt;/wot:assurance&gt;</span>
+        <span class="http://xmlns.com/wot/0.1/">&lt;wot:src_assurance</span><span class="http://xmlns.com/wot/0.1/"> rdf:resource&quot;../htmlfoafsig&quot;</span><span class="http://xmlns.com/wot/0.1/">&gt;&lt;/wot:src_assurance&gt;</span>
+      &lt;/owl:Ontology&gt;</span>
+
+	&lt;-- where multiple renderings are content negotiable, wot:src_assurance assures the source format, eg. the xhtml --&gt;
+
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Person&quot; rdfs:label&quot;Person&quot; rdfs:comment&quot;A person.&quot; vs:term_status&quot;testing&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/10/swap/pim/contact#Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+	<span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Organization&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Project&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Document&quot; rdfs:label&quot;Document&quot; rdfs:comment&quot;A document.&quot; vs:term_status&quot;testing&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Organization&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Project&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Organization&quot; rdfs:label&quot;Organization&quot; rdfs:comment&quot;An organization.&quot; vs:term_status&quot;unstable&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Organization&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Project&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Group&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;Group&quot; rdfs:comment&quot;A group.&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Agent&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;Agent&quot; rdfs:comment&quot;An agent (eg. person, group, software or physical artifact).&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Agent-3&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Project&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Project&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;Project&quot; rdfs:comment&quot;A project.&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Project&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Organization&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:disjointWith</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:disjointWith&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+ 
+      <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:Class</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:about&quot;http://xmlns.com/foaf/0.1/Image&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;Image&quot; rdfs:comment&quot;An image.&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subClassOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/wordnet/1.6/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subClassOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdfs:Class&gt;</span>
+
+
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/mbox&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;personal mailbox&quot; rdfs:comment&quot;A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/mbox_sha1sum&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;sha1sum of a personal mailbox URI name&quot; rdfs:comment&quot;The sha1sum of the URI of an Internet mailbox associated with exactly one owner, the  first owner of the mailbox.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/geekcode&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;geekcode&quot; rdfs:comment&quot;A textual geekcode for this person, see http://www.geekcode.com/geek.html&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+	<span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/dnaChecksum&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;DNA checksum&quot; rdfs:comment&quot;A checksum for the DNA of some thing. Joke.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/sha1&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;sha1sum (hex)&quot; rdfs:comment&quot;A sha1sum hash, in hex.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/based_near&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;based near&quot; rdfs:comment&quot;A location that something is based near, for some broadly human notion of near.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+	&lt;-- see http://esw.w3.org/topic/GeoOnion for extension  ideas --&gt;
+	&lt;-- this was ranged as Agent... hmm --&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2003/01/geo/wgs84_pos#Point&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      &lt;-- FOAF naming properties --&gt;
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/title&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;title&quot; rdfs:comment&quot;Title (Mr, Mrs, Ms, Dr. etc)&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/nick&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;nickname&quot; rdfs:comment&quot;A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+&lt;-- ......................... chat IDs ........................... --&gt;
+
+     <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/jabberID&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;jabber ID&quot; rdfs:comment&quot;A jabber ID for something. A 'bare JID' per http://www.jabber.org/ietf/draft-ietf-xmpp-core-11.html#addressing-node TODO: just for account IDs, or resources? chatrooms?&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+       <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+       <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/nick&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+	&lt;/rdf:Property&gt;</span>
+
+
+       <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/aimChatID&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;AIM chat ID&quot; rdfs:comment&quot;An AIM chat ID&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/nick&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+	&lt;/rdf:Property&gt;</span>
+
+
+	&lt;-- http://www.stud.uni-karlsruhe.de/~uck4/ICQ/Packet-112.html --&gt;
+       <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/icqChatID&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;ICQ chat ID&quot; rdfs:comment&quot;An ICQ chat ID&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/nick&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+	&lt;/rdf:Property&gt;</span>
+
+       <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/yahooChatID&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;Yahoo chat ID&quot; rdfs:comment&quot;A Yahoo chat ID&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/nick&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+	&lt;/rdf:Property&gt;</span>
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/msnChatID&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;MSN chat ID&quot; rdfs:comment&quot;An MSN chat ID&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/nick&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+
+
+&lt;-- ....................................................... --&gt;
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/name&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;name&quot; rdfs:comment&quot;A name for some thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#label&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/firstName&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;firstName&quot; rdfs:comment&quot;The first name of a person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/givenname&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;Given name&quot; rdfs:comment&quot;The given name of some person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/surname&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;Surname&quot; rdfs:comment&quot;The surname of some person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/family_name&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;family_name&quot; rdfs:comment&quot;The family_name of some person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      &lt;-- end of naming properties. See http://rdfweb.org/issues/show_bug.cgi?id=7
+	   for open issue / re-design discussions.
+	--&gt; 
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/phone&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;phone&quot; rdfs:comment&quot;A fully qualified international phone number, specified using  the tel: URL scheme (refs: http://www.w3.org/Addressing/schemes.html#tel).&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/homepage&quot; vs:term_status&quot;stable&quot; rdfs:label&quot;homepage&quot; rdfs:comment&quot;A homepage for some thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/page&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/weblog&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;weblog&quot; rdfs:comment&quot;A weblog of some thing (whether person, group, company etc.).&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/page&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.daml.org/2001/03/daml+oil#UnambiguousProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:type</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:resource&quot;http://www.w3.org/2002/07/owl#InverseFunctionalProperty&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;&lt;/rdf:type&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/plan&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;plan&quot; rdfs:comment&quot;A .plan comment, in the tradition of finger and '.plan' files.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/made&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;made&quot; rdfs:comment&quot;Something that was made by this agent.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/maker&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/maker&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;maker&quot; rdfs:comment&quot;An agent that made this thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Agent&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/made&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/img&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;image&quot; rdfs:comment&quot;An image that can be used to represent some thing (ie. those depictions which are particularly representative of something, eg. one's photo on a homepage).&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Image&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:subPropertyOf</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/depiction&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:subPropertyOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/depiction&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;depiction&quot; rdfs:comment&quot;A depiction of some thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Image&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/depicts&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/depicts&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;depicts&quot; rdfs:comment&quot;A thing depicted in this representation.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Image&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/depiction&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/thumbnail&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;thumbnail&quot; rdfs:comment&quot;A derived thumbnail image.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Image&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Image&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/myersBriggs&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;myersBriggs&quot; rdfs:comment&quot;A Myers Briggs (MBTI) personality classification.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Literal&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/workplaceHomepage&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;workplaceHomepage&quot; rdfs:comment&quot;A workplace homepage of some person; the homepage of an organization they work for.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/workInfoHomepage&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;workInfoHomepage&quot; rdfs:comment&quot;A work info homepage of some person; a page about their work for some organization.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/schoolHomepage&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;schoolHomepage&quot; rdfs:comment&quot;A homepage of a school attended by the person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/knows&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;knows&quot; rdfs:comment&quot;A person known by this person (indicating some level of reciprocated interaction between the parties).&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+         <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/interest&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;interest&quot; rdfs:comment&quot;A page about a topic of interest to this person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        &lt;-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 --&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/topic_interest&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;interest_topic&quot; rdfs:comment&quot;A thing of interest to this person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        &lt;-- we should distinguish the page from the topic more carefully. danbri 2002-07-08 --&gt;
+        &lt;--    foaf:interest_topic(P,R) 
+		always true whenever
+		foaf:interest(P,D), foaf:topic(D,R) 
+		ie. a person has a foaf:topic_interest in all things 
+		that are the foaf:topic of pages they have a foaf:interest in. 
+		hmm, does this mean i'm forced to be interested in all the things that are the 
+		topic of a page i'm interested in. thats a strong restriction on foaf:topic's utility.	--&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/publications&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;publications&quot; rdfs:comment&quot;A link to the publications of this person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+&lt;-- by libby for ILRT mappings 2001-10-31 --&gt;
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/currentProject&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;current project&quot; rdfs:comment&quot;A current project this person works on.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/pastProject&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;past project&quot; rdfs:comment&quot;A project this person has previously worked on.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Person&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/fundedBy&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;funded by&quot; rdfs:comment&quot;An organization funding a project or person.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/linkedWith&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;linked with&quot; rdfs:comment&quot;generic link&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+&lt;-- todo: this is pretty weak... can we tighten it up? danbri 2002-07-08 --&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/logo&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;logo&quot; rdfs:comment&quot;A logo representing some thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/topic&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;topic&quot; rdfs:comment&quot;A topic of some page or document.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/page&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/page&quot; vs:term_status&quot;testing&quot; rdfs:label&quot;page&quot; rdfs:comment&quot;A page or document about this thing.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/Document&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+        <span class="http://www.w3.org/2002/07/owl#">&lt;owl:inverseOf</span><span class="http://www.w3.org/2002/07/owl#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/topic&quot;</span><span class="http://www.w3.org/2002/07/owl#">&gt;&lt;/owl:inverseOf&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+      <span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&lt;rdf:Property</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> rdf:about&quot;http://xmlns.com/foaf/0.1/theme&quot; vs:term_status&quot;unstable&quot; rdfs:label&quot;theme&quot; rdfs:comment&quot;A theme.&quot;</span><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#">&gt;
+&lt;-- more info needed. what is this for? --&gt;
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:domain</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:domain&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:range</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://www.w3.org/2000/01/rdf-schema#Resource&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:range&gt;</span>
+        <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:isDefinedBy</span><span class="http://www.w3.org/2000/01/rdf-schema#"> rdf:resource&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:isDefinedBy&gt;</span>
+      &lt;/rdf:Property&gt;</span>
+
+
+&lt;/rdf:RDF&gt;</span>&lt;--
+additions by libby.miller@bristol.ac.uk 2001-03-24
+dc properties are in a separate namespace
+dc title
+dc description
+dc format
+dc contributor (a person)
+dc creator (a person)
+wot stuff is in a separate namespace
+
+additions by libby.miller@bristol.ac.uk 2001-10-31
+Organization
+project
+pastProject
+fundedBy
+--&gt;&lt;-- 2003-02-23 removed foaf:id, undeployed and not needed --&gt;&lt;-- 	for detailed version history, see:
+	http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/index.rdf --&gt;</pre></body>
+</html>
