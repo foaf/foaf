@@ -138,8 +138,7 @@ technology.
           src="http://www.w3.org/Icons/valid-xhtml10" style="float: right;"
           alt="Valid XHTML 1.0!" height="31" width="88" /></a>
  </div>
-<br />
-<p style="clear: left;"></p>
+<p style="clear: left;"><br /><!-- not sure why i need this whitespace --></p>
 
 <!-- 
 Commented out so we can XHTML validate. Very unfortunate way of doing things... 
@@ -520,7 +519,7 @@ stabilise in usage and documentation, they progress through the categories
 
 <h4>stable terms</h4>
 
-<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are
+<p>At the present time ($Date: 2003-07-26 23:43:06 $), the following FOAF terms are
 considered <strong>stable</strong>.  This means that their names and definitions (in prose
 and in machine form) are unlikely to change dramatically. Clarifications and refinements
 may be made, but major changes are not expected. </p> 
@@ -550,7 +549,7 @@ schema</p>
 </ul>
 
 <h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 23:43:06 $), the following FOAF terms are considered 
 <strong>unstable</strong>. 
 This means that their names and definitions (in prose and in machine form) could still change 
 dramatically. Clarifications and refinements still need to be made, and major changes are quite 
@@ -565,7 +564,7 @@ possible.
 </ul>
  
 <h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 23:43:06 $), the following FOAF terms are considered 
 to be of '<strong>testing</strong>' status. 
 This means that their names and definitions (in prose and in machine form) could still change, 
 although dramatic changes are (we hope) unlikely.
@@ -1474,14 +1473,10 @@ FOAF provides some convenience properties: <code><a href="#term_jabberID">foaf:j
 <code><a href="#term_aimChatID">foaf:aimChatID</a></code>, <code><a href="#term_msnChatID">foaf:msnChatID</a></code> and 
 <code><a href="#term_icqChatID">foaf:icqChatID</a></code>. Beyond this, the problem of representing such accounts is not 
 peculiar to Instant Messanging, and it is not scaleable to attempt to enumerate each 
-naming database as a distinct FOAF property. 
+naming database as a distinct FOAF property. The <code><a href="#term_OnlineAccount">foaf:OnlineAccount</a></code> term (and 
+supporting vocabulary) are provided as a more verbose and more expressive generalisation 
+of these properties.
 </p>
-
-<p>
-Future work in this area may provide more specific terms for describing online accounts 
-and related user data.
-</p>
-
 <p style="float: right; font-size: small;">[<a href="#glance">back to top</a>]</p>
 
 
@@ -1507,7 +1502,7 @@ person attended.
 <p>
 FOAF does not (currently) define a class for 'School' (if it did, it would probably be as 
 a sub-class of <code><a href="#term_Organization">foaf:Organization</a></code>). The original application area for 
-<code><a href="#term_schoolHomepage">foaf:schoolHomepage</a></code> was for 'schools' in the English-English sense; however 
+<code><a href="#term_schoolHomepage">foaf:schoolHomepage</a></code> was for 'schools' in the British-English sense; however 
 American-English usage has dominated, and it is now perfectly reasonable to describe 
 Universities, Colleges and post-graduate study using <code><a href="#term_schoolHomepage">foaf:schoolHomepage</a></code>.
 </p>
@@ -1837,7 +1832,8 @@ can do several things.
 <p>
 They can use more precise relationships than <code><a href="#term_knows">foaf:knows</a></code> to relate people to 
 people. The original FOAF design included two of these ('knowsWell','friend') which we 
-removed because they were too <em>awkward</em> to actually use. Other extensions have 
+removed because they were somewhat <em>awkward</em> to actually use, bringing an 
+inappopriate air of precision to an intrinsically vague concept. Other extensions have 
 been proposed, including Eric Vitiello's <a 
 href="http://www.perceive.net/schemas/20021119/relationship/">Relationship module</a> for 
 FOAF.
@@ -2605,7 +2601,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-26 23:28:48 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-26 23:43:06 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
