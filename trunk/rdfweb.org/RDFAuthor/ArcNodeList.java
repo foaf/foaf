@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
-/* $Id: ArcNodeList.java,v 1.31 2002-01-17 18:37:02 pldms Exp $ */
+/* $Id: ArcNodeList.java,v 1.32 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
@@ -450,8 +450,26 @@ public class ArcNodeList implements Serializable
             memModel.add( (Resource) nodeToJenaNode.get( arc.fromNode() ),
                           property, (RDFNode) nodeToJenaNode.get( arc.toNode() ) );
         }
-        
+
         memModel.write(writer, outputType);
+        
+        //RDFWriter rdfWriter = memModel.getWriter(outputType);
+        
+        /*for (Iterator iterator = System.getProperties().keySet().iterator(); iterator.hasNext();)
+        {
+            String key = (String) iterator.next();
+            
+            if (key.startsWith(RDFWriter.NSPREFIXPROPBASE))
+            {
+                String value = System.getProperty(key);
+                key = key.substring(RDFWriter.NSPREFIXPROPBASE.length(), key.length());
+                System.out.println("Found: " + key + " => " + value);
+                rdfWriter.setNsPrefix(key, value);
+            }
+        }*/
+        
+        //rdfWriter.write( memModel, writer, "" );
+        
     }
     
     public void checkModel(ModelErrorData errorData)

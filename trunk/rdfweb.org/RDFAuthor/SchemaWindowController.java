@@ -1,6 +1,6 @@
 /* SchemaWindowController */
 
-/* $Id: SchemaWindowController.java,v 1.9 2002-01-17 18:37:02 pldms Exp $ */
+/* $Id: SchemaWindowController.java,v 1.10 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -85,14 +85,10 @@ public class SchemaWindowController {
                     
                     // Add this to the combo box
                     schemaUrlField.addItemWithObjectValue( namespace );
-                    
-                    System.out.println("Added to schema: " + namespace + 
-                        " -> " + word);
                         
                     namespace = null;
                 }
             }
-            System.out.println(System.getProperties());
             schemasFileReader.close();
         }
         catch (Exception e)

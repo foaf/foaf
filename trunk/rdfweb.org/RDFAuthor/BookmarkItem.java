@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: BookmarkItem.java,v 1.4 2002-02-06 00:36:23 pldms Exp $ */
+/* $Id: BookmarkItem.java,v 1.5 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -108,9 +108,10 @@ public class BookmarkItem implements Serializable {
     private void readObject(java.io.ObjectInputStream in)
         throws IOException, ClassNotFoundException
     {
-        type = mapTypes( (String) in.readObject() );
+        type = (String) in.readObject();
         data = java2ns(in.readObject(), type);
         displayName = (String) in.readObject();
+        type = mapTypes(type); // fix type to native type
     }
 
     /*

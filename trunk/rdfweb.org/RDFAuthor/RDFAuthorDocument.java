@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.31 2002-01-17 18:37:01 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.32 2002-02-06 17:29:53 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -80,10 +80,21 @@ public class RDFAuthorDocument extends NSDocument {
     
     public RDFAuthorDocument(String fileName, String fileType) {
         super(fileName, fileType);
+        System.out.println("Loading file: " + fileName + " (" + fileType + ")");
+        // Big secret - Document and Stationery identical
+        // However we have to change the Stationery so it isn't
+        // linked to the loaded file, and change the type to Document
+        if (fileType.equals("RDFAuthor Stationery"))
+        {
+            this.setFileName(null);
+            this.setFileType("RDFAuthor Document");
+        }
+        System.out.println("RDFModelView is: " + rdfModelView);
     }
     
     public RDFAuthorDocument( java.net.URL anURL, String docType) {
         super(anURL, docType);
+        System.out.println("Loading url: " + anURL + " (" + docType + ")");
     }
     
     public void printDocumentUsingPrintPanel(boolean flag)
@@ -101,7 +112,9 @@ public class RDFAuthorDocument extends NSDocument {
         // Insert code here to create and return the data for your document.
         System.out.println("Wants to save as " + aType);
         
-        if (aType.equals("RDFAuthor Document"))
+        // These are identical - only loading has any differences
+        
+        if (aType.equals("RDFAuthor Document") || aType.equals("RDFAuthor Stationery"))
         {
             try
             {
@@ -203,13 +216,13 @@ public class RDFAuthorDocument extends NSDocument {
         
         exportMappings = new HashMap();
         
-        exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
+        exportMappings.put("RDF/XML Document", "RDF/XML");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         //exportMappings.put("N3 Document", "N3");
         
         boolean success;
         
-        if (aType.equals("RDFAuthor Document"))
+        if (aType.equals("RDFAuthor Document") || aType.equals("RDFAuthor Stationery"))
         {
             try
             {
@@ -324,12 +337,7 @@ public class RDFAuthorDocument extends NSDocument {
                 bookmarkController.setItems(bookmarkedItems);
             }
         }
-        
-        if (!success)
-        {
-            System.out.println("Loading failed :-(");
-        }
-        
+
         return success;
     }
     
@@ -396,7 +404,7 @@ public class RDFAuthorDocument extends NSDocument {
         // This is for exporting
         exportMappings = new HashMap();
         
-        exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
+        exportMappings.put("RDF/XML Document", "RDF/XML");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         //exportMappings.put("N3 Document", "N3");
     }
@@ -476,12 +484,8 @@ public class RDFAuthorDocument extends NSDocument {
     public void modelChanged()
     {
         updateChangeCount(1);
-        //if (rdfModelView != null) // I need to check for this since the model changed message can occur when loading
-        //{
-            // Tell info window that something changed
-            NSNotificationCenter.defaultCenter().postNotification(
-                new NSNotification(InfoController.itemChangedNotification, this) );
-        //}
+        NSNotificationCenter.defaultCenter().postNotification(
+            new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
     public void showTypes(boolean value)
