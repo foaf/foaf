@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.6 2002-07-11 18:20:24 danbri Exp $
+# $Id: webutil.rb,v 1.7 2002-07-11 19:26:35 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -68,7 +68,6 @@ def scutter_local (file, base_uri, opts={})
   pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
 
 
-
   # NOTE: *plug in alternate RDF parsers here*
   # (yes, this isn't as configurable as it should be)
 
@@ -76,8 +75,8 @@ def scutter_local (file, base_uri, opts={})
   if use_xslt 
     puts "\n\nRunning XSLT PARSER_#5:\n\n"
     p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf'`
-    p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt'`
-    nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt"    
+    p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
+    nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"    
     puts "\n==#5\n\n"
   end 
 
