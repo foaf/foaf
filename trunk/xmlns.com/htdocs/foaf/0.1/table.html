@@ -1,20 +1,50 @@
 <table border="1" summary="RDF classes" ><tr><th>Class name</th><th>comment</th></tr>
 <tr>
- <td>http://xmlns.com/foaf/0.1/Organization</td> 
- <td>An organisation</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/Project</td> 
- <td>A project</td></tr> 
-<tr>
  <td>http://xmlns.com/foaf/0.1/Person</td> 
  <td>A person.</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/Document</td> 
  <td>A document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Organization</td> 
+ <td>An organisation</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/Project</td> 
+ <td>A project</td></tr> 
 
 </table>
 
 <table border="1" summary="RDF properties" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>
+<tr>
+ <td>http://xmlns.com/foaf/0.1/topic</td> 
+ <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/firstName</td> 
+ <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/page</td> 
+ <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/knows</td> 
+ <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/depicts</td> 
+ <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/givenname</td> 
+ <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/id</td> 
+ <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/interest</td> 
+ <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
+ <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
+<tr>
+ <td>http://xmlns.com/foaf/0.1/surname</td> 
+ <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 <tr>
  <td>http://xmlns.com/foaf/0.1/theme</td> 
  <td>theme</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
@@ -93,36 +123,6 @@
 <tr>
  <td>http://xmlns.com/foaf/0.1/depiction</td> 
  <td>a depiction of some thing</td><td>rdfs:Resource</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/topic</td> 
- <td>a topic of some page or document</td><td>rdfs:Document</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/firstName</td> 
- <td>The first name of a person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/page</td> 
- <td>a page or document about this thing</td><td>rdfs:Resource</td><td>rdfs:Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/knows</td> 
- <td>a person known by this person (requires some level of reciprocated interaction between the parties).</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Person</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/depicts</td> 
- <td>a thing depicted in this representation</td><td>http://xmlns.com/foaf/0.1/Image</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/givenname</td> 
- <td>The given name of some agent.</td><td><em>not specified</em></td><td><em>not specified</em></td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/id</td> 
- <td>an identifier for this thing</td><td>rdfs:Resource</td><td>rdfs:Resource</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/interest</td> 
- <td>a page about a topic of interest to this person</td><td>http://xmlns.com/foaf/0.1/Person</td><td>http://xmlns.com/foaf/0.1/Document</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/thumbnail</td> 
- <td>a derrived thumbnail image</td><td>http://xmlns.com/foaf/0.1/Image</td><td>http://xmlns.com/foaf/0.1/Image</td></tr> 
-<tr>
- <td>http://xmlns.com/foaf/0.1/surname</td> 
- <td>The surname of some person.</td><td>http://xmlns.com/foaf/0.1/Person</td><td>rdfs:Literal</td></tr> 
 
 </table>
 
