@@ -1,3 +1,15 @@
+2002/03/27 12:45:50 - pldms
+
+    Changed the query process to solve random crash problem. Works
+    so far...
+
+2002/03/27 10:09:34 - pldms
+
+    Added ability to open doc from URL.
+    
+    (Related) Open node URI now opens a new document if the node is an
+    object of an rdfs:seeAlso (and hence ought to contain rdf).
+
 2002/03/22 16:38:50 - pldms
 
     Rationalised structure - all graphics are stored in the rdfModelView.
