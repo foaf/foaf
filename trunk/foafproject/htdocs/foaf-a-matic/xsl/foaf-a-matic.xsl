@@ -98,7 +98,7 @@ exclude-result-prefixes="fm fmt">
 
 
 <!-- templates to match contents of foo.xml -->
-<xsl:template match="fm:by-line|fm:author|fm:translator">
+<xsl:template match="fm:languages|fm:by-line|fm:author|fm:translator">
     <xsl:apply-templates/>
 </xsl:template>
 
