@@ -324,6 +324,8 @@
 			<array>
 				<string>rdfa</string>
 			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>RDFADocument.icns</string>
 			<key>CFBundleTypeName</key>
 			<string>RDFAuthor Document</string>
 			<key>CFBundleTypeOSTypes</key>
@@ -332,6 +334,8 @@
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
 			<key>NSDocumentClass</key>
 			<string>RDFAuthorDocument</string>
 			<key>NSExportableAs</key>

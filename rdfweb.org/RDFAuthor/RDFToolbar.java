@@ -203,15 +203,19 @@ public class RDFToolbar extends NSToolbar {
     {
         if (textPreview)
         {
+            boolean successful = rdfAuthorDocument.showTextPreview(false);  // this will never fail
             textPreview = false;
             sender.setImage(NSImage.imageNamed("modelView"));
-            rdfAuthorDocument.showTextPreview(false);
         }
         else
         {
+            boolean successful = rdfAuthorDocument.showTextPreview(true);
+            if (!successful)
+            {
+                return;
+            }
             textPreview = true;
             sender.setImage(NSImage.imageNamed("textPreview"));
-            rdfAuthorDocument.showTextPreview(true);
         }
     }
             
