@@ -1,5 +1,5 @@
 // Copyright (C) 2002  Strangeberry Inc.
-// @(#)ServiceListener.java, 1.3, 11/29/2002
+// @(#)ServiceListener.java, 1.4, 02/06/2003
 //
 // This library is free software; you can redistribute it and/or
 // modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@ package com.strangeberry.rendezvous;
  * Listener for service updates.
  *
  * @author	Arthur van Hoff
- * @version 	1.3, 11/29/2002
+ * @version 	1.4, 02/06/2003
  */
 public interface ServiceListener {
     /**
@@ -37,4 +37,12 @@ public interface ServiceListener {
      * @param name the fully qualified name of the service
      */
     void removeService(Rendezvous rendezvous, String type, String name);
+
+    /**
+     * A service is resolved. Its details are now available in the ServiceInfo record.
+     * @param type the fully qualified type of the service
+     * @param name the fully qualified name of the service
+     * @param info the service info record, or null if the service could be be resolved
+     */
+    void resolveService(Rendezvous rendezvous, String type, String name, ServiceInfo info);
 }

@@ -181,17 +181,22 @@ class TestListener implements ServiceListener
 
   public void removeService(Rendezvous rendezvous, String type, String name)
   {
-    System.out.println("hi");
-    
-    
     controller.showMessage("REMOVE: " + name);
-
-    System.out.println("hello");
-    
-    
-    people.remove(rendezvous.getServiceInfo(type,name));
   }
 
+  public void resolveService(Rendezvous rendezvous,
+			     java.lang.String type,
+			     java.lang.String name,
+			     ServiceInfo info)
+  {
+    // Uh - no idea;
+
+    System.out.println(rendezvous + "\n" +
+		       type + "\n" +
+		       name + "\n" +
+		       info + "\n");
+  }
+  
   public synchronized List getPeople()
   {
     return new ArrayList(people);
