@@ -1,6 +1,7 @@
 
 CP=.:lib/jena.jar:lib/rdffilter.jar:lib/sax2.jar:lib/xerces.jar 
 
+all:	classes test
 
 classes:
 	CLASSPATH=$(CP) \
