@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ssh danbri@rdfweb.org bin/rdfwebup
+ssh danbri@rdfweb.org make slaves
