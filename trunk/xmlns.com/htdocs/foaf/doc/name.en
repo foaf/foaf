@@ -1,0 +1,15 @@
+<p>The <code>foaf:name</code> of something is a simple textual string.</p>
+
+<p>
+XML language tagging may be used to indicate the language of the name. For example:</p>
+
+<blockquote>
+&lt;foaf:name xml:lang="en"&gt;Dan Brickley&lt;/foaf:name&gt;
+</blockquote>
+
+<p>
+FOAF provides some other naming constructs. These are under development. While foaf:name 
+does not provide for substructure (family vs given etc.) it does provide a basic level of 
+interoperability.
+</p>
+

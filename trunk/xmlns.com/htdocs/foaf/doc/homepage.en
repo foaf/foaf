@@ -1,0 +1,24 @@
+<p>
+The <code>foaf:homepage</code> property relates something to a homepage about it.
+</p>
+
+<p>
+Many kinds of things have homepages. FOAF allows a thing to have multiple homepages, but 
+constrains <code>foaf:homepage</code> so that there can be only one thing that has any 
+particular homepage.
+</p>
+
+<p>
+A 'homepage' in this sense is a public Web document, typically but not necessarily 
+available in HTML format. The page has as a <code>foaf:topic</code> the thing whose 
+homepage it is. The homepage is usually controlled, edited or published by the thing whose 
+homepage it is; as such one might look to a homepage for information on its owner from its 
+owner. This works for people, companies, organisations etc. 
+</p>
+
+<p>
+The <code>foaf:homepage</code> property is a sub-property of the more general 
+<code>foaf:page</code> property for relating a thing to a page about that thing. See also 
+<code>foaf:topic</code>, the inverse of the <code>foaf:page</code> property. 
+</p>
+
