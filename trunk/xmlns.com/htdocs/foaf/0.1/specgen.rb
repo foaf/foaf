@@ -21,12 +21,60 @@ RDFS = 'http://www.w3.org/2000/01/rdf-schema#'
 OWL = 'http://www.w3.org/2002/07/owl#'
 VS = 'http://www.w3.org/2003/06/sw-vocab-status/ns#'
 
-attr_accessor :spec, :termlist, :ranges, :domains
+attr_accessor :spec, :termlist, :ranges, :domains, :clist, :plist
 
-def initialize 
-  # STDERR.puts "Vocabulary class starting up..."
-  ranges={}
-  domains={}
+def initialize(specname)
+
+  @spec = Loader.get_rdf(specname) # eg 'index.rdf', not file:, http:
+
+  spec.reg_xmlns FOAF, 'foaf'
+  spec.reg_xmlns DC, 'dc'
+  spec.reg_xmlns RDF,'rdf'
+  spec.reg_xmlns RDFS,'rdfs'
+  spec.reg_xmlns OWL, 'owl'
+  spec.reg_xmlns VS,'vs'
+
+  @ranges={} # class name -> array of property names
+  @domains={} # ditto
+
+  classes = spec.ask(Statement.new (nil, RDF+'type', RDFS+'Class'))
+  props = spec.ask(Statement.new (nil, RDF+'type', RDF+'Property'))
+
+  @clist=[]
+  classes.subjects.each do |classuri|
+    classname=classuri.to_s
+    clist.push classname
+
+    # For this class, what properties have it as a range?
+    spec.ask(Statement.new (nil, RDFS+'range', classuri)).subjects.each do |rp| 
+      rp=rp.to_s
+      STDERR.puts "INRANGE: #{rp} #{rp.type}"
+      if ranges[classname] != nil
+        ranges[classname].push(rp) 
+      else
+        ranges[classname]=[rp] 
+      end
+    end # end list of range props for this class
+
+    # For this class, what properties have it as a domain?
+    spec.ask(Statement.new (nil, RDFS+'domain', classuri)).subjects.each do |dp| 
+      dp=dp.to_s
+      STDERR.puts "INDOMAIN for class #{classuri}: #{dp} #{dp.type}"
+      if domains[classname] != nil
+        domains[classname].push(dp) 
+      else
+        domains[classname]=[dp] 
+      end
+    end # end list of domain props for this class
+
+  end
+
+  @plist=[]
+  props.subjects.each do |termuri|
+    termname=termuri.to_s
+    plist.push termname
+  end
+
 end
 
 # todo: shouldn't be foaf specific
@@ -40,16 +88,17 @@ def defurl(term)
   return "<code><a href=\"#term_#{term}\">foaf:#{term}</a></code>"
 end
 
-def shortname (uri)
+def shortname(uri)
   uri = uri.to_s
   uri.gsub!('http://www.w3.org/1999/02/22-rdf-syntax-ns#', 'rdf:')
   uri.gsub!(/http:\/\/www.w3.org\/2000\/01\/rdf-schema#/, 'rdfs:')
   return uri
+  # todo: handle foaf -> #term_xyz case
 end
 
 def owlInfo(t)
   types=t.rdf_type
-  ifp=false
+  ifp=false # we could do this in one line with .member? i think
   types.each do |d|
     u=d.to_s
     ifp=true if u==OWL+'InverseFunctionalProperty'
@@ -60,27 +109,59 @@ def owlInfo(t)
   return ''
 end
 
+  def rdfsClassInfo(term, doc='')
+    t=term.to_s
 
-def rdfsInfo(term, doc='')
+    # Find out about properties which have rdfs:range of t
+    r=ranges[t]
+    STDERR.puts "range props for class #{t}: #{r.inspect}"
+    if r
+      rlist=''
+      r.each do |k|
+        kname=k
+        kname.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
+        rlist += "#{kname} "
+      end
+      doc += "<tr><th>in-range-of:</th><td>"+rlist+"</td></tr>"
+    end
+
+    # Find out about properties which have rdfs:domain of t
+    d=domains[t]
+    STDERR.puts "domain props for class #{t}: #{d.inspect}"
+    if d
+      dlist=''
+      d.each do |k|
+        kname=k
+        kname.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
+        dlist += "#{kname} "
+      end
+      doc += "<tr><th>in-domain-of:</th><td>"+dlist+"</td></tr>"
+    end
+
+
+    return doc
+end
+
+def rdfsPropertyInfo(term, doc='')
   # domain and range stuff (properties only)
   d= term.rdfs_domain.to_s
   r= term.rdfs_range.to_s
+  t=term.to_s
   if (d!=nil) 
     d.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
-#    doc += "domain: #{d}<br />"
     doc += "\t<tr><th>Domain:</th>\n\t<td>#{d}</td></tr>\n"
-#    domains[term.to_s]=[d]   
   else
     doc += "-"
   end
   if (r!=nil) 
     r.gsub!(/http:\/\/xmlns.com\/foaf\/0.1\/(\w+)/){ "<a href=\"#term_#{$1}\">foaf:#{$1}</a>" }
-#    doc += "range: #{r}<br />"
     doc += "\t<tr><th>Range:</th>\n\t<td>#{r}</td></tr>\n"
-#    ranges[term.to_s]=[r]   
+    # STDERR.puts "ranges: #{self.ranges.type}\n"
   else
     doc += "-"
   end
+
+
   return doc
 end 
 
@@ -124,9 +205,10 @@ list.each do |t|
   status= term.vs_term_status.to_s
   # MM: Listing the term name twice?
   doc += "<em>#{l}</em> - #{c} <br />"
-  doc += "<table>\n\t<tr><th>Status:</th>\n\t<td>#{status}</td></tr>\n"
+  doc += "<table style=\"th { float: top; }\">\n\t<tr><th>Status:</th>\n\t<td>#{status}</td></tr>\n"
   doc += owlInfo(term)
-  doc += rdfsInfo(term) if category=='Property'
+  doc += rdfsPropertyInfo(term) if category=='Property'
+  doc += rdfsClassInfo(term)  if category=='Class'
   doc += "</table>\n"
   doc += htmlDocInfo(t)
   doc += "<p style=\"float: right; font-size: small;\">[<a href=\"#glance\">back to top</a>]</p>\n\n"
@@ -138,110 +220,56 @@ end
 
 
 
-## Former main method, and shows!
-
 def makeSpec 
 
-spec.reg_xmlns FOAF, 'foaf'
-spec.reg_xmlns DC, 'dc'
-spec.reg_xmlns RDF,'rdf'
-spec.reg_xmlns RDFS,'rdfs'
-spec.reg_xmlns OWL, 'owl'
-spec.reg_xmlns VS,'vs'
+  ### OK a basic a-z table of contents
+  azlist = "<div style=\"padding: 5px; border: dotted; background-color: #ddd;\">\n"
+  azlist += "\n<p>Classes: |"  
+  clist.sort.each do |t| 
+    t.gsub!(FOAF,'') 
+    azlist += " <a href=\"#term_#{t}\">#{t}</a> | "
+  end
+  azlist += "</p>\n"
 
-
-# Get all the URIs of properties and classes, and store in plist and clist.
-# (must be a more concise way of doing this...)
-classes = spec.ask(Statement.new (nil, RDF+'type', RDFS+'Class'))
-props = spec.ask(Statement.new (nil, RDF+'type', RDF+'Property'))
-
-clist=[]
-classes.subjects.each do |classuri|
-  c = Node.getResource classuri, spec
-  clist.push c.to_s
-end
-
-plist=[]
-props.subjects.each do |propuri|
-  p = Node.getResource propuri, spec
-  plist.push p.to_s
-end
-
-
-
-
-### OK a basic a-z table of contents
-
-azlist = "<div style=\"padding: 5px; border: dotted; background-color: #ddd;\">\n"
-azlist += "\n<p>Classes: |"
-clist.sort.each do |t| 
-  t.gsub!(FOAF,'') 
-  azlist += " <a href=\"#term_#{t}\">#{t}</a> | "
-end
-azlist += "</p>\n"
-
-azlist += "\n<p>Properties: |"
-plist.sort.each do |t|
-  t.gsub!(FOAF,'') 
-  azlist += "<a href=\"#term_#{t}\">#{t}</a> | "
-end
-azlist += "</p>\n"
+  azlist += "\n<p>Properties: |"
+  plist.sort.each do |t|
+    t.gsub!(FOAF,'') 
+    azlist += "<a href=\"#term_#{t}\">#{t}</a> | "
+  end
+  azlist += "</p>\n"
 azlist += "</div>\n"
 
+  ## Full details in HTML
+  termlist = "<h3>Classes and Properties (full detail)</h3>"
+  termlist += docTerms('Class',clist.sort,spec)
+  termlist += docTerms('Property',plist.sort,spec)
 
-
-
-# fix ordering
-
-
-
-## Full details in HTML
-
-termlist = "<h3>Classes and Properties (full detail)</h3>"
-termlist += docTerms('Property',plist,spec)
-termlist += docTerms('Class',clist,spec)
-
-
-# Output 
-
-template=File.new('wip.html').read
-rdfdata=File.new('index.rdf').read
-
-colour=File.new('colour.html').read
-#STDERR.puts("Colour: "+colour)
-#colour =~ /<pre>(.*)<\/pre>/i
-pretty = '<p>not available</p>'
-pretty = $1 if $1
-pretty=colour
-
-nslist=<<EOT
+  # Output 
+  template=File.new('wip.html').read
+  rdfdata=File.new('index.rdf').read
+  colour=File.new('colour.html').read
+  #STDERR.puts("Colour: "+colour)
+  #colour =~ /<pre>(.*)<\/pre>/i
+  pretty = '<p>not available</p>'
+  pretty = $1 if $1
+  pretty=colour
+  nslist=<<EOT
 xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/"
 EOT
 
-nslist.gsub!(/ /,"\n  ")
-pretty.gsub!(/&lt;rdf:RDF/, "\n&lt;rdf:RDF "+nslist)
-
-template.gsub!(/<!--AZLIST-->/,azlist)
-template.gsub!(/<!--TERMLIST-->/,termlist)
-template.gsub!(/<!--RDFDATA-->/,rdfdata)
-template.gsub!(/<!--PRETTY-->/,pretty)
-
-puts template
-
-#<!--ATOZ-->
-#<!--TERMLIST-->
-
-
+  nslist.gsub!(/ /,"\n  ")
+  pretty.gsub!(/&lt;rdf:RDF/, "\n&lt;rdf:RDF "+nslist)
+  template.gsub!(/<!--AZLIST-->/,azlist)
+  template.gsub!(/<!--TERMLIST-->/,termlist)
+  template.gsub!(/<!--RDFDATA-->/,rdfdata)
+  template.gsub!(/<!--PRETTY-->/,pretty)
+  return template
 end
 
-end #endVocab
+end #end class
 
 ##########################################################################
 
 
-voc = Vocabulary.new()
-voc.spec = Loader.get_rdf('index.rdf')
-voc.makeSpec()
-
-
-#puts "Ranges: "+voc.ranges.inspect
+voc = Vocabulary.new('index.rdf')
+puts voc.makeSpec()
