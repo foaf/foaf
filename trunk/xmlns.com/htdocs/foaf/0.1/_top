@@ -24,11 +24,11 @@
       <dt>version:</dt>
       <dd>0.1</dd>
       <dt>status:</dt>
-      <dd>deployed but changing, use with care. last edit: $Id: _top,v 1.2 2003-02-23 22:02:38 danbri Exp $</dd>
+      <dd>deployed but changing, use with care. last edit: $Id: _top,v 1.3 2003-02-23 22:26:10 danbri Exp $</dd>
       <dt>formats:</dt>
       <dd><a href="http://xmlns.com/foaf/0.1/index.html">text/html</a>, <a href="http://xmlns.com/foaf/0.1/index.rdf">application/rdf+xml</a></dd>
       <dt>history:</dt>
-      <dd>see <a href="http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/">cvs version history</dd>
+      <dd>see <a href="http://rdfweb.org/viewcvs/viewcvs.cgi/xmlns.com/htdocs/foaf/0.1/">cvs version history</a></dd>
       <dt>authors:</dt>
       <dd>dan brickley, libby miller, rdfweb-dev listmembers</dd>
     </dl>
