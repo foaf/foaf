@@ -3,6 +3,10 @@
 <plist version="0.9">
 <dict>
 	<key>IBFramework Version</key>
-	<string>205.0</string>
+	<string>219.0</string>
+	<key>IBMainMenuLocation</key>
+	<string>72 349 369 44 0 0 1280 1002 </string>
+	<key>IBSystem Version</key>
+	<string>5G64</string>
 </dict>
 </plist>

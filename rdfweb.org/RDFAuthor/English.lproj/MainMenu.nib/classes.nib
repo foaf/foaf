@@ -1,4 +1,18 @@
 {
-    IBClasses = ({CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }); 
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {addSchema = id; showSchemaWindow = id; }; 
+            CLASS = SchemaWindowController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                schemaMenuItem = id; 
+                schemaOutlineView = id; 
+                schemaUrlField = id; 
+                schemaWindow = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
     IBVersion = 1; 
 }
