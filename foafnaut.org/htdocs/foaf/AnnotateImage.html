@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<title>Annotating Images with SVG</title>
+<link rel="StyleSheet" href="/css/jibbering.css" type="text/css"> 
+<style type="text/css">
+input { border:1px solid black; width:18em; }
+input.wide {width:40em;}
+</style>
+<script type="text/javascript">
+function init() {
+ mystr=document.cookie
+ out=parseQS(mystr)
+ document.forms[2].elements['email'].value=out['email']
+ document.forms[2].elements['name'].value=out['name']
+}
+
+	function parseQS(str) {
+  var o=new Object()
+  //suitable defaults
+  o['email']=''
+  o['name']=''
+  var arr=str.split('; ')
+		for (i=0;i<arr.length;i++) {
+   try {
+    arr1=arr[i].split('=')
+    if (arr1 && arr1[1]) o[arr1[0]]=unescape(arr1[1]).replace(/\+/gim,' ')
+			} catch (E) {}
+		}
+  return o
+ }
+</script>
+</head>
+<body onload="init()">
+<h1>Annotating Images with SVG</h1>
+<p>
+<form action="svg-get.1">
+This version of the Image annotation tool, posts the RDF to an Annotea database (currently Iggy), it also has a slightly updated look. There is currently no way to use the RDF from the Image Annotation, but if you just want to query for the RDF you can.  Enter URL:<input name="url" type="text" value="http://www.jibbering.com/imgs/shepherds.jpg"> <input style="width:9em;" type="submit" value="Get RDF">, <input style="width:9em;" type="submit" value="Simple svg view" onclick="document.forms[0].action='svg-search.2.1';">.  My SVG client-side RDF Parser is currently breaking on the RDF, when I have fixed that I will do something useful with the data.</form>
+</p>
+<p>
+A quick proof of what could be done with the RDF is available in my <a href="/2002/8/img-desc.svg">description of shepherds image</a>
+</p>
+<p>
+<form action="svg-search.1" method="get">
+Search for an object: <input style="width:12em;" name="noun" value="Beer"> <input style="width:9em;" type="submit" value="search"> <small>(Object is a wordnet noun, or you can give a full uri such as http://jibbering.com/2002/6/terms#hairOfNewt. )</small>
+</form>
+<p>
+The Name and e-mail fields so that we can track the provenance of the annotations, if you say the resource is a <code>http://xmlns.com/foaf/0.1/Person</code> or <code>http://xmlns.com/wordnet/1.6/Person</code> then a name and email field will appear to allow you to create codepiction data. (Well in an appropriately configured and capable browser, otherwise please use the forms within the SVG itself.)
+</p>
+<p>
+<form action="AnnotateImage.svg" method=get>
+<table>
+<tbody id="frmtable">
+<tr><td>Your&nbsp;Name:&nbsp;&nbsp;</td><td colspan=3> <input class="wide" type=text name=name></td></tr>
+<tr><td>Your e-Mail:</td><td colspan=3> <input class="wide" type=text name=email  onblur="addMailto(this)" onchange="addMailto(this)"></td></tr>
+<tr><td>Image</td><td colspan=3> <input class="wide" type=text name=img value="http://www.jibbering.com/imgs/shepherds.jpg" onblur="checkSize(this.value)"></td></tr>
+<tr><td>Thumbnail</td><td colspan=3> <input class="wide" type=text name=th value="http://www.jibbering.com/imgs/t_shepherds.jpg"></td></tr>
+<tr><td>Height</td><td> <input type=text name=h value="400"></td></tr>
+<tr><td>Width</td><td> <input type=text name=w value="600"></td></tr>
+<tr><td>Title</td><td colspan=3> <input type=text class="wide" name="title" value="Shepherds"></td></tr>
+<tr><td>Description</td><td colspan=3> <input type=text class="wide" name="desc" value=" "></td></tr>
+<tr><td>Resource</td><td> <input type=text name=w1 value="" onblur="show(this)"></td><td><span id="l1" style="visibility:hidden;">Name<input type=text name=n1 value="">eMail<input type=text name=e1 value="" onblur="addMailto(this)" onchange="addMailto(this)"></span></td></tr>
+<tr><td>Resource</td><td> <input type=text name=w2 value="" onblur="show(this)"></td><td><span id="l2" style="visibility:hidden;">Name<input type=text name=n2 value="">eMail<input type=text name=e2 value="" onblur="addMailto(this)" onchange="addMailto(this)"></span></td></tr>
+</tbody>
+</table>
+<script type="text/javascript">
+
+ foafNS="http://xmlns.com/foaf/0.1/"
+ wordnetNS="http://xmlns.com/wordnet/1.6/"
+
+function checkSize(str) {
+ x=new Image()
+ x.onload=function() {
+  document.forms[2].elements['h'].value=x.height
+  document.forms[2].elements['w'].value=x.width
+ }
+ x.src=str
+ document.getElementById('myimg').innerHTML="<img src='"+str+"' alt='The image given in the form'>"
+}
+globalCount=3
+if (document.createElement) {
+ document.write('<input style="width:15em;" type="button" onclick="AddLine()" value="Add New Line"><BR><BR>')
+}
+function AddLine() {
+ tr=document.createElement('tr')
+ tr.appendChild(addCol('Resource'))
+ tr.appendChild(addCol('<input type=text name=w'+globalCount+' value="" onblur="show(this)">'))
+ tr.appendChild(addCol('<span id="l'+globalCount+'" style="visibility:hidden;">Name<input type=text name=n'+globalCount+' value="">eMail<input type=text name=e'+globalCount+' value="" onblur="addMailto(this)" onchange="addMailto(this)"></span>'))
+ document.getElementById('frmtable').appendChild(tr)
+ globalCount++
+}
+function addCol(html) {
+ var td=document.createElement('td')
+ td.innerHTML=html
+ return td
+}
+function addMailto(r) {
+ if (r.value.indexOf("mailto:")!=0) {
+  r.value="mailto:"+r.value
+ }
+}
+function show(el) {
+ var i=el.name.substring(1,el.name.length)
+ var myel=document.getElementById('l'+i)
+ if (el.value.indexOf(foafNS+'Person')==0 || el.value.indexOf(wordnetNS+'Person')==0) {
+  if (myel.style) myel.style.visibility='visible'
+ } else {
+  if (myel.style) myel.style.visibility='hidden'
+	}
+}
+</script>
+<input type="hidden" name="operahack" value=".svg">
+<input type=submit value="submit">
+</form>
+<div id="myimg"></div>
+</p>
+<p class="footer">Jim Ley -  <a href="mailto:jim@jibbering.com">jim@jibbering.com</a>, <a href="/">Jibbering.com</a></p>
+</body>
+</html>
