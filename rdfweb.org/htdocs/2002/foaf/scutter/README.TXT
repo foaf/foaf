@@ -17,3 +17,21 @@ a URL, it'll start there, if not, it'll start at the author's
 FOAF self-description file and explore the Web of files 
 connected from there.
 
+
+
+
+XSLT RDF parser
+
+You can also try using the XSLT RDF parser by Max Froumentin, which is 
+included in the distribution (in conf/). To use this:
+
+ 	bin/scutter --use-xslt --scutter
+
+Note that this requires 'xsltproc' to be installed. 
+On debian, 'apt-get install xsltproc' will do this.
+
+This parser (and its integration into RubyRDF) hasn't been well tested.
+There may be some RDF files that, for example, generate N-Triples that 
+the RubyRDF N-Triples parser can't deal with. Multi-line output etc.
+-- work in progress.
+
