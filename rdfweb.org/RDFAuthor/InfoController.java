@@ -9,8 +9,22 @@ import java.net.MalformedURLException;
 public class InfoController extends NSObject {
 
     NSPanel infoWindow;
+    
+    NSView currentView;
+    
+    NSView contentView;
+    
+    NSView nothingView;
+    
+    NSView literalView;
+    
+    NSView resourceView;
+    
+    NSView propertyView;
 
-    NSButton literalButton;
+    NSButton literalChangeButton;
+    
+    NSButton resourceChangeButton;
 
     NSTextField literalTextField;
 
@@ -49,6 +63,26 @@ public class InfoController extends NSObject {
         
         NSNotificationCenter.defaultCenter().addObserver(
             this, windowSelector, NSWindow.WindowDidBecomeMainNotification, null);
+    }
+    
+    public void awakeFromNib()
+    {
+        // Initialise frames from the original view (which is then removed)
+        NSRect rect = contentView.frame();
+        nothingView.setFrame(rect);
+        literalView.setFrame(rect);
+        resourceView.setFrame(rect);
+        propertyView.setFrame(rect);
+        
+        // Initialise the panel with the 'nothing' view
+        infoWindow.contentView().replaceSubview(contentView, nothingView);
+        currentView = nothingView;
+    }
+    
+    public void setInfoView(NSView view)
+    {
+        infoWindow.contentView().replaceSubview(currentView, view);
+        currentView = view;
     }
     
     public void currentWindowChanged(NSNotification notification)
@@ -91,18 +125,45 @@ public class InfoController extends NSObject {
             showNode((Node) currentItem);
         }
     }
-        
-    public void literalButtonChanged(Object sender) {
-        ((Node) currentItem).setIsLiteral(literalButton.state() == NSCell.OnState);
+    
+    public void revertObject(Object sender)
+    {
+        setCurrentItem(currentItem); // reinitialises the fields
     }
-
-    public void literalTextChanged(Object sender) {
+    
+    public void changeObject(Object sender)
+    {
+        if (!currentItem.isNode())
+        {
+            changeProperty();
+        }
+        else if (((Node) currentItem).isLiteral())
+        {
+            changeLiteral();
+        }
+        else
+        {
+            changeResource();
+        }
+        setCurrentItem(currentItem); // reinitialises the fields
+    }
+    
+    public void changeLiteral() 
+    {
         String value = literalTextField.stringValue().trim();
+        
+        if (literalChangeButton.state() == NSCell.OnState)
+        {
+            currentItem.setIsLiteral(false);
+            return; // Don't need subsequent checks in this case
+        }
+        
         value = (value.equals(""))?null:value;
         ((Node) currentItem).setId(value);
     }
 
-    public void propertyTextChanged(Object sender) {
+    public void changeProperty() 
+    {
         String property = propertyTextField.stringValue().trim();
         
         if (property.equals(""))
@@ -125,8 +186,16 @@ public class InfoController extends NSObject {
         }
     }
 
-    public void resourceIdTextChanged(Object sender) {
+    public void changeResource()
+    {
         String id = resourceIdField.stringValue().trim();
+        String type = resourceTypeField.stringValue().trim();
+        
+        if (resourceChangeButton.state() == NSCell.OnState)
+        {
+            currentItem.setIsLiteral(true);
+            return; // Don't need subsequent checks in this case
+        }
         
         if (id.equals(""))
         {
@@ -139,10 +208,6 @@ public class InfoController extends NSObject {
                 ((Node) currentItem).setId(id);
             }
         }
-    }
-
-    public void resourceTypeTextChanged(Object sender) {
-        String type = resourceTypeField.stringValue().trim();
         
         if (type.equals(""))
         {
@@ -201,39 +266,23 @@ public class InfoController extends NSObject {
         
     public void showNothing()
     {
-        literalButton.setState(NSCell.OffState);
-        literalButton.setEnabled(false);
-        literalTextField.setEnabled(false);
-        propertyTextField.setEnabled(false);
-        resourceIdField.setEnabled(false);
-        resourceTypeField.setEnabled(false);
-        
+        setInfoView(nothingView);
         setFields("", "", "", "");
     }
     
     public void showArc(Arc arc)
     {
-        literalButton.setState(NSCell.OffState);
-        literalButton.setEnabled(false);
-        literalTextField.setEnabled(false);
-        propertyTextField.setEnabled(true);
-        resourceIdField.setEnabled(false);
-        resourceTypeField.setEnabled(false);
         
         String propertyNS = (arc.propertyNamespace() == null)?"":arc.propertyNamespace();
         String propertyN = (arc.propertyName() == null)?"":arc.propertyName();
         
+        setInfoView(propertyView);
         setFields("", "", "", propertyNS + propertyN);
     }
     
     public void showLiteral(Node literal)
     {
-        literalButton.setState(NSCell.OnState);
-        literalButton.setEnabled(true);
-        literalTextField.setEnabled(true);
-        propertyTextField.setEnabled(false);
-        resourceIdField.setEnabled(false);
-        resourceTypeField.setEnabled(false);
+        setInfoView(literalView);
         
         String literalVal = (literal.id() == null)?"":literal.id();
         
@@ -242,12 +291,7 @@ public class InfoController extends NSObject {
     
     public void showNode(Node node)
     {
-        literalButton.setState(NSCell.OffState);
-        literalButton.setEnabled(true);
-        literalTextField.setEnabled(false);
-        propertyTextField.setEnabled(false);
-        resourceIdField.setEnabled(true);
-        resourceTypeField.setEnabled(true);
+        setInfoView(resourceView);
         
         String typeNS = (node.typeNamespace() == null)?"":node.typeNamespace();
         String typeN = (node.typeName() == null)?"":node.typeName();
@@ -259,6 +303,9 @@ public class InfoController extends NSObject {
     
     public void setFields( String literal, String type, String id, String property)
     {
+        literalChangeButton.setState(NSCell.OffState);
+        resourceChangeButton.setState(NSCell.OffState);
+        
         literalTextField.setStringValue(literal);
         propertyTextField.setStringValue(property);
         resourceIdField.setStringValue(id);

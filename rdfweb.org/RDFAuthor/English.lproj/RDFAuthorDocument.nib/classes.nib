@@ -34,7 +34,14 @@
             }; 
             CLASS = RDFToolbar; 
             LANGUAGE = Java; 
-            OUTLETS = {editView = id; rdfAuthorDocument = id; showView = id; }; 
+            OUTLETS = {
+                editView = id; 
+                rdfAuthorDocument = id; 
+                showIdsButton = id; 
+                showPropertiesButton = id; 
+                showTypesButton = id; 
+                showView = id; 
+            }; 
             SUPERCLASS = NSObject; 
         }
     ); 

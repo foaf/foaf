@@ -55,11 +55,6 @@ public class RDFAuthorDocument extends NSDocument {
         {
             try
             {
-                //NSData savedData = NSArchiver.archivedDataWithRootObject(rdfModel);
-            
-                // Hmm - I had problems with NSArchiver and java serialization
-                // So I just used java serialisation
-            
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 ObjectOutputStream s = new ObjectOutputStream(out);
                 s.writeObject(FileFormatVersion);
