@@ -27,7 +27,8 @@
   <foaf:maker>  <!-- another way of saying the same thing, but more extensibly... 
 		     if we had more info about the author it could go here -->
     <foaf:Person>
-      <foaf:name>Wendy M. Grossman</foaf:name>
+      <foaf:name>Wendy M. Grossman</foaf:name> 
+      <foaf:homepage rdf:resource="http://www.pelicancrossing.net/"/> <!-- 99% sure this is the right Wendy -->
     </foaf:Person>
   </foaf:maker>
   <foaf:topic rdf:nodeID="jetblue"/>
