@@ -1,0 +1,4 @@
+<p>
+The <code>foaf:weblog</code> property relates a <code>foaf:Agent</code> to a weblog of 
+that agent.
+</p>

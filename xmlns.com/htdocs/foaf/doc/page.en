@@ -1,0 +1,8 @@
+<p>
+The <code>foaf:page</code> property relates a thing to a document about that thing.
+</p>
+
+<p>
+As such it is an inverse of the <code>foaf:topic</code> property, which relates a document 
+to a thing that the document is about.
+</p>

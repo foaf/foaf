@@ -1,0 +1,8 @@
+<p>
+The <code>foaf:made</code> property relates a <code>foaf:Agent</code> 
+to something <code>foaf:made</code> by it. As such it is an 
+inverse of the <code>foaf:maker</code> property, which relates a thing to 
+something that made it. See <code>foaf:made</code> for more details on the 
+relationship between these FOAF terms and related Dublin Core vocabulary.
+</p>
+
