@@ -79,12 +79,10 @@ public class RDFModelView extends NSView {
         else if (addingNode)
         {
             myDocument.addNodeAtPoint(null, null, null, point);
-            setNeedsDisplay(true);
         }
         else
         {
             myDocument.setCurrentObjectAtPoint(point);
-            setNeedsDisplay(true);
         }
     }
     
@@ -100,7 +98,6 @@ public class RDFModelView extends NSView {
         else
         {
             myDocument.moveCurrentObjectToPoint(point);
-            setNeedsDisplay(true);
         }
     }
     
@@ -111,12 +108,6 @@ public class RDFModelView extends NSView {
         {
             draggingConnection = false;
             myDocument.addConnectionFromPoint(startPoint, point);
-            setNeedsDisplay(true);
-        }
-        else
-        {
-            myDocument.moveCurrentObjectToPoint(point);
-            setNeedsDisplay(true);
         }
     }
     
