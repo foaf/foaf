@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.8 2002-12-10 10:52:49 danbri Exp $
+# $Id: ayf.rb,v 1.9 2002-12-10 11:15:58 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -35,7 +35,7 @@ def go(uri)
   # a code block to output basic info about each RDF page encountered
   # 
   page_summary = Proc.new do |uri,page|  
-    puts "RDF doc count='#{pagecount}': uri:#{uri} gave RDF graph #{page} \
+    puts "RDFDOC: count='#{pagecount}': uri:#{uri} gave RDF graph #{page} \
 	with #{page.size} triples\n" 
     pagecount=pagecount+1
   end
@@ -46,14 +46,12 @@ def go(uri)
     rs = page.ask Statement.new(nil, air+"iata", nil)
     rs.objects.each do |a|
       a.graph=page
-      puts "Found airport code: #{a}" if (a.to_s =~ /\S/) 
+      puts "AIRPORT: #{a} (found an airport code)" if (a.to_s =~ /\S/) 
     end					# the 'if' is fix for parser bug
   end
-
-
       
   loopstats = Proc.new do |uri,s|
-    puts "init: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{uri}"
+    puts "INIT: s.left.size=#{s.left.size} s.seen.size=#{s.seen.size} current: #{uri}"
   end
 
   error_logger = Proc.new {|e| puts "ERROR: #{e}" }
@@ -66,6 +64,27 @@ def go(uri)
   ayf.run  # set it going! our handlers will get called for each RDF doc
 
 end 
+
+
+  def gotpic(pic,u="")
+    #    return '' if $pic =~ m/mpg/i; 
+    #    return '' if $pic =~ m/svg/i; # nasty; but inline SVG doesn't work 
+    pic=pic.to_s # warn if a non-string object, or just deal?
+    return if (!pic =~ /\S/) #bug in Liber RDF parser.
+    if (@seenpic[pic]==0) # here we're using a counter for times seen
+
+      @out += "<img src='#{pic}'   width='128' height='128' />" 
+      @out += "<!-- from #{u} -->\n\n"
+
+    else
+      # puts "gotpic: already seen #{pic} "
+    end
+    @seenpic[pic]=@seenpic[pic]+1
+    return ""
+  end
+
+
+
 
 #############################################################################
 #############################################################################
@@ -163,7 +182,7 @@ class SimpleScutter
       end
 
 
-
+ 
 
 
     #############################################################
@@ -240,29 +259,10 @@ end
       begin
         return RDF4R::Driver::XMLParser.process(file, base_uri, consumer)
       rescue Exception 
-        puts "Expat setup error. error: #{$!}"
+        raise "Expat setup error. url=#{base_uri} error: #{$!}"
       end
     end
   end
-
-
-  def gotpic(pic,u="")
-    #    return '' if $pic =~ m/mpg/i; 
-    #    return '' if $pic =~ m/svg/i; # nasty; but inline SVG doesn't work 
-    pic=pic.to_s # warn if a non-string object, or just deal?
-    return if (!pic =~ /\S/) #bug in Liber RDF parser.
-    if (@seenpic[pic]==0) # here we're using a counter for times seen
-
-      @out += "<img src='#{pic}'   width='128' height='128' />" 
-      @out += "<!-- from #{u} -->\n\n"
-
-    else
-      # puts "gotpic: already seen #{pic} "
-    end
-    @seenpic[pic]=@seenpic[pic]+1
-    return ""
-  end
-
 
 
 
@@ -289,9 +289,10 @@ end
     begin 
     resp, data = h.get(res, my_headers)
     rescue
-      puts "rdfget: HTTP GET failed. Returning empty graph. error:#{$!} "
-      # fixme: should raise an error?
-      return rdfdata
+       errorhandlers.each do |handler|
+         handler.call "rdfget: HTTP GET failed. Returning empty graph. error:#{$!}"
+       end
+       return rdfdata
     end
 
     # puts "Got data: #{data.inspect} from host:#{host} res:#{res} uri:#{uri}\n\n"
