@@ -25,3 +25,7 @@ rssfeed:	home.rss
 home.rss:
 	$(XSLT) --param Base $(BASE) --param Page $(PAGE)  \
          --param Channel $(CHANNEL) $(H2R) $(HTML) > news/home.rss
+
+
+find:
+	find . -name \*html  -exec echo {} \; -exec grep yahoo {} \;
