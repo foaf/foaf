@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: webutil.rb,v 1.5 2002-07-11 17:25:56 danbri Exp $
+# $Id: webutil.rb,v 1.6 2002-07-11 18:20:24 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -45,33 +45,42 @@ end
 
 # given a local RDF file (cached, in effect, parse and load)
 # todo: * pass in datasource info
-def scutter_local (file, base_uri='', cache_dir='./' )
+def scutter_local (file, base_uri, opts={})
 
+  # config info
+  cache_dir = opts['cache-dir']
+  use_xslt= opts['use-xslt'] 
+  #use_xslt = false if use_xslt == nil
+ 
+  nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt" # normal home for ntriples
 
-
-  ## CONFIG INFO (TODO: move this elsewhere)
+  puts "Local: #{cache_dir} file: #{file} xslt: #{use_xslt} "
+ 
+  ## CONFIG INFO (TODO: move this into options {}
   ##
   dbname='rdfweb1'                # database name
   dbi_driver = 'DBI:Pg:'+dbname   # DBI driver 
   dbi_user = 'danbri'		    # user
   dbi_pass=''	                    # autho
-  #  puts "scutter_local: file=#{file} with base=#{base_uri} :"
-  pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
-  # puts pmsg
+
+  # Run Redland/Repat parser
   #
-  #  puts "\n\nPARSER_#5:\n\n"
+  pmsg=`rdfdump -q -r -o ntriples 'file:#{cache_dir}webcache/rdf-#{file}.rdf'  '#{base_uri}' > '#{cache_dir}webcache/_nt/rdf-#{file}.nt'`
 
-# this is wrong, especially for a library.
-# quick hack for debugging the xslt parser.
 
-  p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf'`
-  p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt'`
-  puts "\n==#5\n\n"
-  
-  #../../xsltrdf/rdfc14n.xsl
-  #../../xsltrdf/rdfc2nt.xsl
 
-  nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"
+  # NOTE: *plug in alternate RDF parsers here*
+  # (yes, this isn't as configurable as it should be)
+
+
+  if use_xslt 
+    puts "\n\nRunning XSLT PARSER_#5:\n\n"
+    p5_msg_c = `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf'`
+    p5_msg = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl'   '#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf' > '#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt'`
+    nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.p5.nt"    
+    puts "\n==#5\n\n"
+  end 
+
   puts "N-Triples cache: #{nt_cache}"
   parsed_ok = (pmsg=='')
   graph = nil
@@ -79,15 +88,12 @@ def scutter_local (file, base_uri='', cache_dir='./' )
   if  parsed_ok   
     graph = Loader.ntfile2graph( nt_cache )
     sql_inserts = graph.toSQLInserts ("uri=#{file}")
- 
-    # puts "GOT SQL: #{sql_inserts} \n\n====\n\n"
+     # puts "GOT SQL: #{sql_inserts} \n\n====\n\n"
     if !sql_inserts.empty?
       puts "updating query server."
       DBI.connect ( dbi_driver, dbi_user, dbi_pass ) do |dbh|
-
         # clean out last triples from this src
         # TODO: this risky? make sure won't accidentially zap the db.
-        #
         puts "-  #dbi.do delete from triples where assertid = 'uri=#{file}';"
         begin 
           dbh.do "delete from triples where assertid = 'uri=#{file}';"
@@ -95,7 +101,6 @@ def scutter_local (file, base_uri='', cache_dir='./' )
           puts "DBI: Error in sql delete, msg: #{$!}"
         end
         puts "+"
-
         sql_inserts.each do |sql_insert|
           begin 
             print '.'
@@ -113,34 +118,23 @@ def scutter_local (file, base_uri='', cache_dir='./' )
   else 
     puts "Error parsing: #{pmsg}"
   end
-
-   ### stopgap
-
-#    sql_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.sql"
-#    if File::exists? sql_cache 
-#      File::delete sql_cache
-#    end
-#    mf = File::new(sql_cache, File::CREAT|File::RDWR, 0644)
-#    mf.puts sql_script
-#    mf.close
-#    `cat #{sql_cache} | psql rdfweb1`
-   ### end stopgap
-
   return graph
 end
 
 def scutter_remote (uri, base=uri, cache_dir='./', proxy=true)
-  puts "Scuttering remote: #{uri}"
 
-  #### PROXY SETTINGS
   proxy_addr = 'cache-edi.cableinet.co.uk'
   proxy_port = 8080
 
-  #######################################
+  if uri =~ /^\[/
+    puts "Warning, bNode URI."
+    return nil
+  end
 
   uri_hash = hashcodeIntFromString(uri)
+
   uri =~ /:\/\/([^\/]+)(\/.*)$/
-  #  puts "Host: #{$1} Resource: #{$2} "
+
   h = Net::HTTP::new $1 
 
   begin 
@@ -225,8 +219,6 @@ def raa_load
     file.gsub!("^raa-dump/","")
     sb= `sabcmd soap2rdf.xsl 'raa-dump/#{file}' > 'web_cache/#{file}.rdf' 2>&1`
     # todo: add .meta files
-    
-
     if ! (sb =~ /\w/)  
     scutter_local(file, 'http://www.ruby-lang.org/xmlns/raa/test1-ns#', './')
     else
@@ -238,7 +230,12 @@ end
 ####
 
 
-def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cache_dir= './', crawl=true, proxy=true)
+def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cache_dir= './', crawl=true,proxy=true, opts ={} )
+
+  if !opts['cache-dir']
+    opts['cache-dir']='./' 
+  end
+
   rdfs = 'http://www.w3.org/2000/01/rdf-schema#'	
   wot = 'http://xmlns.com/wot/0.1/'	
   done = {}
@@ -251,7 +248,7 @@ def scutter (todo = ['http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'], cach
     end
 
     if (fetched != nil)
-      loaded = scutter_local(fetched, uri)
+      loaded = scutter_local(fetched, uri, opts )
       seeAlso = loaded.ask(Statement.new(nil,rdfs+'seeAlso',nil) ).objects
       # puts "SeeAlso: #{seeAlso.inspect} " if !seeAlso.empty?
       seeAlso.each do |doc|

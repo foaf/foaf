@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # 
 # Scutter, an RDF harvesting and indexing program.
-# $Id: scutter,v 1.3 2002-07-11 13:10:46 danbri Exp $
+# $Id: scutter,v 1.4 2002-07-11 18:20:24 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -37,13 +37,14 @@ opt = GetoptLong.new (
     ['--server','-s', GetoptLong::OPTIONAL_ARGUMENT],
     ['--diskdb','-d', GetoptLong::REQUIRED_ARGUMENT],
     ['--lowercase-domains','-l', GetoptLong::NO_ARGUMENT],
+    ['--use-xslt','-u', GetoptLong::NO_ARGUMENT],
     ['--realwhitelist','-r', GetoptLong::REQUIRED_ARGUMENT],
     ['--export', '-x', GetoptLong::OPTIONAL_ARGUMENT] )
 
 
 proxy=true
 crawl=true
-
+opts  = {}
 
 # note: I moved all the smarts out into webutil.rb
 # this needs re-arranging. the robot stuff should be separated from 
@@ -52,14 +53,22 @@ crawl=true
 # curently, there's nothing much here.
 
 
+
 opt.each_option do |name,arg|
-case name
+  case name
+  when '--noproxy'
+    proxy=false
+    opts['proxy'] = false
 
-when '--noproxy'
-  proxy=false
+  when '--nocrawl'
+    crawl=false
+    opts['crawl'] = false
 
-when '--nocrawl'
-  crawl=false
+  when '--use-xslt'
+    opts['use-xslt'] = true
+
+
+
 
 when '--scutter'
 
@@ -71,8 +80,10 @@ when '--scutter'
   else 
     todolist.push 'http://rdfweb.org/people/danbri/rdfweb/webwho.xrdf'
   end
+ 
 
-  scutter (todolist, './', crawl, proxy)
+  puts "Running harvester with options: #{opts.inspect}\n"
+  scutter (todolist, './', crawl, proxy, opts )
 
 
   #  scutter [ ' http://jibbering.com/rdfsvg/1025083477768.rdf' ]
