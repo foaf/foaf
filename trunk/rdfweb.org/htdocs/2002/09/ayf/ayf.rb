@@ -1,12 +1,7 @@
 #!/usr/bin/env ruby
 #
-
-# HEALTH WARNING: This version I'm checking in is BROKEN. 
-# -- the loop/control/seen stuff is hosed. sorry.
-
-
 # ayf.rb 
-# $Id: ayf.rb,v 1.7 2002-12-10 02:30:40 danbri Exp $
+# $Id: ayf.rb,v 1.8 2002-12-10 10:52:49 danbri Exp $
 # AllYerFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
