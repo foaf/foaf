@@ -1,0 +1,67 @@
+
+12 Step Programme 
+
+RDFWEb Scutter HOWTO / developer roadmap
+
+
+(1) Load some RDF file from URL into an RDF database
+
+(2) ...and check for rdfs:seeAlso properties
+
+(3) ...and load those files too (and repeat, eg. twice)
+
+(4) Use some RDF API to make HTML/Web interface to 
+    this data, eg. representing people, documents, 
+    organisations, photos etc. described in the RDF.
+    
+
+(5) Implement some 'smushing' techniques to defragment
+    the data, ie. folding together different
+descriptions of the same thing by 
+knowing which RDF properties are uniquely identifying
+(ie. 'UnambiguousProperties'). Encourage your RDF
+toolkit/database vendor or opensource project to ship
+such facilities as standard (showing a running app may
+help).
+
+(6) Implement some provenance-tracking facilities, so
+that for each scuttered / indexed RDF document, your
+database system knows how/where the data was acquired.
+Record the means of acquisition (URI dereference, mail
+mid: etc), parameters (HTTP content negotiation etc),
+date and time. Check digital signature of document if 
+relevant, recording fingerprint of signing key.
+Encourage your RDF toolkit/database vendor or opensource 
+project to ship such facilities as standard (showing a
+running app may help).
+
+(7) Improve the HTML/WWW interface to exploit
+any additional information (6) provides. Take care to
+offer mechanisms that allow information to be
+removed/hidden if people ask, and to respect relevant
+data protection laws.
+
+(8) Add some more gadgets to the user interface, such as 
+foaf:humanGenomeChecksum, foaf:geekCode,
+foaf:archNemesis and other follies.
+
+(9) Improve the smushing to user smarter heuristics,
+like collections of properties which when taken together
+are uniquely identifying. Have the system read its
+config from these from the Web. Encourage your
+toolkit/database friends to provide these as standard,
+if you can show them to be useful.
+
+(10) Implement some interesting bits of the DAML+OIL or
+WebOnt: inverseProperty, UniqueProperty. And
+rdfs:subPropertyOf, rdfs:subClassOf, rdf:member etc from
+RDF/RDFS. Enjoy.
+
+(11) Implement substring based searching, phrase search
+etc., by writing out text files that Z39.50 or other 
+digital library indexing tools can use. Integrate these 
+as backends behind an RDF API.
+
+(12) See if it scales.
+
+
