@@ -8,9 +8,9 @@ public class People
   ArrayList people;
   ArrayList online;
   
-  RendTest controller;
+  FoafFingerController controller;
 
-  public People(RendTest controller)
+  public People(FoafFingerController controller)
   {
     this.controller = controller;
 

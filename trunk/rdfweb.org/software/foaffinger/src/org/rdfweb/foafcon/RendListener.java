@@ -8,7 +8,7 @@ public class RendListener implements ServiceListener
 {
   RendTest controller;
     
-  public RendListener(RendTest controller)
+  public RendListener(FoafFingerController controller)
   {
     this.controller = controller;
   }

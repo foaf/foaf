@@ -8,7 +8,7 @@ import java.net.*;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
-public class RendTest
+public class FoafFingerController
 {
   final static String type = "_foafcon._tcp.local.";
   Person person;
@@ -25,18 +25,18 @@ public class RendTest
     
   public static void main(String[] args)
   {
-    RendTest rt = new RendTest(args);
+    FoafFingerController rt = new FoafFingerController(args);
 
     rt.start();
   }
 
-  public RendTest(String[] args)
+  public FoafFingerController(String[] args)
   {
     if (args.length < 2)
       {
 	System.
 	  err.
-	  println("Usage: RendTest <name> <mailbox> " +
+	  println("Usage: FoafFinger <name> <mailbox> " +
 		  "[<address>]");
 	System.exit(1);
       }
