@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.MessageBox;
 
 /**
  * @author pldms
@@ -58,6 +59,7 @@ public class GUI extends ApplicationWindow
 	private Button revertButton;
 	private Button changeButton;
 	private Button showMboxButton;
+    private Button moreInfoButton;
 
     public GUI(FoafFingerController controller)
 	{
@@ -235,21 +237,22 @@ public class GUI extends ApplicationWindow
 		
 		tabItem.setText("Local Network");
 		
-		SashForm sash = new SashForm(tabFolder, SWT.HORIZONTAL);
+		container = new Composite(tabFolder, SWT.NONE);
 		
-		tabItem.setControl(sash);
-	    
-		table = new Table(sash, SWT.CHECK | SWT.H_SCROLL | 
-				  SWT.V_SCROLL);
-		table.addSelectionListener(this);
-		
-		
-		
-		container = new Composite(sash, SWT.NONE);
 		layout = new GridLayout();
 		layout.numColumns = 2;
-		
+
 		container.setLayout(layout);
+		
+		tabItem.setControl(container);
+	    
+		table = new Table(container, SWT.CHECK | SWT.H_SCROLL | 
+				  SWT.V_SCROLL);
+		table.addSelectionListener(this);
+		layoutData = new GridData(GridData.FILL_VERTICAL);
+		layoutData.verticalSpan = 14;
+		layoutData.widthHint = 200;
+		table.setLayoutData(layoutData);
 		
 		label = new Label(container, SWT.NONE);
 		label.setText("Name:");
@@ -290,6 +293,10 @@ public class GUI extends ApplicationWindow
 		    new GridData(GridData.FILL_HORIZONTAL);
 		layoutData.widthHint = 200;
 		seeAlsoText.setLayoutData(layoutData);
+
+		moreInfoButton = new Button(container, SWT.PUSH);
+		moreInfoButton.setText("More Information...");
+		moreInfoButton.addSelectionListener(this);
 		
 		return composite;
 	}
@@ -381,6 +388,15 @@ public class GUI extends ApplicationWindow
 				System.err.println("Error kicking service: " + e.getMessage());
 			}
 		}
+		else if (widget == moreInfoButton)
+		    {
+			MessageBox message = 
+			    new MessageBox(getShell(),
+					   SWT.OK | SWT.ICON_INFORMATION);
+			
+			message.setMessage("This is some\ninformation");
+			message.open();
+		    }
 		else
 		{
 			System.out.println("Table selection...");
