@@ -17,15 +17,16 @@ public class RDFToolbar extends NSObject {
     
     QueryController queryController;
     BookmarkController bookmarkController;
+    RDFModelView rdfModelView;
     
-    static String identifier = "rdf Toolbar";
-    static String editToolsIdentifier = "edit tools identifier";
-    static String showToolsIdentifier = "show tools identifier";
-    static String checkIdentifier = "check model identifier";
-    static String toggleViewsIdentifier = "toggle view identifier";
-    static String previewPopupIdentifier = "preview popup identifier";
-    static String queryPanelIdentifier = "query panel identifier";
-    static String bookmarkPanelIdentifier = "bookmark panel identifier";
+    static final String identifier = "rdf Toolbar";
+    static final String editToolsIdentifier = "edit tools identifier";
+    static final String showToolsIdentifier = "show tools identifier";
+    static final String checkIdentifier = "check model identifier";
+    static final String toggleViewsIdentifier = "toggle view identifier";
+    static final String previewPopupIdentifier = "preview popup identifier";
+    static final String queryPanelIdentifier = "query panel identifier";
+    static final String bookmarkPanelIdentifier = "bookmark panel identifier";
     
     boolean textPreview = false;
     String[] popupMappings;
@@ -189,30 +190,27 @@ public class RDFToolbar extends NSObject {
     
     public void selectMoveMode(Object sender)
     {
-        rdfAuthorDocument.addNodes(false);
-        rdfAuthorDocument.addArcs(false);
-        rdfAuthorDocument.deleteItems(false);
-        rdfAuthorDocument.markQueryItems(false);
+        rdfModelView.setEditingMode( RDFModelView.MoveSelectMode );
     }
     
     public void selectAddNodeMode(Object sender)
     {
-        rdfAuthorDocument.addNodes(true);
+        rdfModelView.setEditingMode( RDFModelView.AddNodeMode );
     }
     
     public void selectAddArcMode(Object sender)
     {
-        rdfAuthorDocument.addArcs(true);
+        rdfModelView.setEditingMode( RDFModelView.AddConnectionMode );
     }
     
     public void selectDeleteMode(Object sender)
     {
-        rdfAuthorDocument.deleteItems(true);
+        rdfModelView.setEditingMode( RDFModelView.DeleteItemsMode );
     }
     
     public void selectMarkQueryMode(Object sender)
     {
-        rdfAuthorDocument.markQueryItems(true);
+        rdfModelView.setEditingMode( RDFModelView.AddQueryItemMode );
     }
     
     public void showTypes(NSButton sender)

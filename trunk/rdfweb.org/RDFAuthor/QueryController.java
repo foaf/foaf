@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.security.MessageDigest;
 
 public class QueryController extends NSObject {
 
@@ -16,6 +17,8 @@ public class QueryController extends NSObject {
     NSTableView resultTable;
 
     NSComboBox serviceComboButton;
+    
+    NSButton queryButton;
 
     RDFAuthorDocument rdfAuthorDocument;
     
@@ -25,15 +28,22 @@ public class QueryController extends NSObject {
 
     ArrayList queryObjects = new ArrayList();
     
-    HashMap varToObject;
-    HashMap objectToVar;
-    ArrayList variableList;
-    
     QueryResultSource resultSource;
     QueryThread queryThread = null;
     
-    public void performQuery(Object sender) 
+    public void performQuery(NSButton sender) 
     {
+        if (queryThread != null) // Query already running
+        {
+            NSSelector killSelector = new NSSelector("killQuery", 
+                new Class[] {Object.class, int.class} );
+            NSAlertPanel.beginAlertSheet(
+                "Kill Current Query?", "OK", "Cancel", null,
+                queryDrawer.parentWindow(), this, killSelector, null, queryDrawer.parentWindow(), 
+                "Do you really want to kill the current query?");
+            return;
+        }
+        
         if (queryObjects.isEmpty())
         {
             RDFAuthorUtilities.ShowError(
@@ -44,7 +54,9 @@ public class QueryController extends NSObject {
             return;
         }
         
-        String query = constructQuery(rdfAuthorDocument.rdfModel);
+        HashMap varToObject = new HashMap();
+        
+        String query = constructQuery(rdfAuthorDocument.rdfModel, varToObject);
         String database = serviceComboButton.stringValue().trim();
         
         if (database.equals(""))
@@ -56,25 +68,16 @@ public class QueryController extends NSObject {
             return;
         }
         
-        if (queryThread != null) // Query already running
-        {
-            NSSelector killSelector = new NSSelector("killQuery", 
-                new Class[] {Object.class, int.class} );
-            NSAlertPanel.beginAlertSheet(
-                "Kill Current Query?", "OK", "Cancel", null,
-                queryDrawer.parentWindow(), this, killSelector, null, queryDrawer.parentWindow(), 
-                "Performing this query will kill the current query. Is what you want to do?");
-            return;
-        }
-        
         System.out.println("Query to perform is:");
         System.out.println(query);
         
         infoTextField.setStringValue("Performing query...");
         
-        queryThread = new QueryThread(query, database, this);
+        queryThread = new QueryThread(query, database, varToObject, this);
         
         queryThread.start();
+        
+        queryButton.setTitle("Kill");
     }
     
     public void killQuery(Object context, int returnCode)
@@ -84,15 +87,22 @@ public class QueryController extends NSObject {
             if (queryThread != null) // check that it didn't finish before response
             {
                 System.out.println("Killing current thread...");
-                queryThread.stop(); // Very bad - but I can't do anything about it currently
+                // currently there is no way to stop the thread safely
+                // or (indeed) tell the server to give up. We just forget about it :-(
+                // queryThread.stop();
                 queryThread = null;
+                infoTextField.setStringValue("");
+                queryButton.setTitle("Query");
             }
-            performQuery(null); // Try again
         }
     }
     
-    public void queryDied(Exception e)
+    public void queryDied(QueryThread sender, Exception e)
     {
+        // Since I can't kill threads safely better make sure this is the query I want
+        
+        if (sender != queryThread) return;
+        
         RDFAuthorUtilities.ShowError(
             "Error Making Query", "There was an error making the query.\nUseful error text:\n" + e, 
             RDFAuthorUtilities.Critical, 
@@ -102,11 +112,18 @@ public class QueryController extends NSObject {
         NSApplication.beep(); // Since these can take a while I'll beep
         
         queryThread = null;
+        
+        queryButton.setTitle("Query");
     }
         
-    public void queryCompleted()
+    public void queryCompleted(QueryThread sender)
     {
+        // Since I can't kill threads safely better make sure this is the query I want
+        
+        if (sender != queryThread) return;
+        
         ArrayList rows = queryThread.result();
+        HashMap varToObject = queryThread.variableToObjectMapping();
         
         NSApplication.beep(); // Since these can take a while I'll beep
         
@@ -117,15 +134,20 @@ public class QueryController extends NSObject {
                 queryDrawer.parentWindow());
             infoTextField.setStringValue("Last query returned nothing.");
             queryThread = null;
+            queryButton.setTitle("Query");
+            
             return;
         }
         
-        infoTextField.setStringValue("Query took " + queryThread.duration() + " seconds. " + rows.size() + 
+        infoTextField.setStringValue("Query took " 
+            + queryThread.duration() + " seconds. " + rows.size() + 
             " results returned.");
         
-        createResultsTable(rows);
+        createResultsTable(rows, varToObject);
         
         queryThread = null;
+        
+        queryButton.setTitle("Query");
     }
     
     public void addQueryItem(ModelItem item)
@@ -194,15 +216,12 @@ public class QueryController extends NSObject {
         queryDrawer.toggle(this);
     }
     
-    public String constructQuery(ArcNodeList model)
+    public String constructQuery(ArcNodeList model, HashMap varToObject)
     {
         int varNum = 1;
         
-        // First create mappings between variables and objects
-        
-        varToObject = new HashMap();
-        objectToVar = new HashMap();
-        variableList = new ArrayList();
+        HashMap objectToVar = new HashMap();
+        ArrayList variableList = new ArrayList();
         HashMap nodeToString = new HashMap();
         ArrayList triples = new ArrayList();
         Iterator iterator = queryObjects.listIterator();
@@ -323,7 +342,7 @@ public class QueryController extends NSObject {
         return queryString;
     }
     
-    public void createResultsTable(ArrayList rows)
+    public void createResultsTable(ArrayList rows, HashMap varToObject)
     {
         // First - remove all columns
         
@@ -335,7 +354,7 @@ public class QueryController extends NSObject {
         }
         
         // Next - create new columns and add them to the table
-        for (ListIterator iterator = variableList.listIterator(); iterator.hasNext();)
+        for (Iterator iterator = varToObject.keySet().iterator(); iterator.hasNext();)
         {
             String identifier = (String) iterator.next();
             NSTableColumn col = new NSTableColumn(identifier);
@@ -346,18 +365,13 @@ public class QueryController extends NSObject {
         
         // Now create the result source for the table
         
-        resultSource = new QueryResultSource(rows);
+        resultSource = new QueryResultSource(rows, varToObject);
         
         resultTable.setDataSource(resultSource);
         resultTable.reloadData();
     }
     
     // Delegate methods are here
-    
-    public boolean tableViewShouldSelectTableColumn( NSTableView aTableView, NSTableColumn aTableColumn)
-    {
-        return false; // Don't allow table column selection
-    }
 
     public void tableViewSelectionDidChange(NSNotification aNotification)
     {
@@ -366,6 +380,7 @@ public class QueryController extends NSObject {
         if (selectedRow == -1) return; // nothing selected
         
         HashMap row = resultSource.getRow(selectedRow);
+        HashMap varToObject = resultSource.variableToObjectMapping();
         
         for (Iterator iterator = row.keySet().iterator(); iterator.hasNext(); )
         {

@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.AbstractList;
+import java.util.HashMap;
 import java.io.StringWriter;
 import java.io.*;
 import java.net.URL;
@@ -237,6 +238,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     {
         Model memModel=new ModelMem();
         String rdfReturned = null;
+        HashMap nodeToJenaNode = new HashMap();
         
         // Wrap this in one big try/catch
         
@@ -250,27 +252,27 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 if (node.isLiteral())
                 {
                     String id = (node.id() == null)?"":node.id();
-                    node.setJenaNode(memModel.createLiteral(id));
+                    nodeToJenaNode.put(node, memModel.createLiteral(id));
                 }
                 else
                 {
                     if ((node.id() == null) && (node.typeNamespace() == null))
                     {
-                        node.setJenaNode( memModel.createResource() );
+                        nodeToJenaNode.put(node, memModel.createResource() );
                     }
                     else if (node.typeNamespace() == null)
                     {
-                        node.setJenaNode(memModel.createResource( node.id() ));
+                        nodeToJenaNode.put(node, memModel.createResource( node.id() ));
                     }
                     else if (node.id() == null)
                     {
                         Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                        node.setJenaNode( memModel.createResource( type ) );
+                        nodeToJenaNode.put(node, memModel.createResource( type ) );
                     }
                     else
                     {
                         Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
-                        node.setJenaNode( memModel.createResource( node.id(), type ) );
+                        nodeToJenaNode.put(node, memModel.createResource( node.id(), type ) );
                     }
                 }
             }
@@ -283,13 +285,13 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                 
                 Property property = memModel.createProperty( arc.propertyNamespace() +
                         arc.propertyName() );
-                memModel.add((Resource) arc.fromNode().jenaNode(), 
-                        property, arc.toNode().jenaNode() );
+                memModel.add( (Resource) nodeToJenaNode.get( arc.fromNode() ), 
+                        property, (RDFNode) nodeToJenaNode.get( arc.toNode() ) );
             }
             
             StringWriter stringOutput = new StringWriter();
             
-            memModel.write(stringOutput, outputType); //"RDF/XML-ABBREV");
+            memModel.write(stringOutput, outputType);
             
             rdfReturned = stringOutput.toString();
         }

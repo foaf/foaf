@@ -12,6 +12,7 @@
 import org.apache.axis.client.ServiceClient;
 import java.util.ArrayList;
 import java.lang.Thread;
+import java.util.HashMap;
 
 public class QueryThread extends Thread {
     
@@ -20,12 +21,15 @@ public class QueryThread extends Thread {
     String endpoint="http://swordfish.rdfweb.org:8080/axis/servlet/AxisServlet";
     String query = null;
     String database = null;
+    HashMap varToObject;
     long duration;
     
-    public QueryThread(String query, String database, QueryController owner)
+    public QueryThread(String query, String database, HashMap varToObject, 
+            QueryController owner)
     {
         this.query = query;
         this.database = database;
+        this.varToObject = varToObject;
         this.owner = owner;
     }
     
@@ -46,10 +50,10 @@ public class QueryThread extends Thread {
         }
         catch (Exception e)
         {
-            owner.queryDied(e);
+            owner.queryDied(this, e);
         }
         
-        owner.queryCompleted();
+        owner.queryCompleted(this);
     }
 
     public ArrayList result()
@@ -60,6 +64,11 @@ public class QueryThread extends Thread {
     public double duration()
     {
         return (double) duration/1000d;
+    }
+    
+    public HashMap variableToObjectMapping()
+    {
+        return varToObject;
     }
     
 }

@@ -29,10 +29,6 @@ public class RDFAuthorDocument extends NSDocument {
     
     HashMap exportMappings;
     
-    boolean addingNode;
-    boolean addingConnection;
-    boolean deleting;
-    boolean markQueryObjects =  false;
     boolean showTypes;
     boolean showIds;
     boolean showProperties;
@@ -109,8 +105,7 @@ public class RDFAuthorDocument extends NSDocument {
                 // Ugh 
                 NSMutableStringReference rdfString = new NSMutableStringReference();
                 rdfString.setString(rdfData);
-                return rdfString.dataUsingEncoding(
-                    NSStringReference.UTF8StringEncoding, false);
+                return rdfString.dataUsingEncoding(NSStringReference.UTF8StringEncoding, false);
             }
         }
         else
@@ -223,14 +218,6 @@ public class RDFAuthorDocument extends NSDocument {
         exportMappings.put("RDF/XML Document", "RDF/XML-ABBREV");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         exportMappings.put("N3 Document", "N3");
-        
-        // Get notifications from the Schema Window
-        
-        NSSelector schemaChanged = new NSSelector("schemaSelectionChanged", 
-                new Class[] {NSNotification.class} );
-                
-        NSNotificationCenter.defaultCenter().addObserver(
-            this, schemaChanged, SchemaWindowController.schemaItemChangedNotification , null);
     }
     
     public void setPrintInfo(NSPrintInfo printInfo)
@@ -250,16 +237,16 @@ public class RDFAuthorDocument extends NSDocument {
             {
                 return false;
             }
-            NSRect rect = rdfModelView.frame();
+            NSRect rect = rdfModelScrollView.frame();
             previewView.setFrame(rect);
-            window.contentView().replaceSubview(rdfModelView, previewView);
+            window.contentView().replaceSubview(rdfModelScrollView, previewView);
             return true;
         }
         else
         {
             NSRect rect = previewView.frame();
             rdfModelView.setFrame(rect);
-            window.contentView().replaceSubview(previewView, rdfModelView);
+            window.contentView().replaceSubview(previewView, rdfModelScrollView);
             return true;
         }
     }
@@ -321,77 +308,6 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModel.showProperties(value);
     }
 
-    public void addNodes(boolean addThem) 
-    {
-        if (addThem)
-        {
-            addingConnection = false;
-            rdfModelView.addConnection(false);
-            rdfModelView.deleteMode(false);
-            textDescriptionField.setStringValue("Click to place a new node");
-            addingNode = true;
-            rdfModelView.addNode(true);
-        }
-        else
-        {
-            addingNode = false;
-            rdfModelView.addNode(false);
-            textDescriptionField.setStringValue("");
-        }
-    }
-
-    public void addArcs(boolean addThem)
-    {
-        if (addThem)
-        {
-            rdfModelView.addConnection(true);
-            rdfModelView.addNode(false);
-            rdfModelView.deleteMode(false);
-            addingConnection = true;
-            textDescriptionField.setStringValue("Drag between two nodes to connect");
-        }
-        else
-        {
-            addingConnection = false;
-            rdfModelView.addConnection(false);
-            textDescriptionField.setStringValue("");
-        }
-    }
-    
-    public void deleteItems(boolean delete)
-    {
-        if (delete)
-        {
-            rdfModelView.deleteMode(true);
-            rdfModelView.addConnection(false);
-            rdfModelView.addNode(false);
-            textDescriptionField.setStringValue("Click on items to remove them from the model");
-        }
-        else
-        {
-            deleting = false;
-            rdfModelView.deleteMode(false);
-            textDescriptionField.setStringValue("");
-        }
-    }
-    
-    public void markQueryItems(boolean markThem)
-    {
-        if (markThem)
-        {
-            rdfModelView.deleteMode(false);
-            rdfModelView.addConnection(false);
-            rdfModelView.addNode(false);
-            textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
-            markQueryObjects = true;
-        }
-        else
-        {
-            markQueryObjects = false;
-            textDescriptionField.setStringValue("");
-        }
-    }
-    
     public void showInfoForObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfModel.objectAtPoint(point);
@@ -402,7 +318,6 @@ public class RDFAuthorDocument extends NSDocument {
                 new NSNotification(InfoController.showInfoNotification, null) );
         }
     }
-
     
     public void deleteObjectAtPoint(NSPoint point)
     {
@@ -465,16 +380,14 @@ public class RDFAuthorDocument extends NSDocument {
     public void setCurrentObjectAtPoint(NSPoint point)
     {
         ModelItem item = rdfModel.objectAtPoint(point);
-        
-        if (markQueryObjects)
-        {
-            queryController.addQueryItem(item);
-            rdfModelView.setNeedsDisplay(true);
-        }
-        else
-        {
-            rdfModel.setCurrentObject(item);
-        }
+        rdfModel.setCurrentObject(item);
+    }
+    
+    public void addQueryItemAtPoint(NSPoint point)
+    {
+        ModelItem item = rdfModel.objectAtPoint(point);
+        queryController.addQueryItem(item);
+        rdfModelView.setNeedsDisplay(true);
     }
     
     public void selectNextObject()
@@ -548,33 +461,13 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModel.checkModel(errorData);
     }
     
-    // Schema window selection changed
-    
-    public void schemaSelectionChanged(NSNotification notification)
+    public void setClassPropertyDefaults(String classNamespace, String className, 
+            String propertyNamespace, String propertyName)
     {
-        SchemaItem item = (SchemaItem) notification.object();
-        
-        if (item.type() == null)
-        {
-            defaultPropertyNamespace = null;
-            defaultPropertyName = null;
-            defaultClassNamespace = null;
-            defaultClassName = null;
-        }
-        else if (item.type().equals(SchemaData.ClassPboardType)) // it's a class
-        {
-            defaultPropertyNamespace = null;
-            defaultPropertyName = null;
-            defaultClassNamespace = item.namespace();
-            defaultClassName = item.name();
-        }
-        else if (item.type().equals(SchemaData.PropertyPboardType)) // it's a property
-        {
-            defaultPropertyNamespace = item.namespace();
-            defaultPropertyName = item.name();
-            defaultClassNamespace = null;
-            defaultClassName = null;
-        }
+        defaultPropertyNamespace = propertyNamespace;
+        defaultPropertyName = propertyName;
+        defaultClassNamespace = classNamespace;
+        defaultClassName = className;
     }
-    
+
 }

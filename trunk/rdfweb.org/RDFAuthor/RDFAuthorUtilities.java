@@ -20,11 +20,12 @@ public class RDFAuthorUtilities {
     
     // The following is for error panels so that I can have cool sheets
     // (the advantage being that they don't interupt the user too much)
-    // If there is no window (eg when loading fails) I use a modal panel
+    // If there is no window (eg when loading fails) or the window is not visible
+    // I use a modal panel.
     
     public static void ShowError(String errorTitle, String errorText, int type, NSWindow window)
     {
-        if (window == null)
+        if ((window == null) || (!window.isVisible()))
         {
             switch (type)
             {

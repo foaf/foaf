@@ -20,8 +20,8 @@ public class SchemaData {
     SchemaItem classesList;
     SchemaItem propertiesList;
     
-    static String ClassPboardType = "org.rdfweb.RDFAuthor.class";
-    static String PropertyPboardType = "org.rdfweb.RDFAuthor.property";
+    static final String ClassPboardType = "org.rdfweb.RDFAuthor.class";
+    static final String PropertyPboardType = "org.rdfweb.RDFAuthor.property";
     
     public SchemaData()
     {

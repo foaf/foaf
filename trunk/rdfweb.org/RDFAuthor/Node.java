@@ -9,12 +9,6 @@ import java.util.ArrayList;
 import java.util.AbstractList;
 import java.io.*;
 
-import com.hp.hpl.mesa.rdf.jena.model.*;
-import com.hp.hpl.mesa.rdf.jena.mem.*;
-import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
-import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
-import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
-
 public class Node extends ModelItem implements Serializable
 {
     static final long serialVersionUID = 8496964442985450307L;
@@ -28,7 +22,6 @@ public class Node extends ModelItem implements Serializable
     boolean literal;
     boolean showType = false;
     boolean showId = false;
-    RDFNode jenaNode;
     
     NSPoint position;
     NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 1F, 0F, 0.5F);
@@ -93,16 +86,6 @@ public class Node extends ModelItem implements Serializable
 	defaultSize = new NSSize(20,20);
         
         calculateSize();
-    }
-    
-    public void setJenaNode(RDFNode theNode)
-    {
-        jenaNode = theNode;
-    }
-    
-    public RDFNode jenaNode()
-    {
-        return jenaNode;
     }
     
     public NSRect rect()

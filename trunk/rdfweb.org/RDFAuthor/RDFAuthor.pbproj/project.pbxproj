@@ -463,6 +463,10 @@
 				F6C639C90196E11A01000211,
 				F6BC47EE0196F7B601000211,
 				F67460C001A1BB7801000211,
+				F629131501A475A501000211,
+				F629131901A475CE01000211,
+				F629131A01A475CE01000211,
+				F629131B01A475CE01000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -643,6 +647,10 @@
 		};
 		F6167DD9017A0A9401000211 = {
 			children = (
+				F629131401A475A501000211,
+				F629131601A475CE01000211,
+				F629131701A475CE01000211,
+				F629131801A475CE01000211,
 				F67460BF01A1BB7701000211,
 				F6BC47ED0196F7B601000211,
 				F6C639C80196E11A01000211,
@@ -702,6 +710,50 @@
 		};
 		F61C69ED0198593D01000211 = {
 			fileRef = F61C69EC0198593C01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F629131401A475A501000211 = {
+			isa = PBXFileReference;
+			path = classType.tiff;
+			refType = 4;
+		};
+		F629131501A475A501000211 = {
+			fileRef = F629131401A475A501000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F629131601A475CE01000211 = {
+			isa = PBXFileReference;
+			path = URLType.tiff;
+			refType = 4;
+		};
+		F629131701A475CE01000211 = {
+			isa = PBXFileReference;
+			path = literalType.tiff;
+			refType = 4;
+		};
+		F629131801A475CE01000211 = {
+			isa = PBXFileReference;
+			path = propertyType.tiff;
+			refType = 4;
+		};
+		F629131901A475CE01000211 = {
+			fileRef = F629131601A475CE01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F629131A01A475CE01000211 = {
+			fileRef = F629131701A475CE01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F629131B01A475CE01000211 = {
+			fileRef = F629131801A475CE01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};

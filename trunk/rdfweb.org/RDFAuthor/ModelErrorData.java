@@ -119,7 +119,14 @@ public class ModelErrorData extends Object {
         }
         if (identifier.equals("Type"))
         {
-            return null;
+            if (((String) row.get(0)).equals("Error"))
+            {
+                return NSImage.imageNamed("error");
+            }
+            else
+            {
+                return NSImage.imageNamed("warning");
+            }
         }
         else if (identifier.equals("Item"))
         {
@@ -132,28 +139,6 @@ public class ModelErrorData extends Object {
         else
         {
             return null;
-        }
-    }
-            
-    public void tableViewWillDisplayCell( NSTableView aTableView, NSTextFieldCell aCell, 
-                    NSTableColumn aTableColumn, int rowIndex)
-    {
-        String identifier = (String) aTableColumn.identifier();
-        if (identifier.equals("Type"))
-        {
-            ArrayList row = (ArrayList) errorRecords.get(rowIndex);
-            if (((String) row.get(0)).equals("Error"))
-            {
-                aCell.setImage(NSImage.imageNamed("error"));
-            }
-            else
-            {
-                aCell.setImage(NSImage.imageNamed("warning"));
-            }
-        }
-        else
-        {
-            aCell.setWraps(true);
         }
     }
 
