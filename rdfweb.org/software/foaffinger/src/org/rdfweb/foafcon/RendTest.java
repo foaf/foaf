@@ -7,19 +7,20 @@ import java.net.*;
 
 import com.strangeberry.rendezvous.Rendezvous;
 import com.strangeberry.rendezvous.ServiceInfo;
-import com.strangeberry.rendezvous.ServiceListener;
 
 public class RendTest
 {
   final static String type = "_foafcon._tcp.local.";
   Person person;
   int port = 7654;
-  TestListener listener;
+  RendListener listener;
   Rendezvous rv;
   InetAddress inetaddr;
   ServiceInfo si;
   CommandLine cl;
 
+  boolean shuttingDown = false;
+    
   People people;
     
   public static void main(String[] args)
@@ -72,7 +73,7 @@ public class RendTest
 	  }
 	catch (UnknownHostException e)
 	  {
-	    System.err.println("Uh-oh: " + e.getMessage());
+	    System.err.println("Unknown host: " + e.getMessage());
 	    System.exit(1);
 	  }
       }
@@ -84,7 +85,7 @@ public class RendTest
     Hashtable props = person.getProps();
     String hashBox = person.getMboxHash();
     
-    listener = new TestListener(this);
+    listener = new RendListener(this);
     
     try
       {
@@ -105,7 +106,7 @@ public class RendTest
 	rv.registerService(si);
 	
 	rv.addServiceListener(type, listener);
-	
+
 	HttpServer httpServer =
 	  new HttpServer(port, new HTTPTestHandler(person), this);
 
@@ -116,6 +117,7 @@ public class RendTest
     catch (Exception e)
       {
 	System.err.println(e);
+
 	System.exit(1);
       }
     
@@ -123,12 +125,19 @@ public class RendTest
     
   }
 
+  public void exit()
+  {
+    System.exit(0);
+  }
+    
   public void kickService()
     throws Exception
   {
     rv.unregisterService(si);
+
     Hashtable props = person.getProps();
     String hashBox = person.getMboxHash();
+
     si = new ServiceInfo(type,
 			 hashBox + "." + type,
 			 inetaddr,
@@ -179,40 +188,5 @@ public class RendTest
   {
     cl.addMessage(message);
   }
-  
+
 }
-
-class TestListener implements ServiceListener
-{
-  RendTest controller;
-    
-  public TestListener(RendTest controller)
-  {
-    this.controller = controller;
-  }
-  
-  public void addService(Rendezvous rendezvous, String type, String name)
-  {
-    controller.addPerson(rendezvous.getServiceInfo(type,name));
-  }
-
-  public void removeService(Rendezvous rendezvous, String type, String name)
-  {
-    controller.removePerson(rendezvous.getServiceInfo(type,name));
-  }
-
-  public void resolveService(Rendezvous rendezvous,
-			     java.lang.String type,
-			     java.lang.String name,
-			     ServiceInfo info)
-  {
-    // Uh - no idea;
-
-    System.out.println(rendezvous + "\n" +
-		       type + "\n" +
-		       name + "\n" +
-		       info + "\n");
-  }
-  
-}
-    

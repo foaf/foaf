@@ -221,7 +221,7 @@ public class CommandLine
 
   public void exit()
   {
-    System.exit(0);
+    controller.exit();
   }
 
   public void unrecognised()
