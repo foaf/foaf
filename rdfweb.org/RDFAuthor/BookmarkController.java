@@ -1,6 +1,6 @@
 /* BookmarkController */
 
-/* $Id: BookmarkController.java,v 1.3 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: BookmarkController.java,v 1.4 2002-02-06 00:36:23 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -164,11 +164,17 @@ public class BookmarkController {
         
         if (item.type().equals( SchemaData.ClassPboardType ))
         {
-            rdfAuthorDocument.setClassPropertyDefaults( item.namespace(), item.name(), null, null );
+            rdfAuthorDocument.setClassPropertyDefaults(
+                (String) ((NSDictionary) item.data()).objectForKey("Namespace"), 
+                (String) ((NSDictionary) item.data()).objectForKey("Name"),
+                null, null );
         }
         else if (item.type().equals( SchemaData.PropertyPboardType ))
         {
-            rdfAuthorDocument.setClassPropertyDefaults( null, null, item.namespace(), item.name() );
+            rdfAuthorDocument.setClassPropertyDefaults(
+                null, null,
+                (String) ((NSDictionary) item.data()).objectForKey("Namespace"), 
+                (String) ((NSDictionary) item.data()).objectForKey("Name") );
         }
         else
         {
