@@ -5,12 +5,13 @@ GENFILES=../foafsig ../htmlfoafsig *.asc -f index.html table.html rdf_vdl.nt
 
 # GET http://xmlns.com/foaf/0.1/ | gpg --verify ../htmlfoafsig -
 
-all: clean colour.html index.html
+all: 	checkin publish
+
 clean: tidyup 
 
 #site:	all sigfiles
 
-site:	all publish
+checkin:	
 	cd ../; cvs commit -m 'regenerated foaf spec docs'
 
 
