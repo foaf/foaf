@@ -1,5 +1,18 @@
-viz:
+
+CP=.:lib/jena.jar:lib/rdffilter.jar:lib/sax2.jar:lib/xerces.jar 
+
+
+classes:
+	CLASSPATH=$(CP) \
 	javac org/rdfweb/viz/*java
 
+
 test:
-	./run.sh
+	CLASSPATH=$(CP) \
+	java org.rdfweb.viz.BasicDraw
+
+
+
+test2:
+	CLASSPATH=$(CP) \
+	 ./run.sh
