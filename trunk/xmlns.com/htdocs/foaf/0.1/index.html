@@ -104,9 +104,9 @@ div.specterm {
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
 <dt>Last update:</dt>
-<dd>$Date: 2003-09-11 16:12:54 $</dd>
+<dd>$Date: 2003-09-11 17:16:02 $</dd>
 <dt>Revision:</dt>
-<dd>$Revision: 1.46 $</dd>
+<dd>$Revision: 1.47 $</dd>
 <dt>Authors:</dt> 
 <dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
@@ -1634,10 +1634,11 @@ be respectful of diversity without attempting to catalogue or enumerate that div
 <p>
 This may also be a good point for a periodic reminder: as with all FOAF properties, 
 documents that use '<code><a href="#term_gender">foaf:gender</a></code>' will on occassion be innacurate, misleading 
-or outright false. FOAF, like all open means of communication, supports <em>lying</em>. Application authors using 
+or outright false. FOAF, like all open means of communication, supports <em>lying</em>.
+ Application authors using 
 FOAF data should always be cautious in their presentation of unverified information, but be 
-particularly sensitive to issues and risks surrounding sex and gender. Designers of 
-FOAF-based user interfaces should be careful to allow users to omit 
+particularly sensitive to issues and risks surrounding sex and gender (including privacy 
+and personal safety concerns). Designers of FOAF-based user interfaces should be careful to allow users to omit 
 <code><a href="#term_gender">foaf:gender</a></code> when describing themselves and others, and to allow at least for 
 values other than 'male' and 'female' as options. Users of information 
 conveyed via FOAF (as via information conveyed through mobile phone text messages, email, 
@@ -3011,7 +3012,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-09-11 16:12:54 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-09-11 17:16:02 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3702,7 +3703,7 @@ Sesame, 3store etc).
 <!-- first we introduce a number of RDF namespaces we will be using... -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 16:12:54 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 17:16:02 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
