@@ -1,6 +1,8 @@
 package org.rdfweb.viz;
 
 import com.hp.hpl.mesa.rdf.jena.common.*;
+import java.net.*;
+import java.util.*;
 import java.awt.*;
 import com.hp.hpl.mesa.rdf.jena.model.*;
 
@@ -10,11 +12,69 @@ public class DrawableNode implements RDFNode, FocussedItem {
     int x = 0;
     int y = 0;
     Color color = Color.black;
-
+    Hashtable properties;
 
     public DrawableNode(int x, int y) {
         this.x = x;
         this.y = y;
+	properties = new Hashtable();
+	properties.put("type","");;
+	properties.put("ID","");;
+	properties.put("label","");;
+    }
+
+    public boolean setProperty(String key, String val){
+	if(val!=null&&(!val.equals("")) && key!=null && (!key.equals(""))){
+
+	   if(properties.containsKey(key)){
+	   properties.remove(key);
+	   }
+
+	   properties.put(key,val);
+	   return true;
+	}
+	else{
+	   return false;
+	}
+    }
+
+    public String getProp(String key){
+
+	if(key!=null && (!key.equals(""))){
+	return (String)properties.get(key);
+	}else{
+	return null;
+	}
+
+   }
+
+    public boolean setRDFType(String val){
+	if(val!=null&&(!val.equals(""))){
+	   properties.put("type",val);
+	   return true;
+	}else{
+	   return false;
+	}
+    }
+
+    public boolean setURI(String val){
+	try{
+	   URL u=new URL(val);
+	   properties.put("uri",val);
+	   return true;
+	}
+	catch(Exception e){
+	return false;
+	}
+    }
+
+    public boolean setLabel(String val){
+	if(val!=null&&(!val.equals(""))){
+	   properties.put("label",val);
+	   return true;
+	}else{
+	   return false;
+	}
     }
 
 
@@ -43,6 +103,15 @@ public class DrawableNode implements RDFNode, FocussedItem {
 
     public void updateText(String s) {
         tmpText = s;
+    }
+    public void updateType(String s) {
+	setProperty("type",s);
+    }
+    public void updateID(String s) {
+	setProperty("uri",s);
+    }
+    public void updateLabel(String s) {
+	setProperty("label",s);
     }
 
     public String getTmpText() {

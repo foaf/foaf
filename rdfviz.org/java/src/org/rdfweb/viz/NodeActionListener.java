@@ -36,11 +36,17 @@ this.viz=viz;
 
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println("got action: "+ e.getActionCommand());
+        System.out.println("got NODE  action: "+ e.getActionCommand());
+
+	String action=e.getActionCommand();
+	if(e.getActionCommand().equals("New node")){
+	action="http://www.w3.org/2000/01/rdf-schema#Resource";
+	}
 
 	viz.setEditState(viz.NODE_FOCUS);
 
                 DrawableNode n = new DrawableNode(100, 100);
+		n.updateType(action);
                 viz.setFocussedItem( n );
                 viz.getNodes().addElement(n);
             viz.repaint();

@@ -6,6 +6,7 @@ import com.hp.hpl.mesa.rdf.jena.common.*;
 public class DrawableProperty extends com.hp.hpl.mesa.rdf.jena.common.PropertyImpl implements FocussedItem {
 
     String tmpText = "";
+    String typeText = "";
 
     public DrawableProperty(String nameSpace, String localName,
             Model m) throws RDFException{ super(nameSpace, localName, m);
@@ -56,8 +57,22 @@ public class DrawableProperty extends com.hp.hpl.mesa.rdf.jena.common.PropertyIm
         tmpText = s;
     }
 
+    public void updateID(String s) {
+//nothing
+    }
+
+    public void updateType(String s) {
+        typeText = s;
+    }
+    public void updateLabel(String s) {
+//nothing
+    }
+
     public String getTmpText() {
         return tmpText;
+    }
+    public String getTypeText() {
+        return typeText;
     }
 
 }
