@@ -70,7 +70,8 @@ public class RendTest
       {
 	rv = new Rendezvous();
 
-	inetaddr = InetAddress.getLocalHost();
+	//inetaddr = InetAddress.getLocalHost();
+	inetaddr = Util.getAddress();
 	
 	System.out.println("Binding to: " + inetaddr);
 
