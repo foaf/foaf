@@ -1,9 +1,12 @@
 ./scutter/webutil.rb
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
+./scutter/bin/gen_scutterstats.sh
+./scutter/bin/pathfinder
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
 ./scutter/conf/scutterdb.sql
+./scutter/conf/scutterdb-mysql.sql
 ./scutter/conf/rdfc14n.xsl
 ./scutter/conf/rdfc2nt.xsl
 ./scutter/install.rb
@@ -12,3 +15,4 @@
 ./scutter/INSTALL.TXT
 ./scutter/QUICKSTART.TXT
 ./scutter/FILES
+./scutter/Makefile
