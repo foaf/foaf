@@ -17,6 +17,8 @@ href="ayf-intro.html">who are these people?</a> | <a
 href="ruby-run1.html">test run output</a>
 </p> 
 
+<h2>A toy Perl RDF harvester</h2>
+
     <p>This is one to throw away: a quick Perl script which
     traverses a Web of FOAF RDF documents, using Perl regular
     expressions rather than a proper RDF (or even XML+namespaces)
@@ -24,6 +26,25 @@ href="ruby-run1.html">test run output</a>
     it runs out of documents linked by 'rdfs:seeAlso' references.
     See the <a href="ayf.pl">script source</a> for more details and
     a list of bugs/flaws etc.</p>
+
+<h3>And slightly better Ruby version</h3>
+
+<p><strong>Stop Press:</strong> I made a Ruby version too (<a
+href="ayf.rb">ayf.rb</a>). Unlike the Perl version, it uses a proper 
+RDF parser, and so trades off reliability against installation hassles.
+To use, you'll need the <a
+href="http://www.w3.org/2001/12/rubyrdf/intro.html">RubyRDF</a> library, 
+which now experimentally includes the Liber RDF parser. That in turn 
+requires the Ruby XMLParser package, which uses the Expat XML parser. 
+Fortunately, these are easy to install on Unix machines, and come bundled
+with the <a href="http://rubyinstaller.sourceforge.net/">Ruby Installer
+for Windows</a> ( tested with <a
+href="http://rubyinstaller.sourceforge.net/ruby167-7.exe">ruby-167-7.exe</a>).
+A test run of the ruby version's output is captured here as <a
+href="ruby-run1.html">ruby-run1.html</a>, and a screenshot of the images
+it found are <a href="intro-afy.html">also available</a>.
+</p>
+
 
     <p>Why do this? It's a zero-hassle install, with no
     dependencies on XML and RDF libraries of any kind. It is very
