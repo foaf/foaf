@@ -30,6 +30,7 @@
         }, 
         {
             ACTIONS = {
+                previewModeChanged = id; 
                 selectAddArcMode = id; 
                 selectAddNodeMode = id; 
                 selectDeleteMode = id; 

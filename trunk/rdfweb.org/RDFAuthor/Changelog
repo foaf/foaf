@@ -1,0 +1,16 @@
+$Date: 2001-10-25 14:22:30 $ - $Author: pldms $
+    Erm - added a changelog ;-)
+    
+    Bunch of stuff, really. Added N-Triple and N3 export and preview - however N3 doesn't seem
+    to exist in jena yet (?).
+    
+    Fixed toolbar idiocy.
+    
+    Stopped doing URL checks on Ids. Anything goes now.
+    
+    Info box is horizontally resizable. Shame I can't make it full resizable, but it tends to
+    go nasty (items cover other items).
+    
+    Info entries (which haven't been added) don't disappear when you go to another window.
+    
+    Backspace now deletes current object. Hurrah!

@@ -15,9 +15,9 @@ import java.util.Enumeration;
 
 import com.hp.hpl.mesa.rdf.jena.model.*;
 import com.hp.hpl.mesa.rdf.jena.mem.*;
-import com.hp.hpl.mesa.rdf.jena.common.prettywriter.*;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDF;
 import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
+import com.hp.hpl.mesa.rdf.jena.common.*;
 
 public class SchemaData {
     
@@ -78,13 +78,10 @@ public class SchemaData {
                 hasClasses = true;
                 String className = classes.next().toString();
                 
-                int sep = className.lastIndexOf("/");
-                int hash = className.lastIndexOf("#");
-                
-                sep = (hash > sep)?hash:sep;
+                int sep = Util.splitNamespace(className);
             
-                String namespace = className.substring(0, sep+1);
-                String name = className.substring(sep+1);
+                String namespace = className.substring(0, sep);
+                String name = className.substring(sep);
                 
                 addToTree(classesList, "Class", namespace, name);
             }
@@ -93,13 +90,10 @@ public class SchemaData {
                 hasProperties = true;
                 String propertyName = properties.next().toString();
                 
-                int sep = propertyName.lastIndexOf("/");
-                int hash = propertyName.lastIndexOf("#");
+                int sep = Util.splitNamespace(propertyName);
                 
-                sep = (hash > sep)?hash:sep;
-                
-                String namespace = propertyName.substring(0, sep+1);
-                String name = propertyName.substring(sep+1);
+                String namespace = propertyName.substring(0, sep);
+                String name = propertyName.substring(sep);
                 
                 addToTree(propertiesList, "Property", namespace, name);
             }

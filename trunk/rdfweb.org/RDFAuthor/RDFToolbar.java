@@ -5,7 +5,7 @@ import com.apple.cocoa.application.*;
 
 import java.util.Hashtable;
 
-public class RDFToolbar extends NSToolbar {
+public class RDFToolbar extends NSObject {
 
     RDFAuthorDocument rdfAuthorDocument;
     
@@ -29,17 +29,7 @@ public class RDFToolbar extends NSToolbar {
     
     public RDFToolbar()
     {
-        super(identifier);
-        setAllowsUserCustomization(true);
-	setAutosavesConfiguration(true);
-	setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
-        
         popupMappings = new String[] {"RDF/XML-ABBREV", "N-TRIPLE", "N3" };
-    }
-    
-    public void awakeFromNib()
-    {
-        setDelegate(this);
     }
     
     public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 
@@ -236,5 +226,13 @@ public class RDFToolbar extends NSToolbar {
             sender.setImage(NSImage.imageNamed("textPreview"));
         }
     }
-            
+    
+    public void previewModeChanged(Object sender)
+    {
+        if (textPreview)
+        {
+            String jenaType = popupMappings[previewModePopup.indexOfSelectedItem()];
+            rdfAuthorDocument.createPreviewText(jenaType);
+        }
+    }
 }

@@ -86,6 +86,10 @@ public class RDFModelView extends NSView {
         {
             rdfAuthorDocument.selectPreviousObject();
         }
+        else if (chars.equals("\u007F")) // backspace
+        {
+            rdfAuthorDocument.deleteCurrentObject();
+        }
         else
         {
             super.keyDown(theEvent);
