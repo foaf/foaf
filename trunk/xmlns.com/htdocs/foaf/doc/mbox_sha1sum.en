@@ -1,0 +1,23 @@
+<p>
+A <code>foaf:mbox_sha1sum</code> of a <code>foaf:Person</code> is a textual representation of 
+the result of applying the SHA1 mathematical functional to a 'mailto:' identifier (URI) for an 
+Internet mailbox that they stand in a <code>foaf:mbox</code> relationship to.
+</p>
+
+<p>
+In other words, if you have a mailbox (<code>foaf:mbox</code>) but don't want to reveal its 
+address, you can take that address and generate a <code>foaf:mbox_sha1sum</code> representation 
+of it. Just as a <code>foaf:mbox</code> can be used as an indirect identifier for its owner, we 
+can do the same with <code>foaf:mbox_sha1sum</code> since there is only one 
+<code>foaf:Person</code> with any particular value for that property.
+</p>
+
+<p>
+Many FOAF tools use <code>foaf:mbox_sha1sum</code> in preference to exposing mailbox 
+information. This is usually for privacy and SPAM-avoidance reasons. Other relevant techniques 
+include the use of PGP encryption (see <a href="http://usefulinc.com/foaf/">Edd Dumbill's 
+documentation</a>) and the use of <a 
+href="http://www.w3.org/2001/12/rubyrdf/util/foafwhite/intro.html">FOAF-based whitelists</a> for 
+mail filtering.
+</p>
+
