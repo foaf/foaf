@@ -1,4 +1,4 @@
-#!/usr/local/bin/ruby
+#!/usr/bin/env ruby
 
 require 'squish'
 require 'basicrdf'
@@ -15,32 +15,35 @@ include WEBrick
 
 # Webrick servlet gives an erb/erb1 error 
 # so I commented some lines out, see:
-#/usr/local/lib/ruby/site_ruby/1.6/webrick/httpservlet.rb 
+# /usr/local/lib/ruby/site_ruby/1.6/webrick/httpservlet.rb 
 # or webrick archives for details.
 
 class RSSViewServlet < HTTPServlet::AbstractServlet
 
   def do_GET(req, res)
 
+    query=<<EOQ;
 
-    query = SquishQuery.new.parseFromText 'SELECT ?i, ?t, ?d,  
+	SELECT ?i, ?t, ?d,  
  	 WHERE 
 	 (rss::title ?i ?t)
 	 (rss::description ?i ?d)
 	USING
-	rss for http://purl.org/rss/1.0/'
+	 rss for http://purl.org/rss/1.0/ 
 
+EOQ
      
     x = '<?xml version="1.0" encoding="UTF-8"?>'
-    x +=  ''
+    x +=  "\n"
     x += '<html xmlns="http://www.w3.org/1999/xhtml">'
-    x += "<head><title>RDFWeb: RSS Channel</title></head>\n\n<body>\n"
-
+    x += "<head><title>RDFWeb: RSS Channel</title>\n\n"
+    x += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /></head> <body>\n"
+  
     ## we load some RDF from the Web
 
     loaded = false
     base = './'
-    u = req.query['u'] # how to get args?
+    u = req.query['u'] 
     u = 'http://www.ilrt.bristol.ac.uk/discovery/rdf/resources/rss.rdf' if !u
 
     x += "<h1>RSS feed: #{u}</h1>\n\n"
@@ -58,17 +61,15 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
 
     if loaded
       begin  
-        resultset = SquishQuery.ask query, data
-        # x += "Request: #{req.inspect} <br />"
+        q = SquishQuery.new.parseFromText(query)
+        resultset = SquishQuery.ask q, data
+        x += "query: #{query} q: #{q} "
         x += "<ul>\n\n"
         x += "<h1>Recent items</h1>\n"
         resultset.each do |row|
-          t = row.values['t']
-          t.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
-          d = row.values['d']
-          d.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
-          i = row.values['i']
-          i.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
+          t = esc_utf8 row.values['t']
+          d = esc_utf8 row.values['d']
+          i = esc_utf8 row.values['i']
           x += "<li><a href=\"#{i}\">#{t}</a> <em>#{d}</em></li>\n"
         end
         x += "</ul>\n\n"
@@ -81,7 +82,8 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
       puts "Load failed."
     end
     puts "Closing RSS doc."
-    x += "</body>\n</html>\n\n"
+    x += "</body>\n</html>\n\n" 
+    res['Content-Type'] = "text/html; charset=utf-8"
     res.body=x
   end
 
@@ -108,23 +110,25 @@ EOQ
     dbi_driver = 'DBI:Pg:rdfweb1'
     dbi_user = 'danbri'
     dbi_pass =''
-    q = SquishQuery.new.parseFromText query 
+    q = SquishQuery.new.parseFromText (query)
     h= '<?xml version="1.0" encoding="UTF-8"?>'
-    h += '' 
+    h += "\n" 
     h += '<html xmlns="http://www.w3.org/1999/xhtml">'
-    h +=  "<head><title>RDFWeb: RSS Channel Directory</title></head>\n\n<body>\n"
+    h +=  "<head><title>RDFWeb: RSS Channel Directory</title>\n\n"
+    h += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />  </head><body>\n"
     h += "<h1>RSS 1.0 Channels:</h1>\n\n"
     h +=  "<ul>\n\n"
     DBI.connect(  dbi_driver, dbi_user ,  dbi_pass ) do | dbh |
       dbh.select_all( q.toSQLQuery  ) do | c |
         channel=ResultRow.new c
-        channel.desc.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
-        channel.title.gsub! ( /\\u(....)/ )  {|s| "\&#x#{$1};"  }  
-        h += "<li><a href=\"/rssview/?u=#{channel.uri}\">#{channel.title}</a> <em>#{channel.desc}</em></li>";
+	esc_utf8 channel.desc
+        esc_utf8 channel.title
+        h += "<li><a href=\"../rssview/?u=#{channel.uri}\">#{channel.title}</a> <em>#{channel.desc}</em></li>";
       end
     end
     h += "</ul>"
     h += "\n\n</body>\n</html>\n\n"
+    res['Content-Type'] = "text/html; charset=utf-8"
     res.body=h
   end
 end
