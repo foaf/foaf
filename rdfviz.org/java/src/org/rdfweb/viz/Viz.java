@@ -38,6 +38,7 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
 
     Vector nodes = new Vector();
     Vector arcs = new Vector();
+    Vector literals = new Vector();
     Vector schemas = new Vector();
 
     DrawableNode cNode;
@@ -153,10 +154,10 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
 
         menuNodes = new JMenu("items");
         menuArcs = new JMenu("links");
-
+	JMenu menuLiterals = new JMenu("Literals");
         menubar.add(menuNodes);
         menubar.add(menuArcs);
-
+	menubar.add(menuLiterals);
 
         frame.getContentPane().add(menubar, BorderLayout.NORTH);
 
@@ -166,7 +167,10 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
         JMenuItem imf = new JMenuItem("Import file");
         JMenuItem export = new JMenuItem("Export");
 	JMenuItem quit = new JMenuItem("Quit");
+	JMenuItem newLiteralLink = new JMenuItem("New Literal");
+	menuLiterals.add(newLiteralLink);
 
+	newLiteralLink.addActionListener(new LiteralActionListener(this));
 
         menuNodes.add(node);
         node.addActionListener(new NodeActionListener(this));
@@ -342,6 +346,10 @@ return arcs;
 public Vector getNodes(){
 return nodes;
 }
+public Vector getLiterals(){
+return literals;
+}
+
 
 public Vector getSchemas(){
 return schemas;
@@ -377,7 +385,7 @@ return textArea3;///???
     public void paint(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
-
+//here's the problem
         Enumeration e = nodes.elements();
         while (e.hasMoreElements()) {
             DrawableNode n = (DrawableNode) e.nextElement();
