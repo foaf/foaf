@@ -8,24 +8,33 @@
 <property name="src" value="src" />
 <property name="build" value="build/${ant.project.name}" />
 <property name="dist" value="dist" />
+<property name="lib" value="lib" />
 
 <target name="init">
-<tstamp />
-<mkdir dir="${build}" />
+  <tstamp />
+  <mkdir dir="${build}" />
 </target>
 
 <target name="compile" depends="init">
 
-<javac srcdir="${src}" destdir="${build}" debug="on"/>
-
+  <javac srcdir="${src}" destdir="${build}" debug="on">
+    <classpath>
+      <fileset dir="${lib}"><include name="*.jar"/></fileset>
+    </classpath>
+  </javac>
 </target>
 
 <target name="dist" depends="compile">
 
-<mkdir dir="${dist}" />
-
-<jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}" 
-     manifest="${src}/MANIFEST"/>
+  <mkdir dir="${dist}" />
+  
+  <jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}">
+    <manifest>
+      <attribute name="Built-by" value="${user.name}"/>
+      <attribute name="Main-Class" value="org.rdfweb.foafcon.RendTest"/>
+      <attribute name="Class-Path" value="jmdns.jar"/>
+    </manifest>
+  </jar>
 </target>
 
 </project>

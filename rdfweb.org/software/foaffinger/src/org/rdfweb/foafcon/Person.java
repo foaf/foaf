@@ -36,6 +36,11 @@ public class Person
     knows = new ArrayList();
   }
 
+  public Person(String mboxHash)
+  {
+    this(null, mboxHash, null, null, null);
+  }
+  
   public Person(String name,
 		String mboxHash,
 		String homepage,

@@ -1,7 +1,7 @@
 package org.rdfweb.foafcon;
 
 import java.util.*;
-import com.strangeberry.rendezvous.ServiceInfo;
+import javax.jmdns.ServiceInfo;
 
 public class People
 {
@@ -62,15 +62,11 @@ public class People
 			   " is online.");
   }
 
-  public synchronized void remove(ServiceInfo info)
+  public synchronized void remove(String mboxHash)
   {
     Person person =
-      new Person(info.getPropertyString(Person.NAME),
-		 info.getName(),
-		 info.getPropertyString(Person.HOMEPAGE),
-		 info.getPropertyString(Person.INTEREST),
-		 info.getPropertyString(Person.SEEALSO));
-
+      new Person(mboxHash);
+    
     if (person.equals(controller.getPerson()))
 	return;
     
@@ -85,6 +81,10 @@ public class People
 
     online.set(index, Boolean.FALSE);
 
+    // This appears redundant, but we get a fuller person
+    
+    person = this.get(index);
+        
     controller.showMessage("[" +
 			   index +
 			   "] " +
