@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 public class RDFModelView extends NSView {
 
-    MyDocument myDocument;
+    RDFAuthorDocument rdfAuthorDocument;
     boolean addingConnection = false;
     boolean draggingConnection = false;
     boolean addingNode = false;
@@ -66,7 +66,7 @@ public class RDFModelView extends NSView {
             NSBezierPath.strokeLineFromPoint(startPoint, endPoint);
         }
         
-        myDocument.drawModel();
+        rdfAuthorDocument.drawModel();
     }
     
     public void mouseDown(NSEvent theEvent)
@@ -78,11 +78,11 @@ public class RDFModelView extends NSView {
         }
         else if (addingNode)
         {
-            myDocument.addNodeAtPoint(null, null, null, point);
+            rdfAuthorDocument.addNodeAtPoint(null, null, null, point);
         }
         else
         {
-            myDocument.setCurrentObjectAtPoint(point);
+            rdfAuthorDocument.setCurrentObjectAtPoint(point);
         }
     }
     
@@ -97,7 +97,7 @@ public class RDFModelView extends NSView {
         }
         else
         {
-            myDocument.moveCurrentObjectToPoint(point);
+            rdfAuthorDocument.moveCurrentObjectToPoint(point);
         }
     }
     
@@ -107,7 +107,7 @@ public class RDFModelView extends NSView {
         if (draggingConnection)
         {
             draggingConnection = false;
-            myDocument.addConnectionFromPoint(startPoint, point);
+            rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
         }
     }
     
@@ -199,13 +199,13 @@ public class RDFModelView extends NSView {
 
             String id = (String) URLs.objectAtIndex(0);
             
-            myDocument.setIdForNodeAtPoint(id, point);
+            rdfAuthorDocument.setIdForNodeAtPoint(id, point);
         }
         else if (type.equalsIgnoreCase(NSPasteboard.StringPboardType)) {
             
             String id = (String) pboard.stringForType(NSPasteboard.StringPboardType);
             
-            myDocument.setIdForNodeAtPoint(id, point);
+            rdfAuthorDocument.setIdForNodeAtPoint(id, point);
         }
         else if (type.equalsIgnoreCase(SchemaData.ClassPboardType))
         {
@@ -214,7 +214,7 @@ public class RDFModelView extends NSView {
             String name = (String) info.objectForKey("Name");
             String namespace = (String) info.objectForKey("Namespace");
             
-            myDocument.setTypeForNodeAtPoint(namespace, name, point);
+            rdfAuthorDocument.setTypeForNodeAtPoint(namespace, name, point);
         }
         else if (type.equalsIgnoreCase(SchemaData.PropertyPboardType))
         {
@@ -223,7 +223,7 @@ public class RDFModelView extends NSView {
             String name = (String) info.objectForKey("Name");
             String namespace = (String) info.objectForKey("Namespace");
             
-            myDocument.setTypeForArcAtPoint(namespace, name, point);
+            rdfAuthorDocument.setTypeForArcAtPoint(namespace, name, point);
         }
         else {
             NSAlertPanel alert = new NSAlertPanel();
