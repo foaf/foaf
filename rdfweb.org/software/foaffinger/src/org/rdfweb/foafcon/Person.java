@@ -19,8 +19,9 @@ public class Person
   String interest;
   String seeAlso;
 
-  boolean available;
-    
+  String host;
+  int port;
+  
   boolean showMbox = false;
   
   ArrayList knows;
@@ -47,6 +48,31 @@ public class Person
     setSeeAlso(seeAlso);
     
     knows = new ArrayList();
+  }
+
+  public void setFromPerson(Person person)
+  {
+    setName(person.getName());
+    setMboxHash(person.getMboxHash());
+    setHomepage(person.getHomepage());
+    setInterest(person.getInterest());
+    setSeeAlso(person.getSeeAlso());
+  }
+
+  public void setHostPort(String host, int port)
+  {
+    this.host = host;
+    this.port = port;
+  }
+
+  public String getHost()
+  {
+    return host;
+  }
+  
+  public int getPort()
+  {
+    return port;
   }
   
   public void setName(String name)
@@ -245,6 +271,8 @@ public class Person
     
     return toReturn;
   }
+
+  
   
   public boolean equals(Object obj)
   {

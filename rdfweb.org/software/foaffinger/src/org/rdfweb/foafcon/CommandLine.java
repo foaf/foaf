@@ -85,43 +85,45 @@ public class CommandLine
   public void find(StreamTokenizer it)
     throws Exception
   {
-    controller.findPeople();
-
-    List people = controller.getPeople();
-
-    int n = 1;
-
     System.out.println("\tName\t\tHomepage\t\tInterest");
+
+    int noOfPeople = controller.numberOfPeople();
+
+    if (noOfPeople == 0)
+      return;
     
-    for (Iterator i = people.iterator();
-		 i.hasNext();
-		 n++)
+    for (int n = 0; n < noOfPeople; n++)
       {
-	ServiceInfo info = (ServiceInfo) i.next();
+	if (!controller.personOnline(n)) continue;
+	
+	Person p = controller.getPerson(n);
 	
 	System.out.print("[" + n + "]\t");
 
 	String name =
-	  info.getPropertyString(Person.NAME);
+	  p.getName();
+	
 	String homepage =
-	  info.getPropertyString(Person.HOMEPAGE);
+	  p.getHomepage();
+	
 	String interest =
-	  info.getPropertyString(Person.INTEREST);
+	  p.getInterest();
+	
 	String seeAlso =
-	  info.getPropertyString(Person.SEEALSO);
+	  p.getSeeAlso();
 
 	System.out.
-	  print(info.getPropertyString(Person.NAME) + "\t");
+	  print(name + "\t");
 
 	if (homepage != null)
 	  System.out.
-	    print(info.getPropertyString(Person.HOMEPAGE) + "\t");
+	    print(homepage + "\t");
 	else
 	  System.out.print("---\t\t");
 
 	if (interest != null)
 	  System.out.
-	    print(info.getPropertyString(Person.INTEREST));
+	    print(interest);
 	else
 	  System.out.print("---");
 	
@@ -132,11 +134,7 @@ public class CommandLine
   public void show(StreamTokenizer it)
     throws Exception
   {
-    List people = controller.getPeople();
-
-    if (people == null)
-      throw new Exception("Noone found yet: try 'find' first.");
-        
+    
     while (true)
       {
 	int tt = it.nextToken();
@@ -150,12 +148,24 @@ public class CommandLine
 
 	int num = (int) it.nval;
 
-	ServiceInfo info =
-	  (ServiceInfo) people.get(num - 1);
-	
+	Person person =
+	  controller.getPerson(num);
+
+	if (person == null)
+	  {
+	    System.out.println("No such person: " + num);
+	    continue;
+	  }
+
+	if (!controller.personOnline(num))
+	  {
+	    System.out.println(num + " not online");
+	    continue;
+	  }
+		
 	String content = Util.get("http",
-				  info.getAddress(),
-				  info.getPort(),
+				  person.getHost(),
+				  person.getPort(),
 				  "/");
 	
 	System.out.println(content);
@@ -165,11 +175,6 @@ public class CommandLine
   public void iknow(StreamTokenizer it)
     throws Exception
   {
-    List people = controller.getPeople();
-
-    if (people == null)
-      throw new Exception("Noone found yet: try 'find' first.");
-        
     while (true)
       {
 	int tt = it.nextToken();
@@ -183,17 +188,16 @@ public class CommandLine
 
 	int num = (int) it.nval;
 
-	ServiceInfo info =
-	  (ServiceInfo) people.get(num - 1);
-	
-	Person knownPerson =
-	  new Person(info.getPropertyString(Person.NAME),
-		     info.getName(),
-		     info.getPropertyString(Person.HOMEPAGE),
-		     info.getPropertyString(Person.INTEREST),
-		     info.getPropertyString(Person.SEEALSO));
+	Person person =
+	  controller.getPerson(num);
 
-	controller.getPerson().addKnows(knownPerson);
+	if (person == null)
+	  {
+	    System.out.println("No such person: " + num);
+	    continue;
+	  }
+	
+	controller.getPerson().addKnows(person);
       }
   }
 
