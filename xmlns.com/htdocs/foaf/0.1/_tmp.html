@@ -499,7 +499,7 @@ stabilise in usage and documentation, they progress through the categories
 
 <h4>stable terms</h4>
 
-<p>At the present time ($Date: 2003-07-26 20:22:15 $), the following FOAF terms are
+<p>At the present time ($Date: 2003-07-26 20:26:27 $), the following FOAF terms are
 considered <strong>stable</strong>.  This means that their names and definitions (in prose
 and in machine form) are unlikely to change dramatically. Clarifications and refinements
 may be made, but major changes are not expected. </p> 
@@ -529,7 +529,7 @@ schema</p>
 </ul>
 
 <h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 20:22:15 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 20:26:27 $), the following FOAF terms are considered 
 <strong>unstable</strong>. 
 This means that their names and definitions (in prose and in machine form) could still change 
 dramatically. Clarifications and refinements still need to be made, and major changes are quite 
@@ -544,7 +544,7 @@ possible.
 </ul>
  
 <h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 20:22:15 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 20:26:27 $), the following FOAF terms are considered 
 to be of '<strong>testing</strong>' status. 
 This means that their names and definitions (in prose and in machine form) could still change, 
 although dramatic changes are (we hope) unlikely.
@@ -1119,7 +1119,7 @@ needed, which distinguishes documents in a broad sense from byte sequences.
 <p>
 The <code><a href="#term_workInfoHomepage">foaf:workInfoHomepage</a></code> of a <code><a href="#term_Person">foaf:Person</a></code> is a 
 <code><a href="#term_Document">foaf:Document</a></code> that describes their work. It is generally (but not necessarily) a 
-different document from their <code>foaf:homepage</a>, and from any 
+different document from their <code><a href="#term_homepage">foaf:homepage</a></code>, and from any 
 <code><a href="#term_workplaceHomepage">foaf:workplaceHomepage</a></code>(s) they may have. 
 </p>
 
@@ -1363,11 +1363,14 @@ There is also a simple <code><a href="#term_name">foaf:name</a></code> property.
 <p>The <code><a href="#term_name">foaf:name</a></code> of something is a simple textual string.</p>
 
 <p>
-XML language tagging may be used to indicate the language of the name. For example:</p>
+XML language tagging may be used to indicate the language of the name. For example:
+</p>
 
-<blockquote>
+<div>
+<code>
 &lt;foaf:name xml:lang="en"&gt;Dan Brickley&lt;/foaf:name&gt;
-</blockquote>
+</code>
+</div>
 
 <p>
 FOAF provides some other naming constructs. These are under development. While foaf:name 
@@ -1388,7 +1391,7 @@ interoperability.
 	<td>http://www.w3.org/2000/01/rdf-schema#Resource</td></tr>
 </table>
 <p>
-The <code><a href="#term_publications">foaf:publications</a></code> property indicates a <foaf:code>Document</code>
+The <code><a href="#term_publications">foaf:publications</a></code> property indicates a <code>Document</code>
 listing (primarily in human-readable form) some publications associated with a 
 <code><a href="#term_Person">foaf:Person</a></code>. Such documents are typically published alongside one's 
 <code><a href="#term_homepage">foaf:homepage</a></code>.
@@ -2179,7 +2182,7 @@ to clearly specify their inter-relationships.
 <a href="mailto:foaf-contact@rdfweb.org">foaf-contact@rdfweb.org</a>
 </address>
 
-<a id="ack"></a>
+<div id="ack"/>
 <h3>Acknowledgments</h3>
 
 <p>
@@ -2208,7 +2211,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-26 20:22:15 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-26 20:26:27 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
