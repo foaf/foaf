@@ -137,8 +137,8 @@ MouseListener, ActionListener, DocumentListener {
         JMenu file = new JMenu("file");
         menubar.add(file);
 
-        menuNodes = new JMenu("nodes");
-        menuArcs = new JMenu("arcs");
+        menuNodes = new JMenu("items");
+        menuArcs = new JMenu("links");
 
         menubar.add(menuNodes);
         menubar.add(menuArcs);
@@ -146,11 +146,12 @@ MouseListener, ActionListener, DocumentListener {
 
         frame.getContentPane().add(menubar, BorderLayout.NORTH);
 
-        JMenuItem node = new JMenuItem("Node");
-        JMenuItem arc = new JMenuItem("Arc");
+        JMenuItem node = new JMenuItem("New node");
+        JMenuItem arc = new JMenuItem("New arc");
         JMenuItem imu = new JMenuItem("Import url");
         JMenuItem imf = new JMenuItem("Import file");
         JMenuItem export = new JMenuItem("Export");
+	JMenuItem quit = new JMenuItem("Quit");
 
         menuNodes.add(node);
         node.addActionListener(this);
@@ -166,6 +167,9 @@ MouseListener, ActionListener, DocumentListener {
 
         file.add(export);
         export.addActionListener(this);
+
+	file.add(quit);
+	quit.addActionListener(this);
 
         lsd = new DefaultStyledDocument();
 
@@ -337,10 +341,10 @@ MouseListener, ActionListener, DocumentListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        //System.out.println("got action");
+        System.out.println("got action: "+ e.getActionCommand());
         String errorMsg = "couldn't load url ";
 
-        if (e.getActionCommand().equals("Node")) {
+        if (e.getActionCommand().equals("New node")) {
 
             if (edit_state == NODE_FOCUS) {//i.e. state is - current focus is a node
 
@@ -352,7 +356,7 @@ MouseListener, ActionListener, DocumentListener {
             }
             repaint();
 
-        } else if (e.getActionCommand().equals("Arc")) {
+        } else if (e.getActionCommand().equals("New arc")) {
             try {
 
                 //		cArc= new DrawableProperty(defaultURL);
@@ -550,6 +554,9 @@ MouseListener, ActionListener, DocumentListener {
             }
 
         }//end if export
+	else if (e.getActionCommand().equals("Quit")){
+	   System.out.println("TODO: implement Quit handler");
+	}
         else {
 
             //pass all remaining commands through??
