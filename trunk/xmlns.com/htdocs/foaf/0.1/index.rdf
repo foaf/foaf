@@ -11,7 +11,7 @@
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-02-23 22:25:05 $</dc:date>
+        <dc:date>$Date: 2003-04-04 15:21:50 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -26,6 +26,7 @@
 	rdfs:label="Person"
 	rdfs:comment="A person.">
         <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Person"/>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document" />
         <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Organization" />
