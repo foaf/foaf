@@ -11,23 +11,25 @@ public class Person
   final static String NAME = "n";
   final static String HOMEPAGE = "h";
   final static String INTEREST = "i";
-  
+  final static String SEEALSO = "s";
+
   String name;
   String mbox;
   String mboxHash;
   String plan;
   String homepage;
   String interest;
-
+  String seeAlso;
+  
+  boolean showMbox = false;
+  
   ArrayList knows;
   
   public Person(String name,
-		String mbox,
-		String homepage)
+		String mbox)
   {
     setName(name);
     setMbox(mbox);
-    setHomepage(homepage);
 
     knows = new ArrayList();
   }
@@ -35,13 +37,15 @@ public class Person
   public Person(String name,
 		String mboxHash,
 		String homepage,
-		String interest)
+		String interest,
+		String seeAlso)
   {
     setName(name);
     setMboxHash(mboxHash);
     setHomepage(homepage);
     setInterest(interest);
-
+    setSeeAlso(seeAlso);
+    
     knows = new ArrayList();
   }
   
@@ -76,6 +80,11 @@ public class Person
     return mboxHash;
   }
 
+  public void setShowMbox(boolean showMbox)
+  {
+    this.showMbox = showMbox;
+  }
+    
   public void setHomepage(String homepage)
   {
     this.homepage = homepage;
@@ -86,6 +95,16 @@ public class Person
     return homepage;
   }
 
+  public void setSeeAlso(String seeAlso)
+  {
+    this.seeAlso = seeAlso;
+  }
+
+  public String getSeeAlso()
+  {
+    return seeAlso;
+  }
+  
   public void setInterest(String interest)
   {
     this.interest = interest;
@@ -120,7 +139,9 @@ public class Person
       toReturn.put(HOMEPAGE, this.getHomepage());
     if (this.getInterest() != null)
       toReturn.put(INTEREST, this.getInterest());
-
+    if (this.getSeeAlso() != null)
+      toReturn.put(SEEALSO, this.getSeeAlso());
+    
     return toReturn;
   }
 
@@ -135,15 +156,17 @@ public class Person
       indent + "Name: " + name + "\n" +
       indent + "Hash Mbox: " + mboxHash + "\n";
 
-    if (mbox != null)
+    if (showMbox && (mbox != null))
       toReturn += indent + "Mbox: " + mbox + "\n";
     if (homepage != null)
       toReturn += indent + "Homepage: " + homepage + "\n";
     if (interest != null)
       toReturn += indent + "Interest: " + interest + "\n";
+    if (seeAlso != null)
+      toReturn += indent + "See Also: " + seeAlso + "\n";
     if (plan != null)
       toReturn += indent + "Plan: " + plan + "\n";
-
+    
     for (Iterator i = knows.iterator(); i.hasNext();)
       {
 	Person person = (Person) i.next();
@@ -161,6 +184,7 @@ public class Person
 
     toReturn += "<rdf:RDF xmlns=\"http://xmlns.com/foaf/0.1/\"\n";
     toReturn += "         xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
+    toReturn += "         xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"\n";
     toReturn += ">\n\n";
 
     toReturn += this.toRDF("    ","");
@@ -181,7 +205,7 @@ public class Person
       "<mbox_sha1sum>" + Util.escape(mboxHash)
       + "</mbox_sha1sum>\n";
 
-    if (mbox != null)
+    if (showMbox && (mbox != null))
       toReturn += totalIndent + indent +
 	"<mbox rdf:resource=\"" + Util.escape(mbox) + "\"/>\n";
     
@@ -195,6 +219,11 @@ public class Person
 	"<homepage rdf:resource=\"" + Util.escape(homepage)
 	+ "\"/>\n";
 
+    if (seeAlso != null)
+      toReturn += totalIndent + indent +
+	"<rdfs:seeAlso rdf:resource=\"" + Util.escape(seeAlso)
+	+ "\"/>\n";
+    
     if (plan != null)
       toReturn += totalIndent + indent +
 	"<plan>" + Util.escape(plan) + "</plan>\n";
@@ -236,5 +265,14 @@ public class Person
 	return null;
       }
   }
+
+  public boolean equals(Object obj)
+  {
+    if (!(obj instanceof Person))
+      return false;
+
+    return mboxHash.equals(((Person) obj).getMboxHash());
+  }
+
 }
 
