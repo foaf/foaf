@@ -37,8 +37,8 @@ def initialize(specname)
   @ranges={} # class name -> array of property names
   @domains={} # ditto
 
-  classes = spec.ask(Statement.new (nil, RDF+'type', RDFS+'Class'))
-  props = spec.ask(Statement.new (nil, RDF+'type', RDF+'Property'))
+  classes = spec.ask(Statement.new(nil, RDF+'type', RDFS+'Class'))
+  props = spec.ask(Statement.new(nil, RDF+'type', RDF+'Property'))
 
   @clist=[]
   classes.subjects.each do |classuri|
@@ -46,7 +46,7 @@ def initialize(specname)
     clist.push classname
 
     # For this class, what properties have it as a range?
-    spec.ask(Statement.new (nil, RDFS+'range', classuri)).subjects.each do |rp| 
+    spec.ask(Statement.new(nil, RDFS+'range', classuri)).subjects.each do |rp| 
       rp=rp.to_s
       STDERR.puts "INRANGE: #{rp} #{rp.class}"
       if ranges[classname] != nil
@@ -57,7 +57,7 @@ def initialize(specname)
     end # end list of range props for this class
 
     # For this class, what properties have it as a domain?
-    spec.ask(Statement.new (nil, RDFS+'domain', classuri)).subjects.each do |dp| 
+    spec.ask(Statement.new(nil, RDFS+'domain', classuri)).subjects.each do |dp| 
       dp=dp.to_s
       STDERR.puts "INDOMAIN for class #{classuri}: #{dp} #{dp.class}"
       if domains[classname] != nil
