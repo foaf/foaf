@@ -33,11 +33,21 @@ sigfiles: sign
 	mv -f index.rdf.asc ../foafsig
 	mv -f index.html.asc ../htmlfoafsig
 
+# We need Redland installed, currently.
 table.html:
 	rdfdump -o ntriples -q file:index.rdf  | $(V)  > table.html
 
+# We used to keep master copy in the HTML, now we do the opposite.
 getrdf:
 	xsltproc ../../2002/07/extractrdf.xsl index.html > index.rdf
+
+
+publish:
+	ssh xmlns.com make slaves
+
+
+
+
 
 # should this be the rdf version i'm signing? both?
 
