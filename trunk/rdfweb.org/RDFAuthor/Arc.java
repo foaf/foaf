@@ -4,7 +4,9 @@
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 
-public class Arc extends ModelItem
+import java.io.*;
+
+public class Arc extends ModelItem implements Serializable
 {
     Node fromNode;
     Node toNode;
@@ -29,13 +31,47 @@ public class Arc extends ModelItem
         fromNode.addFromArc(this);
         toNode.addToArc(this);
         setProperty(name, namespace);
+        initArrowHead();
+    }
+    
+    public void initArrowHead()
+    {
         arrowHead = NSBezierPath.bezierPath();
         arrowHead.moveToPoint(new NSPoint(0.0F, 0.0F));
         arrowHead.lineToPoint(new NSPoint(6.0F, -20.0F));
         arrowHead.lineToPoint(new NSPoint(-6.0F, -20.0F));
         arrowHead.closePath();
     }
-
+    
+    private void writeObject(java.io.ObjectOutputStream out)
+     throws IOException
+    {
+        System.out.println("Serialising " + this);
+        out.writeObject(fromNode);
+        System.out.println("Wrote arc from node");
+        out.writeObject(toNode);
+        System.out.println("Wrote arc to node");
+        out.writeObject(myList);
+        System.out.println("Wrote arc my list");
+        out.writeObject(propertyNamespace);
+        System.out.println("Wrote arc property n/s");
+        out.writeObject(propertyName);
+        System.out.println("Wrote arc property n");
+    }
+    
+    private void readObject(java.io.ObjectInputStream in)
+     throws IOException, ClassNotFoundException
+    {
+        fromNode = (Node) in.readObject();
+        toNode = (Node) in.readObject();
+        myList = (ArcNodeList) in.readObject();
+        propertyNamespace = (String) in.readObject();
+        propertyName = (String) in.readObject();
+        
+        calculateSize();
+        initArrowHead();
+    }
+    
     public void setMyList(ArcNodeList list)
     {
         myList = list;
