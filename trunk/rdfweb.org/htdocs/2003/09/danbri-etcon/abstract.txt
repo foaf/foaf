@@ -1,16 +1,16 @@
 DanBri ETCON-2004 abstract
-version: $Id: abstract.txt,v 1.7 2003-09-24 18:51:18 danbri Exp $
+version: $Id: abstract.txt,v 1.8 2003-09-24 19:08:15 danbri Exp $
 45 min session at http://conferences.oreillynet.com/cs/et2004/create/e_sess#form
 
   "Fear of a FOAF Planet - Acronyms and activism on the Semantic Web"
 
 The Friend of a Friend (FOAF) project is creating a Web of machine-readable 
 homepages describing people, the links between them and the things they make and  
-do. This session introduces the FOAF project, giving a lightning tour of its 
-origins, goals, current status and possible futures. 
+do. This session introduces FOAF, giving a lightning tour of its origins, goals, 
+current status and possible futures. 
 
 What would happen (to privacy, to the media, to commerce) if search engines evolved 
-into more structured, aggregating databases? What would happen if machines could 
+into structured, aggregating databases? What would happen if machines could 
 exchange, merge and reason about descriptions of people using standards-based, freely 
 available tools? What should we do as these 'ifs' become 'whens'?
 
@@ -23,13 +23,11 @@ who has been to Iraq...").
 
 FOAF has many possible futures: utopian, dystopian, and the spaces in between. 
 Modest technologies can have unexpected consequences. As a simple technology 
-designed to encourage coincidences, FOAF opens up many possibilities. 
+designed to encourage coincidence, FOAF opens up many possibilities. 
 Moving towards mainstream use, we must balance wide-eyed optimism 
 with sober assessments of possible unwelcome futures. FOAF is both a driver for 
 change, and a readily accessible tool for understanding, adapting to and 
-participating in this changed world. While FOAF is in essence a tool 
-for describing and modeling our world, the Semantic Web may be a tool for changing 
-it.
-
+participating in this changed world. While FOAF is at heart a tool for 
+describing and modeling our world, the Semantic Web is a tool for changing it.
 
 
