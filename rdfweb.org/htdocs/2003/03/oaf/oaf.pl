@@ -25,10 +25,16 @@
 #  - the old app copies text from one channel to another, expecting '>>' in format.
 #    ...see regex for details. Ah, a full stop terminates multiline content.
 #    so we can test easily enough. Finish a single line with >>.
-
-# cvs version: $Id: oaf.pl,v 1.1 2003-03-29 22:19:16 danbri Exp $
+#  - normalise indenting
+#  - if it works, my tests should scrawl into http://rdfweb.org/rweb/wiki/wiki?ScratchPad
+#
+# cvs version: $Id: oaf.pl,v 1.2 2003-03-29 23:02:49 danbri Exp $
+# cvsweb: http://rdfweb.org/viewcvs/viewcvs.cgi/rdfweb.org/htdocs/2003/03/oaf/
 # Recent changes:
 # $Log: not supported by cvs2svn $
+# Revision 1.1  2003/03/29 22:19:16  danbri
+# First cut at forked POE-happy wikibot
+#
 # 
 
 use strict;
@@ -46,7 +52,7 @@ my $version = "0.21-OAF-Forkv0.0";
 $ua->agent('Wikibot/$version');
 
 my $listen = {
-    nick => 'foaflisten',
+    nick => 'oafbot',
     chan => '#oaf2',
     feed => 'FOAF',
     server => 'irc.freenode.net',
@@ -222,9 +228,65 @@ sub on_public {
 
 }
 
+
+# this is on_public, to be modified to be called from the POE code 
+# danbri TODO: xxx
+# 
+sub on_poe_public {
+
+	# already extracted from POE wierdness:
+	my ($msg, $sender, $who, $chan)=@_;
+	# [on_poe_public]: msg=werwer . 
+	# sender=POE::Session=ARRAY(0x85838e0) 
+	# who=danb_lap!
+	#~danbri@pc-80-192-52-217-az.blueyonder.co.uk 
+	# chan=ARRAY(0x8587ba0)
+
+        # print STDERR "[on_poe_public]: msg=$msg sender=$sender who=$who chan=$chan\n\n"; # xxx
+	my ($self, $event) = @_;
+	my @to=('oaf'); # danbri TODO: this is wrong! FIXME
+        my ($nick, $mynick)=('whoever','oafbot');#$listen{'nick'});  # FIXME
+        my $arg=$msg;
+        print "[oaf] considering '$arg'\n\n"; # what's up?
+	if (($nick eq $owner) && ($arg =~ /^$mynick, leave/i)) {
+		print "Quitting.\n";
+		$self->quit("$quitmsg");
+		exit 0;
+	}
+
+	# pick up text addressed to bot, apply format strings
+	# pass it over to the writing routine
+	# bot can be addressed "bot, " or "bot: "
+
+	elsif (($arg =~ /^$mynick, /i) || ($arg =~/^$mynick: /i)) {
+		my $comment = $arg;
+		$comment =~ s/$mynick, //;
+		$comment =~ s/$mynick: //;
+
+		# list new addition in STDOUT
+		print "[oaf]" . $nick . " added \"" . $comment . "\"\n";
+
+		if ($shownicks == "1") {
+			# apply formatting strings
+			$comment = $formatstart . $nick . $formatmid . $comment . $formatend;
+			&write($comment);
+		}
+		
+		else {
+			# apply formatting strings, leaving out nick
+			$comment = $formatmid . $comment . $formatend;
+			&write($comment);
+		}
+	}
+
+}
+
+
 sub write {
 	$newedit = shift;
 	my $editurl;
+ 
+        print STDERR "[oaf] DEBUG! writing $newedit \n\n";
 
 	# construct url for editing specified wiki page,
 	# depending on type of wiki software being run
@@ -435,6 +497,13 @@ sub irc_public {
   #                $chan->[0] eq $conn{$sender}->{chan} and
   #                $who =~ /^$conn{$sender}->{feed}!/i;
   # something to do with the CNN app, multi line content etc.
+ 
+  # danbri TODO: 
+  # we got a msg event from listener, time to call Wiki code somehow
+  # hmm this is where POE-ese gets turned into Net::IRC-ese. Hopefully.
+  # zzz
+  on_poe_public($msg, $sender, $who, $chan);
+
 
   while ($msg =~ /^(.*?)\s*>>\s*(.*)$/) {
     $buffer .= $1;
