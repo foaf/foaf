@@ -1,6 +1,8 @@
 /* Decompiled by Mocha from Arc.class */
 /* Originally compiled from Arc.java */
 
+/* $Id: Arc.java,v 1.16 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -123,12 +125,19 @@ public class Arc implements Serializable, ModelItem
     
     public void setProperty(String property)
     {
-        int sep = Util.splitNamespace(property);
-        
-        String namespace = property.substring(0, sep);
-        String name = property.substring(sep);
-        
-        setProperty(namespace, name);
+        if (property == null)
+        {
+            setProperty(null, null);
+        }
+        else
+        {
+            int sep = Util.splitNamespace(property);
+            
+            String namespace = property.substring(0, sep);
+            String name = property.substring(sep);
+            
+            setProperty(namespace, name);
+        }
     }
     
     public String propertyName()

@@ -1,6 +1,8 @@
 /* Decompiled by Mocha from ArcNodeList.class */
 /* Originally compiled from ArcNodeList.java */
 
+/* $Id: ArcNodeList.java,v 1.30 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
 
@@ -471,17 +473,19 @@ public class ArcNodeList implements Serializable
                 }
                 else
                 {
-                    // Removed this check - let in everything
-                    //if ((node.id() != null) && !isValidUrl(node.id()))
-                    //{
-                    //    errorData.addError(item, 
-                    //        "Id does not have a valid URI. Ids need to be either empty (anonymous), or URIs");
-                    //}
+                    if ((node.id() != null) && !RDFAuthorUtilities.isValidURI(node.id()))
+                    {
+                        errorData.addError(item, 
+                            "Id does not have a valid URI. " +
+                            "Ids need to be either empty (anonymous), or URIs");
+                    }
                     
-                    if ((node.typeNamespace() != null) && !isValidUrl(node.typeNamespace() + node.typeName()))
+                    if ((node.typeNamespace() != null) && 
+                        !RDFAuthorUtilities.isValidURI(node.typeNamespace() + node.typeName()))
                     {
                         errorData.addError(item,
-                            "Type does not have a valid URI. Types need to be either empty (generic resource), or URIs");
+                            "Type does not have a valid URI. " +
+                            "Types need to be either empty (generic resource), or URIs");
                     }
                 }
             }
@@ -498,9 +502,11 @@ public class ArcNodeList implements Serializable
                 if (arc.propertyNamespace() == null)
                 {
                     errorData.addError(item,
-                        "This connection has no property. This isn't allowed. Properties must be valid URIs only.");
+                        "This connection has no property. This isn't allowed. " +
+                        "Properties must be valid URIs only.");
                 }
-                else if (!isValidUrl(arc.propertyNamespace() + arc.propertyName))
+                else if (!RDFAuthorUtilities.isValidURI(arc.propertyNamespace() 
+                                                                + arc.propertyName))
                 {
                     errorData.addError(item,
                         "This connection's property is not a valid URI.");
@@ -508,17 +514,5 @@ public class ArcNodeList implements Serializable
             }
         }
     }
-            
-    public boolean isValidUrl(String url)
-    {
-        try
-        {
-            URL temp = new URL(url);
-            return true;
-        }
-        catch (MalformedURLException error)
-        {
-            return false;
-        }
-    }
+
 }

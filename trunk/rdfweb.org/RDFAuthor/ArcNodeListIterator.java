@@ -3,6 +3,8 @@
 //  RDFAuthor
 //
 
+/* $Id: ArcNodeListIterator.java,v 1.3 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -41,7 +43,7 @@ public class ArcNodeListIterator implements Iterator {
         getNextObject();
     }
     
-    public void getNextObject()
+    private void getNextObject()
     {
         if ((nextObjectIndex + 1) == list.size()) // At the end of the array
         {

@@ -5,6 +5,8 @@
 //  Created by pldms on Wed Nov 07 2001.
 //
 
+/* $Id: RDFAuthorUtilities.java,v 1.9 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -33,6 +35,8 @@ import com.apple.cocoa.application.*;
 
 import java.lang.Math;
 import java.util.HashMap;
+
+import org.apache.xerces.utils.URI;
 
 public class RDFAuthorUtilities {
     
@@ -75,6 +79,24 @@ public class RDFAuthorUtilities {
                                                     window, null, null, null, window, errorText);
             }
         }
+    }
+    
+    /*
+        This uses Xerces to validate URIs - useful for input validation
+    */
+    
+    public static boolean isValidURI(String uriToCheck)
+    {
+        try
+        {
+            URI theUri = new URI(uriToCheck);
+        }
+        catch (URI.MalformedURIException e)
+        {
+            return false;
+        }
+        
+        return true;
     }
     
     /*

@@ -2,6 +2,9 @@
 //  GraphicalNode.java
 //  RDFAuthor
 //
+
+/* $Id: GraphicalNode.java,v 1.5 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
