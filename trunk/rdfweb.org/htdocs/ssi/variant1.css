@@ -79,6 +79,6 @@ a:hover	{
   text-decoration: underline;
 }
 
-td {
-  background: #eeeeee;
+table{
+  border="1";
 }
