@@ -36,6 +36,7 @@
                 previewTextView = id; 
                 previewView = id; 
                 queryController = id; 
+                rdfModelScrollView = id; 
                 rdfModelView = id; 
                 rdfToolbar = id; 
                 textDescriptionField = id; 
@@ -43,6 +44,7 @@
             SUPERCLASS = NSDocument; 
         }, 
         {
+            ACTIONS = {sliderChanged = id; }; 
             CLASS = RDFModelView; 
             LANGUAGE = Java; 
             OUTLETS = {bookmarkController = id; rdfAuthorDocument = id; textDescriptionField = id; }; 

@@ -14,6 +14,8 @@ public class RDFAuthorDocument extends NSDocument {
 
     RDFModelView rdfModelView;
     
+    NSScrollView rdfModelScrollView;
+    
     RDFToolbar rdfToolbar;
     
     NSWindow window;
@@ -203,6 +205,18 @@ public class RDFAuthorDocument extends NSDocument {
         
         window.setToolbar(theToolbar);
         
+        // Set rdfModelView's size to current paper size
+        
+        rdfModelView.setSizeFromPrintInfo( NSPrintInfo.sharedPrintInfo() );
+        
+        // There must be a way to do this in interface builder...
+        
+        rdfModelScrollView.setHasHorizontalScroller(true);
+        rdfModelScrollView.setHasVerticalScroller(true);
+        rdfModelScrollView.setDocumentView(rdfModelView);
+        rdfModelScrollView.setDrawsBackground(true);
+        rdfModelScrollView.setBackgroundColor(NSColor.lightGrayColor());
+        
         // This is for exporting
         exportMappings = new HashMap();
         
@@ -217,6 +231,14 @@ public class RDFAuthorDocument extends NSDocument {
                 
         NSNotificationCenter.defaultCenter().addObserver(
             this, schemaChanged, SchemaWindowController.schemaItemChangedNotification , null);
+    }
+    
+    public void setPrintInfo(NSPrintInfo printInfo)
+    {
+        System.out.println("Setting paper size");
+        rdfModelView.setSizeFromPrintInfo(printInfo);
+        NSPrintInfo.setSharedPrintInfo(printInfo);
+        super.setPrintInfo(printInfo);
     }
     
     public boolean showTextPreview(boolean showPreview, String type)

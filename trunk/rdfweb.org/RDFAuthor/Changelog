@@ -1,4 +1,4 @@
-$Date: 2001-11-13 23:27:16 $ - pldms
+2001/11/13 23:27:16 - pldms
     
     Queries classes are buggy - I'll fix 'em later. Thread.stop() is a _bad_ thing and
     may be causing many problems. Also ResultSource needs to keep a copy of the mappings.
