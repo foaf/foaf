@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.25 2002-02-07 16:09:56 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.26 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -34,6 +34,7 @@ import java.io.*;
 public class RDFModelView extends NSView {
 
     RDFAuthorDocument rdfAuthorDocument;
+    ArrayList graphicObjects;
     
     static final int AddConnectionMode = 1;
     static final int AddNodeMode = 2;
@@ -66,6 +67,8 @@ public class RDFModelView extends NSView {
     public RDFModelView(NSRect frame) {
         super(frame);
         // Initialization code here.
+        
+        graphicObjects = new ArrayList();
         
         // Register for dragging types
         dragTypesArray.addObject(NSPasteboard.URLPboardType);
@@ -116,6 +119,7 @@ public class RDFModelView extends NSView {
             NSBezierPath.fillRect(selectionRect);
         }
         
+        drawModel(rect);
         rdfAuthorDocument.drawModel(rect);
     }
     
@@ -223,31 +227,40 @@ public class RDFModelView extends NSView {
         switch (currentEditingMode)
         {
             case AddConnectionMode:	startPoint = point; endPoint = point; break;
-            case DeleteItemsMode:	rdfAuthorDocument.deleteObjectAtPoint(point); break;
+            case DeleteItemsMode:	rdfAuthorDocument.deleteObject(objectAtPoint(point)); break;
             case AddNodeMode:		rdfAuthorDocument.addNodeAtPoint(null, null, null, point, false);
                                         startPoint = point;
                                         break; // false above - default to resource
-            case AddQueryItemMode:	rdfAuthorDocument.addQueryItemAtPoint(point); break;
+            case AddQueryItemMode:	rdfAuthorDocument.addQueryItem(objectAtPoint(point)); break;
             case MoveSelectMode:	startPoint = point;
+                                        ModelItem item = objectAtPoint(point);
                                         if (theEvent.modifierFlags() == NSEvent.AlternateKeyMask)
                                         {
                                         }
                                         else if (theEvent.modifierFlags() == NSEvent.ShiftKeyMask)
                                         {
-                                            draggingSelection = 
-                                                rdfAuthorDocument.addObjectAtPointToSelection(point);
-                                            if (!draggingSelection)
+                                            if (item != null)
                                             {
+                                                rdfAuthorDocument.addObjectToSelection(item);
+                                                draggingSelection=true;
+                                            }
+                                            else
+                                            {
+                                                draggingSelection = false;
                                                 selectionRect = NSRect.ZeroRect;
                                                 addingRectToSelection = true;
                                             }
                                         }
                                         else
                                         {
-                                            draggingSelection =
-                                                rdfAuthorDocument.setSelectionToObjectAtPoint(point);
-                                            if (!draggingSelection)
+                                            if (item != null)
                                             {
+                                                rdfAuthorDocument.setSelectionToObject(item);
+                                                draggingSelection=true;
+                                            }
+                                            else
+                                            {
+                                                draggingSelection = false;
                                                 selectionRect = NSRect.ZeroRect;
                                                 addingRectToSelection = false;
                                             }
@@ -299,7 +312,7 @@ public class RDFModelView extends NSView {
         switch (currentEditingMode)
         {
             case AddConnectionMode:	draggingConnection = false;
-                                        rdfAuthorDocument.addConnectionFromPoint(startPoint, point);
+                                        rdfAuthorDocument.addConnectionFrom(objectAtPoint(startPoint), objectAtPoint(point));
                                         // See above for explanation of this nonsense
                                         NSRect changedRect = new NSRect(startPoint, point);
                                         changedRect = changedRect.rectByInsettingRect(-1.0f, -1.0f);
@@ -310,17 +323,17 @@ public class RDFModelView extends NSView {
                                             // user held down command and double clicked - open url
                                             if (theEvent.modifierFlags() == NSEvent.CommandKeyMask)
                                             {
-                                                rdfAuthorDocument.openUrlForObjectAtPoint(point);
+                                                rdfAuthorDocument.openUrlForObject(objectAtPoint(point));
                                             }
                                             else // show info for object
                                             {
-                                                rdfAuthorDocument.showInfoForObjectAtPoint(point);
+                                                rdfAuthorDocument.showInfoForObject(objectAtPoint(point));
                                             }
                                         }
                                         else if (selectionRect != null)
                                         {
                                             this.setNeedsDisplay(selectionRect);
-                                            rdfAuthorDocument.setSelectionFromRect(selectionRect,
+                                            rdfAuthorDocument.setSelection(objectsInRect(selectionRect),
                                                 addingRectToSelection);
                                             selectionRect = null;
                                             addingRectToSelection = false;
@@ -539,7 +552,7 @@ public class RDFModelView extends NSView {
             String id = (String) URLs.objectAtIndex(0);
             
             // false - if new node don't want a literal
-            rdfAuthorDocument.setIdForNodeAtPoint(id, point, false); 
+            rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), false); 
         }
         else if (type.equals(NSPasteboard.StringPboardType)) {
             
@@ -553,12 +566,12 @@ public class RDFModelView extends NSView {
             if (RDFAuthorUtilities.isValidURI(id))
             {
                 // false - if new node don't want literal
-                rdfAuthorDocument.setIdForNodeAtPoint(id, point, false);
+                rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), false);
             }
             else
             {
                 // true - if new node want literal
-                rdfAuthorDocument.setIdForNodeAtPoint(id, point, true);
+                rdfAuthorDocument.setIdForNode(id, objectAtPoint(point), true);
             }
         }
         else if (type.equals(SchemaData.ClassPboardType))
@@ -568,7 +581,7 @@ public class RDFModelView extends NSView {
             String name = (String) info.objectForKey("Name");
             String namespace = (String) info.objectForKey("Namespace");
             
-            rdfAuthorDocument.setTypeForNodeAtPoint(namespace, name, point);
+            rdfAuthorDocument.setTypeForNode(namespace, name, objectAtPoint(point));
         }
         else if (type.equals(SchemaData.PropertyPboardType))
         {
@@ -577,7 +590,7 @@ public class RDFModelView extends NSView {
             String name = (String) info.objectForKey("Name");
             String namespace = (String) info.objectForKey("Namespace");
             
-            rdfAuthorDocument.setTypeForArcAtPoint(namespace, name, point);
+            rdfAuthorDocument.setTypeForArc(namespace, name, objectAtPoint(point));
         }
         else {
             System.err.println("The view has not registered for drag type: " + type);
@@ -585,6 +598,140 @@ public class RDFModelView extends NSView {
         
         // Restore description to previous value
         textDescriptionField.setStringValue(saveDescription);
+    }
+    
+    /**
+     * The following methods deal with the graphical representation of
+     * the model - i.e. objects implementing the GraphicalObject interface
+     **/
+     
+    public void addObject(GraphicalObject object)
+    {
+        graphicObjects.add(object);
+        this.setNeedsDisplay(object.bounds());
+    }
+    
+    public void addObject(ArcNodeList model)
+    {
+        // initialise from a model
+        
+        for (Iterator iterator = model.getNodes(); iterator.hasNext();)
+        {
+            Node node = (Node) iterator.next();
+            
+            GraphicalNode graphicNode = new GraphicalNode(node, this);
+        }
+        
+        for (Iterator iterator = model.getArcs(); iterator.hasNext();)
+        {
+            Arc arc = (Arc) iterator.next();
+            
+            GraphicalArc graphicArc = new GraphicalArc(arc, this);
+        }
+    }
+    
+    public void removeObject(GraphicalObject object)
+    {
+        graphicObjects.remove(object);
+    }
+    
+    public ModelItem objectAtPoint(NSPoint point)
+    {
+        int index = graphicObjects.size();
+        while (index-- > 0)
+        {
+            GraphicalObject item = (GraphicalObject) graphicObjects.get(index);
+            if (item.containsPoint(point))
+            {
+                return item.modelItem();
+            }
+        }
+
+        return null;
+    }
+    
+    public ArrayList objectsInRect(NSRect rect)
+    {
+        ArrayList hits = new ArrayList();
+        
+        int index = graphicObjects.size();
+        while (index-- > 0)
+        {
+            GraphicalObject item = (GraphicalObject) graphicObjects.get(index);
+            if (item.intersectsRect(rect))
+            {
+                hits.add(item.modelItem());
+            }
+        }
+        
+        return hits;
+    }
+    
+    public void drawModel(NSRect rect) // draw model visible in rect
+    {
+        ArcNodeSelection selection = rdfAuthorDocument.selection();
+        
+        for (Iterator i = graphicObjects.iterator(); i.hasNext();)
+        {
+            GraphicalObject item = (GraphicalObject) i.next();
+        
+            if (item.bounds().intersectsRect(rect))
+            {
+                if (selection.contains(item.modelItem()))
+                {
+                    item.drawHilight(rect);
+                }
+                else
+                {
+                    item.drawNormal(rect);
+                }
+            }
+        }
+        
+    }
+    
+    
+    public void svgRepresentation(Writer writer)
+                throws java.io.IOException
+    {
+        writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
+        writer.write("<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\"\n");
+        writer.write("	\"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">\n");
+        
+        NSSize docSize = frame().size();
+        
+        writer.write("\n<svg width=\"" + docSize.width() + "px\" ");
+        writer.write("height=\"" + docSize.height() + "px\" xmlns=\"http://www.w3.org/2000/svg\">\n\n");
+        
+        writer.write("<title>" + rdfAuthorDocument.displayName() + "</title>\n");
+        
+        NSGregorianDate date = new NSGregorianDate(); // Stuff java.util.Calendar!
+        
+        writer.write("<desc>RDF model produced by RDFAuthor (http://rdfweb.org/people/damian/RDFAuthor) at " +
+            date.toString() + "</desc>\n");
+        
+        GraphicalArc.svgArrowHead(writer);
+        
+        writer.write("<rect x=\"0px\" y=\"0px\" width=\"" + docSize.width() + "px\" ");
+        writer.write("height=\"" + docSize.height() + "px\" fill=\"white\" />\n\n");
+        
+        ArcNodeSelection selection = rdfAuthorDocument.selection();
+        
+        for (Iterator i = graphicObjects.iterator(); i.hasNext();)
+        {
+            GraphicalObject item = (GraphicalObject) i.next();
+            
+            if (selection.contains(item.modelItem()))
+            {
+                item.drawSvgHilight(writer);
+            }
+            else
+            {
+                item.drawSvgNormal(writer);
+            }
+        }
+        
+        writer.write("\n\n</svg>");
     }
 
 }

@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalObject.java,v 1.3 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: GraphicalObject.java,v 1.4 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -28,6 +28,7 @@
 
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
+import java.io.Writer;
 
 public interface GraphicalObject {
     
@@ -47,7 +48,11 @@ public interface GraphicalObject {
     
     public boolean intersectsRect(NSRect rect);
     
-    public void calculateSize(); // Give this (and the following) a better name!!!!
+    public void contentChanged();
     
-    public void calculateRectangle();
+    public void boundsChanged();
+    
+    public void drawSvgNormal(Writer writer) throws java.io.IOException;
+    
+    public void drawSvgHilight(Writer writer) throws java.io.IOException;
 }

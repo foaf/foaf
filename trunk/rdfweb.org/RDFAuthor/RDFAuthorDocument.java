@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.33 2002-02-07 16:09:56 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.34 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -53,7 +53,7 @@ public class RDFAuthorDocument extends NSDocument {
     BookmarkController bookmarkController;
     
     ArcNodeList rdfModel;
-    GraphicalModel rdfGraphicModel;
+    //GraphicalModel rdfGraphicModel;
     
     HashMap exportMappings;
     boolean needsAutoLayout; // indicate whether we've loaded something which needs laying out
@@ -96,17 +96,6 @@ public class RDFAuthorDocument extends NSDocument {
     {
         super(anURL, docType);
         System.out.println("Loading url: " + anURL + " (" + docType + ")");
-    }
-    
-    public void printDocumentUsingPrintPanel(boolean flag)
-    {
-        NSPrintOperation printOperation = 
-            NSPrintOperation.printOperationWithView((NSView) rdfModelView);
-        printOperation.runModalOperation(window, null, null, null);
-    }
-    
-    public void printDocument(Object sender) {
-        printDocumentUsingPrintPanel(true);
     }
     
     public NSData dataRepresentationOfType(String aType) {
@@ -165,7 +154,7 @@ public class RDFAuthorDocument extends NSDocument {
             try
             {
                 StringWriter stringOutput = new StringWriter();
-                rdfGraphicModel.svgRepresentation(stringOutput, this, rdfModel, rdfModelView);
+                rdfModelView.svgRepresentation(stringOutput);
                 stringOutput.flush();
                 NSMutableStringReference svgString = new NSMutableStringReference();
                 svgString.setString(stringOutput.toString());
@@ -330,9 +319,7 @@ public class RDFAuthorDocument extends NSDocument {
                     rdfModelView.frame().maxX(), 
                     rdfModelView.frame().maxY());
             }
-            // This caused a nasty bug - if it reverted it loaded the doc, but lost the Graphics
-            // Initialise rdfGraphicModel
-            rdfGraphicModel = new GraphicalModel(rdfModel, rdfModelView);
+            rdfModelView.addObject(rdfModel);
             if (bookmarkedItems != null) // we loaded bookmarked items
             {
                 bookmarkController.setItems(bookmarkedItems);
@@ -369,9 +356,9 @@ public class RDFAuthorDocument extends NSDocument {
         NSPrintInfo.sharedPrintInfo().setHorizontalPagination(NSPrintInfo.AutoPagination);
         NSPrintInfo.sharedPrintInfo().setVerticalPagination(NSPrintInfo.AutoPagination);
         
-        // Initialise rdfGraphicModel
+        // Initialise graphic reps
         
-        rdfGraphicModel = new GraphicalModel(rdfModel, rdfModelView);
+        rdfModelView.addObject(rdfModel);
         
         if (modelWidth > 0) // file had size info
         {
@@ -408,6 +395,18 @@ public class RDFAuthorDocument extends NSDocument {
         exportMappings.put("RDF/XML Document", "RDF/XML");
         exportMappings.put("N-Triple Document", "N-TRIPLE");
         //exportMappings.put("N3 Document", "N3");
+    }
+
+    public void printDocumentUsingPrintPanel(boolean flag)
+    {
+        NSPrintOperation printOperation = 
+            NSPrintOperation.printOperationWithView((NSView) rdfModelView);
+        printOperation.runModalOperation(window, null, null, null);
+    }
+    
+    public void printDocument(Object sender) 
+    {
+        printDocumentUsingPrintPanel(true);
     }
     
     public void setPrintInfo(NSPrintInfo printInfo)
@@ -466,28 +465,8 @@ public class RDFAuthorDocument extends NSDocument {
             new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    /*public void showTypes(boolean value)
+    public void showInfoForObject(ModelItem item)
     {
-        showTypes = value;
-        rdfModel.showTypes(value);
-    }
-
-    public void showIds(boolean value) 
-    {
-        showIds = value;
-        rdfModel.showIds(value);
-    }
-
-    public void showProperties(boolean value) 
-    {
-        showProperties = value;
-        rdfModel.showProperties(value);
-    }
-    */
-    
-    public void showInfoForObjectAtPoint(NSPoint point)
-    {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
         {
             rdfModel.selection.set(item);
@@ -496,41 +475,33 @@ public class RDFAuthorDocument extends NSDocument {
         }
     }
     
-    public void openUrlForObjectAtPoint(NSPoint point)
+    public void openUrlForObject(ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if (item != null)
+        if ((item != null) && item.isNode() && !((Node) item).isLiteral())
         {
-            if (item.isNode() && !((Node) item).isLiteral())
+            String urlString = ((Node) item).id();
+            if (urlString != null)
             {
-                String urlString = ((Node) item).id();
-                if (urlString != null)
+                try
                 {
-                    try
-                    {
-                        java.net.URL url = new java.net.URL( urlString );
-                        NSWorkspace.sharedWorkspace().openURL( url );
-                    }
-                    catch (Exception e)
-                    {
-                        RDFAuthorUtilities.ShowError("Cannot Open URL",
-                            "I cannot open <" + urlString +
-                            ">. Perhaps it isn't a URL?",
-                            RDFAuthorUtilities.Normal, window);
-                    }
+                    java.net.URL url = new java.net.URL( urlString );
+                    NSWorkspace.sharedWorkspace().openURL( url );
+                }
+                catch (Exception e)
+                {
+                    RDFAuthorUtilities.ShowError("Cannot Open URL",
+                        "I cannot open <" + urlString +
+                        ">. Perhaps it isn't a URL?",
+                        RDFAuthorUtilities.Normal, window);
                 }
             }
         }
     }
     
-    public void deleteObjectAtPoint(NSPoint point)
+    public void deleteObject(ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if (item != null)
-        {
-            rdfModel.deleteObject(item);
-            queryController.checkForDeletedItems(rdfModel);
-        }
+        rdfModel.deleteObject(item);
+        queryController.checkForDeletedItems(rdfModel);
     }
 
     // This is used to add a pre-existing object to the model
@@ -542,14 +513,14 @@ public class RDFAuthorDocument extends NSDocument {
         
         if (object.isNode())
         {
-            ((Node) object).setGraphicRep(new GraphicalNode((Node) object, rdfModelView));
             ((Node) object).setShowId(showIds);
             ((Node) object).setShowType(showTypes);
+            ((Node) object).setGraphicRep(new GraphicalNode((Node) object, rdfModelView));
         }
         else
         {
-            ((Arc) object).setGraphicRep(new GraphicalArc((Arc) object, rdfModelView));
             ((Arc) object).setShowProperty(showProperties);
+            ((Arc) object).setGraphicRep(new GraphicalArc((Arc) object, rdfModelView));
         }
 
         rdfModel.selection().add(object);
@@ -567,8 +538,6 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModel.add(newNode);
         
         // Create the corresponding graphical object
-        
-        newNode.setGraphicRep(new GraphicalNode(newNode, rdfModelView));
 
         // These have to come after the above otherwise the node tries to message a null
 
@@ -576,19 +545,18 @@ public class RDFAuthorDocument extends NSDocument {
         newNode.setShowId(showIds);
         newNode.setShowType(showTypes);
         newNode.setIsLiteral(isLiteral);
+        newNode.setGraphicRep(new GraphicalNode(newNode, rdfModelView));
         NSNotificationCenter.defaultCenter().postNotification(
             new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    public void addConnectionFromPoint(NSPoint fromPoint, NSPoint toPoint)
+    public void addConnectionFrom(ModelItem fromItem, ModelItem toItem)
     {
-        ModelItem startNode = rdfGraphicModel.objectAtPoint(rdfModel, fromPoint);
-        ModelItem endNode = rdfGraphicModel.objectAtPoint(rdfModel, toPoint);
-        if (startNode != null && endNode != null
-            && startNode.isNode() && endNode.isNode()
-            && (startNode != endNode) )
+        if ((fromItem != null) && (toItem != null) &&
+            fromItem.isNode() && toItem.isNode()
+            && (fromItem != toItem) )
         {
-            Arc newArc = new Arc((Node)startNode, (Node)endNode, defaultPropertyNamespace, defaultPropertyName);
+            Arc newArc = new Arc((Node)fromItem, (Node)toItem, defaultPropertyNamespace, defaultPropertyName);
             rdfModel.add(newArc);
             
             // Create the corresponding graphical object
@@ -609,32 +577,23 @@ public class RDFAuthorDocument extends NSDocument {
         return rdfModel.selection();
     }
     
-    public boolean addObjectAtPointToSelection(NSPoint point)
+    public void addObjectToSelection(ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if (item != null)
+        NSNotificationCenter.defaultCenter().postNotification(
+            new NSNotification(InfoController.itemChangedNotification, this) );
+
+        if (rdfModel.selection().contains(item))
         {
-            NSNotificationCenter.defaultCenter().postNotification(
-                new NSNotification(InfoController.itemChangedNotification, this) );
-                
-            if (rdfModel.selection().contains(item))
-            {
-                rdfModel.selection().remove(item);
-                return false;
-            }
-            else
-            {
-                rdfModel.selection().add(item);
-                return true;
-            }
+            rdfModel.selection().remove(item);
         }
-        
-        return false;
+        else
+        {
+            rdfModel.selection().add(item);
+        }
     }
     
-    public boolean setSelectionToObjectAtPoint(NSPoint point)
+    public void setSelectionToObject(ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         if (item != null)
         {
             if (!rdfModel.selection().contains(item))
@@ -643,7 +602,7 @@ public class RDFAuthorDocument extends NSDocument {
                 NSNotificationCenter.defaultCenter().postNotification(
                     new NSNotification(InfoController.itemChangedNotification, this) );
             }
-            return true;
+            
         }
         else
         {
@@ -651,16 +610,8 @@ public class RDFAuthorDocument extends NSDocument {
             NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.itemChangedNotification, this) );
         }
-        return false;
     }
-    
-    public void setSelectionToObject(ModelItem object)
-    {
-        rdfModel.selection().set(object);
-        NSNotificationCenter.defaultCenter().postNotification(
-                new NSNotification(InfoController.itemChangedNotification, this) );
-    }
-    
+
     public void deleteSelection()
     {
         rdfModel.deleteSelection();
@@ -675,14 +626,14 @@ public class RDFAuthorDocument extends NSDocument {
                 new NSNotification(InfoController.itemChangedNotification, this) );
     }
     
-    public void setSelectionFromRect(NSRect rect, boolean adding)
+    public void setSelection(ArrayList items, boolean adding)
     {
         if (!adding)
         {
             rdfModel.selection().clear();
         }
         
-        rdfModel.selection().add( rdfGraphicModel.objectsInRect(rdfModel, rect) );
+        rdfModel.selection().add( items );
         NSNotificationCenter.defaultCenter().postNotification(
                 new NSNotification(InfoController.itemChangedNotification, this) );
     }
@@ -692,11 +643,9 @@ public class RDFAuthorDocument extends NSDocument {
         rdfModel.selection().moveBy(dx, dy);
     }
     
-    public void addQueryItemAtPoint(NSPoint point)
+    public void addQueryItem(ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
         queryController.addQueryItem(item);
-        rdfModelView.setNeedsDisplay(true);
     }
     
     public void selectNextObject()
@@ -713,36 +662,25 @@ public class RDFAuthorDocument extends NSDocument {
                 new NSNotification(InfoController.itemChangedNotification, this) );
     }
 
-    public void setIdForNodeAtPoint(String id, NSPoint point, boolean isLiteral)
+    public void setIdForNode(String id, ModelItem item, boolean isLiteral)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if ((item !=null) && item.isNode())
+        if (item.isNode())
         {
             ((Node) item).setId(id);
         }
-        else
-        {
-            addNodeAtPoint(id, null, null, point, isLiteral);
-        }
     }
     
-    public void setTypeForNodeAtPoint(String namespace, String name, NSPoint point)
+    public void setTypeForNode(String namespace, String name, ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if ((item !=null) && item.isNode())
+        if ((item != null) && item.isNode())
         {
             ((Node) item).setType(namespace, name);
         }
-        else
-        {
-            addNodeAtPoint(null, namespace, name, point, false);  // false - not a literal
-        }
     }
     
-    public void setTypeForArcAtPoint(String namespace, String name, NSPoint point)
+    public void setTypeForArc(String namespace, String name, ModelItem item)
     {
-        ModelItem item = rdfGraphicModel.objectAtPoint(rdfModel, point);
-        if ((item !=null) && !item.isNode())
+        if ((item != null) && !item.isNode())
         {
             ((Arc) item).setProperty(namespace, name);
         }
@@ -750,7 +688,6 @@ public class RDFAuthorDocument extends NSDocument {
     
     public void drawModel(NSRect rect)
     {
-        rdfGraphicModel.drawModel(rdfModel, rect);
         queryController.drawQueryItems();
     }
     

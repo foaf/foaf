@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalArc.java,v 1.6 2002-02-05 16:02:57 pldms Exp $ */
+/* $Id: GraphicalArc.java,v 1.7 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -47,6 +47,7 @@ public class GraphicalArc implements GraphicalObject
     NSColor normalColor = NSColor.colorWithCalibratedRGB(0F, 0F, 1F, 0.5F);
     NSColor hilightColor = NSColor.colorWithCalibratedRGB(1F, 0F, 0F, 0.5F);
     NSBezierPath arrowHead;
+    NSBezierPath arrowToDraw; // we precalculate the path, since it involves some overhead
     NSSize mySize;
     NSSize defaultSize = new NSSize(15,15);
     NSRect handleRect = NSRect.ZeroRect;
@@ -60,7 +61,8 @@ public class GraphicalArc implements GraphicalObject
         
         initArrowHead();
         
-        calculateSize();
+        contentChanged();
+        rdfModelView.addObject(this);
     }
     
     public ModelItem modelItem()
@@ -77,6 +79,7 @@ public class GraphicalArc implements GraphicalObject
     {
         // We're going to be deleted, so redraw the space this node occupies
         rdfModelView.setNeedsDisplay(bounds);
+        rdfModelView.removeObject(this);
     }
     
     public void changed() // something changed - needs redisplaying
@@ -117,33 +120,10 @@ public class GraphicalArc implements GraphicalObject
     {
         if (bounds.intersectsRect(rect))
         {
-            NSPoint toNodePos = new NSPoint( arc.toNode().x(), arc.toNode().y() );
-            NSPoint fromNodePos = new NSPoint( arc.fromNode().x(), arc.fromNode().y() );
-            
-            double dx = toNodePos.x() - fromNodePos.x();
-            double dy = toNodePos.y() - fromNodePos.y();
-            float angle = (float)Math.atan2(dy, dx);
-            
             myColor.set();
             
-            NSBezierPath.fillRect(handleRect);
-            
-            NSBezierPath.strokeLineFromPoint(fromNodePos, toNodePos);
-            
-            NSAffineTransform transformArrow = NSAffineTransform.transform();
-            NSAffineTransform translateArrow = NSAffineTransform.transform();
-            
-            translateArrow.translateXYBy(toNodePos.x(), toNodePos.y());
-            
-            NSAffineTransform rotateTransform = NSAffineTransform.transform();
-        
-            rotateTransform.rotateByRadians(angle);
-            transformArrow.appendTransform(rotateTransform);
-            transformArrow.appendTransform(translateArrow);
-            
-            NSBezierPath arrowToDraw = transformArrow.transformBezierPath(arrowHead);
-            
             arrowToDraw.fill();
+            arrowToDraw.stroke();
             
             if (displayString != null)
             {
@@ -152,7 +132,7 @@ public class GraphicalArc implements GraphicalObject
         }
     }
     
-    public void calculateSize()
+    public void contentChanged()
     {
         String stringToDraw = arc.displayString();
         if (stringToDraw == null)
@@ -166,13 +146,11 @@ public class GraphicalArc implements GraphicalObject
             mySize = NSGraphics.sizeOfAttributedString(displayString);
         }
         
-        calculateRectangle();
+        boundsChanged();
     }
     
-    public void calculateRectangle()
+    public void boundsChanged()
     {
-        //NSRect changedRect = bounds; // this rect will be oldbounds U newbounds - the changed region
-        
         rdfModelView.setNeedsDisplay(bounds); // mark old bounds as dirty
         
         NSPoint toNodePos = new NSPoint( arc.toNode().x(), arc.toNode().y() );
@@ -187,14 +165,60 @@ public class GraphicalArc implements GraphicalObject
                             mySize.width(),
                             mySize.height() );
         
-        bounds = new NSRect(toNodePos, fromNodePos);
-        bounds = bounds.rectByUnioningRect(handleRect);
+        createArrow(fromNodePos, toNodePos);
         
-        //changedRect = changedRect.rectByUnioningRect(bounds);
-        
-        //rdfModelView.setNeedsDisplay(changedRect);
+        bounds = arrowToDraw.bounds();
         
         rdfModelView.setNeedsDisplay(bounds); // mark new bounds as dirty
+    }
+    
+    public void createArrow(NSPoint fromNodePos, NSPoint toNodePos)
+    {
+        double dx = toNodePos.x() - fromNodePos.x();
+        double dy = toNodePos.y() - fromNodePos.y();
+        float angle = (float)Math.atan2(dy, dx);
+        float distance = fromNodePos.distanceToPoint(toNodePos);
+        
+        arrowToDraw = NSBezierPath.bezierPath();
+        
+        arrowToDraw.appendBezierPath(arrowHead);
+        
+        if (distance > 50)
+        {
+            arrowToDraw.moveToPoint(new NSPoint(-20, 0));
+            arrowToDraw.lineToPoint(new NSPoint(30 - distance, 0));
+        }
+        else if (!(distance < 20))
+        {
+            arrowToDraw.moveToPoint(new NSPoint(-20, 0));
+            arrowToDraw.lineToPoint(new NSPoint(-distance, 0));
+        }
+        
+        NSAffineTransform transformArrow = NSAffineTransform.transform();
+        
+        NSAffineTransform translateArrow = NSAffineTransform.transform();
+        translateArrow.translateXYBy(toNodePos.x(), toNodePos.y());
+        
+        NSAffineTransform rotateArrow = NSAffineTransform.transform();
+        rotateArrow.rotateByRadians(angle);
+        
+        if (distance > 50)
+        {
+            NSAffineTransform fancyTranslate = NSAffineTransform.transform();
+            fancyTranslate.translateXYBy( -15, 0);
+            transformArrow.appendTransform(fancyTranslate);
+        }
+        
+        transformArrow.appendTransform(rotateArrow);
+        transformArrow.appendTransform(translateArrow);
+        
+        arrowToDraw = transformArrow.transformBezierPath(arrowToDraw);
+        
+        //arrowToDraw.moveToPoint(fromNodePos);
+        //arrowToDraw.lineToPoint(toNodePos);
+        
+        arrowToDraw.appendBezierPathWithRect(handleRect);
+        //arrowToDraw.appendBezierPath(line);
     }
     
     public void drawSvgNormal(Writer writer) throws java.io.IOException

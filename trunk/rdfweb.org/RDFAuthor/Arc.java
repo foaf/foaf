@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Arc.class */
 /* Originally compiled from Arc.java */
 
-/* $Id: Arc.java,v 1.16 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: Arc.java,v 1.17 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -109,7 +109,7 @@ public class Arc implements Serializable, ModelItem
     public void setShowProperty(boolean value)
     {
         showProperty = value;
-        if (graphicArc != null) graphicArc.calculateSize();
+        if (graphicArc != null) graphicArc.contentChanged();
     }
 
     public void setProperty(String namespace, String name)
@@ -118,7 +118,7 @@ public class Arc implements Serializable, ModelItem
         propertyNamespace = namespace;
         myList.itemChanged(this);
         
-        if (graphicArc != null) graphicArc.calculateSize();
+        if (graphicArc != null) graphicArc.contentChanged();
     }
     
     // Version of above but property not split
@@ -185,7 +185,7 @@ public class Arc implements Serializable, ModelItem
     public void nodeMoved()
     {
         myList.itemChanged(this);
-        if (graphicArc != null) graphicArc.calculateRectangle();
+        if (graphicArc != null) graphicArc.boundsChanged();
     }
     
     public boolean isNode()

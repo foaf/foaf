@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: GraphicalNode.java,v 1.6 2002-02-05 16:02:57 pldms Exp $ */
+/* $Id: GraphicalNode.java,v 1.7 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -56,8 +56,8 @@ public class GraphicalNode implements GraphicalObject
         this.node = node;
         this.rdfModelView = rdfModelView;
         node.setGraphicRep(this);
-        
-        calculateSize();
+        contentChanged();
+        rdfModelView.addObject(this);
     }
     
     public ModelItem modelItem()
@@ -74,6 +74,7 @@ public class GraphicalNode implements GraphicalObject
     {
         // We're going to be deleted, so redraw the space this node occupies
         rdfModelView.setNeedsDisplay(bounds);
+        rdfModelView.removeObject(this);
     }
     
     public void changed() // something changed - needs redisplaying
@@ -130,7 +131,7 @@ public class GraphicalNode implements GraphicalObject
         return bounds.intersectsRect(rect);
     }
     
-    public void calculateSize()
+    public void contentChanged()
     {
         String stringToDraw = node.displayString();
         if (stringToDraw == null)
@@ -144,10 +145,10 @@ public class GraphicalNode implements GraphicalObject
             mySize = NSGraphics.sizeOfAttributedString(displayString);
         }
         
-        calculateRectangle();
+        boundsChanged();
     }
     
-    public void calculateRectangle()
+    public void boundsChanged()
     {
         rdfModelView.setNeedsDisplay(bounds); // mark old bounds as dirty
         

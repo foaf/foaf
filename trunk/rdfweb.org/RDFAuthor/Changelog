@@ -1,3 +1,13 @@
+2002/03/22 16:38:50 - pldms
+
+    Rationalised structure - all graphics are stored in the rdfModelView.
+    (GraphicalModel is gone).
+    
+    Improved speed by only calculating the arcs (arrow etc) when needed.
+    
+    Thwarted above by making changes to limiting arrowhead overlap on nodes.
+    (Note: SVG needs to be changed to mirror this)
+
 2002/02/19 13:51:20 - pldms
     
     Fixed bug loading old documents with empty selection.

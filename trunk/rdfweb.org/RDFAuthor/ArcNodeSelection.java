@@ -3,7 +3,7 @@
 //  RDFAuthor
 //
 
-/* $Id: ArcNodeSelection.java,v 1.5 2002-01-06 22:15:28 pldms Exp $ */
+/* $Id: ArcNodeSelection.java,v 1.6 2002-03-22 17:02:00 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -115,7 +115,7 @@ public class ArcNodeSelection implements Serializable
         if (object != null) // not setting to nothing then...
         {
             selection.add(object);
-            object.graphicRep().changed();
+            if (object.graphicRep() != null) object.graphicRep().changed();
             findNodes();
         }
     }
