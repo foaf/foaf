@@ -1,7 +1,7 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
-/* $Id: Node.java,v 1.26 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: Node.java,v 1.27 2002-03-27 10:22:36 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -153,6 +153,24 @@ public class Node implements Serializable, ModelItem
         return (!arcsFrom.isEmpty() || !arcsTo.isEmpty());
     }
     
+    public boolean isLeaf()
+    {
+        return ((arcsFrom.size() + arcsTo.size()) == 1);
+    }
+    
+    public boolean isObjectOfSeeAlso()
+    {
+        for (ListIterator arcs = arcsTo.listIterator(); arcs.hasNext();)
+        {
+            Arc arc = (Arc) arcs.next();
+            if (arc.property().equals("http://www.w3.org/2000/01/rdf-schema#seeAlso"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void setId(String theString)
     {
         id = theString;
@@ -200,6 +218,11 @@ public class Node implements Serializable, ModelItem
     public String typeName()
     {
         return typeName;
+    }
+    
+    public String type()
+    {
+        return typeNamespace + typeName;
     }
     
     public boolean isLiteral()

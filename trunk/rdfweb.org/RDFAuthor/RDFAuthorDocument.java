@@ -1,6 +1,6 @@
 /* RDFAuthorDocument */
 
-/* $Id: RDFAuthorDocument.java,v 1.34 2002-03-22 17:02:00 pldms Exp $ */
+/* $Id: RDFAuthorDocument.java,v 1.35 2002-03-27 10:22:36 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -96,6 +96,41 @@ public class RDFAuthorDocument extends NSDocument {
     {
         super(anURL, docType);
         System.out.println("Loading url: " + anURL + " (" + docType + ")");
+    }
+    
+    public boolean readFromURL( java.net.URL anURL, String docType)
+    {
+        System.out.println("Hehe, we are in! " + anURL + " " + docType);
+        try{
+            java.net.URLConnection conn = anURL.openConnection();
+            int length = conn.getContentLength();
+            byte[] content = new byte[length];
+            InputStream stream = conn.getInputStream();
+            
+            /**
+             * Warning
+             * This doesn't do timing out etc
+             */
+             
+            int read = 0;
+            while (read != length)
+            {
+                read += stream.read(content, read, stream.available());
+            }
+            
+            System.out.println("Read: " + read + " bytes of " + length);
+            
+            stream.close();
+            
+            NSData data = new NSData(content);
+            
+            boolean success = loadDataRepresentation(data, docType);
+            
+            setFileName(anURL.toString());
+            
+            return success;            
+        }
+        catch (Exception e) {System.err.println("Error: e"); return false;}
     }
     
     public NSData dataRepresentationOfType(String aType) {
@@ -485,7 +520,15 @@ public class RDFAuthorDocument extends NSDocument {
                 try
                 {
                     java.net.URL url = new java.net.URL( urlString );
-                    NSWorkspace.sharedWorkspace().openURL( url );
+                    
+                    if (((Node) item).isObjectOfSeeAlso())
+                    {
+                        NSDocumentController.sharedDocumentController().openDocumentWithContentsOfURL(url, true);
+                    }
+                    else
+                    {
+                        NSWorkspace.sharedWorkspace().openURL( url );
+                    }
                 }
                 catch (Exception e)
                 {
@@ -688,7 +731,7 @@ public class RDFAuthorDocument extends NSDocument {
     
     public void drawModel(NSRect rect)
     {
-        queryController.drawQueryItems();
+        queryController.drawQueryItems(rect);
     }
     
     public void checkModel(ModelErrorData errorData)
