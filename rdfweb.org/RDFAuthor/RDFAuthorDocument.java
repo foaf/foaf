@@ -13,7 +13,7 @@ public class RDFAuthorDocument extends NSDocument {
 
     RDFModelView rdfModelView;
     
-    RDFToolbar rdfToolbar;
+    //RDFToolbar rdfToolbar;
     
     NSWindow window;
     
@@ -152,21 +152,21 @@ public class RDFAuthorDocument extends NSDocument {
     public void windowControllerDidLoadNib(NSWindowController  aController) {
         super.windowControllerDidLoadNib(aController);
         // Add any code here that need to be executed once the windowController has loaded the document's window.
-        NSToolbar toolbar = new NSToolbar(RDFToolbar.identifier);
+        //NSToolbar toolbar = new NSToolbar(RDFToolbar.identifier);
 	
 	// Set up toolbar properties: Allow customization, give a default display mode, and remember state in user defaults.
-	toolbar.setAllowsUserCustomization(true);
-	toolbar.setAutosavesConfiguration(true);
-	toolbar.setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
+	//toolbar.setAllowsUserCustomization(true);
+	//toolbar.setAutosavesConfiguration(true);
+	//toolbar.setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
 	
-        rdfToolbar = new RDFToolbar(this);
+        //rdfToolbar = new RDFToolbar(this);
         
-	toolbar.setDelegate(rdfToolbar);
+	//toolbar.setDelegate(rdfToolbar);
 	
-        window = aController.window();
+        //window = aController.window();
         
 	// Attach the toolbar to the document window.
-	window.setToolbar(toolbar);
+	//window.setToolbar(toolbar);
     }
     
     public void modelChanged()

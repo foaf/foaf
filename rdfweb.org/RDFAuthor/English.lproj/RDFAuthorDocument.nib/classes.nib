@@ -26,6 +26,12 @@
             LANGUAGE = Java; 
             OUTLETS = {rdfAuthorDocument = id; textDescriptionField = id; }; 
             SUPERCLASS = NSView; 
+        }, 
+        {
+            CLASS = RDFToolbar; 
+            LANGUAGE = Java; 
+            OUTLETS = {editModeView = id; rdfAuthorDocument = id; }; 
+            SUPERCLASS = NSObject; 
         }
     ); 
     IBVersion = 1; 
