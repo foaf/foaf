@@ -13,18 +13,19 @@ if (sha1=='') {
 mbox=''
 var hex_chr = "0123456789abcdef";
 fso=Server.CreateObject("Scripting.FileSystemObject")
-if (fso.FileExists(Server.MapPath("/foaf/cache-new/")+"\\"+sha1+'.cz')) { 
+if (false && fso.FileExists(Server.MapPath("/foaf/cache-new/")+"\\"+sha1+'.cz')) { 
  Response.Expires=6000
  Response.CacheControl="Public, max-age=6000"
  Response.AddHeader('Location','http://jibbering.com/foaf/cache-new/'+sha1+'.cz')
  Response.Status="302 Moved Temporarily"
 } else {
- Response.ContentType="application/rdf+xml"
+ Response.ContentType="application/xml"
  output=[]
  output.push('<rdf:RDF xmlns:img="http://jibbering.com/2002/3/svg/#" xmlns:jim="http://jibbering.com/foaf/jim.rdf#" xmlns:wn="http://xmlns.com/wordnet/1.6/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:an="http://rdf.desire.org/vocab/recommend.rdf#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">\n<foaf:Person rdf:ID="bod">\n')
 
  try { RS.Close() } catch (e) { }
- sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" limit 1'
+ sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+sha1+'" and b.obj not like "%genid%" limit 1'
+Response.Write("<!-- "+sqlstr+"-->")
  RS.Open(sqlstr,"rdf")
 	if (!RS.EOF) {
   output.push('<foaf:name>'+RS.Fields(0).Value+'</foaf:name>')
@@ -122,11 +123,11 @@ try { RS.Close() } catch (e) { }
 			}
 			if (codnick=='') {
     try { RS.Close() } catch (e) { }
- 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" limit 1'
+ 			sqlstr='SELECT distinct b.obj FROM rdf3 b, rdf3 a WHERE b.pred="http://xmlns.com/foaf/0.1/name" and (b.subj=a.subj and a.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum") and a.obj="'+codsha1+'" and b.obj not like "%genid%" limit 1'
  			RS.Open(sqlstr,"rdf")
  			if (!RS.EOF) {
 					aem=RS.Fields(0).Value
-    	aem=aem.substring(0,aem.indexOf(' '))
+     if (aem.indexOf(' ')>5) aem=aem.substring(0,aem.indexOf(' '))
  				codnick=' foaf:nick="'+aem+'"'
  			} else {
 	 			codnick=''
