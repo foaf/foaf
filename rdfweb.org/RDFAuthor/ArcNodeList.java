@@ -69,4 +69,40 @@ public class ArcNodeList
     {
         return currentObject;
     }
+    
+    public void showTypes(boolean value)
+    {
+        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        {
+            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            if (anObject.isNode())
+            {
+                ((Node) anObject).setShowType(value);
+            }
+        }
+    }
+    
+    public void showIds(boolean value)
+    {
+        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        {
+            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            if (anObject.isNode())
+            {
+                ((Node) anObject).setShowId(value);
+            }
+        }
+    }
+    
+    public void showProperties(boolean value)
+    {
+        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        {
+            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            if (!anObject.isNode())
+            {
+                ((Arc) anObject).setShowProperty(value);
+            }
+        }
+    }
 }
