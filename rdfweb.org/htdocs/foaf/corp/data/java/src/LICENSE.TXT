@@ -1,0 +1,25 @@
+
+
+This software is not yet distributed / packaged. I'm working on it!
+Hence this filetree and LICENSE.TXT.
+
+I expect to release Scutter under the GPL.
+
+I need to double-check for dependencies etc and relationships to other
+packages.
+
+RubyRDF (see http://www.w3.org/2001/12/rubyrdf/) will likely be released
+under W3C's Software License (which itself permits subsequent
+redistribution under GPL). RubyRDF is _not_ included
+here; you have to install it separately. Same goes for othe dependencies.
+See doc/scutter.html for more info.
+
+A note on dependencies:
+Other packages are optional and replacable (with some tweaking -- this
+is alpha release code). Any RDF parser should be usable, so long as it
+can be feed a URI + base URI, and return triples. Any SQL store should
+be OK so long as it allows self-joins. Any WWW server package should
+work for exposing Scutter's database; example code for WebRick and for
+SOAP4R is included.
+
+ 
