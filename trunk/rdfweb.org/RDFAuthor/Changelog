@@ -1,4 +1,17 @@
-$Date: 2001-11-07 19:55:41 $ - pldms
+$Date: 2001-11-07 20:03:53 $ - pldms
+
+    Added the new query stuff. This is pretty nice, with a spiffy interface. The 'adding
+    queries' bit has some issues, though.
+    
+    Slimmed jena libs a bit - didn't need rdffilter. But query adds more (SOAP related)
+    clutter.
+    
+    ArcNodeList inner workings are better exposed to the world now - I should be able to
+    move some clutter out of the model classes and into better positions.
+    
+    Error panels overhauled.
+
+2001/11/05 19:55:41 - pldms
 
     Bunch of new things. Some classes have been updated to remove old java stuff (Vector,
     Hashtable) with their spiffy new counterparts.
