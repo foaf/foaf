@@ -1,0 +1,15 @@
+<p>
+The <code>foaf:Group</code> represents a group of people, in the social rather than 
+mathematical sense. This concept is intentionally quite broad, covering informal and 
+ad-hoc groups, long-lived communities, organizational groups within a workplace, etc. Some 
+such groups may have associated characteristics which could be captured in RDF (perhaps a 
+<code>foaf:homepage</code>, <code>foaf:name</code> or mailing list?).
+</p>
+
+<p>
+There is a FOAF <a href="http://rdfweb.org/issues/show_bug.cgi?id=8">issue tracker (8)</a> 
+associated with this FOAF term. A design goal is to make the most of W3C's <a 
+href="http://www.w3.org/2001/sw/WebOnt">OWL</a> language for representing group-membership 
+criteria, while also making it easy to leverage existing groups and datasets available 
+online (eg. buddylists, mailing list membership lists etc).
+</p>

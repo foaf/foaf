@@ -1,0 +1,14 @@
+<p>
+The <code>foaf:Agent</code> class is the class of agents; things that do stuff. A well 
+known sub-class is <code>foaf:Person</code>, representing people. Other kinds of agents 
+include <code>foaf:Organization</code> and <code>foaf:Group</code>.
+</p>
+
+<p>
+The <code>foaf:Agent</code> class is useful in a few places in FOAF where 
+<code>foaf:Person</code> would have been overly specific. For example, the IM chat ID 
+properties such as <code>jabberID</code> are typically associated with people, but 
+sometimes belong to software bots.
+</p>
+
+<!-- todo: write rdfs:domain statements for those properties -->
