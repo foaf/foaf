@@ -317,15 +317,33 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>????</string>
+				<string>rdfa</string>
 			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
+			<string>RDFAuthor Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>????</string>
+				<string>rdfa</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+			<key>NSExportableAs</key>
+			<array>
+				<string>RDFDocument</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rdf</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>RDFDocument</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>rdf*</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -342,7 +360,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>RDFA</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
 	<key>NSJavaNeeded</key>
