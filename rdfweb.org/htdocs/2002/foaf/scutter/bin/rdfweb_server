@@ -1,11 +1,11 @@
 #!/usr/local/bin/ruby
 
+require 'squish'
+require 'basicrdf'
+require 'webutil'
+
 require 'webrick'
 include WEBrick
-require '/home/danbri/s-rubyrdf/squish/squish'
-require '/home/danbri/s-rubyrdf/basicrdf'
-
-
 
 # Notes:
 #
@@ -22,7 +22,7 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
 
   def do_GET(req, res)
 
-    require 'bin/scutter' # should integrate into rdf library
+
     query = SquishQuery.new.parseFromText 'SELECT ?i, ?t, ?d,  
  	 WHERE 
 	 (rss::title ?i ?t)
@@ -84,6 +84,7 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
     x += "</body>\n</html>\n\n"
     res.body=x
   end
+
 end
 
 
@@ -132,8 +133,8 @@ end
 s = HTTPServer.new( :Port => 2000, 
 	:Logger => WEBrick::Log::new('logfile', WEBrick::Log::DEBUG) ,	:BindAddress    => '0.0.0.0' )
 
-s.mount  '/rssview', RSSViewServlet
 s.mount  '/rss', RSSDirectoryServlet
+s.mount  '/rssview', RSSViewServlet
 	
 trap("INT"){ s.shutdown }
 s.start
