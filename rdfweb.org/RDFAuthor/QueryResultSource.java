@@ -4,6 +4,8 @@
 //
 //  Created by pldms on Tue Nov 06 2001.
 
+/* $Id: QueryResultSource.java,v 1.4 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 

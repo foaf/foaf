@@ -3,6 +3,8 @@
 //  RDFAuthor
 //
 
+/* $Id: SchemaData.java,v 1.10 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>, Libby Miller <libby.miller@bristol.ac.uk>
 
@@ -134,7 +136,7 @@ public class SchemaData {
         else return null;
     }
     
-    public void addToTree(SchemaItem list, String type, String url, String namespace, String name, String description)
+    private void addToTree(SchemaItem list, String type, String url, String namespace, String name, String description)
     {
         SchemaItem namespaceList = list.childWithDisplayName(url);
         

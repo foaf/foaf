@@ -1,5 +1,7 @@
 /* RDFAuthorDocument */
 
+/* $Id: RDFAuthorDocument.java,v 1.30 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 

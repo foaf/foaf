@@ -1,5 +1,7 @@
 /* RDFToolbar */
 
+/* $Id: RDFToolbar.java,v 1.16 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -205,74 +207,57 @@ public class RDFToolbar extends NSObject {
         }
     } 
     
-    /*public void toolbarDidRemoveItem(NSNotification notif) {
-	// Optional delegate method.  After an item is removed from a toolbar the notification is sent.  This allows 
-	// the chance to tear down information related to the item that may have been cached.  The notification object
-	// is the toolbar to which the item is being added.  The item being added is found by referencing the @"item"
-	// key in the userInfo.
-	NSToolbarItem removedItem = (NSToolbarItem) notif.userInfo().objectForKey("item");
-
-    }*/
-
-    /*public boolean validateToolbarItem (NSToolbarItem toolbarItem) {
-    	// Optional method.  This message is sent to us since we are the target of some toolbar item actions 
-	// (for example:  of the save items action).
-	boolean enable = true;
-		
-	return enable;
-    }*/
-    
-    public void selectMoveMode(Object sender)
+    private void selectMoveMode(Object sender)
     {
         rdfModelView.setEditingMode( RDFModelView.MoveSelectMode );
     }
     
-    public void selectAddNodeMode(Object sender)
+    private void selectAddNodeMode(Object sender)
     {
         rdfModelView.setEditingMode( RDFModelView.AddNodeMode );
     }
     
-    public void selectAddArcMode(Object sender)
+    private void selectAddArcMode(Object sender)
     {
         rdfModelView.setEditingMode( RDFModelView.AddConnectionMode );
     }
     
-    public void selectDeleteMode(Object sender)
+    private void selectDeleteMode(Object sender)
     {
         rdfModelView.setEditingMode( RDFModelView.DeleteItemsMode );
     }
     
-    public void selectMarkQueryMode(Object sender)
+    private void selectMarkQueryMode(Object sender)
     {
         rdfModelView.setEditingMode( RDFModelView.AddQueryItemMode );
     }
     
-    public void showTypes(NSButton sender)
+    private void showTypes(NSButton sender)
     {
         rdfAuthorDocument.showTypes(sender.state() == NSCell.OnState);
     }
     
-    public void showProperties(NSButton sender)
+    private void showProperties(NSButton sender)
     {
         rdfAuthorDocument.showProperties(sender.state() == NSCell.OnState);
     }
     
-    public void showIds(NSButton sender)
+    private void showIds(NSButton sender)
     {
         rdfAuthorDocument.showIds(sender.state() == NSCell.OnState);
     }
     
-    public void doCheck(NSToolbarItem sender)
+    private void doCheck(NSToolbarItem sender)
     {
         rdfAuthorDocument.doCheckModel();
     }
     
-    public void autoLayout(NSToolbarItem sender)
+    private void autoLayout(NSToolbarItem sender)
     {
         rdfAuthorDocument.autoLayout();
     }
     
-    public void toggleView(NSToolbarItem sender)
+    private void toggleView(NSToolbarItem sender)
     {
         if (textPreview)
         {
@@ -294,19 +279,17 @@ public class RDFToolbar extends NSObject {
         }
     }
     
-    public void showQueryPanel(NSToolbarItem sender)
+    private void showQueryPanel(NSToolbarItem sender)
     {
         queryController.toggleShow();
     }
     
-    public void showBookmarkWindow(NSToolbarItem sender)
+    private void showBookmarkWindow(NSToolbarItem sender)
     {
         bookmarkController.toggleShow();
     }
     
-    
-    
-    public void previewModeChanged(Object sender)
+    private void previewModeChanged(Object sender)
     {
         if (textPreview)
         {

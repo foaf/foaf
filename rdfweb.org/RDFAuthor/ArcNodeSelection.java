@@ -3,6 +3,8 @@
 //  RDFAuthor
 //
 
+/* $Id: ArcNodeSelection.java,v 1.5 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -149,7 +151,7 @@ public class ArcNodeSelection implements Serializable
     // nodes is very useful - it contains all nodes
     // necessary for the selection to be a complete subgraph
     
-    public void findNodes()
+    private void findNodes()
     {
         nodes.clear();
         for (Iterator iterator = selection.iterator(); iterator.hasNext();)

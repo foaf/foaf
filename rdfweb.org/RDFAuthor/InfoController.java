@@ -1,5 +1,7 @@
 /* InfoController */
 
+/* $Id: InfoController.java,v 1.19 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -119,7 +121,7 @@ public class InfoController extends NSObject {
         
     }
     
-    public void currentWindowChanged(NSNotification notification)
+    private void currentWindowChanged(NSNotification notification)
     {
         NSWindow window = (NSWindow) notification.object();
         if (window != currentWindow)
@@ -131,7 +133,7 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void windowClosed(NSNotification notification)
+    private void windowClosed(NSNotification notification)
     {
         NSWindow window = (NSWindow) notification.object();
         if (currentWindow == window)
@@ -141,7 +143,7 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void currentItemChanged(NSNotification notification)
+    private void currentItemChanged(NSNotification notification)
     {
         RDFAuthorDocument document = (RDFAuthorDocument) notification.object();
         
@@ -157,7 +159,7 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void setInfoFromSelection(ArcNodeSelection selection)
+    private void setInfoFromSelection(ArcNodeSelection selection)
     {
         if (selection == null) // no document is current
         {
@@ -192,7 +194,7 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void setCurrentItem(ModelItem item)
+    private void setCurrentItem(ModelItem item)
     {
         currentItem = item;
         
@@ -210,27 +212,27 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void revertObject(Object sender)
+    private void revertObject(Object sender)
     {
         if (currentWindow == null) return;
 
         setInfoFromSelection(((RDFAuthorDocument) currentWindow.delegate()).selection()); // reinitialises the fields
     }
     
-    public void changeObject(Object sender)
+    private void changeObject(Object sender)
     {
-        if (currentWindow == null)
+        if (currentWindow == null) // nothing to change
         {
             return;
         }
 
-        changeSize();
+        changeSize(); // see if size needs changing
 
-        if (currentItem == null)
+        if (currentItem == null) // no object, so finish
         {
             return;
         }
-        if (!currentItem.isNode())
+        else if (!currentItem.isNode())
         {
             changeProperty();
         }
@@ -245,42 +247,39 @@ public class InfoController extends NSObject {
         setCurrentItem(currentItem); // reinitialises the fields
     }
     
-    public void changeLiteral() 
+    private void changeLiteral() 
     {
         String value = literalTextField.stringValue().trim();
         
         if (literalChangeButton.state() == NSCell.OnState)
         {
             ((Node) currentItem).setIsLiteral(false);
-            return; // Don't need subsequent checks in this case
+            return;
         }
         
         value = (value.equals(""))?null:value;
         ((Node) currentItem).setId(value);
     }
 
-    public void changeProperty() 
+    private void changeProperty() 
     {
         String property = propertyTextField.stringValue().trim();
         
-        if (property.equals(""))
+        if (property.equals("")) // I allow this, although it isn't right
         {
-            ((Arc) currentItem).setProperty(null, null);
+            ((Arc) currentItem).setProperty(null);
         }
-        else
+        else if (RDFAuthorUtilities.isValidURI(property))
         {
-            if (checkUrl(property))
-            {
-                int sep = Util.splitNamespace(property);
-                
-                String namespace = property.substring(0, sep);
-                String name = property.substring(sep);
-                ((Arc) currentItem).setProperty(namespace, name);
-            }
+            ((Arc) currentItem).setProperty(property);
+        }
+        else // error in input
+        {
+            uriError(property);
         }
     }
 
-    public void changeResource()
+    private void changeResource()
     {
         String id = resourceIdField.stringValue().trim();
         String type = resourceTypeField.stringValue().trim();
@@ -295,31 +294,30 @@ public class InfoController extends NSObject {
         {
             ((Node) currentItem).setId(null);
         }
+        else if (RDFAuthorUtilities.isValidURI(id))
+        {
+                ((Node) currentItem).setId(id);
+        }
         else
         {
-            //if (checkUrl(id)) // Removed check on this
-            //{
-                ((Node) currentItem).setId(id);
-            //}
+            uriError(id);
         }
         
         if (type.equals(""))
         {
-            ((Node) currentItem).setType(null, null);
+            ((Node) currentItem).setType(null);
+        }
+        else if (RDFAuthorUtilities.isValidURI(type))
+        {
+            ((Node) currentItem).setType(type);
         }
         else
         {
-            if (checkUrl(type))
-            {
-                int sep = Util.splitNamespace(type);
-                String namespace = type.substring(0, sep);
-                String name = type.substring(sep);
-                ((Node) currentItem).setType(namespace, name);
-            }
+            uriError(type);
         }
     }
     
-    public void changeSize()
+    private void changeSize()
     {
         float width = documentWidthField.floatValue();
         float height = documentHeightField.floatValue();
@@ -334,32 +332,25 @@ public class InfoController extends NSObject {
         }
         else
         {
-            RDFAuthorUtilities.ShowError("Document Too Small", "Sorry, that's too small. Try again.",
+            RDFAuthorUtilities.ShowError("Document Too Small", 
+                "Sorry, that's too small. Try again.",
                 RDFAuthorUtilities.Normal, (NSWindow) infoWindow);
             // Revert to previous value
             setCurrentItem(null);
         }
     }
     
-    public boolean checkUrl(String url)
+    private void uriError(String uri)
     {
-        try
-        {
-            URL temp = new URL(url);
-            return true;
-        }
-        catch (MalformedURLException error)
-        {
-            RDFAuthorUtilities.ShowError(
-                "Not a URL: ",
-                error + "\nThis field requires either a URL or an empty value.",
+        RDFAuthorUtilities.ShowError(
+                "Not a valid URI: ",
+                "\"" + uri + "\" is not a valid URI. " +
+                "This field requires either a valid URI or an empty value.",
                 RDFAuthorUtilities.Normal, (NSWindow) infoWindow);
-            setCurrentItem(currentItem); // sneaky way to revert to previous
-            return false;
-        }
+        setCurrentItem(currentItem); // sneaky way to revert to previous
     }
     
-    public void showInfoWindow(Object sender) 
+    private void showInfoWindow(Object sender) 
     {
         if (infoWindow.isVisible())
         {
@@ -371,26 +362,24 @@ public class InfoController extends NSObject {
         }
     }
     
-    public void showInfo(NSNotification notification)
+    private void showInfo(NSNotification notification)
     {
         infoWindow.orderFront(this);
     }
     
-    
-    
-    public void showNothing()
+    private void showNothing()
     {
         objectTabItem.setView(nothingView);
         setFields("", "", "", "");
     }
     
-    public void showMultiple()
+    private void showMultiple()
     {
         objectTabItem.setView(multipleView);
         setFields("", "", "", "");
     }
     
-    public void showArc(Arc arc)
+    private void showArc(Arc arc)
     {
         
         String propertyNS = (arc.propertyNamespace() == null)?"":arc.propertyNamespace();
@@ -400,7 +389,7 @@ public class InfoController extends NSObject {
         setFields("", "", "", propertyNS + propertyN);
     }
     
-    public void showLiteral(Node literal)
+    private void showLiteral(Node literal)
     {
         objectTabItem.setView(literalView);
         
@@ -409,7 +398,7 @@ public class InfoController extends NSObject {
         setFields(literalVal, "", "", "");
     }
     
-    public void showNode(Node node)
+    private void showNode(Node node)
     {
         objectTabItem.setView(resourceView);
         
@@ -421,7 +410,7 @@ public class InfoController extends NSObject {
         setFields("", typeNS + typeN, id, "");
     }
   
-    public void setFields( String literal, String type, String id, String property)
+    private void setFields( String literal, String type, String id, String property)
     {
         literalChangeButton.setState(NSCell.OffState);
         resourceChangeButton.setState(NSCell.OffState);

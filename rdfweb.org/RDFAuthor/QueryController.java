@@ -1,5 +1,7 @@
 /* QueryController */
 
+/* $Id: QueryController.java,v 1.9 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -96,7 +98,7 @@ public class QueryController extends NSObject {
         queryButton.setTitle("Kill");
     }
     
-    public void killQuery(Object context, int returnCode)
+    private void killQuery(Object context, int returnCode)
     {
         if (returnCode == NSAlertPanel.DefaultReturn)
         {
@@ -240,7 +242,7 @@ public class QueryController extends NSObject {
         queryDrawer.toggle(this);
     }
     
-    public String constructQuery(ArcNodeList model, HashMap varToObject)
+    private String constructQuery(ArcNodeList model, HashMap varToObject)
     {
         int varNum = 1;
         
@@ -366,7 +368,7 @@ public class QueryController extends NSObject {
         return queryString;
     }
     
-    public void createResultsTable(ArrayList rows, HashMap varToObject)
+    private void createResultsTable(ArrayList rows, HashMap varToObject)
     {
         System.out.println("Here [6]");
         ArrayList tableArray = new ArrayList();

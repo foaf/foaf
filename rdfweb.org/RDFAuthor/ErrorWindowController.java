@@ -1,5 +1,7 @@
 /* ErrorWindowController */
 
+/* $Id: ErrorWindowController.java,v 1.9 2002-01-06 22:15:28 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -91,7 +93,7 @@ public class ErrorWindowController extends NSObject {
         textCell.setWraps(true);
     }
     
-    public void showErrorWindow(Object sender) 
+    private void showErrorWindow(Object sender) 
     {
         if (errorWindow.isVisible())
         {
@@ -103,7 +105,7 @@ public class ErrorWindowController extends NSObject {
         }
     }
     
-    public void currentWindowChanged(NSNotification notification)
+    private void currentWindowChanged(NSNotification notification)
     {
         currentWindow = (NSWindow) notification.object();
         
@@ -111,7 +113,7 @@ public class ErrorWindowController extends NSObject {
         errorTable.setDelegate(windowToData.get(currentWindow));
     }
     
-    public void windowClosed(NSNotification notification)
+    private void windowClosed(NSNotification notification)
     {
         NSWindow window = (NSWindow) notification.object();
         if (window == currentWindow)
@@ -121,7 +123,7 @@ public class ErrorWindowController extends NSObject {
         }
     }
     
-    public void checkModel(NSNotification notification)
+    private void checkModel(NSNotification notification)
     {
         currentWindow = (NSWindow) notification.object();
         ModelErrorData newData  = new ModelErrorData();
@@ -152,7 +154,7 @@ public class ErrorWindowController extends NSObject {
         }
     }
     
-    public void doubleClick()
+    private void doubleClick()
     {
         int row = errorTable.selectedRow();
         

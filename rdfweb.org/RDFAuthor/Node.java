@@ -1,6 +1,8 @@
 /* Decompiled by Mocha from Node.class */
 /* Originally compiled from Node.java */
 
+/* $Id: Node.java,v 1.22 2002-01-06 22:15:29 pldms Exp $ */
+
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
 
@@ -173,12 +175,19 @@ public class Node implements Serializable, ModelItem
     
     public void setType(String type)
     {
-        int sep = Util.splitNamespace(type);
-                
-        String namespace = type.substring(0, sep);
-        String name = type.substring(sep);
-        
-        setType(namespace, name);
+        if (type == null)
+        {
+            setType(null, null);
+        }
+        else
+        {
+            int sep = Util.splitNamespace(type);
+            
+            String namespace = type.substring(0, sep);
+            String name = type.substring(sep);
+            
+            setType(namespace, name);
+        }
     }
 
     public String typeNamespace()
