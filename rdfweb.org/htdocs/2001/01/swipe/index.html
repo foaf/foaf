@@ -1,297 +1,405 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta name="generator" content="HTML Tidy, see www.w3.org" />
-<title>RDF: SWIPE, info parser and extractor vocabulary</title>
-<link rel="stylesheet" type="text/css"
-href="http://ilrt.org/discovery/2000/10/docstyle/simple.css" />
-</head>
-<body bgcolor="#ffffff">
-<div><a href="/"><img
-src="http://ilrt.org/discovery/images/rudolf-small.gif" border="0"
-alt="RDF hacking" align="right" /></a></div>
-
-<h1>SWIPE 0.1 Specification</h1>
-
-<h2><a id="abstract" name="abstract">Abstract</a></h2>
-
-<p><strong>SWIPE</strong> is a simple RDF vocabulary that provides
-some basic facilities to support the extraction of structured RDF
-data from arbitrary HTML, XHTML and pseudo-HTML textual content.
-SWIPE can be used to support simple screenscraping and meta-search
-applications, or extended (like RSS) to more richly describe
-interfaces to Web data services.</p>
-
-<h2><a id="authors" name="authors">Authors</a></h2>
-
-<ul>
-<li><a href="mailto:daniel.brickley@bristol.ac.uk">Dan
-Brickley</a></li>
-
-<li><a href="mailto:D.M.Steer@lse.ac.uk">Damian Steer</a></li>
-
-<li><a href="mailto:libby.miller@bristol.ac.uk">Libby
-Miller</a></li>
-</ul>
-
-<h2><a id="version" name="version">Version</a></h2>
-
-<p><strong>Latest Version:</strong> <a
-href="http://rdfweb.org/2001/01/swipe/">
-http://rdfweb.org/2001/01/swipe/</a></p>
-
-<div class="version">0.1 (unpublished; unstable;
-uncirculated...)</div>
-
-<h2><a id="status" name="status">Status</a></h2>
-
-<p>This is a working discussion note and should not be considered a
-stable target for implementation.</p>
-
-<p>Comments should be directed to the <a
-href="http://www.egroups.com/group/rdfweb-dev">RDFWeb-dev mailing
-list</a> (<a
-href="mailto:rdfweb-dev@egroups.com">rdfweb-dev@egroups.com</a>),
-copying <a href="http://www.egroups.com/messages/rss-dev">
-RSS-Dev</a> (<a
-href="mailto:rss-dev@egroups.com">rss-dev@egroups.com</a>) for
-RSS-related issues.</p>
-
-<h2><a id="rights" name="rights">Rights</a></h2>
-
-<p>Copyright &copy; 2000,2001 by the Authors.</p>
-
-<p>(this paragraph copied without permission from the <a
-href="http://purl.org/rss/1.0/">RSS 1.0 Specification</a> :-)</p>
-
-<p>Permission to use, copy, modify and distribute the SWIPE
-Specification and its accompanying documentation for any purpose
-and without fee is hereby granted in perpetuity, provided that the
-above copyright notice and this paragraph appear in all copies. The
-copyright holders make no representation about the suitability of
-the specification for any purpose. It is provided "as is" without
-expressed or implied warranty.</p>
-
-<p>This copyright applies to the SWIPE Specification and
-accompanying documentation and does not extend to the data format
-itself.</p>
-
-<h2>Overview</h2>
-
-<p><strong>SWIPE</strong> is a simple RDF vocabulary that provides
-some basic facilities to support the extraction of structured RDF
-data from arbitrary HTML, XHTML and pseudo-HTML textual content.
-The SWIPE vocabulary is in particular intended for use with
-ill-formed markup (typically online search results) that may not be
-parseable using more formal SGML and XML based tools. SWIPE
-descriptions are associated with one or more online searchable
-services that are typically accessed using the HTTP protocol, and
-that typically return HTML or pseudo-HTML in response to a search
-request consisting of a number of attribute/value pairs. The
-combination of a SWIPE service description and some textual data
-returned from a query to that service provides the basis for data
-extraction tools to generate an RDF data graph representing (some
-aspects of) the returned data.</p>
-
-<h2>Goals</h2>
-
-<p>SWIPE is designed to provide a relatively simple, practical tool
-that can be used to encapsulate ad-hoc, human oriented Web services
-behind a more machine oriented interface. As such it might be used
-alongside specifications such as XML-RPC, SOAP etc that offer API
-or message-baed Web data interfaces, or with tools in the
-WWW::Search, WIDL, and Sherlock tradition that are more concerned
-with "screen scraping" data from arbitrary HTML-formatted search
-results. XSLT, the XML transformation language, is another related
-technology. Where appropriate (eg. search result pages that are in
-XHTML format), a SWIPE service description can reference an XSLT
-sheet instead of employing the more basic regular-expression
-extraction language described below.</p>
-
-<h3>SWIPE and RDF Site Summary (RSS)</h3>
-
-<p>SWIPE descriptions are intended for general use by RDF tools,
-but is in particular for use as an extension module with the RDF
-Site Summary (RSS) vocabulary. The base RSS 1.0 specification
-allows for the description of a Web content feed as a channel
-consisting of a list of items (such as news, updated pages,
-announcements etc). RSS 1.0 also allows for a very simple
-characterisation of a search facility associated with a Web site or
-channel. SWIPE can be used to augment that description with
-additional meta-information to allow RSS 1.0 tools to better
-process search results from the search services mentioned in RSS
-site descriptions. This might be used, for example, to aggregate
-search results from a distributed search of several RSS-described
-data sources, or to provide a common user interface for managing
-and navigating search results.</p>
-
-<h2>Non-Goals</h2>
-
-<p>This vocabulary is not intended to replace the richer facilities
-offered by fully-featured search protocols such as Z39.50, DASL
-(WebDAV), LDAP etc. It is also not intended to serve as a general
-purpose machine interface (API, query language etc.) to XML or RDF
-networked data sources. Future extensions to SWIPE may provide for
-better interoperability with more sophisticated (and heavyweight)
-specifications.</p>
-
-<h2>SWIPE Vocabulary</h2>
-
-<p>The SWIPE vocabulary is divided into "Basic" and "Util"
-sections, reflecting a pragmatic, tool oriented approach.
-Additional utility constructs may be added in future revisions to
-this specification, or by provided by 3rd party extensions. The
-SWIPE-Basic core is a very simple set of properties and types that
-should allow simple, practical tools to be easily constructed using
-generic RDF APIs.</p>
-
-<h2>SWIPE-Basic</h2>
-
-<p>The following properties and types are defined.</p>
-
-<h3>Properties</h3>
-
-<dl>
-<dt><code>swiper</code></dt>
-
-<dd>The <code>swiper</code> relation connects our SWIPE information
-to some identified Web service. Rather than use the search resource
-(CGI-script, servlet etc) as the identifier for the service, we use
-the 'home page', eg. <code>http://oreillynet.com/meerkat/</code>.
-Consequently, we can use the <code>swiper</code> properties of a
-Web service to get to a bundle of RDF properties that describe how
-to interact with that service. The range of the <code>swipe</code>
-property is <code>SwipeSpec</code></dd>
-
-<dt><code>in</code></dt>
-
-<dd>The <code>in</code> relation is used on a <code>
-SwipeSpec</code>, and points to an RDF container listing one or
-more SWIPE <code>DataItem</code>s.</dd>
-
-<dt><code>out</code></dt>
-
-<dd>The <code>out</code> relation is used on a <code>
-SwipeSpec</code>, and points to SWIPE <code>ParseRules</code>. The
-interpretation of the "parse rules" info depends on the format(s)
-used; we indicate this using a <code>parseformat</code> property on
-the <code>ParseRules</code>.</dd>
-
-<dt><code>action</code></dt>
-
-<dd>The <code>action</code> property, like the HTML forms attribute
-of the same name, indicates a Web service that can be respond to
-parameters passed via HTTP GET or POST methods.</dd>
-
-<dt><code>method</code></dt>
-
-<dd>The <code>method</code> property, like the HTML forms attribute
-of the same name, indicates the (@@TODO: or 'a'?) HTTP method(s)
-through which a Web service offers an interface. (@@TODO:
-extensions? SOAP/XP/XML-RPC?)</dd>
-
-<dt><code>macfile</code></dt>
-
-<dd>The macfile property (which perhaps belongs in the utility
-namespace) tells us where (if anywhere) we can find an Apple
-Macintosh Sherlock plugin for this service.</dd>
-
-<dt><code>resultListStart</code></dt>
-
-<dd>A text string representing the point in a document from which
-content to be extracted becomes available. The sub-portion of the
-document identified can be mapped into the RSS notion of a
-channel.</dd>
-
-<dt><code>resultListEnd</code></dt>
-
-<dd>A text string representing the last point in a document from
-which useful content might be extracted.</dd>
-
-<dt><code>resultItemStart</code></dt>
-
-<dd>A text string used for the repeated extraction of RSS items
-from a larger textual document.</dd>
-
-<dt><code>resultItemEnd</code></dt>
-
-<dd>A text string used for the repeated extraction of RSS items
-from a larger textual document.</dd>
-</dl>
-
-<p>TODO: more properties are needed for richer extraction. Write
-Schema.</p>
-
-<h3>Classes</h3>
-
-<p>SWIPE-Basic defines the following RDF classes.</p>
-
-<dl>
-<dt><code>SwipeSpec</code></dt>
-
-<dd>A SwipeSpec provides a collection of properties describing the
-expected inputs and likely outputs for some Web-accessible data
-service.</dd>
-
-<dt><code>BasicSpec</code></dt>
-
-<dd>A BasicSpec is a kind of SwipeSpec; the information associated
-with a BasicSpec can be used to extract RSS-like records from Web
-data services, adopting a "screen scraping" approach.</dd>
-
-<dt><code>ParseRules</code></dt>
-
-<dt><code>DataItem</code></dt>
-
-<dd><code>DataItem</code> is a super-class for <code>Input</code>
-and <code>UserInput</code></dd>
-
-<dt><code>Input</code></dt>
-
-<dd>An Input is a pairing of a name and (optionally) some content
-(plain text) that correspond to the attribute-value pairs typically
-used in HTML FORM / HTTP CGI interactions.</dd>
-
-<dt><code>UserInput</code></dt>
-
-<dd>An Input whose value is typically supplied by an end-user.</dd>
-</dl>
-
-<h4>Notes:</h4>
-
-<p>BasicSpec is a sub-class of SwipeSpec. A BasicSpec will often be
-described using properties from other namespaces such as the RSS
-Syndication (@@TO: refs, status) and Taxonomy modules.</p>
-
-<h2>SWIPE-Util</h2>
-
-<p>[to be specified]</p>
-
-<p>SWIPE-Util will...</p>
-
-<ul>
-<li>allow logos, banner adverts etc to be described (including
-requests that they be displayed in meta-search services)</li>
-
-<li>describe how to use XSLT as a parse-format option instead of
-text-based regular expression matching</li>
-
-<li>provide basic machinery for mapping from plain RSS 1.0 (our
-default output format) into richer application specific
-vocabularies. (see [<a href="#ExtRSS">ExtRSS</a>]).</li>
-</ul>
-
-<h2>Standalone Use</h2>
-
-<p>Here we show the use of the Swipe vocabulary in a stand-alone
-RDF description. It can also be used as an extension module for use
-with RSS and Dublin Core applications.</p>
-
-<table summary="some xml/rdf swipe data" bgcolor="#dddddd">
-<tr>
-<td valign="top">(<a href="meerkat.swp">meerkat.swp</a>) 
-
+  <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
+    <title>
+      RDFWeb: SWIPE, info parser and extractor vocabulary
+    </title>
+    <link rel="stylesheet" href="../../../ssi/main.css"
+    type="text/css" />
+  </head>
+  <body bgcolor="#ffffff">
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="../../../images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <a
+            class="sitepart"
+            href="../../../dev.html">developers</a>: <span
+            class="sitepart">SWIPE specification</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="about.html">about</a> |
+            <a href="projects.html">projects</a> | <a
+            href="dev.html">developers</a> | <a
+            href="sitemap.html">sitemap</a> | <a
+            href="search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <a href="/"><img
+      src="http://ilrt.org/discovery/images/rudolf-small.gif"
+      border="0" alt="RDF hacking" align="right" /></a>
+    </div>
+    <h1>
+      SWIPE 0.1 specification
+    </h1>
+    <h2>
+      <a id="abstract" name="abstract">Abstract</a>
+    </h2>
+    <p>
+      <strong>SWIPE</strong> is a simple RDF vocabulary that
+      provides some basic facilities to support the extraction of
+      structured RDF data from arbitrary HTML, XHTML and
+      pseudo-HTML textual content. SWIPE can be used to support
+      simple screenscraping and meta-search applications, or
+      extended (like RSS) to more richly describe interfaces to Web
+      data services.
+    </p>
+    <h2>
+      <a id="authors" name="authors">Authors</a>
+    </h2>
+    <ul>
+      <li>
+        <a href="mailto:daniel.brickley@bristol.ac.uk">Dan
+        Brickley</a>
+      </li>
+      <li>
+        <a href="mailto:D.M.Steer@lse.ac.uk">Damian Steer</a>
+      </li>
+      <li>
+        <a href="mailto:libby.miller@bristol.ac.uk">Libby
+        Miller</a>
+      </li>
+    </ul>
+    <h2>
+      <a id="version" name="version">Version</a>
+    </h2>
+    <p>
+      <strong>Latest Version:</strong> <a
+      href="http://rdfweb.org/2001/01/swipe/">http://rdfweb.org/2001/01/swipe/</a>
+    </p>
+    <div class="version">
+      0.1 (unpublished; unstable; uncirculated...)
+    </div>
+    <h2>
+      <a id="status" name="status">Status</a>
+    </h2>
+    <p>
+      This is a working discussion note and should not be
+      considered a stable target for implementation.
+    </p>
+    <p>
+      Comments should be directed to the <a
+      href="http://www.egroups.com/group/rdfweb-dev">RDFWeb-dev
+      mailing list</a> (<a
+      href="mailto:rdfweb-dev@egroups.com">rdfweb-dev@egroups.com</a>),
+      copying <a
+      href="http://www.egroups.com/messages/rss-dev">RSS-Dev</a>
+      (<a
+      href="mailto:rss-dev@egroups.com">rss-dev@egroups.com</a>)
+      for RSS-related issues.
+    </p>
+    <h2>
+      <a id="rights" name="rights">Rights</a>
+    </h2>
+    <p>
+      Copyright &copy; 2000,2001 by the Authors.
+    </p>
+    <p>
+      (this paragraph copied without permission from the <a
+      href="http://purl.org/rss/1.0/">RSS 1.0 Specification</a> :-)
+    </p>
+    <p>
+      Permission to use, copy, modify and distribute the SWIPE
+      Specification and its accompanying documentation for any
+      purpose and without fee is hereby granted in perpetuity,
+      provided that the above copyright notice and this paragraph
+      appear in all copies. The copyright holders make no
+      representation about the suitability of the specification for
+      any purpose. It is provided "as is" without expressed or
+      implied warranty.
+    </p>
+    <p>
+      This copyright applies to the SWIPE Specification and
+      accompanying documentation and does not extend to the data
+      format itself.
+    </p>
+    <h2>
+      Overview
+    </h2>
+    <p>
+      <strong>SWIPE</strong> is a simple RDF vocabulary that
+      provides some basic facilities to support the extraction of
+      structured RDF data from arbitrary HTML, XHTML and
+      pseudo-HTML textual content. The SWIPE vocabulary is in
+      particular intended for use with ill-formed markup (typically
+      online search results) that may not be parseable using more
+      formal SGML and XML based tools. SWIPE descriptions are
+      associated with one or more online searchable services that
+      are typically accessed using the HTTP protocol, and that
+      typically return HTML or pseudo-HTML in response to a search
+      request consisting of a number of attribute/value pairs. The
+      combination of a SWIPE service description and some textual
+      data returned from a query to that service provides the basis
+      for data extraction tools to generate an RDF data graph
+      representing (some aspects of) the returned data.
+    </p>
+    <h2>
+      Goals
+    </h2>
+    <p>
+      SWIPE is designed to provide a relatively simple, practical
+      tool that can be used to encapsulate ad-hoc, human oriented
+      Web services behind a more machine oriented interface. As
+      such it might be used alongside specifications such as
+      XML-RPC, SOAP etc that offer API or message-baed Web data
+      interfaces, or with tools in the WWW::Search, WIDL, and
+      Sherlock tradition that are more concerned with "screen
+      scraping" data from arbitrary HTML-formatted search results.
+      XSLT, the XML transformation language, is another related
+      technology. Where appropriate (eg. search result pages that
+      are in XHTML format), a SWIPE service description can
+      reference an XSLT sheet instead of employing the more basic
+      regular-expression extraction language described below.
+    </p>
+    <h3>
+      SWIPE and RDF Site Summary (RSS)
+    </h3>
+    <p>
+      SWIPE descriptions are intended for general use by RDF tools,
+      but is in particular for use as an extension module with the
+      RDF Site Summary (RSS) vocabulary. The base RSS 1.0
+      specification allows for the description of a Web content
+      feed as a channel consisting of a list of items (such as
+      news, updated pages, announcements etc). RSS 1.0 also allows
+      for a very simple characterisation of a search facility
+      associated with a Web site or channel. SWIPE can be used to
+      augment that description with additional meta-information to
+      allow RSS 1.0 tools to better process search results from the
+      search services mentioned in RSS site descriptions. This
+      might be used, for example, to aggregate search results from
+      a distributed search of several RSS-described data sources,
+      or to provide a common user interface for managing and
+      navigating search results.
+    </p>
+    <h2>
+      Non-Goals
+    </h2>
+    <p>
+      This vocabulary is not intended to replace the richer
+      facilities offered by fully-featured search protocols such as
+      Z39.50, DASL (WebDAV), LDAP etc. It is also not intended to
+      serve as a general purpose machine interface (API, query
+      language etc.) to XML or RDF networked data sources. Future
+      extensions to SWIPE may provide for better interoperability
+      with more sophisticated (and heavyweight) specifications.
+    </p>
+    <h2>
+      SWIPE Vocabulary
+    </h2>
+    <p>
+      The SWIPE vocabulary is divided into "Basic" and "Util"
+      sections, reflecting a pragmatic, tool oriented approach.
+      Additional utility constructs may be added in future
+      revisions to this specification, or by provided by 3rd party
+      extensions. The SWIPE-Basic core is a very simple set of
+      properties and types that should allow simple, practical
+      tools to be easily constructed using generic RDF APIs.
+    </p>
+    <h2>
+      SWIPE-Basic
+    </h2>
+    <p>
+      The following properties and types are defined.
+    </p>
+    <h3>
+      Properties
+    </h3>
+    <dl>
+      <dt>
+        <code>swiper</code>
+      </dt>
+      <dd>
+        The <code>swiper</code> relation connects our SWIPE
+        information to some identified Web service. Rather than use
+        the search resource (CGI-script, servlet etc) as the
+        identifier for the service, we use the 'home page', eg.
+        <code>http://oreillynet.com/meerkat/</code>. Consequently,
+        we can use the <code>swiper</code> properties of a Web
+        service to get to a bundle of RDF properties that describe
+        how to interact with that service. The range of the
+        <code>swipe</code> property is <code>SwipeSpec</code>
+      </dd>
+      <dt>
+        <code>in</code>
+      </dt>
+      <dd>
+        The <code>in</code> relation is used on a
+        <code>SwipeSpec</code>, and points to an RDF container
+        listing one or more SWIPE <code>DataItem</code>s.
+      </dd>
+      <dt>
+        <code>out</code>
+      </dt>
+      <dd>
+        The <code>out</code> relation is used on a
+        <code>SwipeSpec</code>, and points to SWIPE
+        <code>ParseRules</code>. The interpretation of the "parse
+        rules" info depends on the format(s) used; we indicate this
+        using a <code>parseformat</code> property on the
+        <code>ParseRules</code>.
+      </dd>
+      <dt>
+        <code>action</code>
+      </dt>
+      <dd>
+        The <code>action</code> property, like the HTML forms
+        attribute of the same name, indicates a Web service that
+        can be respond to parameters passed via HTTP GET or POST
+        methods.
+      </dd>
+      <dt>
+        <code>method</code>
+      </dt>
+      <dd>
+        The <code>method</code> property, like the HTML forms
+        attribute of the same name, indicates the (@@TODO: or 'a'?)
+        HTTP method(s) through which a Web service offers an
+        interface. (@@TODO: extensions? SOAP/XP/XML-RPC?)
+      </dd>
+      <dt>
+        <code>macfile</code>
+      </dt>
+      <dd>
+        The macfile property (which perhaps belongs in the utility
+        namespace) tells us where (if anywhere) we can find an
+        Apple Macintosh Sherlock plugin for this service.
+      </dd>
+      <dt>
+        <code>resultListStart</code>
+      </dt>
+      <dd>
+        A text string representing the point in a document from
+        which content to be extracted becomes available. The
+        sub-portion of the document identified can be mapped into
+        the RSS notion of a channel.
+      </dd>
+      <dt>
+        <code>resultListEnd</code>
+      </dt>
+      <dd>
+        A text string representing the last point in a document
+        from which useful content might be extracted.
+      </dd>
+      <dt>
+        <code>resultItemStart</code>
+      </dt>
+      <dd>
+        A text string used for the repeated extraction of RSS items
+        from a larger textual document.
+      </dd>
+      <dt>
+        <code>resultItemEnd</code>
+      </dt>
+      <dd>
+        A text string used for the repeated extraction of RSS items
+        from a larger textual document.
+      </dd>
+    </dl>
+    <p>
+      TODO: more properties are needed for richer extraction. Write
+      Schema.
+    </p>
+    <h3>
+      Classes
+    </h3>
+    <p>
+      SWIPE-Basic defines the following RDF classes.
+    </p>
+    <dl>
+      <dt>
+        <code>SwipeSpec</code>
+      </dt>
+      <dd>
+        A SwipeSpec provides a collection of properties describing
+        the expected inputs and likely outputs for some
+        Web-accessible data service.
+      </dd>
+      <dt>
+        <code>BasicSpec</code>
+      </dt>
+      <dd>
+        A BasicSpec is a kind of SwipeSpec; the information
+        associated with a BasicSpec can be used to extract RSS-like
+        records from Web data services, adopting a "screen
+        scraping" approach.
+      </dd>
+      <dt>
+        <code>ParseRules</code>
+      </dt>
+      <dt>
+        <code>DataItem</code>
+      </dt>
+      <dd>
+        <code>DataItem</code> is a super-class for
+        <code>Input</code> and <code>UserInput</code>
+      </dd>
+      <dt>
+        <code>Input</code>
+      </dt>
+      <dd>
+        An Input is a pairing of a name and (optionally) some
+        content (plain text) that correspond to the attribute-value
+        pairs typically used in HTML FORM / HTTP CGI interactions.
+      </dd>
+      <dt>
+        <code>UserInput</code>
+      </dt>
+      <dd>
+        An Input whose value is typically supplied by an end-user.
+      </dd>
+    </dl>
+    <h4>
+      Notes:
+    </h4>
+    <p>
+      BasicSpec is a sub-class of SwipeSpec. A BasicSpec will often
+      be described using properties from other namespaces such as
+      the RSS Syndication (@@TO: refs, status) and Taxonomy
+      modules.
+    </p>
+    <h2>
+      SWIPE-Util
+    </h2>
+    <p>
+      [to be specified]
+    </p>
+    <p>
+      SWIPE-Util will...
+    </p>
+    <ul>
+      <li>
+        allow logos, banner adverts etc to be described (including
+        requests that they be displayed in meta-search services)
+      </li>
+      <li>
+        describe how to use XSLT as a parse-format option instead
+        of text-based regular expression matching
+      </li>
+      <li>
+        provide basic machinery for mapping from plain RSS 1.0 (our
+        default output format) into richer application specific
+        vocabularies. (see [<a href="#ExtRSS">ExtRSS</a>]).
+      </li>
+    </ul>
+    <h2>
+      Standalone Use
+    </h2>
+    <p>
+      Here we show the use of the Swipe vocabulary in a stand-alone
+      RDF description. It can also be used as an extension module
+      for use with RSS and Dublin Core applications.
+    </p>
+    <table summary="some xml/rdf swipe data" bgcolor="#dddddd">
+      <tr>
+        <td valign="top">
+          (<a href="meerkat.swp">meerkat.swp</a>) 
 <pre>
 &lt;rdf:RDF xml:lang="en"
              xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -350,100 +458,115 @@ with RSS and Dublin Core applications.</p>
 &lt;/rdf:Description&gt;
   
 </pre>
-</td>
-</tr>
-</table>
-
-<h3>Figure 1: Meerkat.swp.gif</h3>
-
-<p>Select image for the full picture.</p>
-
-<a href="m1.gif"><img src="m3.gif" alt="RDFViz diagram" /></a> 
-
-<h2>Using Swipe as an RSS Module</h2>
-
-<p>example goes here...</p>
-
-
-<h3>SWIPE and Sherlock</h3>
-
-<p>SWIPE descriptions can be used to create Sherlock channels
-compatible with The Apple 'Sherlock' plugin format. [<a
-href="#MacSherlock">MacSherlock</a>]. Conversely, SWIPE can provide
-an open, modular and extensible representation for the metadata
-encoded within Sherlock plugins. RDF-capable browsers such as <a
-href="http://www.mozilla.org/">Mozilla</a> (and Netscape 6.0) that
-implement a Sherlock-like search system can use RDF datasources to
-interchange search service descriptions. Similarly, online services
-such as <a href="http://www.sherch.com/">Sherch</a> which
-understand the Sherlock plugin format will be able to exploit SWIPE
-descriptions supplied via RSS syndication.</p>
-
-
-<h3>SWIPE and Mozilla</h3>
-
-<p>Mozilla, the opensource browser and Web application toolkit, makes
-heavy use of RDF and XML. The Mozilla RDF documentation ([<a
-href="#MozillaRDF">MozillaRDF</a>]) provides more information on the
-Mozilla RDF APIs and RDF-based services than can be presented here. In
-particular, see the Mozilla search documentation [<a
-href="#MozillaSearch">MozillaSearch</a>] for details of the
-Sherlock-compatible search tool built into Mozilla.
-</p>
-
-<p>Excerpt...</p>
-<blockquote>
-The core search functionality in Mozilla is a XPCOM component which uses
-RDF as its data store, Necko for networking support,  and XUL/CSS &amp; 
-JavaScript for its user interface, with a bit of XPConnect
-for "glue" support [...] Mozilla currently supports version 1.3 of the
-"Sherlock 2" specification with the
-              exception of "LDAP" support. 
-</blockquote>
-
-
-<h2>References</h2>
-
-<dl>
-<dt>[P2PMeta]</dt>
-
-<dd><a
-href="http://www.openp2p.com/pub/a/p2p/2001/01/18/metadata.html">
-The Power of Metadata</a>, by Rael Dornfest and Dan Brickley.
-Openp2p.com, 2001-01-18</dd>
-
-<dt>[<a name="ExtRSS" id="ExtRSS">ExtRSS</a>]</dt>
-
-<dd><a href="http://ilrt.org/discovery/2000/11/rss-query/">RDF:
-Extending and Querying RSS channels</a>, Dan Brickley and Libby
-Miller. ILRT discussion document, 2000-11-01</dd>
-
-<dt><a name="MacSherlock" id="MacSherlock" />[MacSherlock] <a
-href="http://www.apple.com/sherlock/">Apple - Mac OS -
-Sherlock</a></dt>
-
-<dd>See <a href="http://developer.apple.com/macos/sherlock.html">
-online documentation and TechNotes</a> from Apple, particularly <a
-href="http://developer.apple.com/technotes/tn/tn1141.html">
-Technical Note TN1141, Extending and Controlling Sherlock</a></dd>
-
-<dt><a name="MozillaRDF" id="MozillaRDF" />
-[MozillaRDF]</dt>
-<dd><a href="http://www.mozilla.org/rdf/doc/">RDF in Mozilla
-documentation</a>
-</dd>
-
-<dt><a name="MozillaSearch" id="MozillaSearch" />
-[MozillaSearch]</dt>
-<dd>
-<a href="http://www.mozilla.org/projects/search/technical.html">The Search
-for Mozilla</a>, by Robert John Churchill (rjc@netscape.com). 
-</dd>
-
-</dl>
-
-
-
-</body>
+        </td>
+      </tr>
+    </table>
+    <h3>
+      Figure 1: Meerkat.swp.gif
+    </h3>
+    <p>
+      Select image for the full picture.
+    </p>
+    <a href="m1.gif"><img src="m3.gif" alt="RDFViz diagram" /></a> 
+    <h2>
+      Using Swipe as an RSS Module
+    </h2>
+    <p>
+      example goes here...
+    </p>
+    <h3>
+      SWIPE and Sherlock
+    </h3>
+    <p>
+      SWIPE descriptions can be used to create Sherlock channels
+      compatible with The Apple 'Sherlock' plugin format. [<a
+      href="#MacSherlock">MacSherlock</a>]. Conversely, SWIPE can
+      provide an open, modular and extensible representation for
+      the metadata encoded within Sherlock plugins. RDF-capable
+      browsers such as <a
+      href="http://www.mozilla.org/">Mozilla</a> (and Netscape 6.0)
+      that implement a Sherlock-like search system can use RDF
+      datasources to interchange search service descriptions.
+      Similarly, online services such as <a
+      href="http://www.sherch.com/">Sherch</a> which understand the
+      Sherlock plugin format will be able to exploit SWIPE
+      descriptions supplied via RSS syndication.
+    </p>
+    <h3>
+      SWIPE and Mozilla
+    </h3>
+    <p>
+      Mozilla, the opensource browser and Web application toolkit,
+      makes heavy use of RDF and XML. The Mozilla RDF documentation
+      ([<a href="#MozillaRDF">MozillaRDF</a>]) provides more
+      information on the Mozilla RDF APIs and RDF-based services
+      than can be presented here. In particular, see the Mozilla
+      search documentation [<a
+      href="#MozillaSearch">MozillaSearch</a>] for details of the
+      Sherlock-compatible search tool built into Mozilla.
+    </p>
+    <p>
+      Excerpt...
+    </p>
+    <blockquote>
+      The core search functionality in Mozilla is a XPCOM component
+      which uses RDF as its data store, Necko for networking
+      support, and XUL/CSS &amp; JavaScript for its user interface,
+      with a bit of XPConnect for "glue" support [...] Mozilla
+      currently supports version 1.3 of the "Sherlock 2"
+      specification with the exception of "LDAP" support.
+    </blockquote>
+    <h2>
+      References
+    </h2>
+    <dl>
+      <dt>
+        [P2PMeta]
+      </dt>
+      <dd>
+        <a
+        href="http://www.openp2p.com/pub/a/p2p/2001/01/18/metadata.html">
+        The Power of Metadata</a>, by Rael Dornfest and Dan
+        Brickley. Openp2p.com, 2001-01-18
+      </dd>
+      <dt>
+        [<a name="ExtRSS" id="ExtRSS">ExtRSS</a>]
+      </dt>
+      <dd>
+        <a href="http://ilrt.org/discovery/2000/11/rss-query/">RDF:
+        Extending and Querying RSS channels</a>, Dan Brickley and
+        Libby Miller. ILRT discussion document, 2000-11-01
+      </dd>
+      <dt>
+        <a name="MacSherlock" id="MacSherlock" />[MacSherlock] <a
+        href="http://www.apple.com/sherlock/">Apple - Mac OS -
+        Sherlock</a>
+      </dt>
+      <dd>
+        See <a
+        href="http://developer.apple.com/macos/sherlock.html">online
+        documentation and TechNotes</a> from Apple, particularly <a
+        href="http://developer.apple.com/technotes/tn/tn1141.html">Technical
+        Note TN1141, Extending and Controlling Sherlock</a>
+      </dd>
+      <dt>
+        <a name="MozillaRDF" id="MozillaRDF" /> [MozillaRDF]
+      </dt>
+      <dd>
+        <a href="http://www.mozilla.org/rdf/doc/">RDF in Mozilla
+        documentation</a>
+      </dd>
+      <dt>
+        <a name="MozillaSearch" id="MozillaSearch" />
+        [MozillaSearch]
+      </dt>
+      <dd>
+        <a
+        href="http://www.mozilla.org/projects/search/technical.html">
+        The Search for Mozilla</a>, by Robert John Churchill
+        (rjc@netscape.com).
+      </dd>
+    </dl>
+  </body>
 </html>
 

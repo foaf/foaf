@@ -6,7 +6,7 @@
     <title>
       RDFWeb design notes: aggregation strategies
     </title>
-    <link rel="stylesheet" href="ssi/main.css" type="text/css" />
+    <link rel="stylesheet" href="../../../ssi/main.css" type="text/css" />
   </head>
   <body bgcolor="#ffffff">
     <div class="navbar">
@@ -18,8 +18,7 @@
             <strong><a href="/" class="sitepart">RDFWeb</a>: <a
             class="sitepart"
             href="../../../dev.html">developers</a>: <span
-            class="sitepart">research notebook: aggregation
-            strategies</span></strong> 
+            class="sitepart">aggregation strategies</span></strong> 
           </td>
           <td align="right">
             <span class="siteutil"><a href="about.html">about</a> |
@@ -100,6 +99,8 @@
  &lt;technologyInterest web:resource="http://www.mozilla.org/"&gt;
 &lt;/User&gt;
 </pre>
+
+
     <h3>
       c.rdf
     </h3>
@@ -270,13 +271,15 @@
 ( technologyInterest, var:100, http://www.mozilla.org/ )
 </pre>
     <h4>
-      T3 - selected triples extracted from c.rdf ( rdf:type,
-      var:101, Organisation ) ( corporateHomepage, var:101,
-      http://megacorp.example.com/ ) ( ethicalPolicy, var:101,
-      http://dotherightthing.example.org/policy.xhtml ) ( rdf:type,
-      http://dotherightthing.example.org/policy.xhtml,
-      PolicyStatement )
+      T3 - selected triples extracted from c.rdf
     </h4>
+<pre>
+( rdf:type, var:101, Organisation ) 
+( corporateHomepage, var:101, http://megacorp.example.com/ ) 
+( ethicalPolicy, var:101, http://dotherightthing.example.org/policy.xhtml ) 
+( rdf:type, http://dotherightthing.example.org/policy.xhtml, PolicyStatement )
+   
+</pre>
     <h3>
       Interpretation
     </h3>
@@ -595,7 +598,8 @@ foreeach $genid ( $incoming-&gt;genids ) {
       .....
     </p>
     <hr />
-    dan brickley, 2001-01-01
+    dan brickley, initial draft 2001-01-01 last updated: $Id: smush.html,v 1.3 2002-01-29 01:15:13 danbri Exp $
+    <br />
   </body>
 </html>
 
