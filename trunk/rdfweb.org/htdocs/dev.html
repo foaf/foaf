@@ -2,8 +2,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org" />
     <title>
-RDFWeb: information for developers
+      RDFWeb: information for developers
     </title>
     <link rel="stylesheet" href="ssi/main.css" type="text/css" />
   </head>
@@ -15,7 +16,7 @@ RDFWeb: information for developers
         <tr>
           <td align="left" valign="top">
             <strong><a href="/" class="sitepart">RDFWeb</a>: <a
-href="dev.html" class="sitepart">developers</a>: <span
+            href="dev.html" class="sitepart">developers</a>: <span
             class="sitepart">developer resources</span></strong> 
           </td>
           <td align="right">
@@ -28,152 +29,192 @@ href="dev.html" class="sitepart">developers</a>: <span
         </tr>
       </table>
     </div>
-
-
-
-<!-- ............................................  -->
-
-<h3>RDFWeb Developer Resources</h3>
-
-<p>
-RDFWeb is a work in progress. This page gathers together a variety of
-resources for developers interested in working with the RDFWeb prototype. 
-The system uses <a href="httP://www.w3.org/XML/">XML</a> and <a
-href="http://www.w3.org/RDF/">RDF</a>. Some familiarity with these
-technologies is necessary, for anyone who wants to understand the workings of
-RDFWeb.
-</p>
-
-<p>
-<strong>Note</strong>: RDFWeb to date has largely been a personal project 
-of Dan Brickley and Libby Miller. We are well aware that the technical documentation 
-is rather sparse. By switching to the new CVS-backed web site we hope 
-to improve this situation. This current document is based on the old RDFWeb home page, which described our two implementations. 
-</p>
-
-
-<h3>RDFWeb Prototypes</h3>
-
-<p>We have two implementations in progress: one using Perl and DBM,
-the other using Java and SQL. Both provide tools to aggregate,
-store, query and present views of the RDFWeb data graph.
-</p>
-
-<p><strong>Note:</strong> the perl demo is <em>broken</em>
-currently; the code for merging bNode structures was buggy. We have left 
-a frozen copy of the old 2000-2001 demo running, but please not that it is (a) 
-not updating its index from the Web and (b) liable to behave strangely.
-</p>
-
-
-<ul>
-<li>Libby's prototype <a href="http://swordfish.rdfweb.org/rweb/who">
-Java/SQL implementation</a>, based on the <a
-href="http://swordfish.rdfweb.org/rdfquery/">Inkling</a>
-system and the SquishQL query language.
-</li>
-
-<li>Libby's implementation includes a <a
-href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
-codepiction demo</a> based on photo metadata indicating who each photo
-depicts (see <a href="/2002/01/photo/index.html">co-depiction write up</a></li>
-
-<li><a href="http://www.w3.org/2001/08/rdfweb/svg-foaf.html">Notes on using
-SVG for photo metadata</a>
-</li>
-
-<li><a href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a> (may rewrite
-the Perl system in Ruby...)</a></li>
-
-
-<li>broken/frozen: Dan's original Perl-based implementation. In its day, it 
-was evocative and buggy. Now its just buggy.
-It exposed an HTML view of an
-aggregated dataset collected by the <em>scutter</em> indexing tool. Some sample entry points: <a
-href="/rweb/who?mbox=mailto:daniel.brickley@bristol.ac.uk">dan</a>,
-<a href="/rweb/who?mbox=mailto:libby.miller@bristol.ac.uk">libby</a>...</li>
-
-<li>see also <a
-href="http://rdfweb.org/cgi-bin/rdfweb/pipsqueak">Pipsqueak</a>
-(javascript testbed for querying this stuff based on Jan Grant's <a
-href="http://ioctl.org/logic/">js logic</a> code)</li>
-
-<li>Damian Steer's <a href="http://rdfweb.org/people/damian/RDFAuthor">
-RDFAuthor</a> tool is really handy for authoring RDF (and <a
-href="http://rdfweb.org/people/damian/RDFAuthor/Tutorial/Tutorial2/">querying</a> it...)
-</li>
-
-<li><a href="/people/danbri/2001/09/foafcorp/">FOAFCorp</a> is an experiment
-in extending FOAF to represent 'corporate friends of friends', inspired by
-<a href="http://www.theyrule.net/">They Rule</a>. It provides an interesting 
-test case for certain sorts of query.
-</li>
-
-</ul>
-
-
-<h3>Developer links</h3>
-
-<ul>
-
-<li><a href="http://www.egroups.com/group/rdfweb-dev">Developer
-mailing list (rdfweb-dev)</a>, <a
-href="http://www.egroups.com/messages/rdfweb-dev">archives</a>, <a
-href="http://www.egroups.com/subscribe/rdfweb-dev?referer=1">
-subscribe</a>.</li>
-<li><a href="http://www.w3.org/RDF/Interest/#irc">RDF Interest Group
-IRC</a> (<a href="http://rdfig.xmlhack.com/">collaborative annotations
-system</a>)</li>
-<li><a href="/2000/08/why/">RDFWeb General Overview</a> (read this first! the orginal, rather dated and <em>still</em> incomplete writeup :)</li> 
-<li><a href="/people/danbri/rdfweb/allfactoids.P">data dumps</a> (non-XML, old data set)</li>
-
-<li><a href="/people/danbri/rdfweb/webwho.xrdf">sample webwho.xrdf file</a></li>
-
-<li><a href="/people/danbri/rdfweb/closure.P">closure test</a> (logic rules
-for graph manipulation)</li>
-
- <li>see also <a
-href="http://rdfweb.org/cgi-bin/rdfweb/pipsqueak">Pipsqueak</a>
-(javascript testbed for querying this stuff based on Jan's <a
-href="http://tribble.ilrt.bris.ac.uk/~cmjg/logic/">js logic</a>
-stuff)</li>
-
-<li><a href="http://www.guha.com/rdfdb/">Guha's RDFdb system</a></li>
-
-<li>(old data!) list of known RDF 'seeAlso' start points: (<a
-href="/~pldab/rdfweb/scutterplan.txt">scutterplan</a>)</li>
-
-<li><a href="research.html">RDFWeb Research: background reading</a></li>
-<li><a href="http://xmlns.com/foaf/0.1/">FOAF</a> ('Friend of a Friend'), an 
-RDFWeb starter ontology</li>
-<li><a href="http://xmlns.com/wot/0.1/">WOT</a> ('Web-of-Trust')</li>
-<li><a href="http://rdfweb.org/2001/01/swipe/">SWIPE</a></li>
-<li><a href="http://rdfweb.org/2001/01/design/smush.html">RDFWeb notebook: Data aggregation strategies</a></li>
-
-</ul>
-
-<h2>About the demos</h2>
-
-<p>
-The demos are built by RDFWeb indexers that explore a Web of
-cross-referenced RDF files, aggregating information from multiple sources.
-</p>
-
-
-<h3>Feedback</h3>
-
-<p>Comments/question to <a
-href="mailto:danbri@rdfweb.org">danbri</a> or <a
-href="mailto:rdfweb-dev@egroups.com">rdfweb-dev@egroups.com</a></p>
-
-
-<!-- ............................................  -->
-
-
-<p>last updated: $Id: dev.html,v 1.4 2002-02-09 19:55:02 danbri Exp $</p>
-
-
-</body>
+    <!-- ............................................  -->
+    <h3>
+      RDFWeb Developer Resources
+    </h3>
+    <p>
+      RDFWeb is a work in progress. This page gathers together a
+      variety of resources for developers interested in working
+      with the RDFWeb prototype. The system uses <a
+      href="httP://www.w3.org/XML/">XML</a> and <a
+      href="http://www.w3.org/RDF/">RDF</a>. Some familiarity with
+      these technologies is necessary, for anyone who wants to
+      understand the workings of RDFWeb.
+    </p>
+    <p>
+      <strong>Note</strong>: RDFWeb to date has largely been a
+      personal project of Dan Brickley and Libby Miller. We are
+      well aware that the technical documentation is rather sparse.
+      By switching to the new CVS-backed web site we hope to
+      improve this situation. This current document is based on the
+      old RDFWeb home page, which described our two
+      implementations.
+    </p>
+    <h3>
+      RDFWeb Prototypes
+    </h3>
+    <p>
+      We have two implementations in progress: one using Perl and
+      DBM, the other using Java and SQL. Both provide tools to
+      aggregate, store, query and present views of the RDFWeb data
+      graph.
+    </p>
+    <p>
+      <strong>Note:</strong> the perl demo is <em>broken</em>
+      currently; the code for merging bNode structures was buggy.
+      We have left a frozen copy of the old 2000-2001 demo running,
+      but please not that it is (a) not updating its index from the
+      Web and (b) liable to behave strangely.
+    </p>
+    <ul>
+      <li>
+        Libby's prototype <a
+        href="http://swordfish.rdfweb.org/rweb/who">Java/SQL
+        implementation</a>, based on the <a
+        href="http://swordfish.rdfweb.org/rdfquery/">Inkling</a>
+        system and the SquishQL query language.
+      </li>
+      <li>
+        Libby's implementation includes a <a
+        href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
+        codepiction demo</a> based on photo metadata indicating who
+        each photo depicts (see <a
+        href="/2002/01/photo/index.html">co-depiction write up</a>
+      </li>
+      <li>
+        <a
+        href="http://www.w3.org/2001/08/rdfweb/svg-foaf.html">Notes
+        on using SVG for photo metadata</a>
+      </li>
+      <li>
+        <a href="http://www.w3.org/2001/12/rubyrdf/">RubyRDF</a>
+        (may rewrite the Perl system in Ruby...)
+      </li>
+      <li>
+        broken/frozen: Dan's original Perl-based implementation. In
+        its day, it was evocative and buggy. Now its just buggy. It
+        exposed an HTML view of an aggregated dataset collected by
+        the <em>scutter</em> indexing tool. Some sample entry
+        points: <a
+        href="/rweb/who?mbox=mailto:daniel.brickley@bristol.ac.uk">dan</a>,
+        <a
+        href="/rweb/who?mbox=mailto:libby.miller@bristol.ac.uk">libby</a>...
+      </li>
+      <li>
+        see also <a
+        href="http://rdfweb.org/cgi-bin/rdfweb/pipsqueak">Pipsqueak</a>
+        (javascript testbed for querying this stuff based on Jan
+        Grant's <a href="http://ioctl.org/logic/">js logic</a>
+        code)
+      </li>
+      <li>
+        Damian Steer's <a
+        href="http://rdfweb.org/people/damian/RDFAuthor">RDFAuthor</a>
+        tool is really handy for authoring RDF (and <a
+        href="http://rdfweb.org/people/damian/RDFAuthor/Tutorial/Tutorial2/">
+        querying</a> it...)
+      </li>
+      <li>
+        <a href="/people/danbri/2001/09/foafcorp/">FOAFCorp</a> is
+        an experiment in extending FOAF to represent 'corporate
+        friends of friends', inspired by <a
+        href="http://www.theyrule.net/">They Rule</a>. It provides
+        an interesting test case for certain sorts of query.
+      </li>
+    </ul>
+    <h3>
+      Developer links
+    </h3>
+    <ul>
+      <li>
+        <a href="http://www.egroups.com/group/rdfweb-dev">Developer
+        mailing list (rdfweb-dev)</a>, <a
+        href="http://www.egroups.com/messages/rdfweb-dev">archives</a>,
+        <a
+        href="http://www.egroups.com/subscribe/rdfweb-dev?referer=1">
+        subscribe</a>.
+      </li>
+      <li>
+        <a href="http://www.w3.org/RDF/Interest/#irc">RDF Interest
+        Group IRC</a> (<a
+        href="http://rdfig.xmlhack.com/">collaborative annotations
+        system</a>)
+      </li>
+      <li>
+        <a href="/2000/08/why/">RDFWeb General Overview</a> (read
+        this first! the orginal, rather dated and <em>still</em>
+        incomplete writeup :)
+      </li>
+      <li>
+        <a href="/people/danbri/rdfweb/allfactoids.P">data
+        dumps</a> (non-XML, old data set)
+      </li>
+      <li>
+        <a href="/people/danbri/rdfweb/webwho.xrdf">sample
+        webwho.xrdf file</a>
+      </li>
+      <li>
+        <a href="/people/danbri/rdfweb/closure.P">closure test</a>
+        (logic rules for graph manipulation)
+      </li>
+      <li>
+        see also <a
+        href="http://rdfweb.org/cgi-bin/rdfweb/pipsqueak">Pipsqueak</a>
+        (javascript testbed for querying this stuff based on Jan's
+        <a href="http://tribble.ilrt.bris.ac.uk/~cmjg/logic/">js
+        logic</a> stuff)
+      </li>
+      <li>
+        <a href="http://www.guha.com/rdfdb/">Guha's RDFdb
+        system</a>
+      </li>
+      <li>
+        (old data!) list of known RDF 'seeAlso' start points: (<a
+        href="/~pldab/rdfweb/scutterplan.txt">scutterplan</a>)
+      </li>
+      <li>
+        <a href="research.html">RDFWeb Research: background
+        reading</a>
+      </li>
+      <li>
+        <a href="http://xmlns.com/foaf/0.1/">FOAF</a> ('Friend of a
+        Friend'), an RDFWeb starter ontology
+      </li>
+      <li>
+        <a href="http://xmlns.com/wot/0.1/">WOT</a>
+        ('Web-of-Trust')
+      </li>
+      <li>
+        <a href="http://rdfweb.org/2001/01/swipe/">SWIPE</a>
+      </li>
+      <li>
+        <a
+        href="http://rdfweb.org/2001/01/design/smush.html">RDFWeb
+        notebook: Data aggregation strategies</a>
+      </li>
+    </ul>
+    <h2>
+      About the demos
+    </h2>
+    <p>
+      The demos are built by RDFWeb indexers that explore a Web of
+      cross-referenced RDF files, aggregating information from
+      multiple sources.
+    </p>
+    <h3>
+      Feedback
+    </h3>
+    <p>
+      Comments/question to <a
+      href="mailto:danbri@rdfweb.org">danbri</a> or <a
+      href="mailto:rdfweb-dev@egroups.com">rdfweb-dev@egroups.com</a>
+    </p>
+    <!-- ............................................  -->
+    <p>
+      last updated: $Id: dev.html,v 1.4 2002/02/09 19:55:02 danbri
+      Exp $
+    </p>
+  </body>
 </html>
-
 
