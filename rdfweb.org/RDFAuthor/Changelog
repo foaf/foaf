@@ -1,4 +1,13 @@
-$Date: 2002-02-06 00:36:23 $ - pldms
+$Date: 2002-02-06 17:28:53 $ - pldms
+    
+    Namespace prefixes fixed (i.e. works).
+    
+    Stationery support added. This, I might add, was annoying (though not
+    difficult) because Cocoa doesn't use the Mac OS stationery flag. So
+    (as recommened by Apple) there is a new filetype - RDFT - which is identical
+    to RDFA but removes filename and fixes type to RDFA when loaded.
+
+2002/02/06 00:36:23 - pldms
 
     Think I've fixed bookmarks so that they will serialise in a nice way
     (no Cocoa-specific stuff).
