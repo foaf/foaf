@@ -1,6 +1,6 @@
 all:	pushpull
 
 pushpull:
-	ssh danbri@rdfweb.org  "cd /var/web/sites/slave/foafproject/htdocs/; cvs update -d "
+	ssh foaf-project.org  "cd  /var/web/sites/slave/foafproject/htdocs/; cvs update -d "
 
 
