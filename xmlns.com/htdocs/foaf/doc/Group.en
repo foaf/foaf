@@ -82,7 +82,7 @@ agents.
 &lt;foaf:Group&gt;
  &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
  &lt;foaf:membershipClass&gt;
-    &lt;eg:ILRTStaffPerson&gt;
+    &lt;owl:Class rdf:about="http://ilrt.example.com/groups#ILRTStaffPerson"&gt;
      &lt;rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/&gt;
      &lt;rdfs:subClassOf&gt;
        &lt;owl:Restriction&gt; 
@@ -90,7 +90,7 @@ agents.
          &lt;owl:hasValue rdf:resource="http://www.ilrt.bris.ac.uk/"/&gt;
        &lt;/owl:Restriction&gt; 
      &lt;/rdfs:subClassOf&gt;
-   &lt;/eg:ILRTStaffPerson&gt;
+   &lt;/owl:Class&gt;
  &lt;/foaf:membershipClass&gt;
 &lt;/foaf:Group&gt;
 </pre>
