@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg enable-background="new"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+        <filter id="pixelize" x="0" y="0" width="1" height="1" filterRes="20">
+            <feOffset in="BackgroundImage" />
+        </filter>
+    </defs>
+    <image width="640" height="480"
+	xlink:href="http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG"/>
+    <g id="box" transform="translate(80,180)" >
+        <rect width="100" height="100" filter="url(#pixelize)"/>
+        <rect width="100" height="100" stroke="red" fill="none"/>
+    </g>
+
+<!-- ok, this file was hand generated. the nearby rdf scripts
+	should be able to generate similar, though need 
+	code to figure out from path info which bit of image to blur -->
+
+</svg> 
+

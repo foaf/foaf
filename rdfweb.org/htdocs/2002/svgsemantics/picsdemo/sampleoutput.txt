@@ -1,0 +1,25 @@
+Got an image, URI: http://swordfish.rdfweb.org/photos/2002/05/31/002120.JPG 
+
+	Image description tells of an SVG region: [local:bnodeid:73578104
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:56733582 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Man' 
+	This is a wordnet class; todo: lookup more info!...
+
+	Image description tells of an SVG region: [local:bnodeid:77123073
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:68902605 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Straightjacket' 
+	This is a wordnet class; todo: lookup more info!...
+
+	Image description tells of an SVG region: [local:bnodeid:19852067
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:20487402 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Penis' 
+	This is a wordnet class; todo: lookup more info!...
+
+	Image description tells of an SVG region: [local:bnodeid:89036545
+	SVG path type: http://jibbering.com/2002/3/svg/#Polygon 
+	Region depicts: [local:bnodeid:29782902 
+		...depicted object type: 'http://xmlns.com/wordnet/1.6/Truck' 
+	This is a wordnet class; todo: lookup more info!...
