@@ -1,6 +1,6 @@
 <p>
 The <code>foaf:Group</code> class represents a collection of individual agents (and may 
-itself play the role of a <code>foaf:Agent</code>.
+itself play the role of a <code>foaf:Agent</code>, ie. something that can perform actions).
 </p>
 </p>
 This concept is intentionally quite broad, covering informal and 
@@ -15,12 +15,18 @@ is also associated with a number of other <code>foaf:Agents</code> (typically pe
 constitute the <code>foaf:Group</code>. FOAF provides a mechanism, the 
 <code>foaf:membershipClass</code> property, which relates a <code>foaf:Group</code> to a 
 sub-class of the class <code>foaf:Agent</code> who are members of the group. This is a 
-little complex, but allows us to make group membership rules explicit.
+little complicated, but allows us to make group membership rules explicit.
 </p>
 
 
-<p>The markup for defining a group can be complex. Here we define a 
-<code>foaf:Group</code> representing those people who are ILRT staff members. The 
+<p>The markup for defining a group is both complex and powerful. It allows group 
+membership rules to match against any RDF-describable characteristics of the potential 
+group members. As FOAF and similar vocabularies become more expressive in their ability to 
+describe individuals, the <code>foaf:Group</code> mechanism for categorising them into 
+groups also becomes more powerful. 
+</p>
+
+<p>Here we define a <code>foaf:Group</code> representing those people who are ILRT staff members. The 
 <code>foaf:membershipClass</code> property connects the group (conceived of as a social 
 entity and agent in its own right) with the class definition for those people who 
 constitute it. In this case, the OWL rule is that all group members are in the 
@@ -29,8 +35,8 @@ ILRTStaffPerson class, which is in turn populated by all those things that are a
 http://www.ilrt.bris.ac.uk/.
 </p>
 
-<p class="example">
-
+<div class="example">
+<pre>
 &lt;!-- here we see a FOAF group described.
      each foaf group may be associated with an OWL definition 
      specifying the class of agents that constitute the group's membership --&gt;
@@ -48,7 +54,8 @@ http://www.ilrt.bris.ac.uk/.
    &lt;/eg:ILRTStaffPerson&gt;
  &lt;/foaf:membershipClass&gt;
 &lt;/foaf:Group&gt;
-</p>
+</pre>
+</div>
   
 <p>
 While this markup is fancy, the basic mechanism for saying that someone is in a 
@@ -56,7 +63,8 @@ While this markup is fancy, the basic mechanism for saying that someone is in a
 property of the <code>foaf:Group</code> to indicate the agents that are members of the 
 group. For example:
 </p>
-<p class="example">
+<div class="example">
+<pre>
 &lt;foaf:Group&gt;
  &lt;foaf:name&gt;ILRT staff&lt;/foaf:name&gt;
  &lt;foaf:member&gt;
@@ -67,7 +75,8 @@ group. For example:
   &lt;/foaf:Person&gt;
  &lt;/foaf:member&gt;
 &lt;/foaf:Group&gt;
-</p>
+</pre>
+</div>
 
 <p>
 Note that while these example OWL rules for being in the eg:ILRTStaffPerson class are 
@@ -89,12 +98,16 @@ allowed in RDF, so you can write claims about the Person and the Group without h
 nest either description inside the other. For (brief) example:
 </p>
 
-<p class="example">
+<div class="example">
+<pre>
 &lt;foaf:Group&gt;
  &lt;foaf:member rdf:nodeID="libby"/&gt;
+ &lt;!-- more about the group here --&gt;
 &lt;/foaf:Group&gt;
-&lt;foaf:Person rdf:nodeID="libby"/&gt;
-</p>
+&lt;foaf:Person rdf:nodeID="libby"&gt;
+  &lt;!-- more about libby here --&gt;
+&lt;/foaf:Person/&gt;
+</div>
 
 <p>
 There is a FOAF <a href="http://rdfweb.org/issues/show_bug.cgi?id=8">issue tracker (8)</a> 
