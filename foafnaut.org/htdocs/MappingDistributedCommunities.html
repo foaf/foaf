@@ -8,71 +8,98 @@
 
 <h1>Mapping distributed communities using SVG</h1>
 
-<h3>What is FOAF data?</h3>
-<ul>
-<li>RDF vocabulary
-<li>Namespace
-<li>Distributed community
-</ul>
+<h2>Introduction</h2>
 
-<h3>Translating FOAF into FOAFnaut</h3>
-<ul>
-<li>Why we like SVG
-<li>Existing app: FOAFcorp source code
-<li>Data-collection - scuttering
-</ul>
+<p><a href="http://foafnaut.org/">foafnaut</a> is an application built with SVG for mapping 
+distributed communities. 
+It uses source FOAF (Friend of a Friend) data, posted at various URL's by community 
+members and gathered by scuttering devices to generate maps of personal relationships. 
+Who knows whom? What is their relationship? The user starts with a single node which
+represents a person, and from there builds a map of the surrounding community landscape.</p>
+
+<p>foafnaut is a work in progress. Therefore, the aim of this presentation is to demonstrate
+not only what foafnaut can do now, but also discuss what are the possibilities for the future.</p>
+
+<h3>What is FOAF data?</h3>
+
+<p><a href="http://rdfweb.org/foaf/">Friend of a Friend</a> is an RDF vocabulary which allows 
+people to publish information about themselves and ther relationships with others. It is a useful 
+tool for defining and managing online communities.</p>
+<h4>Distributed community</h4>
+<p>Users generate FOAF data and post it at their own url. They then inform their preferred
+community device - in this case foafnaut, but it could be one of many foaf browsers available.
+In the main, these are hypertext based, or bots. Because the information is distributed 
+throughout many urls, users have control their own data.</p>
+
+
+<h2>Translating FOAF into FOAFnaut</h2>
+
+<p>SVG is particularly suited to mapping FOAF data because it uses an xml protocol which is 
+compatible with FOAF. As an open standard, it serves the community which 
+develops and uses the FOAF vocabulary, without the need for expensive authoring tools. </p>
+
+<p>foafnaut is based on Dean Jackson's <a href="http://grorg.org/2002/10/foafcorp/">FOAFcorp</a> 
+application. To date it has been developed by Jim Ley with graphics by Liz Turner.
+SVG graphics are brought to life using Javascript. The interaction model allows nodes to be 
+expanded to show all connections, for shortest paths to be plotted between nodes, and for 
+information about individual nodes to be displayed.</p>
+
 
 
 <h3>Individuals, relationships and communities</h3>
-<ul>
-<li>Representing individual profiles 
- <ul>
- <li>what ppl post about themselves
- <li>problems of flexible, highly-customised data
- </ul>
-<li>Relationships
- <ul>
- <li>nature of relationships
- <li>codepiction
- <li>what ppl post about each other
- </ul>
-<li>Communities
- <ul>
- <li>mailing lists and irc channels
- <li>roles, positions and hierarchys
- <li>group profiles
- </ul>
-</ul>
+
+<p>The FOAF vocabulary is highly flexible, and often customized according to what users
+wish to express. Therefore, individual FOAF profiles may be unique in format as well as 
+content. Presenting such content is a challenge for designers and users.</p>
+
+<h4>Relationships</h4>
+<p>Defining and accurately verifying relationships is a problem. What people post about 
+each other is rarely verified by both parties. Now, foafnaut shows a distinction between 
+"knows", "known by" and "know one another". One way to confirm that two people have
+at least met is to include a picture of them together - a co-depiction. The flexible FOAF 
+vocabulary, however, allows unlimited possibilities in defining these relationships. This
+is a challenge for future versions of foafnaut.</p>
+
+<h4>Communities</h4>
+<p>Existing internet communities are often defined in terms of mailing lists, news-groups 
+and irc channels. A mailing list can be used to uniquely identify an interconnected group of 
+people under a single email address. FOAF data profiling the group can be generated, 
+and relationships within the group can be represented in terms of roles, position and
+hierarchy.</p>
+
 
 <h3>Interaction</h3>
-<ul>
-<li>Integrating FOAF Authoring tools
-<li>Combining divergent tools: web (navigation) with desktop (authoring)
-<li>Dovetailing SVG with HTML/Java (??)
-</ul>
 
-<h3>Customisation, Identities and group overlap</h3>
-<ul>
-<li>Integrating customised FOAF data
-<li>Customising graphics for a range of styles
-<li>"Landscaping"
-</ul>
+<h4>Integrating FOAF Authoring tools</h4>
+<p>Problems arise when combining divergent tools. For maximum usability, we need to combine 
+navigation (web) tools with authoring (desktop) tools. Current methods are slow and do not 
+yield instantaneous results. Some operations can be integrated using HTML or Java.</p>
+<h4>Customisation</h4>
+<p>One way of dealing with the flexible nature of the vocabulary is to offer a customizable
+environment in which individuals and groups can espress themselves in words and graphics.
+Within a fixed interaction model, different styles and "landscapes" can develop. Individuals 
+can make use of custom iconography, emoticons etc.</p>
+
 
 <h3>Security, privacy and data protection</h3>
-This is a huge topic that I am not sure we should even attempt to tackle. However, the following are clearly design issues:
-<ul>
-<li>Enclosing groups
-<li>Distance of individual reach through community network should not be beyond authorised groups.
-<li>Trusting and verifying FOAF data
-<li>Codes of conduct which can be designed into the interface
-</ul>
+
+<h4>Protect groups</h4>
+<p>Groups should be enclosed such that the distance of individual reach through the community 
+network should not extend beyond authorized areas.</p>
+<h4>Encourage honorable behaviour</h4>
+<p>Raw FOAF data has, of itself, no means of validating or verifying relationships. Therefore
+interfaces should encourage dialog and codes of conduct. Naming in FOAF data should be consensual, 
+and groups should always choose to "opt in".</p>
 
 
-<h3>Usage scenarios</h3>
+
+<h2>Usage scenarios</h2>
 <ul>
-<li>Innovation networks - the FOAF development community
-<li>Translating FOAF experience to existing (Business?) communities
-<li>FOAF in Community services (healthcare, education etc)
+<li>Innovation networks - the FOAF development community, and why it works</li>
+<li>Information exchange - interconnections as peer-to-peer information conduits</li> 
+<li>Applying FOAF data to interconnected documents</li>
+<li>Translating FOAF experience to existing communities</li>
+<li>FOAF in Community services (health care, education etc)</li>
 </ul>
 
 
