@@ -37,28 +37,33 @@ end
 
 
 puts "Running main loop. opts: #{opts.inspect}"
-
 if !opts['input'] 
   TGraph.main(opts) 
 else
+
   puts "Loading from file..."
 
   graph = TGraph.new       
 
-  f = File::new opts['input']
-  #data = f.read
-  f.each do |line|
-  line.chomp!
-  p = line.split(/\s+/)
-  # puts "Got: #{p.inspect} "
-  graph.addPath(p[0], p[1], p[2])
-  end
+  begin 
+    f = File::new opts['input']
+    f.each do |line|
+      line.chomp!
+      p = line.split(/\s+/)
+      puts "Got link info: #{p.inspect} "
+      graph.addPath(p[0], p[1], p[2])
+    end
+    rescue
+      puts "error loading data: "+$!
+    end
 
   if opts['search']
     target = opts['search'] 
   else
     target= 'mailto:libby.miller@bristol.ac.uk'
   end
+
+  puts "Search target: #{target} input: #{f}"
 
   path = graph.findShortestPathsFromNodeNamed target
   puts "\n\nDanpaths: " 

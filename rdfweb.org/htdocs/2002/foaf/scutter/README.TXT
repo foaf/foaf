@@ -83,6 +83,8 @@ PATHFINDER
 try:
 
 bin/paths --input=doc/sample_pathdata.txt --search=mailto:libby.miller@bristol.ac.uk
+bin/paths --input=doc/sample_pathdata.txt --search=mailto:amy@w3.org  
+
 (or see Makefile for more demos)
 
 ...code to find paths thru the data. needs documenting.
