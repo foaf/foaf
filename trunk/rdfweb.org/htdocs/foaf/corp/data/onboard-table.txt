@@ -1,0 +1,6 @@
+
+CREATE TABLE onboard (
+   corpid int(11) NOT NULL,
+   personid int(11) NOT NULL
+);
+
