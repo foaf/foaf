@@ -396,13 +396,36 @@ Here is a very basic document describing a person:
 </p>
 
 <div>
-<code>
+<pre>
 &lt;foaf:Person&gt;
   &lt;foaf:name&gt;Dan Brickley&lt;/foaf:name&gt;
+  &lt;foaf:mbox_sha1sum&gt;241021fb0e6289f92815fc210f9e9137262c252e&lt;/foaf:mbox_sha1sum&gt;
   &lt;foaf:homepage rdf:resource="http://rdfweb.org/people/danbri/" /&gt;
+  &lt;foaf:img rdf:resource="http://rdfweb.org/people/danbri/mugshot/danbri-small.jpeg" /&gt;
 &lt;/foaf:Person&gt;
-</code>
+</pre>
 </div>
+
+<p>
+This brief example introduces the basics of FOAF. It basically says, "there is a 
+<a href="#term_Person">foaf:Person</a> 
+with a <a href="#term_name">foaf:name</a> property of 'Dan Brickley' and a 
+<a href="#term_mbox_sha1sum">foaf:mbox_sha1sum</a> property of 
+241021fb0e6289f92815fc210f9e9137262c252e; this person stands in a <a 
+href="#term_homepage">foaf:homepage</a> 
+relationship to a thing called http://rdfweb.org/people/danbri/ and a <a 
+href="#term_img">foaf:img</a>  
+relationship to a thing called http://rdfweb.org/people/danbri/mugshot/danbri-small.jpeg. 
+</p>
+
+<p>
+The remainder of this specification describes how to publish and interpret descriptions 
+such as these on the Web, using RDF/XML for syntax (file format) and terms from FOAF. It 
+introduces a number of categories (RDF classes such as 'Person') and properties 
+(relationship and attribute types such as 'mbox' or 'workplaceHomepage'). Each term 
+definition is provided in both human and machine-readable form, hyperlinked for quick 
+reference.
+</p>
 
 <h2>Background</h2>
 <p>
@@ -497,7 +520,7 @@ stabilise in usage and documentation, they progress through the categories
 
 <h4>stable terms</h4>
 
-<p>At the present time ($Date: 2003-07-26 23:19:48 $), the following FOAF terms are
+<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are
 considered <strong>stable</strong>.  This means that their names and definitions (in prose
 and in machine form) are unlikely to change dramatically. Clarifications and refinements
 may be made, but major changes are not expected. </p> 
@@ -527,7 +550,7 @@ schema</p>
 </ul>
 
 <h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:19:48 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are considered 
 <strong>unstable</strong>. 
 This means that their names and definitions (in prose and in machine form) could still change 
 dramatically. Clarifications and refinements still need to be made, and major changes are quite 
@@ -542,7 +565,7 @@ possible.
 </ul>
  
 <h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-26 23:19:48 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-26 23:28:48 $), the following FOAF terms are considered 
 to be of '<strong>testing</strong>' status. 
 This means that their names and definitions (in prose and in machine form) could still change, 
 although dramatic changes are (we hope) unlikely.
@@ -2582,7 +2605,7 @@ everyone. I'll make a partial list here before publishing the spec though. @@TOD
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-07-26 23:19:48 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-07-26 23:28:48 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
