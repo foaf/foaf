@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+ "http://www.w3.org/TR/SVG/DTD/svg10.dtd" [
+ <!ATTLIST svg
+  xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+ ]>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onload="init(evt)" onzoom="zoom()" viewBox="0 0 2000 1000">
+
+  <title>FOAF People Map.</title>
+  <script type="text/ecmascript" xlink:href="Node_Builder.js"/>
+  <script type="text/ecmascript" xlink:href="textbox.js" />
+  <script type="text/ecmascript" xlink:href="rdfparser.release.js" />
+  <script type="text/ecmascript" xlink:href="foaf-people-map.js" />
+  <image xlink:href="/imgs/earth.jpg" height="1000" width="2000" x="0" y="0" />
+<g transform="scale(5.555555555) translate(180 90)" viewbox="-180 90 180 -90">
+  <g id="gel" transform="scale(1,-1)" />
+</g>
+ <g id="popup"><text transform="scale(1,2)" style="stroke-width:0;fill:white;"/><text y="1.5em" transform="scale(1,2)" style="stroke-width:0;fill:white;"/></g>
+</svg>
