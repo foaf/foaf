@@ -10,7 +10,7 @@ require 'getoptlong'
 
 # webutil.rb 
 # 
-# $Id: scutter.rb,v 1.1 2002-07-17 11:43:49 danbri Exp $
+# $Id: scutter.rb,v 1.2 2002-07-17 11:46:24 danbri Exp $
 #
 # Copyright 2002 Dan Brickley 
 #
@@ -223,7 +223,7 @@ def load_graph_from_cache (file, opts={})
 	
     c14n_fn = "#{cache_dir}webcache/_nt/rdf-#{file}.c14.rdf"
     nt_cache = "#{cache_dir}webcache/_nt/rdf-#{file}.nt"    
-    ctext= `xsltproc '#{cache_dir}conf/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' `
+    ctext= `xsltproc '#{cache_dir}redist/rdfc14n.xsl' '#{cache_dir}webcache/rdf-#{file}.rdf' `
 
     begin 
       c14n = File::new( c14n_fn, File::CREAT|File::RDWR, 0644 )
@@ -234,7 +234,7 @@ def load_graph_from_cache (file, opts={})
     end
 
     puts "Stored canonicalised RDF."
-    nt_text = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}conf/rdfc2nt.xsl' '#{c14n_fn}'`
+    nt_text = `xsltproc  --stringparam base '#{base_uri}' '#{cache_dir}redist/rdfc2nt.xsl' '#{c14n_fn}'`
     puts "N-Triples: #{nt}"
 
     begin
