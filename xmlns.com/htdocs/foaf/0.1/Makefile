@@ -9,11 +9,10 @@ all: clean colour.html index.html
 clean: tidyup 
 
 #site:	all sigfiles
-site:	all
-	cd ../; cvs commit -m 'regenerated foaf spec docs';ssh rdfweb.org make slaves
 
-tmpsite:
-	make; cp index.html _tmp.html; cvs commit -m 'regen' _tmp.html;ssh rdfweb.org make slaves
+site:	all publish
+	cd ../; cvs commit -m 'regenerated foaf spec docs'
+
 
 
 tidyup:
