@@ -11,7 +11,7 @@
       <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/">
 	<dc:title>Friend of a Friend (FOAF) vocabulary</dc:title>
         <dc:description>The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.</dc:description>
-        <dc:date>$Date: 2003-07-06 09:46:44 $</dc:date>
+        <dc:date>$Date: 2003-07-09 10:26:51 $</dc:date>
         <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
         <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
         <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -137,6 +137,8 @@
 TODO: just for account IDs, or resources? chatrooms?">
        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
 	</rdf:Property>
 
 
@@ -146,13 +148,40 @@ TODO: just for account IDs, or resources? chatrooms?">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
 />
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
 	</rdf:Property>
+
+
+	<!-- http://www.stud.uni-karlsruhe.de/~uck4/ICQ/Packet-112.html -->
+       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/icqChatID"
+        rdfs:label="ICQ chat ID"
+        rdfs:comment="An ICQ chat ID">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
+/>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+	</rdf:Property>
+
+       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/yahooChatID"
+        rdfs:label="Yahoo chat ID"
+        rdfs:comment="A Yahoo chat ID">
+        <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" 
+/>
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+	</rdf:Property>
+
 
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/msnChatID"
         rdfs:label="MSN chat ID"
         rdfs:comment="An MSN chat ID">
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
         <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+        <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
       </rdf:Property>
 
 

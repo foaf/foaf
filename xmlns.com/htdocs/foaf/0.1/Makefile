@@ -35,7 +35,7 @@ sigfiles: sign
 
 # We need Redland installed, currently.
 table.html:
-	rdfdump -o ntriples -q file:index.rdf  | $(V)  > table.html
+	rapper -o ntriples -q file:index.rdf  | $(V)  > table.html
 
 # We used to keep master copy in the HTML, now we do the opposite.
 getrdf:
