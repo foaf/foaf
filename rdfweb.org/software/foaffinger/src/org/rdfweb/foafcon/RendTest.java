@@ -160,7 +160,8 @@ public class RendTest
 					  info.getAddress(),
 					  info.getPort(),
 					  "/");
-		
+
+		System.out.println(content);
 	      }
 	  }
 
@@ -213,7 +214,8 @@ public class RendTest
     
     System.exit(0);
   }
-  
+}
+
 class TestListener implements ServiceListener
 {
   List people;

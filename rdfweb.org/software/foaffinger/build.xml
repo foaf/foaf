@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+
+<project name="FoafFinger"
+         default="compile"
+         basedir=".">
+
+<property name="src" value="src" />
+<property name="build" value="build/${ant.project.name}" />
+<property name="dist" value="dist" />
+
+<target name="init">
+<tstamp />
+<mkdir dir="${build}" />
+</target>
+
+<target name="compile" depends="init">
+
+<javac srcdir="${src}" destdir="${build}" debug="on"/>
+
+</target>
+
+<target name="dist" depends="compile">
+
+<mkdir dir="${dist}" />
+
+<jar jarfile="${dist}/${ant.project.name}-${DSTAMP}.jar" basedir="${build}" 
+     manifest="${src}/MANIFEST"/>
+</target>
+
+</project>
