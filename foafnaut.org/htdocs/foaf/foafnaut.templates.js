@@ -8,7 +8,7 @@
 // for info on that sha1
 
 	if (_ONLINE) {
-  startURL="person-summary.id.1?"
+  startURL="person-summary.1?"
   endURL=""
 	} else {
   startURL="cache/"
@@ -636,7 +636,7 @@ try {
    var tmp=[]
    for (var i=0; i < dirs.length; i++) {
     var d=dirs.item(i)
-    tmp[count]={a:d.getAttributeNS(jimNS, "fID"),b:[foafNS+"knows"],c:d.getAttributeNS(foafNS, "nick")}
+    tmp[count]={a:d.getAttributeNS(foafNS, "mbox_sha1sum"),b:[foafNS+"knows"],c:d.getAttributeNS(foafNS, "nick")}
 				tmp[tmp[count].a]=tmp[count]
     count++;
    }
@@ -691,7 +691,7 @@ try {
     blubhash[mbox]=thisProxy
     thisProxy.mboxes[thisProxy.mboxes.length]=mbox
    }
-   dirs=doc.getElementsByTagNameNS(jimNS,"fID");
+   dirs=doc.getElementsByTagNameNS(foafNS,"mbox_sha1sum");
    for (var i=0; i < dirs.length; i++) {
     var sha=dirs.item(i).firstChild.data
     blubhash[sha]=thisProxy
