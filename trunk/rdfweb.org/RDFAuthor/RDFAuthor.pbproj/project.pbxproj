@@ -337,27 +337,33 @@
 				<string>rdf</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>RDFDocument</string>
+			<string>RDF Document</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>rdf</string>
+				<string>rdf*</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>None</string>
+			<string>Editor</string>
 			<key>NSDocumentClass</key>
 			<string>RDFAuthorDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>RDFAuthor</string>
+	<key>CFBundleGetInfoString</key>
+	<string>RDF Author - A tool for simple drag 'n drop generation of RDF/XML</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>RDF Author</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>RDF Author 0.1</string>
 	<key>CFBundleSignature</key>
-	<string>RDFA</string>
+	<string>R*FA</string>
 	<key>CFBundleVersion</key>
 	<string>0.1</string>
 	<key>NSJavaNeeded</key>
