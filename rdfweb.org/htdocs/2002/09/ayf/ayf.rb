@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # ayf.rb 
-# $Id: ayf.rb,v 1.15 2002-12-11 15:53:27 danbri Exp $
+# $Id: ayf.rb,v 1.16 2002-12-11 21:11:35 danbri Exp $
 # AllYourFoaf... see http://rdfweb.org/2002/09/ayf/intro.html
 # 
 # This is a basic RDF harvester that traverses rdfs:seeAlso links
@@ -67,6 +67,19 @@ def go(uri)
     end					# the 'if' is fix for parser bug
   end
 
+
+  # a code block that writes an html page based on the crawler's .out property 
+  #
+  htmler = Proc.new do |crawler,page|
+      html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
+      html += "<h1>AllYourFoaf Image Index</h1>\n"  
+      html += "<p><strong>stats:</strong>: left.size=#{crawler.left.size} \
+	seen.size=#{crawler.seen.size} seenpic.size=#{crawler.seenpic.size} current:{crawler.uri} </p> "
+      html += "<hr />\n\n" + crawler.out
+      html += "</body></html>\n\n"
+      SimpleScutter.writefile(crawler.outfile,html)
+  end
+
   # basic image metadata harvesting
   #
   mugshots = Proc.new do |crawler,page|
@@ -96,14 +109,14 @@ def go(uri)
   error_logger = Proc.new {|e| puts "ERROR: #{e}" }
 
   # register some handlers:
-  ayf.pagehandlers.push page_summary, airports, mugshots
+  ayf.pagehandlers.push page_summary, airports, mugshots, htmler
   ayf.inithandlers.push loopstats
   ayf.errorhandlers.push error_logger 
 
   ayf.run  # set crawler running!
 end 
 
-
+   
 
 #############################################################################
 #############################################################################
@@ -130,12 +143,10 @@ class SimpleScutter
   end
 
   def run
-
     rdfs='http://www.w3.org/2000/01/rdf-schema#'
     while left.size>0
       @uri = @left.pop.to_s
       page = nil
-
       @inithandlers.each {|handler| handler.call(self)} # call inithandlers
 
       # Try fetching some RDF:
@@ -164,15 +175,23 @@ class SimpleScutter
       self.left=[] # reset and rebuild
       seealso.each_key {|k| left.push(k) if seen[k]==0 }
 
-      # Another regular task: (Re)write an HTML page (todo: move to block)
-      #
-      html = "<html><head><title>all your foaf depictions...</title></head>\n<body>\n"
-      html += "<h1>AllYourFoaf Image Index</h1>\n"  
-      html += "<p><strong>stats:</strong>: left.size=#{left.size} \
-	seen.size=#{seen.size} seenpic.size=#{seenpic.size} current: #{uri} </p> "
-      html += "<hr />\n\n" + out
-      html += "</body></html>\n\n"
-      fn=@outfile
+    # Call any pagehandlers:
+    pagehandlers.each {|handler| handler.call(self,page)} # call pagehandlers
+  end 
+  puts "RDF crawl complete. Exiting!" if @debug
+end
+
+
+
+
+#########################################################################
+#########################################################################
+#
+#
+# temporary stuff that should be in a library...
+
+
+def SimpleScutter.writefile(fn,html)
       begin 
         File::delete fn if File::exists? fn
       rescue Exception
@@ -186,22 +205,9 @@ class SimpleScutter
       rescue Exception
         puts "ERROR: can't write HTML logfile #{cf} "
       end
-   
-    # Call any pagehandlers:
-    pagehandlers.each {|handler| handler.call(self,page)} # call pagehandlers
- 
-  end 
-  puts "RDF crawl complete. Exiting!" if @debug
 end
 
 
-
-
-#########################################################################
-#########################################################################
-#
-#
-# temporary stuff that should be in a library...
 
   def SimpleScutter.parse(filename, base_uri)
     consumer = RDF4R::Consumer::Standard.new
