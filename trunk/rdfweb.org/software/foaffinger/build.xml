@@ -6,9 +6,12 @@
          basedir=".">
 
 <property name="src" value="src" />
-<property name="build" value="build/${ant.project.name}" />
+<property name="build" value="build" />
 <property name="dist" value="dist" />
 <property name="lib" value="lib" />
+<property name="lib_mac" value="lib_mac" />
+<property name="lib_linux" value="lib_linux" />
+<property name="lib_win32" value="lib_win32" />
 
 <target name="init">
   <tstamp />
@@ -20,6 +23,7 @@
   <javac srcdir="${src}" destdir="${build}" debug="on">
     <classpath>
       <fileset dir="${lib}"><include name="*.jar"/></fileset>
+    	  <fileset dir="${lib_mac}"><include name="*.jar"/></fileset>
     </classpath>
   </javac>
 </target>
