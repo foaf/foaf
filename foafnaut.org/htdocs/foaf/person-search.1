@@ -1,0 +1,24 @@
+<%
+//Response.ContentType="text/plain"
+RS=new ActiveXObject("ADODB.Recordset")
+pred=Request.QueryString('pred')+''
+obj=Request.QueryString('obj')+''
+ if (obj=='undefined') sqlstr='SELECT b.obj,a.obj FROM rdf3 a, rdf3 b where a.pred like "'+pred+'%" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" group by a.subj'
+ else sqlstr='SELECT b.obj,a.obj FROM rdf3 a, rdf3 b where a.pred="'+pred+'" and a.obj="'+obj+'" and a.subj=b.subj and b.pred="http://xmlns.com/foaf/0.1/mbox_sha1sum" group by a.subj'
+str=''
+//Response.Write(sqlstr)
+
+output=['<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:search="http://jibbering.com/vocabs/search/">']
+RS.Open(sqlstr,"rdf2")
+if (!RS.EOF) {
+ Arr=RS.getRows().toArray()
+ FAl=Arr.length/2
+	for (i=0;i<FAl;i++) {
+  output.push('<search:matches search:sha1sum="'+Arr[0]+'" search:obj="'+Arr[1]+'"/>\n')
+  Arr.Splice(0,2)
+	}
+}
+output.push('</rdf:RDF>')
+Response.Write(output.join(""))
+%>
+
