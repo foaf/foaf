@@ -8,9 +8,9 @@ paying or otherwise rewarding that agent.
 The <code>foaf:tipjar</code> property was created following <a
 href="http://rdfweb.org/mt/foaflog/archives/2004/02/12/20.07.32/">discussions</a> 
 about simple, lightweight mechanisms that could be used to encourage 
-rewards and payment for content exchanged online. An agents
+rewards and payment for content exchanged online. An agent's
 <code>foaf:tipjar</code> page(s) could describe informal ("Send me a
-postcard!", "here's my book and movie wishlist") or formal
+postcard!", "here's my book, music and movie wishlist") or formal
 (machine-readable micropayment information) information about how that
 agent can be paid or rewarded. The reward is not associated with any
 particular action or content from the agent concerned. A link to 

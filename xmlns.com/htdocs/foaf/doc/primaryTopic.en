@@ -8,9 +8,10 @@ The <code>foaf:primaryTopic</code> property is <em>functional</em>: for
 any document it applies to, it can have at most one value. This is
 useful, as it allows for data merging. In many cases it may be difficult
 for third parties to determine the primary topic of a document, but in
-many cases it should be reasonably obvious. Documents are very often the 
-most authoritative source of information about their own primary topics, 
-although this cannot be guaranteed since documents cannot be 
+a useful number of cases (eg. descriptions of movies, restaurants,
+politicians, ...) it should be reasonably obvious. Documents are very
+often the most authoritative source of information about their own
+primary topics, although this cannot be guaranteed since documents cannot be 
 assumed to be accurate, honest etc.
 </p>
 <p>
