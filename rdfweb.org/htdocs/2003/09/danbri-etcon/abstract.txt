@@ -1,22 +1,15 @@
 DanBri ETCON-2004 abstract
 
-version: $Id: abstract.txt,v 1.1 2003-09-24 17:47:26 danbri Exp $
+version: $Id: abstract.txt,v 1.2 2003-09-24 17:58:30 danbri Exp $
 
 45 min  talk at http://conferences.oreillynet.com/cs/et2004/create/e_sess#form
 
   "Fear of a FOAF Planet - Acronyms and Antics on the Semantic Web"
 
-  The Friend of a Friend (FOAF) project is about creating a Web of machine-readable 
-  homepages describing people, the links between them and the things they create and  
-  do. This session introduces the Friend of a Friend (FOAF) project, giving 
-  a lightning tour of its origins, goals, current status and possible futures. 
-
-Many of the interesting characteristics of FOAF stem from the 
-W3C "Semantic Web" standards which underpin it; relevant acronyms 
-and their role will be introduced explained accordingly.
-FOAF explores many of the technical and social issues highlighted by the 
-emergent Semantic Web, but the focus here is not on the core technology, but on 
-how FOAF and related trends might impact our lives, offline and on. 
+The Friend of a Friend (FOAF) project is creating a Web of machine-readable 
+homepages describing people, the links between them and the things they create and  
+do. This session introduces the Friend of a Friend (FOAF) project, giving 
+a lightning tour of its origins, goals, current status and possible futures. 
 
 What would happen (to privacy, to the media, to commerce) if search engines evolved 
 into aggregating databases? What would happen if machines could exchange, 
@@ -28,8 +21,8 @@ FOAF documents can contain extra markup that brings extra precision to
 to descriptions of people, places, events, relationships. The full 
 ramifications of this freedom may not be understood for years to come. 
 
-FOAF has many possible futures. This survey outlines several: 
-utopian, dystopian, and the spaces in between. The overview will 
+FOAF has many possible futures: utopian, dystopian, and the spaces in between. 
+The overview will 
 focus on real world FOAF tools and applications currently in development,  including 
 FOAFMobile apps ("show me weblog articles by people sat near me right now") 
 and interactions between social networking, activism and indy media ("show me 
@@ -40,9 +33,21 @@ Modest technologies can have unexpected consequences. As a simple, mischievous
 technology designed to encourage coincidences, FOAF opens up many possibilities. 
 As we move towards the mainstream, we must balance wide-eyed techno-optimism 
 with more sober assessments of the risk such technologies create.
-
 The Web is already mutating into the "Semantic" Web. FOAF is both as a driver 
 for such change, and a readily accessible tool for understanding, 
 adapting to and participating in this changed world. While FOAF is in essence a tool 
 for describing and modeling the world, it is often hard to describe something 
 without changing it.
+
+------
+
+misc notes
+
+Many of the interesting characteristics of FOAF stem from the 
+W3C "Semantic Web" standards which underpin it; relevant acronyms 
+and their role will be introduced explained accordingly.
+FOAF explores many of the technical and social issues highlighted by the 
+emergent Semantic Web, but the focus here is not on the core technology, but on 
+how FOAF and related trends might impact our lives, offline and on. 
+
+more on privacy issues? 
