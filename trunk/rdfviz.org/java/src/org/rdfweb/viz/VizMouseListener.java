@@ -36,13 +36,24 @@ this.viz=viz;
         if (viz.getNodeFromPoint(me) != null) {
             DrawableNode nn = viz.getNodeFromPoint(me);
             System.out.println("NN "+nn.getTmpText());
-            String tmp = nn.getTmpText();
+
+
             viz.setFocussedItem((FocussedItem)nn);
 
+
             try {
-                viz.getPropertyPane().remove(0, viz.getPropertyPane().getLength());
-                viz.getPropertyPane().insertString(0, tmp, new SimpleAttributeSet());
-            } catch (BadLocationException be) {
+                viz.getTypeText().setText(nn.getProp("type"));
+                viz.getIDText().setText(nn.getProp("uri"));
+                viz.getLabelText().setText(nn.getProp("label"));
+
+
+//		viz.updateNodeTextFrame(nn);
+
+System.out.println("ggetting type "+nn.getProp("type"));
+System.out.println("ggettingid "+nn.getProp("uri"));
+System.out.println("ggetting label "+nn.getProp("label"));
+
+            } catch (Exception be) {
                 System.err.println("bad loc1 "+be);
             }
             //	f=nn;
@@ -55,14 +66,21 @@ this.viz=viz;
         if (viz.getArcFromPoint(me) != null) {
             DrawableProperty nn = viz.getArcFromPoint(me);
             System.out.println("NN "+nn.getTmpText());
-            String tmp = nn.getTmpText();
             viz.setFocussedItem(nn);
 
             try {
-                viz.getPropertyPane().remove(0, viz.getPropertyPane().getLength());
-                viz.getPropertyPane().insertString(0, tmp, new SimpleAttributeSet());
-            } catch (BadLocationException be) {
+//                viz.getTmpText().setText(nn.getTmpText());
+                viz.getTypeText().setText(nn.getTypeText());
+                viz.getIDText().setText("");
+                viz.getLabelText().setText("");
+//		viz.updatePropertyTextFrame(nn);
+
+//                viz.getIDText().setText(nn.getProp("uri"));
+  //              viz.getLabelText().setText(nn.getProp("label"));
+
+            } catch (Exception be) {
                 System.err.println("bad loc2 "+be);
+be.printStackTrace();
             }
 
             //	f=nn;

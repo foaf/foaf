@@ -60,12 +60,17 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
 
     ///frame stuff
     JFrame frame;//main frame
+    JFrame textFrame;//main frame
     JMenuBar menubar;//main menu
-    JTextPane textPane;//for the node/prop text info
+    JTextArea textArea1;//for the node/prop text info
+    JTextArea textArea2;//for the node/prop text info
+    JTextArea textArea3;//for the node/prop text info
     JMenu menuNodes;
     JMenu menuArcs;
 
-    DefaultStyledDocument lsd;//document
+    DefaultStyledDocument lsd1;//document
+    DefaultStyledDocument lsd2;//document
+    DefaultStyledDocument lsd3;//document
 
     //model stuff for export
     Model mem;
@@ -103,9 +108,9 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
 
 
         frame = new JFrame();//main frame
+        textFrame = new JFrame();//main frame
+
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
 
         frame.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
@@ -114,9 +119,19 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
                 }
                 );
 
-        frame.setLocation(200, 200);
-        frame.getContentPane().add(this);
+        textFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        textFrame.addWindowListener(new WindowAdapter() {
+                    public void windowClosing(WindowEvent e) {
+                        System.exit(0);
+                    }
+                }
+                );
+
+        frame.setLocation(100, 100);
+        textFrame.setLocation(400, 100);
+
+        frame.getContentPane().add(this);
 
 
         int frameWidth = 900;
@@ -171,22 +186,137 @@ public class Viz extends JComponent implements DocumentListener, ActionListener 
 	file.add(quit);
 	quit.addActionListener(this);
 
-        lsd = new DefaultStyledDocument();
-
+        lsd1 = new DefaultStyledDocument();
         //Create the text pane and configure it
-        textPane = new JTextPane(lsd);
-        lsd.addDocumentListener(this);
-        frame.getContentPane().add(textPane, BorderLayout.SOUTH);
+        textArea1 = new JTextArea(1,50);
+//        textPane1 = new JTextArea(lsd1);
+	textArea1.setSize(100,10);
+        textArea1.getDocument().addDocumentListener(new VizDocTypeListener(this));
+        textArea1.setVisible(true);
 
-        textPane.setVisible(true);
+        lsd2 = new DefaultStyledDocument();
+        //Create the text pane and configure it
+        textArea2 = new JTextArea(1,50);
+        textArea2.getDocument().addDocumentListener(new VizDocIDListener(this));
+        textArea2.setVisible(true);
+ 
+        lsd3 = new DefaultStyledDocument();
+        //Create the text pane and configure it
+        textArea3 = new JTextArea(1,50);
+        textArea3.getDocument().addDocumentListener(new VizDocLabelListener(this));
+        textArea3.setVisible(true);
+ 
+
+///        textFrame.getContentPane().add(textPane, BorderLayout.CENTER);
+
+
+//////////?????
+
+JLabel textFieldLabel1 = new JLabel("type: ");
+JLabel textFieldLabel2 = new JLabel("id: ");
+JLabel textFieldLabel3 = new JLabel("label: ");
+        
+textFieldLabel1.setLabelFor(textArea1);
+textFieldLabel2.setLabelFor(textArea2);
+textFieldLabel3.setLabelFor(textArea3);
+    
+JPanel textControlsPane = new JPanel();
+
+GridBagLayout gridbag = new GridBagLayout();
+GridBagConstraints c = new GridBagConstraints();
+    
+textControlsPane.setLayout(gridbag);
+textControlsPane.setPreferredSize(new Dimension(500, 50));
+
+//JLabel[] labels = {textFieldLabel1,textFieldLabel2,textFieldLabel3};
+JLabel[] labels = {textFieldLabel1,textFieldLabel2,textFieldLabel3};
+/////
+JTextArea[] textAreas = {textArea1, textArea2, textArea3};
+//JTextPane[] textPanes = {textPane1, textPane2, textPane3};
+
+addLabelTextRows(labels, textAreas, gridbag, textControlsPane);
+
+
+textFrame.getContentPane().add(textControlsPane);
+
+/////////
         file.setVisible(true);
 
-        frame.setSize(frameWidth, frameHeight);
+        //frame.setSize(frameWidth, frameHeight);
+//        textFrame.setSize(100,50);
 
-        frame.repaint();
+this.setPreferredSize(new Dimension(300, 300));
+//textPane.setPreferredSize(new Dimension(300, 300));
+
+//        frame.repaint();
 
     }//end constructor
 
+
+
+public void updateNodeTextFrame(DrawableNode n){
+
+JLabel textFieldLabel1 = new JLabel("type: ");
+JLabel textFieldLabel2 = new JLabel("id: ");
+JLabel textFieldLabel3 = new JLabel("label: ");
+        
+textFieldLabel1.setLabelFor(textArea1);
+textFieldLabel2.setLabelFor(textArea2);
+textFieldLabel3.setLabelFor(textArea3);
+
+textArea1.setText(n.getProp("type"));
+textArea2.setText(n.getProp("uri"));
+textArea3.setText(n.getProp("label"));
+    
+JPanel textControlsPane = new JPanel();
+
+GridBagLayout gridbag = new GridBagLayout();
+GridBagConstraints c = new GridBagConstraints();
+    
+textControlsPane.setLayout(gridbag);
+textControlsPane.setPreferredSize(new Dimension(500, 300));
+textControlsPane.setMinimumSize(new Dimension(500, 300));
+
+JLabel[] labels = {textFieldLabel1,textFieldLabel2,textFieldLabel3};
+JTextArea[] textAreas = {textArea1, textArea2, textArea3};
+
+addLabelTextRows(labels, textAreas, gridbag, textControlsPane);
+
+
+        textFrame.setVisible(true);
+
+
+textFrame.getContentPane().add(textControlsPane);
+textFrame.repaint();
+
+}
+
+
+public void updatePropertyTextFrame(DrawableProperty p){
+
+JLabel textFieldLabel1 = new JLabel("type: ");
+
+textArea1.setText(p.tmpText);        
+textFieldLabel1.setLabelFor(textArea1);
+    
+JPanel textControlsPane = new JPanel();
+
+GridBagLayout gridbag = new GridBagLayout();
+GridBagConstraints c = new GridBagConstraints();
+    
+textControlsPane.setLayout(gridbag);
+textControlsPane.setPreferredSize(new Dimension(500, 50));
+
+JLabel[] labels = {textFieldLabel1};
+JTextArea[] textAreas = {textArea1};
+
+addLabelTextRows(labels, textAreas, gridbag, textControlsPane);
+
+textFrame.getContentPane().add(textControlsPane);
+textFrame.repaint();
+
+
+}
 
 
 /**
@@ -221,8 +351,20 @@ public JFrame getFrame(){//main frame
 return frame;
 }
 
-public DefaultStyledDocument getPropertyPane(){//properties for focussed node
-return lsd;
+public JFrame getTextFrame(){//main frame
+return textFrame;
+}
+
+public JTextArea getTypeText(){//properties for focussed node
+return textArea1;///???
+}
+
+public JTextArea getIDText(){//properties for focussed node
+return textArea2;///???
+}
+
+public JTextArea getLabelText(){//properties for focussed node
+return textArea3;///???
 }
 
     /**
@@ -316,6 +458,10 @@ return lsd;
     public static void main(String[] args) {
 
         Viz viz = new Viz();
+        viz.getFrame().pack();
+        viz.getTextFrame().pack();
+        viz.getFrame().setVisible(true);
+        viz.getTextFrame().setVisible(true);
 
     }
 
@@ -564,7 +710,9 @@ f=focus;
                 String className = classes.next().toString();
                         /////////
 
-                        menuNodes.add(new JMenuItem(className));
+			JMenuItem cl=new JMenuItem(className);
+                        menuNodes.add(cl);
+		        cl.addActionListener(new NodeActionListener(this));
 
                         ///////////
 
@@ -580,8 +728,9 @@ f=focus;
 
                 String propertyName = properties.next().toString();
                 /////////
-
-                menuArcs.add(new JMenuItem(propertyName));
+		JMenuItem pr=new JMenuItem(propertyName);
+                menuArcs.add(pr);
+		pr.addActionListener(new ArcActionListener(this));
 
                 //////
             }
@@ -609,6 +758,37 @@ f=focus;
 	}
 
    }
+
+
+
+/**
+    
+for laying out text
+                
+*/                  
+private void addLabelTextRows(JLabel[] labels,
+                                  JTextArea[] textAreas,
+                                  GridBagLayout gridbag,
+                                  java.awt.Container container) {
+        GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.EAST;
+        int numLabels = labels.length;
+    
+        for (int i = 0; i < numLabels; i++) {
+            c.gridwidth = GridBagConstraints.RELATIVE; //next-to-last
+            c.fill = GridBagConstraints.NONE;      //reset to default
+            c.weightx = 0.0;                       //reset to default
+            gridbag.setConstraints(labels[i], c);
+            container.add(labels[i]);
+            
+            c.gridwidth = GridBagConstraints.REMAINDER;     //end row
+            c.fill = GridBagConstraints.HORIZONTAL;
+            c.weightx = 1.0;
+            c.weighty = 1.0;
+            gridbag.setConstraints(textAreas[i], c);
+            container.add(textAreas[i]);
+        }
+    }         
 
 }
 
