@@ -35,3 +35,32 @@ network:
 &lt;/foaf:Person&gt;
 </pre>
 </div>
+
+<p>
+Note that it may be impolite to carelessly reveal someone else's chat identifier (which 
+might also serve as an indicate of email address) As with email,  there are privacy and 
+anti-SPAM considerations. FOAF does not currently provide a way to  represent an 
+obfuscated chat ID (ie. there is no parallel to the <code>foaf:mbox</code> / 
+<code>foaf:mbox_sha1sum</code> mapping). 
+</p>
+<p>
+In addition to the generic <code>foaf:OnlineAccount</code> and 
+<code>foaf:OnlineChatAccount</code> mechanisms, 
+FOAF also provides several convenience chat ID properties 
+(<code>foaf:jabberID</code>, <code>foaf:aimChatID</code>, <code>foaf:icqChatID</code>, 
+<code>foaf:msnChatID</code>,<code>foaf:yahooChatID</code>). 
+These serve as as a shorthand for some common cases; their use may not always be 
+appropriate.
+</p>
+<p class="editorial">
+We should specify some mappings between the abbreviated and full representations of 
+<a href="http://www.jabber.org/">Jabber</a>, <a href="http://www.aim.com/">AIM</a>, <a 
+href="http://chat.msn.com/">MSN</a>, <a href="http://web.icq.com/icqchat/">ICQ</a>, <a 
+href="http://chat.yahoo.com/">Yahoo!</a> and <a href="http://chat.msn.com/">MSN</a> chat 
+accounts. This requires us to identify an appropriate <code>foaf:accountServiceHomepage</code> for each. If we 
+wanted to make the <code>foaf:OnlineAccount</code> mechanism even more generic, we could 
+invent a relationship that holds between a <code>foaf:OnlineAccount</code> instance and a 
+convenience property. To continue the example above, we could describe how <a 
+href="http://www.freenode.net/">Freenode</a> could define a property 'fn:freenodeChatID' 
+corresponding to Freenode online accounts.
+</p>
