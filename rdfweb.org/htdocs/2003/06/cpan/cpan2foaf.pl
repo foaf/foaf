@@ -61,11 +61,13 @@ foreach my $person (split(/\n/,$local)) {
   #  print "ID: $1 name: $2 email: $3 \n\n";
   my $name=$2;
   my $cpanid=$1;
-  my $cpanmail='mailto:' . lc($cpanid);
-  my $mbox=$3;
+  my $cpanmail='mailto:' . lc($cpanid) . '@cpan.org';
+  my $mbox='mailto:'.$3;
   next unless $cpanid && $mbox;
   my $cpansha=sha1_hex($cpanmail);
   my $mainsha=sha1_hex($mbox);
+  print STDERR "Sha1sum of: '$cpanmail' is $cpansha \n";
+  print STDERR "Sha1sum of: '$mbox' is $mainsha \n";
   $out .= "<foaf:Person>\n";
   $out .= "<foaf:mbox_sha1sum>$cpansha</foaf:mbox_sha1sum>\n";
   $out .= "<foaf:mbox_sha1sum>$mainsha</foaf:mbox_sha1sum>\n";
