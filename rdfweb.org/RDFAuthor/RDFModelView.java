@@ -10,6 +10,7 @@ public class RDFModelView extends NSView {
     boolean addingConnection = false;
     boolean draggingConnection = false;
     boolean addingNode = false;
+    boolean deleting = false;
     String saveDescription;
     
     NSMutableArray dragTypesArray = new NSMutableArray();
@@ -43,7 +44,7 @@ public class RDFModelView extends NSView {
         dragInformation.put(SchemaData.PropertyPboardType,
             "Drop property on arc to set the arc's property"); 
     }
-    
+
     public boolean isOpaque()
     {
         return true;
@@ -69,6 +70,28 @@ public class RDFModelView extends NSView {
         rdfAuthorDocument.drawModel();
     }
     
+    public boolean acceptsFirstResponder()
+    {
+        return true;
+    }
+    
+    public void keyDown(NSEvent theEvent)
+    {
+        String chars = theEvent.characters();
+        if (chars.equals("\t"))
+        {
+            rdfAuthorDocument.selectNextObject();
+        }
+        else if (chars.equals("\u0019")) // shift-tab (always, I hope)
+        {
+            rdfAuthorDocument.selectPreviousObject();
+        }
+        else
+        {
+            super.keyDown(theEvent);
+        }
+    }
+    
     public void mouseDown(NSEvent theEvent)
     {
         NSPoint point = convertPointFromView(theEvent.locationInWindow(), null);
@@ -79,6 +102,10 @@ public class RDFModelView extends NSView {
         else if (addingNode)
         {
             rdfAuthorDocument.addNodeAtPoint(null, null, null, point);
+        }
+        else if (deleting)
+        {
+            rdfAuthorDocument.deleteObjectAtPoint(point);
         }
         else
         {
@@ -111,10 +138,9 @@ public class RDFModelView extends NSView {
         }
         else if (!addingNode)
         {
-            if (theEvent.clickCount() == 2)
+            if (theEvent.clickCount() == 2) // double click - show Info for item
             {
-                NSNotificationCenter.defaultCenter().postNotification(
-                new NSNotification(InfoController.showInfoNotification, null) );
+                rdfAuthorDocument.showInfoForObjectAtPoint(point);
             }
         }
     }
@@ -127,6 +153,11 @@ public class RDFModelView extends NSView {
     public void addNode(boolean value)
     {
         addingNode = value;
+    }
+    
+    public void deleteMode(boolean value)
+    {
+        deleting = value;
     }
     
     // Drag and Drop stuff begins here.

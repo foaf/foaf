@@ -55,15 +55,15 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         anObject.setMyList(this);
     }
 
-    public void deleteCurrentObject()
+    public void deleteObject(ModelItem item)
     {
-        if (currentObject != null)
+        array.removeElement(item);
+        item.delete();
+        if (item == currentObject)
         {
-            array.removeElement(currentObject);
-            currentObject.delete();
             setCurrentObject(null);
-            controller.modelChanged();
         }
+        controller.modelChanged();
     }
 
     public void removeObject(ModelItem anObject)
@@ -85,12 +85,16 @@ public class ArcNodeList extends java.lang.Object implements Serializable
 
     public ModelItem objectAtPoint(NSPoint point)
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        // This has to go backwards, since they are displayed in the opposite way
+        for (int index = array.size() - 1; index >= 0; index --)
         {
-            ModelItem anObject = (ModelItem)enumerator.nextElement();
-            if (anObject.containsPoint(point))
-                return anObject;
+            ModelItem item = (ModelItem) array.get(index);
+            if (item.containsPoint(point))
+            {
+                return item;
+            }
         }
+
         return null;
     }
 
@@ -100,7 +104,50 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         controller.modelChanged();
         controller.currentObjectChanged();
     }
-
+    
+    public void selectNextObject()
+    {
+        ModelItem nextItem;
+        
+        if (array.size() == 0)
+        {
+            return;
+        }
+        else if (currentObject == null)
+        {
+            nextItem = (ModelItem) array.firstElement();
+        }
+        else
+        {
+            int indexNext = (array.indexOf(currentObject) + 1) % array.size();
+            nextItem = (ModelItem) array.get( indexNext );
+        }
+        
+        setCurrentObject(nextItem);
+    }
+    
+    public void selectPreviousObject()
+    {
+        ModelItem nextItem;
+        
+        if (array.size() == 0)
+        {
+            return;
+        }
+        else if (currentObject == null)
+        {
+            nextItem = (ModelItem) array.lastElement();
+        }
+        else
+        {
+            // Hmm - the '+ array.size()' counters the posibility that the numerator is negative
+            int indexPrevious = (array.indexOf(currentObject) + array.size() - 1) % array.size();
+            nextItem = (ModelItem) array.get( indexPrevious );
+        }
+        
+        setCurrentObject(nextItem);
+    }
+    
     public ModelItem currentObject()
     {
         return currentObject;
@@ -234,7 +281,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         catch (Exception error)
         {
             NSAlertPanel alert = new NSAlertPanel();
-            alert.runAlert("RDF/XML Export Failed",
+            alert.runCriticalAlert("RDF/XML Export Failed",
                 "Export failed, I'm afraid. Try using 'Check Model' for possible problems.",
                 null, null, null);
         }

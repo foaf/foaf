@@ -20,6 +20,7 @@ public class RDFAuthorDocument extends NSDocument {
     ArcNodeList rdfModel;
     boolean addingNode;
     boolean addingConnection;
+    boolean deleting;
     boolean showTypes;
     boolean showIds;
     boolean showProperties;
@@ -199,6 +200,7 @@ public class RDFAuthorDocument extends NSDocument {
         {
             addingConnection = false;
             rdfModelView.addConnection(false);
+            rdfModelView.deleteMode(false);
             textDescriptionField.setStringValue("Click to place a new node");
             addingNode = true;
             rdfModelView.addNode(true);
@@ -217,6 +219,7 @@ public class RDFAuthorDocument extends NSDocument {
         {
             rdfModelView.addConnection(true);
             rdfModelView.addNode(false);
+            rdfModelView.deleteMode(false);
             addingConnection = true;
             textDescriptionField.setStringValue("Drag between two nodes to connect");
         }
@@ -227,10 +230,43 @@ public class RDFAuthorDocument extends NSDocument {
             textDescriptionField.setStringValue("");
         }
     }
-
-    public void deleteCurrentItem()
+    
+    public void deleteItems(boolean delete)
     {
-        rdfModel.deleteCurrentObject();
+        if (delete)
+        {
+            rdfModelView.deleteMode(true);
+            rdfModelView.addConnection(false);
+            rdfModelView.addNode(false);
+            textDescriptionField.setStringValue("Click on items to remove them from the model");
+        }
+        else
+        {
+            deleting = false;
+            rdfModelView.deleteMode(false);
+            textDescriptionField.setStringValue("");
+        }
+    }
+    
+    public void showInfoForObjectAtPoint(NSPoint point)
+    {
+        ModelItem item = rdfModel.objectAtPoint(point);
+        if (item != null)
+        {
+            setCurrentObject(item);
+            NSNotificationCenter.defaultCenter().postNotification(
+                new NSNotification(InfoController.showInfoNotification, null) );
+        }
+    }
+
+    
+    public void deleteObjectAtPoint(NSPoint point)
+    {
+        ModelItem item = rdfModel.objectAtPoint(point);
+        if (item != null)
+        {
+            rdfModel.deleteObject(item);
+        }
     }
     
     public void addNodeAtPoint(String id, String typeName, String typeNamespace, NSPoint point)
@@ -270,6 +306,16 @@ public class RDFAuthorDocument extends NSDocument {
     {
         ModelItem item = rdfModel.objectAtPoint(point);
         rdfModel.setCurrentObject(item);
+    }
+    
+    public void selectNextObject()
+    {
+        rdfModel.selectNextObject();
+    }
+    
+    public void selectPreviousObject()
+    {
+        rdfModel.selectPreviousObject();
     }
     
     public void moveCurrentObjectToPoint(NSPoint point)

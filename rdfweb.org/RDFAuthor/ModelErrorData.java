@@ -14,10 +14,32 @@ import java.util.Vector;
 public class ModelErrorData extends Object {
     
     Vector errorRecords;
+    int numberOfErrors;
+    int numberOfWarnings;
     
     public ModelErrorData()
     {
         errorRecords = new Vector();
+    }
+    
+    public boolean hasErrors()
+    {
+        return (numberOfErrors != 0);
+    }
+    
+    public boolean hasWarnings()
+    {
+        return (numberOfWarnings != 0);
+    }
+    
+    public int numberOfErrors()
+    {
+        return numberOfErrors;
+    }
+    
+    public int numberOfWarnings()
+    {
+        return numberOfWarnings;
     }
     
     public void addError(ModelItem item, String errorText)
@@ -30,6 +52,7 @@ public class ModelErrorData extends Object {
         errorRecord.add(item);
         
         errorRecords.add(errorRecord);
+        numberOfErrors ++;
     }
     
     public void addWarning(ModelItem item, String warningText)
@@ -42,6 +65,7 @@ public class ModelErrorData extends Object {
         warningRecord.add(item);
         
         errorRecords.add(warningRecord);
+        numberOfWarnings ++;
     }
     
     public String nameForItem(ModelItem item)
@@ -53,21 +77,20 @@ public class ModelErrorData extends Object {
             Node node = (Node) item;
             if (node.isLiteral())
             {
-                name += "Literal (" + node + "): ";
+                name += "Literal: ";
                 name += (node.id() == null)?"\"\"":node.id();
             }
             else
             {
-                name += (node.typeName() == null)?"Resource (":node.typeName() + " (";
-                name += node + "): ";
-                name += (node.id() == null)?"anonymous":node.id();
+                name += (node.typeName() == null)?"Resource: ":node.typeName() + ": ";
+                name += (node.id() == null)?"<anonymous>":node.id();
             }
         }
         else
         {
             Arc arc = (Arc) item;
-            name += "Arc (" + arc + "): ";
-            name += (arc.propertyName() == null)?"none":arc.propertyName();
+            name += "Arc: ";
+            name += (arc.propertyName() == null)?"<no property>":arc.propertyName();
         }
         
         return name;
@@ -96,7 +119,7 @@ public class ModelErrorData extends Object {
         }
         if (identifier.equals("Type"))
         {
-            return row.get(0);
+            return null;
         }
         else if (identifier.equals("Item"))
         {
@@ -109,6 +132,28 @@ public class ModelErrorData extends Object {
         else
         {
             return null;
+        }
+    }
+            
+    public void tableViewWillDisplayCell( NSTableView aTableView, NSTextFieldCell aCell, 
+                    NSTableColumn aTableColumn, int rowIndex)
+    {
+        String identifier = (String) aTableColumn.identifier();
+        if (identifier.equals("Type"))
+        {
+            Vector row = (Vector) errorRecords.get(rowIndex);
+            if (((String) row.get(0)).equals("Error"))
+            {
+                aCell.setImage(NSImage.imageNamed("error"));
+            }
+            else
+            {
+                aCell.setImage(NSImage.imageNamed("warning"));
+            }
+        }
+        else
+        {
+            aCell.setWraps(true);
         }
     }
 

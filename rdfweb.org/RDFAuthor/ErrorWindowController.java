@@ -45,6 +45,22 @@ public class ErrorWindowController extends NSObject {
         
         errorTable.setTarget(this);
         errorTable.setDoubleAction(doubleSelector);
+        
+        // Yuk - all this to have a column with images
+        NSTableColumn imageCol = new NSTableColumn();
+        imageCol.setIdentifier("Type");
+        NSImageCell imageCell = new NSImageCell();
+        imageCell.setImageAlignment(NSImageCell.ImageAlignTop);
+        imageCol.setDataCell(imageCell);
+        //imageCol.setMaxWidth(30);
+        //imageCol.setMinWidth(30);
+        imageCol.setWidth(30);
+        imageCol.setResizable(false);
+        imageCol.setHeaderCell(new NSTableHeaderCell(""));
+        
+        errorTable.addTableColumn(imageCol);
+        errorTable.moveColumnToColumn(2, 0); // put the new column at the front
+        errorTable.sizeLastColumnToFit();
     }
     
     public void showErrorWindow(Object sender) 
@@ -55,7 +71,7 @@ public class ErrorWindowController extends NSObject {
         }
         else
         {
-            errorWindow.makeKeyAndOrderFront(this);
+            errorWindow.orderFront(this);
         }
     }
     
@@ -64,6 +80,7 @@ public class ErrorWindowController extends NSObject {
         currentWindow = (NSWindow) notification.object();
         
         errorTable.setDataSource(windowToData.get(currentWindow));
+        errorTable.setDelegate(windowToData.get(currentWindow));
     }
     
     public void checkModel(NSNotification notification)
@@ -73,7 +90,28 @@ public class ErrorWindowController extends NSObject {
         windowToData.put(currentWindow, newData);
         ((RDFAuthorDocument) currentWindow.delegate()).checkModel(newData);
         errorTable.setDataSource(newData);
-        errorWindow.makeKeyAndOrderFront(this);
+        errorTable.setDelegate(newData);
+        
+        if (newData.hasErrors())
+        {
+            NSAlertPanel alert = new NSAlertPanel();
+            alert.runCriticalAlert("This Model Contains " + newData.numberOfErrors() + " Errors",
+                "Double-click on error entries to display information on the problematic parts of the model." +
+                "\nErrors: " + newData.numberOfErrors() + "\nWarnings: " + newData.numberOfWarnings(),
+                null, null, null);
+                errorWindow.orderFront(this);
+        }
+        else
+        {
+            NSAlertPanel alert = new NSAlertPanel();
+            alert.runInformationalAlert("This Model Has No Errors",
+                "Errors: " + newData.numberOfErrors() + "\nWarnings: " + newData.numberOfWarnings(),
+                null, null, null);
+            if (newData.hasWarnings())
+            {
+                errorWindow.orderFront(this);
+            }
+        }
     }
     
     public void doubleClick()
@@ -88,4 +126,5 @@ public class ErrorWindowController extends NSObject {
                 new NSNotification(InfoController.showInfoNotification, null) );
         }
     }
+    
 }

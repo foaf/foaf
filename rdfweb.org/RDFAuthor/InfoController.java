@@ -255,13 +255,13 @@ public class InfoController extends NSObject {
         }
         else
         {
-            infoWindow.makeKeyAndOrderFront(this);
+            infoWindow.orderFront(this);
         }
     }
     
     public void showInfo(NSNotification notification)
     {
-        infoWindow.makeKeyAndOrderFront(this);
+        infoWindow.orderFront(this);
     }
         
     public void showNothing()

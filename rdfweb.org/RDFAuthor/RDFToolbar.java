@@ -51,8 +51,6 @@ public class RDFToolbar extends NSToolbar {
         {
 	    toolbarItem.setLabel("Display Options");
 	    toolbarItem.setPaletteLabel("Display Options");
-	    
-            System.out.println("Currently showView is "+showView);
             
 	    toolbarItem.setView(showView);
             toolbarItem.setMinSize(showView.frame().size());
@@ -148,6 +146,7 @@ public class RDFToolbar extends NSToolbar {
     {
         rdfAuthorDocument.addNodes(false);
         rdfAuthorDocument.addArcs(false);
+        rdfAuthorDocument.deleteItems(false);
     }
     
     public void selectAddNodeMode(Object sender)
@@ -162,9 +161,7 @@ public class RDFToolbar extends NSToolbar {
     
     public void selectDeleteMode(Object sender)
     {
-        System.out.println("Delete mode selected");
-        rdfAuthorDocument.addNodes(false);
-        rdfAuthorDocument.addArcs(false);
+        rdfAuthorDocument.deleteItems(true);
     }
     
     public void showTypes(NSButton sender)
