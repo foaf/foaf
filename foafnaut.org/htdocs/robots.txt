@@ -1,0 +1,11 @@
+# robots.txt 
+# $Id: robots.txt,v 1.1 2003-02-07 20:54:47 danbri Exp $
+# recent changes:
+# $Log: not supported by cvs2svn $
+
+
+# excluding our copy of jibbering.com files:
+
+User-agent: *
+Disallow: /foaf/
+
