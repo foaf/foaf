@@ -4,28 +4,33 @@
   <head>
     <meta name="generator" content="HTML Tidy, see www.w3.org" />
     <title>
-      RDFWeb FOAFCorp: Corporate Friends of Friends
+      RDFWeb: FOAFCorp: Corporate Friends of Friends
     </title>
-<style type="text/css">
-BODY {
-  margin: 3em 1em 2em 70px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: black;
-  background: white;
-}
-
-H1, H2, H3, H4, H5 {
-  text-align: left;
-  font-weight: normal;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
-  color: #000000;
-}
-</style>
+    <link rel="stylesheet" href="/ssi/main.css" type="text/css" />
   </head>
-  <body>
-    <h1>
+  <body bgcolor="#ffffff">
+    <div class="navbar">
+      <table border="0" cellpadding="15"
+      background="/images/glib5-pale.jpg" cellspacing="0"
+      summary="rdfweb site navigation links" width="100%">
+        <tr>
+          <td align="left" valign="top">
+            <strong><a href="/" class="sitepart">RDFWeb</a>: <span
+            class="sitepart">foafcorp</span></strong> 
+          </td>
+          <td align="right">
+            <span class="siteutil"><a href="/about.html">about</a>
+            | <a href="/projects.html">projects</a> | <a
+            href="/dev.html">developers</a> | <a
+            href="/sitemap.html">sitemap</a> | <a
+            href="/search.html">search</a></span> 
+          </td>
+        </tr>
+      </table>
+    </div>
+    <h2>
       FOAFCorp: Corporate Friends of Friends
-    </h1>
+    </h2>
     <p>
       <a href="cola-corps-sample.png"><img border="0"
       src="cola-corps-sample-small.png" alt="visualisation"
@@ -61,9 +66,9 @@ H1, H2, H3, H4, H5 {
         schema</a> that defines the classes and relations
         ('properties', in RDF terminology) used in this data. To
         summarise, we define two classes: <code>fc:Company</code>,
-        <code>fc:Committee</code>, and three properties: <code>
-        fc:name</code>, <code>fc:stock</code> and <code>
-        fc:member</code>. They are used alongside the base <a
+        <code>fc:Committee</code>, and three properties:
+        <code>fc:name</code>, <code>fc:stock</code> and
+        <code>fc:member</code>. They are used alongside the base <a
         href="http://xmlns.com/foaf/0.1/">FOAF vocabulary</a>.
       </li>
       <li>
@@ -95,15 +100,15 @@ H1, H2, H3, H4, H5 {
         href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">
         RDFWeb codepiction service</a> (missing 404! doh. need to
         track this down. hmm: <a
-        href="http://www2.coca-cola.com/ourcompany/board.html">
-        board mugshots via scrolly javascript thing</a>; eg <a
+        href="http://www2.coca-cola.com/ourcompany/board.html">board
+        mugshots via scrolly javascript thing</a>; eg <a
         href="http://www2.coca-cola.com/ourcompany/img/circ_pic_robinson.gif">
         robinson</a>)
       </li>
       <li>
         Damian Steer's <a
-        href="http://rdfweb.org/people/damian/2001/10/RDFAuthor/">
-        RDFAuthor</a> (macosx version) can also support <a
+        href="http://rdfweb.org/people/damian/2001/10/RDFAuthor/">RDFAuthor</a>
+        (macosx version) can also support <a
         href="http://rdfweb.org/people/damian/2001/10/RDFAuthor/Tutorial/Tutorial2/">
         graphical queries</a>, which are answered by an RDF query
         web service.
@@ -115,8 +120,8 @@ H1, H2, H3, H4, H5 {
       </li>
       <li>
         UI folk might be interested in using W3C's <a
-        href="http://www.w3.org/Graphics/SVG/Overview.htm8">
-        Scalable Vector Graphics (SVG)</a> format as an alternative
+        href="http://www.w3.org/Graphics/SVG/Overview.htm8">Scalable
+        Vector Graphics (SVG)</a> format as an alternative
         presentation mechanism. The <a
         href="http://www.adobe.com/svg/">Adobe</a> plugin is pretty
         good. Note that the RDF file above can't be directly
@@ -150,9 +155,12 @@ H1, H2, H3, H4, H5 {
     </ul>
     <hr />
     <p>
-      <em>author: <a href="mailto:danbri@rdfweb.org">
-      danbri</a></em>
+      author: <a href="http://rdfweb.org/people/danbri/">Dan
+      Brickley</a> &lt;danbri@rdfweb.org&gt;
     </p>
+<pre>
+$Id: intro.html,v 1.2 2002-07-15 10:53:03 danbri Exp $
+</pre>
   </body>
 </html>
 
