@@ -1,7 +1,7 @@
 <p>
 The <code>foaf:aimChatID</code> property relates a <code>foaf:Agent</code> to a textual 
 identifier ('screenname') assigned to them in the AOL Instant Messanger (AIM) system. 
-See AOL's the <a href="http://www.aim.com/">AIM</a> site for more details of AIM and AIM 
+See AOL's <a href="http://www.aim.com/">AIM</a> site for more details of AIM and AIM 
 screennames. The <a href="http://www.apple.com/macosx/jaguar/ichat.html">iChat</a> tools from <a 
 href="http://www.apple.com/">Apple</a> also make use of AIM identifiers. 
 </p>
