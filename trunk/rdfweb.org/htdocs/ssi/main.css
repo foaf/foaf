@@ -48,10 +48,9 @@ H1, H2, H3, H4, H5 {
   background: white;
 }
 
-DIV.splashbox {
+.splashbox {
   float: right;
-/*  width: 25%; */
-  padding: 2px;
+  width: 25%;
   font-size: smaller;
 }
 
