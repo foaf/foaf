@@ -33,7 +33,7 @@ public class FoafFingerController
 
   public FoafFingerController(String[] args)
   {
-    if (args.length < 2)
+    if (args.length < 3)
       {
 	System.
 	  err.
