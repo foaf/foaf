@@ -23,7 +23,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
 {
     // End problems with serialisation - yes!
     
-    static final long serialVersionUID = -3654474580567420247L;
+    static final long serialVersionUID = -830262328941904810L;
     
     ArrayList array;
     ModelItem currentObject;
