@@ -100,7 +100,7 @@ fundedBy
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
       <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/homepage" rdfs:label="homepage" rdfs:comment="A homepage for some thing">
-        <rdfs:subPropertyOf rdf:resouce="http://xmlns.com/foaf/0.1/page"/>
+        <rdfs:subPropertyOf rdf:resource="http://xmlns.com/foaf/0.1/page"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
         <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
       </rdf:Property>
