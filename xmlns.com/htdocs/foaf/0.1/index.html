@@ -13,8 +13,8 @@ div.rdf-proplist {
 	background-color: #ddf;
 	border: 1px solid black;
 	float: left;
-	margin: 0.5em 3%;
 	width: 26%;
+	margin: 0.3em 1%; 
 }
 
 img { border: 0 } 
@@ -44,12 +44,12 @@ div.rdf-classlist {
 	background-color: #eef;
 	border: 1px solid black;
 	float: left;
-	margin: 0.3em 3%;
+	margin: 0.3em 1%;
 	width: 26%;
 }
 
 div.rdf-proplist ul {
-	margin: 0.3em 0.3em 1em;
+/*	margin: 0.3em 0.3em 1em; */
 }
 
 div.rdf-proplist h3 {
@@ -104,9 +104,9 @@ div.specterm {
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
 <dt>Last update:</dt>
-<dd>$Date: 2003-08-14 23:54:55 $</dd>
+<dd>$Date: 2003-08-20 19:27:05 $</dd>
 <dt>Revision:</dt>
-<dd>$Revision: 1.31 $</dd>
+<dd>$Revision: 1.32 $</dd>
 <dt>Authors:</dt> 
 <dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
@@ -343,10 +343,9 @@ FOAF terms, grouped in broad categories.
 </div>
 
 
-<div style="clear: left;"></div>
 
 <div class="rdf-proplist">
-<h3>Accounts and IM / Chat</h3>
+<h3>Online Accounts / IM</h3>
 <ul>
 <li><a href="#term_OnlineAccount">OnlineAccount</a></li>
 <li><a href="#term_OnlineChatAccount">OnlineChatAccount</a></li>
@@ -363,14 +362,16 @@ FOAF terms, grouped in broad categories.
 </ul>
 </div>
 
+<div style="clear: left;"></div>
 
 <div class="rdf-proplist">
 <h3>Projects and Groups</h3>
-<!-- junk some of this maybe -->
 <ul>
-<li><a href="#term_Group">Group</a></li>
 <li><a href="#term_Project">Project</a></li>
 <li><a href="#term_Organization">Organization</a></li>
+<li><a href="#term_Group">Group</a></li>
+<li><a href="#term_member">member</a></li>
+<li><a href="#term_membershipClass">membershipClass</a></li>
 <li><a href="#term_fundedBy">fundedBy</a></li>
 <li><a href="#term_theme">theme</a></li>
 </ul>
@@ -452,6 +453,48 @@ relationship to a thing called http://rdfweb.org/people/danbri/ and a <a
 href="#term_img">foaf:img</a>  
 relationship to a thing called http://rdfweb.org/people/danbri/mugshot/danbri-small.jpeg. 
 </p>
+
+
+<h3>The Basic Idea</h3>
+
+<p>
+The basic idea is pretty simple. If people publish information in the FOAF document 
+format, machines will be able to make use of that information. If those files contain "see 
+also" references to other such documents in the Web, we will have a machine-friendly 
+version of today's hypertext Web. Computer programs will be able to scutter around a Web 
+of documents designed for machines rather than humans, storing the information they find, 
+keeping a list of "see also" pointers to other documents, checking digital signatures (for 
+the security minded) and building Web pages and question-answering services based on the 
+harvested documents.
+</p>
+
+<p>
+So, what is the 'FOAF document format'? FOAF files are just text documents (well, Unicode 
+documents). They are written in XML syntax, and adopt the conventions of the Resource 
+Description Framework (RDF). In addition, the FOAF vocabulary defines some useful 
+constructs that can appear in FOAF files, alongside other RDF vocabularies defined 
+elsewhere. For example, FOAF defines categories ('classes') such as 
+<code>foaf:Person</code>, <code>foaf:Document</code>, <code>foaf:Image</code>, 
+alongside some handy properties of those things, such as <code>foaf:name</code>, 
+<code>foaf:mbox</code> (ie. an internet mailbox), <code>foaf:homepage</code> etc., as well 
+as some useful kinds of relationship that hold between members of these categories. For 
+example, one interesting relationship type is 
+<code>foaf:depiction</code>. This relates something (eg. a <code>foaf:Person</code>) to a 
+<code>foaf:Image</code>. The FOAF demos that feature photos and listings of 'who is in 
+which picture' are based on software tools that parse RDF documents and make use of these  
+properties.
+</p>
+
+
+<p>
+The specific contents of the FOAF vocabulary are detailed in this <a 
+href="http://xmlns.com/foaf/0.1/">FOAF namespace document</a>. In addition to the FOAF 
+vocabulary, one of the most interesting features of a FOAF file is 
+that it can contain "see Also" pointers to other FOAF files. This provides a basis for 
+automatic harvesting tools to traverse a Web of interlinked files, and learn about new 
+people, documents, services, data...
+</p>
+
 
 <p>
 The remainder of this specification describes how to publish and interpret descriptions 
@@ -590,40 +633,53 @@ services that make use of it.
 <p>
 Why does FOAF use <a href="http://www.w3.org/RDF/">RDF</a>? 
 </p>
-<p>The main reason is the reason FOAF takes people as the main thing it 
-focuses on: 
+<p>
+FOAF is an application of the Resource Description Framework (RDF)  
+because the subject area we're describing -- people -- 
+has so many competing requirements that a standalone format could not 
+do them all justice. By using RDF, FOAF gains a powerful extensibility 
+mechanism, allowing FOAF-based descriptions can be mixed with claims 
+made in <em>any other RDF vocabulary</em>
 </p>
 <p>
-<i>people are the things that link together most of the other 
+People are the things that link together most of the other 
 kinds of things we describe in the Web: they make documents, attend 
-meetings, are depicted in photos, and so on.</i> 
+meetings, are depicted in photos, and so on. Consequently, there are 
+many many things that we might want to say about people, not to mention 
+these related objects (ie. documents, photos, meetings etc). 
 </p>
 <p>
-FOAF as a vocabulary can not incorporate everything we might want to 
-talk about that is related to 
-people, or it would be huge. Moreover we are not the best people 
-to design specific vocabularies for geographical information, say.</p>
+FOAF as a vocabulary cannot incorporate everything we might want to 
+talk about that is related to people, or it would be as large as a full 
+dictionary. Instead of covering all topics within FOAF itself, we buy 
+into a larger framework - RDF - that allows us to take advantage of work 
+elsewhere on more specific description vocabularies (eg. for 
+geographical / mapping data).
+</p>
 
-<p>What RDF provides is a way to mix together different vocabularies in a 
+<p>RDF provides FOAF with a way to mix together different 
+descriptive vocabularies in a 
 consistent way. Vocabularies can be created by different communites and 
-groups as appropriate and mixed together as required, without following 
-an official consultative process to decide how they should be mixed.
+groups as appropriate and mixed together as required, without needing 
+any centralised agreement on how terms from different vocabularies can 
+be written down in XML.
 </p>
 <p>This mixing happens in two ways: firstly, RDF provides an underlying 
-model of objects and their attributes or relationships. 
-<code>foaf:Person</code> is an example of an object (a Class), and 
-<code>foaf:knows</code> 
+model of (typed) objects and their attributes or relationships. 
+<code>foaf:Person</code> is an example of a type of object (a "<em>class</em>"),
+while <code>foaf:knows</code> 
 and <code>foaf:name</code> are examples of a relationship and an attribute 
-of a <code>foaf:Person</code> (Properties). Any vocabulary described 
-in RDF has this basic model, which is discernable in the syntax for RDF, and 
-which removes one level of confusion in <i>understanding</i> a given 
+of an <code>foaf:Person</code>; in RDF we call these 
+"<em>properties</em>". Any vocabulary described in RDF shares this basic 
+model, which is discernable in the syntax for RDF, and 
+which removes one level of confusion in <em>understanding</em> a given 
 vocabulary, making it simpler to comprehend and therefore reuse a 
 vocabulary that you have not written yourself. This is the minimal 
-<i>self-documentation</i> that RDF gives you.
+<em>self-documentation</em> that RDF gives you.
 </p>
 <p>Secondly, there are mechanisms for saying which RDF properties are 
 connected to which classes, and how different classes are related to each 
-other, using RDF Syntax and OWL. These can be quite vague (all 
+other, using RDF Syntax and OWL. These can be quite general (all 
 RDF properties by default come from an 
 <code>rdf:Resource</code> for example) or very specific and precise (for 
 example by using <a href="http://www.w3.org/2001/sw/WebOnt/">OWL</a> 
@@ -677,7 +733,7 @@ href="http://xmlns.com/foaf/htmlfoafsig">html doc signature</a> (@@TODO).
 <em>Agent</em> - An agent (eg. person, group, software or physical artifact). <br /><table style="th { float: top; }">
 	<tr><th>Status:</th>
 	<td>unstable</td></tr>
-<tr><th>in-range-of:</th><td><a href="#term_maker">foaf:maker</a> <a href="#term_member">foaf:member</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_mbox_sha1sum">foaf:mbox_sha1sum</a> <a href="#term_yahooChatID">foaf:yahooChatID</a> <a href="#term_weblog">foaf:weblog</a> <a href="#term_msnChatID">foaf:msnChatID</a> <a href="#term_made">foaf:made</a> <a href="#term_holdsAccount">foaf:holdsAccount</a> <a href="#term_jabberID">foaf:jabberID</a> <a href="#term_aimChatID">foaf:aimChatID</a> <a href="#term_mbox">foaf:mbox</a> <a href="#term_icqChatID">foaf:icqChatID</a> <a href="#term_homepage">foaf:homepage</a> </td></tr></table>
+<tr><th>in-range-of:</th><td><a href="#term_member">foaf:member</a> <a href="#term_maker">foaf:maker</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_homepage">foaf:homepage</a> <a href="#term_mbox_sha1sum">foaf:mbox_sha1sum</a> <a href="#term_yahooChatID">foaf:yahooChatID</a> <a href="#term_weblog">foaf:weblog</a> <a href="#term_msnChatID">foaf:msnChatID</a> <a href="#term_holdsAccount">foaf:holdsAccount</a> <a href="#term_made">foaf:made</a> <a href="#term_jabberID">foaf:jabberID</a> <a href="#term_aimChatID">foaf:aimChatID</a> <a href="#term_mbox">foaf:mbox</a> <a href="#term_icqChatID">foaf:icqChatID</a> </td></tr></table>
 <p>
 The <code><a href="#term_Agent">foaf:Agent</a></code> class is the class of agents; things that do stuff. A well 
 known sub-class is <code><a href="#term_Person">foaf:Person</a></code>, representing people. Other kinds of agents 
@@ -703,7 +759,7 @@ sometimes belong to software bots.
 <em>Document</em> - A document. <br /><table style="th { float: top; }">
 	<tr><th>Status:</th>
 	<td>testing</td></tr>
-<tr><th>in-range-of:</th><td><a href="#term_page">foaf:page</a> <a href="#term_publications">foaf:publications</a> <a href="#term_homepage">foaf:homepage</a> <a href="#term_weblog">foaf:weblog</a> <a href="#term_workInfoHomepage">foaf:workInfoHomepage</a> <a href="#term_accountServiceHomepage">foaf:accountServiceHomepage</a> <a href="#term_workplaceHomepage">foaf:workplaceHomepage</a> <a href="#term_schoolHomepage">foaf:schoolHomepage</a> <a href="#term_interest">foaf:interest</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_sha1">foaf:sha1</a> <a href="#term_topic">foaf:topic</a> </td></tr></table>
+<tr><th>in-range-of:</th><td><a href="#term_homepage">foaf:homepage</a> <a href="#term_weblog">foaf:weblog</a> <a href="#term_workInfoHomepage">foaf:workInfoHomepage</a> <a href="#term_workplaceHomepage">foaf:workplaceHomepage</a> <a href="#term_publications">foaf:publications</a> <a href="#term_page">foaf:page</a> <a href="#term_accountServiceHomepage">foaf:accountServiceHomepage</a> <a href="#term_schoolHomepage">foaf:schoolHomepage</a> <a href="#term_interest">foaf:interest</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_sha1">foaf:sha1</a> <a href="#term_topic">foaf:topic</a> </td></tr></table>
 <p>
 The <code><a href="#term_Document">foaf:Document</a></code> class represents those things which are, broadly conceived, 
 'documents'.
@@ -1076,7 +1132,7 @@ to clearly specify their inter-relationships.
 <em>Person</em> - A person. <br /><table style="th { float: top; }">
 	<tr><th>Status:</th>
 	<td>testing</td></tr>
-<tr><th>in-range-of:</th><td><a href="#term_knows">foaf:knows</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_workplaceHomepage">foaf:workplaceHomepage</a> <a href="#term_family_name">foaf:family_name</a> <a href="#term_img">foaf:img</a> <a href="#term_plan">foaf:plan</a> <a href="#term_workInfoHomepage">foaf:workInfoHomepage</a> <a href="#term_firstName">foaf:firstName</a> <a href="#term_geekcode">foaf:geekcode</a> <a href="#term_topic_interest">foaf:topic_interest</a> <a href="#term_publications">foaf:publications</a> <a href="#term_schoolHomepage">foaf:schoolHomepage</a> <a href="#term_currentProject">foaf:currentProject</a> <a href="#term_pastProject">foaf:pastProject</a> <a href="#term_interest">foaf:interest</a> <a href="#term_myersBriggs">foaf:myersBriggs</a> <a href="#term_surname">foaf:surname</a> <a href="#term_knows">foaf:knows</a> </td></tr></table>
+<tr><th>in-range-of:</th><td><a href="#term_knows">foaf:knows</a> </td></tr><tr><th>in-domain-of:</th><td><a href="#term_myersBriggs">foaf:myersBriggs</a> <a href="#term_img">foaf:img</a> <a href="#term_interest">foaf:interest</a> <a href="#term_geekcode">foaf:geekcode</a> <a href="#term_surname">foaf:surname</a> <a href="#term_workplaceHomepage">foaf:workplaceHomepage</a> <a href="#term_topic_interest">foaf:topic_interest</a> <a href="#term_plan">foaf:plan</a> <a href="#term_family_name">foaf:family_name</a> <a href="#term_workInfoHomepage">foaf:workInfoHomepage</a> <a href="#term_publications">foaf:publications</a> <a href="#term_schoolHomepage">foaf:schoolHomepage</a> <a href="#term_firstName">foaf:firstName</a> <a href="#term_currentProject">foaf:currentProject</a> <a href="#term_pastProject">foaf:pastProject</a> <a href="#term_knows">foaf:knows</a> </td></tr></table>
 <p>
 The <code><a href="#term_Person">foaf:Person</a></code> class represents people. Something is a 
 <code><a href="#term_Person">foaf:Person</a></code> if it is a person. We don't nitpic about whether they're 
@@ -2882,7 +2938,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-08-14 23:54:55 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-08-20 19:27:05 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3563,12 +3619,12 @@ Sesame, 3store etc).
 &lt;/rdf:RDF&gt;</span></pre></div>
 
 
-<?xml version="1.0"?>
+
 <!-- This is the FOAF formal vocabulary description, expressed using W3C RDFS and OWL markup. -->
 <!-- first we introduce a number of RDF namespaces we will be using -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-14 23:54:55 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-08-20 19:27:05 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -3600,7 +3656,6 @@ Sesame, 3store etc).
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Group" vs:term_status="unstable" rdfs:label="Group" rdfs:comment="A class of Agents.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
   </rdfs:Class>
@@ -3613,34 +3668,27 @@ Sesame, 3store etc).
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     <owl:disjointWith rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
-    <!-- arguably a subclass of Agent; to be discussed -->
+<!-- arguably a subclass of Agent; to be discussed -->
   </rdfs:Class>
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/Image" vs:term_status="testing" rdfs:label="Image" rdfs:comment="An image.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/Document"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineAccount"  vs:term_status="unstable" 
-rdfs:label="Online Account" rdfs:comment="An online account.">
+  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineAccount" vs:term_status="unstable" rdfs:label="Online Account" rdfs:comment="An online account.">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineGamingAccount"  vs:term_status="unstable" rdfs:label="Online Gaming Account" rdfs:comment="An online gaming account.">
+  <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineGamingAccount" vs:term_status="unstable" rdfs:label="Online Gaming Account" rdfs:comment="An online gaming account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineEcommerceAccount" vs:term_status="unstable" rdfs:label="Online E-commerce Account" rdfs:comment="An online e-commerce account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
   <rdfs:Class rdf:about="http://xmlns.com/foaf/0.1/OnlineChatAccount" vs:term_status="unstable" rdfs:label="Online Chat Account" rdfs:comment="An online chat account.">
     <rdfs:subClassOf rdf:resource="http://xmlns.com/wordnet/1.6/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdfs:Class>
-
-
 <!-- FOAF properties (ie. relationships). -->
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/mbox" vs:term_status="testing" rdfs:label="personal mailbox" rdfs:comment="A personal mailbox, ie. an Internet mailbox associated with exactly one owner, the first owner of this mailbox. This is a 'static inverse functional property', in that  there is (across time and change) at most one individual that ever has any particular value for foaf:mbox.">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
@@ -3665,8 +3713,8 @@ rdfs:label="Online Account" rdfs:comment="An online account.">
   </rdf:Property>
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/sha1" vs:term_status="unstable" rdfs:label="sha1sum (hex)" rdfs:comment="A sha1sum hash, in hex.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
-    <!-- rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty" -->
-    <!-- IFP under discussion -->
+<!-- rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty" -->
+<!-- IFP under discussion -->
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/based_near" vs:term_status="unstable" rdfs:label="based near" rdfs:comment="A location that something is based near, for some broadly human notion of near.">
@@ -3887,45 +3935,36 @@ rdfs:label="Online Account" rdfs:comment="An online account.">
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
     <owl:inverseOf rdf:resource="http://xmlns.com/foaf/0.1/topic"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/theme" vs:term_status="unstable" rdfs:label="theme" rdfs:comment="A theme.">
     <rdfs:domain rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/holdsAccount" vs:term_status="unstable" rdfs:label="holds account" rdfs:comment="Indicates an account held by this agent.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/accountServiceHomepage" vs:term_status="unstable" rdfs:label="account service homepage" rdfs:comment="Indicates a homepage of the service provide for this online account.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/accountName" vs:term_status="unstable" rdfs:label="account name" rdfs:comment="Indicates the name (identifier) associated with this online account.">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/OnlineAccount"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/member" vs:term_status="unstable" rdfs:label="member" rdfs:comment="Indicates a member of a Group">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
     <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
-  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/membershipClass"  vs:term_status="unstable" 
-rdfs:label="membershipClass" rdfs:comment="Indicates the class of individuals that are a member of a Group">
+  <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/membershipClass" vs:term_status="unstable" rdfs:label="membershipClass" rdfs:comment="Indicates the class of individuals that are a member of a Group">
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Group"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
     <rdfs:isDefinedBy rdf:resource="http://xmlns.com/foaf/0.1/"/>
   </rdf:Property>
-
-
 </rdf:RDF>
 
 

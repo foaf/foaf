@@ -247,6 +247,7 @@ azlist += "</div>\n"
   # Output 
   template=File.new('wip.html').read
   rdfdata=File.new('index.rdf').read
+  rdfdata.gsub!(/<\?xml version="1\.0"\?>/,"")
   colour=File.new('colour.html').read
   #STDERR.puts("Colour: "+colour)
   #colour =~ /<pre>(.*)<\/pre>/i
