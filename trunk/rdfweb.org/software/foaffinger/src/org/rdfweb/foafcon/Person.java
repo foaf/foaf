@@ -207,7 +207,7 @@ public class Person
 
     if (showMbox && (mbox != null))
       toReturn += totalIndent + indent +
-	"<mbox rdf:resource=\"" + Util.escape(mbox) + "\"/>\n";
+	"<mbox rdf:resource=\"mailto:" + Util.escape(mbox) + "\"/>\n";
     
     if (interest != null)
       toReturn += totalIndent + indent +
