@@ -34,12 +34,13 @@ wider <a href="http://www.w3.org/RDF/Interest/">RDF developer community</a>.
 </dl>
 
 <p class="copyright">
- Copyright</a> &#xa9; 2000-2003 Dan Brickley and Libby Miller <br /><br />
+ Copyright &#xa9; 2000-2003 Dan Brickley and Libby Miller <br /><br />
 
 <!-- Creative Commons License -->
 <a href="http://creativecommons.org/licenses/by/1.0/"><img alt="Creative Commons License" 
 border="0" src="http://creativecommons.org/images/public/somerights.gif" 
 align="right" valign="top"/></a>
+
 This work is licensed under a <a href="http://creativecommons.org/licenses/by/1.0/">Creative 
 Commons License</a>. This copyright applies to the <em>FOAF Vocabulary Specification</em> and 
 accompanying documentation and does not extend to FOAF data formats, vocabulary terms, or 
@@ -63,13 +64,7 @@ technology.
 
 </rdf:RDF>
 
-
 <hr />
-</div>
-
-<!-- ================================================================== --> <h2>Abstract</h2> <p>
-
-This document specifies @@@. </p>
 
 
 <div class="status">
@@ -133,7 +128,6 @@ regarding future updates.
   <li>2.1 <a href="#sec-root">...</a></li>
   <li>2.2 <a href="#sec-header">...</a></li> 
   </ul>
-  <p></p>
 </li>
 <li>Appendix A. <a href="apd-schema.html">RDFS/OWL Specifications</a></li>
 </ul>
@@ -165,11 +159,25 @@ a computer language (RDF/OWL) that makes it easy for software to
 appreciate some basic facts about the terms in the FOAF vocabulary, and 
 consequently about the things described in FOAF documents.  A FOAF
 document, unlike a traditional Web page, can be combined with other FOAF
-documented to create a unified database of information.
+documents to create a unified database of information.
 </p>
 
-
+<h2>Example</h2>
+<p>
+Here is a very basic document describing a person:
 </p>
+
+<blockquote>
+<![CDATA[
+
+<foaf:Person>
+  <foaf:name>Dan Brickley</foaf:name>
+  <foaf:homepage rdf:resource="http://rdfweb.org/people/danbri/" />
+</foaf:Person>
+
+]]> 
+
+</blockquote>
 
 <h2>Background</h2>
 <p>
@@ -233,13 +241,15 @@ the stability of individual vocabulary terms, rather than the specification as a
 stabilise in usage and documentation, they progress through the categories 
 '<strong>unstable</strong>', '<strong>testing</strong>' and '<strong>stable</strong>'.
 </p>
+
 <h3>Vocabulary Status</h3>
 
 <h4>stable terms</h4>
 
-<p>At the present time ($Date: 2003-07-06 23:17:27 $), the following FOAF terms are considered <strong>stable</strong>. 
+<p>At the present time ($Date: 2003-07-06 23:25:34 $), the following FOAF terms are considered <strong>stable</strong>. 
 This means that their names and definitions (in prose and in machine form) are unlikely to change 
 dramatically. Clarifications and refinements may be made, but major changes are not expected.
+</p>
 <ul>
  <li>foaf:Person</li>
  <li>foaf:Document</li>
@@ -262,7 +272,7 @@ dramatically. Clarifications and refinements may be made, but major changes are 
 </ul>
 
 <h4>unstable terms</h4>
-<p>At the present time ($Date: 2003-07-06 23:17:27 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-06 23:25:34 $), the following FOAF terms are considered 
 <strong>unstable</strong>. 
 This means that their names and definitions (in prose and in machine form) could still change 
 dramatically. Clarifications and refinements still need to be made, and major changes are quite 
@@ -276,7 +286,7 @@ possible.
 </ul>
  
 <h4>testing terms</h4>
-<p>At the present time ($Date: 2003-07-06 23:17:27 $), the following FOAF terms are considered 
+<p>At the present time ($Date: 2003-07-06 23:25:34 $), the following FOAF terms are considered 
 to be of '<strong>testing</strong>' status. 
 This means that their names and definitions (in prose and in machine form) could still change, 
 although dramatic changes are (we hope) unlikely.
@@ -329,7 +339,7 @@ href="http://www.tecknik.net/autofoaf/">FOAF autodiscovery</a>.
 
 
 
-    <h2>Appendix A: Listing FOAF Classes and Properties</h3>
+    <h2>Appendix A: Listing FOAF Classes and Properties</h2>
 
     <p>
 FOAF introduces the following classes and properties.  View this document's source markup to see 
