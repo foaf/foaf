@@ -1,0 +1,11 @@
+SELECT ?mbox1, ?mbox2, ?uri
+WHERE
+	(foaf::depiction ?x ?img)
+	(foaf::depiction ?z ?img)
+	(foaf::thumbnail ?img ?uri)
+	(foaf::mbox ?x ?mbox1)
+	(foaf::mbox ?z ?mbox2)
+USING foaf for http://xmlns.com/foaf/0.1/
+
+
+
