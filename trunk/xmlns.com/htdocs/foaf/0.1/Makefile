@@ -1,6 +1,15 @@
+V=../../2003/vocabtable.rb
+
+
+# todo: vocabtable.rb is kina primitive, and expects different input
+# to the way we invoke it in this Makefile.
+#rdfdump -o ntriples -q file:index.rdf > rdf_vdl.nt;   
+# ../../2003/vocabtable.rb > table.html
+
+
+
 check:
 	gpg --quiet --verify ../foafsig index.html
-V=../../2003/vocabtable.rb
 
 sign:
 	@echo "Sign your Schema!"
