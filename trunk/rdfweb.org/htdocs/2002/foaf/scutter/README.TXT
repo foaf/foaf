@@ -77,7 +77,14 @@ These might be useful...
   - SVG image annotations, see RDF URL too.
 
 
+PATHFINDER
 
+
+try:
+
+bin/pathfinder --input=doc/sample_pathdata.txt  
+
+...code to find paths thru the data. needs documenting.
 
 
 --
