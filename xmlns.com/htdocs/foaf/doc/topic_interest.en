@@ -1,0 +1,6 @@
+<p class="editorial">
+The <code>foaf:topic_interest</code> property is generally found to be confusing and ill-defined 
+and is a candidate for removal. The goal was to be link a person to some thing that is a topic 
+of their interests (rather than, per <code>foaf:interest</code> to a page that is about such a 
+topic). 
+</p>

@@ -1,0 +1,10 @@
+<p>
+The <code>foaf:Project</code> class represents the class of things that are 'projects'. These 
+may be formal or informal, collective or individual. It is often useful to indicate the 
+<code>foaf:homepage</code> of a <code>foaf:Project</code>.
+</p>
+
+<p class="editorial">
+Further work is needed to specify the connections between this class and the FOAF properties 
+<code>foaf:currentProject</code> and <code>foaf:pastProject</code>.
+</p>

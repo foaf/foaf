@@ -1,0 +1,9 @@
+<p>
+The <code>foaf:fundedBy</code> property relates something to something else that has provided 
+funding for it.
+</p>
+
+<p class="editorial">
+This property is under-specified, experimental, and should be considered liable to change.
+</p>
+
