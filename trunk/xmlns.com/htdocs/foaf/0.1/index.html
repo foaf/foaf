@@ -104,9 +104,9 @@ div.specterm {
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
 <dt>Last update:</dt>
-<dd>$Date: 2003-09-11 10:56:29 $</dd>
+<dd>$Date: 2003-09-11 10:56:51 $</dd>
 <dt>Revision:</dt>
-<dd>$Revision: 1.37 $</dd>
+<dd>$Revision: 1.38 $</dd>
 <dt>Authors:</dt> 
 <dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
@@ -1588,7 +1588,7 @@ There is also a <a href="http://www.ebb.org/ungeek/">Geek Code Decoder Page</a> 
 
 <div class="specterm" id="term_gender">
 <h3>Property: foaf:gender</h3>
-<em>gender</em> - The gender of an Agent (typically but not necessarily 'male' or 'female'). <br /><table style="th { float: top; }">
+<em>gender</em> - The gender of this Agent (typically but not necessarily 'male' or 'female'). <br /><table style="th { float: top; }">
 	<tr><th>Status:</th>
 	<td>testing</td></tr>
 	<tr><th>Domain:</th>
@@ -3007,7 +3007,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-09-11 10:56:29 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-09-11 10:56:51 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3698,7 +3698,7 @@ Sesame, 3store etc).
 <!-- first we introduce a number of RDF namespaces we will be using... -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 10:56:29 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 10:56:51 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
@@ -3779,7 +3779,7 @@ Sesame, 3store etc).
 
   <rdf:Property rdf:about="http://xmlns.com/foaf/0.1/gender" vs:term_status="testing" 
 rdfs:label="gender" 
-rdfs:comment="The gender of an Agent (typically but not necessarily 'male' or 'female').">
+rdfs:comment="The gender of this Agent (typically but not necessarily 'male' or 'female').">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
