@@ -19,6 +19,7 @@
 #*.gif -k 'b'
 *.jar -k 'b'
 *.jpg -k 'b'
+*.xcf -k 'b'
 *.jpeg -k 'b'
 *.bmp -k 'b'
 *.mp3 -k 'b'
