@@ -179,7 +179,12 @@ public class FoafFingerController
   {
     people.add(info);
   }
-  
+
+  public void addPerson(String mboxHash)
+  {
+    people.add(mboxHash);
+  }
+    
   public void removePerson(String mboxHash)
   {
     people.remove(mboxHash);

@@ -6,7 +6,7 @@ import javax.jmdns.ServiceListener;
 
 public class RendListener implements ServiceListener
 {
-  RendTest controller;
+  FoafFingerController controller;
     
   public RendListener(FoafFingerController controller)
   {
@@ -15,16 +15,20 @@ public class RendListener implements ServiceListener
   
   public void addService(JmDNS rendezvous, String type, String name)
   {
-    controller.addPerson(rendezvous.getServiceInfo(type,name));
+    ServiceInfo info = rendezvous.getServiceInfo(type,name);
+
+    if (info != null)  controller.addPerson(info);
+    else // Uh-oh, something's up
+      {
+	String hash = getHash(name);
+
+	controller.addPerson(hash);
+      }
   }
 
   public void removeService(JmDNS rendezvous, String type, String name)
   {
-    int index = name.indexOf('.');
-
-    String mboxHash = name.substring(0, index);
-
-    controller.removePerson(mboxHash);
+    controller.removePerson(getHash(name));
   }
 
   public void resolveService(JmDNS rendezvous,
@@ -38,6 +42,13 @@ public class RendListener implements ServiceListener
     System.out.println("Type: " + type);
     System.out.println("Name: " + name);
     System.out.println("Info: " + info);
+  }
+
+  private String getHash(String name)
+  {
+    int index = name.indexOf('.');
+
+    return name.substring(0, index);
   }
   
 }

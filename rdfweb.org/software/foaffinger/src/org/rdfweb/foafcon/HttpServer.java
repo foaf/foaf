@@ -11,10 +11,10 @@ public class HttpServer implements Runnable
   int port;
   HTTPRequestHandler reqHandler;
   Thread listenThread;
-  RendTest controller;
+  FoafFingerController controller;
   
   public HttpServer(int port, HTTPRequestHandler reqHandler,
-		    RendTest controller)
+		    FoafFingerController controller)
   {
     this.port = port;
     this.reqHandler = reqHandler;
