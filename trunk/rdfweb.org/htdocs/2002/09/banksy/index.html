@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>FOAF Banksy</title>
+<link rel="stylesheet" href="http://rdfweb.org/ssi/main.css" type="text/css" />
+</head>
+<body>
+
+<h2><a href="http://rdfweb.org/foaf/">FOAF</a> <a href="http://www.banksy.co.uk/">Banksy</a></h2>
+
+<p>Nearby: <a href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/artist.jsp?mbox=http%3A%2F%2Fwww.banksy.co.uk%2F">Banksy pictures</a> | 
+<a href="http://rdfweb.org/foaf/">FOAF</a> | 
+<a href="http://swordfish.rdfweb.org/discovery/2001/08/codepict/">codepiction demo</a> | 
+<a href="http://swordfish.rdfweb.org/discovery/2002/02/paths/allabout.jsp">codepiction paths</a> | 
+<a href="http://rdfweb.org/2002/01/photo/">codepiction writeup</a> 
+| <a href="http://rdfweb.org/people/danbri/2001/09/foafcorp/intro.html">foafcorp</a> | 
+<a href="http://memepool.com">memepool</a> | 
+<a href="http://www.banksy.co.uk">Banksy</a> 
+</p>
+
+<p>Banksy is a graffiti artist based in Bristol. <a href="http://memepool.com">Memepool</a> had a bunch of links 
+to webpages about him, so I figured I'd collect together all the photos I've taken of 
+his pictures over several years of living in Bristol.
+</p>
+
+<p>Because I've been working with RDF, FOAF and codepiction, I used 
+RDF FOAF and a model similar to that used in the codepiction database to make 
+a searchable database of creations created by people with homepages.
+</p>
+
+<p>Here's an example:
+</p>
+<table>
+<tr><td>
+<pre>
+&lt;?xml version="1.0" ?&gt;
+&lt;rdf:RDF 
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/" 
+ xmlns:foaf="http://xmlns.com/foaf/0.1/" &gt;
+
+&lt;rdf:Description
+rdf:about="http://swordfish.rdfweb.org/photos/2000/00/Image022B33.jpg"&gt; 
+	&lt;foaf:thumbnail
+rdf:resource="http://swordfish.rdfweb.org/photos/2000/00/thumb-Image022B33.jpg"/&gt;
+	&lt;dc:description&gt;
+An early Banksy - on a garage in Redland, Bristol.
+	 &lt;/dc:description&gt;
+	&lt;dc:date&gt;2000-01&lt;/dc:date&gt;
+	&lt;dc:coverage&gt;Bristol, UK&lt;/dc:coverage&gt;
+	&lt;foaf:location&gt;
+		&lt;foaf:Geo rdf:value="Bristol, UK" /&gt;
+	&lt;/foaf:location&gt;
+
+&lt;/rdf:Description&gt;
+
+
+&lt;foaf:Creation&gt;
+	&lt;dc:creator&gt;
+	   &lt;foaf:Person&gt;
+		&lt;foaf:homepage rdf:resource="http://www.banksy.co.uk/"/&gt;
+	   &lt;/foaf:Person&gt;
+	&lt;/dc:creator&gt;
+	&lt;foaf:depiction rdf:resource="http://swordfish.rdfweb.org/photos/2000/00/Image022B33.jpg"/&gt;
+&lt;/foaf:Creation&gt;
+
+&lt;/rdf:RDF&gt;
+</pre>
+</td></tr>
+</table>
+
+<p>
+All this does is give you descriptive data about an image, and then a description 
+of what the image is about, in this case a creation with a creator 
+who is a person with a homepage, which is used to identify that person.
+At the moment all the pictures in the database are by Banksy, who has a homepage 
+<a href="http://www.banksy.co.uk/">http://www.banksy.co.uk/</a>.
+</p>
+
+<p>Compare the RDF with that for a 'codepiction' - a photos with more than 
+one Person or thing in it. In the example below the description of the picture is 
+very similar, but the description of what the picture depicts talks about 
+people with names and email addresses rather than creations created by people who have email addresses or homepages.
+</p>
+
+<table><tr><td>
+<pre>
+&lt;?xml version="1.0" ?&gt;
+&lt;rdf:RDF 
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:dc="http://purl.org/dc/elements/1.1/" 
+ xmlns:foaf="http://xmlns.com/foaf/0.1/" &gt;
+
+&lt;rdf:Description rdf:about="http://swordfish.rdfweb.org/photos/2001/04/23/000068.JPG"&gt; 
+	&lt;foaf:thumbnail rdf:resource="http://swordfish.rdfweb.org/photos/2001/04/23/thumb-000068.JPG" /&gt;
+	&lt;dc:description&gt;Sean and William in the George in Portslade
+	&lt;/dc:description&gt;
+	&lt;dc:description&gt;taken by libby
+	&lt;/dc:description&gt;
+	&lt;dc:date&gt;2001-04-23&lt;/dc:date&gt;
+	&lt;dc:coverage&gt;Portslade, UK&lt;/dc:coverage&gt;
+	&lt;foaf:location&gt;
+		&lt;foaf:Geo rdf:value="Portslade, UK" /&gt;
+	&lt;/foaf:location&gt;
+
+&lt;/rdf:Description&gt;
+
+&lt;foaf:Person&gt;
+	&lt;foaf:name&gt;Sean Palmer&lt;/foaf:name&gt;
+	&lt;foaf:mbox rdf:resource="mailto:sean@mysterylights.com" /&gt;
+	&lt;foaf:depiction rdf:resource="http://swordfish.rdfweb.org/photos/2001/04/23/000068.JPG" /&gt;
+&lt;/foaf:Person&gt;
+
+&lt;foaf:Person&gt;
+	&lt;foaf:name&gt;William Loughborough&lt;/foaf:name&gt;
+	&lt;foaf:mbox rdf:resource="mailto:love26@gorge.net" /&gt;
+	&lt;foaf:depiction rdf:resource="http://swordfish.rdfweb.org/photos/2001/04/23/000068.JPG" /&gt;
+&lt;/foaf:Person&gt;
+
+&lt;/rdf:RDF&gt;
+</pre>
+</td></tr></table>
+
+</body>
+</html>
