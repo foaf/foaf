@@ -24,7 +24,7 @@ public class InfoController extends NSObject {
     
     ModelItem currentItem = null;
     
-    MyDocument currentDocument = null;
+    RDFAuthorDocument currentDocument = null;
 
     public InfoController()
     {
@@ -46,14 +46,14 @@ public class InfoController extends NSObject {
     public void currentWindowChanged(NSNotification notification)
     {
         NSWindow currentWindow = (NSWindow) notification.object();
-        currentDocument = (MyDocument) currentWindow.delegate(); // gives the document
+        currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
         ModelItem item = currentDocument.currentObject();
         setCurrentItem(item);
     }
     
     public void currentItemChanged(NSNotification notification)
     {
-        MyDocument document = (MyDocument) notification.object();
+        RDFAuthorDocument document = (RDFAuthorDocument) notification.object();
         
         if (document == currentDocument)
         {

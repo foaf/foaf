@@ -202,7 +202,7 @@
 		};
 		2A37F4ACFDCFA73011CA2CEA = {
 			isa = PBXFileReference;
-			path = MyDocument.java;
+			path = RDFAuthorDocument.java;
 			refType = 4;
 		};
 		2A37F4B0FDCFA73011CA2CEA = {
@@ -215,14 +215,14 @@
 				2A37F4B5FDCFA73011CA2CEA,
 			);
 			isa = PBXVariantGroup;
-			name = MyDocument.nib;
+			name = RDFAuthorDocument.nib;
 			path = "";
 			refType = 4;
 		};
 		2A37F4B5FDCFA73011CA2CEA = {
 			isa = PBXFileReference;
-			name = English;
-			path = English.lproj/MyDocument.nib;
+			name = RDFAuthorDocument.nib;
+			path = English.lproj/RDFAuthorDocument.nib;
 			refType = 4;
 		};
 		2A37F4B6FDCFA73011CA2CEA = {
@@ -329,7 +329,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>MyDocument</string>
+			<string>RDFAuthorDocument</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -345,7 +345,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>None</string>
 			<key>NSDocumentClass</key>
-			<string>MyDocument</string>
+			<string>RDFAuthorDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

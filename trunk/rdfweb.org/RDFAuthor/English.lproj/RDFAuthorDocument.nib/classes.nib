@@ -1,0 +1,32 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = MySound; LANGUAGE = ObjC; SUPERCLASS = Sound; }, 
+        {
+            ACTIONS = {
+                addArc = id; 
+                addNode = id; 
+                deleteCurrentItem = id; 
+                showName = id; 
+                showProperties = id; 
+                showTypes = id; 
+            }; 
+            CLASS = RDFAuthorDocument; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                addArcButton = id; 
+                addNodeButton = id; 
+                descriptionTextField = id; 
+                rdfModelView = id; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {
+            CLASS = RDFModelView; 
+            LANGUAGE = Java; 
+            OUTLETS = {rdfAuthorDocument = id; textDescriptionField = id; }; 
+            SUPERCLASS = NSView; 
+        }
+    ); 
+    IBVersion = 1; 
+}

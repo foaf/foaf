@@ -19,9 +19,9 @@ public class ArcNodeList
 {
     Vector array;
     ModelItem currentObject;
-    MyDocument controller;
+    RDFAuthorDocument controller;
 
-    public ArcNodeList(MyDocument controller)
+    public ArcNodeList(RDFAuthorDocument controller)
     {
         currentObject = null;
         array = new Vector();
