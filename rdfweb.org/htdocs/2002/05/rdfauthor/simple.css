@@ -1,0 +1,21 @@
+BODY {
+  margin: 2em 1em 2em 50px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: black;
+  background: white;
+}
+
+H1, H2, H3, H4, H5 {
+  text-align: left;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  color: #880000; 
+}
+
+
+/* NS 4 needs this */
+th, td, p, ol, ul, li, dl, dt, dt, blockquote { font-family: Verdana, Arial, Helvetica, sans-serif; }
+
+
+pre, code { font-size: 100%; font-family: monospace; }
+
