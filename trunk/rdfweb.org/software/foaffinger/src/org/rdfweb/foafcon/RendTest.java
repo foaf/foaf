@@ -12,7 +12,6 @@ import com.strangeberry.rendezvous.ServiceListener;
 public class RendTest
 {
   final static String type = "_foafcon._tcp.local.";
-  List people;
   Person person;
   int port = 7654;
   TestListener listener;
@@ -20,7 +19,9 @@ public class RendTest
   InetAddress inetaddr;
   ServiceInfo si;
   CommandLine cl;
-  
+
+  People people;
+    
   public static void main(String[] args)
   {
     RendTest rt = new RendTest(args);
@@ -41,6 +42,8 @@ public class RendTest
 
     person = new Person(args[0], args[1]);
 
+    people = new People(this);
+        
     if (args.length > 2)
       {
 	try
@@ -136,13 +139,8 @@ public class RendTest
     
     rv.registerService(si);
   }
-  
-  public void findPeople()
-  {
-    people = listener.getPeople();
-  }
 
-  public List getPeople()
+  public People getPeople()
   {
     return people;
   }
@@ -152,6 +150,31 @@ public class RendTest
     return person;
   }
 
+  public Person getPerson(int index)
+  {
+    return people.get(index);
+  }
+  
+  public boolean personOnline(int index)
+  {
+    return people.isOnline(index);
+  }
+
+  public int numberOfPeople()
+  {
+    return people.size();
+  }
+  
+  public void addPerson(ServiceInfo info)
+  {
+    people.add(info);
+  }
+  
+  public void removePerson(ServiceInfo info)
+  {
+    people.remove(info);
+  }
+  
   public void showMessage(String message)
   {
     cl.addMessage(message);
@@ -161,27 +184,21 @@ public class RendTest
 
 class TestListener implements ServiceListener
 {
-  List people;
   RendTest controller;
     
   public TestListener(RendTest controller)
   {
     this.controller = controller;
-    
-    people = new ArrayList();
   }
   
   public void addService(Rendezvous rendezvous, String type, String name)
   {
-    controller.showMessage
-      ("ADD: " + name);
-
-    people.add(rendezvous.getServiceInfo(type,name));
+    controller.addPerson(rendezvous.getServiceInfo(type,name));
   }
 
   public void removeService(Rendezvous rendezvous, String type, String name)
   {
-    controller.showMessage("REMOVE: " + name);
+    controller.removePerson(rendezvous.getServiceInfo(type,name));
   }
 
   public void resolveService(Rendezvous rendezvous,
@@ -195,11 +212,6 @@ class TestListener implements ServiceListener
 		       type + "\n" +
 		       name + "\n" +
 		       info + "\n");
-  }
-  
-  public synchronized List getPeople()
-  {
-    return new ArrayList(people);
   }
   
 }
