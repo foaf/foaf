@@ -1,8 +1,6 @@
 <p>
-The <code>foaf:publications</code> property indicates some publications associated with a 
-<code>foaf:Person</code>
-</p>
-
-<p class="editorial">
-This property is under-specified, experimental, and should be considered liable to change.
+The <code>foaf:publications</code> property indicates a <foaf:code>Document</code>
+listing (primarily in human-readable form) some publications associated with a 
+<code>foaf:Person</code>. Such documents are typically published alongside one's 
+<code>foaf:homepage</code>.
 </p>
