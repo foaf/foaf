@@ -7,22 +7,10 @@
   <xsl:output method="html"/>
 
   <xsl:template match="/">
-    <html>
-      <head>
-        <style type="text/css">
-          .http\:\/\/www\.w3\.org\/1999\/02\/22-rdf-syntax-ns\# { color: green }
-	  .http\:\/\/www\.w3\.org\/2000\/01\/rdf-schema# { color: red }
-          .http\:\/\/www\.w3\.org\/2002\/07\/owl# { color: purple }
-          .http\:\/\/xmlns\.com\/foaf\/0.1\/ {color: blue }
-          .http\:\/\/purl\.org\/dc\/elements\/1\.1\/ {color: yellow }
-          .http\:\/\/purl\.org\/rss\/1\.0\/modules\/syndication\/ {color: red }
-          .http\:\/\/www\.w3\.org\/2003\/06\/sw-vocab-status\/ns# { color: orange }
-        </style>
-      </head>
-      <body bgcolor="#FFFFFF">
+
+      <div style="font-size: small">
         <pre><xsl:apply-templates/></pre>
-      </body>
-    </html>
+      </div>
   </xsl:template>
 
   <xsl:template match="*">
@@ -37,8 +25,12 @@
     </span>
   </xsl:template>
 
+  <!-- #xa is \n -->
+
   <xsl:template match="@*">
-    <xsl:value-of select="concat(' ',name(),'&quot;',.,'&quot;')"/>
+    <span class="{namespace-uri()}">
+      <xsl:value-of select="concat(' ',name(),'=&quot;',.,'&quot;')"/>
+    </span>
   </xsl:template>
 
   <xsl:template match="comment()">
