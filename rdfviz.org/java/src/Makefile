@@ -1,7 +1,13 @@
 
-CP=.:lib/jena.jar:lib/rdffilter.jar:lib/sax2.jar:lib/xerces.jar 
+BASE=./
+CP=$(BASE):$(BASE)lib/jena.jar:$(BASE)lib/rdffilter.jar:$(BASE)lib/sax2.jar:$(BASE)lib/xerces.jar 
 
 all:	classes test
+
+#
+# export CLASSPATH=`make cp`
+cp:
+	@echo $(CP)
 
 classes:
 	CLASSPATH=$(CP) \
