@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="StyleSheet" href="ssi/css" />
+<title>
+RDFWeb: 
+</title>
+
+</head>
+<body bgcolor="#ffffff">
+
+<!--#include virtual="ssi/projects"-->
+
+<p>
+This page lists as distinct projects a number of interconnected tasks
+and ideas associated with RDFWeb. The main focus of work at the moment is
+on the core vocabulary (FOAF) and aggregator implementations (Java, Perl).
+As this matures, the potential for add-on projects should improve
+massively: RDFWeb is intended to be an irresistable tinkertoy for
+hackers...
+</p>
+
+<p>All RDFWeb developments are discussed on the rdfweb-dev mailing list,
+see <a href="dev.html">developer resources</a> for details of this and
+nearby IRC channels.</p>
+
+<h3>RDFWeb Vocabulary</h3>
+
+<p>
+The initial RDF/XML vocabulary that underpins RDFWeb is called FOAF
+("Friend of a Friend"). It is used alongside other vocabularies (RDFCore,
+Dublin Core, Wordnet, RSS 1.0) to provide mixed-vocabulary descriptions of
+people, organisations, web services and other information resources.
+</p>
+<ul>
+<li>
+<a href="http://xmlns.com/foaf/0.1/">FOAF 0.1 draft</a>
+</li>
+</ul>
+
+<h3>RDFWeb Services</h3>
+
+<p>
+RDFWeb is constructed from a number of services. The basic building blocks
+are RDF and XML parsers, and XSLT transformations: this technology is
+available "off the shelf". RDFWeb provides authors of such software with a
+large, distributed and heterogeneous collection of test files to help them
+refine their software. In addition to parsers, RDFWeb agggregation points
+require some sort of RDF database support. Again, these aren't a core part
+of RDFWeb itself, the idea is to use RDFWeb to help us develop and test
+such tools. Currently, we use a couple of systems being developed at ILRT. 
+The most visible component of RDFWeb is the Web-based user interface that
+presents the aggregated data back to users. 
+</p>
+
+<ul>
+<li>more information needed here...</li>
+</ul>
+
+<h3>Security, trust...</h3>
+
+<p>
+RDFWeb raises some interesting issues relating to trust and provenance.
+We have created a simple RDF vocabulary, <a
+href="http://xmlns.com/wot/0.1/">WOT</A> ("web-o-trust") to test some
+ideas about the combination of digital signatures with RDF content.
+Currently, some RDF files in the RDFWeb have been signed using GPG or PGP;
+those files typically contain a pointer to the result of that signing, and
+may also contain or point to information about the signer, and claims
+about reciprocal key-signing events. The intent here is to provide enough
+meta-information to support a variety of trust and provenance strategies.
+</p>
+<ul>
+<li>see the rdfweb-dev archives for more detail</li>
+
+ <!-- ............................................  -->
+
+
+</body>
+</html>
+
+

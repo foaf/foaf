@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>rdfweblog example</title></head>
+<body bgcolor="#ffffff">
+
+<h1>rdfweblog example, 2000-09-09</h1>
+
+<p>danbri's semi-fictional weblog for Sept 9th, 2000</p>
+
+<rdfweb:RDFWebLog date="2000-09-09" logger="mailto:danbri@w3.org"
+ xmlns:rdfweb="http://example.com/todo" 
+ xmlns:wordnet="http://xmlns.com/wordnet/1.6/"
+ xmlns:dc="http://purl.org/dc/"
+ xmlns:util="http://example.com/todo" >
+ 
+<p>(disclaimer: ok, this is dull. I don't do weblogs! this is just some
+example text to play with + explanation... Do a view/src to see the
+semantic annotations I'm playing with to allow this sort of narrative 
+to be summarised for Semantic Web apps...)
+</p>
+
+<p>
+Today I have been <wordnet:reading>reading</wordnet:reading> the book
+<wordnet:book   util:homepage="http://www.cryptonomicon.com/"
+title="Cryptonomicon">Cryptonomicon</wordnet:book> much of the day, to
+take my mind off the RDF Issues List. Then I 
+played for a brain-rotting while on my <wordnetverb:game 
+util:homepage="http://www.dreamcast.com/">Dreamcast</wordnetverb:game>
+console. Then I watched the <wordnet:Film
+util:review="http://www.rottentomatoes.com/movies/titles/mummy/">The
+Mummy</wordnet:Film> and read Cryptonomicon while <wordnet:Person
+util:mbox="mailto:m.l.poulter@bristol.ac.uk">Martin</wordnet:Person>,
+Craig and Liz
+watched <wordnet:film util:review="http://us.imdb.com/Title?0118571"
+dc:title="Air Force One">Air Force One</wordnet:film>, since the film was
+preposterous honk. Now I'm listening to <wordnet:music
+util:tracklistChecksum="8c087e0b"
+rdfs:seeAlso="http://rdfwebring.org/cgi-bin/cd/describe?8c087e0b">some
+music (actually David Bowie's Low, whose tracklistChecksum 
+I don't have to hand)</wordnet:music> and chatting in IRC with
+<wordnet:Person util:made="http://www.perlxml.com"
+util:profile="http://profiles.userland.com/$eisen@pobox.com"> Jonathan
+Eisenzopf</wordnet:Person> when I should be getting some sleep...
+</p>
+
+<p> We were talking about variations on the weblog idea, the relationship
+between that and XHTML 'semantic web screenscraping', and I wanted to show
+the weblog extension to the <a
+href="http://rdfwebring.org/">rdfwebring</a> system that I've been
+designing. Being too verbose for IRC, I wrote it up as this example file.
+</p>
+<p>
+So... here's a sketch of an RDFWebLog data file. The yntax is XML tagged
+with significant verbs and named items, which are referenced indirectly,
+eg 'the person whose homepage is...' or 'the film reviewed at...', just as
+we do in the RDFWebRing.</p>
+<p> 
+This example sketch is only intended to be evocative of what we might
+build with RDF; there are plenty of bugs, and the WordNet representation needs
+further thought. Basic idea: we can mention objects through
+uniquely-identifying description in our WebLogs. Postprocessing of this
+into HTML or into richer RDF representations (eg. based around Event
+models such as the <a
+href="http://www.ilrt.bris.ac.uk/discovery/harmony/">Harmony Project</a>'s
+ABC) should be easy...
+</p>
+
+<p>
+This example is a strange mix of XHTML and (fictional) rdfweblog markup.
+While it seems to render OK in HTML browsers, the objects that I mention
+(films etc) don't get hyperlinked. An XSLT transformation into HTML that
+used A HREF would do the job, though I suspect some jiggling about with
+the way I use XML here might allow a single format to function both as
+hypertext XHTML and as something that permits a rich RDF view of the data.
+That's the theory anyway...
+</p>
+
+</rdfweb:RDFWebLog>
+
+
+</body>
+</html>

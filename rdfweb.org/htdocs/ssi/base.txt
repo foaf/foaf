@@ -1,0 +1,31 @@
+
+<!-- ............................................  -->
+
+<h3>about rdfweb...<img src="rdf.jpg" alt="RDFWeb" align="right"/></h3>
+
+<big><br /></big>
+
+<table width="100%" cellspacing="0" cellpadding="1" border="1"
+summary="main navigation bar" bgcolor="#000000">
+<tr>
+<td valign="top">
+<table border="0" bgcolor="#fffacd" cellpadding="3" cellspacing="0"
+summary="a layout table" width="100%">
+<tr>
+<td align="left" class="slogan" valign="top">
+%%MAIN%%
+</td>
+</tr>
+
+<tr>
+<td align="right"><a href="overview.html">overview</a> | <a
+href="demos.html">demos</a> | <a href="mod.html">modesty</a> | <a
+href="hype.html">hype</a> </td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<!-- ............................................  -->
+

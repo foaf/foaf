@@ -1,0 +1,94 @@
+
+<rdf:RDF xml:lang="en"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:rss="http://purl.org/rss/1.0/"
+        xmlns="http://rdfweb.org/2000/01/swipe#">
+
+        <rdf:Description rdf:about="http://search03.apple.com/search97cgi/s97_cgi">
+<dc:Title>Apple.com</dc:Title>
+<dc:Description>Searches the Apple web site.</dc:Description>
+<rss:image rdf:resource="http://snowball.ilrt.bris.ac.uk/~pldms/plugins/Apple.src.gif"/>
+
+<searchInterface>
+ <ScreenScrapeSpec>
+  <macPlugin rdf:resource="http://si.info.apple.com/updates/Apple.src.hqx"/>
+  <bannerImage rdf:resource="http://www.apple.com/main/elements/sherlockbar.gif"/>
+  <bannerALT>Apple Computer</bannerALT>
+  <bannerLink rdf:resource="http://www.apple.com"/>
+  <httpMethod>GET</httpMethod>
+  <input>
+   <rdf:Description>
+    <defaults>
+     <rdf:Bag>
+
+      <rdf:li>
+       <rdf:Description rdfs:label="Action" rdf:value="Search"/>
+      </rdf:li>
+
+
+      <rdf:li>
+       <rdf:Description rdfs:label="ServerKey" rdf:value="Primary" />
+      </rdf:li>
+
+     </rdf:Bag>
+    </defaults>
+
+    <browser>
+     <rdf:Bag>
+      <rdf:li>
+       <rdf:Description rdfs:label="ResultTemplate" rdf:value="webx2.hts"/>
+      </rdf:li>
+     </rdf:Bag>
+    </browser>
+
+
+    <user>
+     <rdf:Bag>
+      <rdf:li>
+       <rdf:Description rdfs:label="queryText" rdf:value="" />
+      </rdf:li>
+     </rdf:Bag>
+    </user>
+
+    <results>
+     <rdf:Bag>
+      <rdf:li>
+       <rdf:Description rdfs:label="ResultTemplate" rdf:value="sherlock.hts" />
+      </rdf:li>
+
+
+      <rdf:li>
+       <rdf:Description rdfs:label="Collection" rdf:value="web" />
+      </rdf:li>
+
+      <rdf:li>
+       <rdf:Description rdfs:label="ResultMaxDocs" rdf:value="9" />
+      </rdf:li>
+
+     </rdf:Bag>
+    </results>
+
+   </rdf:Description>
+  </input>
+
+
+ <parserules>
+    <rdf:Description
+        resultListStart = "&lt;!--IL--&gt;"
+        resultListEnd = "&lt;!--/IL--&gt;"
+        resultItemStart = "&lt;!--IS--&gt;"
+        resultItemEnd = "&lt;!--/IS--&gt;"
+        relevanceStart = "&lt;!--REL--&gt;"
+        relevanceEnd = "&lt;!--/REL--&gt;"
+	/>
+ </parserules>
+
+</ScreenScrapeSpec>
+
+</searchInterface>
+
+</rdf:Description>
+</rdf:RDF>
+

@@ -1,0 +1,148 @@
+
+
+# Amaya is a tools:AuthTool
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/Amaya/2.2},{http://www.w3.org/1999/11/tools/AuthTool}).
+
+
+
+# Amaya meets two CheckPoints; two others are InApplicable to Amaya
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/Amaya/2.2},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-use-accessible-templates}).
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/Amaya/2.2},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-prefer-w3c}).
+
+triple({http://www.w3.org/1999/11/conforms/notApplicable}, {http://www.w3.org/Amaya/2.2},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-leave-access-content}).
+
+triple({http://www.w3.org/1999/11/conforms/notApplicable}, {http://www.w3.org/Amaya/2.2},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-ensure-published-DTD}).
+
+
+
+# yourtool is a tools:AuthTool
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/yourtool/1.0},{http://www.w3.org/1999/11/tools/AuthTool}).
+
+
+
+# yourtool meets two CheckPoints; two others are InApplicable to yourtool
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/yourtool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-use-accessible-templates}).
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/yourtool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-prefer-w3c}).
+
+triple({http://www.w3.org/1999/11/conforms/notApplicable}, {http://www.w3.org/yourtool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-leave-access-content}).
+
+triple({http://www.w3.org/1999/11/conforms/fails}, {http://www.w3.org/yourtool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-ensure-published-DTD}).
+
+
+
+# mytool is a tools:AuthTool
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/mytool/1.0},{http://www.w3.org/1999/11/tools/AuthTool}).
+
+
+
+# mytool meets two CheckPoints; two others are InApplicable to mytool
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/mytool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-use-accessible-templates}).
+
+triple({http://www.w3.org/1999/11/conforms/meets}, {http://www.w3.org/mytool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-prefer-w3c}).
+
+triple({http://www.w3.org/1999/11/conforms/notApplicable}, {http://www.w3.org/mytool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-leave-access-content}).
+
+triple({http://www.w3.org/1999/11/conforms/notApplicable}, {http://www.w3.org/mytool/1.0},{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-ensure-published-DTD}).
+
+
+
+# We enumerate resources that are CheckPoints for different priorities
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-leave-access-content}, {http://www.w3.org/1999/11/atag/CheckPoint1}).
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-use-accessible-templates}, {http://www.w3.org/1999/11/atag/CheckPointR}).
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-ensure-published-DTD}, {http://www.w3.org/1999/11/atag/CheckPoint1}).
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, {http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-prefer-w3c}, {http://www.w3.org/1999/11/atag/CheckPoint2}).
+
+
+
+####    RDF Rules  ####
+
+# Syntax note:  read :- as "IF" or "ImpliedBy".
+
+#               Inital Caps are variables
+
+
+
+# Define 'okFor' as true when a tool either conforms to a CheckPoint
+
+# or the point is notApplicable to that Tool
+
+#
+
+triple({http://www.w3.org/1999/11/conforms/okFor}, X,Y):-{http://www.w3.org/1999/11/conforms/notApplicable} (X,Y).
+
+triple({http://www.w3.org/1999/11/conforms/okFor}, X,Y):-{http://www.w3.org/1999/11/conforms/meets} (X,Y).
+
+
+
+# Define members of the set of AATools to be those that are OK for each of these
+
+# This approach simply enumerates the things a tool must be 'okFor'. It also hasto be an Atool (becuase this makes life easier and is nicer and more elegant. But I'll do that in a minute, batteries willng...
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, X,{http://www.w3.org/1999/11/atag/AATool}):-{http://www.w3.org/1999/11/conforms/okFor}(X,{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-prefer-w3c}).
+
+
+
+# We define level-A tools
+
+triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, X,{http://www.w3.org/1999/11/atag/ATool}):-{http://www.w3.org/1999/11/conforms/okFor}(X,{http://www.w3.org/TR/2000/REC-ATAG10-20000203/#check-ensure-published-DTD}).
+
+
+
+# Note: this seems clumsy; we'd rather say that AATools are all things
+
+# that are tools that are OK for each of the CheckPoints.
+
+#
+
+#  - can we do this with the current system? (need negation?)
+
+#    danbri@w3.org
+
+
+
+# scratchpad notes...
+
+#
+
+# Define members of the set of AATools to be all those that are 'okFor'
+
+# some resource Y, for each Y that is of rdf:type atag:CheckPoint
+
+#triple({http://www.w3.org/1999/02/22-rdf-syntax-ns#type}, X,{http://www.w3.org/1999/11/atag/AATool}):-{http://www.w3.org/1999/11/conforms/okFor}(X,Y),{http://www.w3.org/1999/02/22-rdf-syntax-ns#type}(Y,{http://www.w3.org/1999/11/atag/CheckPoint}).
+
+# (commented out as the engine shows multiple 'type->AATool' arcs)
+
+# instead, see example query above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

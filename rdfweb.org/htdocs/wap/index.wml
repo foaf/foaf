@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" 
+  "http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+RDFWeb Mobile start page
+<card id="mycard" title="My girlfriend">
+<p>
+<a href="http://wap.yahoo.co.uk/">yahoo uk</a>
+<a href="http://www.zdnet.co.uk/wap/">zdnet wap</a>
+<a href="http://wap.wapaw.com/">wapaw</a>
+</card>
+</wml>

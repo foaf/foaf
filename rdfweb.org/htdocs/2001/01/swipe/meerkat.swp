@@ -1,0 +1,56 @@
+
+<rdf:RDF xml:lang="en"
+             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+             xmlns:rss="http://purl.org/rss/1.0/"
+             xmlns="http://rdfweb.org/2000/01/swipe-ns#">
+
+<rdf:Description rdf:about="http://oreillynet.com/meerkat/">
+<dc:title>Meerkat: An Open Wire Service</dc:title>
+<dc:description>
+  Meerkat is a Web-based syndicated content reader 
+  providing a simple interface to RSS stories.
+</dc:description>
+<dc:creator>Rael Dornfest</dc:creator>
+<dc:publisher>The O'Reilly Network, O'Reilly &amp; Associates, Inc.</dc:publisher>
+
+<swiper>
+  <BasicSpec rdf:about="" method="GET">
+  <action  rdf:resource="http://oreillynet.com/meerkat/sherlock"/>
+  <macfile rdf:resource="http://oreillynet.com/meerkat/etc/sherlock/meerkat.sit"/>
+
+  <!-- the RSS syndication vocabulary tells us how often to refresh the data -->
+  <sy:updatePeriod>daily</sy:updatePeriod>
+  <sy:updateFrequency>7</sy:updateFrequency>
+  <sy:updateBase>2001-01-01T12:00+00:00</sy:updateBase>
+
+  <!-- todo: banner image / text /link, use rss and util vocabs -->  
+
+  <!-- incoming data needed by web service -->
+  <in>
+   <rdf:Seq>
+   <li><Input name="t" content="7DAY"/></li>
+   <li><Input name="_fl" content="sherlock"/></li>
+   <li><UserInput name="s"/></li>
+   </rdf:Seq>
+  </in>
+
+
+  <!-- interpretation rules for output from web service -->
+  <out>
+   <ParseRules
+        resultListStart="&lt;meerkat&gt;"
+	resultListEnd="&lt;/meerkat&gt;"
+	resultItemStart="&lt;story&gt;"
+	resultItemEnd="&lt;/story&gt;">
+        <!-- here we use a simple text-match approach -->
+     <parseformat rdf:resource="http://www.apple.com/sherlock/"/>
+    </ParseRules>
+  </out>
+  <!-- XSLT and other output format handlers would be listed here -->
+ </BasicSpec>
+ </swiper>
+
+</rdf:Description>
