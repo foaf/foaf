@@ -28,10 +28,17 @@
 #  - normalise indenting
 #  - if it works, my tests should scrawl into http://rdfweb.org/rweb/wiki/wiki?ScratchPad
 #
-# cvs version: $Id: oaf.pl,v 1.2 2003-03-29 23:02:49 danbri Exp $
+# cvs version: $Id: oaf.pl,v 1.3 2003-03-29 23:26:42 danbri Exp $
 # cvsweb: http://rdfweb.org/viewcvs/viewcvs.cgi/rdfweb.org/htdocs/2003/03/oaf/
 # Recent changes:
 # $Log: not supported by cvs2svn $
+# Revision 1.2  2003/03/29 23:02:49  danbri
+# Working on gluing POE events into the Wiki-oriented code.
+# Focussing on new on_poe_public function, to replace Net::IRC-based on_public.
+#
+# We now are at stage where it'll try to write to Wiki. Seems to fail silently,
+# maybe my Wiki formatting is not what it expects.
+#
 # Revision 1.1  2003/03/29 22:19:16  danbri
 # First cut at forked POE-happy wikibot
 #
@@ -53,7 +60,7 @@ $ua->agent('Wikibot/$version');
 
 my $listen = {
     nick => 'oafbot',
-    chan => '#oaf2',
+    chan => '#foaf',
     feed => 'FOAF',
     server => 'irc.freenode.net',
 };
@@ -92,6 +99,10 @@ my $baseurl = "http://rdfweb.org/rweb/wiki/wiki?";
 # type of wiki in use: current valid options are "usemod" and "moinmoin"
 my $wikitype = "usemod";
 my $wikipage = "ScratchPad";				# page to edit on wiki
+
+# danbri added:
+$baseurl =~ s/\?$// if ($wikitype eq "usemod"); # normalise to no trailing '?' 
+
 
 # format strings for text to be added to wiki page - outputs the following
 # so you can apply different styles to the text for the nick and comment:
@@ -180,6 +191,8 @@ sub on_msg {
 			$fullurl = $baseurl . "/" . $wikipage;
 		}
 		elsif ($wikitype eq "usemod") {
+			$baseurl =~ s/\?$//; # normalise to no trailing '?'
+			print STDERR "[oaf] Writing to baseurl:  $baseurl\n";
 			$fullurl = $baseurl . "?" . $wikipage;
 			$fullurl =~ s/ /_/;
 		}
