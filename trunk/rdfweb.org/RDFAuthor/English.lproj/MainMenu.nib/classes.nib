@@ -7,7 +7,27 @@
             OUTLETS = {errorTable = id; errorWindow = id; }; 
             SUPERCLASS = NSObject; 
         }, 
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                autoLayout = id; 
+                doCheckModel = id; 
+                previewModeChanged = id; 
+                selectAddArcMode = id; 
+                selectAddNodeMode = id; 
+                selectDeleteMode = id; 
+                selectMarkQueryMode = id; 
+                selectMoveMode = id; 
+                showBookmarkWindow = id; 
+                showIds = id; 
+                showProperties = id; 
+                showQueryPanel = id; 
+                showTextPreview = id; 
+                showTypes = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
         {
             ACTIONS = {changeObject = id; revertObject = id; showInfoWindow = id; }; 
             CLASS = InfoController; 

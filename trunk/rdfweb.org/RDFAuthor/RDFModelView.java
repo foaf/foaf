@@ -1,6 +1,6 @@
 /* RDFModelView */
 
-/* $Id: RDFModelView.java,v 1.24 2002-02-06 00:36:23 pldms Exp $ */
+/* $Id: RDFModelView.java,v 1.25 2002-02-07 16:09:56 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -347,6 +347,11 @@ public class RDFModelView extends NSView {
                     textDescriptionField.setStringValue("Click on items to mark them as unknown objects for query");
                     break;
         }
+    }
+    
+    public int editingMode()
+    {
+        return currentEditingMode;
     }
     
     public void copy(Object sender)

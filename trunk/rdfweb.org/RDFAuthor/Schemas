@@ -1,4 +1,4 @@
-# $Id: Schemas,v 1.2 2002-02-05 16:02:57 pldms Exp $
+# $Id: Schemas,v 1.3 2002-02-07 16:09:56 pldms Exp $
 #
 # This file has two functions:
 # 1) Populate the schema window box with schema URLs
@@ -16,3 +16,5 @@
 "http://xmlns.com/wot/0.1/"		"wot"
 "http://purl.org/rss/1.0/"		"rss"
 "http://purl.org/dc/elements/1.1/"	"dc"
+"http://www.w3.org/2000/01/rdf-schema"	"rdfs" # prefix not needed, but have to have something
+"http://www.w3.org/1999/02/22-rdf-syntax-ns"	"rdf" # ditto

@@ -1,6 +1,6 @@
 /* RDFToolbar */
 
-/* $Id: RDFToolbar.java,v 1.17 2002-02-06 17:29:53 pldms Exp $ */
+/* $Id: RDFToolbar.java,v 1.18 2002-02-07 16:09:56 pldms Exp $ */
 
 /*
     Copyright 2001 Damian Steer <dm_steer@hotmail.com>
@@ -30,6 +30,8 @@ public class RDFToolbar extends NSObject {
 
     RDFAuthorDocument rdfAuthorDocument;
     
+    RDFModelView rdfModelView;
+    
     NSMatrix editView;
     NSView showView;
     
@@ -38,9 +40,7 @@ public class RDFToolbar extends NSObject {
     NSButton showPropertiesButton;
     NSPopUpButton previewModePopup;
     
-    QueryController queryController;
-    BookmarkController bookmarkController;
-    RDFModelView rdfModelView;
+    NSToolbarItem toggleViewItem;
     
     static final String identifier = "rdf Toolbar";
     static final String editToolsIdentifier = "edit tools identifier";
@@ -91,8 +91,8 @@ public class RDFToolbar extends NSObject {
 	    toolbarItem.setToolTip("Check this model for errors");
 	    toolbarItem.setImage(NSImage.imageNamed("check"));
 	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("doCheck", new Class[] { NSToolbarItem.class }) );
+	    toolbarItem.setTarget(rdfAuthorDocument);
+	    toolbarItem.setAction(new NSSelector(("doCheckModel"), new Class[] { Object.class }));
         }
         else if (itemIdent.equals(toggleViewsIdentifier))
         {
@@ -102,8 +102,10 @@ public class RDFToolbar extends NSObject {
 	    toolbarItem.setToolTip("Toggles between the model view and a preview of the text export");
 	    toolbarItem.setImage(NSImage.imageNamed("modelView"));
 	    
-	    toolbarItem.setTarget(this);
-	    toolbarItem.setAction(new NSSelector("toggleView", new Class[] { NSToolbarItem.class }) );
+	    toolbarItem.setTarget(rdfAuthorDocument);
+	    toolbarItem.setAction(new NSSelector("showTextPreview", new Class[] { Object.class }) );
+            
+            toggleViewItem = toolbarItem; // Remember this so we can alter it
         }
         else if (itemIdent.equals(previewPopupIdentifier))
         {
@@ -121,8 +123,8 @@ public class RDFToolbar extends NSObject {
             
             toolbarItem.setToolTip("Show or hide the query window");
             toolbarItem.setImage(NSImage.imageNamed("queryPanel.tiff"));
-            toolbarItem.setTarget(this);
-            toolbarItem.setAction(new NSSelector("showQueryPanel", new Class[] { NSToolbarItem.class }));
+            toolbarItem.setTarget(rdfAuthorDocument);
+            toolbarItem.setAction(new NSSelector("showQueryPanel", new Class[] { Object.class }));
         }
         else if (itemIdent.equals(bookmarkPanelIdentifier))
         {
@@ -131,8 +133,8 @@ public class RDFToolbar extends NSObject {
             
             toolbarItem.setToolTip("Show or hide the bookmark window");
             toolbarItem.setImage(NSImage.imageNamed("bookmarkWindow.tiff"));
-            toolbarItem.setTarget(this);
-            toolbarItem.setAction(new NSSelector("showBookmarkWindow", new Class[] { NSToolbarItem.class }));
+            toolbarItem.setTarget(rdfAuthorDocument);
+            toolbarItem.setAction(new NSSelector("showBookmarkWindow", new Class[] { Object.class }));
         }
         else if (itemIdent.equals(autoLayoutIdentifier))
         {
@@ -141,8 +143,8 @@ public class RDFToolbar extends NSObject {
             
             toolbarItem.setToolTip("Automatically layout the graph");
             toolbarItem.setImage(NSImage.imageNamed("layout.tiff"));
-            toolbarItem.setTarget(this);
-            toolbarItem.setAction(new NSSelector("autoLayout", new Class[] { NSToolbarItem.class }));
+            toolbarItem.setTarget(rdfAuthorDocument);
+            toolbarItem.setAction(new NSSelector("autoLayout", new Class[] { Object.class }));
         }
         else
         {
@@ -197,104 +199,54 @@ public class RDFToolbar extends NSObject {
         {
             // Sync buttons with state of the document (edit state isn't saved btw)
             
-            int typesState = (rdfAuthorDocument.showTypes) ? NSCell.OnState : NSCell.OffState;
-            int idsState = (rdfAuthorDocument.showIds) ? NSCell.OnState : NSCell.OffState;
-            int propertiesState = (rdfAuthorDocument.showProperties) ? NSCell.OnState : NSCell.OffState;
-            
-            showTypesButton.setState(typesState);
-            showIdsButton.setState(idsState);
-            showPropertiesButton.setState(propertiesState);
+            syncButtonState();
         }
     } 
     
-    private void selectMoveMode(Object sender)
-    {
-        rdfModelView.setEditingMode( RDFModelView.MoveSelectMode );
-    }
+    // This is used to sync the (stateful) buttons in the toolbar with
+    // the relevent states (which might have been set by using other means)
     
-    private void selectAddNodeMode(Object sender)
+    public void syncButtonState()
     {
-        rdfModelView.setEditingMode( RDFModelView.AddNodeMode );
-    }
-    
-    private void selectAddArcMode(Object sender)
-    {
-        rdfModelView.setEditingMode( RDFModelView.AddConnectionMode );
-    }
-    
-    private void selectDeleteMode(Object sender)
-    {
-        rdfModelView.setEditingMode( RDFModelView.DeleteItemsMode );
-    }
-    
-    private void selectMarkQueryMode(Object sender)
-    {
-        rdfModelView.setEditingMode( RDFModelView.AddQueryItemMode );
-    }
-    
-    private void showTypes(NSButton sender)
-    {
-        rdfAuthorDocument.showTypes(sender.state() == NSCell.OnState);
-    }
-    
-    private void showProperties(NSButton sender)
-    {
-        rdfAuthorDocument.showProperties(sender.state() == NSCell.OnState);
-    }
-    
-    private void showIds(NSButton sender)
-    {
-        rdfAuthorDocument.showIds(sender.state() == NSCell.OnState);
-    }
-    
-    private void doCheck(NSToolbarItem sender)
-    {
-        rdfAuthorDocument.doCheckModel();
-    }
-    
-    private void autoLayout(NSToolbarItem sender)
-    {
-        rdfAuthorDocument.autoLayout();
-    }
-    
-    private void toggleView(NSToolbarItem sender)
-    {
-        if (textPreview)
+        int typesState = (rdfAuthorDocument.showTypes) ? NSCell.OnState : 
+                                                            NSCell.OffState;
+        int idsState = (rdfAuthorDocument.showIds) ? NSCell.OnState : 
+                                                            NSCell.OffState;
+        int propertiesState = (rdfAuthorDocument.showProperties) ? NSCell.OnState : 
+                                                            NSCell.OffState;
+        showTypesButton.setState(typesState);
+        showIdsButton.setState(idsState);
+        showPropertiesButton.setState(propertiesState);
+        
+        switch (rdfModelView.editingMode())
         {
-            boolean successful = rdfAuthorDocument.showTextPreview(false, null);  // this will never fail
-            textPreview = false;
-            sender.setImage(NSImage.imageNamed("modelView"));
+            case RDFModelView.MoveSelectMode:		editView.selectCellAtLocation(0,0); break;
+            case RDFModelView.AddNodeMode:		editView.selectCellAtLocation(0,1); break;
+            case RDFModelView.AddConnectionMode:	editView.selectCellAtLocation(0,2); break;
+            case RDFModelView.DeleteItemsMode:		editView.selectCellAtLocation(0,3); break;
+            case RDFModelView.AddQueryItemMode:		editView.selectCellAtLocation(0,4); break;
+        }
+    }
+    
+    public void setPreviewType(int item)
+    {
+        previewModePopup.selectItemAtIndex(item);
+    }
+    
+    public String previewType()
+    {
+        return popupMappings[previewModePopup.indexOfSelectedItem()];
+    }
+    
+    public void syncPreview(boolean showingPreview)
+    {
+        if (showingPreview)
+        {
+            toggleViewItem.setImage(NSImage.imageNamed("textPreview"));
         }
         else
         {
-            String jenaType = popupMappings[previewModePopup.indexOfSelectedItem()];
-            System.out.println("jena Type: " + jenaType);
-            boolean successful = rdfAuthorDocument.showTextPreview(true, jenaType);
-            if (!successful)
-            {
-                return;
-            }
-            textPreview = true;
-            sender.setImage(NSImage.imageNamed("textPreview"));
-        }
-    }
-    
-    private void showQueryPanel(NSToolbarItem sender)
-    {
-        queryController.toggleShow();
-    }
-    
-    private void showBookmarkWindow(NSToolbarItem sender)
-    {
-        bookmarkController.toggleShow();
-    }
-    
-    private void previewModeChanged(Object sender)
-    {
-        if (textPreview)
-        {
-            String jenaType = popupMappings[previewModePopup.indexOfSelectedItem()];
-            rdfAuthorDocument.createPreviewText(jenaType);
+            toggleViewItem.setImage(NSImage.imageNamed("modelView"));
         }
     }
 }

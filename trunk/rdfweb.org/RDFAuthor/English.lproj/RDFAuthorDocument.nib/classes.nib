@@ -29,10 +29,13 @@
         }, 
         {
             ACTIONS = {
-                addArc = id; 
-                addNode = id; 
-                deleteCurrentItem = id; 
-                showName = id; 
+                previewModeChanged = id; 
+                selectAddArcMode = id; 
+                selectAddNodeMode = id; 
+                selectDeleteMode = id; 
+                selectMarkQueryMode = id; 
+                selectMoveMode = id; 
+                showIds = id; 
                 showProperties = id; 
                 showTypes = id; 
             }; 
@@ -51,13 +54,6 @@
             SUPERCLASS = NSDocument; 
         }, 
         {
-            ACTIONS = {sliderChanged = id; }; 
-            CLASS = RDFModelView; 
-            LANGUAGE = Java; 
-            OUTLETS = {bookmarkController = id; rdfAuthorDocument = id; textDescriptionField = id; }; 
-            SUPERCLASS = NSView; 
-        }, 
-        {
             ACTIONS = {
                 previewModeChanged = id; 
                 selectAddArcMode = id; 
@@ -69,13 +65,34 @@
                 showProperties = id; 
                 showTypes = id; 
             }; 
-            CLASS = RDFToolbar; 
+            CLASS = RDFAuthorDocument1; 
             LANGUAGE = Java; 
             OUTLETS = {
                 bookmarkController = id; 
+                previewTextView = id; 
+                previewView = id; 
+                queryController = id; 
+                rdfModelScrollView = id; 
+                rdfModelView = id; 
+                rdfToolbar = id; 
+                textDescriptionField = id; 
+            }; 
+            SUPERCLASS = RDFAuthorDocument; 
+        }, 
+        {
+            ACTIONS = {sliderChanged = id; }; 
+            CLASS = RDFModelView; 
+            LANGUAGE = Java; 
+            OUTLETS = {bookmarkController = id; rdfAuthorDocument = id; textDescriptionField = id; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {
+            ACTIONS = {previewModeChanged = id; }; 
+            CLASS = RDFToolbar; 
+            LANGUAGE = Java; 
+            OUTLETS = {
                 editView = id; 
                 previewModePopup = id; 
-                queryController = id; 
                 rdfAuthorDocument = id; 
                 rdfModelView = id; 
                 showIdsButton = id; 
