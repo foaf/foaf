@@ -133,6 +133,9 @@ public class RendTest
   public void kickService()
     throws Exception
   {
+    System.out.println("UNS: " + si);
+    
+    
     rv.unregisterService(si);
 
     Hashtable props = person.getProps();
@@ -145,7 +148,9 @@ public class RendTest
 			 0,
 			 0,
 			 props);
-    
+
+    System.out.println("Set: " + si);
+        
     rv.registerService(si);
   }
 
