@@ -62,7 +62,7 @@ public class Person
   public void setMbox(String mbox)
   {
     this.mbox = mbox;
-    setMboxHash(sha1Hash(mbox));
+    setMboxHash(Util.sha1Hash("mailto:" + mbox));
   }
 
   public String getMbox()
@@ -246,26 +246,6 @@ public class Person
     return toReturn;
   }
   
-  private static String sha1Hash(String string)
-  {
-    try
-      {
-	MessageDigest md = MessageDigest.getInstance("SHA");
-	
-	md.update(string.getBytes());
-	
-	byte[] digest = md.digest();
-	
-	BigInteger integer = new BigInteger(1, digest);
-
-	return integer.toString(16);
-      }
-    catch (Exception e)
-      {
-	return null;
-      }
-  }
-
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Person))
