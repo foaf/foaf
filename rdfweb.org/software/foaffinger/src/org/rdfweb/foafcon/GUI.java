@@ -16,6 +16,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -86,6 +87,10 @@ public class GUI extends ApplicationWindow
 	    GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
 		
+		GridData layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+
 		container.setLayout(layout);
 	    
 		Label label = new Label(container, SWT.NONE);
@@ -93,48 +98,86 @@ public class GUI extends ApplicationWindow
 		myNameText = new Text(container, SWT.SINGLE);
 		myNameText.setText(controller.getPerson().getName());
 		myNameText.addModifyListener(this);
-		
+		myNameText.setLayoutData(layoutData);
+
 		label = new Label(container, SWT.NONE);
 		label.setText("Mail Box:");
 		myMailText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
 		myMailText.setText(controller.getPerson().getMbox());
 		myMailText.addModifyListener(this);
-		
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		myMailText.setLayoutData(layoutData);
+
 		label = new Label(container, SWT.NONE);
 		label.setText("Homepage:");
 		myHomepageText = new Text(container, SWT.SINGLE);
 		myHomepageText.addModifyListener(this);
-		
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		myHomepageText.setLayoutData(layoutData);
+
 		label = new Label(container, SWT.NONE);
 		label.setText("Interest:");
 		myInterestText = new Text(container, SWT.SINGLE);
 		myInterestText.addModifyListener(this);
-		
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		myInterestText.setLayoutData(layoutData);
+
 		label = new Label(container, SWT.NONE);
 		label.setText("See Also:");
 		mySeeAlsoText = new Text(container, SWT.SINGLE);
 		mySeeAlsoText.addModifyListener(this);
-		
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		mySeeAlsoText.setLayoutData(layoutData);
+
 		label = new Label(container, SWT.NONE);
 		label.setText("Plan:");
-		myPlanText = new Text(container, SWT.MULTI);
+		layoutData =
+		    new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		label.setLayoutData(layoutData);
+		myPlanText = new Text(container, SWT.MULTI | SWT.WRAP |
+				      SWT.H_SCROLL | SWT.V_SCROLL);
 		myPlanText.addModifyListener(this);
-		
-		label = new Label(container, SWT.NONE);
-		label.setText("Visible Mail Address:");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL | 
+				 GridData.FILL_VERTICAL);
+		layoutData.widthHint = 200;
+		layoutData.heightHint = 150;
+		myPlanText.setLayoutData(layoutData);
+
+		//label = new Label(container, SWT.NONE);
+		//label.setText("Visible Mail Address:");
 		
 		showMboxButton = new Button(container, SWT.CHECK);
 		showMboxButton.addSelectionListener(this);
-		
-		revertButton = new Button(container, SWT.PUSH);
+		showMboxButton.setText("Mail Address Visible");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.horizontalSpan = 2;
+		showMboxButton.setLayoutData(layoutData);
+
+		/*revertButton = new Button(container, SWT.PUSH);
 		revertButton.setText("Revert");
 		revertButton.addSelectionListener(this);
-		revertButton.setEnabled(false);
+		revertButton.setEnabled(false);*/
 		
+		label = new Label(container, SWT.NONE);
+
 		changeButton = new Button(container, SWT.PUSH);
 		changeButton.setText("Change");
 		changeButton.addSelectionListener(this);
 		changeButton.setEnabled(false);
+		layoutData =
+		    new GridData(GridData.HORIZONTAL_ALIGN_END);
+		changeButton.setLayoutData(layoutData);
+		changeButton.setFocus();
 		
 	    tabItem = new TabItem(tabFolder, SWT.NONE);
 	    
@@ -144,7 +187,8 @@ public class GUI extends ApplicationWindow
 	    
 	    tabItem.setControl(sash);
 	    
-		table = new Table(sash, SWT.CHECK);
+		table = new Table(sash, SWT.CHECK | SWT.H_SCROLL | 
+				  SWT.V_SCROLL);
 		table.addSelectionListener(this);
 		
 		try
@@ -167,27 +211,42 @@ public class GUI extends ApplicationWindow
 		label = new Label(container, SWT.NONE);
 		label.setText("Name:");
 		nameText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
-		//nameText.setText("Name");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		nameText.setLayoutData(layoutData);
 		
 		label = new Label(container, SWT.NONE);
 		label.setText("Mail Hash:");
 		mboxText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
-		//mboxText.setText("0x39DF908G");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		mboxText.setLayoutData(layoutData);
 		
 		label = new Label(container, SWT.NONE);
 		label.setText("Homepage:");
 		homepageText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
-		//homepageText.setText("http://example.com/");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		homepageText.setLayoutData(layoutData);
 		
 		label = new Label(container, SWT.NONE);
 		label.setText("Interest:");
 		interestText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
-		//interestText.setText("http://example.com/foaffinger/");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		interestText.setLayoutData(layoutData);
 		
 		label = new Label(container, SWT.NONE);
 		label.setText("See Also:");
 		seeAlsoText = new Text(container, SWT.SINGLE | SWT.READ_ONLY);
-		//seeAlsoText.setText("http://example.com/me.rdf");
+		layoutData =
+		    new GridData(GridData.FILL_HORIZONTAL);
+		layoutData.widthHint = 200;
+		seeAlsoText.setLayoutData(layoutData);
 		
 		return tabFolder;
 	}
@@ -243,7 +302,7 @@ public class GUI extends ApplicationWindow
 	public void modifyText(ModifyEvent event) 
 	{
 		changeButton.setEnabled(true);
-		revertButton.setEnabled(true);
+		//revertButton.setEnabled(true);
 	}
 
 	/* (non-Javadoc)
