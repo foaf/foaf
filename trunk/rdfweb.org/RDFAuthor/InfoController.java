@@ -23,6 +23,8 @@ public class InfoController extends NSObject {
     NSView resourceView;
     
     NSView propertyView;
+    
+    NSView documentSizeView;
 
     NSButton literalChangeButton;
     
@@ -35,6 +37,10 @@ public class InfoController extends NSObject {
     NSTextField resourceIdField;
 
     NSTextField resourceTypeField;
+    
+    NSTextField documentWidthField;
+    
+    NSTextField documentHeightField;
     
     static final String itemChangedNotification = "org.rdfweb.RDFAuthor.itemChanged";
     
@@ -81,6 +87,7 @@ public class InfoController extends NSObject {
         literalView.setFrame(rect);
         resourceView.setFrame(rect);
         propertyView.setFrame(rect);
+        documentSizeView.setFrame(rect);
         
         // Initialise the panel with the 'nothing' view
         infoWindow.contentView().replaceSubview(contentView, nothingView);
@@ -89,6 +96,8 @@ public class InfoController extends NSObject {
     
     public void setInfoView(NSView view)
     {
+        if (currentView == view) return;
+        
         infoWindow.contentView().replaceSubview(currentView, view);
         currentView = view;
     }
@@ -110,8 +119,8 @@ public class InfoController extends NSObject {
         NSWindow window = (NSWindow) notification.object();
         if (currentWindow == window)
         {
-            setCurrentItem(null);
             currentWindow = null;
+            setCurrentItem(null);
         }
     }
     
@@ -135,9 +144,13 @@ public class InfoController extends NSObject {
     {
         currentItem = item;
         
-        if (currentItem == null)
+        if (currentWindow == null)
         {
             showNothing();
+        }
+        else if (currentItem == null)
+        {
+            showDocumentSize();
         }
         else if (!currentItem.isNode())
         {
@@ -160,7 +173,15 @@ public class InfoController extends NSObject {
     
     public void changeObject(Object sender)
     {
-        if (!currentItem.isNode())
+        if (currentWindow == null)
+        {
+            return;
+        }
+        else if (currentItem == null) // size change
+        {
+            changeSize();
+        }
+        else if (!currentItem.isNode())
         {
             changeProperty();
         }
@@ -249,6 +270,24 @@ public class InfoController extends NSObject {
         }
     }
     
+    public void changeSize()
+    {
+        float width = documentWidthField.floatValue();
+        float height = documentHeightField.floatValue();
+        
+        if ((width > 40) && (height > 40))
+        {
+            ((RDFAuthorDocument) currentWindow.delegate()).setDocumentSize(new NSSize(width, height));
+        }
+        else
+        {
+            RDFAuthorUtilities.ShowError("Document Too Small", "Sorry, that's too small. Try again.",
+                RDFAuthorUtilities.Normal, (NSWindow) infoWindow);
+            // Revert to previous value
+            setCurrentItem(null);
+        }
+    }
+    
     public boolean checkUrl(String url)
     {
         try
@@ -283,11 +322,13 @@ public class InfoController extends NSObject {
     {
         infoWindow.orderFront(this);
     }
-        
+    
+    
+    
     public void showNothing()
     {
         setInfoView(nothingView);
-        setFields("", "", "", "");
+        setFields("", "", "", "", 0, 0);
     }
     
     public void showArc(Arc arc)
@@ -297,7 +338,7 @@ public class InfoController extends NSObject {
         String propertyN = (arc.propertyName() == null)?"":arc.propertyName();
         
         setInfoView(propertyView);
-        setFields("", "", "", propertyNS + propertyN);
+        setFields("", "", "", propertyNS + propertyN, 0, 0);
     }
     
     public void showLiteral(Node literal)
@@ -306,7 +347,7 @@ public class InfoController extends NSObject {
         
         String literalVal = (literal.id() == null)?"":literal.id();
         
-        setFields(literalVal, "", "", "");
+        setFields(literalVal, "", "", "", 0, 0);
     }
     
     public void showNode(Node node)
@@ -318,10 +359,19 @@ public class InfoController extends NSObject {
         
         String id = (node.id() == null)?"":node.id();
         
-        setFields("", typeNS + typeN, id, "");
+        setFields("", typeNS + typeN, id, "", 0, 0);
     }
     
-    public void setFields( String literal, String type, String id, String property)
+    public void showDocumentSize()
+    {
+        setInfoView(documentSizeView);
+        
+        NSSize size = ((RDFAuthorDocument) currentWindow.delegate()).rdfModelView.frame().size();
+        
+        setFields("", "", "", "", size.width(), size.height());
+    }
+    
+    public void setFields( String literal, String type, String id, String property, float width, float height)
     {
         literalChangeButton.setState(NSCell.OffState);
         resourceChangeButton.setState(NSCell.OffState);
@@ -330,5 +380,10 @@ public class InfoController extends NSObject {
         propertyTextField.setStringValue(property);
         resourceIdField.setStringValue(id);
         resourceTypeField.setStringValue(type);
+        
+        documentWidthField.setStringValue("");
+        documentHeightField.setStringValue("");
+        documentWidthField.setFloatValue(width);
+        documentHeightField.setFloatValue(height);
     }
 }

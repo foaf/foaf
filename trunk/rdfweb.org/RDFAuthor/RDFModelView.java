@@ -82,7 +82,45 @@ public class RDFModelView extends NSView {
         
         rdfAuthorDocument.drawModel();
     }
+    /*
+    public boolean knowsPageRange(NSMutableRange range)
+    {
+        NSPrintInfo printInfo = NSPrintInfo.sharedPrintInfo(); // get info on printing
+        float pageWidth = printInfo.paperSize().width() - printInfo.leftMargin() - printInfo.rightMargin();
+        float pageHeight = printInfo.paperSize().height() - printInfo.topMargin() - printInfo.bottomMargin();
+        
+        int pagesAcross = (int) java.lang.Math.ceil( (double) this.frame().size().width() / (double) pageWidth );
+        int pagesDown = (int) java.lang.Math.ceil( (double) this.frame().size().height() / (double) pageHeight );
+        
+        System.out.println("Pages across: " + pagesAcross + " Pages down: " + pagesDown);
+        
+        range.setLength( pagesAcross * pagesDown );
+        
+        return true;
+    }
     
+    public NSRect rectForPage(int page)
+    {   
+        NSPrintInfo printInfo = NSPrintInfo.sharedPrintInfo();
+        
+        float pageWidth = printInfo.paperSize().width() - printInfo.leftMargin() - printInfo.rightMargin();
+        float pageHeight = printInfo.paperSize().height() - printInfo.topMargin() - printInfo.bottomMargin();
+        
+        int pagesAcross = (int) java.lang.Math.ceil( (double) this.frame().size().width() / (double) pageWidth );
+        int pagesDown = (int) java.lang.Math.ceil( (double) this.frame().size().height() / (double) pageHeight );
+        
+        int across = (page - 1) / pagesAcross;
+        int down = (page - 1) % pagesAcross;
+        
+        System.out.println("Print page: " + page + " at (" + across + " , " + down +")" );
+        
+        NSRect rect = new NSRect( pageWidth*(float)across , pageHeight*(float)down , pageWidth, pageHeight);
+        
+        System.out.println("Print rect: " + rect);
+        
+        return rect;
+    }
+    */
     public void setSizeFromPrintInfo(NSPrintInfo printInfo)
     {
         // This would be simple, but for the margins

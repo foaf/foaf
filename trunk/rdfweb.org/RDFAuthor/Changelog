@@ -1,3 +1,17 @@
+$Date: 2001-11-20 02:21:06 $ - pldms
+    
+    Queries might be less buggy :-). I don't do thread.stop() anymore - it just keeps
+    going (unless garbage collecting gets it?). Anyway, not perfect.
+    
+    Bookmarking done. Icons suck, tho'
+    
+    Reduced icon sizes in toolbar - some issues (they look funny), but tidier.
+    
+    Added document sizing and fixed printing pagination (simple, ultimately). Document
+    sizing needs to scale pic. You could get 'lost' model items.
+    
+    Document sizing also led to (slight) revision of info controller.
+
 2001/11/13 23:27:16 - pldms
     
     Queries classes are buggy - I'll fix 'em later. Thread.stop() is a _bad_ thing and

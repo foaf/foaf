@@ -200,6 +200,11 @@ public class RDFAuthorDocument extends NSDocument {
         
         window.setToolbar(theToolbar);
         
+        // Set printing to auto paginate
+        
+        NSPrintInfo.sharedPrintInfo().setHorizontalPagination(NSPrintInfo.AutoPagination);
+        NSPrintInfo.sharedPrintInfo().setVerticalPagination(NSPrintInfo.AutoPagination);
+        
         // Set rdfModelView's size to current paper size
         
         rdfModelView.setSizeFromPrintInfo( NSPrintInfo.sharedPrintInfo() );
@@ -222,10 +227,20 @@ public class RDFAuthorDocument extends NSDocument {
     
     public void setPrintInfo(NSPrintInfo printInfo)
     {
-        System.out.println("Setting paper size");
-        rdfModelView.setSizeFromPrintInfo(printInfo);
+        // Set printing to auto paginate
+        
+        printInfo.setHorizontalPagination(NSPrintInfo.AutoPagination);
+        printInfo.setVerticalPagination(NSPrintInfo.AutoPagination);
+        
         NSPrintInfo.setSharedPrintInfo(printInfo);
         super.setPrintInfo(printInfo);
+    }
+    
+    public void setDocumentSize(NSSize size)
+    {
+        rdfModelView.setFrameSize(size);
+        rdfModelView.setBoundsSize(size);
+        rdfModelScrollView.setNeedsDisplay(true);
     }
     
     public boolean showTextPreview(boolean showPreview, String type)
