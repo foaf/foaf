@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
 <head>
 <title>FOAF-a-matic -- Describase a si mismo en RDF</title>
@@ -40,7 +40,7 @@ contact</a></div>
 Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. Traducido por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:inkel-rdf@f14web.com.ar">Leandro Mariano López</a>.
 </p>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introducción</h2>
+<a xmlns="" name="introduction" /><h2 xmlns="">Introducción</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         FOAF-a-matic es una simple aplicación de Javascript que le permite crear un descripción
         FOAF ("Friend-of-A-Friend" o Amigo-de-un-Amigo) de si mismo.
@@ -97,9 +97,9 @@ Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:lei
 
 <form name="details" onSubmit="return false;">
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Los Formularios</h2>
+<a xmlns="" name="forms" /><h2 xmlns="">Los Formularios</h2>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personal</h2>
+<a xmlns="" name="personal" /><h2 xmlns="">Personal</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Información acerca de usted, y como pueden contactarlo.
         </p>
@@ -132,7 +132,7 @@ Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:lei
 </tr>
 </table>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Trabajo</h2>
+<a xmlns="" name="work" /><h2 xmlns="">Trabajo</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Información acerca de su lugar de trabajo.
         </p>
@@ -147,7 +147,7 @@ Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:lei
 </tr>
 </table>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Escuela</h2>
+<a xmlns="" name="school" /><h2 xmlns="">Escuela</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         ¿A que escuela fue?
         </p>
@@ -161,7 +161,7 @@ Escrito por <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:lei
 
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Gente Que Conoce</h2>
+<a xmlns="" name="friends" /><h2 xmlns="">Gente Que Conoce</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Informele a FOAF-a-matic acerca de la gente que conoce. Presione "Agregar Amigo" para agregar espacio para
         agregar más gente. Si su amigo ya tiene una descripción FOAF, entonces introduzca la dirección
@@ -182,7 +182,7 @@ createFriendFields();
 <input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()" />
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Generate Results</h2>
+<a xmlns="" name="results" /><h2 xmlns="">Generate Results</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Ahora que ha completado los detalles, usted es listo para convertirse a FOAF...
         </p>
@@ -195,7 +195,11 @@ createFriendFields();
 <p>
    <input type="submit" id="generate" value="FOAF me!" onClick="generate()" />
 </p>
-<textarea name="rdf" cols="80" rows="20" />
+<textarea name="rdf" cols="80" rows="20">
+
+<!-- see http://www.foaf-project.org/ for more on FOAF -->
+
+</textarea>
 
 <p align="left">
    <input id="reset" type="reset" />
@@ -203,7 +207,7 @@ createFriendFields();
 
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">¿Que Sigue??</h2>
+<a xmlns="" name="what-next" /><h2 xmlns="">¿Que Sigue??</h2>
         <h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Publicar su descripción FOAF</h3>
 
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
@@ -285,7 +289,7 @@ createFriendFields();
         </p>
     
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">License</h2>
+<a xmlns="" name="license" /><h2 xmlns="">License</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Este trabajo esta licenciado bajo la
         <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons License</a>.

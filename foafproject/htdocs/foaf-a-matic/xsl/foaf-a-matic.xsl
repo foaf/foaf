@@ -1,10 +1,11 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template"
+exclude-result-prefixes="fm fmt">
 
 <xsl:variable name="template" select="document('../src/foaf-a-matic.xml')"/>
 <xsl:variable name="input" select="/"/>
 
-<xsl:output method="xml"  doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
-doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"/>
+<xsl:output method="xml"  doctype-public="-//W3C//DTD XHTML 1.1//EN"
+	doctype-system= "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
 
 <xsl:template match="/">
     <xsl:apply-templates select="$template/*"/>

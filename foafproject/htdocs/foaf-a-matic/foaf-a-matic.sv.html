@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fmt="http://www.ldodds.com/ns/foaf-a-matic-template">
 <head>
 <title>FOAF-a-matic -- Beskriv dig själv i RDF</title>
@@ -40,7 +40,7 @@ contact</a></div>
 Författat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:leigh@ldodds.com">Leigh Dodds</a>. Översatt av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="http://mymarkup.net">Erik Stattin</a>
 </p>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="introduction" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Introduktion</h2>
+<a xmlns="" name="introduction" /><h2 xmlns="">Introduktion</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
       FOAF-a-Matic är en enkel Javascript-applikation som låter dig skapa en FOAF ("Friend-of-A-Friend" eller "Vän-till-En-Vän")-beskrivning av dig själv. Du kan läsa mer om FOAF i Edd Dumbills artikel "<a href="http://www-106.ibm.com/developerworks/xml/library/x-foaf.html">XML Watch: Finding friends with XML and RDF</a>" på <a href="http://rdfweb.org/foaf/">hemsidan för FOAF hos RDFWeb</a>, liksom <a href="http://xmlns.com/foaf/0.1/">beskrivningen av FOAF-vokabulären</a>.
         </p>
@@ -68,9 +68,9 @@ Författat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:le
 
 <form name="details" onSubmit="return false;">
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="forms" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Formulären</h2>
+<a xmlns="" name="forms" /><h2 xmlns="">Formulären</h2>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="personal" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Personligt</h2>
+<a xmlns="" name="personal" /><h2 xmlns="">Personligt</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
       Lite information om dig och hur andra kan kontakta dig.
         </p>
@@ -103,7 +103,7 @@ Författat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:le
 </tr>
 </table>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="work" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Arbete</h2>
+<a xmlns="" name="work" /><h2 xmlns="">Arbete</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Information om där du arbetar.
         </p>
@@ -118,7 +118,7 @@ Författat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:le
 </tr>
 </table>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="school" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Skola</h2>
+<a xmlns="" name="school" /><h2 xmlns="">Skola</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Var gick du i skolan?
         </p>
@@ -132,7 +132,7 @@ Författat av <a xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" href="mailto:le
 
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="friends" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Människor du känner</h2>
+<a xmlns="" name="friends" /><h2 xmlns="">Människor du känner</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
       Tala om för FOAF-a-Matic om några människor som du känner. Klicka på "Fler vänner" för att få mer utrymme att lägga till fler människor. Om din vän redan har en FOAF-beskrivning, placera då en länk till den i fältet "Se också".
         </p>
@@ -151,7 +151,7 @@ createFriendFields();
 <input id="addFriend" type="button" value="Add Friend" onClick="addFriendFields()" />
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="results" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Skapa resultat</h2>
+<a xmlns="" name="results" /><h2 xmlns="">Skapa resultat</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
       Nu har du fyllt i alla uppgifter och är beredd på att förvandlas till FOAF...
         </p>
@@ -164,7 +164,11 @@ createFriendFields();
 <p>
    <input type="submit" id="generate" value="FOAF me!" onClick="generate()" />
 </p>
-<textarea name="rdf" cols="80" rows="20" />
+<textarea name="rdf" cols="80" rows="20">
+
+<!-- see http://www.foaf-project.org/ for more on FOAF -->
+
+</textarea>
 
 <p align="left">
    <input id="reset" type="reset" />
@@ -172,7 +176,7 @@ createFriendFields();
 
 </form>
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="what-next" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Och nu?</h2>
+<a xmlns="" name="what-next" /><h2 xmlns="">Och nu?</h2>
         <h3 xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Publicera din FOAF-beskrivning</h3>
 
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
@@ -235,7 +239,7 @@ createFriendFields();
         </p>
     
 
-<a xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic" name="license" /><h2 xmlns="" xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">Licens</h2>
+<a xmlns="" name="license" /><h2 xmlns="">Licens</h2>
         <p xmlns:fm="http://www.ldodds.com/ns/foaf-a-matic">
         Det här verket är licensierat under en <a href="http://creativecommons.org/licenses/by-sa/1.0/">Creative Commons-license</a>.
         </p>

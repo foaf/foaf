@@ -120,7 +120,11 @@ createFriendFields();
 <p>
    <input type="submit" id="generate" value="FOAF me!" onClick="generate()"/>
 </p>
-<textarea name="rdf" cols="80" rows="20"></textarea>
+<textarea name="rdf" cols="80" rows="20">
+
+<!-- see http://www.foaf-project.org/ for more on FOAF -->
+
+</textarea>
 
 <p align="left">
    <input id="reset" type="reset"/>
