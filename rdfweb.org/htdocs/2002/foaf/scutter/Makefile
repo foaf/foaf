@@ -37,7 +37,7 @@ stats:
 
 
 foafpathdemo:
-	bin/paths --input=doc/sample_pathdata.txt 
+	bin/paths --input=doc/sample_pathdata.txt --search=mailto:danbri@w3.org
 
 foafcorpdemo:
 	bin/paths --input=doc/sample_foafcorp.txt --search=microsoft  
