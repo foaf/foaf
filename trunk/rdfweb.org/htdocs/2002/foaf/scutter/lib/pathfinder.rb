@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # foaf pathfinder (cargo cult edition) 
-# $Id: pathfinder.rb,v 1.3 2002-07-21 09:55:49 danbri Exp $ danbri@rdfweb.org
+# $Id: pathfinder.rb,v 1.4 2002-08-05 14:09:15 danbri Exp $ danbri@rdfweb.org
 #
 # This is a Ruby transliteration of a collection of Java classes 
 # originally by Damian Steer and Libby Miller.
@@ -236,6 +236,9 @@ class TGraph
   end
 
  def addPathWithName(node1, node2, edgeLabel, name1, name2)
+
+    raise "addPathWithName called with nil node refs" if (node1==nil or node2==nil)
+
    node1.downcase!
    node2.downcase!
 

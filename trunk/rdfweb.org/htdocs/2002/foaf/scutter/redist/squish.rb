@@ -2,13 +2,7 @@
 #
 # Ruby-RDF 
 # RDF Query support
-# $Id: squish.rb,v 1.1 2002-07-17 11:45:11 danbri Exp $
-
-## NOTE: squish.rb bundled with scutter, but 
-## is an external package (and W3C software), and will ultimately require a 
-## separate install. danbri@W3.org
-## 
-
+# $Id: squish.rb,v 1.2 2002-08-05 14:09:15 danbri Exp $
 
 =begin
 
@@ -101,6 +95,8 @@ class SquishQuery
     @loginfo = []
     @verboselog = []
     @all_vars = {}
+
+    @sqlversion=nil
 
     # todo: find out where/how one declares fields of a class!
     # seems to be no point in doing so, since it's all so runtimy
@@ -334,7 +330,7 @@ end
       loginfo ( 'obj_expr', content, nextdata )
       return where_rpar(nextdata)
     end
-    puts "Error: obj_expr didn't find expected content in '#{text} \n"
+    puts "Error: obj_expr didn't find expected content in '#{text}' \n"
   end
 
 
@@ -514,6 +510,13 @@ end
 
 def toSQLQuery (opts={})
 
+  if @sqlversion != nil
+    # puts "DEBUG: returning cache'd version of Squish2SQL."
+    return @sqlversion 
+  else
+    # puts "DEBUG: NOT returning cache'd version of Squish2SQL. generating now:"    
+  end
+
   sql=""
   sqlVariableNamesA = []
   sqlVariableNamesB = []
@@ -533,15 +536,17 @@ def toSQLQuery (opts={})
   where_lookup=[]	   # libby's "b" or 'resources' table
 
   clauses.each { |clause|
+    clause  = clause.clone ## TRIPPED UP
     p,s,o = clause[0..2]
-    p=expns(p)
-    s=expns(s)
-    o=expns(o)
+    p=expns(p)#.clone
+    s=expns(s)#.clone
+    o=expns(o)#.clone # DANBRI TODO: TRIPPED UP!! too much cloning cos weren't deep copies. see below
     p_bound = false
     s_bound = false
     o_bound = false
     p.gsub!(/^\?/,"") # this by reference, changes the contents of clauses 
                       # TODO: this will trip us up. Fix! decide on whether has ? or not
+		      # and so it did. in Squish parser too. Tried to fix it there.
     s.gsub!(/^\?/,"")
     o.gsub!(/^\?/, "")
     #puts("CLAUSE:  #{p} ; #{s} ; #{o} \n")
@@ -671,19 +676,21 @@ def toSQLQuery (opts={})
   sql = "SELECT DISTINCT "+ selectvars.join(", ")+" "
   sql += "FROM "
 
-(id_a_clause-1).times do |i|
-  sql += " #{main_table} a#{i+1}, "
+  (id_a_clause-1).times do |i|
+    sql += " #{main_table} a#{i+1}, "
+  end
+
+  lookup_tmp=[]
+  sqlVariableNamesB.each do |v|
+    lookup_tmp.push "#{lookup_table} #{v}"
+  end 
+  sql += lookup_tmp.join(", ")
+  sql += "\nWHERE\n\t" + where_lookup.join(" AND ") + " AND "+ where_triples.join(" AND ")
+
+  @sqlversion=sql
+  return sql
+
 end
-
-lookup_tmp=[]
-sqlVariableNamesB.each do |v|
-  lookup_tmp.push "#{lookup_table} #{v}"
-end 
-sql += lookup_tmp.join(", ")
-
-sql += "\nWHERE\n\t" + where_lookup.join(" AND ") + " AND "+ where_triples.join(" AND ")
-
-return sql
 
 # notes on how it works:
 #
@@ -711,7 +718,8 @@ return sql
 #   AND a1.subject=a3.subject
 #   AND a1.object=a2.object
 
-end
+
+
 
 
 
@@ -743,11 +751,17 @@ end # end of SquishQuery class definition
 # query a graph using squish (returns ResultSet)
 #
 def SquishQuery.ask(query,db)
+
   tables=[]
 
   query.full_clauses.each do |clause|
     vars={}
+    clause = clause.clone
+    # puts "Got clause: #{clause.inspect}"
     p,s,o=clause[0..2]
+    p=p.clone
+    s=s.clone
+    o=o.clone ## tripped up here as well TODO
     if p.gsub!(/^\?/,"")
       vars['p']=p
       p=nil
@@ -990,7 +1004,13 @@ class ResultRow
   attr_accessor :values
   def method_missing (methid)
     str = methid.id2name
-    return values[str] 
+
+    if values[str]
+      return values[str] 
+    else
+      return ''  # not sure how to deal with this
+    end		 # libby suggested '' better than nil or exception.
+ 
   end
   def initialize (row)
     @values=row # a hash
@@ -1008,10 +1028,10 @@ end
 
 class DBIDataService
 
-def initialize (driver,user,pass)
-  @DBI_DRIVER = 'DBI:Pg:test1'
-  @DBI_USER = 'danbri'
-  @DBI_PASS=''
+def initialize (driver='DBI:Pg:test1', user='danbri', pass='')
+  @DBI_DRIVER = driver 
+  @DBI_USER = user
+  @DBI_PASS= pass 
 end
 
 #not used yet
@@ -1074,7 +1094,7 @@ def defrag (idprops=nil)
   end
   sameIndividual={}
 
-  DBI.connect(DBI_DRIVER, DBI_USER, DBI_PASS) do | dbh |
+  DBI.connect(@DBI_DRIVER, @DBI_USER, @DBI_PASS) do | dbh |
 
   idprops.each do |idprop| 
     q1 = "select ?resource, ?value, WHERE (#{idprop} ?resource ?value) USING foo for bar"
