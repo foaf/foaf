@@ -92,16 +92,16 @@ div.specterm {
   </head>
   <body>
     <h1>FOAF Vocabulary Specification <br /></h1>
-    <h2>Namespace Document 13 March 2003</h2>
+    <h2>Namespace Document 1 May 2004</h2>
     <dl>
       <dt>Latest version:</dt>
       <dd>
         <a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a>
       </dd>
       <dt>Last update:</dt>
-      <dd>$Date: 2004-03-29 22:19:29 $</dd>
+      <dd>$Date: 2004-05-01 20:52:02 $</dd>
       <dt>Revision:</dt>
-      <dd>$Revision: 1.57 $</dd>
+      <dd>$Revision: 1.58 $</dd>
       <dt>Authors:</dt>
       <dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a></dd>
       <dt>Contributors:</dt>
@@ -110,7 +110,7 @@ wider <a href="http://www.w3.org/RDF/Interest/">RDF developer community</a>. See
 </dd>
     </dl>
     <p class="copyright">
- Copyright © 20002004 Dan Brickley and Libby Miller <br /><br />
+ Copyright © 200-02004 Dan Brickley and Libby Miller <br /><br />
 
 <!-- Creative Commons License -->
 <a href="http://creativecommons.org/licenses/by/1.0/"><img alt="Creative Commons License" style="border: 0; float: right;" src="http://creativecommons.org/images/public/somerights.gif" /></a>
@@ -153,8 +153,8 @@ Commented out so we can XHTML validate. Very unfortunate way of doing things...
     <hr />
     <div class="status">
       <h2>Status of This Document</h2>
-      <p><strong>NOTE:</strong> You are looking at a very rough cut of the 
-next-generation FOAF spec. The bulk of this document is now generated
+      <p><strong>NOTE:</strong>This specification is an evolving
+document. The bulk of this document is now generated
 by combining the <a href="index.rdf">RDFS/OWL</a> machine-readable FOAF
 ontology with a set of <a href="../doc/">per-term</a> documents.  The
 remaining sections require serious attention; we are well aware that
@@ -162,7 +162,7 @@ better examples and tighter intro text are needed. Rather than try to
 perfect things offline, we are switching over to the new spec as it
 brings a lot of new explanatory text into view. 
 </p>
-      <p>Our editorial TODO list includes: fix table of contents, reorg intro
+<p>Our editorial TODO list includes: fix table of contents, reorg intro
 text, add examples, fix CSS, find a strategy to allow XHTML validation
 while embedding RDF (currently document won't validate). The
 spec-management scripts should also be extended to generate an index of
@@ -3195,7 +3195,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2004-03-29 22:19:29 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2004-05-01 20:52:02 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3885,7 +3885,7 @@ Sesame, 3store etc).
 <!-- first we introduce a number of RDF namespaces we will be using... -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2004-03-29 22:19:29 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2004-05-01 20:52:02 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
