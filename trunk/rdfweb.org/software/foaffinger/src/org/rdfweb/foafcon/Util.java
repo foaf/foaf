@@ -1,5 +1,8 @@
 package org.rdfweb.foafcon;
 
+import java.io.*;
+import java.net.*;
+
 public class Util
 {
   public static String replace(String s, char oldChar, String newChar)
@@ -30,7 +33,7 @@ public class Util
   
   public static String get(String scheme,
 			   String address,
-			   String port,
+			   int port,
 			   String object)
   {
     try
