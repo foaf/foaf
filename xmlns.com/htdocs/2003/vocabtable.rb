@@ -20,7 +20,7 @@ DC = vdl.reg_xmlns 'http://purl.org/dc/elements/1.1/', 'dc'
 RDF = vdl.reg_xmlns 'http://www.w3.org/1999/02/22-rdf-syntax-ns#','rdf'
 VDL = vdl.reg_xmlns 'http://www.w3.org/2000/01/rdf-schema#','vdl'
 
-puts "<html><head><title>RDF Vocab</title></head><body><h1>RDF Vocabulary</h1>\n"
+#puts "<html><head><title>RDF Vocab</title></head><body><h1>RDF Vocabulary</h1>\n"
 
 s1=Statement.new (nil, RDF+'type', VDL+'Class')
 s2=Statement.new (nil, RDF+'type', RDF+'Property')
@@ -37,7 +37,7 @@ classes.subjects.each do |classuri|
   puts "<tr>\n <td>#{name}</td> \n"
   puts " <td>#{c.vdl_comment}</td></tr> \n"  
 end
-puts "</table>\n\n"
+puts "\n</table>\n\n"
 
 
 puts "<table border=\"1\" summary=\"RDF properties\" ><tr><th>Property name</th><th>comment</th><th>domain</th><th>range</th></tr>\n"
@@ -63,5 +63,7 @@ props.subjects.each do |propuri|
   puts "<tr>\n <td>#{name}</td> \n"
     puts " <td>#{p.vdl_comment.to_s}</td><td>#{dt}</td><td>#{rt}</td></tr> \n"  
 end
+
+puts "\n</table>\n\n"
 
 
