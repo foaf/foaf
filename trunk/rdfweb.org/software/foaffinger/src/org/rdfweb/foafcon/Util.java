@@ -97,25 +97,13 @@ public class Util
       {
 	System.out.println(allHostInfo[i]);
 	
-	if (!allHostInfo[i].getAddress().equals("127.0.0.1"))
+	if (!allHostInfo[i].getHostAddress().equals("127.0.0.1"))
 	  return allHostInfo[i];
 	
 	
-        if(allHostInfo[i].isLoopbackAddress())
-	  System.out.println("loop back address");
-	else if(allHostInfo[i].isLinkLocalAddress())
-	  {
-	    System.out.println("link local address");
-	  }
-	
-	  
-        else if(allHostInfo[i].isSiteLocalAddress())
-	  System.out.println("site local address");
-	else if(allHostInfo[i].isAnyLocalAddress())
-	  System.out.println("local addresses");
       }
 
-    return InetAddress.getLocalHost();
+    throw new Exception("Can't get a non-loopback address");
     
   }
   
