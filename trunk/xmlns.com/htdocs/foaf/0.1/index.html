@@ -104,9 +104,9 @@ div.specterm {
 <dt>Latest version:</dt>
 <dd><a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a></dd>
 <dt>Last update:</dt>
-<dd>$Date: 2003-09-11 11:05:31 $</dd>
+<dd>$Date: 2003-09-11 14:04:40 $</dd>
 <dt>Revision:</dt>
-<dd>$Revision: 1.42 $</dd>
+<dd>$Revision: 1.43 $</dd>
 <dt>Authors:</dt> 
 <dd><a href="mailto:danbri@rdfweb.org">Dan Brickley</a>, <a href="mailto:libby.miller@bristol.ac.uk">Libby Miller</a>
 </dd> 
@@ -1623,7 +1623,7 @@ Note that FOAF's notion of gender isn't defined biologically or anatomically - t
 be tricky since we have a broad notion that applies to all <code><a href="#term_Agent">foaf:Agent</a></code>s 
 (including robots - eg. Bender from Futurama is 'male'). As stressed above, 
 FOAF's notion of gender doesn't attempt to encompass the full range of concepts associated 
-with the human gender, biology and sexuality. As such it is a (perhaps awkward) compromise 
+with human gender, biology and sexuality. As such it is a (perhaps awkward) compromise 
 between the clinical and the social/psychological. In general, a person will be the best 
 authority on their <code><a href="#term_gender">foaf:gender</a></code>. Feedback on this design is 
 particularly welcome (via the FOAF mailing list, 
@@ -1635,7 +1635,7 @@ be respectful of diversity without attempting to catalogue or enumerate that div
 This may also be a good point for a periodic reminder: as with all FOAF properties, 
 documents that use '<code><a href="#term_gender">foaf:gender</a></code>' will on occassion be innacurate, misleading 
 or outright false. FOAF, like all open means of communication, supports <em>lying</em>. Application authors using 
-FOAF data should be cautious in their presentation of all unverified information, but be 
+FOAF data should always be cautious in their presentation of unverified information, but be 
 particularly sensitive to issues and risks surrounding sex and gender. Designers of 
 FOAF-based user interfaces should be careful to allow users to omit 
 <code><a href="#term_gender">foaf:gender</a></code> when describing themselves and others, and to allow at least for 
@@ -3011,7 +3011,7 @@ Sesame, 3store etc).
       rdf:about=&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:title=&quot;Friend of a Friend (FOAF) vocabulary&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
       dc:description=&quot;The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language.&quot;</span><span class="http://purl.org/dc/elements/1.1/"> 
-      dc:date=&quot;$Date: 2003-09-11 11:05:31 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
+      dc:date=&quot;$Date: 2003-09-11 14:04:40 $&quot;</span></span><span class="http://www.w3.org/2002/07/owl#">&gt;
     <span class="http://www.w3.org/2000/01/rdf-schema#">&lt;rdfs:seeAlso</span><span class="http://www.w3.org/2000/01/rdf-schema#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
       rdf:resource=&quot;http://www.w3.org/2001/08/rdfweb/foaf&quot;</span></span><span class="http://www.w3.org/2000/01/rdf-schema#">&gt;&lt;/rdfs:seeAlso&gt;</span>
     <span class="http://www.w3.org/2002/07/owl#">&lt;owl:imports</span><span class="http://www.w3.org/2002/07/owl#"><span class="http://www.w3.org/1999/02/22-rdf-syntax-ns#"> 
@@ -3702,7 +3702,7 @@ Sesame, 3store etc).
 <!-- first we introduce a number of RDF namespaces we will be using... -->
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:wot="http://xmlns.com/wot/0.1/" xmlns:dc="http://purl.org/dc/elements/1.1/">
 <!-- Here we describe general characteristics of the FOAF vocabulary ('ontology'). -->
-  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 11:05:31 $">
+  <owl:Ontology rdf:about="http://xmlns.com/foaf/0.1/" dc:title="Friend of a Friend (FOAF) vocabulary" dc:description="The Friend of a Friend (FOAF) RDF vocabulary, described using W3C RDF Schema and the Web Ontology Language." dc:date="$Date: 2003-09-11 14:04:40 $">
     <rdfs:seeAlso rdf:resource="http://www.w3.org/2001/08/rdfweb/foaf"/>
     <owl:imports rdf:resource="http://www.w3.org/2000/01/rdf-schema"/>
     <owl:imports rdf:resource="http://www.w3.org/2002/07/owl"/>
