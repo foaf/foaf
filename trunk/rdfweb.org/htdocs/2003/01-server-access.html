@@ -24,6 +24,15 @@ some typing).
 </pre>
 <p>The same should work for xmlns.com, foafnaut.org, rdfweb.org CVS trees.</p>
 
+
+<p>A slight variant for MacOS X users running the default 'tcsh' 
+shell:</p>
+<pre>
+setenv CVS_RSH 'ssh'
+setenv CVSROOT :ext:jibberjim@foafnaut.org:/var/lib/cvs
+cvs co foafnaut.org/
+</pre>
+
 <h2>Further Reading</h2>
 <ul>
 <li><a href="http://rdfweb.org/viewcvs/viewcvs.cgi">RDFWeb ViewCVS 
@@ -38,7 +47,7 @@ FAQs</a>), for MacOS X users.</li>
 <hr />
 Author: <a href="mailto:danbri-sysadmin@rdfweb.org">Dan
 Brickley</a> <br />
-$Id: 01-server-access.html,v 1.4 2003-01-31 13:37:41 danbri Exp $
+$Id: 01-server-access.html,v 1.5 2003-02-07 22:27:01 danbri Exp $
 </body>
 </html>
 
