@@ -1,0 +1,27 @@
+# Meerkat Sherlock Plugin
+# Rael Dornfest <rael@oreilly.com>
+# The O'Reilly Network, O'Reilly & Associates, Inc.
+# http://www.oreillynet.com
+
+<search
+	name="Meerkat: An Open Wire Service"
+	method=get
+	description="Meerkat is a Web-based syndicated content reader providing a simple interface to RSS stories."
+	action="http://oreillynet.com/meerkat/sherlock"
+ update="http://oreillynet.com/meerkat/etc/sherlock/meerkat.sit"
+ dateCheckDays ="7"
+ routeType="internet"
+>
+
+<INPUT NAME="s" user>
+<INPUT NAME="t" VALUE="7DAY">
+<INPUT NAME="_fl" VALUE="sherlock">
+ 
+<interpret
+	resultListStart="<meerkat>"
+	resultListEnd="</meerkat>"
+	resultItemStart="<story>"
+	resultItemEnd="</story>"
+	>
+
+</search>

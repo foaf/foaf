@@ -1,0 +1,56 @@
+
+&lt;rdf:RDF xml:lang="en"
+             xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+             xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+             xmlns:rss="http://purl.org/rss/1.0/"
+             xmlns="http://rdfweb.org/2000/01/swipe-ns#"&gt;
+
+&lt;rdf:Description rdf:about="http://oreillynet.com/meerkat/"&gt;
+&lt;dc:title&gt;Meerkat: An Open Wire Service&lt;/dc:title&gt;
+&lt;dc:description&gt;
+  Meerkat is a Web-based syndicated content reader 
+  providing a simple interface to RSS stories.
+&lt;/dc:description&gt;
+&lt;dc:creator&gt;Rael Dornfest&lt;/dc:creator&gt;
+&lt;dc:publisher&gt;The O'Reilly Network, O'Reilly &amp; Associates, Inc.&lt;/dc:publisher&gt;
+
+&lt;swiper&gt;
+  &lt;BasicSpec rdf:about="" method="GET"&gt;
+  &lt;action  rdf:resource="http://oreillynet.com/meerkat/sherlock"/&gt;
+  &lt;macfile rdf:resource="http://oreillynet.com/meerkat/etc/sherlock/meerkat.sit"/&gt;
+
+  &lt;!-- the RSS syndication vocabulary tells us how often to refresh the data --&gt;
+  &lt;sy:updatePeriod&gt;daily&lt;/sy:updatePeriod&gt;
+  &lt;sy:updateFrequency&gt;7&lt;/sy:updateFrequency&gt;
+  &lt;sy:updateBase&gt;2001-01-01T12:00+00:00&lt;/sy:updateBase&gt;
+
+  &lt;!-- todo: banner image / text /link, use rss and util vocabs --&gt;  
+
+  &lt;!-- incoming data needed by web service --&gt;
+  &lt;in&gt;
+   &lt;rdf:Seq&gt;
+   &lt;li&gt;&lt;Input name="t" content="7DAY"/&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;Input name="_fl" content="sherlock"/&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;UserInput name="s"/&gt;&lt;/li&gt;
+   &lt;/rdf:Seq&gt;
+  &lt;/in&gt;
+
+
+  &lt;!-- interpretation rules for output from web service --&gt;
+  &lt;out&gt;
+   &lt;ParseRules
+        resultListStart="&amp;lt;meerkat&amp;gt;"
+	resultListEnd="&amp;lt;/meerkat&amp;gt;"
+	resultItemStart="&amp;lt;story&amp;gt;"
+	resultItemEnd="&amp;lt;/story&amp;gt;"&gt;
+        &lt;!-- here we use a simple text-match approach --&gt;
+     &lt;parseformat rdf:resource="http://www.apple.com/sherlock/"/&gt;
+    &lt;/ParseRules&gt;
+  &lt;/out&gt;
+  &lt;!-- XSLT and other output format handlers would be listed here --&gt;
+ &lt;/BasicSpec&gt;
+ &lt;/swiper&gt;
+
+&lt;/rdf:Description&gt;

@@ -1,0 +1,13 @@
+#!/bin/perl
+my $filename = shift;
+my $file;
+open (IN, $filename)||die 'no file';
+while (<IN>) { $file .= $_;}
+
+$file =~ s/&/&amp;/g;
+$file =~ s/</&lt;/g;
+$file =~ s/>/&gt;/g;
+
+
+
+print $file;

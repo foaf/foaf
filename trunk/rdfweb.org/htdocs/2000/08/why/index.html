@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>RDFWeb General Overview</title>
+
+<style type="text/css">
+BODY {
+  margin: 2em 1em 2em 70px;
+  font-family: sans-serif;
+  color: black;
+}
+
+H1, H2, H3, H4, H5 {
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: #000000; 
+}
+</style>
+
+
+</head>
+<body bgcolor="#ffffff">
+<center>
+<table border="0" bgcolor="#ffffcc" cellpadding="3" cellspacing="0"
+width="90%">
+<tr>
+<td align="left" valign="middle"><a href="/">
+RDFWeb</a></td>
+<td align="right">&nbsp;</td>
+</tr>
+
+<tr>
+<td bgcolor="#dddddd" align="right" colspan="2"><a
+href="http://rdfwebring.org/2000/08/why/">overview</a> | <a
+href="mailto:rdfweb-dev@egroups.com">feedback</a> </td>
+</tr>
+</table>
+</center>
+
+<h2>RDFWeb Intro</h2>
+
+<p>This document introduces the RDFWeb system, providing an
+overview of the technology, ambitions and architecture behind the
+project. While RDFWeb relies heavily on the <a
+href="http://www.w3.org/">W3C</a> specifications for the <em>
+Resource Description Framework</em> (<a
+href="http://www.w3.org/RDF/">RDF</a>), this document stands alone
+as a complete description of the system. A brief introduction of
+the RDF information model is provided for the curious.</p>
+
+<h2>Status</h2>
+
+<p>This document is incomplete. RDFWeb is incomplete. The quick
+start guide hasn't been written yet. The vocabulary is in flux. Everything
+might change. We do however have two running RDFWeb implementations,
+and are now focussing on getting an initial stable RDF vocabulary defined
+so we can scale up the effort into a large distributed testbed. The vocab
+and quick start documentation are the most urgently needed. The current
+General Overview document should provide a reasonable pespective on what
+we're doing here, although it is patchy in several places.
+ </p>
+
+
+
+<h2>Contents</h2>
+
+<ul>
+<li><a href="#lWhat">What is RDFWeb?</a></li>
+
+<li><a href="#lExamples">Examples</a></li>
+<li><a href="#lGoals">Goals - why build RDFWeb?</a></li>
+<li><a href="#lSaying">Context: Saying things in RDF</a></li>
+<li><a href="#lVocab">RDFWeb Starter Vocabulary v0.1</a> (@draft)</li>
+<li><a href="#lForUsers">RDFWeb for Users</a> (@@draft)</li>
+<li><a href="#lForDevelopers">RDFWeb for Developers</a></li>
+<li><a href="#lAck">Acknowledgements</a></li>
+<li>References (@@notyet)</li>
+</ul>
+
+
+<a name="lWhat"></a>
+<h2>What is RDFWeb?</h2>
+
+<p>The basic idea behind RDFWeb is simple: the Web is all about
+making connections between things. RDFWeb provides some basic
+machinery to help us tell the Web about the connections between the
+things that matter to us.</p>
+
+<p>Thousands of people already do this on the Web by describing
+themselves and their lives on their home page. Using RDFWeb,
+you can help machines understand your home page, and through doing
+so, learn about the relationships that connect people, places and
+things described on the Web. RDFWeb uses W3C's RDF technology
+to integrate information from your home page with that of your
+friends, and the friends of your friends, and their friends...</p>
+
+
+<a name="lExamples"></a>
+<h2>An example</h2>
+
+<p>RDFWeb is best explained with an example. Consider a Web of
+inter-related home pages, each describing things of interest to a
+group of friends. Each new home page that appears on the Web tells
+the world something new, providing factoids and gossip that make
+the Web a mine of disconnected snippets of information. RDFWeb
+provides a way to make sense of all this.</p>
+
+<p>Here's an example, a fragment from the mostly-fictional
+RDFWeb database. First we list some facts, then describe how
+the RDFWeb system makes it possible to explore the Web learning
+such things.</p>
+
+<p><small><code>Dan lives in Zetland road, Bristol, UK with Libby
+and Craig. Dan's email address is danbri@w3.org. Libby's email
+address is libby.miller@bris.ac.uk. Craig's is
+craig@netgates.co.uk. Dan and Libby work for an organisation called
+"ILRT" whose website is at http://ilrt.org/. Craig works for
+"Netgates", an organisation whose website is at
+http://www.netgates.co.uk/. Craig's wife Liz lives in Bristol with
+Kathleen. Kathleen and Liz also work at "Netgates". Martin knows
+Craig, Dan and Libby quite well. Martin lives in Bristol and has an
+email address of m.l.poulter@bristol.ac.uk. (etc...)
+</code></small></p>
+
+<p>This kind of information is the sort of thing typically found on
+Web home pages. The extract shown here indicates how short,
+stylised factual sentences can be used to characterise a Web of
+relationships between people, places, organisations and documents.
+In real life, this information would be most likely be distributed
+across variou s Web pages created by the individuals listed. Very
+likely, their pages will link directly or indirectly to the home
+pages of countless other friends-of-friends-of-friends.</p>
+
+
+
+<a name="lGoals"></a>
+<h2>Goals</h2>
+
+<p>
+We want a better way of keeping track of the scattered fragments of data
+currently represented in the Web.
+</p>
+
+
+<p>
+We want to be able to find documents in the Web based on their properties
+and inter-relationships; we want to be able to find information about people
+based on their publications, employment details, group membership and
+declared interests. We want to be able to share annotations, ratings,
+bookmarks and arbitrary useful data fragments using some common
+infrastructure. We want a Web search system that's more like a database
+and less like a lucky dip. We need it to be be distributed, decentralised,
+and content-neutral. RDFWeb, if successful, should help the Web do
+the sorts of things that are currently the proprietary offering of
+centralised services.
+</p>
+
+<p>
+RDF seems to offer a lot of promise in this area. While RDF is defined in
+terms of a rather abstract information model, our needs are rather
+practical. We want to be able to ask the Web sensible questions and common
+kinds of thing (documents, organisations, people) and get back sensible
+results.
+</p>
+
+<ul>
+<li>
+ "<em>Find me today's web page recommendations made by people who
+work for Medical organisations</em>".
+</li>
+
+<li>
+"<em>Find me recent publications by people I've co-authored documents
+with.</em>"
+</li>
+
+<li>
+"<em>Show me critiques of this web page, and the home pages of the author
+of that critique</em>"
+</li>
+
+<li>etc...</li>
+
+</ul>
+
+<p>
+All this sounds a bit ambitious (and it is), but we think we've a 
+reasonable sense of how to build a linked information system with these
+capabilities.
+</p>
+
+
+
+
+
+<a name="lSaying"></a>
+<h2>Saying things in RDF</h2>
+
+<p>This section can be skipped by readers who are not interested in
+the technological underpinnings of RDFWeb.</p>
+
+<p>On the Web, one technology we can use to describe various kinds
+of things and their inter-relationships is called 'RDF', the <em>
+Resource Description Framework</em>. <a
+href="http://www.w3.org/RDF/">RDF</a> is a relatively new
+specification produced by the 
+<a href="http://www.w3.org/">World Wide Web Consortium</a> (W3C). Like
+previous W3C specifications for HTML (Web documents), RDF is
+designed for widespread, decentralised use.</p>
+
+<p>At the heart of the RDF is an information model based around the
+idea of simple 3-part sentences such as "dan hometown-name
+bristol", or "martin homepage-url http://www.glandscape.com/". It
+turns out that this somewhat stilted way of describing things can
+be very expressive, since RDF allows anyone to define new terms
+such as 'homepage', 'hometown', 'bestFriendHomepage' and so on. The
+RDFWeb starter vocabulary provides some basic terms such as
+these to provide a common language for machine-readable homepages.
+RDF allows multiple such languages to be mixed together - for
+example, you can use the "Dublin Core" vocabulary to describe
+documents you've written or contributed to.</p>
+
+<p>The RDFWeb system itself doesn't care much about what you
+say, but about the way in which you say it. By using a carefully
+designed file format and a simple common information model, we can
+build a distributed database in which anyone can say anyth ing
+about anything... By squashing our information into the simple
+3-part-sentence framework, we can build systems that automatically
+combines such data from multiple sources.</p>
+
+<p>One page might tell use that "daniel.brickley@bristol.ac.uk
+works-at http://ilrt.org/". Another might tell use that
+"http://ilrt.org/ based-in bristol". On this basis, RDF-aware tools
+such as the RDFWeb system could conclude that the person whose
+email address is daniel.brickley@bristol.ac.uk works for an
+organisation based in Bristol. Other pages might tell us more about
+that individual, or about the city of Bristol , or describe other
+things related to Bristol or daniel.brickley@bristol.ac.uk</p>
+
+<p>By adopting a common style of representing this kind of data to
+Web-based computer systems, we can start to treat the Web as a
+distributed database containing arbitrary facts (as well as lies
+and half-truths...). RDFWeb was created to explore this
+view of the Web, and to show how practical tools can be built
+around these sometimes abstract ideas. There are a number of subtle
+technical points surrounding the practicalities of identifying
+people, organisations etc. in a standard way on the Web. These are
+discussed in more detail when we introduce the RDFWeb starter
+vocabulary.</p>
+
+
+
+
+
+<a name="lVocab"></a>
+<h2>Starter Vocabulary</h2>
+
+<p>(@@TODO: this is _very_sketchy. Nail down v0.1 and test it!)</p>
+
+<p>
+The starter vocabulary for RDFWeb combines some basic RDF vocabulary
+we invented for the project, plus other useful existing vocabulary such as
+the Dublin Core metadata elements.
+</p>
+
+<p>
+The (pre-publication) <a href="http://xmlns.com/foaf/0.1/">Friend of a
+Friend (FOAF)</a> vocabulary provides the basics. This XML namespace
+defines RDF properties useful for RDFWeb applications. Currently these
+are inadequately documented, and there is already some variation and
+ambiguity in the few testbed data files we already have.
+</p>
+
+<p>
+See also <a href="vocab1.html">vocab scratchpad</a> which lists a few
+possible/likely properties.
+</p>
+
+<a name="lForUsers"></a>
+<h2>RDFWeb for Users</h2>
+
+<p>Q: How do I get started?</p>
+
+<p>A: (It Should Be) Easy. Create an RDFWeb document following the
+'<a href="../qs/">quick start</a>' guidelines provided here(@@TODO!), and
+put it online alongside
+your homepage. The guidelines describe how to reference your
+RDFWebRing page from your normal homepage, and some other
+mechanisms for announcing its existence to the Web.</p>
+
+<p>Q: What happens then?</p>
+
+<p>A: Various RDFWeb tools watch the Web for new files, and
+combine your data into a database along with many other similar
+files. These are available for searching...</p>
+
+
+<a name="lForDevelopers"></a>
+<h2>RDFWeb for Developers</h2>
+
+<p>Q: Um... how's it work then?</p>
+
+<p>A: Everything is represented as fragments of a huge data graph,
+with Web identifiers for relationships between things (eg. wife,
+livesWith etc), and Web identifiers for anything we can readily
+identify, such as homepages, mailboxes. 
+This provides an organising principle for blending together data from different sources.
+We can't <em>always</em> tell when two people are talking about the
+same thing, but we can try. 
+</p>
+
+<p>
+How can we represent people to the RDFWeb? Personal mailboxes are a
+good example. They can be used as a way of picking out some individual for
+unambiguous description: for any
+<code>mailto:name@domain.example.com</code>
+<em>personal</em>
+email address, there's only ever one proper flesh and blood owner
+(theoretically). So RDFWeb can use this kind of fact to
+integrate data. 
+</p>
+
+<p>
+Here's a <a href="danbri-foaf.gif">graphical
+representation</a> of an RDF description for the person who has a
+personal mailbox <code>mailto:daniel.brickley@bristol.ac.uk</code>. Note
+that we don't have stable IDs for the people, so RDFWeb software will
+have to do a bit of extra work to integrate and normalise this data when
+it merges it with factoids from the RDF home pages of the other people
+mentioned in the graph. We can achieve this through knowing that for any
+specific value of some uniquely identifying property, there can be <em>at
+most one</em> Web-identifiable resource with that property value. This
+trick works for people and email addresses, organisations and their home
+pages, restaurants and their telephone numbers and so on.
+</p>
+
+
+<a name="lAck"></a>
+<h3>Acknowledgements</h3>
+<p>
+This document was written by <a
+href="mailto:daniel.brickley@bristol.ac.uk">dan
+brickley</a> and <a href="libby.miller@bristol.ac.uk">libby
+miller</a> with lots of ideas and suggestions from members of the
+rdfweb-dev mailing list.
+</p>
+
+<h3>Rough Notes / scratchpad</h3>
+
+<p>(FAQ stuff here...)</p>
+
+<p>Privacy/exhibitionism. Who owns what? (idea, database,
+software). Nobody owns the dataset, tools should be opensource,
+idea is trivial. This kind of application is pretty obvious once
+you buy into RDF. Database: each RDF page should be freely
+distributable, though legal nightmare with storage of personal data
+-- need to investigate. IPR/copyright over each page? (fair use
+statement to stop spammers harvesting the entire thing?). Basic
+vocab (see notes). Roadmap (event log / lifestream; dig sigs).
+recommendations. sw as scaffolding. How to say 'i like this
+restaurant...' etc. Motivating inference stuff: can we find real
+world uses for transitive relationships, symmetric etc. Eg. family
+tree stuff.</p>
+
+
+
+  <p>
+    <a href="http://validator.w3.org/check/referer"><img
+      	  border="0"
+	  src="http://validator.w3.org/images/vxhtml10"
+        alt="Valid XHTML 1.0!" height="31" width="88" /></a>
+  </p>
+
+</body>
+</html>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0"?> 
+
+     <rdf:RDF 
+       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+       xmlns:content="http://purl.org/rss/modules/content/"
+       xmlns="http://purl.org/rss/1.0/"
+     > 
+
+       <channel rdf:about="http://meerkat.oreillynet.com/?_fl=rss1.0">
+         <title>Meerkat</title>
+         <link>http://meerkat.oreillynet.com</link>
+         <description>Meerkat: An Open Wire Service</description>
+       </channel>
+
+       <item rdf:about="http://c.moreover.com/click/here.pl?r123" position="1">
+         <inchannel rdf:resource="http://meerkat.oreillynet.com/?_fl=rss1.0" />
+         <title>XML: A Disruptive Technology</title> 
+         <link>http://c.moreover.com/click/here.pl?r123</link>
+         <description>
+           XML is placing increasingly heavy loads on the existing
+technical
+           infrastructure of the Internet.
+         </description>
+
+         <content:content>
+           <rdf:Description>
+             <content:format>xhtml</content:format>
+             <rdf:value rdf:parseType="Literal">
+                This is a demonstration of <strong>XHTML</strong> in RSS!
+             </rdf:value>
+           </rdf:Description>
+         </content:content>
+         <content:content>
+           <rdf:Description>
+             <content:format>html</content:format>
+             <rdf:value> <!-- don't need to escape since its just text -->
+                 <![CDATA[
+                    This is a demonstration of <b>HTML</b> in RSS!
+                 ]]>
+             </rdf:value>
+           </rdf:Description>
+         </content:content>
+         <content:content>
+           <rdf:Description>
+             <content:format>text</content:format>
+             <rdf:value>This is a demonstration of **plain text** in RSS!</rdf:value>
+           </rdf:Description>
+         </content:content>
+
+       </item> 
+
+     </rdf:RDF>

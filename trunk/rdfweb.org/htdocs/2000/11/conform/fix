@@ -1,0 +1,10 @@
+#!/bin/perl
+
+my $file = shift;
+
+open(IN,$file) || die;
+
+while (<IN>){
+  $_ =~ s/{([^}]+)}\s*\(/triple\({$1}, /;
+  print $_ ."\n";
+}
