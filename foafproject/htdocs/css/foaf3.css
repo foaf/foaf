@@ -2,7 +2,7 @@
 		  margin: 0;
 		  padding: 0;
 		  height: 100%;
-		  background: #002D3B url("../images/bg-Left.png") repeat-y;
+/*		  background: #002D3B url("../images/bg-Left.png") repeat-y; */
 		  font: 12px Verdana,Sans-serif;
 			}
 	
@@ -16,7 +16,7 @@
 		}
 		
 		div.marginLeft {
-			margin-left: 22px;
+/*			margin-left: 22px; */
 			padding: 0px;
 			background-color: white;
 			}		
@@ -105,7 +105,7 @@
 
 #leftcontent {
 	position: absolute;
-	left: 22px;
+/*	left: 22px; */
 	width: 252px;
 	background: black;
 	border: 0px solid #000;
