@@ -17,6 +17,10 @@ public class RDFAuthorDocument extends NSDocument {
     
     NSWindow window;
     
+    NSTextView previewTextView;
+    NSScrollView previewView;
+    
+    
     ArcNodeList rdfModel;
     boolean addingNode;
     boolean addingConnection;
@@ -154,6 +158,31 @@ public class RDFAuthorDocument extends NSDocument {
 	// Attach the toolbar to the document window.
 	window.setToolbar(rdfToolbar);
     }
+    
+    public void showTextPreview(boolean showPreview)
+    {
+        if (showPreview)
+        {
+            String rdfData = rdfModel.exportAsRDF();
+            if (rdfData == null)
+            {
+                return;
+            }
+            
+            NSRect rect = rdfModelView.frame();
+            previewView.setFrame(rect);
+            
+            previewTextView.setString(rdfData);
+            window.contentView().replaceSubview(rdfModelView, previewView);
+        }
+        else
+        {
+            NSRect rect = previewView.frame();
+            rdfModelView.setFrame(rect);
+            window.contentView().replaceSubview(previewView, rdfModelView);
+        }
+    }
+            
     
     public void modelChanged()
     {

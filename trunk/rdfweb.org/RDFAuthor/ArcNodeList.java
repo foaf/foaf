@@ -225,31 +225,26 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                     {
                         String id = (node.id() == null)?"":node.id();
                         node.setJenaNode(memModel.createLiteral(id));
-                        System.out.println("Created Literal: " + node.id());
                     }
                     else
                     {
                         if ((node.id() == null) && (node.typeNamespace() == null))
                         {
                             node.setJenaNode( memModel.createResource() );
-                            System.out.println("Created anon, untyped node");
                         }
                         else if (node.typeNamespace() == null)
                         {
                             node.setJenaNode(memModel.createResource( node.id() ));
-                            System.out.println("Created untyped node: " + node.id());
                         }
                         else if (node.id() == null)
                         {
                             Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
                             node.setJenaNode( memModel.createResource( type ) );
-                            System.out.println("Created anonymous node of type: " + type);
                         }
                         else
                         {
                             Resource type = memModel.createResource( node.typeNamespace() + node.typeName() );
                             node.setJenaNode( memModel.createResource( node.id(), type ) );
-                            System.out.println("Created node: " + node.id() + " Type: "+type);
                         }
                     }
                 }
@@ -267,14 +262,12 @@ public class ArcNodeList extends java.lang.Object implements Serializable
                             arc.propertyName() );
                     memModel.add((Resource) arc.fromNode().jenaNode(), 
                             property, arc.toNode().jenaNode() );
-                    System.out.println("Created statement: " + arc.fromNode().jenaNode() + 
-                            property + arc.toNode().jenaNode() );
                 }
             }
             
             StringWriter stringOutput = new StringWriter();
             
-            memModel.write(stringOutput);
+            memModel.write(stringOutput, "RDF/XML-ABBREV");
             
             rdfReturned = stringOutput.toString();
         }

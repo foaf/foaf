@@ -29,8 +29,8 @@ public class SchemaData {
     
     public SchemaData()
     {
-        classesList.add( headerData( "Classes", null, null, null ) );
-        propertiesList.add( headerData( "Properties", null, null, null) );
+        classesList.add( headerData( "Node Types", null, null, null ) );
+        propertiesList.add( headerData( "Connection Properties", null, null, null) );
     }
     
     public Hashtable headerData( String displayName, String type, String nameSpace, String name)
@@ -50,58 +50,79 @@ public class SchemaData {
     {
         try
         {
-        Model memModel = new ModelMem();
-        memModel = memModel.read(url);
+            Model memModel = new ModelMem();
+            memModel = memModel.read(url);
+            boolean hasClasses = false;
+            boolean hasProperties = false;
+            
+            if (memModel.size() == 0)
+            {
+                System.out.println("Oh dear - nothing read");
+                NSAlertPanel alert = new NSAlertPanel();
+                alert.runAlert("Nothing Imported",
+                    "No classes or properties were found. Are you sure this is a schema?",
+                    null, null, null);
+                return;
+            }
         
-        if (memModel.size() == 0)
-        {
-            System.out.println("Oh dear - nothing read");
-        }
-        
-        ResIterator classes =
+            ResIterator classes =
                 memModel.listSubjectsWithProperty(RDF.type, RDFS.Class);
 
-        ResIterator properties =
+            ResIterator properties =
                 memModel.listSubjectsWithProperty(RDF.type, RDF.Property);
         
-        // Read in the classes
+            // Read in the classes
         
-        while (classes.hasNext())
-        {
-            String className = classes.next().toString();
+            while (classes.hasNext())
+            {
+                hasClasses = true;
+                String className = classes.next().toString();
+                
+                int sep = className.lastIndexOf("/");
+                int hash = className.lastIndexOf("#");
+                
+                sep = (hash > sep)?hash:sep;
             
-            int sep = className.lastIndexOf("/");
-            int hash = className.lastIndexOf("#");
+                String namespace = className.substring(0, sep+1);
+                String name = className.substring(sep+1);
+                
+                addToTree(classesList, "Class", namespace, name);
+            }
+            while (properties.hasNext())
+            {
+                hasProperties = true;
+                String propertyName = properties.next().toString();
+                
+                int sep = propertyName.lastIndexOf("/");
+                int hash = propertyName.lastIndexOf("#");
+                
+                sep = (hash > sep)?hash:sep;
+                
+                String namespace = propertyName.substring(0, sep+1);
+                String name = propertyName.substring(sep+1);
+                
+                addToTree(propertiesList, "Property", namespace, name);
+            }
             
-            sep = (hash > sep)?hash:sep;
+            if (hasClasses)
+            {
+                outlineView.reloadItemAndChildren( classesList, true); // This isn't very efficient
+                outlineView.expandItem( classesList );
+            }
             
-            String namespace = className.substring(0, sep+1);
-            String name = className.substring(sep+1);
-            
-            addToTree(classesList, "Class", namespace, name);
-        }
-        while (properties.hasNext())
-        {
-            String propertyName = properties.next().toString();
-            
-            int sep = propertyName.lastIndexOf("/");
-            int hash = propertyName.lastIndexOf("#");
-            
-            sep = (hash > sep)?hash:sep;
-            
-            String namespace = propertyName.substring(0, sep+1);
-            String name = propertyName.substring(sep+1);
-            
-            addToTree(propertiesList, "Property", namespace, name);
-        }
-        
-        outlineView.reloadItemAndChildren( classesList, true); // This isn't very efficient
-        outlineView.reloadItemAndChildren( propertiesList, true); // This isn't very efficient
-        
+            if (hasProperties)
+            {
+                outlineView.reloadItemAndChildren( propertiesList, true); // This isn't very efficient
+                outlineView.expandItem( propertiesList );
+            }
         }
         catch (RDFException exception)
         {
             System.err.println("Import failed: " + exception);
+            NSAlertPanel alert = new NSAlertPanel();
+            alert.runAlert("Import Failed",
+                "Try checking the URL. You are online, aren't you?",
+                null, null, null);
         }
     }
     

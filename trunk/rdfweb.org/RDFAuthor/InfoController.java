@@ -55,6 +55,9 @@ public class InfoController extends NSObject {
         NSSelector infoSelector = new NSSelector("showInfo", 
                 new Class[] {NSNotification.class} );
         
+        NSSelector windowClosedSelector = new NSSelector("windowClosed",
+                new Class[] {NSNotification.class} );
+        
         NSNotificationCenter.defaultCenter().addObserver(
             this, itemSelector, itemChangedNotification, null);
         
@@ -63,6 +66,9 @@ public class InfoController extends NSObject {
         
         NSNotificationCenter.defaultCenter().addObserver(
             this, windowSelector, NSWindow.WindowDidBecomeMainNotification, null);
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            this, windowClosedSelector, NSWindow.WindowWillCloseNotification, null);
     }
     
     public void awakeFromNib()
@@ -91,6 +97,16 @@ public class InfoController extends NSObject {
         currentDocument = (RDFAuthorDocument) currentWindow.delegate(); // gives the document
         ModelItem item = currentDocument.currentObject();
         setCurrentItem(item);
+    }
+    
+    public void windowClosed(NSNotification notification)
+    {
+        NSWindow window = (NSWindow) notification.object();
+        RDFAuthorDocument document = (RDFAuthorDocument) window.delegate();
+        if (document == currentDocument)
+        {
+            setCurrentItem(null);
+        }
     }
     
     public void currentItemChanged(NSNotification notification)

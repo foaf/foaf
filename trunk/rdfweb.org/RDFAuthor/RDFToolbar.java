@@ -18,6 +18,9 @@ public class RDFToolbar extends NSToolbar {
     static String editToolsIdentifier = "edit tools identifier";
     static String showToolsIdentifier = "show tools identifier";
     static String checkIdentifier = "check model identifier";
+    static String toggleViewsIdentifier = "toggle view identifier";
+    
+    boolean textPreview = false;
     
     public RDFToolbar()
     {
@@ -67,7 +70,19 @@ public class RDFToolbar extends NSToolbar {
 	    toolbarItem.setTarget(this);
 	    toolbarItem.setAction(new NSSelector("doCheck", new Class[] { NSToolbarItem.class }) );
         }
-        else {
+        else if (itemIdent.equals(toggleViewsIdentifier))
+        {
+            toolbarItem.setLabel("Toggle Model/Text View");
+	    toolbarItem.setPaletteLabel("Toggle Model/Text View");
+	    
+	    toolbarItem.setToolTip("Toggles between the model view and a preview of the text export");
+	    toolbarItem.setImage(NSImage.imageNamed("modelView"));
+	    
+	    toolbarItem.setTarget(this);
+	    toolbarItem.setAction(new NSSelector("toggleView", new Class[] { NSToolbarItem.class }) );
+        }
+        else
+        {
 	    // itemIdent refered to a toolbar item that is not provide or supported by us or cocoa.
 	    // Returning null will inform the toolbar this kind of item is not supported.
 	    toolbarItem = null;
@@ -85,7 +100,7 @@ public class RDFToolbar extends NSToolbar {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
                 showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
-                checkIdentifier } );
+                checkIdentifier, toggleViewsIdentifier } );
     }
     
     public NSArray toolbarAllowedItemIdentifiers(NSToolbar toolbar) {
@@ -94,7 +109,7 @@ public class RDFToolbar extends NSToolbar {
 	// The set of allowed items is used to construct the customization palette.
 	return new NSArray(new String[] 
             {   
-                editToolsIdentifier, showToolsIdentifier, checkIdentifier,
+                editToolsIdentifier, showToolsIdentifier, checkIdentifier, toggleViewsIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
@@ -183,4 +198,21 @@ public class RDFToolbar extends NSToolbar {
     {
         rdfAuthorDocument.doCheckModel();
     }
+    
+    public void toggleView(NSToolbarItem sender)
+    {
+        if (textPreview)
+        {
+            textPreview = false;
+            sender.setImage(NSImage.imageNamed("modelView"));
+            rdfAuthorDocument.showTextPreview(false);
+        }
+        else
+        {
+            textPreview = true;
+            sender.setImage(NSImage.imageNamed("textPreview"));
+            rdfAuthorDocument.showTextPreview(true);
+        }
+    }
+            
 }

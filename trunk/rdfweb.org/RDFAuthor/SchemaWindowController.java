@@ -9,7 +9,7 @@ public class SchemaWindowController extends NSObject {
 
     NSOutlineView schemaOutlineView;
 
-    NSTextField schemaUrlField;
+    NSComboBox schemaUrlField;
 
     NSPanel schemaWindow;
 
