@@ -1,0 +1,58 @@
+<FOAFNAUT>
+<BLUB type="http://xmlns.com/foaf/0.1/Person;Initial">
+ <script><![CDATA[
+   try { 
+    L=(Number(parseXML('<g><text style=\"text-anchor:middle;\" transform=\"matrix(1 0 0 1 3.5718 36.4229)\"><tspan x=\"25\" y=\"0\" font-family=\"Osaka,MS Arial Unicode\" font-size=\"12.8\" letter-spacing=\"0.525\">'+str+'</tspan></text></g>',gdoc).firstChild.firstChild.getComputedTextLength())-5)/2
+   	} catch (a) {L=-1};
+    if (L<0) L=0;
+    var L1=57+L;
+    var L2=(0-L/2);
+    L3=L2+'';
+    L4=L1+'';
+    regexp=/^-*\d+\.*\d*$/;
+    if (!regexp.test(L3)) L3=-15;
+    if (!regexp.test(L4)) { L4=200;  L3=257/2 };
+    return {L3:L3,L4:L4}
+ ]]></script>
+ <svg><![CDATA[<g><g transform="translate(-30,-30)"><path  id="gloves-@@ID@@" fill="#F69866" stroke="#000000" stroke-width="1.89" d="M44.294,31.584v7.413c0,3.479-2.82,6.3-6.3,6.3	H19.266c-3.479,0-6.3-2.82-6.3-6.3v-7.413"/><path fill="#F70F34" stroke="#000000" stroke-width="2.1" d="M35.092,55.844H22.366l-2.475-24.539h17.675L35.092,55.844z"/><g onclick="deleteBlub('@@ID@@');"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M38.704,57.176	c0,3.027-2.055,5.482-4.589,5.482H22.644c-2.535,0-4.589-2.455-4.589-5.482c0-3.028,2.055-5.482,4.589-5.482h11.472	C36.649,51.694,38.704,54.148,38.704,57.176z"/><path d="M32.987,58.11h-8.983v-1.634h8.983V58.11z"/></g><path id="body-@@ID@@" onclick="ShowPath(currentBlubId,'@@ID@@');" fill="#31A458" stroke="#000000" stroke-width="1.9464" d="M46.43,30.645c0,3.583-2.905,6.488-6.488,6.488H17.493c-3.583,0-6.488-2.905-6.488-6.488v-8.074c0-3.583,2.905-6.488,6.488-6.488h22.449c3.583,0,6.488,2.905,6.488,6.488V30.645z"/><g onclick="expandBlub('@@ID@@');"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M37.666,11.782c0,3.866-3.134,7-7,7h-4.003c-3.866,0-7-3.134-7-7V7.778c0-3.866,3.134-7,7-7h4.003c3.866,0,7,3.134,7,7V11.782z"/><g id="plus-@@ID@@"><path d="M33.612,10.835h-9.999V9.017h9.999V10.835z"/><path d="M29.521,14.925V4.927h-1.818v9.999H29.521z"/></g></g><g onmousedown="blubDragOn('@@ID@@');" onmouseup="blubDragOff(evt)" onmousemove="dragBlub(evt)"><rect id="apron-@@ID@@" fill="#F5F8CA" stroke="#000000" stroke-width="1.1056" x="@@L3@@" y="24.43" width="@@L4@@" height="16"/><text pointer-events="none" style="text-anchor:middle;" transform="matrix(1 0 0 1 3.5718 36.4229)"><tspan x="25" y="1" font-family="Osaka,MS Arial Unicode" font-size="12.8" letter-spacing="0.425">@@NICK@@</tspan></text></g></g></g></g>]]></svg>
+<focus><![CDATA[<circle transform="translate(@@X@@,@@Y@@)" cx="-1.8" cy="2" r="29" stroke-width="0" fill="#0099cc" stroke="#CCFFFF"/>]]></focus>
+</BLUB>
+<BLUB type="http://xmlns.com/foaf/0.1/Person;Expanded">
+ <script><![CDATA[
+   try { 
+    L=(Number(parseXML('<g><text style=\"text-anchor:middle;\" transform=\"matrix(1 0 0 1 3.5718 36.4229)\"><tspan x=\"25\" y=\"0\" font-family=\"Osaka,MS Arial Unicode\" font-size=\"12.8\" letter-spacing=\"0.525\">'+str+'</tspan></text></g>',gdoc).firstChild.firstChild.getComputedTextLength())-5)/2
+   	} catch (a) {L=-1};
+    if (L<0) L=0;
+    var L1=57+L;
+    var L2=(0-L/2);
+    L3=L2+'';
+    L4=L1+'';
+    regexp=/^-*\d+\.*\d*$/;
+    if (!regexp.test(L3)) L3=-15;
+    if (!regexp.test(L4)) { L4=200;  L3=257/2 };
+    return {L3:L3,L4:L4}
+ ]]></script>
+ <svg><![CDATA[<g><g transform="translate(-30,-30)"><path  id="gloves-@@ID@@" fill="#FF22FF" stroke="#000000" stroke-width="1.89" d="M44.294,31.584v7.413c0,3.479-2.82,6.3-6.3,6.3	H19.266c-3.479,0-6.3-2.82-6.3-6.3v-7.413"/><path fill="#F70F34" stroke="#000000" stroke-width="2.1" d="M35.092,55.844H22.366l-2.475-24.539h17.675L35.092,55.844z"/><g onclick="deleteBlub('@@ID@@');"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M38.704,57.176	c0,3.027-2.055,5.482-4.589,5.482H22.644c-2.535,0-4.589-2.455-4.589-5.482c0-3.028,2.055-5.482,4.589-5.482h11.472	C36.649,51.694,38.704,54.148,38.704,57.176z"/><path d="M32.987,58.11h-8.983v-1.634h8.983V58.11z"/></g><path id="body-@@ID@@" onclick="ShowPath(currentBlubId,'@@ID@@');" fill="#31A458" stroke="#000000" stroke-width="1.9464" d="M46.43,30.645c0,3.583-2.905,6.488-6.488,6.488H17.493c-3.583,0-6.488-2.905-6.488-6.488v-8.074c0-3.583,2.905-6.488,6.488-6.488h22.449c3.583,0,6.488,2.905,6.488,6.488V30.645z"/><g onclick="updatePanel(blubs['@@ID@@']);"><path fill="#FFFFFF" stroke="#000000" stroke-width="1.5566" d="M37.666,11.782c0,3.866-3.134,7-7,7h-4.003c-3.866,0-7-3.134-7-7V7.778c0-3.866,3.134-7,7-7h4.003c3.866,0,7,3.134,7,7V11.782z"/><g id="plus-@@ID@@"><path fill="none" stroke="#000000" stroke-width="2" d="M32.155,9.73c0,1.899-1.539,3.438-3.438,3.438s-3.438-1.54-3.438-3.438c0-1.898,1.54-3.438,3.438-3.438S32.155,7.832,32.155,9.73z"/></g></g><g onmousedown="blubDragOn('@@ID@@');" onmouseup="blubDragOff(evt)" onmousemove="dragBlub(evt)"><rect id="apron-@@ID@@" fill="#F5F8CA" stroke="#000000" stroke-width="1.1056" x="@@L3@@" y="24.43" width="@@L4@@" height="16"/><text pointer-events="none" style="text-anchor:middle;" transform="matrix(1 0 0 1 3.5718 36.4229)"><tspan x="25" y="1" font-family="Osaka,MS Arial Unicode" font-size="12.8" letter-spacing="0.425">@@NICK@@</tspan></text></g></g></g></g>]]></svg>
+<focus><![CDATA[<circle transform="translate(@@X@@,@@Y@@)" cx="-0.8" cy="0" r="19" stroke-width="0" fill="#0099cc" stroke="#CCFFFF"/>]]></focus>
+</BLUB>
+<SPROING type="http://xmlns.com/foaf/0.1/knows">
+ <svg><![CDATA[<line fill="none" x1="@@X1@@" y1="@@Y1@@" x2="@@X2@@" y2="@@Y2@@" stroke="#CCFFFF" stroke-width="3" stroke-dasharray="12 4"/>]]></svg>
+</SPROING>
+<SPROING type="http://jibbering.com/foaf/jim.rdf#isKnownBy">
+ <svg><![CDATA[<line fill="none" x1="@@X1@@" y1="@@Y1@@" x2="@@X2@@" y2="@@Y2@@" stroke="#FFFFCC" stroke-width="3" stroke-dasharray="12 4"/>]]></svg>
+</SPROING>
+<SPROING type="http://xmlns.com/foaf/0.1/codepiction">
+ <svg><![CDATA[<line fill="none" x1="@@X1@@" y1="@@Y1@@" x2="@@X2@@" y2="@@Y2@@" stroke="#CCFFFF" stroke-width="1"/><circle stroke="#FFFFFF" cx="@@XC@@" xy="@@cy@@" stroke-width="1.8" r="4.2" fill="#33CC99" onclick="getCod(evt,'@@FROMID@@','@@TOID@@','@@img@@')"/>]]></svg>
+</SPROING>
+<PANEL type="http://xmlns.com/foaf/0.1/codepiction">
+<svg><![CDATA[<g><g id="panel@@PANELCOUNT@@" onmousedown="bringTop('panel@@PANELCOUNT@@')" transform="translate(@@CODX@@,@@CODY@@)"><g transform="scale(@@SCALE@@)"><rect fill="#0099cc" stroke="#CCFFFF" stroke-width="1" x="0" y="0" width="210" height="190"/><g transform="translate(5,5)" onmousedown="draggingPanel='panel@@PANELCOUNT@@';bringTop('panel@@PANELCOUNT@@');draggingPanels=true" onmouseup="draggingPanel=null;draggingPanels=false" onmousemove="dragBlub(evt)"><rect fill="#F5F8CA" stroke="#000000" stroke-width="1" x="0" y="0" width="200" height="24"/><text x="0.2em" y="1.17em" font-weight="bold" font-family="Osaka,MS Arial Unicode" font-size="14.5" letter-spacing="0.525" pointer-events="none">@@NICKFROM@@/@@NICKTO@@</text></g><g transform="translate(5,35)"><rect fill="#CCCCCC" stroke="#CCCCCC" stroke-width="4" x="0" y="0" width="200" height="150"/><image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="@@IMG@@" x="0" y="0" height="150" width="200"/></g><g onclick="closePanel('panel@@PANELCOUNT@@')" transform="translate(185,9)"><path fill="#FF0033" stroke="#000000" stroke-width="0.9246" d="M15.192,10.15 c0,2.784-2.257,5.041-5.041,5.041H5.503c-2.784,0-5.041-2.257-5.041-5.041V5.502c0-2.784,2.257-5.041,5.041-5.041h4.648 c2.784,0,5.041,2.257,5.041,5.041V10.15z" /><path d="M12.355,11.611l-1.247,1.247L2.731,4.482l1.248-1.247L12.355,11.611z" /><path d="M3.979,12.858l-1.248-1.247l8.376-8.376l1.248,1.247L3.979,12.858z" /></g></g></g></g>]]></svg>
+</PANEL>
+<PANEL type="http://jibbering.com/foaf/jim.rdf#NAMES">
+<svg><![CDATA[<g><text transform="matrix(1 0 0 1 17.9155 68.9502)"><tspan x="0" y="0" font-family="Osaka,MS Arial Unicode" font-size="12">@@NICK@@</tspan></text><text transform="matrix(1 0 0 1 16.7573 95.7222)"><tspan x="0" y="0" font-family="Osaka,MS Arial Unicode" font-size="10">@@NAME@@</tspan></text> ]]></svg>
+</PANEL>
+<PANEL type="http://jibbering.com/foaf/jim.rdf#MBOX">
+<svg><![CDATA[ <text transform="matrix(1 0 0 1 17.9155 98.9502)"><tspan x="0" dy="1.3em" font-family="Osaka,MS Arial Unicode" font-size="9.5" letter-spacing="0.525" stroke="none" fill="#33cc99"><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="mailto:@@MBOX1@@">@@MBOX1@@</a></tspan><tspan x="0" dy="1.3em" font-family="Osaka,MS Arial Unicode" font-size="9.5" letter-spacing="0.525" stroke="none" fill="#33cc99"><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="mailto:@@MBOX2@@">@@MBOX2@@</a></tspan><tspan x="0" dy="1.3em" font-family="Osaka,MS Arial Unicode" font-size="9.5" letter-spacing="0.525" stroke="none" fill="#33cc99"><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="mailto:@@MBOX3@@">@@MBOX3@@</a></tspan></text> ]]></svg>
+</PANEL>
+
+</FOAFNAUT>
+
