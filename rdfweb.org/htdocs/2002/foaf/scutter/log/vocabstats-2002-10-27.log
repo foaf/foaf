@@ -1,0 +1,1927 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:stat="http://xmlns.com/2002/07/stat#">
+<!-- stats for an RDFWeb aggregation point. todo: add service description info here. -->
+
+<stat:PropertyCount>
+<stat:property rdf:resource="Left" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="by" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://elovirta.com/rdf/foaf#co-worker" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#DAYLIGHT" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#STANDARD" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VTIMEZONE-PROP" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#contactDetails" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#censor" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/constributor" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/hasVersion" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/source" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/terms/issued" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/terms/modified" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/modules/syndication/updateBase" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/modules/syndication/updateFrequency" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/modules/syndication/updatePeriod" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/name" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/textinput" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/url" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0copyright" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0image" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0items" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0language" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0li" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0managingEditor" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0name" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0webMaster" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_19" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#resource" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/xhtmlbody" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#birthDay" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#familyName" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#fullName" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#givenName" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#home" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#homePage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#mailbox" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#mbox" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#motherTongue" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#office" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#vacationHome" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/XML/1998/namespacelang" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/dnaCheckesum" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/dontGoThere" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/geekcode" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/homePage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/logo" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/sister" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/wakeUpSlacker" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workOrgHomepage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workhomepage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workplacehomepage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/fingerprint" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/length" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/src_assurance" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="the" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:fingerprint" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:NID" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:homepage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:icq" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:key" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:mailbox" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:mobile" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:primaryLanguage" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:names:1.0:unAmbiguousLocation" />
+<stat:count>1</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="Margarita" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#ATTENDEE" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#NAME" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#TZOFFSETFROM" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#TZOFFSETTO" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#cite" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#quoteBody" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.usefulinc.com/picdiary/extralink" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/annotation-ns#annotates" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/annotation-ns#body" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/annotation-ns#context" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/annotation-ns#created" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#City" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Country" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#PostalCode" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Street" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#address" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/aimNick" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/contribProject" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/dateOfBirth" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/id" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/spouse" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/subscribesTo" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/wife" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/shopvocab#askingPrice" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/shopvocab#currency" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/shopvocab#item" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/shopvocab#vendorMbox" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/identity" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:boss" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:hates" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:livesWith" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:secondaryLanguage" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:significantOther" />
+<stat:count>2</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/image" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.usefulinc.com/picdiary/highlight" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#id" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#phone" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/email" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/firstname" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/friend" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/livesWith" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/pastProject" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/publications" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/encryptedTo" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:classMate" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:dislikes" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:worksWith" />
+<stat:count>3</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/relation" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.perceive.net/2002/07/trust/trustsHighly" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_16" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_17" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_18" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#resource" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#nearestAirport" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/hex_id" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:cryptoSystem" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:keyLength" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:keyUse" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:type" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:parent" />
+<stat:count>4</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="Alexandria," />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://web.resource.org/cc/license" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Description" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#subPropertyOf" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#fullname" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#sortName" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/givenname" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomePage" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:is-like" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:loves" />
+<stat:count>5</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#bookmark" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_11" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_12" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_13" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_14" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_15" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#middleName" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/project" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/pubkeyAddress" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workPlaceHomepage" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:associatedWithProject" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:familyMember" />
+<stat:count>6</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/thumbnail" />
+<stat:count>7</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.perceive.net/2002/07/trust/trustsAveragely" />
+<stat:count>7</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/projectHomepage" />
+<stat:count>7</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:subKey" />
+<stat:count>7</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:is-a" />
+<stat:count>7</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://example/foo@@#at" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://example/foo@@#by" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://example/foo@@#materials" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://example/foo@@#presented" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_10" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_7" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_8" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_9" />
+<stat:count>8</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#likes" />
+<stat:count>9</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:metOnline" />
+<stat:count>9</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#dend" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#dstart" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#presentation" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#vevent" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/publisher" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_6" />
+<stat:count>10</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#description" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/rights" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_3" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_4" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_5" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workInfoHomepage" />
+<stat:count>11</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1" />
+<stat:count>12</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2" />
+<stat:count>12</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/swws/index.rdf#presentation" />
+<stat:count>13</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://infomesh.net/2001/home#publication" />
+<stat:count>13</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/items" />
+<stat:count>13</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/xhtmlhead" />
+<stat:count>13</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/phone" />
+<stat:count>15</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0description" />
+<stat:count>16</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/image" />
+<stat:count>16</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/subject" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0link" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0title" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#attendee" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#dend" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#dstart" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#organizer" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#status" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#vevent" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2001/sw/Europe/200210/rdf-cal.rdf#ATTENDEE" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/knowsWell" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/made" />
+<stat:count>17</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/identifier" />
+<stat:count>18</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/sigdate" />
+<stat:count>18</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/signed" />
+<stat:count>18</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/signerLongHexID" />
+<stat:count>18</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/givenName" />
+<stat:count>19</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:foaf-ext:1.0:friend" />
+<stat:count>19</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#hour" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/2001/05/ical#minute" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#DESCRIPTION" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#DTEND" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#GEO-NAME" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#LOCATION" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VEVENT-PROP" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/language" />
+<stat:count>20</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/title" />
+<stat:count>21</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#DTSTART" />
+<stat:count>22</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/img" />
+<stat:count>22</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/currentProject" />
+<stat:count>23</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/earthMap#cityName" />
+<stat:count>24</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/earthMap#countryName" />
+<stat:count>24</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="" />
+<stat:count>28</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/schoolHomepage" />
+<stat:count>29</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#height" />
+<stat:count>31</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#width" />
+<stat:count>31</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#givenname" />
+<stat:count>31</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/net/swn#gender" />
+<stat:count>34</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#hour" />
+<stat:count>34</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#minute" />
+<stat:count>34</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#isDefinedBy" />
+<stat:count>34</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/description" />
+<stat:count>39</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#TZID" />
+<stat:count>40</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/swws/index.rdf#hour" />
+<stat:count>40</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://ilrt.org/discovery/2001/06/schemas/swws/index.rdf#minute" />
+<stat:count>40</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf" />
+<stat:count>42</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/firstName" />
+<stat:count>42</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/usps#cityName" />
+<stat:count>46</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/10/swap/pim/usps#stateAbbr" />
+<stat:count>46</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/depicts" />
+<stat:count>47</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/wot/0.1/assurance" />
+<stat:count>49</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#fraction" />
+<stat:count>51</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2001/svgRdf/axsvg-schema.rdf#InPosition" />
+<stat:count>52</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/contributor" />
+<stat:count>57</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#area" />
+<stat:count>65</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/workplaceHomepage" />
+<stat:count>67</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/attendeeOf" />
+<stat:count>70</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/monthName" />
+<stat:count>70</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/yyyy" />
+<stat:count>70</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/format" />
+<stat:count>74</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/interest" />
+<stat:count>75</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/regionDepicts" />
+<stat:count>84</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/surname" />
+<stat:count>99</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#range" />
+<stat:count>107</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://rdf.desire.org/vocab/recommend.rdf#annotator" />
+<stat:count>116</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#depiction" />
+<stat:count>119</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#hasPart" />
+<stat:count>121</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://jibbering.com/2002/3/svg/#polypath" />
+<stat:count>131</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://sophia.inria.fr/~enerbonn/rdfpiclang#xmllang" />
+<stat:count>137</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#domain" />
+<stat:count>138</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://opencyc.sourceforge.net/daml/cyc.daml#inRegion" />
+<stat:count>140</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/coverage" />
+<stat:count>140</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/during" />
+<stat:count>140</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/location" />
+<stat:count>140</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#comment" />
+<stat:count>158</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/link" />
+<stat:count>161</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/page" />
+<stat:count>164</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/rss/1.0/title" />
+<stat:count>177</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://rdf.desire.org/vocab/recommend.rdf#annotates" />
+<stat:count>190</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/homepage" />
+<stat:count>207</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value" />
+<stat:count>210</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/mbox_sha1sum" />
+<stat:count>248</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/title" />
+<stat:count>271</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/nick" />
+<stat:count>276</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#label" />
+<stat:count>289</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/creator" />
+<stat:count>326</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/knows" />
+<stat:count>379</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/date" />
+<stat:count>423</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://purl.org/dc/elements/1.1/description" />
+<stat:count>464</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/thumbnail" />
+<stat:count>470</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/depiction" />
+<stat:count>629</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#iata" />
+<stat:count>795</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+<stat:count>892</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/name" />
+<stat:count>1191</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://xmlns.com/foaf/0.1/mbox" />
+<stat:count>1239</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#elevation" />
+<stat:count>1904</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#latitude" />
+<stat:count>2558</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#longitude" />
+<stat:count>2558</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#name" />
+<stat:count>2961</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.megginson.com/exp/ns/airports#icao" />
+<stat:count>2965</stat:count>
+</stat:PropertyCount>
+
+<stat:PropertyCount>
+<stat:property rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
+<stat:count>5602</stat:count>
+</stat:PropertyCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/2001/05/ical#Vcalendar" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VCALENDAR" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VTIMEZONE" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0/textinput" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0channel" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0textinput" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://rdf.desire.org/vocab/recommend.rdf#annotates" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#Vcalendar" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#RDF" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/xhtmlbr" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/thumbnail" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Ball" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Bat" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Cane" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Children" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Dog" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Earring" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Lamb" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Phone" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Photographic_equipment" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Presentation" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Rucksack" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Sign" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Snowman" />
+<stat:count>1</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#RANGE-CHOICE" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#TRANSP-CHOICE" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VTIMEZONE-PART" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://infomesh.net/2001/home#Quote" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0/image" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/xhtmldiv" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/xhtmlh3" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/10/annotation-ns#Annotation" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/10/annotationType" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Address" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/FOAFHomeDoc" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/mbox" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/name" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/shopvocab#Offer" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/shopvocab#Price" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Name" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Project" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Rock_hyrax" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wot/0.1/User" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wot/0.1/assurance" />
+<stat:count>2</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#CLASSIFICATION-CHOICE" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VEVENT-STATUS-CHOICE" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VJOURNAL-STATUS-CHOICE" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.daml.org/2001/03/daml+oil#UnambiguousProperty" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/FOAFBiblioDoc" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/FOAFTrustDoc" />
+<stat:count>3</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#INTEGER" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VTODO-STATUS-CHOICE" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#ContactLocation" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/FOAFShopDoc" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/FOAFWebDoc" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Airport" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wot/0.1/PubKey" />
+<stat:count>4</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Beer" />
+<stat:count>5</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/xhtmltitle" />
+<stat:count>7</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="urn:tag:decoy@iki.fi,2000:rdf:crypto:1.0:Key" />
+<stat:count>7</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://example/foo@@#Presentation" />
+<stat:count>8</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Project" />
+<stat:count>9</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/2001/05/ical#Vevent" />
+<stat:count>10</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq" />
+<stat:count>14</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#CAL-ADDRESS" />
+<stat:count>15</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0item" />
+<stat:count>15</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Creation" />
+<stat:count>15</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/xhtmlhtml" />
+<stat:count>16</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#Vevent" />
+<stat:count>17</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Image" />
+<stat:count>17</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wot/0.1/SigEvent" />
+<stat:count>18</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#Parameter" />
+<stat:count>19</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2001/sw/Europe/200210/rdf-cal.rdf#VEVENT" />
+<stat:count>19</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/2001/05/ical#Date" />
+<stat:count>20</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#GEO" />
+<stat:count>20</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#VEVENT" />
+<stat:count>20</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#TEXT" />
+<stat:count>22</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0/channel" />
+<stat:count>30</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.ietf.org/rfc/rfc2445.txt#Date" />
+<stat:count>34</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Document" />
+<stat:count>34</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#DATE-TIME" />
+<stat:count>42</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://ilrt.org/discovery/2001/06/schemas/ical-full/hybrid.rdf#Property" />
+<stat:count>42</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class" />
+<stat:count>46</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property" />
+<stat:count>56</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Document" />
+<stat:count>60</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Person" />
+<stat:count>62</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://jibbering.com/2002/3/svg/#Polygon" />
+<stat:count>135</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Geo" />
+<stat:count>140</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://purl.org/rss/1.0/item" />
+<stat:count>144</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/wordnet/1.6/Picture" />
+<stat:count>155</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://xmlns.com/foaf/0.1/Person" />
+<stat:count>1254</stat:count>
+</stat:ClassCount>
+
+<stat:ClassCount>
+<stat:class rdf:resource="http://www.megginson.com/exp/ns/airports#Airport" />
+<stat:count>2961</stat:count>
+</stat:ClassCount>
+
+
+</rdf:RDF>
+
