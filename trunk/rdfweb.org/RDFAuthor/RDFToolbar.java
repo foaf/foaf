@@ -3,9 +3,11 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-public class RDFToolbar extends NSObject {
+public class RDFToolbar extends NSToolbar {
 
     RDFAuthorDocument rdfAuthorDocument;
+    
+    NSView editModeView;
     
     static String identifier = "rdf Toolbar";
     static String pointerIdentifier = "pointer item";
@@ -17,12 +19,17 @@ public class RDFToolbar extends NSObject {
     static String showPropertiesIdentifier = "show properties identifier";
     static String checkIdentifier = "check model identifier";
     
-    public RDFToolbar(RDFAuthorDocument rdfAuthorDocument)
+    public RDFToolbar()
     {
-        this.rdfAuthorDocument = rdfAuthorDocument;
+        super(identifier);
+        setAllowsUserCustomization(true);
+	setAutosavesConfiguration(true);
+	setDisplayMode(NSToolbar.NSToolbarDisplayModeIconOnly);
+        setDelegate(this);
     }
     
-    public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted)  {
+     public NSToolbarItem toolbarItemForItemIdentifier(NSToolbar toolbar, String itemIdent, boolean willBeInserted) 
+     {
 	// Required delegate method.  Given an item identifier, this method returns an item.
 	// The toolbar will use this method to obtain toolbar items that can be displayed in the customization sheet, or in the toolbar itself.
 	NSToolbarItem toolbarItem = new NSToolbarItem(itemIdent);
@@ -32,8 +39,11 @@ public class RDFToolbar extends NSObject {
 	    toolbarItem.setPaletteLabel("Select and Move");
 	    
 	    toolbarItem.setToolTip("Select and move items");
-	    toolbarItem.setImage(NSImage.imageNamed("Arrow"));
+	    //toolbarItem.setImage(NSImage.imageNamed("Arrow"));
 	    
+            toolbarItem.setView(editModeView);
+            toolbarItem.setMinSize(editModeView.frame().size());
+            toolbarItem.setMaxSize(editModeView.frame().size());
 	    toolbarItem.setTarget(this);
 	    toolbarItem.setAction(new NSSelector("pointerSelect", new Class[] { NSToolbarItem.class }) );
 	} else if(itemIdent.equals(addNodeIdentifier)) {
@@ -107,7 +117,7 @@ public class RDFToolbar extends NSObject {
 	    toolbarItem.setPaletteLabel("Check Model");
 	    
 	    toolbarItem.setToolTip("Check this model for errors");
-	    toolbarItem.setImage(NSImage.imageNamed("delete"));
+	    toolbarItem.setImage(NSImage.imageNamed("check"));
 	    
 	    toolbarItem.setTarget(this);
 	    toolbarItem.setAction(new NSSelector("doCheck", new Class[] { NSToolbarItem.class }) );
