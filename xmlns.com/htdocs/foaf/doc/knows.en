@@ -19,7 +19,7 @@ has taken place: phone, fax, email, and smoke signals are all perfectly
 acceptable ways of communicating with people you know. 
 </p>
 <p>
-You probably know hundreds of people, yet may only list a few in your public FOAF file. 
+You probably know hundreds of people, yet might only list a few in your public FOAF file. 
 That's OK. Or you might list them all. It is perfectly fine to have a FOAF file and not 
 list anyone else in it at all. 
 This illustrates the Semantic Web principle of partial description: RDF documents 
@@ -36,7 +36,8 @@ for each of these people, to show you recent photos taken by people you know.
 </p>
 
 <p>
-To provide an additional level of filtering, FOAF applications can do several things. 
+To provide additional levels of representation beyond mere 'knows', FOAF applications 
+can do several things. 
 </p>
 <p>
 They can use more precise relationships than <code>foaf:knows</code> to relate people to 
