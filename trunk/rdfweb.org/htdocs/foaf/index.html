@@ -47,30 +47,15 @@ href="http://rdfweb.org/">rdfweb.org</a> site, which has a more
 technical focus.</p>
 
 
-<p>
-FOAF documentation is catching up with FOAF deployment. Articles in the <a 
-href="/">FOAF weblog</a> and <a 
-href="http://rdfweb.org/topic/FoafProject">collaboratively edited FOAF 
-Wiki</a> accompany the evolving <a href="http://xmlns.com/foaf/0.1/">FOAF 
-Specification</a>. The <a href="/">RDFWeb homepage and FOAF wiki</a> has 
-'quick links' to some of the most useful FOAF-related sites, services and 
-documents.
-</p>
-
 Useful links: <a 
 href="http://foafnaut.org/">FOAFNaut</a>, <a href="http://xml.mfd-consult.dk/foaf/explorer/">FOAF Explorer</a> (<a href="http://www.ldodds.com/blog/archives/000026.html">bookmarklet</a>), <a href="http://eikeon.com/foaf/">eikeon.com FOAF Web View</a>, <a href="http://dougal.gunters.org/jabfoaf/">JabFOAF</a>.
 </p>
 
-
-
 <h3>More Links and background</h3>
 
-
-
-    <ul>
+<ul>
       <li>the FOAF <a href="http://xmlns.com/foaf/0.1/">namespace
       document</a> (technical)</li>
-
 <li>add <a
 href="http://www.perceive.net/pages/page/articles/year/2002/month/12#9">nearestAirport</a>
 or <a href="http://rdfweb.org/mt/foaflog/archives/000004.html">myersBriggs</a>
@@ -158,48 +143,9 @@ English babelfish version</a>; <a href="http://esw.w3.org/t/view/ESW/SemWebSpain
       href="corp/data/java/intro.html">software</a>)</li>
     </ul>
 
-    <h3>The Basic Idea</h3>
-
-    <p>The basic idea is pretty simple. If people publish
-    information in the FOAF document format, machines will be able
-    to make use of that information. If those files contain "see
-    also" references to other such documents in the Web, we will
-    have a machine-friendly version of today's hypertext Web.
-    Computer programs will be able to scutter around a Web of
-    documents designed for machines rather than humans, storing the
-    information they find, keeping a list of "see also" pointers to
-    other documents, checking digital signatures (for the security
-    minded) and building Web pages and question-answering services
-    based on the harvested documents.</p>
-
-    <p>So, what is the 'FOAF document format'? FOAF files are just
-    text documents (well, Unicode documents). They are written in
-    XML syntax, and adopt the conventions of the Resource
-    Description Framework (RDF). In addition, the FOAF vocabulary
-    defines some useful constructs that can appear in FOAF files,
-    alongside other RDF vocabularies defined elsewhere. For
-    example, FOAF defines categories such as 'Person', 'Document',
-    'Image', alongside some handy properties of those things, such
-    as 'name', 'mbox' (ie. an internet mailbox), 'homepage' etc.,
-    as well as some useful kinds of relationship that hold between
-    members of these categories. For example, one interesting
-    relationship type is 'foaf:depiction'. This relates something
-    (eg. a Person) to an Image. The FOAF demos that feature photos
-    and listings of 'who is in which picture' are based on software
-    tools that parse RDF documents and make use of this
-    properties.</p>
-
-    <p>The specific contents of the FOAF vocabulary are detailed in
-    the <a href="http://xmlns.com/foaf/0.1/">FOAF namespace
-    document</a>. In addition to the FOAF vocabulary, one of the
-    most interesting features of a FOAF file is that it can contain
-    "see Also" pointers to other FOAF files. This provides a basis
-    for automatic harvesting tools to traverse a Web of interlinked
-    files, and learn about new people, documents, services,
-    data...</p>
 
 <pre>
-$Revision: 1.21 $
+$Revision: 1.22 $
 </pre>
 </body>
 </html>
