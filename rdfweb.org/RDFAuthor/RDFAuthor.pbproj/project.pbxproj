@@ -512,7 +512,6 @@
 				F68396760181CC1601000211,
 				F68396780181CC3E01000211,
 				F68C94950181F1D101000211,
-				F6AC16240188448F01000211,
 				F6C639C90196E11A01000211,
 				F6BC47EE0196F7B601000211,
 				F67460C001A1BB7801000211,
@@ -525,6 +524,7 @@
 				F6DE46FE01AEB9BD01000211,
 				F604532901C5062001000211,
 				F60AD10701F72D6C01000211,
+				F6F1B11E0210AED001000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -1126,12 +1126,6 @@
 			path = Changelog;
 			refType = 4;
 		};
-		F6AC16240188448F01000211 = {
-			fileRef = F6AC16230188448F01000211;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		F6B09AE2017AFA4501000211 = {
 			isa = PBXFileReference;
 			path = ModelErrorData.java;
@@ -1425,6 +1419,12 @@
 		};
 		F6E8FB7B0171F2E101000211 = {
 			fileRef = F6E8FB7A0171F2E101000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6F1B11E0210AED001000211 = {
+			fileRef = F6AC16230188448F01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};
