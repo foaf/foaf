@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns:doap="http://usefulinc.com/ns/doap#"
+xmlns:foaf="http://xmlns.com/foaf/0.1#" xml:lang="en">
+  <doap:Project>
+    <doap:name>The FOAF Project</doap:name>
+    <doap:shortname>FOAF</doap:shortname>
+    <doap:homepage rdf:resource="http://www.foaf-project.org/"/>
+    <doap:created>2000-06-20</doap:created>
+    <doap:description>The Friend of a Friend (FOAF) project is about
+creating a Web of machine-readable homepages describing people, the
+links between them and the things they create and do.</doap:description>
+    <doap:wiki rdf:resource="http://rdfweb.org/topic/FoafProject"/>
+    <doap:bug-database rdf:resource="http://rdfweb.org/topic/IssueTracker"/>
+    <doap:mailing-list rdf:resource="http://rdfweb.org/mailman/listinfo/rdfweb-dev"/>
+    <doap:programming-language>RDF/XML</doap:programming-language>
+    <doap:os>The Web</doap:os>
+    <doap:maintainer>
+      <foaf:Person>
+        <foaf:name>Dan Brickley</foaf:name>
+        <foaf:nick>danbri</foaf:nick>
+	<foaf:mbox_sha1sum>362ce75324396f0aa2d3e5f1246f40bf3bb44401</foaf:mbox_sha1sum>
+        <rdfs:seeAlso rdf:resource="http://rdfweb.org/people/danbri/rdfweb/danbri-foaf.rdf"/>
+      </foaf:Person>
+    </doap:maintainer>
+    <doap:repository>
+      <doap:CVSRepository>
+        <doap:browse rdf:resource="http://rdfweb.org/viewcvs/viewcvs.cgi/"/>
+      </doap:CVSRepository>
+    </doap:repository>
+  </doap:Project>
+</rdf:RDF>
