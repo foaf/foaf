@@ -4,9 +4,14 @@ check:
 
 sign:
 	@echo "Sign your Schema!"
+	gpg -sab index.rdf 
+	mv index.rdf.asc ../foafsig
+
 	gpg -sab index.html 
-	mv index.html.asc ../foafsig
+	mv index.html.asc ../htmlfoafsig
 #
+
+
 # should this be the rdf version i'm signing? both?
 
 
