@@ -7,9 +7,11 @@
 ./scutter/redist/squish.rb
 ./scutter/bin/scutter
 ./scutter/bin/rdfweb_server
+./scutter/bin/annotea_server
 ./scutter/bin/vocabstats.rb
 ./scutter/bin/paths
 ./scutter/bin/foafalarm
+./scutter/bin/dump_pathinfo
 ./scutter/doc/notes.txt
 ./scutter/doc/scutter.html
 ./scutter/doc/pathfinder_example.txt
