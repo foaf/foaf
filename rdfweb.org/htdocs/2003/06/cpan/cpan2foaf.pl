@@ -13,7 +13,6 @@
 # For example, a match of:
 #
 # (foaf:weblog ?x ?y)
-# (foaf:contributor ?x)
 # (dc:contributor ?x http://www.cpan.org/)
 # (foaf:name ?x ?z)
 #
