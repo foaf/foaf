@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+
+<title>FOAF Tiny Icon</title>
+
+<desc>
+ An icon to represent a link to a FOAF file
+</desc>
+
+
+<g>
+
+<circle cx="6" cy="0" r="4.5" fill="#0099CB" stroke="#000000" stroke-width="1" />
+
+
+<circle cx="4.5" cy="-.7" r="1" fill="#000000" />
+
+
+<circle cx="7.5" cy="-.7" r="1" fill="#000000" />
+
+
+<animateMotion dur="1s" repeatCount="indefinite" values="6,6;6,14;6,6;6,14;6,6" />
+
+</g>
+
+
+<g>
+
+<circle cx="10.5" cy="0" r="4.5" fill="#FF6666" stroke="#000000" stroke-width="1" />
+
+<circle cx="9" cy="-.7" r="1" fill="#000000" />
+
+<circle cx="12" cy="-.7" r="1" fill="#000000" />
+
+<animateMotion begin="0.1s" dur="1s" repeatCount="indefinite" values="6,6;6,14;6,6;6,14;6,6" />
+
+</g>
+
+<g>
+
+<circle cx="22" cy="0" r="4.5" fill="#32CC98" stroke="#000000" stroke-width="1"  />
+
+<circle cx="20.5" cy="-.7" r="1" fill="#000000" />
+
+<circle cx="23.5" cy="-.7" r="1" fill="#000000" />
+
+<animateMotion begin="0.2s" dur="1s" repeatCount="indefinite" values="6,6;6,14;6,6;6,14;6,6" />
+
+</g>
+
+
+
+<g>
+
+<circle cx="16" cy="0" r="4.5" fill="#FFFF67" stroke="#000000" stroke-width="1"  />
+
+<circle cx="14.5" cy="-.7" r="1" fill="#000000" />
+
+<circle cx="17.5" cy="-.7" r="1" fill="#000000" />
+
+<animateMotion begin="0.3s" dur="1s" repeatCount="indefinite" values="6,6;6,14;6,6;6,14;6,6" />
+
+</g>
+
+</svg>

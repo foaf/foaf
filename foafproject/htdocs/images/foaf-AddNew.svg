@@ -1,0 +1,80 @@
+<?xml version="1.0" standalone="no"?>
+<svg
+	viewBox="-18.5 -23 46 46"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<title>New FoaF Icon</title>
+<desc>An icon to represent a link to the action of adding a new friend of a friend, by Morten Fredersen based on the design by Ian Davis, Liz Turner and Jim Ley.</desc>
+<metadata>
+	<rdf:RDF
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+		xmlns="http://xmlns.com/foaf/0.1/"
+		xmlns:dc="http://purl.org/dc/elements/1.1/"
+		xmlns:dcterms="http://purl.org/dc/terms/">
+		<Image rdf:about="">
+			<dc:title>New FoaF Icon</dc:title>
+			<dc:description>An icon to represent a link to the action of adding a new friend of a friend, by Morten Fredersen based on the design by Ian Davis, Liz Turner and Jim Ley.</dc:description>
+			<dc:creator rdf:resource="#mortenf"/>
+			<dc:contributor rdf:resource="#iand"/>
+			<dc:contributor rdf:resource="#ephidrina"/>
+			<dc:contributor rdf:resource="#jim"/>
+			<dcterms:created>2003-06-27</dcterms:created>
+		</Image>
+		<Person rdf:about="#mortenf">
+			<name>Morten Frederiksen</name>
+			<mbox_sha1sum>65b983bb397fb71849da910996741752ace8369b"</mbox_sha1sum>
+			<homepage rdf:resource="http://purl.org/net/morten/"/>
+			<rdfs:seeAlso rdf:resource="http://xml.mfd-consult.dk/foaf/morten.rdf"/>
+		</Person>
+		<Person rdf:about="#iand">
+			<name>Ian Davis</name>
+			<mbox_sha1sum>69e31bbcf58d432950127593e292a55975bc55fd</mbox_sha1sum>
+			<homepage rdf:resource="http://internetalchemy.org/iand/"/>
+			<rdfs:seeAlso rdf:resource="http://internetalchemy.org/iand/foaf.rdf"/>
+		</Person>
+		<Person rdf:about="#jim">
+			<name>Jim Ley</name>
+			<nick>JibberJim</nick>
+			<mbox_sha1sum>35022e505e6a64c05837eccf4beb5d8f981a4e5a</mbox_sha1sum>
+			<homepage rdf:resource="http://jibbering.com/"/>
+			<rdfs:seeAlso rdf:resource="http://jibbering.com/foaf.rdf"/>
+		</Person>
+		<Person rdf:about="#ephidrina">
+			<name>Liz Turner</name>
+			<nick>ephidrina</nick>
+			<homepage rdf:resource="http://liz.xtdnet.nl/"/>
+			<mbox_sha1sum>632054bd9d1d119f99d6858ef64d3f13a3caab87</mbox_sha1sum>
+			<rdfs:seeAlso rdf:resource="http://liz.xtdnet.nl/foaf/my_foaf.rdf"/>
+		</Person>
+	</rdf:RDF>
+</metadata>
+
+<!-- Background -->
+<circle cx="3" cy="0" r="20" fill="#99CCEE" stroke="none"/>
+
+<!-- Red face -->
+<g transform="translate(-3,4)">
+	<g transform="scale(2.5)">
+		<circle cx="0" cy="0" r="4.5" fill="#FF6666" stroke="#000000" stroke-width="1" />
+		<circle cx="-1.5" cy="-0.5" r="1" fill="#000000" />
+		<circle cx="1.5" cy="-0.5" r="1" fill="#000000" />
+	</g>
+</g>
+
+<!-- Black plus -->
+<g transform="translate(8,-5)">
+	<g transform="scale(2.5)">
+		<path d="M-4,0 L4,0 M0,-4 L0,4" fill="none" stroke="#FFFF99" stroke-width="3" stroke-linecap="round"/>
+	</g>
+</g>
+
+<!-- Green plus -->
+<g transform="translate(8,-5)">
+	<g transform="scale(2.5)">
+		<path d="M-4,0 L4,0 M0,-4 L0,4" fill="none" stroke="#339933" stroke-width="2.5" stroke-linecap="round"/>
+	</g>
+</g>
+
+</svg>
