@@ -7,7 +7,7 @@ require 'webrick'
 include WEBrick
 
 # rdfweb_server, sample RDF services (RSS directory etc)
-# $Id: rdfweb_server,v 1.6 2002-07-13 18:16:21 danbri Exp $
+# $Id: rdfweb_server,v 1.7 2002-07-17 11:24:20 danbri Exp $
 #
 # Copyright 2001 Dan Brickley 
 #
@@ -50,11 +50,12 @@ class RSSViewServlet < HTTPServlet::AbstractServlet
 	SELECT ?i, ?t, ?d,  
  	 WHERE 
 	 (rss::title ?i ?t)
-	 (rss::description ?i ?d)
 	USING
 	 rss for http://purl.org/rss/1.0/ 
 
 EOQ
+
+#	 (rss::description ?i ?d)
      
     x = '<?xml version="1.0" encoding="UTF-8"?>'
     x +=  "\n"
@@ -71,29 +72,37 @@ EOQ
 
     x += "<h1>RSS feed: #{u}</h1>\n\n"
 
-    src_id = scutter_remote u 		# grab files, stash locally 
+    opts={}
+
+    src_id = fetch_and_cache u #, '.', true, opts 		# grab files, stash locally 
     puts "got srcid: #{src_id}" 	# basis for file name 
     cache_id = "#{base}webcache/_nt/rdf-#{src_id}.nt"
     puts "got cache_id: #{cache_id}" 	
     begin  
-      data = Loader.ntfile2graph cache_id # load rdf from cached file
+      graph = load_graph_from_cache src_id # load rdf from cached file
+      graph.reg_xmlns 'http://purl.org/rss/1.0/', 'rss'
       loaded = true	
     rescue
-      puts "Error loading rdf document"
+      puts "Error loading rdf document: "+$!
     end
 
     if loaded
       begin  
+
         q = SquishQuery.new.parseFromText(query)
-        resultset = SquishQuery.ask q, data
+        resultset = SquishQuery.ask q, graph
         x += "query: #{query} q: #{q} "
         x += "<ul>\n\n"
         x += "<h1>Recent items</h1>\n"
-        resultset.each do |row|
-          t = esc_utf8 row.values['t']
-          d = esc_utf8 row.values['d']
-          i = esc_utf8 row.values['i']
-          x += "<li><a href=\"#{i}\">#{t}</a> <em>#{d}</em></li>\n"
+        resultset.each do |chan|
+
+          title = esc_utf8 chan.values['t']
+          item = esc_utf8 chan.values['i']
+
+          item_node = Node.getResource item, graph	# hook up node to its datasource
+          description = esc_utf8 item_node.rss_description.to_s
+
+          x += "<li><a href=\"#{item}\">#{title}</a> <em>#{description}</em></li>\n"
         end
         x += "</ul>\n\n"
       rescue
@@ -130,7 +139,8 @@ class RSSDirectoryServlet < HTTPServlet::AbstractServlet
 	dc for http://purl.org/dc/elements/1.1/
 EOQ
 
-    dbi_driver = 'DBI:Mysql:rdfweb1'
+
+    dbi_driver = 'DBI:Pg:rdfweb1' # think about config...
     dbi_user = 'danbri'
     dbi_pass =''
     q = SquishQuery.new.parseFromText (query)
