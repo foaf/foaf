@@ -324,8 +324,8 @@ public class ServiceInfo extends Rendezvous.Listener
 		if (i == len) {
 		    props.put(name, NO_VALUE);
 		} else {
-		    byte value[] = new byte[len - i];
-		    System.arraycopy(text, off + i + 1, value, 0, len - i -1);
+		    byte value[] = new byte[len - i -1];
+		    System.arraycopy(text, off + i + 1, value, 0, len - i - 1);
 		    props.put(name, value);
 		    off += len;
 		}
