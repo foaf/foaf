@@ -134,6 +134,14 @@ public class People
 	return false;
       }
   }
+  
+    public boolean isOnline(Person person)
+    {
+	int index = people.indexOf(person);
+	if (index == -1) return false;
+	
+	return isOnline(index);
+    }
 
   public void find(String match)
   {

@@ -60,11 +60,15 @@ public class GUI extends ApplicationWindow
 	private Button changeButton;
 	private Button showMboxButton;
     private Button moreInfoButton;
+    private Button dumpRdfButton;
+
+    private Person currentPerson;
 
     public GUI(FoafFingerController controller)
 	{
 		super(null);
 		this.controller = controller;
+		addStatusLine();
 	}
 	
 	public void run()
@@ -77,7 +81,7 @@ public class GUI extends ApplicationWindow
 	protected Control createContents(Composite parent)
 	{
 	    getShell().setText("FoafFinger");
-	    
+
 	    try
 		{
 		    presentImage = 
@@ -297,6 +301,15 @@ public class GUI extends ApplicationWindow
 		moreInfoButton = new Button(container, SWT.PUSH);
 		moreInfoButton.setText("More Information...");
 		moreInfoButton.addSelectionListener(this);
+		moreInfoButton.setEnabled(false);
+
+		dumpRdfButton = new Button(composite, SWT.PUSH);
+		dumpRdfButton.setText("Save My FOAF File");
+		dumpRdfButton.addSelectionListener(this);
+		layoutData =
+		    new GridData(GridData.HORIZONTAL_ALIGN_END);
+		layoutData.horizontalSpan = 2;
+		dumpRdfButton.setLayoutData(layoutData);
 		
 		return composite;
 	}
@@ -307,7 +320,8 @@ public class GUI extends ApplicationWindow
 	public void addMessage(final Message message) 
 	{
 
-	    Display.getDefault().syncExec( new Runnable() { public void run() {
+	    Display.getDefault().syncExec( new Runnable() { 
+		    public void run() {
 	    if (message instanceof Message.PersonOnline)
 	        {
 	        		TableItem item;
@@ -319,31 +333,28 @@ public class GUI extends ApplicationWindow
 	        		
 	        		item.setImage(presentImage);
 	        		item.setText(message.getPerson().getName());
-	        		
-	        		/*Person person = message.getPerson();
-	        		
-	        		setField(nameText, person.getName());
-	        		setField(mboxText, person.getMboxHash());
-	        		setField(homepageText, person.getHomepage());
-	        		setField(interestText, person.getInterest());
-	        		setField(seeAlsoText, person.getSeeAlso());*/
+				if (message.getPerson().equals(currentPerson))
+				    {
+					setField(nameText, currentPerson.getName());
+					setField(mboxText, currentPerson.getMboxHash());
+					setField(homepageText, currentPerson.getHomepage());
+					setField(interestText, currentPerson.getInterest());
+					setField(seeAlsoText, currentPerson.getSeeAlso());
+					moreInfoButton.setEnabled(true);
+				    }
 	        }
 	    else if (message instanceof Message.PersonOffline)
 	        {
 	        		TableItem item = table.getItem(message.getIndex());
 	        		item.setImage(absentImage);
+				if (message.getPerson().equals(currentPerson))
+				    moreInfoButton.setEnabled(false);
 	        }
 	    else
-	        System.out.println("Message: " + message.getMessage());
+	        setStatus(message.getMessage());
 	    }
 
-        private void setField(Text nameText, String name)
-        {
-            if (name == null)
-                nameText.setText("");
-            else
-                nameText.setText(name);
-        }});
+		});
 	}
 
 	/* (non-Javadoc)
@@ -392,19 +403,63 @@ public class GUI extends ApplicationWindow
 		    {
 			InfoDialog dialog = new InfoDialog(getShell());
 			
-			dialog.setInfoText("This is some\ninformation");
+			String content = Util.get("http",
+						  currentPerson.getHost(),
+						  currentPerson.getPort(),
+						  "/");
+			
+			dialog.setInfoText(content);
 			dialog.open();
+		    }
+		else if (widget == dumpRdfButton)
+		    {
+			Person person = controller.getPerson();
+			
+			try
+			    {
+				Util.toFile("myfoaf.rdf",
+					    person.toRDF());
+				setStatus("Saved as \"myfoaf.rdf\"");
+			    }
+			catch (Exception e)
+			    {
+				setStatus("Unable to save. Output to console.");
+				System.out.println(person.toRDF());
+			    }
+			
 		    }
 		else
 		{
-			System.out.println("Table selection...");
-			Person person = controller.getPerson(table.getSelectionIndex());
+			int index = table.getSelectionIndex();
 			
-			setField(nameText, person.getName());
-    			setField(mboxText, person.getMboxHash());
-    			setField(homepageText, person.getHomepage());
-    			setField(interestText, person.getInterest());
-    			setField(seeAlsoText, person.getSeeAlso());
+			if (index > -1)
+			    {
+				Person person = controller.getPerson(index);
+				setField(nameText, person.getName());
+				setField(mboxText, person.getMboxHash());
+				setField(homepageText, person.getHomepage());
+				setField(interestText, person.getInterest());
+				setField(seeAlsoText, person.getSeeAlso());
+				moreInfoButton.
+				    setEnabled(controller.personOnline(person));
+				currentPerson = person;
+				
+				TableItem tableItem = table.getItem(index);
+				
+				if (tableItem.getChecked())
+				    controller.getPerson().addKnows(currentPerson);
+				else
+				    controller.getPerson().removeKnows(currentPerson);
+			    }
+			else
+			    {
+				setField(nameText, null);
+				setField(mboxText, null);
+				setField(homepageText, null);
+				setField(interestText, null);
+				setField(seeAlsoText, null);
+				moreInfoButton.setEnabled(false);
+			    }
 		}
 	}
 	
