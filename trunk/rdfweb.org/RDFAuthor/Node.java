@@ -4,8 +4,9 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ListIterator;
+import java.util.ArrayList;
+import java.util.AbstractList;
 import java.io.*;
 
 import com.hp.hpl.mesa.rdf.jena.model.*;
@@ -16,11 +17,13 @@ import com.hp.hpl.mesa.rdf.jena.vocabulary.RDFS;
 
 public class Node extends ModelItem implements Serializable
 {
+    static final long serialVersionUID = 8496964442985450307L;
+    
     String id;
     String typeNamespace;
     String typeName;
-    Vector arcsFrom;
-    Vector arcsTo;
+    ArrayList arcsFrom;
+    ArrayList arcsTo;
     ArcNodeList myList;
     boolean literal;
     boolean showType = false;
@@ -43,8 +46,8 @@ public class Node extends ModelItem implements Serializable
         this.id = id;
         this.position = position;
         setType(typeNamespace,typeName);
-        arcsFrom = new Vector();
-        arcsTo = new Vector();
+        arcsFrom = new ArrayList();
+        arcsTo = new ArrayList();
     }
     
         
@@ -73,8 +76,11 @@ public class Node extends ModelItem implements Serializable
         id = (String) in.readObject();
         typeNamespace = (String) in.readObject();
         typeName = (String) in.readObject();
-        arcsFrom = (Vector) in.readObject();
-        arcsTo = (Vector) in.readObject();
+        // The following spares some pain when I changed from Vectors to Array Lists
+        AbstractList arcsFromTemp = (AbstractList) in.readObject();
+        AbstractList arcsToTemp = (AbstractList) in.readObject();
+        arcsFrom = new ArrayList(arcsFromTemp);
+        arcsTo = new ArrayList(arcsToTemp);
         literal = in.readBoolean();
         showType = in.readBoolean();
         showId = in.readBoolean();
@@ -97,6 +103,16 @@ public class Node extends ModelItem implements Serializable
     public RDFNode jenaNode()
     {
         return jenaNode;
+    }
+    
+    public NSRect rect()
+    {
+        return myRect;
+    }
+    
+    public boolean isConnected()
+    {
+        return (!arcsFrom.isEmpty() || !arcsTo.isEmpty());
     }
     
     public void setId(String theString)
@@ -148,14 +164,14 @@ public class Node extends ModelItem implements Serializable
 
     public void delete()
     {
-        for (Enumeration enumerator = arcsFrom.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = arcsFrom.listIterator(); enumerator.hasNext(); )
         {
-            Arc arc = (Arc)enumerator.nextElement();
+            Arc arc = (Arc)enumerator.next();
             arc.deleteFromNode(this);
         }
-        for (Enumeration enumerator = arcsTo.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = arcsTo.listIterator(); enumerator.hasNext(); )
         {
-            Arc arc = (Arc)enumerator.nextElement();
+            Arc arc = (Arc)enumerator.next();
             arc.deleteFromNode(this);
         }
         myList.removeObject(this);
@@ -184,14 +200,14 @@ public class Node extends ModelItem implements Serializable
     public void setPosition(NSPoint position)
     {
         this.position = position;
-        for (Enumeration enumerator = arcsFrom.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = arcsFrom.listIterator(); enumerator.hasNext(); )
         {
-            Arc arc = (Arc)enumerator.nextElement();
+            Arc arc = (Arc)enumerator.next();
             arc.nodeMoved();
         }
-        for (Enumeration enumerator = arcsTo.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = arcsTo.listIterator(); enumerator.hasNext(); )
         {
-            Arc arc = (Arc)enumerator.nextElement();
+            Arc arc = (Arc)enumerator.next();
             arc.nodeMoved();
         }
         calculateRectangle();

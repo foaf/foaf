@@ -3,6 +3,18 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = MySound; LANGUAGE = ObjC; SUPERCLASS = Sound; }, 
         {
+            ACTIONS = {performQuery = id; }; 
+            CLASS = QueryController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                queryDrawer = id; 
+                rdfAuthorDocument = id; 
+                resultTable = id; 
+                serviceComboButton = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             ACTIONS = {
                 addArc = id; 
                 addNode = id; 
@@ -16,6 +28,7 @@
             OUTLETS = {
                 previewTextView = id; 
                 previewView = id; 
+                queryController = id; 
                 rdfModelView = id; 
                 rdfToolbar = id; 
                 textDescriptionField = id; 
@@ -34,6 +47,7 @@
                 selectAddArcMode = id; 
                 selectAddNodeMode = id; 
                 selectDeleteMode = id; 
+                selectMarkQueryMode = id; 
                 selectMoveMode = id; 
                 showIds = id; 
                 showProperties = id; 
@@ -44,6 +58,7 @@
             OUTLETS = {
                 editView = id; 
                 previewModePopup = id; 
+                queryController = id; 
                 rdfAuthorDocument = id; 
                 showIdsButton = id; 
                 showPropertiesButton = id; 

@@ -183,6 +183,7 @@
 				2A37F4B0FDCFA73011CA2CEA,
 				2A37F4ACFDCFA73011CA2CEA,
 				F6E8FB7A0171F2E101000211,
+				F6BC47EF0196FCA401000211,
 				F6908E650184397001000211,
 				F6908E6701843A6D01000211,
 				F6908E6801843A6D01000211,
@@ -456,6 +457,8 @@
 				F68396780181CC3E01000211,
 				F68C94950181F1D101000211,
 				F6AC16240188448F01000211,
+				F6C639C90196E11A01000211,
+				F6BC47EE0196F7B601000211,
 			);
 			isa = PBXResourcesBuildPhase;
 			name = "Bundle Resources";
@@ -476,6 +479,8 @@
 				F6167DCC0179D93401000211,
 				F6167DE2017AD49E01000211,
 				F6B09AE3017AFA4501000211,
+				F6C639C30195CEA701000211,
+				F6C639C50196DC8A01000211,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;
@@ -627,6 +632,8 @@
 		};
 		F6167DD9017A0A9401000211 = {
 			children = (
+				F6BC47ED0196F7B601000211,
+				F6C639C80196E11A01000211,
 				F68396750181CC1601000211,
 				F68396770181CC3E01000211,
 				F6167DC70179D79C01000211,
@@ -798,6 +805,7 @@
 			children = (
 				F660C47701732AA701000211,
 				F660C4790173300201000211,
+				F6C639C20195CEA701000211,
 			);
 			isa = PBXGroup;
 			name = "Schema Classes";
@@ -890,6 +898,58 @@
 		};
 		F6B09AE3017AFA4501000211 = {
 			fileRef = F6B09AE2017AFA4501000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6BC47ED0196F7B601000211 = {
+			isa = PBXFileReference;
+			path = queryPanel.tiff;
+			refType = 4;
+		};
+		F6BC47EE0196F7B601000211 = {
+			fileRef = F6BC47ED0196F7B601000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6BC47EF0196FCA401000211 = {
+			children = (
+				F6C639C40196DC8A01000211,
+			);
+			isa = PBXGroup;
+			name = "Query Classes";
+			refType = 4;
+		};
+		F6C639C20195CEA701000211 = {
+			isa = PBXFileReference;
+			path = SchemaItem.java;
+			refType = 4;
+		};
+		F6C639C30195CEA701000211 = {
+			fileRef = F6C639C20195CEA701000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6C639C40196DC8A01000211 = {
+			isa = PBXFileReference;
+			path = QueryController.java;
+			refType = 4;
+		};
+		F6C639C50196DC8A01000211 = {
+			fileRef = F6C639C40196DC8A01000211;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		F6C639C80196E11A01000211 = {
+			isa = PBXFileReference;
+			path = markQuery.tiff;
+			refType = 4;
+		};
+		F6C639C90196E11A01000211 = {
+			fileRef = F6C639C80196E11A01000211;
 			isa = PBXBuildFile;
 			settings = {
 			};

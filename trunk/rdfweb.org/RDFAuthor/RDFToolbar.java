@@ -3,8 +3,6 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Hashtable;
-
 public class RDFToolbar extends NSObject {
 
     RDFAuthorDocument rdfAuthorDocument;
@@ -17,12 +15,15 @@ public class RDFToolbar extends NSObject {
     NSButton showPropertiesButton;
     NSPopUpButton previewModePopup;
     
+    QueryController queryController;
+    
     static String identifier = "rdf Toolbar";
     static String editToolsIdentifier = "edit tools identifier";
     static String showToolsIdentifier = "show tools identifier";
     static String checkIdentifier = "check model identifier";
     static String toggleViewsIdentifier = "toggle view identifier";
     static String previewPopupIdentifier = "preview popup identifier";
+    static String queryPanelIdentifier = "query panel identifier";
     
     boolean textPreview = false;
     String[] popupMappings;
@@ -86,6 +87,16 @@ public class RDFToolbar extends NSObject {
             toolbarItem.setMinSize(previewModePopup.frame().size());
             toolbarItem.setMaxSize(previewModePopup.frame().size());
         }
+        else if (itemIdent.equals(queryPanelIdentifier))
+        {
+            toolbarItem.setLabel("Show/Hide Query Panel");
+            toolbarItem.setPaletteLabel("Show/Hide Query Panel");
+            
+            toolbarItem.setToolTip("Show or hide the query window");
+            toolbarItem.setImage(NSImage.imageNamed("queryPanel.tiff"));
+            toolbarItem.setTarget(this);
+            toolbarItem.setAction(new NSSelector("showQueryPanel", new Class[] { NSToolbarItem.class }));
+        }
         else
         {
 	    // itemIdent refered to a toolbar item that is not provide or supported by us or cocoa.
@@ -105,7 +116,7 @@ public class RDFToolbar extends NSObject {
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier, 		
                 showToolsIdentifier,
                 NSToolbarItem.NSToolbarSeparatorItemIdentifier,
-                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier } );
+                checkIdentifier, toggleViewsIdentifier, previewPopupIdentifier, queryPanelIdentifier } );
     }
     
     public NSArray toolbarAllowedItemIdentifiers(NSToolbar toolbar) {
@@ -115,7 +126,7 @@ public class RDFToolbar extends NSObject {
 	return new NSArray(new String[] 
             {   
                 editToolsIdentifier, showToolsIdentifier, checkIdentifier, toggleViewsIdentifier,
-                previewPopupIdentifier,
+                previewPopupIdentifier, queryPanelIdentifier,
                 NSToolbarItem.NSToolbarPrintItemIdentifier, 
                 NSToolbarItem.NSToolbarCustomizeToolbarItemIdentifier,
                 NSToolbarItem.NSToolbarFlexibleItemIdentifier, 
@@ -168,6 +179,7 @@ public class RDFToolbar extends NSObject {
         rdfAuthorDocument.addNodes(false);
         rdfAuthorDocument.addArcs(false);
         rdfAuthorDocument.deleteItems(false);
+        rdfAuthorDocument.markQueryItems(false);
     }
     
     public void selectAddNodeMode(Object sender)
@@ -183,6 +195,11 @@ public class RDFToolbar extends NSObject {
     public void selectDeleteMode(Object sender)
     {
         rdfAuthorDocument.deleteItems(true);
+    }
+    
+    public void selectMarkQueryMode(Object sender)
+    {
+        rdfAuthorDocument.markQueryItems(true);
     }
     
     public void showTypes(NSButton sender)
@@ -225,6 +242,11 @@ public class RDFToolbar extends NSObject {
             textPreview = true;
             sender.setImage(NSImage.imageNamed("textPreview"));
         }
+    }
+    
+    public void showQueryPanel(NSToolbarItem sender)
+    {
+        queryController.toggleShow();
     }
     
     public void previewModeChanged(Object sender)

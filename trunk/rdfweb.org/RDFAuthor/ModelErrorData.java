@@ -9,17 +9,17 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ModelErrorData extends Object {
     
-    Vector errorRecords;
+    ArrayList errorRecords;
     int numberOfErrors;
     int numberOfWarnings;
     
     public ModelErrorData()
     {
-        errorRecords = new Vector();
+        errorRecords = new ArrayList();
     }
     
     public boolean hasErrors()
@@ -44,7 +44,7 @@ public class ModelErrorData extends Object {
     
     public void addError(ModelItem item, String errorText)
     {
-        Vector errorRecord = new Vector();
+        ArrayList errorRecord = new ArrayList();
         
         errorRecord.add("Error");
         errorRecord.add(nameForItem(item));
@@ -57,7 +57,7 @@ public class ModelErrorData extends Object {
     
     public void addWarning(ModelItem item, String warningText)
     {
-        Vector warningRecord = new Vector();
+        ArrayList warningRecord = new ArrayList();
         
         warningRecord.add("Warning");
         warningRecord.add(nameForItem(item));
@@ -98,7 +98,7 @@ public class ModelErrorData extends Object {
     
     public ModelItem getObjectAtRow(int row)
     {
-        return (ModelItem) ((Vector) errorRecords.get(row)).get(3);
+        return (ModelItem) ((ArrayList) errorRecords.get(row)).get(3);
     }
     
     // NSTableDataSource stuff
@@ -111,7 +111,7 @@ public class ModelErrorData extends Object {
     public Object tableViewObjectValueForLocation( 
         NSTableView aTableView, NSTableColumn aTableColumn, int rowIndex)
     {
-        Vector row = (Vector) errorRecords.get(rowIndex);
+        ArrayList row = (ArrayList) errorRecords.get(rowIndex);
         String identifier = (String) aTableColumn.identifier();
         if (identifier == null)
         {
@@ -141,7 +141,7 @@ public class ModelErrorData extends Object {
         String identifier = (String) aTableColumn.identifier();
         if (identifier.equals("Type"))
         {
-            Vector row = (Vector) errorRecords.get(rowIndex);
+            ArrayList row = (ArrayList) errorRecords.get(rowIndex);
             if (((String) row.get(0)).equals("Error"))
             {
                 aCell.setImage(NSImage.imageNamed("error"));

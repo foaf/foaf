@@ -2,6 +2,7 @@
 /* Originally compiled from ModelItem.java */
 
 import com.apple.cocoa.foundation.NSPoint;
+import com.apple.cocoa.foundation.NSRect;
 
 public class ModelItem extends java.lang.Object
 {
@@ -54,8 +55,13 @@ public class ModelItem extends java.lang.Object
         return false;
     }
 
-    public void setPosition(NSPoint point)
+//    public void setPosition(NSPoint point)
+//    {
+//    }
+
+    public NSRect rect()
     {
+        return null;
     }
 
     public void setMyList(ArcNodeList list)

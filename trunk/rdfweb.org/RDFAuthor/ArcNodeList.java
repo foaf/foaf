@@ -4,8 +4,9 @@
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ListIterator;
+import java.util.ArrayList;
+import java.util.AbstractList;
 import java.io.StringWriter;
 import java.io.*;
 import java.net.URL;
@@ -23,14 +24,14 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     
     static final long serialVersionUID = -3654474580567420247L;
     
-    Vector array;
+    ArrayList array;
     ModelItem currentObject;
     RDFAuthorDocument controller;
 
     public ArcNodeList(RDFAuthorDocument controller)
     {
         currentObject = null;
-        array = new Vector();
+        array = new ArrayList();
         this.controller = controller;
     }
     
@@ -49,7 +50,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     private void readObject(java.io.ObjectInputStream in)
      throws IOException, ClassNotFoundException
     {
-        array = (Vector) in.readObject();
+        // Like node - I changed to ArrayLists from vectors. This gets round an annoying problem
+        AbstractList arrayTemp = (AbstractList) in.readObject();
+        array = new ArrayList(arrayTemp);
         currentObject = (ModelItem) in.readObject();
     }
     
@@ -66,21 +69,26 @@ public class ArcNodeList extends java.lang.Object implements Serializable
             selectPreviousObject();
         }
         
-        array.removeElement(item);
+        array.remove(item);
         item.delete();
         controller.modelChanged();
     }
 
     public void removeObject(ModelItem anObject)
     {
-        array.removeElement(anObject);
+        array.remove(anObject);
     }
-
+    
+    public ListIterator getObjects()
+    {
+        return array.listIterator();
+    }
+    
     public void drawModel()
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
-            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            ModelItem anObject = (ModelItem)enumerator.next();
             if (anObject == currentObject)
                 anObject.drawHilight();
             else
@@ -120,7 +128,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         }
         else if (currentObject == null)
         {
-            nextItem = (ModelItem) array.firstElement();
+            nextItem = (ModelItem) array.get(0);
         }
         else
         {
@@ -141,7 +149,7 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         }
         else if (currentObject == null)
         {
-            nextItem = (ModelItem) array.lastElement();
+            nextItem = (ModelItem) array.get(array.size() - 1);
         }
         else
         {
@@ -169,9 +177,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     
     public void showTypes(boolean value)
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
-            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            ModelItem anObject = (ModelItem)enumerator.next();
             if (anObject.isNode())
             {
                 ((Node) anObject).setShowType(value);
@@ -183,9 +191,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     
     public void showIds(boolean value)
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
-            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            ModelItem anObject = (ModelItem)enumerator.next();
             if (anObject.isNode())
             {
                 ((Node) anObject).setShowId(value);
@@ -197,9 +205,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     
     public void showProperties(boolean value)
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
-            ModelItem anObject = (ModelItem)enumerator.nextElement();
+            ModelItem anObject = (ModelItem)enumerator.next();
             if (!anObject.isNode())
             {
                 ((Arc) anObject).setShowProperty(value);
@@ -219,9 +227,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
         try {
             // Create each node
             
-            for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+            for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
             {
-                ModelItem item = (ModelItem) enumerator.nextElement();
+                ModelItem item = (ModelItem) enumerator.next();
                 if (item.isNode())
                 {
                     Node node = (Node) item;
@@ -257,9 +265,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
             
             // Create arcs
             
-            for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+            for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
             {
-                ModelItem item = (ModelItem) enumerator.nextElement();
+                ModelItem item = (ModelItem) enumerator.next();
                 if (!item.isNode())
                 {
                     Arc arc = (Arc) item;
@@ -287,9 +295,9 @@ public class ArcNodeList extends java.lang.Object implements Serializable
     
     public void checkModel(ModelErrorData errorData)
     {
-        for (Enumeration enumerator = array.elements(); enumerator.hasMoreElements(); )
+        for (ListIterator enumerator = array.listIterator(); enumerator.hasNext(); )
         {
-            ModelItem item = (ModelItem) enumerator.nextElement();
+            ModelItem item = (ModelItem) enumerator.next();
             
             if (item.isNode())
             {
