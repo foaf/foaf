@@ -1,0 +1,21 @@
+<p>
+The <code>schoolHomepage</code> property relates a <code>foaf:Person</code> to a 
+<code>foaf:Document</code> that is the <code>foaf:homepage</code> of a School that the 
+person attended.
+</p>
+
+<p>
+FOAF does not (currently) define a class for 'School' (if it did, it would probably be as 
+a sub-class of <code>foaf:Organization</code>). The original application area for 
+<code>foaf:schoolHomepage</code> was for 'schools' in the English-English sense; however 
+American-English usage has dominated, and it is now perfectly reasonable to describe 
+Universities, Colleges and post-graduate study using <code>foaf:schoolHomepage</code>.
+</p>
+
+<p>
+This very basic facility provides a basis for a low-cost, decentralised approach to 
+classmate-reunion and suchlike. Instead of requiring a central database, we can use FOAF 
+to express claims such as 'I studied <em>here</em>' simply by mentioning a 
+school's homepage within FOAF files. Given the homepage of a school, it is easy for 
+FOAF aggregators to lookup this property in search of people who attended that school.
+</p>
